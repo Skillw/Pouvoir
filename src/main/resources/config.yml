@@ -1,0 +1,8 @@
+options:
+  fixed:
+    integer:
+      max: -1
+      min: -1
+    decimal:
+      max: 2
+      min: 2

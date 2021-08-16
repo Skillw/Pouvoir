@@ -1,0 +1,14 @@
+plugin-prefix: '&d[&9Pouvoir&d] '
+plugin-debug: '&d[&9Pouvoir-Debug&d] '
+command-reload: '&d[&9Pouvoir&d] &aPouvoir have been reloaded!'
+command-script-invoke: '&d[&9Pouvoir&d] &aInvoking Script &6{0} &a!'
+command-script-wrong: '&d[&9Pouvoir&d] &cThere was an error during invoking the script &6{0} &c!'
+static-class-not-found: '&d[&9Pouvoir&d] &cThe class &6{0} &cdosen`t exist!'
+script-compile-fail: '&d[&9Pouvoir&d] There was an error during compiling the script &6{0} &c! Please check.'
+script-file-not-found: '&d[&9Pouvoir&d] Can t found the script file &6{0} &c! Please check.'
+script-invoke-script-exception: '&d[&9Pouvoir&d] There was a error while invoke the function &6{0} &cof &d{1} &c! &7(maybe you invoke a function that doesn t exist)'
+script-invoke-exception: '&d[&9Pouvoir&d] There was a error while invoke the function &6{0} &cof &d{1} &c!'
+script-invoke-wrong-format: '&d[&9Pouvoir&d] If you wanna invoke script file`s function, you should write it in this format: &6{file`s path}.js::{function`s name} &c!'
+   
+   
+

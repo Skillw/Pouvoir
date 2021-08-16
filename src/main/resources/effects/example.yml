@@ -1,0 +1,19 @@
+example:
+  attribute:
+    移速加成: 100
+    移动速度: 10
+  potion:
+    SPEED: 1
+  permission:
+    cmi-command-fly: true
+example2:
+  attribute:
+    移速加成: 10%
+    百分比恢复: 5%
+    凋零几率: 10%
+    吸血抵抗: 8%
+    暴击抵抗: 8%
+  potion:
+    SPEED: 1
+  permission:
+    cmi-command-fly: true
