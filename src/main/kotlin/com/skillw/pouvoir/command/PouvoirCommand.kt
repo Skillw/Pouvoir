@@ -4,6 +4,7 @@ import com.skillw.pouvoir.Pouvoir
 import org.bukkit.command.CommandSender
 import taboolib.common.platform.command.CommandBody
 import taboolib.common.platform.command.CommandHeader
+import taboolib.common.platform.command.mainCommand
 import taboolib.common.platform.command.subCommand
 import taboolib.module.chat.colored
 import taboolib.platform.util.sendLang
@@ -11,6 +12,22 @@ import java.util.concurrent.ConcurrentHashMap
 
 @CommandHeader(name = "pouvoir", aliases = ["pou"], permission = "pouvoir.command")
 object PouvoirCommand {
+
+    @CommandBody
+    val main = mainCommand {
+        execute<CommandSender> { sender, context, argument ->
+            val messages = """
+                &6================================
+                &9Command List:
+                  &d- &ehelp &5—— &aShow the help of command
+                  &d- &ejs &b{script file path::function} (args) &5—— &aInvoke the function of the script
+                  &d- &ereload &5—— &aReload Pouvoir
+                &6================================
+            """.colored()
+            sender.sendMessage(messages.split("\n").toTypedArray())
+        }
+    }
+
     @CommandBody(permission = "pouvoir.command.js")
     val js = subCommand {
         dynamic(optional = true) {

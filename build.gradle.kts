@@ -26,7 +26,7 @@ taboolib {
     install("module-nms-util")
     install("module-kether")
     classifier = null
-    version = "6.0.0-pre46"
+    version = "6.0.0-pre48"
 }
 
 repositories {
