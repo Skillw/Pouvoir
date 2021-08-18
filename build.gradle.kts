@@ -24,9 +24,8 @@ taboolib {
     install("module-chat")
     install("module-nms")
     install("module-nms-util")
-    install("module-kether")
     classifier = null
-    version = "6.0.0-pre48"
+    version = "6.0.0-pre51"
 }
 
 repositories {
