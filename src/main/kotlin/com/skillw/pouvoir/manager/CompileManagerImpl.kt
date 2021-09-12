@@ -15,6 +15,7 @@ import javax.script.CompiledScript
 import javax.script.ScriptException
 
 object CompileManagerImpl : CompileManager {
+    override val priority = 6
     override fun compileScript(file: File): CompiledScript? {
         try {
             return (scriptEngine as Compilable).compile(

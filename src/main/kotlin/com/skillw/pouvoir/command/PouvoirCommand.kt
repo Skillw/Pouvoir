@@ -35,7 +35,6 @@ object PouvoirCommand {
                 Pouvoir.scriptManager.keys?.toList() ?: emptyList()
             }
             execute<CommandSender> { sender, context, argument ->
-                sender.sendMessage(argument)
                 val args =
                     argument.replace("js ", "").split(" ").filter { it.isNotBlank() }.toList().toTypedArray()
                 if (args.isEmpty()) {

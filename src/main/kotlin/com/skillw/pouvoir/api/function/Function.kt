@@ -5,7 +5,7 @@ import com.skillw.pouvoir.Pouvoir.scriptManager
 import com.skillw.pouvoir.api.able.Keyable
 import java.util.function.Function
 
-class Function(override val key: String, private val func: (Array<String>) -> Any?) : Keyable<String>,
+class Function(override val key: String, private val func: Function<Array<String>, Any?>) : Keyable<String>,
     Function<Array<String>, Any?> {
 
     constructor(key: String, path: String) : this(key,
@@ -24,7 +24,7 @@ class Function(override val key: String, private val func: (Array<String>) -> An
     }
 
     override fun apply(args: Array<String>): Any? {
-        return func.invoke(args)
+        return func.apply(args)
     }
 
 }

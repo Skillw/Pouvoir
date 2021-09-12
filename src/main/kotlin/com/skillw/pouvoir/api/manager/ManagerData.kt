@@ -9,8 +9,15 @@ import taboolib.platform.BukkitPlugin
 
 class ManagerData(val pouvoir: SubPouvoir) : KeyMap<String, Manager>(), Pluginable, Keyable<SubPouvoir> {
 
+    private val managers = ArrayList<Manager>()
     override val plugin: BukkitPlugin = pouvoir.plugin
     override val key: SubPouvoir = pouvoir
+
+    override fun register(key: String, manager: Manager) {
+        super.register(key, manager)
+        managers.add(manager)
+        managers.sort()
+    }
 
     init {
         for (manager in PManagerHandle.getPManagers(pouvoir)) {
@@ -21,17 +28,17 @@ class ManagerData(val pouvoir: SubPouvoir) : KeyMap<String, Manager>(), Pluginab
     }
 
     override fun register() {
-        map.values.forEach { it.init() }
+        managers.forEach { it.init() }
         TotalManager.register(pouvoir, this)
     }
 
     fun reload() {
-        map.values.forEach {
+        managers.forEach {
             it.reload()
         }
     }
 
     fun disable() {
-        map.values.forEach { it.disable() }
+        managers.forEach { it.disable() }
     }
 }

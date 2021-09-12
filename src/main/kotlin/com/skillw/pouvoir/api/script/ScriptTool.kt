@@ -28,6 +28,33 @@ object ScriptTool : BaseMap<String, Any>() {
     }
 
     @JvmStatic
+    fun runTaskAsync(task: () -> Unit) {
+        object : BukkitRunnable() {
+            override fun run() {
+                task.invoke()
+            }
+        }.runTaskAsynchronously(Pouvoir.plugin)
+    }
+
+    @JvmStatic
+    fun runTaskTimer(task: () -> Unit, delay: Long, period: Long) {
+        object : BukkitRunnable() {
+            override fun run() {
+                task.invoke()
+            }
+        }.runTaskTimer(Pouvoir.plugin, delay, period)
+    }
+
+    @JvmStatic
+    fun runTaskAsyncTimer(task: () -> Unit, delay: Long, period: Long) {
+        object : BukkitRunnable() {
+            override fun run() {
+                task.invoke()
+            }
+        }.runTaskTimerAsynchronously(Pouvoir.plugin, delay, period)
+    }
+
+    @JvmStatic
     fun placeHolder(identifier: String, author: String, version: String, path: String) {
         object : PlaceholderExpansion() {
             override fun getIdentifier(): String {

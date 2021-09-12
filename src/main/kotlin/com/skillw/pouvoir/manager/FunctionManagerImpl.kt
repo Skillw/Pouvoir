@@ -8,6 +8,7 @@ import java.util.*
 import java.util.regex.Pattern
 
 object FunctionManagerImpl : FunctionManager() {
+    override val priority = 5
     override val key = "FunctionManager"
     private lateinit var functionPattern: Pattern
     private val regexCache = StringBuilder()

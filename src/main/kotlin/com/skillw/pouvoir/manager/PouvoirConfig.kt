@@ -10,6 +10,7 @@ import java.io.File
 import java.util.concurrent.ConcurrentHashMap
 
 object PouvoirConfig : ConfigManager(Pouvoir) {
+    override val priority = 0
     val staticClasses = ConcurrentHashMap<String, Any>()
     override val isCheckVersion = this["config"].getBoolean("options.check-version")
 
@@ -39,7 +40,7 @@ object PouvoirConfig : ConfigManager(Pouvoir) {
         }
     }
 
-    private fun createIfNotExists(name: String, vararg fileNames: String) {
+    fun createIfNotExists(name: String, vararg fileNames: String) {
         val dir = File(plugin.dataFolder.path + "/$name")
         if (!dir.exists()) {
             dir.mkdir()

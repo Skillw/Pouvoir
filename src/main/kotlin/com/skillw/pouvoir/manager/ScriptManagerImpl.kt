@@ -12,6 +12,7 @@ import java.util.*
 import javax.script.CompiledScript
 
 object ScriptManagerImpl : ScriptManager() {
+    override val priority = 7
     override val key = "ScriptManager"
     override fun hasScript(path: String): Boolean {
         return if (hasKey(path)) {

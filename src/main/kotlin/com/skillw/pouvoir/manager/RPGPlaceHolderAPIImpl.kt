@@ -10,6 +10,7 @@ import java.util.*
 import java.util.regex.Pattern
 
 object RPGPlaceHolderAPIImpl : RPGPlaceHolderAPI {
+    override val priority = 2
     override fun replace(livingEntity: LivingEntity?, text: String): String {
         var new = text
         if (livingEntity == null) {
