@@ -29,7 +29,7 @@ class FixedData {
     companion object {
         var defaultData: FixedData? = null
         fun load() {
-            defaultData = FixedData(configManager["config"].getConfigurationSection("options.fixed"))
+            defaultData = FixedData(configManager["config"].getConfigurationSection("options.fixed")!!)
         }
     }
 }

@@ -17,7 +17,7 @@ object PouvoirConfig : ConfigManager(Pouvoir) {
     fun reloadStaticClasses() {
         staticClasses.clear()
         val script = this["script"]
-        val staticSection = script.getConfigurationSection("static-classes")
+        val staticSection = script.getConfigurationSection("static-classes")!!
         for (key in staticSection.getKeys(false)) {
             var path = staticSection[key].toString()
             val isObj = path.endsWith(";object")

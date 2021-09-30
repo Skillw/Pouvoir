@@ -8,9 +8,13 @@ import taboolib.platform.compat.replacePlaceholder
 
 object PlaceholderAPIHooker : PlaceholderExpansion {
     override val identifier = "pou"
-    override fun onPlaceholderRequest(player: Player, args: String): String {
-        return handle(player, args)
+    override fun onPlaceholderRequest(player: Player?, args: String): String {
+        return if (player == null)
+            args
+        else
+            handle(player, args)
     }
+
 
     private fun handle(player: Player, params: String): String {
         if (params.isBlank()) return ""
