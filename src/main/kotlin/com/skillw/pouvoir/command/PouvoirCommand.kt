@@ -21,7 +21,7 @@ object PouvoirCommand {
                     "  &d- &ehelp &5—— &aShow the help of command\n" +
                     "  &d- &ejs &b{script file path::function} (args) &5—— &aInvoke the function of the script\n" +
                     "  &d- &ereload &5—— &aReload Pouvoir\n" +
-                    "&6================================"
+                    "&6================================".colored()
             sender.sendMessage(messages.split("\n").toTypedArray())
         }
     }
