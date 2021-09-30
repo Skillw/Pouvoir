@@ -25,7 +25,7 @@ taboolib {
     install("module-nms")
     install("module-nms-util")
     classifier = null
-    version = "6.0.2-1"
+    version = "6.0.3-7"
 }
 
 repositories {
