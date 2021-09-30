@@ -16,14 +16,12 @@ object PouvoirCommand {
     @CommandBody
     val main = mainCommand {
         execute<CommandSender> { sender, context, argument ->
-            val messages = """
-                &6================================
-                &9Command List:
-                  &d- &ehelp &5—— &aShow the help of command
-                  &d- &ejs &b{script file path::function} (args) &5—— &aInvoke the function of the script
-                  &d- &ereload &5—— &aReload Pouvoir
-                &6================================
-            """.colored()
+            val messages = "&6================================\n" +
+                    "  &9Command List:\n" +
+                    "  &d- &ehelp &5—— &aShow the help of command\n" +
+                    "  &d- &ejs &b{script file path::function} (args) &5—— &aInvoke the function of the script\n" +
+                    "  &d- &ereload &5—— &aReload Pouvoir\n" +
+                    "&6================================"
             sender.sendMessage(messages.split("\n").toTypedArray())
         }
     }

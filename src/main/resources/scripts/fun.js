@@ -122,10 +122,6 @@ var JMath = java.lang.Math
 
 // If(1,==,1,yes,no)  - > return "yes"
 function If() {
-    var InventoryClickEvent = Packages.org.bukkit.event.inventory.InventoryClickEvent
-    Tool.addListener("任意字符串(注销监听器用)", "org.bukkit.event.inventory.InventoryClickEvent", "NORMAL", false, function (event) {
-        //代码
-    })
     var key = "If"
     if (lessArgs(key, args.length)) {
         return "wrong"

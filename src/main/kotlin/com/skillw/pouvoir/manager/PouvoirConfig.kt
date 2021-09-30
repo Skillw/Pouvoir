@@ -57,6 +57,7 @@ object PouvoirConfig : ConfigManager(Pouvoir) {
     }
 
     override fun reload() {
+        map.values.forEach { it.reload() }
         reloadStaticClasses()
     }
 }

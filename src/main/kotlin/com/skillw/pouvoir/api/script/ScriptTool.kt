@@ -164,7 +164,7 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     fun regCommand(command: PluginCommand) {
-        command.register(BukkitCommand().commandMap)
+        BukkitCommand().commandMap.register(command.name, command)
     }
 
     @JvmStatic

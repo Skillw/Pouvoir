@@ -98,6 +98,7 @@ object ScriptManagerImpl : ScriptManager() {
             e.printStackTrace()
         }
         for (exec in configManager["script"].getStringList("on-reload")) {
+            println(exec.toString())
             Pouvoir.scriptManager.invokePathWithFunction(exec)
         }
     }
