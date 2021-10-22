@@ -2,6 +2,7 @@ package com.skillw.pouvoir.util
 
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
+import taboolib.module.chat.colored
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
@@ -19,22 +20,22 @@ import java.util.regex.Pattern
 object MessageUtils {
     @JvmStatic
     fun message(sender: CommandSender, msg: String) {
-        sender.sendMessage(ColorUtils.color(msg))
+        sender.sendMessage(msg.colored())
     }
 
     @JvmStatic
     fun wrong(msg: String) {
-        Bukkit.getLogger().warning(msg)
+        Bukkit.getLogger().warning(msg.colored())
     }
 
     @JvmStatic
     fun info(msg: String) {
-        Bukkit.getLogger().info(msg)
+        Bukkit.getLogger().info(msg.colored())
     }
 
     @JvmStatic
     fun debug(msg: String) {
-        info("§9[§eDebug§9] §e$msg")
+        info("§9[§eDebug§9] §e${msg.colored()}")
     }
 
     @JvmStatic
