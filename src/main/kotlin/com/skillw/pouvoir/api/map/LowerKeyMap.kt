@@ -1,22 +1,21 @@
-package com.skillw.rpglib.api.map
+package com.skillw.pouvoir.api.map
 
 import com.skillw.pouvoir.api.able.Keyable
-import com.skillw.pouvoir.api.map.KeyMap
 
-abstract class LowerKeyMap<V : Keyable<String>> : KeyMap<String, V>() {
-    override operator fun get(k: String): V? {
-        return super.get(k.lowercase())
+open class LowerKeyMap<V : Keyable<String>> : KeyMap<String, V>() {
+    override operator fun get(key: String): V? {
+        return super.get(key.lowercase())
     }
 
-    override fun hasKey(k: String): Boolean {
-        return super.hasKey(k.lowercase())
+    override fun hasKey(key: String): Boolean {
+        return super.hasKey(key.lowercase())
     }
 
-    override fun removeByKey(k: String) {
-        super.removeByKey(k.lowercase())
+    override fun removeByKey(key: String) {
+        super.removeByKey(key.lowercase())
     }
 
-    override fun register(k: String, v: V) {
-        super.register(k.lowercase(), v)
+    override fun put(key: String, value: V): V {
+        return put(key.lowercase(), value)
     }
 }

@@ -1,23 +1,24 @@
 package com.skillw.pouvoir.api.map
 
 import com.skillw.pouvoir.api.able.Keyable
-import com.skillw.rpglib.api.map.BaseMap
 
 /**
  * ClassName : com.skillw.classsystem.api.map.KeyMap
  * Created by Glom_ on 2021-03-26 22:03:17
  * Copyright  2021 user. All rights reserved.
  */
-abstract class KeyMap<K, V : Keyable<K>> : BaseMap<K, V>() {
-    protected fun getKey(v: V): K {
-        return v.key
+open class KeyMap<K, V : Keyable<K>> : BaseMap<K, V>() {
+    private fun getKey(value: V): K {
+        return value.key
     }
 
-    open fun register(v: V) {
-        map[getKey(v)] = v
+    open fun register(value: V) {
+        value.register()
     }
 
-    fun removeByValue(v: V) {
-        map.remove(getKey(v))
+    fun removeByValue(value: V) {
+        val key = getKey(value)
+        if (key != null)
+            map.remove(key)
     }
 }

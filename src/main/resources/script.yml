@@ -1,5 +1,15 @@
+on-init:
+  - ''
+on-load:
+  - ''
+on-enable:
+  - 'fun.js::init'
+on-active:
+  - ''
 on-reload:
   - 'fun.js::init'
+on-disable:
+  - ''
 static-classes:
   Bukkit: 'org.bukkit.Bukkit'
   Arrays: 'java.util.Arrays'

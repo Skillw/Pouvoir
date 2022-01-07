@@ -1,4 +1,4 @@
-package com.skillw.rpglib.api.map
+package com.skillw.pouvoir.api.map
 
 import java.util.concurrent.ConcurrentHashMap
 
@@ -7,61 +7,71 @@ import java.util.concurrent.ConcurrentHashMap
  * Created by Glom_ on 2021-03-25 20:05:44
  * Copyright  2021 user. All rights reserved.
  */
-abstract class BaseMap<K, V> {
+open class BaseMap<K, V> : MutableMap<K, V> {
     protected var map = ConcurrentHashMap<K, V>()
-    open fun register(k: K, v: V) {
-        map[k] = v
+    open fun register(key: K, value: V) {
+        put(key, value)
     }
 
-    open fun removeByKey(k: K) {
-        map.remove(k)
+    open fun removeByKey(key: K) {
+        if (key != null)
+            map.remove(key)
     }
 
-    open fun clear() {
+    override fun clear() {
         map.clear()
     }
 
-    open val keys: Set<K>?
-        get() = map.keys
-    open val objects: Collection<V>?
+    override fun containsKey(key: K): Boolean {
+        return map.containsKey(key)
+    }
+
+    override fun containsValue(value: V): Boolean {
+        return map.containsValue(value)
+    }
+
+    override fun put(key: K, value: V): V {
+        map[key] = value
+        return value
+    }
+
+    open fun hasKey(key: K): Boolean {
+        return map.containsKey(key)
+    }
+
+    open fun hasObject(value: V): Boolean {
+        return map.contains(value)
+    }
+
+    override operator fun get(key: K): V? {
+        return map[key]
+    }
+
+    override fun putAll(from: Map<out K, V>) {
+        map.putAll(from)
+    }
+
+    operator fun set(key: K, value: V) {
+        put(key, value)
+    }
+
+    override fun isEmpty(): Boolean {
+        return map.isEmpty()
+    }
+
+    override val size: Int
+        get() = map.size
+    override val entries: MutableSet<MutableMap.MutableEntry<K, V>>
+        get() = map.entries
+    override val values: MutableCollection<V>
         get() = map.values
 
-    open fun size(): Int {
-        return map.size
+    override fun remove(key: K): V? {
+        if (key != null)
+            return map.remove(key)
+        return null
     }
 
-    open fun entrySet(): Set<Map.Entry<K, V>?>? {
-        return map.entries
-    }
-
-    open fun containsKey(k: K): Boolean {
-        return map.containsKey(k)
-    }
-
-    open fun containsValue(v: V): Boolean {
-        return map.containsValue(v)
-    }
-
-    open fun put(k: K, v: V) {
-        register(k, v)
-    }
-
-    open fun hasKey(k: K): Boolean {
-        return map.containsKey(k)
-    }
-
-    open fun hasObject(v: V): Boolean {
-        return map.contains(v)
-    }
-
-    open operator fun get(k: K): V? {
-        return map[k]
-    }
-    
-    operator fun set(k: K, v: V) {
-        put(k, v)
-    }
-
-    open val isEmpty: Boolean
-        get() = map.isEmpty()
+    override val keys: MutableSet<K>
+        get() = map.keys
 }

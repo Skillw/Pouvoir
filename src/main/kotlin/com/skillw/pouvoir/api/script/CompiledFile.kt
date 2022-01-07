@@ -51,11 +51,11 @@ class CompiledFile(val file: File) : Keyable<String> {
 
     override fun register() {
         if (compiledScript != null) {
-            scriptManager.register(this)
+            scriptManager.put(key, this)
         } else {
             compiledScript = Pouvoir.compileManager.compileScript(file)
             if (compiledScript != null) {
-                scriptManager.register(this)
+                scriptManager.put(key, this)
             } else {
                 wrong("CompiledScript is null in $key!")
             }

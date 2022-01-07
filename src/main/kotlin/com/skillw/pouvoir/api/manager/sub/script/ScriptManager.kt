@@ -26,11 +26,11 @@ abstract class ScriptManager : KeyMap<String, CompiledFile>(), Manager {
 
     abstract fun search(path: String): Optional<CompiledFile>
 
-    override fun get(k: String): CompiledFile? {
-        if (hasKey(k))
-            return super.get(k)
+    override fun get(key: String): CompiledFile? {
+        if (hasKey(key))
+            return super.get(key)
         else {
-            val optional = search(k)
+            val optional = search(key)
             if (!optional.isPresent) return null
             val compiledFile = optional.get()
             compiledFile.register()

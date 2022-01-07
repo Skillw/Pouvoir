@@ -18,9 +18,7 @@ object FileUtils {
     fun listFiles(file: File): List<File> {
         val files: MutableList<File> = ArrayList()
         if (file.isDirectory) {
-            for (listFile in file.listFiles()) {
-                files.addAll(listFiles(listFile))
-            }
+            file.listFiles().forEach { files.addAll(listFiles(it)) }
         } else {
             files.add(file)
         }
@@ -99,9 +97,6 @@ object FileUtils {
             return emptyList()
         }
         for (file in getSubFilesFromFile(mainFile)!!) {
-            if (file == null) {
-                continue
-            }
             val config = loadConfigFile(file)
             for (key in config!!.getKeys(false)) {
                 try {
@@ -161,21 +156,21 @@ object FileUtils {
 
     @JvmStatic
     fun saveResource(resourcePath: String?, replace: Boolean, plugin: Plugin, language: String?) {
-        var resourcePath = resourcePath
-        if (resourcePath != null && !resourcePath.isEmpty()) {
-            resourcePath = (language ?: "") + resourcePath.replace('\\', '/')
-            var `in` = plugin.getResource(resourcePath)
+        var resourcePathCopy = resourcePath
+        if (resourcePathCopy != null && resourcePathCopy.isNotEmpty()) {
+            resourcePathCopy = (language ?: "") + resourcePathCopy.replace('\\', '/')
+            var `in` = plugin.getResource(resourcePathCopy)
             if (`in` == null) {
                 val lang: String = Locale.getDefault().toString()
                 wrong("The language &b$lang &c doesn't exist!!")
-                `in` = plugin.getResource(resourcePath.replace(lang, "en_US"))
+                `in` = plugin.getResource(resourcePathCopy.replace(lang, "en_US"))
             }
-            if (resourcePath.contains("languages") && language != null) {
-                resourcePath = resourcePath.split(language).toTypedArray()[1]
+            if (resourcePathCopy.contains("languages") && language != null) {
+                resourcePathCopy = resourcePathCopy.split(language).toTypedArray()[1]
             }
-            val outFile = File(plugin.dataFolder, resourcePath)
-            val lastIndex = resourcePath.lastIndexOf(47.toChar())
-            val outDir = File(plugin.dataFolder, resourcePath.substring(0, Math.max(lastIndex, 0)))
+            val outFile = File(plugin.dataFolder, resourcePathCopy)
+            val lastIndex = resourcePathCopy.lastIndexOf(47.toChar())
+            val outDir = File(plugin.dataFolder, resourcePathCopy.substring(0, Math.max(lastIndex, 0)))
             if (!outDir.exists()) {
                 outDir.mkdirs()
             }

@@ -45,10 +45,10 @@ object NumberUtils {
         fixedDecimalMax: Int,
         fixedDecimalMin: Int
     ): Double {
-        var fixedDecimalMax = fixedDecimalMax
+        var fixedDecimalMaxCopy = fixedDecimalMax
         val value = number.toDouble()
-        fixedDecimalMax = fixedDecimalMax.coerceAtLeast(fixedDecimalMin)
-        if (fixedDecimalMax == 0) {
+        fixedDecimalMaxCopy = fixedDecimalMaxCopy.coerceAtLeast(fixedDecimalMin)
+        if (fixedDecimalMaxCopy == 0) {
             return value.roundToInt().toDouble()
         }
         val numberFormat = NumberFormat.getNumberInstance()
@@ -62,8 +62,8 @@ object NumberUtils {
         if (fixedIntegerMax != -1) {
             numberFormat.maximumIntegerDigits = fixedIntegerMax
         }
-        if (fixedDecimalMax != -1) {
-            numberFormat.maximumFractionDigits = fixedDecimalMax
+        if (fixedDecimalMaxCopy != -1) {
+            numberFormat.maximumFractionDigits = fixedDecimalMaxCopy
         }
         numberFormat.roundingMode = RoundingMode.HALF_UP
         return numberFormat.format(value).toDouble()
@@ -173,7 +173,7 @@ object NumberUtils {
             if (numbers.contains(",")) {
                 val numbers1 = numbers.split(",").toTypedArray()
                 for (number in numbers1) {
-                    if (number != null && number.isNotEmpty()) {
+                    if (number.isNotEmpty()) {
                         handleNumbers(number, maxIndex, integers)
                     }
                 }

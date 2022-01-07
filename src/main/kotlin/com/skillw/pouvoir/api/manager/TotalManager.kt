@@ -1,9 +1,11 @@
 package com.skillw.pouvoir.api.manager
 
 import com.skillw.pouvoir.Pouvoir
+import com.skillw.pouvoir.api.handle.DefaultableHandle
 import com.skillw.pouvoir.api.handle.SubPouvoirHandle
 import com.skillw.pouvoir.api.map.KeyMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
+import com.skillw.pouvoir.util.JarUtils
 import com.skillw.pouvoir.util.PluginUtils
 import org.bukkit.Bukkit
 import org.bukkit.plugin.Plugin
@@ -29,7 +31,24 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
 
     @Awake(LifeCycle.LOAD)
     fun onLoading() {
+        JarUtils.NashornLib()
         Bukkit.getPluginManager().plugins.forEach { load(it) }
+
+        map.values.forEach { it.load() }
+    }
+
+    @Awake(LifeCycle.ENABLE)
+    fun onEnable() {
+        map.values.forEach {
+            it.enable()
+        }
+    }
+
+    @Awake(LifeCycle.ACTIVE)
+    fun onActive() {
+        map.values.forEach {
+            it.active()
+        }
     }
 
     private fun init(plugin: Plugin) {
@@ -37,6 +56,7 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
             val classes: List<Class<*>> = PluginUtils.getClasses(plugin)
             for (clazz in classes) {
                 SubPouvoirHandle.handle(clazz, plugin)
+                DefaultableHandle.handle(clazz, plugin)
             }
         }
     }

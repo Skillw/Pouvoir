@@ -6,7 +6,6 @@ import taboolib.common.platform.command.CommandBody
 import taboolib.common.platform.command.CommandHeader
 import taboolib.common.platform.command.mainCommand
 import taboolib.common.platform.command.subCommand
-import taboolib.module.chat.colored
 import taboolib.platform.util.sendLang
 import java.util.concurrent.ConcurrentHashMap
 
@@ -15,14 +14,14 @@ object PouvoirCommand {
 
     @CommandBody
     val main = mainCommand {
-        execute<CommandSender> { sender, context, argument ->
-            val messages = "&6================================\n" +
-                    "  &9Command List:\n" +
-                    "  &d- &ehelp &5—— &aShow the help of command\n" +
-                    "  &d- &ejs &b{script file path::function} (args) &5—— &aInvoke the function of the script\n" +
-                    "  &d- &ereload &5—— &aReload Pouvoir\n" +
-                    "&6================================"
-            sender.sendMessage(messages.split("\n").colored().toTypedArray())
+        execute<CommandSender> { sender, _, _ ->
+            sender.sendLang("command-message")
+        }
+    }
+
+    fun Array<String>.sendMessage(sender: CommandSender) {
+        this.forEach {
+            sender.sendMessage(it)
         }
     }
 
@@ -30,9 +29,9 @@ object PouvoirCommand {
     val js = subCommand {
         dynamic(optional = true) {
             suggestion<CommandSender>(uncheck = true) { _, _ ->
-                Pouvoir.scriptManager.keys?.toList() ?: emptyList()
+                Pouvoir.scriptManager.keys.toList()
             }
-            execute<CommandSender> { sender, context, argument ->
+            execute<CommandSender> { sender, _, argument ->
                 val args =
                     argument.replace("js ", "").split(" ").filter { it.isNotBlank() }.toList().toTypedArray()
                 if (args.isEmpty()) {
@@ -62,7 +61,7 @@ object PouvoirCommand {
 
     @CommandBody(permission = "pouvoir.command.reload")
     val reload = subCommand {
-        execute<CommandSender> { sender, context, argument ->
+        execute<CommandSender> { sender, _, _ ->
             Pouvoir.reloadAll()
             sender.sendLang("command-reload")
         }
@@ -70,16 +69,8 @@ object PouvoirCommand {
 
     @CommandBody(permission = "pouvoir.command.help")
     val help = subCommand {
-        execute<CommandSender> { sender, context, argument ->
-            val messages = """
-                &6================================
-                &9Command List:
-                  &d- &ehelp &5—— &aShow the help of command
-                  &d- &ejs &b{script file path::function} (args) &5—— &aInvoke the function of the script
-                  &d- &ereload &5—— &aReload Pouvoir
-                &6================================
-            """.colored()
-            sender.sendMessage(messages.split("\n").toTypedArray())
+        execute<CommandSender> { sender, _, _ ->
+            sender.sendLang("command-message")
         }
     }
 

@@ -9,53 +9,60 @@ import java.util.concurrent.ConcurrentHashMap
 
 object CalculationUtils {
     @JvmStatic
-    fun replace(formula: String, replaceds: ConcurrentHashMap<String, String>): String {
-        var formula = formula
-        for (key in replaceds.keys) {
-            formula = formula.replace(key, replaceds[key]!!)
+    fun replace(formula: String, replaces: ConcurrentHashMap<String, String>): String {
+        var formulaCopy = formula
+        for (key in replaces.keys) {
+            formulaCopy = formulaCopy.replace(key, replaces[key]!!)
         }
-        return formula
+        return formulaCopy
     }
 
     @JvmStatic
     fun getResult(input: String): Double {
         //规范输入形式,避免用户输入中文括号
-        var input = input
-        input = input.replace("（".toRegex(), "(")
-        input = input.replace("）".toRegex(), ")")
+        var inputCopy = input
+        inputCopy = inputCopy.replace("（".toRegex(), "(")
+        inputCopy = inputCopy.replace("）".toRegex(), ")")
         //对输入公式,按符号/数字,用空格分开,以便后面分组
-        val inputs = input.split("").toTypedArray()
+        val inputs = inputCopy.split("").toTypedArray()
         val format = StringBuilder()
         for (i in inputs.indices) {
-            if (" " == inputs[i]) {
-            } else if ("(" == inputs[i] || ")" == inputs[i] || "+" == inputs[i] || "-" == inputs[i] || "*" == inputs[i] || "/" == inputs[i]) {
-                format.append(" ").append(inputs[i]).append(" ")
-            } else {
-                format.append(inputs[i])
+            if (" " != inputs[i]) {
+                if ("(" == inputs[i] || ")" == inputs[i] || "+" == inputs[i] || "-" == inputs[i] || "*" == inputs[i] || "/" == inputs[i]) {
+                    format.append(" ").append(inputs[i]).append(" ")
+                } else {
+                    format.append(inputs[i])
+                }
             }
         }
         val strings = changeInfixExpressionToPostfixExpression(format.toString())
         val stack = Stack<String>()
         for (string in strings) {
-            if ("+" == string) {
-                val a = BigDecimal(stack.pop())
-                val b = BigDecimal(stack.pop())
-                stack.add(b.add(a).toString())
-            } else if ("-" == string) {
-                val a = BigDecimal(stack.pop())
-                val b = BigDecimal(stack.pop())
-                stack.add(b.subtract(a).toString())
-            } else if ("*" == string) {
-                val a = BigDecimal(stack.pop())
-                val b = BigDecimal(stack.pop())
-                stack.add(b.multiply(a).toString())
-            } else if ("/" == string) {
-                val a = BigDecimal(stack.pop())
-                val b = BigDecimal(stack.pop())
-                //这里的1000是做除法以后计算的精确位数,就算1000位也并不会拖慢程序速度,一个公式0.01秒内就能算完,后面的是除不尽的四舍五入
-                stack.add(b.divide(a, 1000, BigDecimal.ROUND_HALF_DOWN).toString())
-            } else {
-                stack.add(string)
+            when (string) {
+                "+" -> {
+                    val a = BigDecimal(stack.pop())
+                    val b = BigDecimal(stack.pop())
+                    stack.add(b.add(a).toString())
+                }
+                "-" -> {
+                    val a = BigDecimal(stack.pop())
+                    val b = BigDecimal(stack.pop())
+                    stack.add(b.subtract(a).toString())
+                }
+                "*" -> {
+                    val a = BigDecimal(stack.pop())
+                    val b = BigDecimal(stack.pop())
+                    stack.add(b.multiply(a).toString())
+                }
+                "/" -> {
+                    val a = BigDecimal(stack.pop())
+                    val b = BigDecimal(stack.pop())
+                    //这里的1000是做除法以后计算的精确位数,就算1000位也并不会拖慢程序速度,一个公式0.01秒内就能算完,后面的是除不尽的四舍五入
+                    stack.add(b.divide(a, 1000, BigDecimal.ROUND_HALF_DOWN).toString())
+                }
+                else -> {
+                    stack.add(string)
+                }
             }
         }
         //返回的时候格式化一下,取四舍五入小数点后两位

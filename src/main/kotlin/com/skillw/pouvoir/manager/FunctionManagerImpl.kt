@@ -13,12 +13,12 @@ object FunctionManagerImpl : FunctionManager() {
     private lateinit var functionPattern: Pattern
     private val regexCache = StringBuilder()
 
-    override fun register(func: Function) {
-        register(func.key, func)
+    override fun register(value: Function) {
+        register(value.key, value)
     }
 
-    override fun register(key: String, func: Function) {
-        map[key] = func
+    override fun register(key: String, value: Function) {
+        map[key] = value
         if (regexCache.isNotEmpty()) {
             regexCache.append("|")
         }

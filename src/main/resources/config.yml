@@ -1,3 +1,11 @@
+database:
+  enable: false
+  host: localhost
+  port: 3306
+  user: root
+  password: root
+  database: root
+  table: my_database
 options:
   fixed:
     integer:

@@ -1,25 +1,30 @@
-package com.skillw.pouvoir.api.manager.sub
+package com.skillw.pouvoir.api.manager
 
 import com.skillw.pouvoir.Pouvoir.plugin
 import com.skillw.pouvoir.api.handle.ConfigHandle
-import com.skillw.pouvoir.api.manager.Manager
+import com.skillw.pouvoir.api.handle.DefaultableHandle
+import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
 import com.skillw.pouvoir.util.MessageUtils.wrong
-import com.skillw.rpglib.api.map.BaseMap
-import taboolib.module.configuration.SecuredFile
+import taboolib.module.configuration.Configuration
 import taboolib.module.lang.Language
 import taboolib.module.lang.LanguageFile
 import java.io.File
 
 abstract class ConfigManager(private val subPouvoir: SubPouvoir) : Manager,
-    BaseMap<String, SecuredFile>() {
-
-    override operator fun get(key: String): SecuredFile {
-        val result = super.get(key) ?: {
+    BaseMap<String, Configuration>() {
+    val defaults = HashSet<Class<*>>()
+    override operator fun get(key: String): Configuration {
+        val result = super.get(key)
+        if (result == null) {
             wrong("The config $key dose not exist in the SubPouvoir ${subPouvoir.key}!")
-            SecuredFile()
+            return Configuration.empty()
         }
-        return result as SecuredFile
+        return result
+    }
+
+    init {
+        defaults.forEach { DefaultableHandle.handle(it, subPouvoir.plugin) }
     }
 
     init {
@@ -57,6 +62,16 @@ abstract class ConfigManager(private val subPouvoir: SubPouvoir) : Manager,
         fun getPluginPrefix(): String {
             val local = getLocal()
             return local.nodes["plugin-prefix"].toString()
+        }
+    }
+
+    fun createIfNotExists(name: String, vararg fileNames: String) {
+        val dir = File(plugin.dataFolder.path + "/$name")
+        if (!dir.exists()) {
+            dir.mkdir()
+            for (fileName in fileNames) {
+                plugin.saveResource("$name/$fileName", true)
+            }
         }
     }
 }

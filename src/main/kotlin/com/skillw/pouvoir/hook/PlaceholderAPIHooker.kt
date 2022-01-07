@@ -26,7 +26,7 @@ object PlaceholderAPIHooker : PlaceholderExpansion {
                     args.size < 2 -> return "Can not found the path"
                     args.size < 3 -> return "Can not found the function name"
                 }
-                val path = args[1]
+                args[1]
                 val function = args[2]
                 val spilt: Array<String> = if (args.size > 3) {
                     val origin = args[3]

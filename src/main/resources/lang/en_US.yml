@@ -9,6 +9,12 @@ script-file-not-found: '&d[&9Pouvoir&d] Can t found the script file &6{0} &c! Pl
 script-invoke-script-exception: '&d[&9Pouvoir&d] There was a error while invoke the function &6{0} &cof &d{1} &c! &7(maybe you invoke a function that doesn t exist)'
 script-invoke-exception: '&d[&9Pouvoir&d] There was a error while invoke the function &6{0} &cof &d{1} &c!'
 script-invoke-wrong-format: '&d[&9Pouvoir&d] If you wanna invoke script file`s function, you should write it in this format: &6{file`s path}.js::{function`s name} &c!'
-   
+command-message:
+  - '&6================================'
+  - ' &9Command List:'
+  - '    &d- &ehelp &5—— &aShow the help of command'
+  - '     &d- &ejs &b{ script file path::function } (args) &5—— &aInvoke the function of the script'
+  - '      &d- &ereload &5—— &aReload Pouvoir'
+  - '  &6================================'
    
 

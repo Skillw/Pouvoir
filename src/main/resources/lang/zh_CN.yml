@@ -9,4 +9,10 @@ script-file-not-found: '&d[&9Pouvoir&d] &c未发现脚本文件 &6{0} &c! 请检
 script-invoke-script-exception: '&d[&9Pouvoir&d] &c在调用脚本 &6{1} &c的函数 &d{0} &c时发生了错误! &7(可能是调用了不存在的方法/函数)'
 script-invoke-exception: '&d[&9Pouvoir&d] &c在调用脚本 &6{1} &c的函数 &d{0} &c时发生了错误!'
 script-invoke-wrong-format: '&d[&9Pouvoir&d] &c如果你想调用某个脚本文件的函数, 请以此格式输入: &6脚本文件名称.js::函数名 &c!'
-
+command-message:
+  - '&6================================'
+  - ' &9指令列表:'
+  - '    &d- &ehelp &5—— &a显示帮助.'
+  - '     &d- &ejs &b{ 脚本路径::函数名 } (参数) &5—— &a调用一个脚本(函数)'
+  - '      &d- &ereload &5—— &a重载插件'
+  - '  &6================================'

@@ -1,18 +1,17 @@
 package com.skillw.pouvoir.manager
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.Pouvoir.plugin
-import com.skillw.pouvoir.api.manager.sub.ConfigManager
+import com.skillw.pouvoir.api.manager.ConfigManager
 import com.skillw.pouvoir.util.ClassUtils
 import com.skillw.pouvoir.util.MessageUtils.wrong
 import taboolib.module.lang.sendLang
-import java.io.File
 import java.util.concurrent.ConcurrentHashMap
 
 object PouvoirConfig : ConfigManager(Pouvoir) {
     override val priority = 0
     val staticClasses = ConcurrentHashMap<String, Any>()
-    override val isCheckVersion = this["config"].getBoolean("options.check-version")
+    override val isCheckVersion
+        get() = this["config"].getBoolean("options.check-version")
 
     fun reloadStaticClasses() {
         staticClasses.clear()
@@ -40,20 +39,12 @@ object PouvoirConfig : ConfigManager(Pouvoir) {
         }
     }
 
-    fun createIfNotExists(name: String, vararg fileNames: String) {
-        val dir = File(plugin.dataFolder.path + "/$name")
-        if (!dir.exists()) {
-            dir.mkdir()
-            for (fileName in fileNames) {
-                plugin.saveResource("$name/$fileName", true)
-            }
-        }
-    }
 
     override fun init() {
         createIfNotExists("effects", "example.yml")
         createIfNotExists("scripts", "example.js", "fun.js")
         reloadStaticClasses()
+
     }
 
     override fun reload() {

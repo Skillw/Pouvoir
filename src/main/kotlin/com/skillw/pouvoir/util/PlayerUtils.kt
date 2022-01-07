@@ -54,7 +54,6 @@ object PlayerUtils {
 
     @JvmStatic
     fun resetTitle(player: Player) {
-        val proxy = BukkitAdapter().adaptPlayer(player)
         player.resetTitle()
     }
 
@@ -65,9 +64,10 @@ object PlayerUtils {
     }
 
     @JvmStatic
-    fun sendActionBar(player: Player, text: String, stay: Long, javaPlugin: JavaPlugin?) {
+    fun sendActionBar(player: Player, text: String, stay: Long, javaPlugin: JavaPlugin = BukkitAdapter().plugin) {
         val proxy = BukkitAdapter().adaptPlayer(player)
         proxy.sendActionBar(text)
+        Bukkit.getScheduler().runTaskLater(javaPlugin, Runnable { proxy.sendActionBar("") }, stay)
     }
 
     @JvmStatic

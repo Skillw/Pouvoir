@@ -1,7 +1,7 @@
 package com.skillw.pouvoir.api.able
 
-import taboolib.platform.BukkitPlugin
+import org.bukkit.plugin.java.JavaPlugin
 
 interface Pluginable {
-    val plugin: BukkitPlugin
+    val plugin: JavaPlugin
 }

@@ -5,6 +5,11 @@ import com.skillw.pouvoir.api.able.Keyable
 interface Manager : Keyable<String>, Comparable<Manager> {
     val priority: Int
     fun init() {}
+    fun load() {}
+    fun enable() {}
+    fun active() {
+    }
+
     fun reload() {}
     fun disable() {}
     override fun register() {}
@@ -17,4 +22,6 @@ interface Manager : Keyable<String>, Comparable<Manager> {
             -1
         } else 1
     }
+
+
 }

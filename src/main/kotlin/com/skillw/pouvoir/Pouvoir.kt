@@ -2,10 +2,7 @@ package com.skillw.pouvoir
 
 import com.skillw.pouvoir.api.annotation.PManager
 import com.skillw.pouvoir.api.manager.ManagerData
-import com.skillw.pouvoir.api.manager.sub.FunctionManager
-import com.skillw.pouvoir.api.manager.sub.ListenerManager
-import com.skillw.pouvoir.api.manager.sub.PlaceHolderDataManager
-import com.skillw.pouvoir.api.manager.sub.RPGPlaceHolderAPI
+import com.skillw.pouvoir.api.manager.sub.*
 import com.skillw.pouvoir.api.manager.sub.script.CompileManager
 import com.skillw.pouvoir.api.manager.sub.script.ScriptManager
 import com.skillw.pouvoir.api.plugin.SubPouvoir
@@ -13,11 +10,13 @@ import com.skillw.pouvoir.manager.PouvoirConfig
 import com.skillw.pouvoir.util.MessageUtils.info
 import jdk.nashorn.api.scripting.NashornScriptEngineFactory
 import org.bukkit.Bukkit
+import org.bukkit.craftbukkit.libs.org.apache.commons.lang3.concurrent.BasicThreadFactory
 import taboolib.common.platform.Plugin
 import taboolib.module.configuration.Config
-import taboolib.module.configuration.SecuredFile
+import taboolib.module.configuration.Configuration
 import taboolib.platform.BukkitAdapter
 import taboolib.platform.BukkitPlugin
+import java.util.concurrent.ScheduledThreadPoolExecutor
 import javax.script.ScriptEngine
 
 object Pouvoir : Plugin(), SubPouvoir {
@@ -26,6 +25,13 @@ object Pouvoir : Plugin(), SubPouvoir {
     override val plugin by lazy {
         BukkitPlugin.getInstance()
     }
+    override val poolExecutor: ScheduledThreadPoolExecutor by lazy {
+        ScheduledThreadPoolExecutor(
+            20,
+            BasicThreadFactory.Builder().namingPattern("$key-schedule-pool-%d").daemon(true).build()
+        )
+    }
+
     val version by lazy {
         Bukkit.getServer().javaClass.getPackage().name.replace(".", ",").split(",").toTypedArray()[3]
     }
@@ -40,17 +46,25 @@ object Pouvoir : Plugin(), SubPouvoir {
 
     @JvmStatic
     val scriptEngine: ScriptEngine by lazy {
-        NashornScriptEngineFactory().scriptEngine
+        try {
+            if (Class.forName("jdk.nashorn.api.scripting.NashornScriptEngineFactory") == null) {
+                org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory().scriptEngine
+            } else {
+                NashornScriptEngineFactory().scriptEngine
+            }
+        } catch (e: Exception) {
+            org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory().scriptEngine
+        }
     }
 
     /**
      * Config
      */
     @Config(migrate = true)
-    lateinit var config: SecuredFile
+    lateinit var config: Configuration
 
     @Config("script.yml", true)
-    lateinit var script: SecuredFile
+    lateinit var script: Configuration
 
     /**
      * Managers
@@ -83,6 +97,10 @@ object Pouvoir : Plugin(), SubPouvoir {
     @JvmStatic
     @PManager
     lateinit var listenerManager: ListenerManager
+
+    @JvmStatic
+    @PManager
+    lateinit var baseAttributeManager: BaseAttributeManager
 
     override fun onLoad() {
         info("&d[&9Pouvoir&d] &aPouvoir is loading...")

@@ -28,7 +28,10 @@ abstract class ScriptListener(
         ): ScriptListener {
             val obj = object : ScriptListener(key, event, eventPriority) {
                 override fun exec(event: Event) {
-                    exec.invoke(event)
+                    val cancel = if (event is Cancellable) !event.isCancelled || ignoreCancel else true
+                    if (cancel && event.javaClass.name == this.eventClass.name) {
+                        exec.invoke(event)
+                    }
                 }
             }
             return obj
@@ -42,7 +45,7 @@ abstract class ScriptListener(
 
     fun unRegister() {
         if (handler == null || exec == null) {
-            wrong("Wrong! Please check the messages before this in console!")
+            wrong("Wrong! Please check the messages before this one in console!")
             return
         }
         if (listenerManager.containsKey(key)) {
@@ -52,7 +55,7 @@ abstract class ScriptListener(
 
     override fun register() {
         if (handler == null || exec == null) {
-            wrong("Wrong! Please check the messages before this in console!")
+            wrong("Wrong! Please check the messages before this one in console!")
             return
         }
         val pluginManager = Bukkit.getPluginManager()
@@ -60,7 +63,7 @@ abstract class ScriptListener(
         if (listenerManager.containsKey(key)) {
             handler!!.unregister(listenerManager[key]!!)
         }
-        pluginManager.registerEvent(eventClass!!, this, priority, exec!!, Pouvoir.plugin)
+        pluginManager.registerEvent(eventClass, this, priority, exec!!, Pouvoir.plugin)
         listenerManager[key] = this
     }
 
@@ -68,9 +71,7 @@ abstract class ScriptListener(
         exec = EventExecutor { _: Listener, eventObject: Event -> exec(eventObject) }
         var handler: HandlerList? = null
         try {
-            val handlersField = eventClass.getDeclaredField("handlers")
-            handlersField.isAccessible = true
-            handler = handlersField[null] as HandlerList
+            handler = eventClass.getMethod("getHandlerList").invoke(null) as HandlerList
         } catch (e: Exception) {
         }
         if (handler == null) {

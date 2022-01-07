@@ -14,9 +14,9 @@ object EquationUtils {
      * @param str:需要计算的字符串
      */
     private fun translate(str: String): Result? {
-        var str = str
-        str = deleteKH(str)
-        val chars = str.toCharArray()
+        var strCopy = str
+        strCopy = deleteKH(strCopy)
+        val chars = strCopy.toCharArray()
         //先根据 + 号 将字符串分割完
         run {
             var i = 0
@@ -24,8 +24,8 @@ object EquationUtils {
             while (i < chars.size) {
                 kuHaoNum = getBracketsNum(kuHaoNum, i, chars)
                 if (kuHaoNum == 0 && "+" == chars[i].toString() + "") { //括号里面不分割
-                    val s01 = str.substring(0, i)
-                    val s02 = str.substring(i + 1, str.length)
+                    val s01 = strCopy.substring(0, i)
+                    val s02 = strCopy.substring(i + 1, strCopy.length)
                     val result01 = getResultFromString(s01)
                     val result02 = getResultFromString(s02)
                     val result = Result()
@@ -43,8 +43,8 @@ object EquationUtils {
             while (i >= 0) {
                 kuHaoNum = getBracketsNum(kuHaoNum, i, chars)
                 if (kuHaoNum == 0 && "-" == chars[i].toString() + "") { //括号里面不分割
-                    val s01 = str.substring(0, i)
-                    val s02 = str.substring(i + 1, str.length)
+                    val s01 = strCopy.substring(0, i)
+                    val s02 = strCopy.substring(i + 1, strCopy.length)
                     val result01 = getResultFromString(s01)
                     val result02 = getResultFromString(s02)
                     val result = Result()
@@ -61,9 +61,9 @@ object EquationUtils {
         while (i < chars.size) {
             kuHaoNum = getBracketsNum(kuHaoNum, i, chars)
             if (kuHaoNum == 0 && ("*" == chars[i].toString() + "" || "/" == chars[i].toString() + "")) { //括号里面不分割
-                val s01 = str.substring(0, i)
-                val fuhao = str.substring(i, i + 1)
-                val s02 = str.substring(i + 1, str.length)
+                val s01 = strCopy.substring(0, i)
+                val fuhao = strCopy.substring(i, i + 1)
+                val s02 = strCopy.substring(i + 1, strCopy.length)
                 val result01 = getResultFromString(s01)
                 val result02 = getResultFromString(s02)
                 val result = Result()
@@ -99,13 +99,13 @@ object EquationUtils {
      * @param chars:字符数组
      */
     private fun getBracketsNum(num: Int, index: Int, chars: CharArray): Int {
-        var num = num
+        var numCopy = num
         if ("(" == chars[index].toString() + "") {
-            num++
+            numCopy++
         } else if (")" == chars[index].toString() + "") {
-            num--
+            numCopy--
         }
-        return num
+        return numCopy
     }
 
     /**
@@ -224,11 +224,11 @@ object EquationUtils {
      * @param str:需要处理的字符串
      */
     private fun deleteKH(str: String): String {
-        var str = str
-        if (str.startsWith("(") && str.endsWith(")")) {
-            str = str.substring(1, str.length - 1)
+        var strCopy = str
+        if (strCopy.startsWith("(") && strCopy.endsWith(")")) {
+            strCopy = strCopy.substring(1, strCopy.length - 1)
         }
-        return str
+        return strCopy
     }
 
     /**

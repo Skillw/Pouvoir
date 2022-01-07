@@ -5,17 +5,17 @@ import com.skillw.pouvoir.api.able.Pluginable
 import com.skillw.pouvoir.api.handle.PManagerHandle
 import com.skillw.pouvoir.api.map.KeyMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
-import taboolib.platform.BukkitPlugin
+import org.bukkit.plugin.java.JavaPlugin
 
 class ManagerData(val pouvoir: SubPouvoir) : KeyMap<String, Manager>(), Pluginable, Keyable<SubPouvoir> {
 
     private val managers = ArrayList<Manager>()
-    override val plugin: BukkitPlugin = pouvoir.plugin
+    override val plugin: JavaPlugin = pouvoir.plugin
     override val key: SubPouvoir = pouvoir
 
-    override fun register(key: String, manager: Manager) {
-        super.register(key, manager)
-        managers.add(manager)
+    override fun register(key: String, value: Manager) {
+        super.register(key, value)
+        managers.add(value)
         managers.sort()
     }
 
@@ -40,5 +40,17 @@ class ManagerData(val pouvoir: SubPouvoir) : KeyMap<String, Manager>(), Pluginab
 
     fun disable() {
         managers.forEach { it.disable() }
+    }
+
+    fun enable() {
+        managers.forEach { it.enable() }
+    }
+
+    fun active() {
+        managers.forEach { it.active() }
+    }
+
+    fun load() {
+        managers.forEach { it.load() }
     }
 }

@@ -4,9 +4,9 @@ import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.Pouvoir.listenerManager
 import com.skillw.pouvoir.Pouvoir.scriptManager
 import com.skillw.pouvoir.api.listener.ScriptListener
+import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.util.ClassUtils
 import com.skillw.pouvoir.util.MessageUtils.wrong
-import com.skillw.rpglib.api.map.BaseMap
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
@@ -83,17 +83,20 @@ object ScriptTool : BaseMap<String, Any>() {
         ignoreCancel: Boolean = false,
         exec: (Event) -> Unit
     ) {
+        val clazz: Class<*>
         try {
-            val clazz = Class.forName(path)
-            val priority = try {
-                EventPriority.valueOf(eventPriority)
-            } catch (e: Exception) {
-                EventPriority.NORMAL
-            }
-            addListener(key, clazz as Class<out Event>, priority, ignoreCancel, exec)
+            clazz = Class.forName(path)
         } catch (e: Exception) {
-            wrong("The class $path dose not exist / is not a Event");
+            wrong("The class $path dose not exist / is not a Event")
+            return
         }
+        val priority = try {
+            EventPriority.valueOf(eventPriority)
+        } catch (e: Exception) {
+            EventPriority.NORMAL
+        }
+        addListener(key, clazz as Class<out Event>, priority, ignoreCancel, exec)
+
     }
 
     @JvmStatic

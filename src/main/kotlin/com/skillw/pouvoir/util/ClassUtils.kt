@@ -1,5 +1,8 @@
 package com.skillw.pouvoir.util
 
+import org.bukkit.configuration.serialization.ConfigurationSerializable
+import taboolib.library.configuration.ConfigurationSection
+
 object ClassUtils {
     @JvmStatic
     val staticClass: Class<*> by lazy {
@@ -29,5 +32,25 @@ object ClassUtils {
             }
         }
         return isObj
+    }
+
+    @JvmStatic
+    fun <T : ConfigurationSerializable> build(config: ConfigurationSection, key: String): T? {
+        val obj = config[key] ?: return null
+        return obj as T
+    }
+
+    fun <T : ConfigurationSerializable> ConfigurationSection.create(key: String): T? {
+        return build(this, key)
+    }
+
+    @JvmStatic
+    fun <T : ConfigurationSerializable> buildMultiple(config: ConfigurationSection): Set<T> {
+        val set = HashSet<T>()
+        for (key in config.getKeys(false)) {
+            val obj = build<T>(config, key) ?: continue
+            set.add(obj)
+        }
+        return set
     }
 }

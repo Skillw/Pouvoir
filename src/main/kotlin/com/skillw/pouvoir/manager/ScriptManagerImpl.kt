@@ -24,7 +24,10 @@ object ScriptManagerImpl : ScriptManager() {
 
     override fun init() {
         files.add(File(plugin.dataFolder, "scripts"))
-        reload()
+        reloadFile()
+        for (exec in configManager["script"].getStringList("on-init")) {
+            Pouvoir.scriptManager.invokePathWithFunction(exec)
+        }
     }
 
     override fun addScript(file: File) {
@@ -71,8 +74,10 @@ object ScriptManagerImpl : ScriptManager() {
                     val file = File(configManager.serverFile, path)
                     return if (file.exists() && file.isFile) {
                         val compiledFile = CompiledFile(file)
-                        if (compiledFile.canCompiled()) Optional.of(compiledFile)
-                        else Optional.empty()
+                        if (compiledFile.canCompiled()) {
+                            compiledFile.register()
+                            Optional.of(compiledFile)
+                        } else Optional.empty()
                     } else {
                         Pouvoir.console.sendLang("script-compile-fail", path)
                         Optional.empty()
@@ -86,7 +91,7 @@ object ScriptManagerImpl : ScriptManager() {
         }
     }
 
-    override fun reload() {
+    private fun reloadFile() {
         try {
             this.map.clear()
             for (file in files) {
@@ -97,9 +102,40 @@ object ScriptManagerImpl : ScriptManager() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+
+    override fun reload() {
+        reloadFile()
         for (exec in configManager["script"].getStringList("on-reload")) {
             Pouvoir.scriptManager.invokePathWithFunction(exec)
         }
     }
+
+
+    override fun load() {
+        for (exec in configManager["script"].getStringList("on-load")) {
+            Pouvoir.scriptManager.invokePathWithFunction(exec)
+        }
+    }
+
+    override fun enable() {
+        for (exec in configManager["script"].getStringList("on-enable")) {
+            Pouvoir.scriptManager.invokePathWithFunction(exec)
+        }
+    }
+
+    override fun active() {
+        for (exec in configManager["script"].getStringList("on-active")) {
+            Pouvoir.scriptManager.invokePathWithFunction(exec)
+        }
+    }
+
+    override fun disable() {
+        for (exec in configManager["script"].getStringList("on-disable")) {
+            Pouvoir.scriptManager.invokePathWithFunction(exec)
+        }
+    }
+
 
 }

@@ -1,6 +1,6 @@
 plugins {
-    java
-    id("io.izzel.taboolib") version "1.32"
+    `java-library`
+    id("io.izzel.taboolib") version "1.34"
     id("org.jetbrains.kotlin.jvm") version "1.5.10"
 }
 
@@ -18,24 +18,29 @@ taboolib {
 
     install(
         "common",
+        "common-5",
         "module-configuration",
         "module-lang",
         "platform-bukkit",
         "module-metrics",
         "module-chat",
+        "module-nms-util",
         "module-nms",
-        "module-nms-util"
+        "module-database"
     )
+
     classifier = null
-    version = "6.0.6-24"
+    version = "6.0.7-17"
 }
 
 repositories {
+    maven { url = uri("https://repo.tabooproject.org/storages/public/releases") }
     mavenCentral()
 }
 
 dependencies {
-    compileOnly("ink.ptms.core:v11604:11604:all")
+    compileOnly("ink.ptms.core:v11605:11605")
+
     compileOnly(kotlin("stdlib"))
     compileOnly(fileTree("libs"))
 }

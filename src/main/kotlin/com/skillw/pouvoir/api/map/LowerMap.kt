@@ -1,19 +1,19 @@
-package com.skillw.rpglib.api.map
+package com.skillw.pouvoir.api.map
 
-abstract class LowerMap<V> : BaseMap<String, V?>() {
-    override fun get(k: String): V? {
-        return super.get(k.lowercase())
+open class LowerMap<V> : BaseMap<String, V>() {
+    override fun get(key: String): V? {
+        return super.get(key.lowercase())
     }
 
-    override fun hasKey(k: String): Boolean {
-        return super.hasKey(k.lowercase())
+    override fun hasKey(key: String): Boolean {
+        return super.hasKey(key.lowercase())
     }
 
-    override fun removeByKey(k: String) {
-        super.removeByKey(k.lowercase())
+    override fun removeByKey(key: String) {
+        super.removeByKey(key.lowercase())
     }
 
-    override fun register(k: String, v: V?) {
-        super.register(k.lowercase(), v)
+    override fun put(key: String, value: V): V {
+        return super.put(key.lowercase(), value)
     }
 }

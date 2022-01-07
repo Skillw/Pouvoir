@@ -25,11 +25,10 @@ object CompileManagerImpl : CompileManager {
                 )
             )
         } catch (e: ScriptException) {
-            console.sendLang("script-file-not-found", file.path)
+            console.sendLang("script-compile-fail", file.path)
             e.printStackTrace()
         } catch (e: FileNotFoundException) {
             console.sendLang("script-file-not-found", file.path)
-            e.printStackTrace()
         }
         return null
     }

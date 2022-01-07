@@ -34,7 +34,7 @@ object MapUtils {
     @JvmStatic
     fun <K, Z, V> getValues(map: Map<K, Map<Z, V>>): List<V> {
         val list: MutableList<V> = LinkedList()
-        map.forEach { (k1: K, v1: Map<Z, V>) -> v1.forEach { (k2: Z, z: V) -> list.add(z) } }
+        map.forEach { (_: K, v1: Map<Z, V>) -> v1.forEach { (_: Z, z: V) -> list.add(z) } }
         return list
     }
 }
