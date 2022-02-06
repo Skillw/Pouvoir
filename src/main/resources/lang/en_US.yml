@@ -16,7 +16,7 @@ command-message:
   - '&6================================'
   - ' &9Command List:'
   - '    &d- &ehelp &5—— &aShow the help of command'
-  - '    &d- &ejs &b{ script file path::function } (args) &5—— &aInvoke the function of the script'
+  - '    &d- &erun &bscript file path function (args) &5—— &aRun a function of a script'
   - '    &d- &ereload &5—— &aReload Pouvoir'
   - '  &6================================'
    
