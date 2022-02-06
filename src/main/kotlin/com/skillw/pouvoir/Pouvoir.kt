@@ -5,7 +5,7 @@ import com.skillw.pouvoir.api.manager.ManagerData
 import com.skillw.pouvoir.api.manager.sub.FunctionManager
 import com.skillw.pouvoir.api.manager.sub.ListenerManager
 import com.skillw.pouvoir.api.manager.sub.PlaceHolderDataManager
-import com.skillw.pouvoir.api.manager.sub.RPGPlaceHolderAPI
+import com.skillw.pouvoir.api.manager.sub.PouPlaceHolderAPI
 import com.skillw.pouvoir.api.manager.sub.script.CompileManager
 import com.skillw.pouvoir.api.manager.sub.script.ScriptAnnotationManager
 import com.skillw.pouvoir.api.manager.sub.script.ScriptEngineManager
@@ -72,7 +72,7 @@ object Pouvoir : Plugin(), SubPouvoir {
 
     @JvmStatic
     @PManager
-    lateinit var rpgPlaceHolderAPI: RPGPlaceHolderAPI
+    lateinit var pouPlaceHolderAPI: PouPlaceHolderAPI
 
     @JvmStatic
     @PManager

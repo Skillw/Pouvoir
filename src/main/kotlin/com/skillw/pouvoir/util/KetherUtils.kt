@@ -15,7 +15,7 @@ object KetherUtils {
     ): Any? {
 
         return KetherShell.eval(
-            Pouvoir.rpgPlaceHolderAPI.replace(
+            Pouvoir.pouPlaceHolderAPI.replace(
                 null,
                 kether.replace(
                     "kether::",

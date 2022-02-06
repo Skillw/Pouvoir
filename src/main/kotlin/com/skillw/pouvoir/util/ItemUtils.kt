@@ -24,12 +24,12 @@ object ItemUtils {
         val meta = item.itemMeta
         meta as ItemMeta
         if (meta.hasDisplayName()) {
-            meta.setDisplayName(Pouvoir.rpgPlaceHolderAPI.replace(player, meta.displayName));
+            meta.setDisplayName(Pouvoir.pouPlaceHolderAPI.replace(player, meta.displayName));
         }
         if (meta.hasLore()) {
             val lores = ArrayList<String>()
             for (lore in meta.lore!!) {
-                lores.add(Pouvoir.rpgPlaceHolderAPI.replace(player, lore))
+                lores.add(Pouvoir.pouPlaceHolderAPI.replace(player, lore))
             }
             meta.lore = lores
         }

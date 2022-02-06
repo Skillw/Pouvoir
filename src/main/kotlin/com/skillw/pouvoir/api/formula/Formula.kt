@@ -1,6 +1,6 @@
 package com.skillw.pouvoir.api.formula
 
-import com.skillw.pouvoir.Pouvoir.rpgPlaceHolderAPI
+import com.skillw.pouvoir.Pouvoir.pouPlaceHolderAPI
 import com.skillw.pouvoir.util.CalculationUtils
 import com.skillw.pouvoir.util.StringUtils.replacement
 import org.bukkit.entity.LivingEntity
@@ -19,7 +19,7 @@ class Formula(private val formula: String, private val livingEntity: LivingEntit
     }
 
     fun formula(): String {
-        return rpgPlaceHolderAPI.replace(livingEntity, formula.replacement(replacements.toMap()))
+        return pouPlaceHolderAPI.replace(livingEntity, formula.replacement(replacements.toMap()))
     }
 
     fun result(): Double {

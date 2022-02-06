@@ -124,7 +124,7 @@ object CalculationUtils {
     fun getResult(formula: String, entity: LivingEntity?, replacements: Map<String, String>): Double {
         return getResult(
             replace(
-                Pouvoir.rpgPlaceHolderAPI.replace(entity, formula),
+                Pouvoir.pouPlaceHolderAPI.replace(entity, formula),
                 replacements
             )
         )
