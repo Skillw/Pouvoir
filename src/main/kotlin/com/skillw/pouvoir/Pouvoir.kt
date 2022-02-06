@@ -2,22 +2,27 @@ package com.skillw.pouvoir
 
 import com.skillw.pouvoir.api.annotation.PManager
 import com.skillw.pouvoir.api.manager.ManagerData
-import com.skillw.pouvoir.api.manager.sub.*
+import com.skillw.pouvoir.api.manager.sub.FunctionManager
+import com.skillw.pouvoir.api.manager.sub.ListenerManager
+import com.skillw.pouvoir.api.manager.sub.PlaceHolderDataManager
+import com.skillw.pouvoir.api.manager.sub.RPGPlaceHolderAPI
 import com.skillw.pouvoir.api.manager.sub.script.CompileManager
+import com.skillw.pouvoir.api.manager.sub.script.ScriptAnnotationManager
+import com.skillw.pouvoir.api.manager.sub.script.ScriptEngineManager
 import com.skillw.pouvoir.api.manager.sub.script.ScriptManager
 import com.skillw.pouvoir.api.plugin.SubPouvoir
-import com.skillw.pouvoir.manager.PouvoirConfig
+import com.skillw.pouvoir.internal.manager.PouvoirConfig
+import com.skillw.pouvoir.util.FileUtils
 import com.skillw.pouvoir.util.MessageUtils.info
-import jdk.nashorn.api.scripting.NashornScriptEngineFactory
-import org.bukkit.Bukkit
-import org.bukkit.craftbukkit.libs.org.apache.commons.lang3.concurrent.BasicThreadFactory
+import org.bukkit.configuration.file.YamlConfiguration
 import taboolib.common.platform.Plugin
 import taboolib.module.configuration.Config
 import taboolib.module.configuration.Configuration
-import taboolib.platform.BukkitAdapter
 import taboolib.platform.BukkitPlugin
-import java.util.concurrent.ScheduledThreadPoolExecutor
-import javax.script.ScriptEngine
+import java.io.File
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledExecutorService
+
 
 object Pouvoir : Plugin(), SubPouvoir {
 
@@ -25,36 +30,18 @@ object Pouvoir : Plugin(), SubPouvoir {
     override val plugin by lazy {
         BukkitPlugin.getInstance()
     }
-    override val poolExecutor: ScheduledThreadPoolExecutor by lazy {
-        ScheduledThreadPoolExecutor(
-            20,
-            BasicThreadFactory.Builder().namingPattern("$key-schedule-pool-%d").daemon(true).build()
-        )
+    override val poolExecutor: ScheduledExecutorService by lazy {
+        Executors.newScheduledThreadPool(20)
     }
 
-    val version by lazy {
-        Bukkit.getServer().javaClass.getPackage().name.replace(".", ",").split(",").toTypedArray()[3]
-    }
-
-    val console by lazy {
-        BukkitAdapter().console()
-    }
-
-    val isLegacy by lazy {
-        version.split("_").toTypedArray()[1].toInt() < 13
-    }
-
-    @JvmStatic
-    val scriptEngine: ScriptEngine by lazy {
-        try {
-            if (Class.forName("jdk.nashorn.api.scripting.NashornScriptEngineFactory") == null) {
-                org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory().scriptEngine
-            } else {
-                NashornScriptEngineFactory().scriptEngine
-            }
-        } catch (e: Exception) {
-            org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory().scriptEngine
+    override fun getConfigs(): MutableMap<String, Pair<File, YamlConfiguration>> {
+        val map = HashMap<String, Pair<File, YamlConfiguration>>()
+        for (field in this::class.java.fields) {
+            if (!field.isAnnotationPresent(Config::class.java)) continue
+            map[field.name] =
+                ((field.get(this) as Configuration).file!! to FileUtils.loadConfigFile((field.get(this) as Configuration).file)!!)
         }
+        return map
     }
 
     /**
@@ -77,18 +64,11 @@ object Pouvoir : Plugin(), SubPouvoir {
 
     @JvmStatic
     @PManager
-    lateinit var compileManager: CompileManager
-
-    @JvmStatic
-    @PManager
-    lateinit var scriptManager: ScriptManager
-
-    @JvmStatic
-    @PManager
     lateinit var functionManager: FunctionManager
 
     @JvmStatic
-    val placeholderDataManager = PlaceHolderDataManager
+    @PManager
+    lateinit var placeholderDataManager: PlaceHolderDataManager
 
     @JvmStatic
     @PManager
@@ -100,7 +80,20 @@ object Pouvoir : Plugin(), SubPouvoir {
 
     @JvmStatic
     @PManager
-    lateinit var baseAttributeManager: BaseAttributeManager
+    lateinit var scriptEngineManager: ScriptEngineManager
+
+    @JvmStatic
+    @PManager
+    lateinit var compileManager: CompileManager
+
+    @JvmStatic
+    @PManager
+    lateinit var scriptAnnotationManager: ScriptAnnotationManager
+
+    @JvmStatic
+    @PManager
+    lateinit var scriptManager: ScriptManager
+
 
     override fun onLoad() {
         info("&d[&9Pouvoir&d] &aPouvoir is loading...")
@@ -108,6 +101,7 @@ object Pouvoir : Plugin(), SubPouvoir {
 
     override fun onEnable() {
         info("&d[&9Pouvoir&d] &aPouvoir is enabling...")
+
     }
 
     override fun onDisable() {

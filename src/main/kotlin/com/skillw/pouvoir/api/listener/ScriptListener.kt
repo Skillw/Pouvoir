@@ -9,12 +9,13 @@ import org.bukkit.Bukkit
 import org.bukkit.event.*
 import org.bukkit.plugin.EventExecutor
 
-abstract class ScriptListener(
+abstract class ScriptListener private constructor(
     override val key: String,
     val eventClass: Class<out Event>,
     val priority: EventPriority
 ) : Listener,
     Keyable<String> {
+
     private var exec: EventExecutor? = null
     private var handler: HandlerList? = null
 
@@ -59,7 +60,6 @@ abstract class ScriptListener(
             return
         }
         val pluginManager = Bukkit.getPluginManager()
-        val priority = EventPriority.NORMAL
         if (listenerManager.containsKey(key)) {
             handler!!.unregister(listenerManager[key]!!)
         }

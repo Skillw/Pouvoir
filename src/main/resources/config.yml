@@ -7,10 +7,4 @@ database:
   database: root
   table: my_database
 options:
-  fixed:
-    integer:
-      max: -1
-      min: -1
-    decimal:
-      max: 2
-      min: 2
+  number-format: ".##"

@@ -1,3 +1,5 @@
-function onClick(event) {
-    MessageUtils.debug('' + event.getSlot())
+//@Awake(Reload)
+function example() {
+    print("Beep! Pouvoir is reloading!")
+    print("             -- example.js")
 }

@@ -9,11 +9,11 @@ open class LowerMap<V> : BaseMap<String, V>() {
         return super.hasKey(key.lowercase())
     }
 
-    override fun removeByKey(key: String) {
-        super.removeByKey(key.lowercase())
-    }
-
     override fun put(key: String, value: V): V {
         return super.put(key.lowercase(), value)
+    }
+
+    override fun remove(key: String): V? {
+        return super.remove(key.lowercase())
     }
 }

@@ -1,38 +1,83 @@
 package com.skillw.pouvoir.api.manager
 
-import com.skillw.pouvoir.Pouvoir.plugin
-import com.skillw.pouvoir.api.handle.ConfigHandle
-import com.skillw.pouvoir.api.handle.DefaultableHandle
 import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
+import com.skillw.pouvoir.internal.handle.DefaultableHandle
 import com.skillw.pouvoir.util.MessageUtils.wrong
-import taboolib.module.configuration.Configuration
+import org.bukkit.configuration.file.YamlConfiguration
+import taboolib.common.platform.function.getDataFolder
+import taboolib.common5.FileWatcher
 import taboolib.module.lang.Language
 import taboolib.module.lang.LanguageFile
+import taboolib.module.lang.Type
 import java.io.File
 
 abstract class ConfigManager(private val subPouvoir: SubPouvoir) : Manager,
-    BaseMap<String, Configuration>() {
+    BaseMap<String, YamlConfiguration>() {
+    val fileMap = BaseMap<File, YamlConfiguration>()
     val defaults = HashSet<Class<*>>()
-    override operator fun get(key: String): Configuration {
+    override operator fun get(key: String): YamlConfiguration {
         val result = super.get(key)
         if (result == null) {
             wrong("The config $key dose not exist in the SubPouvoir ${subPouvoir.key}!")
-            return Configuration.empty()
+            return YamlConfiguration.loadConfiguration(getDataFolder())
         }
         return result
     }
 
-    init {
-        defaults.forEach { DefaultableHandle.handle(it, subPouvoir.plugin) }
-    }
+    private val watcher: FileWatcher = FileWatcher.INSTANCE
+
+    abstract fun defaultOptions(): Map<String, Map<String, Any>>
 
     init {
-        ConfigHandle.getConfigs(subPouvoir).forEach { register(it.key, it.value) }
+        subPouvoir.getConfigs().forEach {
+            val key = it.key
+            val value = it.value
+            fileMap.register(value.first, value.second)
+            this.register(key, value.second)
+        }
+        defaults.forEach { DefaultableHandle.inject(it, subPouvoir.plugin) }
+        for (it in fileMap.keys) {
+            if (watcher.hasListener(it)) {
+                watcher.removeListener(it)
+            }
+            watcher.addSimpleListener(it) {
+                val yaml = fileMap[it]!!
+                yaml.load(it)
+                this[it.nameWithoutExtension] = yaml
+            }
+        }
     }
+
+    private fun default(configKey: String, config: YamlConfiguration) {
+        val map = defaultOptions()
+        if (!map.containsKey(configKey)) {
+            return
+        }
+        val defaultOptions = map[configKey]!!
+        for ((key, value) in defaultOptions) {
+            if (config.contains(key)) continue
+            config[key] = value
+        }
+    }
+
+    final override fun reload() {
+        fileMap.forEach {
+            val file = it.key
+            val config = it.value
+            config.load(file)
+            val key = it.key.nameWithoutExtension
+            default(key, config)
+            config.save(file)
+            this[key] = config
+        }
+        subReload()
+    }
+
+    protected open fun subReload() {}
 
     val serverFile: File by lazy {
-        File(plugin.dataFolder.parentFile.absolutePath.toString().replace("\\plugins", ""))
+        File(subPouvoir.plugin.dataFolder.parentFile.absolutePath.toString().replace("\\plugins", ""))
     }
 
     override val key = "ConfigManager"
@@ -49,7 +94,11 @@ abstract class ConfigManager(private val subPouvoir: SubPouvoir) : Manager,
             return "languages/$lang/"
         }
 
-    abstract val isCheckVersion: Boolean
+    open val isCheckVersion: Boolean = false
+
+    fun getLang(path: String): Type? {
+        return getLocal().nodes[path]
+    }
 
     companion object {
         @JvmStatic
@@ -66,11 +115,11 @@ abstract class ConfigManager(private val subPouvoir: SubPouvoir) : Manager,
     }
 
     fun createIfNotExists(name: String, vararg fileNames: String) {
-        val dir = File(plugin.dataFolder.path + "/$name")
+        val dir = File(subPouvoir.plugin.dataFolder.path + "/$name")
         if (!dir.exists()) {
             dir.mkdir()
             for (fileName in fileNames) {
-                plugin.saveResource("$name/$fileName", true)
+                subPouvoir.plugin.saveResource("$name/$fileName", true)
             }
         }
     }

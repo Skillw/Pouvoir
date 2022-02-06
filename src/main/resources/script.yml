@@ -1,15 +1,3 @@
-on-init:
-  - ''
-on-load:
-  - ''
-on-enable:
-  - 'fun.js::init'
-on-active:
-  - ''
-on-reload:
-  - 'fun.js::init'
-on-disable:
-  - ''
 static-classes:
   Bukkit: 'org.bukkit.Bukkit'
   Arrays: 'java.util.Arrays'
@@ -21,14 +9,11 @@ static-classes:
   ColorUtils: 'com.skillw.pouvoir.util.ColorUtils'
   EDCodeUtils: 'com.skillw.pouvoir.util.EDCodeUtils'
   EntityUtils: 'com.skillw.pouvoir.util.EntityUtils'
-  EquationUtils: 'com.skillw.pouvoir.util.EquationUtils'
   FileUtils: 'com.skillw.pouvoir.util.FileUtils'
   ItemUtils: 'com.skillw.pouvoir.util.ItemUtils'
   GsonUtils: 'com.skillw.pouvoir.util.GsonUtils'
   MessageUtils: 'com.skillw.pouvoir.util.MessageUtils'
   NumberUtils: 'com.skillw.pouvoir.util.NumberUtils'
   PlayerUtils: 'com.skillw.pouvoir.util.PlayerUtils'
-  WeightUtils: 'com.skillw.pouvoir.util.WeightUtils'
-  PluginUtils: 'com.skillw.pouvoir.util.PluginUtils'
-  JarUtils: 'com.skillw.pouvoir.util.JarUtils'
   ClassUtils: 'com.skillw.pouvoir.util.ClassUtils'
+  StringUtils: 'com.skillw.pouvoir.util.StringUtils'

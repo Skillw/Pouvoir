@@ -1,38 +1,39 @@
 package com.skillw.pouvoir.util
 
-import java.io.UnsupportedEncodingException
-import java.nio.charset.StandardCharsets.UTF_8
+import org.bukkit.craftbukkit.libs.org.apache.commons.io.output.ByteArrayOutputStream
+import org.bukkit.util.io.BukkitObjectInputStream
+import org.bukkit.util.io.BukkitObjectOutputStream
+import java.io.ByteArrayInputStream
 import java.util.*
 
 object EDCodeUtils {
-    val ENCODER: Base64.Encoder = Base64.getEncoder()
-    val DECODER: Base64.Decoder = Base64.getDecoder()
-
     /**
-     * 给字符串加密
-     *
-     * @param text
-     * @return
+     * 将对象进行 Base64 加密并输出字符串
+     * @param Object Object 待加密对象
+     * @return String Base64 加密文本
      */
     @JvmStatic
-    fun base64Encode(text: String): String {
-        var textByte = ByteArray(0)
-        try {
-            textByte = text.toByteArray(charset("UTF-8"))
-        } catch (e: UnsupportedEncodingException) {
-            e.printStackTrace()
-        }
-        return ENCODER.encodeToString(textByte)
+    fun enBase64(any: Any): String? {
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        val bukkitObjectOutputStream = BukkitObjectOutputStream(byteArrayOutputStream)
+        bukkitObjectOutputStream.writeObject(any)
+        val bytes = byteArrayOutputStream.toByteArray()
+        return Base64.getEncoder().encodeToString(bytes)
     }
 
+    /**
+     * 将 Base64 加密文本解析为对象
+     * @param String String Base64 加密文本
+     * @param clazz Class 类
+     * @return Object 相应对象
+     */
     @JvmStatic
-    fun base64Decode(encodedText: String?): String? {
-        var text: String? = null
-        try {
-            text = String(DECODER.decode(encodedText), UTF_8)
-        } catch (e: UnsupportedEncodingException) {
-            e.printStackTrace()
-        }
-        return text
+    fun <T> deBase64(base64String: String, clazz: Class<T>): T {
+        val decode = Base64.getDecoder().decode(base64String)
+        val byteArrayInputStream = ByteArrayInputStream(decode)
+        val bukkitObjectInputStream = BukkitObjectInputStream(byteArrayInputStream)
+        val readObject = bukkitObjectInputStream.readObject()
+        return clazz.cast(readObject)
     }
+
 }

@@ -2,9 +2,10 @@ package com.skillw.pouvoir.api.manager
 
 import com.skillw.pouvoir.api.able.Keyable
 import com.skillw.pouvoir.api.able.Pluginable
-import com.skillw.pouvoir.api.handle.PManagerHandle
 import com.skillw.pouvoir.api.map.KeyMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
+import com.skillw.pouvoir.api.plugin.TotalManager
+import com.skillw.pouvoir.internal.handle.PManagerHandle
 import org.bukkit.plugin.java.JavaPlugin
 
 class ManagerData(val pouvoir: SubPouvoir) : KeyMap<String, Manager>(), Pluginable, Keyable<SubPouvoir> {

@@ -14,8 +14,8 @@ object ColorUtils {
     }
 
     @JvmStatic
-    fun color(msgs: List<String>): List<String> {
-        return msgs.colored()
+    fun color(messages: List<String>): List<String> {
+        return messages.colored()
     }
 
     @JvmStatic
@@ -24,7 +24,17 @@ object ColorUtils {
     }
 
     @JvmStatic
-    fun unColor(msgs: List<String>): List<String> {
-        return msgs.colored()
+    fun unColor(messages: List<String>): List<String> {
+        return messages.colored()
+    }
+
+    @JvmStatic
+    fun String.decolored(): String {
+        return this.replace("§", "&")
+    }
+
+    @JvmStatic
+    fun List<String>.decolored(): List<String> {
+        return this.map { it.decolored() }
     }
 }

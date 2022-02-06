@@ -3,12 +3,15 @@ package com.skillw.pouvoir.api.plugin
 import com.skillw.pouvoir.api.able.Keyable
 import com.skillw.pouvoir.api.able.Pluginable
 import com.skillw.pouvoir.api.manager.ManagerData
-import com.skillw.pouvoir.api.manager.TotalManager
-import java.util.concurrent.ScheduledThreadPoolExecutor
+import org.bukkit.configuration.file.YamlConfiguration
+import java.io.File
+import java.util.concurrent.ScheduledExecutorService
 
 interface SubPouvoir : Pluginable, Keyable<String> {
     var managerData: ManagerData
-    val poolExecutor: ScheduledThreadPoolExecutor
+    val poolExecutor: ScheduledExecutorService
+
+    fun getConfigs(): MutableMap<String, Pair<File, YamlConfiguration>>
 
     override fun register() {
         TotalManager.register(this.plugin)

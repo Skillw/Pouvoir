@@ -7,15 +7,15 @@ open class LowerKeyMap<V : Keyable<String>> : KeyMap<String, V>() {
         return super.get(key.lowercase())
     }
 
+    override fun remove(key: String): V? {
+        return super.remove(key.lowercase())
+    }
+
     override fun hasKey(key: String): Boolean {
         return super.hasKey(key.lowercase())
     }
 
-    override fun removeByKey(key: String) {
-        super.removeByKey(key.lowercase())
-    }
-
     override fun put(key: String, value: V): V {
-        return put(key.lowercase(), value)
+        return super.put(key.lowercase(), value)
     }
 }

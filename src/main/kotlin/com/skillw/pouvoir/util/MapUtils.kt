@@ -10,6 +10,12 @@ import java.util.concurrent.ConcurrentHashMap
  */
 object MapUtils {
     @JvmStatic
+    fun <K, V> MutableMap<K, LinkedList<V>>.addSingle(key: K, value: V): Map<K, LinkedList<V>> {
+        return add(this, key, value)
+    }
+
+
+    @JvmStatic
     fun <K, V> add(map: MutableMap<K, LinkedList<V>>, key: K, value: V): Map<K, LinkedList<V>> {
         if (!map.containsKey(key)) {
             map[key] = LinkedList(listOf(value))
@@ -17,6 +23,11 @@ object MapUtils {
             map[key]!!.add(value)
         }
         return map
+    }
+
+    @JvmStatic
+    fun <K, V, Z> MutableMap<K, MutableMap<Z, V>>.putFast(key1: K, key2: Z, value: V): Map<K, MutableMap<Z, V>> {
+        return MapUtils.put(this, key1, key2, value)
     }
 
     @JvmStatic
@@ -29,6 +40,11 @@ object MapUtils {
             map[key1]!![key2] = value
         }
         return map
+    }
+
+    @JvmStatic
+    fun <K, Z, V> Map<K, Map<Z, V>>.getAllValues(): List<V> {
+        return getValues(this)
     }
 
     @JvmStatic

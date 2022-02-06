@@ -2,9 +2,34 @@ plugins {
     `java-library`
     id("io.izzel.taboolib") version "1.34"
     id("org.jetbrains.kotlin.jvm") version "1.5.10"
+    id("org.jetbrains.dokka") version "1.6.10"
 }
 
+
+
+tasks.dokkaJavadoc.configure {
+    val dokkaPath = projectDir.absolutePath.replace(rootDir.absolutePath, "")
+    outputDirectory.set(File(rootDir.absolutePath + File.separator + "dokka" + dokkaPath))
+    dokkaSourceSets {
+        named("main") {
+            noJdkLink.set(true)
+            noStdlibLink.set(true)
+            noAndroidSdkLink.set(true)
+            suppressInheritedMembers.set(true)
+            suppressObviousFunctions.set(false)
+            sourceRoots.from(
+                file("src/main/kotlin/com/skillw/pouvoir/api"),
+                file("src/main/kotlin/com/skillw/pouvoir/util")
+            )
+        }
+    }
+}
+
+
 taboolib {
+    options("skip-kotlin")
+    options("skip-kotlin-relocate")
+
     description {
         contributors {
             name("Glom_")
@@ -19,18 +44,29 @@ taboolib {
     install(
         "common",
         "common-5",
-        "module-configuration",
-        "module-lang",
-        "platform-bukkit",
-        "module-metrics",
+        "module-ai",
         "module-chat",
-        "module-nms-util",
+        "module-configuration",
+        "module-database",
+        "module-database-mongodb",
+        "module-effect",
+        "module-kether",
+        "module-metrics",
+        "module-navigation",
+        "module-lang",
         "module-nms",
-        "module-database"
+        "module-nms-util",
+        "module-porticus",
+        "module-ui",
+        "module-ui-receptacle",
+        "platform-bukkit",
+        "expansion-player-database",
+        "expansion-javascript",
     )
 
     classifier = null
-    version = "6.0.7-17"
+    version = "6.0.7-24"
+
 }
 
 repositories {
@@ -39,6 +75,7 @@ repositories {
 }
 
 dependencies {
+    compileOnly("org.codehaus.groovy:groovy-jsr223:3.0.9")
     compileOnly("ink.ptms.core:v11605:11605")
 
     compileOnly(kotlin("stdlib"))

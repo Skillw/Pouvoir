@@ -5,6 +5,7 @@ import java.io.File
 import javax.script.CompiledScript
 
 interface CompileManager : Manager {
-    fun compileScript(file: File): CompiledScript?
-    fun compileScript(path: String): CompiledScript?
+    fun compileFile(file: File): CompiledScript?
+    fun compileFile(path: String): CompiledScript?
+    fun compile(script: String, engine: String): CompiledScript?
 }

@@ -13,11 +13,6 @@ open class BaseMap<K, V> : MutableMap<K, V> {
         put(key, value)
     }
 
-    open fun removeByKey(key: K) {
-        if (key != null)
-            map.remove(key)
-    }
-
     override fun clear() {
         map.clear()
     }
@@ -63,7 +58,7 @@ open class BaseMap<K, V> : MutableMap<K, V> {
         get() = map.size
     override val entries: MutableSet<MutableMap.MutableEntry<K, V>>
         get() = map.entries
-    override val values: MutableCollection<V>
+    final override val values: MutableCollection<V>
         get() = map.values
 
     override fun remove(key: K): V? {

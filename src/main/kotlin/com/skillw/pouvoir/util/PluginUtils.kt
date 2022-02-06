@@ -1,15 +1,14 @@
 package com.skillw.pouvoir.util
 
-import org.bukkit.plugin.Plugin
+import taboolib.common.platform.Plugin
 import java.io.File
 import java.net.URISyntaxException
 import java.util.jar.JarEntry
 import java.util.jar.JarFile
 
 object PluginUtils {
-
     @JvmStatic
-    fun getClasses(plugin: Plugin): List<Class<*>> {
+    fun getClasses(plugin: org.bukkit.plugin.Plugin): List<Class<*>> {
         val classes: MutableList<Class<*>> = ArrayList()
         val url = plugin.javaClass.protectionDomain.codeSource.location
         try {
@@ -32,4 +31,5 @@ object PluginUtils {
         }
         return classes
     }
+
 }

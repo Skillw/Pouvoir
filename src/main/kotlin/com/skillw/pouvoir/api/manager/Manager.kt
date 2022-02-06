@@ -5,7 +5,9 @@ import com.skillw.pouvoir.api.able.Keyable
 interface Manager : Keyable<String>, Comparable<Manager> {
     val priority: Int
     fun init() {}
-    fun load() {}
+    fun load() {
+    }
+
     fun enable() {}
     fun active() {
     }
@@ -18,9 +20,9 @@ interface Manager : Keyable<String>, Comparable<Manager> {
     }
 
     override fun compareTo(other: Manager): Int {
-        return if (priority <= other.priority) {
-            -1
-        } else 1
+        return if (priority == other.priority) 0
+        else if (priority > other.priority) 1
+        else -1
     }
 
 

@@ -2,17 +2,16 @@ package com.skillw.pouvoir.util
 
 import com.skillw.pouvoir.Pouvoir
 import org.bukkit.Bukkit
-import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.boss.BarColor
 import org.bukkit.boss.BarStyle
-import org.bukkit.entity.ArmorStand
-import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
-import org.bukkit.util.Vector
+import taboolib.common.reflect.Reflex.Companion.setProperty
+import taboolib.module.nms.sendPacket
 import taboolib.platform.BukkitAdapter
+
 
 object PlayerUtils {
 
@@ -77,73 +76,6 @@ object PlayerUtils {
     }
 
     @JvmStatic
-    fun getEntityRayHit(
-        livingEntity: LivingEntity, range: Double
-    ): LivingEntity? {
-        fun legacy(): LivingEntity? {
-            fun rotateXz(origin: Vector, direction: Vector): Vector {
-                val x = origin.x * direction.x - origin.z * direction.z
-                val y = origin.y
-                val z = origin.x * direction.z + origin.z * direction.x
-                return Vector(x, y, z)
-            }
-
-            fun isInLoc(loc1: Location, loc2: Location): Boolean {
-                var x1 = loc1.blockX - loc2.blockX
-                var z1 = loc1.blockZ - loc2.blockZ
-                var y1 = loc1.blockY - loc2.blockY
-                if (y1 < 0) {
-                    y1 = -y1
-                }
-                if (x1 < 0) {
-                    x1 = -x1
-                }
-                if (z1 < 0) {
-                    z1 = -z1
-                }
-                return x1 <= 0.5 && z1 <= 0.5 && y1 <= 1.5
-            }
-
-            val entities = livingEntity.getNearbyEntities(range, range, range)
-            val livingEntities = ArrayList<LivingEntity>()
-            for (ent in entities) {
-                if (ent is LivingEntity) {
-                    livingEntities.add(ent)
-                }
-            }
-            val loc = livingEntity.eyeLocation
-            val v = Vector(2.0, (0.0f - loc.pitch) * 0.03, 0.0)
-            val a = livingEntity.location.direction
-            val vc = rotateXz(v, a)
-            var i = 1
-            while (i < range) {
-                for (lic in livingEntities) {
-                    if (isInLoc(loc, lic.location)) {
-                        return if (lic !is ArmorStand) lic else null
-                    }
-                }
-                loc.add(vc)
-                i++
-            }
-            return null
-        }
-
-        fun new(): LivingEntity? {
-            val world = livingEntity.world
-            val loc = livingEntity.eyeLocation.clone()
-            val direction = loc.direction.clone()
-            loc.add(direction)
-            val rayTraceEntities = world.rayTraceEntities(loc, loc.direction, range)
-            if (rayTraceEntities != null) {
-                val hitEntity = rayTraceEntities.hitEntity
-                return if (EntityUtils.isLiving(hitEntity)) hitEntity as LivingEntity else null
-            }
-            return null
-        }
-        return if (Pouvoir.isLegacy) legacy() else new()
-    }
-
-    @JvmStatic
     fun sendBossBar(player: Player, text: String, color: BarColor, style: BarStyle, progress: Double, ticks: Int) {
         var progress1 = progress
         if (progress1 < 0) {
@@ -186,5 +118,19 @@ object PlayerUtils {
     @JvmStatic
     fun removeCooldown(player: Player, material: Material?) {
         player.setCooldown(material!!, 0)
+    }
+
+    @JvmStatic
+    fun Player.sendPacketWithFields(packet: Any, vararg fields: Pair<String, Any?>) {
+        this.sendPacket(setFields(packet, *fields))
+    }
+
+    private fun setFields(any: Any, vararg fields: Pair<String, Any?>): Any {
+        fields.forEach { (key, value) ->
+            if (value != null) {
+                any.setProperty(key, value)
+            }
+        }
+        return any
     }
 }

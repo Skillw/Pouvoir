@@ -1,15 +1,34 @@
 package com.skillw.pouvoir.util
 
-import org.bukkit.configuration.serialization.ConfigurationSerializable
-import taboolib.library.configuration.ConfigurationSection
+import org.bukkit.event.Event
 
+@Suppress("UNCHECKED_CAST")
 object ClassUtils {
     @JvmStatic
+    fun getEventClass(path: String): Class<out Event>? {
+        val clazz: Class<out Event>
+        try {
+            val tempClazz = Class.forName(path)
+            if (!Event::class.java.isAssignableFrom(tempClazz)) {
+                MessageUtils.wrong("The class $path is not a Event")
+                return null
+            }
+            clazz = tempClazz.asSubclass(Event::class.java)
+        } catch (e: Exception) {
+            MessageUtils.wrong("The class $path dose not exist!")
+            return null
+        }
+        return clazz
+    }
+
+    @JvmStatic
     val staticClass: Class<*> by lazy {
-        if (System.getProperty("java.version").contains("1.8."))
+        try {
             Class.forName("jdk.internal.dynalink.beans.StaticClass")
-        else
+        } catch (throwable: Throwable) {
             Class.forName("jdk.dynalink.beans.StaticClass")
+        }
+
     }
 
     @JvmStatic
@@ -22,8 +41,8 @@ object ClassUtils {
     }
 
     @JvmStatic
-    fun <T> isObj(clazz: Class<T>): Boolean {
-        val fields = clazz.fields
+    fun <T> Class<T>.isObj(): Boolean {
+        val fields = this.fields
         var isObj = false
         for (field in fields) {
             if (field.name == "INSTANCE") {
@@ -32,25 +51,5 @@ object ClassUtils {
             }
         }
         return isObj
-    }
-
-    @JvmStatic
-    fun <T : ConfigurationSerializable> build(config: ConfigurationSection, key: String): T? {
-        val obj = config[key] ?: return null
-        return obj as T
-    }
-
-    fun <T : ConfigurationSerializable> ConfigurationSection.create(key: String): T? {
-        return build(this, key)
-    }
-
-    @JvmStatic
-    fun <T : ConfigurationSerializable> buildMultiple(config: ConfigurationSection): Set<T> {
-        val set = HashSet<T>()
-        for (key in config.getKeys(false)) {
-            val obj = build<T>(config, key) ?: continue
-            set.add(obj)
-        }
-        return set
     }
 }

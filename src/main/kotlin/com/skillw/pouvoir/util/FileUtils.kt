@@ -1,123 +1,59 @@
 package com.skillw.pouvoir.util
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.api.able.Keyable
 import com.skillw.pouvoir.util.MessageUtils.wrong
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.configuration.file.YamlConfiguration
-import org.bukkit.plugin.Plugin
-import java.io.*
-import java.lang.reflect.InvocationTargetException
-import java.nio.charset.Charset
-import java.nio.charset.StandardCharsets
+import org.bukkit.configuration.serialization.ConfigurationSerializable
+import java.io.File
 import java.util.*
-import java.util.logging.Level
 
 object FileUtils {
+
     @JvmStatic
     fun listFiles(file: File): List<File> {
         val files: MutableList<File> = ArrayList()
         if (file.isDirectory) {
-            file.listFiles().forEach { files.addAll(listFiles(it)) }
+            file.listFiles()?.forEach { files.addAll(listFiles(it)) }
         } else {
             files.add(file)
         }
         return files
     }
 
-    @JvmOverloads
+    @Suppress("UNCHECKED_CAST")
     @JvmStatic
-    fun readFromFile(file: File, size: Int = 1024, encode: Charset = StandardCharsets.UTF_8): String? {
-        return try {
-            val fileInputStream = FileInputStream(file)
-            val content: String?
-            try {
-                val bin = BufferedInputStream(fileInputStream)
-                content = try {
-                    readFromStream(fileInputStream, size, encode)
-                } catch (throwable: Throwable) {
-                    try {
-                        bin.close()
-                    } catch (var8: Throwable) {
-                        throwable.addSuppressed(var8)
-                    }
-                    throw throwable
-                }
-                bin.close()
-            } catch (throwable: Throwable) {
-                try {
-                    fileInputStream.close()
-                } catch (var7: Throwable) {
-                    throwable.addSuppressed(var7)
-                }
-                throw throwable
-            }
-            fileInputStream.close()
-            content
-        } catch (exception: IOException) {
-            exception.printStackTrace()
-            null
-        }
-    }
-
-    @JvmStatic
-    fun readFromStream(`in`: InputStream, size: Int, encode: Charset): String? {
-        return try {
-            val byteArrayOutputStream = ByteArrayOutputStream()
-            val content: String
-            try {
-                val b = ByteArray(size)
-                while (true) {
-                    var i: Int
-                    if (`in`.read(b).also { i = it } <= 0) {
-                        content = byteArrayOutputStream.toString(encode.name())
-                        break
-                    }
-                    byteArrayOutputStream.write(b, 0, i)
-                }
-            } catch (throwable: Throwable) {
-                try {
-                    byteArrayOutputStream.close()
-                } catch (var7: Throwable) {
-                    throwable.addSuppressed(var7)
-                }
-                throw throwable
-            }
-            byteArrayOutputStream.close()
-            content
-        } catch (exception: IOException) {
-            exception.printStackTrace()
-            null
-        }
-    }
-
-    @JvmStatic
-    fun <T : Keyable<*>?> loadMultiply(mainFile: File?, tClass: Class<T>): List<T> {
+    fun <T : ConfigurationSerializable> loadMultiply(mainFile: File?, clazz: Class<T>): List<Pair<T, File>> {
         if (mainFile == null) {
             return emptyList()
         }
-        for (file in getSubFilesFromFile(mainFile)!!) {
-            val config = loadConfigFile(file)
-            for (key in config!!.getKeys(false)) {
-                try {
-                    val obj = tClass.getDeclaredMethod("load", ConfigurationSection::class.java).invoke(
-                        null, config.getConfigurationSection(
-                            key!!
-                        )
-                    )
-                    if (Keyable::class.java.isAssignableFrom(obj.javaClass)) {
-                        (obj as Keyable<*>).register()
-                    }
-                } catch (e: NoSuchMethodException) {
-                    e.printStackTrace()
-                } catch (e: IllegalAccessException) {
-                    e.printStackTrace()
-                } catch (e: InvocationTargetException) {
-                    e.printStackTrace()
-                }
+        val list = LinkedList<Pair<T, File>>()
+        for (file in getYamlsFromFile(mainFile)!!) {
+            val config = loadConfigFile(file) ?: continue
+            for (key in config.getKeys(false)) {
+                list.add(
+                    (clazz.getMethod(
+                        "deserialize",
+                        org.bukkit.configuration.ConfigurationSection::class.java
+                    ).invoke(null, config[key]!!) as? T? ?: continue) to file
+                )
             }
         }
-        return emptyList()
+        return list
+    }
+
+    @JvmStatic
+    fun ConfigurationSection.toMap(): Map<String, Any> {
+        val newMap = HashMap<String, Any>()
+        for (it in this.getKeys(false)) {
+            val value = this[it]
+            if (value is ConfigurationSection) {
+                newMap[it] = value.toMap()
+                continue
+            }
+            newMap[it] = value!!
+        }
+        return newMap
     }
 
     @JvmStatic
@@ -129,8 +65,9 @@ object FileUtils {
         try {
             config.load(file)
         } catch (e: Exception) {
-            wrong("Wrong config!")
+            wrong("Wrong config! in ${file.name}")
             wrong("Cause: " + ColorUtils.unColor(e.cause!!.message.toString()))
+            return null
         }
         return if (config.getKeys(false).isEmpty()) {
             null
@@ -138,7 +75,7 @@ object FileUtils {
     }
 
     @JvmStatic
-    fun getSubFilesFromFile(file: File?): List<File>? {
+    fun getYamlsFromFile(file: File?): List<File>? {
         if (file == null) {
             return null
         }
@@ -149,57 +86,13 @@ object FileUtils {
                 files.add(subFile)
                 continue
             }
-            files.addAll(getSubFilesFromFile(subFile)!!)
+            files.addAll(getYamlsFromFile(subFile)!!)
         }
         return files
     }
 
     @JvmStatic
-    fun saveResource(resourcePath: String?, replace: Boolean, plugin: Plugin, language: String?) {
-        var resourcePathCopy = resourcePath
-        if (resourcePathCopy != null && resourcePathCopy.isNotEmpty()) {
-            resourcePathCopy = (language ?: "") + resourcePathCopy.replace('\\', '/')
-            var `in` = plugin.getResource(resourcePathCopy)
-            if (`in` == null) {
-                val lang: String = Locale.getDefault().toString()
-                wrong("The language &b$lang &c doesn't exist!!")
-                `in` = plugin.getResource(resourcePathCopy.replace(lang, "en_US"))
-            }
-            if (resourcePathCopy.contains("languages") && language != null) {
-                resourcePathCopy = resourcePathCopy.split(language).toTypedArray()[1]
-            }
-            val outFile = File(plugin.dataFolder, resourcePathCopy)
-            val lastIndex = resourcePathCopy.lastIndexOf(47.toChar())
-            val outDir = File(plugin.dataFolder, resourcePathCopy.substring(0, Math.max(lastIndex, 0)))
-            if (!outDir.exists()) {
-                outDir.mkdirs()
-            }
-            try {
-                if (outFile.exists() && !replace) {
-                    plugin.logger.log(
-                        Level.WARNING,
-                        "Could not save " + outFile.name + " to " + outFile + " because " + outFile.name + " already exists."
-                    )
-                } else {
-                    val out: OutputStream = FileOutputStream(outFile)
-                    val buf = ByteArray(1024)
-                    var len: Int
-                    while (`in`!!.read(buf).also { len = it } > 0) {
-                        out.write(buf, 0, len)
-                    }
-                    out.close()
-                    `in`.close()
-                }
-            } catch (var10: IOException) {
-                plugin.logger.log(Level.SEVERE, "Could not save " + outFile.name + " to " + outFile, var10)
-            }
-        } else {
-            throw IllegalArgumentException("ResourcePath cannot be null or empty")
-        }
-    }
-
-    @JvmStatic
-    fun nameNormalize(file: File): String {
+    fun pathNormalize(file: File): String {
         return file.absolutePath.replace(Pouvoir.configManager.serverFile.absolutePath, "").replace("\\", "/")
     }
 }

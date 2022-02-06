@@ -13,7 +13,7 @@ open class KeyMap<K, V : Keyable<K>> : BaseMap<K, V>() {
     }
 
     open fun register(value: V) {
-        value.register()
+        register(value.key, value)
     }
 
     fun removeByValue(value: V) {
