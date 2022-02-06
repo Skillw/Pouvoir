@@ -5,11 +5,11 @@ import com.skillw.pouvoir.api.able.Keyable
 import org.bukkit.entity.LivingEntity
 
 /**
- * ClassName : com.skillw.com.skillw.rpglib.api.analysis.RPGPlaceHolder
+ * ClassName : com.skillw.com.skillw.rpglib.api.analysis.PouPlaceHolder
  * Created by Glom_ on 2021-03-28 15:40:22
  * Copyright  2021 user. All rights reserved.
  */
-abstract class RPGPlaceHolder(identifier: String, author: String?, version: String?) : Keyable<String> {
+abstract class PouPlaceHolder(identifier: String, author: String?, version: String?) : Keyable<String> {
     final override val key: String
     var author: String? = null
     var version: String? = null

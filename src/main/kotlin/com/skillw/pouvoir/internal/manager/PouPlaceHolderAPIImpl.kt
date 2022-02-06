@@ -1,7 +1,7 @@
 package com.skillw.pouvoir.internal.manager
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.api.manager.sub.RPGPlaceHolderAPI
+import com.skillw.pouvoir.api.manager.sub.PouPlaceHolderAPI
 import me.clip.placeholderapi.PlaceholderAPI
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
@@ -9,8 +9,8 @@ import taboolib.module.chat.colored
 import java.util.*
 import java.util.regex.Pattern
 
-object RPGPlaceHolderAPIImpl : RPGPlaceHolderAPI {
-    override val key = "RPGPlaceHolderAPI"
+object PouPlaceHolderAPIImpl : PouPlaceHolderAPI {
+    override val key = "PouPlaceHolderAPI"
     override val priority = 1
 
     private val pattern = Pattern.compile(
