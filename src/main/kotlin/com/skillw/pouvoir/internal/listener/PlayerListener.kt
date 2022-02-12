@@ -9,7 +9,6 @@ import taboolib.expansion.setupDataContainer
 object PlayerListener {
     @SubscribeEvent
     fun onPlayerJoinEvent(e: PlayerJoinEvent) {
-        
         e.player.setupDataContainer()
     }
 

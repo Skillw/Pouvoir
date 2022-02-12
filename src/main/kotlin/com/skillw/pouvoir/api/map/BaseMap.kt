@@ -30,14 +30,6 @@ open class BaseMap<K, V> : MutableMap<K, V> {
         return value
     }
 
-    open fun hasKey(key: K): Boolean {
-        return map.containsKey(key)
-    }
-
-    open fun hasObject(value: V): Boolean {
-        return map.contains(value)
-    }
-
     override operator fun get(key: K): V? {
         return map[key]
     }

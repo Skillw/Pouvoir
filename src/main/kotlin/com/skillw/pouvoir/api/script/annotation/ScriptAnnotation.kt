@@ -2,10 +2,11 @@ package com.skillw.pouvoir.api.script.annotation
 
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.able.Keyable
+import java.util.function.Consumer
 
 abstract class ScriptAnnotation(
     override val key: String,
-    private val handle: (ScriptAnnotationData) -> Unit,
+    private val handle: Consumer<ScriptAnnotationData>,
     val awakeWhenEnable: Boolean = false
 ) : Keyable<String> {
     override fun register() {
@@ -13,6 +14,6 @@ abstract class ScriptAnnotation(
     }
 
     fun handle(data: ScriptAnnotationData) {
-        handle.invoke(data)
+        handle.accept(data)
     }
 }

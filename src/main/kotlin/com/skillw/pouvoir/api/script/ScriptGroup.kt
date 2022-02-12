@@ -2,11 +2,10 @@ package com.skillw.pouvoir.api.script
 
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.`object`.BaseObject
-import com.skillw.pouvoir.api.able.Invokable
 import com.skillw.pouvoir.api.map.LowerMap
 import org.bukkit.configuration.serialization.ConfigurationSerializable
 
-abstract class ScriptGroup<T : BaseObject>() : LowerMap<String>(), Invokable<T>, ConfigurationSerializable {
+abstract class ScriptGroup<T : BaseObject>() : LowerMap<String>(), ConfigurationSerializable {
     constructor(vararg pairs: Pair<String, String>) : this() {
         this.map.putAll(pairs)
     }
@@ -16,10 +15,10 @@ abstract class ScriptGroup<T : BaseObject>() : LowerMap<String>(), Invokable<T>,
     }
 
 
-    override fun invoke(key: String, obj: T, argsMap: MutableMap<String, Any>, vararg args: Any): Any? {
-        val path = map[key] ?: return null
+    fun invoke(key: String, obj: T, argsMap: MutableMap<String, Any>): Any? {
+        val string = map[key] ?: return null
         argsMap["obj"] = obj
-        return Pouvoir.scriptManager.invokePathWithFunction(path, argsMap = argsMap, args = args)
+        return Pouvoir.scriptManager.invoke(string, argsMap = argsMap)
     }
 
     override fun serialize(): MutableMap<String, Any> {

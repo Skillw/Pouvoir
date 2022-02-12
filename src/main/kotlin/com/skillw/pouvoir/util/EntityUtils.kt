@@ -1,6 +1,7 @@
 package com.skillw.pouvoir.util
 
 import com.google.common.base.Enums
+import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.internal.raytrace.RayTrace
 import com.skillw.pouvoir.util.PlayerUtils.sendPacketWithFields
 import org.bukkit.Bukkit
@@ -158,9 +159,9 @@ object EntityUtils {
                 "a" to entityId,
                 "b" to uuid,
                 "c" to when {
-                    majorLegacy >= 11400 -> nmsClass("IRegistry").getProperty<Any>("ENTITY_TYPE")!!
+                    majorLegacy >= 11400 -> nmsClass("IRegistry").getField("ENTITY_TYPE").get(null)!!
                         .invokeMethod<Unit>("a", ARMOR_STAND_NMS)
-                    majorLegacy == 11300 -> nmsClass("IRegistry").getProperty<Any>("ENTITY_TYPE")!!
+                    majorLegacy == 11300 -> nmsClass("IRegistry").getField("ENTITY_TYPE").get(null)!!
                         .invokeMethod<Unit>("a", ARMOR_STAND_NMS)
                     else -> ARMOR_STAND_LEGACY
                 },
@@ -222,18 +223,20 @@ object EntityUtils {
     fun getEntityRayHit(
         livingEntity: LivingEntity, distance: Double
     ): LivingEntity? {
-        val entities = ArrayList<Pair<Entity, BoundingBox>>()
-        livingEntity.getNearbyEntities(distance, distance, distance).forEach {
-            entities += it to NMSImpl().getBoundingBox(it)
-        }
-        val traces = RayTrace(livingEntity).traces(distance, 0.2)
-        for (vector in traces) {
-            val firstOrNull = entities.firstOrNull { it.second.contains(vector) }
-            if (firstOrNull != null) {
-                return firstOrNull.first as? LivingEntity? ?: continue
+        return Pouvoir.poolExecutor.submit<LivingEntity?> {
+            val entities = ArrayList<Pair<Entity, BoundingBox>>()
+            livingEntity.getNearbyEntities(distance, distance, distance).forEach {
+                entities += it to NMSImpl().getBoundingBox(it)
             }
-        }
-        return null
+            val traces = RayTrace(livingEntity).traces(distance, 0.2)
+            for (vector in traces) {
+                val firstOrNull = entities.firstOrNull { it.second.contains(vector) }
+                if (firstOrNull != null) {
+                    return@submit firstOrNull.first as? LivingEntity? ?: continue
+                }
+            }
+            return@submit null
+        }.get()
     }
 
 }

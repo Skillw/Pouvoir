@@ -2,7 +2,7 @@ package com.skillw.pouvoir.internal.function
 
 import com.skillw.pouvoir.api.function.PouFunction
 import com.skillw.pouvoir.internal.manager.PouvoirConfig
-import com.skillw.pouvoir.util.CalculationUtils
+import com.skillw.pouvoir.util.CalculationUtils.resultDouble
 import com.skillw.pouvoir.util.MessageUtils.wrong
 import com.skillw.pouvoir.util.NumberUtils.format
 import com.skillw.pouvoir.util.NumberUtils.randomInt
@@ -162,7 +162,7 @@ object calculate : PouFunction("calculate",
             val value = str.replace("$key=", "")
             replaced[key] = value
         }
-        return@func CalculationUtils.getResult(formula, null, replaced)
+        return@func formula.resultDouble(null, replaced)
     })
 
 object repeat : PouFunction("repeat",

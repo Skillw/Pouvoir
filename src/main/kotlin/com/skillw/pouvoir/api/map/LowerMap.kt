@@ -5,8 +5,8 @@ open class LowerMap<V> : BaseMap<String, V>() {
         return super.get(key.lowercase())
     }
 
-    override fun hasKey(key: String): Boolean {
-        return super.hasKey(key.lowercase())
+    override fun containsKey(key: String): Boolean {
+        return super.containsKey(key.lowercase())
     }
 
     override fun put(key: String, value: V): V {

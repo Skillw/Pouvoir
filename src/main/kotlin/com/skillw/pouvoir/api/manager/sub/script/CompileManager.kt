@@ -7,5 +7,4 @@ import javax.script.CompiledScript
 interface CompileManager : Manager {
     fun compileFile(file: File): CompiledScript?
     fun compileFile(path: String): CompiledScript?
-    fun compile(script: String, engine: String): CompiledScript?
 }

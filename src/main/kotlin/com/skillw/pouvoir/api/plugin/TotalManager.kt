@@ -62,40 +62,10 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
     @Awake(LifeCycle.LOAD)
     fun onLoading() {
         Bukkit.getPluginManager().plugins.forEach { load(it) }
-        map.values.forEach {
-            it.load()
-        }
-    }
-
-    @Awake(LifeCycle.ENABLE)
-    fun onEnable() {
-        map.values.forEach {
-            it.enable()
-        }
-    }
-
-    @Awake(LifeCycle.ACTIVE)
-    fun onActive() {
-        map.values.forEach {
-            it.active()
-        }
     }
 
     fun register(plugin: Plugin) {
         val subPouvoir = pluginData[plugin] ?: return
         ManagerData(subPouvoir).register()
-    }
-
-    fun reload(subPouvoir: SubPouvoir) {
-        subPouvoir.managerData.reload()
-    }
-
-    fun disable(subPouvoir: SubPouvoir) {
-        subPouvoir.managerData.disable()
-    }
-
-    @Awake(LifeCycle.DISABLE)
-    fun disableAll() {
-        map.values.forEach { it.disable() }
     }
 }

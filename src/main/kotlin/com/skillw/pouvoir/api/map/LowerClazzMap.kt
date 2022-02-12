@@ -15,7 +15,7 @@ open class LowerClazzMap<T : Keyable<String>> : ClazzMap<T>() {
         return super.remove(key.lowercase())
     }
 
-    override fun hasKey(key: String): Boolean {
-        return super.hasKey(key.lowercase())
+    override fun containsKey(key: String): Boolean {
+        return super.containsKey(key.lowercase())
     }
 }

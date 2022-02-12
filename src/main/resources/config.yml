@@ -7,4 +7,5 @@ database:
   database: root
   table: my_database
 options:
-  number-format: ".##"
+  number-format: "#.##"
+  big-decimal-scale: 4

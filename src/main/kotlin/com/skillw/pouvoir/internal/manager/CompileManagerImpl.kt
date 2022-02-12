@@ -6,10 +6,7 @@ import com.skillw.pouvoir.api.manager.sub.script.CompileManager
 import taboolib.common.platform.function.console
 import taboolib.module.lang.sendLang
 import java.io.File
-import java.io.FileInputStream
 import java.io.FileNotFoundException
-import java.io.InputStreamReader
-import java.nio.charset.StandardCharsets
 import javax.script.Compilable
 import javax.script.CompiledScript
 import javax.script.ScriptException
@@ -17,6 +14,7 @@ import javax.script.ScriptException
 object CompileManagerImpl : CompileManager {
     override val key = "CompileManager"
     override val priority = 7
+    override val subPouvoir = Pouvoir
 
 
     override fun compileFile(file: File): CompiledScript? {
@@ -27,13 +25,9 @@ object CompileManagerImpl : CompileManager {
             return null
         }
         val scriptEngine = pouScriptEngine.scriptEngine
+        val script = Pouvoir.scriptManager.relocate(file.readText())
         try {
-            return (scriptEngine as Compilable).compile(
-                InputStreamReader(
-                    FileInputStream(file),
-                    StandardCharsets.UTF_8
-                )
-            )
+            return (scriptEngine as Compilable).compile(script)
         } catch (e: ScriptException) {
             console().sendLang("script-compile-fail", file.path)
             e.printStackTrace()
@@ -46,29 +40,26 @@ object CompileManagerImpl : CompileManager {
     override fun compileFile(path: String): CompiledScript? {
         return compileFile(File(configManager.serverFile, path))
     }
-
-    override fun compile(script: String, engine: String): CompiledScript? {
-        val pouScriptEngine = Pouvoir.scriptEngineManager[engine]
-        if (pouScriptEngine == null) {
-            console().sendLang("script-engine-not-found", engine)
-            return null
-        }
-        val scriptEngine = pouScriptEngine.scriptEngine
-        var temp = script
-        if (!temp.contains("function")) {
-            temp = """
-                function main(){ $temp
-                }
-                main()
-            """.trimIndent()
-        }
-        try {
-            return (scriptEngine as Compilable).compile(temp)
-        } catch (e: ScriptException) {
-            console().sendLang("script-compile-fail", "\n$temp\n")
-            e.printStackTrace()
-        }
-        return null
-    }
+//
+//    override fun compile(script: String, engine: String): CompiledScript? {
+//        val pouScriptEngine = Pouvoir.scriptEngineManager[engine] ?: Pouvoir.scriptEngineManager.getEngine(engine)
+//        if (pouScriptEngine == null) {
+//            console().sendLang("script-engine-not-found", engine)
+//            return null
+//        }
+//        val scriptEngine = pouScriptEngine.scriptEngine
+//        var temp = script
+//        temp = """
+//                function main(){ $temp
+//                }
+//            """.trimIndent()
+//        try {
+//            return (scriptEngine as Compilable).compile(temp)
+//        } catch (e: ScriptException) {
+//            console().sendLang("script-compile-fail", "\n$temp\n")
+//            e.printStackTrace()
+//        }
+//        return null
+//    }
 
 }

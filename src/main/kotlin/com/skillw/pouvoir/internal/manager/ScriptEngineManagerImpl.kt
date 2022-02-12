@@ -1,5 +1,6 @@
 package com.skillw.pouvoir.internal.manager
 
+import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.sub.script.ScriptEngineManager
 import com.skillw.pouvoir.api.plugin.TotalManager
 import com.skillw.pouvoir.api.script.engine.PouScriptEngine
@@ -9,6 +10,7 @@ import java.util.concurrent.ConcurrentHashMap
 object ScriptEngineManagerImpl : ScriptEngineManager() {
     override val key = "ScriptEngineManager"
     override val priority: Int = 5
+    override val subPouvoir = Pouvoir
 
 
     private val suffixMap = ConcurrentHashMap<String, PouScriptEngine>()
@@ -24,7 +26,7 @@ object ScriptEngineManagerImpl : ScriptEngineManager() {
         return suffixMap[suffix]
     }
 
-    override fun init() {
+    override fun onInit() {
         TotalManager.forEachClass {
             PouEngineHandle.inject(it)
         }

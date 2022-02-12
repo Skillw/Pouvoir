@@ -1,10 +1,17 @@
 package com.skillw.pouvoir.util
 
+import com.skillw.pouvoir.Pouvoir
+import org.bukkit.entity.LivingEntity
 import taboolib.common.util.asList
 import java.util.*
 import java.util.regex.Pattern
 
 object StringUtils {
+    @JvmStatic
+    fun String.placeholder(livingEntity: LivingEntity): String {
+        return Pouvoir.pouPlaceHolderAPI.replace(livingEntity, this)
+    }
+
     private fun String.subStringWithEscape(from: Int, to: Int, escapes: List<Int>): String {
         val builder = StringBuilder()
         if (escapes.isEmpty())
@@ -68,7 +75,14 @@ object StringUtils {
 
     @JvmStatic
     fun Collection<*>.toStringWithNext(): String {
-        return this.toString().replace(", ", "\n").replace("[", "").replace("]", "")
+        val stringBuilder = StringBuilder()
+        this.forEachIndexed { index, it ->
+            stringBuilder.append(it.toString())
+            if (index != this.size - 1) {
+                stringBuilder.append("\n")
+            }
+        }
+        return stringBuilder.toString()
     }
 
     @JvmStatic
@@ -106,16 +120,18 @@ object StringUtils {
         var formulaCopy = formula
         for (key in replaces.keys) {
             val value = replaces[key]!!
-            if (value is String) {
-                formulaCopy = formulaCopy.replace(key, value)
-            } else if (value is List<*>) {
+            formulaCopy = if (value is List<*>) {
                 val pattern = Pattern.compile("$key\\((.*)\\)")
-                var matcher = pattern.matcher(formulaCopy)
-                while (matcher.find()) {
+                val matcher = pattern.matcher(formulaCopy)
+                if (!matcher.find()) return formulaCopy
+                val stringBuffer = StringBuffer()
+                do {
                     val args = matcher.group(1)?.toArgs() ?: continue
-                    formulaCopy = formulaCopy.replace(key, value.asList().getMultiple(args))
-                    matcher = pattern.matcher(formulaCopy)
-                }
+                    matcher.appendReplacement(stringBuffer, value.asList().getMultiple(args))
+                } while (matcher.find())
+                matcher.appendTail(stringBuffer).toString()
+            } else {
+                formulaCopy.replace(key, value.toString())
             }
         }
         return formulaCopy
@@ -147,6 +163,39 @@ object StringUtils {
         } else {
             "NULL"
         }
+    }
+
+    @JvmName("parse1")
+    @JvmStatic
+    fun String.parse(leftChar: Char = '(', rightChar: Char = ')'): List<String> {
+        return parse(this, leftChar, rightChar)
+    }
+
+    @JvmStatic
+    fun parse(text: String, leftChar: Char = '(', rightChar: Char = ')'): List<String> {
+        val stack = Stack<Int>()
+        var left = false
+        val list = LinkedList<String>()
+        for (index in text.indices) {
+            val char = text[index]
+            if (char == leftChar) {
+                if (left) {
+                    stack.pop()
+                    stack.push(index)
+                } else {
+                    left = true
+                    stack.push(index)
+                }
+            }
+            if (char == rightChar) {
+                if (left) {
+                    val start = stack.pop()
+                    list.add(text.substring(start + 1 until index))
+                    left = false
+                }
+            }
+        }
+        return list
     }
 
 

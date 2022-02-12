@@ -1,31 +1,36 @@
 package com.skillw.pouvoir.util
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.util.MessageUtils.wrong
+import com.skillw.pouvoir.internal.manager.PouvoirConfig
 import com.skillw.pouvoir.util.StringUtils.replace
 import org.bukkit.entity.LivingEntity
+import java.math.BigDecimal
 import java.util.*
 import java.util.regex.Pattern
 
 object CalculationUtils {
 
-
     @JvmStatic
-    fun String.result(): Double {
+    fun String.result(): BigDecimal {
         return getResult(this)
     }
 
     @JvmStatic
-    fun String.result(entity: LivingEntity? = null, replacements: Map<String, String> = emptyMap()): Double {
+    fun String.result(entity: LivingEntity? = null, replacements: Map<String, String> = emptyMap()): BigDecimal {
         return getResult(this, entity, replacements)
     }
 
-    private fun doubleCal(a1: Double, a2: Double, operator: Char): Double {
+    @JvmStatic
+    fun String.resultDouble(entity: LivingEntity? = null, replacements: Map<String, String> = emptyMap()): Double {
+        return getResult(this, entity, replacements).setScale(PouvoirConfig.scale, BigDecimal.ROUND_HALF_UP).toDouble()
+    }
+
+    private fun doubleCal(a1: BigDecimal, a2: BigDecimal, operator: Char): BigDecimal {
         return when (operator) {
             '+' -> a1 + a2
             '-' -> a1 - a2
             '*' -> a1 * a2
-            '/' -> a1 / a2
+            '/' -> a1.divide(a2, PouvoirConfig.scale, BigDecimal.ROUND_HALF_UP)
             '%' -> a1 % a2
             else -> {
                 throw Exception("illegal operator!")
@@ -60,10 +65,10 @@ object CalculationUtils {
         val operator = Stack<String?>()
         operator.push(null) //在栈顶压人一个null，配合它的优先级，目的是减少下面程序的判断
         /* 将expr打散分散成运算数和运算符 */
-        val p = Pattern.compile("(?<!\\d)-?\\d+(\\.\\d+)?|[+\\-*/%()]") //这个正则为匹配表达式中的数字或运算符
-        val m = p.matcher(expr)
-        while (m.find()) {
-            val temp = m.group()
+        val pattern = Pattern.compile("(?<!\\d)-?\\d+(\\.\\d+)?|[+\\-*/%()]") //这个正则为匹配表达式中的数字或运算符
+        val matcher = pattern.matcher(expr)
+        while (matcher.find()) {
+            val temp = matcher.group()
             if (temp.matches(Regex("[+\\-*/%()]"))) { //是运算符
                 when (temp) {
                     "(" -> { //遇到左括号，直接压栈
@@ -94,11 +99,11 @@ object CalculationUtils {
     }
 
     @JvmStatic
-    fun getResult(input: String): Double {
+    fun getResult(input: String): BigDecimal {
         return try {
             val sufExpr = toSufExpr(input) // 转为后缀表达式
             /* 盛放数字栈 */
-            val number = Stack<Double>()
+            val number = Stack<BigDecimal>()
             /* 这个正则匹配每个数字和符号 */
             val p = Pattern.compile("-?\\d+(\\.\\d+)?|[+\\-*/%]")
             val m = p.matcher(sufExpr)
@@ -110,23 +115,17 @@ object CalculationUtils {
                     val res = doubleCal(a2, a1, temp[0])
                     number.push(res)
                 } else { // 遇到数字直接放入容器
-                    number.push(java.lang.Double.valueOf(temp))
+                    number.push(BigDecimal(temp))
                 }
             }
-            return number.pop() ?: 0.0
+            return number.pop() ?: BigDecimal("0.0")
         } catch (e: Exception) {
-            wrong("Wrong input formula: $input !")
-            return 0.0
+            e.printStackTrace()
+            return BigDecimal.valueOf(0.0)
         }
-
     }
 
-    fun getResult(formula: String, entity: LivingEntity?, replacements: Map<String, String>): Double {
-        return getResult(
-            replace(
-                Pouvoir.pouPlaceHolderAPI.replace(entity, formula),
-                replacements
-            )
-        )
+    fun getResult(formula: String, entity: LivingEntity?, replacements: Map<String, String>): BigDecimal {
+        return getResult(Pouvoir.pouPlaceHolderAPI.replace(entity, replace(formula, replacements)))
     }
 }

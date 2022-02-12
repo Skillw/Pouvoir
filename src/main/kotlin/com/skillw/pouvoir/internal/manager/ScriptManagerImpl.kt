@@ -3,17 +3,20 @@ package com.skillw.pouvoir.internal.manager
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.Pouvoir.configManager
 import com.skillw.pouvoir.Pouvoir.plugin
-import com.skillw.pouvoir.Pouvoir.poolExecutor
-import com.skillw.pouvoir.api.event.*
+import com.skillw.pouvoir.Pouvoir.scriptEngineManager
 import com.skillw.pouvoir.api.manager.sub.script.ScriptManager
+import com.skillw.pouvoir.api.plugin.SubPouvoir
 import com.skillw.pouvoir.api.script.CompiledFile
 import com.skillw.pouvoir.util.FileUtils
+import com.skillw.pouvoir.util.MapUtils.addSingle
 import taboolib.common.platform.function.console
 import taboolib.common5.FileWatcher
 import taboolib.module.lang.sendLang
 import java.io.File
 import java.util.*
+import java.util.concurrent.ConcurrentHashMap
 import java.util.regex.Pattern
+import java.util.regex.Pattern.MULTILINE
 import javax.script.CompiledScript
 import javax.script.Invocable
 import javax.script.ScriptEngine
@@ -22,24 +25,37 @@ import javax.script.ScriptException
 object ScriptManagerImpl : ScriptManager() {
     override val key = "ScriptManager"
     override val priority = 8
+    override val subPouvoir = Pouvoir
+
+    private val fileMap = ConcurrentHashMap<SubPouvoir, HashSet<File>>()
 
 
-    private val files = HashSet<File>()
-
-
-    override fun addDir(file: File) {
-        files.add(file)
-        reloadFile()
+    override fun addDir(file: File, subPouvoir: SubPouvoir) {
+        if (fileMap[subPouvoir]?.contains(file) != true) {
+            fileMap.addSingle(subPouvoir, file)
+            reloadFile()
+            return
+        }
+        reloadDir(file, subPouvoir)
     }
 
-    private val pattern = Pattern.compile("(?<name>.*)::")
+    override fun reloadDir(file: File, subPouvoir: SubPouvoir) {
+        if (fileMap[subPouvoir]?.contains(file) != true) addDir(file, subPouvoir)
+        else {
+            val path = FileUtils.pathNormalize(file)
+            this.filter { it.key.startsWith(path) }.forEach {
+                it.value.reload()
+            }
+        }
+    }
+
 
     override fun evalString(
         script: String,
         type: String,
         argsMap: MutableMap<String, Any>
     ): Any? {
-        val pouScriptEngine = Pouvoir.scriptEngineManager[type]
+        val pouScriptEngine = scriptEngineManager[type] ?: scriptEngineManager.getEngine(type)
         if (pouScriptEngine == null) {
             console().sendLang("script-engine-not-found", type)
             return null
@@ -50,11 +66,10 @@ object ScriptManagerImpl : ScriptManager() {
         return scriptEngine.eval(script, bindings)
     }
 
-    override fun invokeString(
+    private val pattern = Pattern.compile("(?<name>.*?)::")
+    override fun evalString(
         script: String,
-        function: String,
-        argsMap: MutableMap<String, Any>,
-        vararg args: Any
+        argsMap: MutableMap<String, Any>
     ): Any? {
         val type = try {
             val matcher = pattern.matcher(script.split("\n")[0])
@@ -66,13 +81,7 @@ object ScriptManagerImpl : ScriptManager() {
         } catch (throwable: Throwable) {
             "javascript"
         }
-        return invoke(
-            Pouvoir.compileManager.compile(script.replace("$type::", ""), type) ?: return "null",
-            function,
-            argsMap,
-            "native",
-            *args
-        )
+        return evalString(relocate(script.replaceFirst("$type::", "")), type, argsMap)
     }
 
     override fun addStatic(scriptEngine: ScriptEngine): ScriptEngine {
@@ -112,19 +121,19 @@ object ScriptManagerImpl : ScriptManager() {
     }
 
     override fun hasScript(path: String): Boolean {
-        return if (hasKey(path)) {
+        return if (containsKey(path)) {
             true
         } else {
             map.filter { e -> e.key.endsWith(path) }.isNotEmpty()
         }
     }
 
-    override fun init() {
-        addDir(File(plugin.dataFolder, "scripts"))
+    override fun onInit() {
+        addDir(File(plugin.dataFolder, "scripts"), Pouvoir)
     }
 
-    override fun addScript(file: File) {
-        CompiledFile(file).register()
+    override fun addScript(file: File, subPouvoir: SubPouvoir) {
+        CompiledFile(file, subPouvoir).register()
     }
 
     override fun invoke(
@@ -135,6 +144,15 @@ object ScriptManagerImpl : ScriptManager() {
     ): Any? {
         val compiledFile = get(path) ?: return null
         return compiledFile.invoke(function, argsMap, *args)
+    }
+
+    override fun invoke(string: String, argsMap: MutableMap<String, Any>): Any? {
+        if (string.contains("\n")) {
+            return evalString(string, argsMap)
+        } else if (string.contains("::")) {
+            return invokePathWithFunction(string, argsMap)
+        }
+        return null
     }
 
     override fun invokePathWithFunction(
@@ -150,8 +168,8 @@ object ScriptManagerImpl : ScriptManager() {
         } else "!wrong-format!"
     }
 
-    override fun search(path: String): Optional<CompiledFile> {
-        if (hasKey(path)) {
+    override fun search(path: String, subPouvoir: SubPouvoir): Optional<CompiledFile> {
+        if (containsKey(path)) {
             return Optional.ofNullable(map[path])
         } else {
             val optional = this.map
@@ -166,7 +184,7 @@ object ScriptManagerImpl : ScriptManager() {
                 if (compiledScript != null) {
                     val file = File(configManager.serverFile, path)
                     return if (file.exists() && file.isFile) {
-                        val compiledFile = CompiledFile(file)
+                        val compiledFile = CompiledFile(file, subPouvoir)
                         if (compiledFile.canCompiled()) {
                             compiledFile.register()
                             Optional.of(compiledFile)
@@ -188,21 +206,11 @@ object ScriptManagerImpl : ScriptManager() {
         return if (result.isPresent) result.get() else null
     }
 
-    override fun recompile(key: String): CompiledFile? {
-        val compiledFile = get(key) ?: return null
-        poolExecutor.execute {
-            compiledFile.recompile()
-            compiledFile.register()
-        }
-        return compiledFile
-    }
-
     private fun addListenerIfNotExist(compiledFile: CompiledFile) {
         val file = compiledFile.file
         if (watcher.hasListener(file)) return
         watcher.addSimpleListener(file) {
-            compiledFile.recompile()
-            compiledFile.register()
+            compiledFile.reload()
         }
     }
 
@@ -215,74 +223,41 @@ object ScriptManagerImpl : ScriptManager() {
                 }
             }
             this.map.clear()
-            for (file in files) {
-                FileUtils.listFiles(file).forEach {
-                    val compiledFile = CompiledFile(it)
-                    addListenerIfNotExist(compiledFile)
-                    compiledFile.register()
-                }
+            for ((subPouvoir, files) in fileMap) {
+                for (file in files)
+                    FileUtils.listFiles(file).forEach {
+                        val compiledFile = CompiledFile(it, subPouvoir)
+                        addListenerIfNotExist(compiledFile)
+                        compiledFile.register()
+                    }
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-    private fun run(thing: String) {
-        exec[thing]?.run {
-            forEach { it() }
+//    override fun onEnable() {
+//        onReload()
+//    }
+
+    override fun onReload() {
+        subPouvoir.managerData.exec[this]?.clear()
+        reloadFile()
+    }
+
+    override fun onDisable() {
+
+    }
+
+    private val relocate: Pattern = Pattern.compile("^import (?!!)(?<package>taboolib\\..*)$", MULTILINE)
+    override fun relocate(script: String): String {
+        val matcher = relocate.matcher(script)
+        val builder = StringBuffer()
+        while (matcher.find()) {
+            val path = matcher.group("package")
+            matcher.appendReplacement(builder, "import com.skillw.pouvoir.$path")
         }
+        return matcher.appendTail(builder).toString()
     }
-
-    override fun load() {
-        val beforeEvent = ScriptLoadEvent(Time.BEFORE)
-        beforeEvent.call()
-        run("BeforeLoad")
-        val afterEvent = ScriptLoadEvent(Time.AFTER)
-        afterEvent.call()
-        run("Load")
-    }
-
-    override fun enable() {
-        val beforeEvent = ScriptEnableEvent(Time.BEFORE)
-        beforeEvent.call()
-        run("BeforeEnable")
-        val afterEvent = ScriptEnableEvent(Time.AFTER)
-        afterEvent.call()
-        run("Enable")
-    }
-
-    override fun active() {
-        val beforeEvent = ScriptActiveEvent(Time.BEFORE)
-        beforeEvent.call()
-        run("BeforeActive")
-        val afterEvent = ScriptActiveEvent(Time.AFTER)
-        afterEvent.call()
-        run("Active")
-    }
-
-
-    override fun reload() {
-        val beforeEvent = ScriptReloadEvent(Time.BEFORE)
-        beforeEvent.call()
-        exec.clear()
-        poolExecutor.execute {
-            reloadFile()
-            run("BeforeReload")
-            val afterEvent = ScriptReloadEvent(Time.AFTER)
-            afterEvent.call()
-            run("Reload")
-        }
-    }
-
-    override fun disable() {
-        val beforeEvent = ScriptDisableEvent(Time.BEFORE)
-        beforeEvent.call()
-        run("BeforeDisable")
-
-        val afterEvent = ScriptDisableEvent(Time.AFTER)
-        afterEvent.call()
-        run("Disable")
-    }
-
 
 }

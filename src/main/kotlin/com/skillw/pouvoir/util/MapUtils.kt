@@ -9,16 +9,34 @@ import java.util.concurrent.ConcurrentHashMap
  * Copyright  2021 user. All rights reserved.
  */
 object MapUtils {
+    @JvmName("addSingleList")
     @JvmStatic
     fun <K, V> MutableMap<K, LinkedList<V>>.addSingle(key: K, value: V): Map<K, LinkedList<V>> {
         return add(this, key, value)
     }
 
-
     @JvmStatic
     fun <K, V> add(map: MutableMap<K, LinkedList<V>>, key: K, value: V): Map<K, LinkedList<V>> {
         if (!map.containsKey(key)) {
             map[key] = LinkedList(listOf(value))
+        } else {
+            map[key]!!.add(value)
+        }
+        return map
+    }
+
+    @JvmName("addSingleKV")
+    @JvmStatic
+    fun <K, V> MutableMap<K, HashSet<V>>.addSingle(key: K, value: V): Map<K, HashSet<V>> {
+        return add(this, key, value)
+    }
+
+
+    @JvmName("addSingleSet")
+    @JvmStatic
+    fun <K, V> add(map: MutableMap<K, HashSet<V>>, key: K, value: V): Map<K, HashSet<V>> {
+        if (!map.containsKey(key)) {
+            map[key] = HashSet(listOf(value))
         } else {
             map[key]!!.add(value)
         }

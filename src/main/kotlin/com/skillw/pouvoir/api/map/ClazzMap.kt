@@ -30,7 +30,7 @@ open class ClazzMap<T : Keyable<String>> : BaseMap<String, Class<out T>>() {
         map.remove(getId(clazz))
     }
 
-    override fun hasObject(value: Class<out T>): Boolean {
+    override fun containsValue(value: Class<out T>): Boolean {
         return map.containsKey(getId(value))
     }
 

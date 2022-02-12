@@ -1,18 +1,19 @@
 package com.skillw.pouvoir.api.manager
 
 import com.skillw.pouvoir.api.able.Keyable
-import com.skillw.pouvoir.api.able.Pluginable
+import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.map.KeyMap
+import com.skillw.pouvoir.api.map.MultiExecMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
 import com.skillw.pouvoir.api.plugin.TotalManager
 import com.skillw.pouvoir.internal.handle.PManagerHandle
 import org.bukkit.plugin.java.JavaPlugin
 
-class ManagerData(val pouvoir: SubPouvoir) : KeyMap<String, Manager>(), Pluginable, Keyable<SubPouvoir> {
-
+class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Keyable<SubPouvoir> {
+    val exec = BaseMap<Manager, MultiExecMap>()
     private val managers = ArrayList<Manager>()
-    override val plugin: JavaPlugin = pouvoir.plugin
-    override val key: SubPouvoir = pouvoir
+    val plugin: JavaPlugin = subPouvoir.plugin
+    override val key: SubPouvoir = subPouvoir
 
     override fun register(key: String, value: Manager) {
         super.register(key, value)
@@ -21,37 +22,102 @@ class ManagerData(val pouvoir: SubPouvoir) : KeyMap<String, Manager>(), Pluginab
     }
 
     init {
-        for (manager in PManagerHandle.getPManagers(pouvoir)) {
+        for (manager in PManagerHandle.getPManagers(subPouvoir)) {
             manager.register(this)
         }
-        val dataField = pouvoir.javaClass.getField("managerData")
-        dataField.set(pouvoir, this)
+        val dataField = subPouvoir.javaClass.getField("managerData")
+        dataField.set(subPouvoir, this)
     }
 
     override fun register() {
-        managers.forEach { it.init() }
-        TotalManager.register(pouvoir, this)
+        managers.forEach {
+            try {
+                run(it, "BeforeInit")
+                it.onInit()
+                run(it, "Init")
+            } catch (throwable: Throwable) {
+                throwable.printStackTrace()
+
+            }
+        }
+        TotalManager.register(subPouvoir, this)
+    }
+
+    fun load() {
+        subPouvoir.poolExecutor.execute {
+            managers.forEach {
+                try {
+                    run(it, "BeforeLoad")
+                    it.onLoad()
+                    run(it, "Load")
+                } catch (throwable: Throwable) {
+                    throwable.printStackTrace()
+
+                }
+            }
+        }
+    }
+
+    fun enable() {
+        subPouvoir.poolExecutor.execute {
+            managers.forEach {
+                try {
+                    run(it, "BeforeEnable")
+                    it.onEnable()
+                    run(it, "Enable")
+                } catch (throwable: Throwable) {
+                    throwable.printStackTrace()
+
+                }
+            }
+        }
+    }
+
+    fun active() {
+        subPouvoir.poolExecutor.execute {
+            managers.forEach {
+                try {
+                    run(it, "BeforeActive")
+                    it.onActive()
+                    run(it, "Active")
+                } catch (throwable: Throwable) {
+                    throwable.printStackTrace()
+
+                }
+            }
+        }
     }
 
     fun reload() {
-        managers.forEach {
-            it.reload()
+        subPouvoir.poolExecutor.execute {
+            managers.forEach {
+                try {
+                    run(it, "BeforeReload")
+                    it.onReload()
+                    run(it, "Reload")
+                } catch (throwable: Throwable) {
+                    throwable.printStackTrace()
+                }
+            }
         }
     }
 
     fun disable() {
-        managers.forEach { it.disable() }
+        subPouvoir.poolExecutor.execute {
+            managers.forEach {
+                try {
+                    run(it, "BeforeDisable")
+                    it.onDisable()
+                    run(it, "Disable")
+                } catch (throwable: Throwable) {
+                    throwable.printStackTrace()
+
+                }
+            }
+        }
     }
 
-    fun enable() {
-        managers.forEach { it.enable() }
-    }
-
-    fun active() {
-        managers.forEach { it.active() }
-    }
-
-    fun load() {
-        managers.forEach { it.load() }
+    internal fun run(manager: Manager, thing: String) {
+        exec[manager]?.run(thing)
     }
 }

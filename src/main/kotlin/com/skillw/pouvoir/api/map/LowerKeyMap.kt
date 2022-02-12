@@ -11,8 +11,8 @@ open class LowerKeyMap<V : Keyable<String>> : KeyMap<String, V>() {
         return super.remove(key.lowercase())
     }
 
-    override fun hasKey(key: String): Boolean {
-        return super.hasKey(key.lowercase())
+    override fun containsKey(key: String): Boolean {
+        return super.containsKey(key.lowercase())
     }
 
     override fun put(key: String, value: V): V {

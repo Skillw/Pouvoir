@@ -1,7 +1,7 @@
 plugins {
     `java-library`
     id("io.izzel.taboolib") version "1.34"
-    id("org.jetbrains.kotlin.jvm") version "1.5.10"
+    id("org.jetbrains.kotlin.jvm") version "1.6.10"
     id("org.jetbrains.dokka") version "1.6.10"
 }
 
@@ -19,7 +19,8 @@ tasks.dokkaJavadoc.configure {
             suppressObviousFunctions.set(false)
             sourceRoots.from(
                 file("src/main/kotlin/com/skillw/pouvoir/api"),
-                file("src/main/kotlin/com/skillw/pouvoir/util")
+                file("src/main/kotlin/com/skillw/pouvoir/util"),
+                file("src/main/kotlin/com/skillw/pouvoir/internal/annotation")
             )
         }
     }
@@ -27,7 +28,6 @@ tasks.dokkaJavadoc.configure {
 
 
 taboolib {
-    options("skip-kotlin")
     options("skip-kotlin-relocate")
 
     description {
@@ -38,6 +38,7 @@ taboolib {
             name("PlaceholderAPI").optional(true).loadafter(true)
             name("MythicMobs").optional(true).loadafter(true)
             name("AttributeSystem").optional(true).loadbefore(true)
+            name("RandomItem").optional(true).loadbefore(true)
         }
     }
 
@@ -61,11 +62,13 @@ taboolib {
         "module-ui-receptacle",
         "platform-bukkit",
         "expansion-player-database",
-        "expansion-javascript",
+        "expansion-javascript"
     )
 
+    options()
+
     classifier = null
-    version = "6.0.7-24"
+    version = "6.0.7-26"
 
 }
 

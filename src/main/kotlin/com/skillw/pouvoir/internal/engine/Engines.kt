@@ -52,7 +52,7 @@ private fun handleMap(
 ): MutableMap<String, LinkedList<ScriptAnnotationData>> {
     val compiledFile = pair.first
     val scripts = pair.second
-    val map: MutableMap<String, LinkedList<ScriptAnnotationData>> = ConcurrentHashMap()
+    val map = ConcurrentHashMap<String, LinkedList<ScriptAnnotationData>>()
     for (index in scripts.indices) {
         val str = scripts[index]
         val matcher = pattern.matcher(str)

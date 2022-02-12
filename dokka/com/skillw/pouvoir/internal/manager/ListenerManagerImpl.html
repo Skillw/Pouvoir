@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <!-- NewPage -->
 <html lang="en"><head>
-    <title>ListenerManagerImpl 1.1.0 API </title>
+    <title>ListenerManagerImpl 1.2.0 API </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="dc.created" content="2020-03-25">
     <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
@@ -200,6 +200,12 @@ extends <a href=../../api/manager/sub/ListenerManager.html>ListenerManager</a>
                                         </tr>
                                         
                                         <tr class="altColor">
+                                            <td class="colFirst"><code>private final <a href=../../Pouvoir.html>Pouvoir</a></code></td>
+                                            <th class="colSecond" scope="row"><code><a href=ListenerManagerImpl.html#subPouvoir>subPouvoir</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
                                             <td class="colFirst"><code>public final static <a href=ListenerManagerImpl.html>ListenerManagerImpl</a></code></td>
                                             <th class="colSecond" scope="row"><code><a href=ListenerManagerImpl.html#INSTANCE>INSTANCE</a></code></th>
                                             <td class="colLast"></td>
@@ -279,7 +285,7 @@ extends <a href=../../api/manager/sub/ListenerManager.html>ListenerManager</a>
                                         </tr>
                                         
                                         <tr id="i0" class="altColor">
-                                            <td class="colFirst"><code><a href=../../api/listener/ScriptListener.html>ScriptListener</a></code>
+                                            <td class="colFirst"><code>ProxyListener</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=ListenerManagerImpl.html#remove(String)>remove</a>(String key) </code>
                                             </th>
@@ -287,6 +293,14 @@ extends <a href=../../api/manager/sub/ListenerManager.html>ListenerManager</a>
                                         </tr>
                                         
                                         <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code>Unit</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ListenerManagerImpl.html#onReload()>onReload</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
                                             <td class="colFirst"><code>String</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=ListenerManagerImpl.html#getKey()>getKey</a>() </code>
@@ -294,10 +308,18 @@ extends <a href=../../api/manager/sub/ListenerManager.html>ListenerManager</a>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i2" class="altColor">
+                                        <tr id="i3" class="rowColor">
                                             <td class="colFirst"><code>Integer</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=ListenerManagerImpl.html#getPriority()>getPriority</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
+                                            <td class="colFirst"><code><a href=../../Pouvoir.html>Pouvoir</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=ListenerManagerImpl.html#getSubPouvoir()>getSubPouvoir</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -354,7 +376,22 @@ extends <a href=../../api/manager/sub/ListenerManager.html>ListenerManager</a>
                                           >
                                     <li class="blockList">
                                         <h4>remove</h4>
-                                        <pre class="methodSignature"> <a href=../../api/listener/ScriptListener.html>ScriptListener</a> <a href=ListenerManagerImpl.html#remove(String)>remove</a>(String key)</pre>
+                                        <pre class="methodSignature"> ProxyListener <a href=ListenerManagerImpl.html#remove(String)>remove</a>(String key)</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="onReload()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>onReload</h4>
+                                        <pre class="methodSignature"> Unit <a href=ListenerManagerImpl.html#onReload()>onReload</a>()</pre>
                                         <div class="block"></div>
                                         
                                         <!-- TODO missing return annotation -->
@@ -380,11 +417,26 @@ extends <a href=../../api/manager/sub/ListenerManager.html>ListenerManager</a>
                                     <!--   -->
                                 </a>
                                 <ul class=
-                                              "blockListLast"
+                                              "blockList"
                                           >
                                     <li class="blockList">
                                         <h4>getPriority</h4>
                                         <pre class="methodSignature"> Integer <a href=ListenerManagerImpl.html#getPriority()>getPriority</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getSubPouvoir()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getSubPouvoir</h4>
+                                        <pre class="methodSignature"> <a href=../../Pouvoir.html>Pouvoir</a> <a href=ListenerManagerImpl.html#getSubPouvoir()>getSubPouvoir</a>()</pre>
                                         <div class="block"></div>
                                         
                                         <!-- TODO missing return annotation -->

@@ -1,13 +1,12 @@
 package com.skillw.pouvoir.util
 
-import com.skillw.pouvoir.Pouvoir
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.boss.BarColor
 import org.bukkit.boss.BarStyle
+import org.bukkit.boss.BossBar
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
-import org.bukkit.scheduler.BukkitRunnable
 import taboolib.common.reflect.Reflex.Companion.setProperty
 import taboolib.module.nms.sendPacket
 import taboolib.platform.BukkitAdapter
@@ -18,6 +17,7 @@ object PlayerUtils {
     @JvmStatic
     fun sendTitle(player: Player, title: String?, subtitle: String?, fadeIn: Int, stay: Int, fadeOut: Int) {
         val proxy = BukkitAdapter().adaptPlayer(player)
+        player.resetTitle()
         proxy.sendTitle(title, subtitle, fadeIn, stay, fadeOut)
     }
 
@@ -76,7 +76,7 @@ object PlayerUtils {
     }
 
     @JvmStatic
-    fun sendBossBar(player: Player, text: String, color: BarColor, style: BarStyle, progress: Double, ticks: Int) {
+    fun sendBossBar(player: Player, text: String, color: BarColor, style: BarStyle, progress: Double): BossBar {
         var progress1 = progress
         if (progress1 < 0) {
             progress1 = 0.0
@@ -87,17 +87,7 @@ object PlayerUtils {
         val bossBar = Bukkit.createBossBar(text, color, style)
         bossBar.progress = progress1
         bossBar.addPlayer(player)
-        object : BukkitRunnable() {
-            override fun run() {
-                bossBar.removePlayer(player)
-                bossBar.removeAll()
-            }
-        }.runTaskLater(Pouvoir.plugin, ticks.toLong())
-    }
-
-    @JvmStatic
-    fun sendBossBar(player: Player, text: String, ticks: Int) {
-        sendBossBar(player, text, BarColor.PURPLE, BarStyle.SEGMENTED_10, 1.0, ticks)
+        return bossBar
     }
 
     @JvmStatic

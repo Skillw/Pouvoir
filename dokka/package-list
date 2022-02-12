@@ -15,6 +15,7 @@ $dokka.location:com.skillw.pouvoir.api.bstat/Metrics.SimplePie///PointingToDecla
 $dokka.location:com.skillw.pouvoir.api.bstat/Metrics.SingleLineChart///PointingToDeclaration/com/skillw/pouvoir/api/bstat/Metrics.SingleLineChart.html
 $dokka.location:com.skillw.pouvoir.api.listener/ScriptListener.Companion///PointingToDeclaration/com/skillw/pouvoir/api/listener/ScriptListener.Companion.html
 $dokka.location:com.skillw.pouvoir.api.manager/ConfigManager.Companion///PointingToDeclaration/com/skillw/pouvoir/api/manager/ConfigManager.Companion.html
+$dokka.location:com.skillw.pouvoir.api.manager/Manager.Companion///PointingToDeclaration/com/skillw/pouvoir/api/manager/Manager.Companion.html
 com.skillw.pouvoir
 com.skillw.pouvoir.api.able
 com.skillw.pouvoir.api.annotation

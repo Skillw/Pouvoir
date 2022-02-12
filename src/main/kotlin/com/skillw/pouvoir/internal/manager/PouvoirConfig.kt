@@ -1,15 +1,19 @@
 package com.skillw.pouvoir.internal.manager
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.api.bstat.Metrics
 import com.skillw.pouvoir.api.manager.ConfigManager
 import com.skillw.pouvoir.util.ClassUtils
 import com.skillw.pouvoir.util.MessageUtils.wrong
+import org.spigotmc.AsyncCatcher
 import taboolib.common.io.newFile
+import taboolib.common.platform.Platform
 import taboolib.common.platform.function.console
 import taboolib.common.platform.function.getDataFolder
 import taboolib.expansion.setupPlayerDatabase
 import taboolib.module.lang.sendLang
+import taboolib.module.metrics.Metrics
+import taboolib.module.metrics.charts.SingleLineChart
+import taboolib.platform.BukkitPlugin
 import java.util.concurrent.ConcurrentHashMap
 
 object PouvoirConfig : ConfigManager(Pouvoir) {
@@ -25,6 +29,8 @@ object PouvoirConfig : ConfigManager(Pouvoir) {
         get() {
             return this["config"].getString("options.number-format")!!
         }
+    val scale: Int
+        get() = this["config"].getInt("options.big-decimal-scale")
 
     fun reloadStaticClasses() {
         staticClasses.clear()
@@ -53,24 +59,36 @@ object PouvoirConfig : ConfigManager(Pouvoir) {
     }
 
 
-    override fun init() {
+    override fun onInit() {
+        AsyncCatcher.enabled = false
         createIfNotExists("effects", "example.yml")
         createIfNotExists("scripts", "example.js", "groovy.groovy")
         reloadStaticClasses()
     }
 
-    override fun enable() {
+    override fun onEnable() {
         if (this["config"].getBoolean("database.enable")) {
             setupPlayerDatabase(Pouvoir.config.getConfigurationSection("database")!!)
         } else {
             setupPlayerDatabase(newFile(getDataFolder(), "data.db"))
         }
-        Metrics(Pouvoir.plugin, 14180)
+        metrics()
+    }
+
+    private fun metrics() {
+        val metrics = Metrics(14180, BukkitPlugin.getInstance().description.version, Platform.BUKKIT).run {
+            addCustomChart(SingleLineChart("scripts") {
+                Pouvoir.scriptManager.size
+            })
+        }
     }
 
     override fun defaultOptions(): Map<String, Map<String, Any>> = mapOf(
         "config" to mapOf(
-            "options.number-format" to ".##",
+            "options" to mapOf(
+                "number-format" to ".##",
+                "options.big-decimal-scale" to 4
+            ),
             "database" to mapOf(
                 "enable" to false,
                 "host" to "localhost",

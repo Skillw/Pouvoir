@@ -64,6 +64,7 @@ class HologramBuilder(private val location: Location) {
             if (each == null)
                 submit(async = true, delay = stay) {
                     hologram.delete()
+                    cancel()
                 }
             else {
                 var count = 0

@@ -4,8 +4,8 @@ import com.skillw.pouvoir.api.annotation.PManager
 import com.skillw.pouvoir.api.manager.ManagerData
 import com.skillw.pouvoir.api.manager.sub.FunctionManager
 import com.skillw.pouvoir.api.manager.sub.ListenerManager
-import com.skillw.pouvoir.api.manager.sub.PlaceHolderDataManager
 import com.skillw.pouvoir.api.manager.sub.PouPlaceHolderAPI
+import com.skillw.pouvoir.api.manager.sub.PouPlaceHolderManager
 import com.skillw.pouvoir.api.manager.sub.script.CompileManager
 import com.skillw.pouvoir.api.manager.sub.script.ScriptAnnotationManager
 import com.skillw.pouvoir.api.manager.sub.script.ScriptEngineManager
@@ -17,6 +17,7 @@ import com.skillw.pouvoir.util.MessageUtils.info
 import org.bukkit.configuration.file.YamlConfiguration
 import taboolib.common.platform.Plugin
 import taboolib.module.configuration.Config
+import taboolib.module.configuration.ConfigFile
 import taboolib.module.configuration.Configuration
 import taboolib.platform.BukkitPlugin
 import java.io.File
@@ -48,10 +49,10 @@ object Pouvoir : Plugin(), SubPouvoir {
      * Config
      */
     @Config(migrate = true)
-    lateinit var config: Configuration
+    lateinit var config: ConfigFile
 
     @Config("script.yml", true)
-    lateinit var script: Configuration
+    lateinit var script: ConfigFile
 
     /**
      * Managers
@@ -68,7 +69,7 @@ object Pouvoir : Plugin(), SubPouvoir {
 
     @JvmStatic
     @PManager
-    lateinit var placeholderDataManager: PlaceHolderDataManager
+    lateinit var pouPlaceholderManager: PouPlaceHolderManager
 
     @JvmStatic
     @PManager
@@ -94,20 +95,25 @@ object Pouvoir : Plugin(), SubPouvoir {
     @PManager
     lateinit var scriptManager: ScriptManager
 
+    fun isDepend(plugin: org.bukkit.plugin.Plugin) =
+        plugin.description.depend.contains("Pouvoir") || plugin.description.softDepend.contains("Pouvoir")
 
     override fun onLoad() {
-        info("&d[&9Pouvoir&d] &aPouvoir is loading...")
+        load()
+        info("&d[&9Pouvoir&d] &aPouvoir is loaded...")
     }
 
     override fun onEnable() {
-        info("&d[&9Pouvoir&d] &aPouvoir is enabling...")
+        enable()
+        info("&d[&9Pouvoir&d] &aPouvoir is enabled...")
+    }
 
+    override fun onActive() {
+        active()
     }
 
     override fun onDisable() {
-        info("&d[&9Pouvoir&d] &aPouvoir is disabling...")
+        disable()
+        info("&d[&9Pouvoir&d] &aPouvoir is disabled...")
     }
-
-    fun isDepend(plugin: org.bukkit.plugin.Plugin) =
-        plugin.description.depend.contains("Pouvoir") || plugin.description.softDepend.contains("Pouvoir")
 }

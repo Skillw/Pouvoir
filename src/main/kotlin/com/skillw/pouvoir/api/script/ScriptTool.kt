@@ -10,17 +10,16 @@ import com.skillw.pouvoir.util.ItemUtils.toMutableMap
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
-import org.bukkit.command.*
+import org.bukkit.command.PluginCommand
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
-import org.bukkit.event.Event
-import org.bukkit.event.EventPriority
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.InventoryHolder
 import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.Plugin
 import org.bukkit.potion.PotionEffectType
 import org.bukkit.scheduler.BukkitRunnable
+import taboolib.common.platform.event.EventPriority
 import taboolib.expansion.DataContainer
 import taboolib.expansion.getDataContainer
 import taboolib.module.nms.getI18nName
@@ -29,59 +28,61 @@ import taboolib.platform.BukkitCommand
 import taboolib.platform.util.hasName
 import taboolib.platform.util.isNotAir
 import java.util.concurrent.TimeUnit
+import java.util.function.Consumer
+import java.util.function.Function
 
 object ScriptTool : BaseMap<String, Any>() {
     @JvmStatic
-    fun runTask(task: () -> Unit) {
+    fun runTask(task: Consumer<Unit>) {
         object : BukkitRunnable() {
             override fun run() {
-                task.invoke()
+                task.accept(Unit)
             }
         }.runTask(Pouvoir.plugin)
     }
 
     @JvmStatic
-    fun runTaskAsync(task: () -> Unit) {
+    fun runTaskAsync(task: Consumer<Unit>) {
         object : BukkitRunnable() {
             override fun run() {
-                task.invoke()
+                task.accept(Unit)
             }
         }.runTaskAsynchronously(Pouvoir.plugin)
     }
 
     @JvmStatic
-    fun runTaskLater(task: () -> Unit, delay: Long) {
+    fun runTaskLater(task: Consumer<Unit>, delay: Long) {
         object : BukkitRunnable() {
             override fun run() {
-                task.invoke()
+                task.accept(Unit)
             }
         }.runTaskLater(Pouvoir.plugin, delay)
     }
 
     @JvmStatic
-    fun runTaskAsyncLater(task: () -> Unit, delay: Long) {
+    fun runTaskAsyncLater(task: Consumer<Unit>, delay: Long) {
 
         object : BukkitRunnable() {
             override fun run() {
-                task.invoke()
+                task.accept(Unit)
             }
         }.runTaskLaterAsynchronously(Pouvoir.plugin, delay)
     }
 
     @JvmStatic
-    fun runTaskTimer(task: () -> Unit, delay: Long, period: Long) {
+    fun runTaskTimer(task: Consumer<Unit>, delay: Long, period: Long) {
         object : BukkitRunnable() {
             override fun run() {
-                task.invoke()
+                task.accept(Unit)
             }
         }.runTaskTimer(Pouvoir.plugin, delay, period)
     }
 
     @JvmStatic
-    fun runTaskAsyncTimer(task: () -> Unit, delay: Long, period: Long) {
+    fun runTaskAsyncTimer(task: Consumer<Unit>, delay: Long, period: Long) {
         object : BukkitRunnable() {
             override fun run() {
-                task.invoke()
+                task.accept(Unit)
             }
         }.runTaskTimerAsynchronously(Pouvoir.plugin, delay, period)
     }
@@ -113,28 +114,28 @@ object ScriptTool : BaseMap<String, Any>() {
         path: String,
         eventPriority: String = "NORMAL",
         ignoreCancel: Boolean = false,
-        exec: (Event) -> Unit
+        exec: Consumer<Any>
     ) {
-        val clazz = ClassUtils.getEventClass(path) ?: return
+        val clazz = ClassUtils.getClass(path) ?: return
         val priority = try {
-            EventPriority.valueOf(eventPriority)
+            EventPriority.valueOf(eventPriority.uppercase())
         } catch (e: Exception) {
             EventPriority.NORMAL
         }
         addListener(key, clazz, priority, ignoreCancel, exec)
-
     }
 
     @JvmStatic
     fun addListener(
         key: String,
-        event: Class<out Event>,
+        event: Class<*>,
         eventPriority: EventPriority = EventPriority.NORMAL,
         ignoreCancel: Boolean = false,
-        exec: (Event) -> Unit
+        exec: Consumer<Any>
     ) {
-        val scriptListener = ScriptListener.build(key, event, eventPriority, ignoreCancel, exec)
-        scriptListener.register()
+        ScriptListener.build(key, event, eventPriority, ignoreCancel) {
+            exec.accept(it)
+        }.register()
     }
 
     @JvmStatic
@@ -163,28 +164,6 @@ object ScriptTool : BaseMap<String, Any>() {
     }
 
     @JvmStatic
-    fun commandExec(exec: (CommandSender, Command, String, Array<String>) -> Boolean = { _, _, _, _ -> false }): CommandExecutor {
-        return CommandExecutor { commandSender, command, s, strings ->
-            return@CommandExecutor exec.invoke(commandSender, command, s, strings)
-        }
-    }
-
-    @JvmStatic
-    fun commandTab(
-        tab: (CommandSender, Command, String, Array<String>) ->
-        MutableList<String> = { _, _, _, _ -> emptyList<String>().toMutableList() }
-    ): TabCompleter {
-        return TabCompleter() { commandSender, command, s, strings ->
-            return@TabCompleter tab.invoke(
-                commandSender,
-                command,
-                s,
-                strings
-            )
-        }
-    }
-
-    @JvmStatic
     fun command(
         name: String
     ): PluginCommand {
@@ -202,18 +181,18 @@ object ScriptTool : BaseMap<String, Any>() {
     }
 
     @JvmStatic
-    fun runTaskAsyncPool(task: () -> Unit) {
-        Pouvoir.poolExecutor.execute(task)
+    fun runTaskAsyncPool(task: Consumer<Unit>) {
+        Pouvoir.poolExecutor.execute { task.accept(Unit) }
     }
 
     @JvmStatic
-    fun runTaskAsyncLaterPool(task: () -> Unit, delay: Long) {
-        Pouvoir.poolExecutor.schedule(task, delay, TimeUnit.MILLISECONDS)
+    fun runTaskAsyncLaterPool(task: Consumer<Unit>, delay: Long) {
+        Pouvoir.poolExecutor.schedule({ task.accept(Unit) }, delay, TimeUnit.MILLISECONDS)
     }
 
     @JvmStatic
-    fun runTaskAsyncTimerPool(task: () -> Unit, delay: Long, period: Long) {
-        Pouvoir.poolExecutor.scheduleAtFixedRate(task, delay, period, TimeUnit.MILLISECONDS)
+    fun runTaskAsyncTimerPool(task: Consumer<Unit>, delay: Long, period: Long) {
+        Pouvoir.poolExecutor.scheduleAtFixedRate({ task.accept(Unit) }, delay, period, TimeUnit.MILLISECONDS)
     }
 
     @JvmStatic
@@ -250,8 +229,8 @@ object ScriptTool : BaseMap<String, Any>() {
     }
 
     @JvmStatic
-    fun buildInventoryHolder(func: () -> Inventory): InventoryHolder {
-        return InventoryHolder(func)
+    fun buildInventoryHolder(func: Function<Unit, Inventory>): InventoryHolder {
+        return InventoryHolder { func.apply(Unit) }
     }
 
     @JvmStatic

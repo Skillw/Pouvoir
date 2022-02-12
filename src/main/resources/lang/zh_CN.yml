@@ -12,6 +12,9 @@ script-invoke-wrong-format: '&d[&9Pouvoir&d] &c如果你想调用某个脚本文
 script-engine-not-found: '&d[&9Pouvoir&d] &c未发现PouScriptEngine &6{0} &c! 请检查.'
 script-engine-valid-suffix: '&d[&9Pouvoir&d] &c未发现含后缀 &6{0} &c的PouScriptEngine&c! 请检查.'
 function-wrong-arguments: '&d[&9Pouvoir&d] &c调用函数 &6{0} &c时使用了错误的参数!'
+
+pou-placeholder-register: '&d[&9Pouvoir&d] &ePou占位符 &6{0} &e注册成功! 来自: &d{1} &9{2} &eBy: &a{3}'
+
 command-message:
   - '&6================================'
   - ' &9指令列表:'

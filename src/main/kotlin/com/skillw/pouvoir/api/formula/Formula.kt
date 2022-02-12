@@ -4,6 +4,7 @@ import com.skillw.pouvoir.Pouvoir.pouPlaceHolderAPI
 import com.skillw.pouvoir.util.CalculationUtils
 import com.skillw.pouvoir.util.StringUtils.replacement
 import org.bukkit.entity.LivingEntity
+import java.math.BigDecimal
 import java.util.concurrent.ConcurrentHashMap
 
 /**
@@ -22,7 +23,7 @@ class Formula(private val formula: String, private val livingEntity: LivingEntit
         return pouPlaceHolderAPI.replace(livingEntity, formula.replacement(replacements.toMap()))
     }
 
-    fun result(): Double {
+    fun result(): BigDecimal {
         return CalculationUtils.getResult(formula(), livingEntity, replacements)
     }
 }

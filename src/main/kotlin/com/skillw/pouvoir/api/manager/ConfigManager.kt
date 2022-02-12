@@ -12,7 +12,7 @@ import taboolib.module.lang.LanguageFile
 import taboolib.module.lang.Type
 import java.io.File
 
-abstract class ConfigManager(private val subPouvoir: SubPouvoir) : Manager,
+abstract class ConfigManager(override val subPouvoir: SubPouvoir) : Manager,
     BaseMap<String, YamlConfiguration>() {
     val fileMap = BaseMap<File, YamlConfiguration>()
     val defaults = HashSet<Class<*>>()
@@ -61,7 +61,7 @@ abstract class ConfigManager(private val subPouvoir: SubPouvoir) : Manager,
         }
     }
 
-    final override fun reload() {
+    final override fun onReload() {
         fileMap.forEach {
             val file = it.key
             val config = it.value
