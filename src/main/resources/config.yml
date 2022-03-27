@@ -7,5 +7,6 @@ database:
   database: root
   table: my_database
 options:
+  debug: false
   number-format: "#.##"
   big-decimal-scale: 4

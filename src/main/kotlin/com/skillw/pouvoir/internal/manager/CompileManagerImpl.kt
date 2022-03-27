@@ -25,8 +25,8 @@ object CompileManagerImpl : CompileManager {
             return null
         }
         val scriptEngine = pouScriptEngine.scriptEngine
-        val script = Pouvoir.scriptManager.relocate(file.readText())
         try {
+            val script = Pouvoir.scriptManager.relocate(file.readText())
             return (scriptEngine as Compilable).compile(script)
         } catch (e: ScriptException) {
             console().sendLang("script-compile-fail", file.path)

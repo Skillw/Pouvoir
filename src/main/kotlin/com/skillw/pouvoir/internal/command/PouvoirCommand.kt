@@ -49,13 +49,9 @@ object PouvoirCommand {
                         return@execute
                     }
                     val fileName = context.argument(-1)
-                    val argsNew = arrayOfNulls<String>(args.size - 1)
-                    for (i in 1 until args.size) {
-                        argsNew[i - 1] = args[i]
-                    }
                     val argsMap: MutableMap<String, Any> = ConcurrentHashMap<String, Any>()
                     argsMap["sender"] = sender
-                    argsMap["args"] = argsNew
+                    argsMap["args"] = args
                     sender.sendLang("command-script-invoke", fileName)
                     val result: Any? =
                         Pouvoir.scriptManager.invokePathWithFunction("$fileName::$function", argsMap = argsMap)

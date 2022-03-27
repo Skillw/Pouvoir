@@ -58,4 +58,5 @@ abstract class ScriptManager : KeyMap<String, CompiledFile>(), Manager {
     abstract fun evalString(script: String, argsMap: MutableMap<String, Any>): Any?
     abstract fun reloadDir(file: File, subPouvoir: SubPouvoir)
     abstract fun relocate(script: String): String
+    abstract fun evalStringQuickly(script: String, type: String, argsMap: MutableMap<String, Any>): Any?
 }

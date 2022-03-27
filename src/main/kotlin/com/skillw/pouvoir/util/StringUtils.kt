@@ -42,7 +42,7 @@ object StringUtils {
         for (endIndex in 0 until len) {
             val c = this[endIndex]
             if (inner) {
-                if (c == protector.second) {
+                if (c == protector.value) {
                     inner = false
                     escapes.add(endIndex)
                 }
@@ -53,7 +53,7 @@ object StringUtils {
                         escapes.clear()
                         startIndex = endIndex + 1
                     }
-                    protector.first -> {
+                    protector.key -> {
                         inner = true
                         escapes.add(endIndex)
                     }

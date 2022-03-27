@@ -28,17 +28,17 @@ tasks.dokkaJavadoc.configure {
 
 
 taboolib {
-    options("skip-kotlin-relocate")
+
 
     description {
         contributors {
             name("Glom_")
         }
         dependencies {
-            name("PlaceholderAPI").optional(true).loadafter(true)
             name("MythicMobs").optional(true).loadafter(true)
-            name("AttributeSystem").optional(true).loadbefore(true)
+            name("PlaceholderAPI").optional(true).loadafter(true)
             name("RandomItem").optional(true).loadbefore(true)
+            name("AttributeSystem").optional(true).loadbefore(true)
         }
     }
 
@@ -68,7 +68,7 @@ taboolib {
     options()
 
     classifier = null
-    version = "6.0.7-26"
+    version = "6.0.7-44"
 
 }
 

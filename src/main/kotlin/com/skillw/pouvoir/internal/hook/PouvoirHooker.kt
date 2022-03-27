@@ -3,6 +3,7 @@ package com.skillw.pouvoir.internal.hook
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.Pouvoir.scriptManager
 import com.skillw.pouvoir.api.placeholder.PouPlaceHolder
+import com.skillw.pouvoir.util.Pair
 import com.skillw.pouvoir.util.StringUtils.protectedSplit
 import com.skillw.pouvoir.util.StringUtils.toArgs
 import org.bukkit.entity.LivingEntity
@@ -21,9 +22,7 @@ object PouvoirHooker : PouPlaceHolder("pou", Pouvoir) {
         when (args[0].lowercase()) {
             "run" -> {
                 args.removeAt(0)
-                when {
-                    args.size < 1 -> return def
-                }
+                if (args.isEmpty()) return def
                 val scriptPath = args[0]
                 val spilt: Array<String> = if (args.size > 1) params.replace("run_", "").toArgs() else emptyArray()
                 val finalArgs = Array(spilt.size) {
@@ -34,6 +33,21 @@ object PouvoirHooker : PouPlaceHolder("pou", Pouvoir) {
                     argsMap = hashMapOf("entity" to livingEntity, "args" to finalArgs)
                 )
                     .toString()
+            }
+            "eval" -> {
+                args.removeAt(0)
+                if (args.isEmpty()) return def
+                val script = args[0]
+                args.removeAt(0)
+                val spilt: Array<String> = if (args.isNotEmpty()) params.replace("eval_", "").toArgs() else emptyArray()
+                val finalArgs = Array(spilt.size) {
+                    Pouvoir.pouPlaceHolderAPI.replace(livingEntity, spilt[it])
+                }
+                return scriptManager.evalStringQuickly(
+                    script,
+                    "javascript",
+                    argsMap = hashMapOf("entity" to livingEntity, "args" to finalArgs)
+                ).toString()
             }
         }
         return def

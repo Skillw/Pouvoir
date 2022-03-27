@@ -54,51 +54,88 @@ class PouArmorStand(val id: Int, var location: Location, consumer: Consumer<PouA
 
 
     fun setSmall(value: Boolean) {
-        armorStand.invokeMethod<Unit>("setSmall", value)
+        if (MinecraftVersion.majorLegacy >= 11800) {
+            armorStand.invokeMethod<Unit>("a", value)
+        } else
+            armorStand.invokeMethod<Unit>("setSmall", value)
     }
 
     fun isSmall(): Boolean {
-        return armorStand.invokeMethod<Boolean>("isSmall") == true
+        if (MinecraftVersion.majorLegacy >= 11800) {
+            return armorStand.invokeMethod<Boolean>("n") == true
+        } else
+            return armorStand.invokeMethod<Boolean>("isSmall") == true
     }
 
     fun setGravity(value: Boolean) {
-        armorStand.invokeMethod<Unit>("setGravity", value)
+        if (MinecraftVersion.majorLegacy >= 11800) {
+            armorStand.invokeMethod<Unit>("e", value)
+
+        } else
+            armorStand.invokeMethod<Unit>("setGravity", value)
     }
 
     fun isGravity(): Boolean {
-        return armorStand.invokeMethod<Boolean>("hasGravity") == true
+        if (MinecraftVersion.majorLegacy >= 11800) {
+            return armorStand.invokeMethod<Boolean>("aM") == true
+        } else
+            return armorStand.invokeMethod<Boolean>("hasGravity") == true
     }
 
     fun setArms(value: Boolean) {
-        armorStand.invokeMethod<Unit>("setArms", value)
+        if (MinecraftVersion.majorLegacy >= 11800) {
+            armorStand.invokeMethod<Unit>("r", value)
+        } else
+            armorStand.invokeMethod<Unit>("setArms", value)
     }
 
     fun hasArms(): Boolean {
-        return armorStand.invokeMethod<Boolean>("hasArms") == true
+        return if (MinecraftVersion.majorLegacy >= 11800) {
+            armorStand.invokeMethod<Boolean>("q") == true
+
+        } else
+            armorStand.invokeMethod<Boolean>("hasArms") == true
     }
 
     fun setBasePlate(value: Boolean) {
-        armorStand.invokeMethod<Unit>("setBasePlate", !value)
+        if (MinecraftVersion.majorLegacy >= 11800) {
+            armorStand.invokeMethod<Unit>("s", !value)
+
+        } else
+            armorStand.invokeMethod<Unit>("setBasePlate", !value)
     }
 
     fun hasBasePlate(): Boolean {
-        return armorStand.invokeMethod<Boolean>("noBasePlate") == true
+        return if (MinecraftVersion.majorLegacy >= 11800) {
+            armorStand.invokeMethod<Boolean>("r") == true
+
+        } else
+            armorStand.invokeMethod<Boolean>("noBasePlate") == true
     }
 
     fun setMarker(value: Boolean) {
-        armorStand.invokeMethod<Unit>("setMarker", value)
+        if (MinecraftVersion.majorLegacy >= 11800) {
+            armorStand.invokeMethod<Unit>("t", value)
+        } else
+            armorStand.invokeMethod<Unit>("setMarker", value)
     }
 
     fun isMarker(): Boolean {
-        return armorStand.invokeMethod<Boolean>("isMarker") == true
+        return if (MinecraftVersion.majorLegacy >= 11800) {
+            armorStand.invokeMethod<Boolean>("t") == true
+        } else
+            armorStand.invokeMethod<Boolean>("isMarker") == true
     }
 
     fun setInvisible(value: Boolean) {
-        armorStand.invokeMethod<Unit>("setInvisible", value)
+        if (MinecraftVersion.majorLegacy >= 11800) {
+            armorStand.invokeMethod<Unit>("j", value)
+        } else
+            armorStand.invokeMethod<Unit>("setInvisible", value)
     }
 
     fun getCustomName(): String {
-        return armorStand.invokeMethod<String>("getCustomName")!!
+        return armorStand.invokeMethod<String>(if (MinecraftVersion.majorLegacy >= 11800) "Z" else "getCustomName")!!
     }
 
     fun setCustomName(name: String) {
@@ -106,13 +143,16 @@ class PouArmorStand(val id: Int, var location: Location, consumer: Consumer<PouA
             armorStand.invokeMethod<Unit>("setCustomName", name)
         else
             armorStand.invokeMethod<Unit>(
-                "setCustomName",
+                if (MinecraftVersion.majorLegacy >= 11800) "a" else "setCustomName",
                 obcClass("util.CraftChatMessage").invokeMethod<Array<*>>("fromString", name, fixed = true)!![0]
             )
     }
 
     fun setCustomNameVisible(value: Boolean) {
-        armorStand.invokeMethod<Unit>("setCustomNameVisible", value)
+        if (MinecraftVersion.majorLegacy >= 11800) {
+            armorStand.invokeMethod<Unit>("n", value)
+        } else
+            armorStand.invokeMethod<Unit>("setCustomNameVisible", value)
     }
 
     fun delete() {
@@ -138,12 +178,12 @@ class PouArmorStand(val id: Int, var location: Location, consumer: Consumer<PouA
     }
 
     fun spawn(viewer: Player) {
-        EntityUtils.spawnEntityLiving(viewer, id, normalizeUniqueId, location)
         val packetMeta = nmsClass("PacketPlayOutEntityMetadata").invokeConstructor(
             id,
-            armorStand.invokeMethod<Any>("getDataWatcher"),
-            false
+            armorStand.invokeMethod<Any>(if (MinecraftVersion.majorLegacy >= 11800) "ai" else "getDataWatcher"),
+            true
         )
+        EntityUtils.spawnEntityLiving(viewer, id, normalizeUniqueId, location)
         viewer.sendPacket(packetMeta)
     }
 

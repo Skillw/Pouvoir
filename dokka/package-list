@@ -1,25 +1,12 @@
 $dokka.format:javadoc-v1
 $dokka.linkExtension:html
-$dokka.location:com.skillw.pouvoir.api.bstat/Metrics.AdvancedBarChart///PointingToDeclaration/com/skillw/pouvoir/api/bstat/Metrics.AdvancedBarChart.html
-$dokka.location:com.skillw.pouvoir.api.bstat/Metrics.AdvancedPie///PointingToDeclaration/com/skillw/pouvoir/api/bstat/Metrics.AdvancedPie.html
-$dokka.location:com.skillw.pouvoir.api.bstat/Metrics.CustomChart///PointingToDeclaration/com/skillw/pouvoir/api/bstat/Metrics.CustomChart.html
-$dokka.location:com.skillw.pouvoir.api.bstat/Metrics.DrilldownPie///PointingToDeclaration/com/skillw/pouvoir/api/bstat/Metrics.DrilldownPie.html
-$dokka.location:com.skillw.pouvoir.api.bstat/Metrics.JsonObjectBuilder.Companion///PointingToDeclaration/com/skillw/pouvoir/api/bstat/Metrics.JsonObjectBuilder.Companion.html
-$dokka.location:com.skillw.pouvoir.api.bstat/Metrics.JsonObjectBuilder.JsonObject///PointingToDeclaration/com/skillw/pouvoir/api/bstat/Metrics.JsonObjectBuilder.JsonObject.html
-$dokka.location:com.skillw.pouvoir.api.bstat/Metrics.JsonObjectBuilder///PointingToDeclaration/com/skillw/pouvoir/api/bstat/Metrics.JsonObjectBuilder.html
-$dokka.location:com.skillw.pouvoir.api.bstat/Metrics.MetricsBase.Companion///PointingToDeclaration/com/skillw/pouvoir/api/bstat/Metrics.MetricsBase.Companion.html
-$dokka.location:com.skillw.pouvoir.api.bstat/Metrics.MetricsBase///PointingToDeclaration/com/skillw/pouvoir/api/bstat/Metrics.MetricsBase.html
-$dokka.location:com.skillw.pouvoir.api.bstat/Metrics.MultiLineChart///PointingToDeclaration/com/skillw/pouvoir/api/bstat/Metrics.MultiLineChart.html
-$dokka.location:com.skillw.pouvoir.api.bstat/Metrics.SimpleBarChart///PointingToDeclaration/com/skillw/pouvoir/api/bstat/Metrics.SimpleBarChart.html
-$dokka.location:com.skillw.pouvoir.api.bstat/Metrics.SimplePie///PointingToDeclaration/com/skillw/pouvoir/api/bstat/Metrics.SimplePie.html
-$dokka.location:com.skillw.pouvoir.api.bstat/Metrics.SingleLineChart///PointingToDeclaration/com/skillw/pouvoir/api/bstat/Metrics.SingleLineChart.html
 $dokka.location:com.skillw.pouvoir.api.listener/ScriptListener.Companion///PointingToDeclaration/com/skillw/pouvoir/api/listener/ScriptListener.Companion.html
 $dokka.location:com.skillw.pouvoir.api.manager/ConfigManager.Companion///PointingToDeclaration/com/skillw/pouvoir/api/manager/ConfigManager.Companion.html
 $dokka.location:com.skillw.pouvoir.api.manager/Manager.Companion///PointingToDeclaration/com/skillw/pouvoir/api/manager/Manager.Companion.html
+$dokka.location:com.skillw.pouvoir.api.thread/BasicThreadFactory.Builder///PointingToDeclaration/com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html
 com.skillw.pouvoir
 com.skillw.pouvoir.api.able
 com.skillw.pouvoir.api.annotation
-com.skillw.pouvoir.api.bstat
 com.skillw.pouvoir.api.event
 com.skillw.pouvoir.api.formula
 com.skillw.pouvoir.api.function
@@ -35,6 +22,7 @@ com.skillw.pouvoir.api.plugin
 com.skillw.pouvoir.api.script
 com.skillw.pouvoir.api.script.annotation
 com.skillw.pouvoir.api.script.engine
+com.skillw.pouvoir.api.thread
 com.skillw.pouvoir.internal.annotation
 com.skillw.pouvoir.internal.command
 com.skillw.pouvoir.internal.engine

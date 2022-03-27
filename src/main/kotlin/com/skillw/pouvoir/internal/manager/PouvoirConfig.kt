@@ -5,11 +5,8 @@ import com.skillw.pouvoir.api.manager.ConfigManager
 import com.skillw.pouvoir.util.ClassUtils
 import com.skillw.pouvoir.util.MessageUtils.wrong
 import org.spigotmc.AsyncCatcher
-import taboolib.common.io.newFile
 import taboolib.common.platform.Platform
 import taboolib.common.platform.function.console
-import taboolib.common.platform.function.getDataFolder
-import taboolib.expansion.setupPlayerDatabase
 import taboolib.module.lang.sendLang
 import taboolib.module.metrics.Metrics
 import taboolib.module.metrics.charts.SingleLineChart
@@ -58,6 +55,8 @@ object PouvoirConfig : ConfigManager(Pouvoir) {
         }
     }
 
+    val debug: Boolean
+        get() = this["config"].getBoolean("options.debug")
 
     override fun onInit() {
         AsyncCatcher.enabled = false
@@ -67,11 +66,6 @@ object PouvoirConfig : ConfigManager(Pouvoir) {
     }
 
     override fun onEnable() {
-        if (this["config"].getBoolean("database.enable")) {
-            setupPlayerDatabase(Pouvoir.config.getConfigurationSection("database")!!)
-        } else {
-            setupPlayerDatabase(newFile(getDataFolder(), "data.db"))
-        }
         metrics()
     }
 
@@ -87,7 +81,7 @@ object PouvoirConfig : ConfigManager(Pouvoir) {
         "config" to mapOf(
             "options" to mapOf(
                 "number-format" to ".##",
-                "options.big-decimal-scale" to 4
+                "big-decimal-scale" to 4
             ),
             "database" to mapOf(
                 "enable" to false,

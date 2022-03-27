@@ -33,8 +33,8 @@ abstract class ConfigManager(override val subPouvoir: SubPouvoir) : Manager,
         subPouvoir.getConfigs().forEach {
             val key = it.key
             val value = it.value
-            fileMap.register(value.first, value.second)
-            this.register(key, value.second)
+            fileMap.register(value.key, value.value)
+            this.register(key, value.value)
         }
         defaults.forEach { DefaultableHandle.inject(it, subPouvoir.plugin) }
         for (it in fileMap.keys) {

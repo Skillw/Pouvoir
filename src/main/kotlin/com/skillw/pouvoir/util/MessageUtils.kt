@@ -1,8 +1,9 @@
 package com.skillw.pouvoir.util
 
-import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
+import taboolib.common.platform.function.console
 import taboolib.module.chat.colored
+import taboolib.module.lang.sendWarnMessage
 
 /**
  * ClassName : com.skillw.classsystem.util.MessageUtils
@@ -17,16 +18,16 @@ object MessageUtils {
 
     @JvmStatic
     fun wrong(msg: String) {
-        Bukkit.getLogger().warning(msg.colored())
+        console().sendWarnMessage(msg.colored())
     }
 
     @JvmStatic
     fun info(msg: String) {
-        Bukkit.getLogger().info(msg.colored())
+        console().sendMessage(msg.colored())
     }
 
     @JvmStatic
     fun debug(msg: String) {
-        info("§9[§eDebug§9] §e${msg.colored()}")
+        info("&9[&eDebug&9] &e${msg}")
     }
 }

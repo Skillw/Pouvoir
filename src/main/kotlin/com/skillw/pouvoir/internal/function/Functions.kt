@@ -162,7 +162,7 @@ object calculate : PouFunction("calculate",
             val value = str.replace("$key=", "")
             replaced[key] = value
         }
-        return@func formula.resultDouble(null, replaced)
+        return@func formula.replace("[", "(").replace("]", ")").resultDouble(null, replaced)
     })
 
 object repeat : PouFunction("repeat",

@@ -32,10 +32,12 @@ object FileUtils {
             val config = loadConfigFile(file) ?: continue
             for (key in config.getKeys(false)) {
                 list.add(
-                    (clazz.getMethod(
-                        "deserialize",
-                        org.bukkit.configuration.ConfigurationSection::class.java
-                    ).invoke(null, config[key]!!) as? T? ?: continue) to file
+                    Pair(
+                        (clazz.getMethod(
+                            "deserialize",
+                            org.bukkit.configuration.ConfigurationSection::class.java
+                        ).invoke(null, config[key]!!) as? T? ?: continue), file
+                    )
                 )
             }
         }

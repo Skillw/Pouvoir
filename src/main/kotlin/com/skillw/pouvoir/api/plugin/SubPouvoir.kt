@@ -5,13 +5,13 @@ import com.skillw.pouvoir.api.manager.ManagerData
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
-import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.ScheduledThreadPoolExecutor
 
 interface SubPouvoir : Keyable<String> {
     var managerData: ManagerData
-    val poolExecutor: ScheduledExecutorService
+    val poolExecutor: ScheduledThreadPoolExecutor
     val plugin: JavaPlugin
-    fun getConfigs(): MutableMap<String, Pair<File, YamlConfiguration>>
+    fun getConfigs(): MutableMap<String, com.skillw.pouvoir.util.Pair<File, YamlConfiguration>>
 
     fun load() {
         managerData.load()

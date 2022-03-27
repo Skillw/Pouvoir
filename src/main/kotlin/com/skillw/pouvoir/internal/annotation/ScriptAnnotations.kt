@@ -22,7 +22,12 @@ object Awake : ScriptAnnotation("Awake", handle@{ data ->
     val function = data.function
     if (args.isEmpty() || args[0] == "") return@handle
     val key = args[0]
-    scriptManager.addSingle(key) { scriptManager.invokePathWithFunction("${compiledFile.key}::$function") }
+    scriptManager.addSingle(key) {
+        scriptManager.invokePathWithFunction(
+            "${compiledFile.key}::$function",
+            argsMap = mutableMapOf("awakeType" to key.lowercase())
+        )
+    }
 })
 
 /**

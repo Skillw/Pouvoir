@@ -22,7 +22,24 @@ object CalculationUtils {
 
     @JvmStatic
     fun String.resultDouble(entity: LivingEntity? = null, replacements: Map<String, String> = emptyMap()): Double {
-        return getResult(this, entity, replacements).setScale(PouvoirConfig.scale, BigDecimal.ROUND_HALF_UP).toDouble()
+        return getResultDouble(this, entity, replacements)
+    }
+
+    @JvmStatic
+    fun getResultDouble(
+        formula: String,
+        entity: LivingEntity? = null,
+        replacements: Map<String, String> = emptyMap()
+    ): Double {
+        return getResult(formula, entity, replacements).setScale(PouvoirConfig.scale, BigDecimal.ROUND_HALF_UP)
+            .toDouble()
+    }
+
+    @JvmStatic
+    fun getResultDouble(
+        formula: String
+    ): Double {
+        return getResultDouble(formula, null, emptyMap())
     }
 
     private fun doubleCal(a1: BigDecimal, a2: BigDecimal, operator: Char): BigDecimal {
@@ -32,6 +49,7 @@ object CalculationUtils {
             '*' -> a1 * a2
             '/' -> a1.divide(a2, PouvoirConfig.scale, BigDecimal.ROUND_HALF_UP)
             '%' -> a1 % a2
+            '^' -> a1.pow(a2.toInt())
             else -> {
                 throw Exception("illegal operator!")
             }
@@ -100,16 +118,16 @@ object CalculationUtils {
 
     @JvmStatic
     fun getResult(input: String): BigDecimal {
-        return try {
+        try {
             val sufExpr = toSufExpr(input) // 转为后缀表达式
             /* 盛放数字栈 */
             val number = Stack<BigDecimal>()
             /* 这个正则匹配每个数字和符号 */
-            val p = Pattern.compile("-?\\d+(\\.\\d+)?|[+\\-*/%]")
+            val p = Pattern.compile("-?\\d+(\\.\\d+)?|[+\\-*/%^]")
             val m = p.matcher(sufExpr)
             while (m.find()) {
                 val temp = m.group()
-                if (temp.matches(Regex("[+\\-*/%]"))) { // 遇到运算符，将最后两个数字取出，进行该运算，将结果再放入容器
+                if (temp.matches(Regex("[+\\-*/%^]"))) { // 遇到运算符，将最后两个数字取出，进行该运算，将结果再放入容器
                     val a1 = number.pop()
                     val a2 = number.pop()
                     val res = doubleCal(a2, a1, temp[0])
@@ -120,6 +138,7 @@ object CalculationUtils {
             }
             return number.pop() ?: BigDecimal("0.0")
         } catch (e: Exception) {
+            MessageUtils.wrong("计算式错误! $input")
             e.printStackTrace()
             return BigDecimal.valueOf(0.0)
         }

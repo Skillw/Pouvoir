@@ -13,6 +13,7 @@ import taboolib.common.platform.function.console
 import taboolib.common5.FileWatcher
 import taboolib.module.lang.sendLang
 import java.io.File
+import java.io.FileNotFoundException
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 import java.util.regex.Pattern
@@ -47,6 +48,19 @@ object ScriptManagerImpl : ScriptManager() {
                 it.value.reload()
             }
         }
+    }
+
+    override fun evalStringQuickly(
+        script: String,
+        type: String,
+        argsMap: MutableMap<String, Any>
+    ): Any? {
+        val pouScriptEngine = scriptEngineManager[type] ?: scriptEngineManager.getEngine(type)
+        if (pouScriptEngine == null) {
+            console().sendLang("script-engine-not-found", type)
+            return null
+        }
+        return evalString(pouScriptEngine.addFunctionStructure(script, "main") + "main()", type, argsMap)
     }
 
 
@@ -113,6 +127,8 @@ object ScriptManagerImpl : ScriptManager() {
         } catch (e: ScriptException) {
             console().sendLang("script-invoke-script-exception", function, key)
             e.printStackTrace()
+        } catch (e: FileNotFoundException) {
+            console().sendLang("script-file-not-found", key)
         } catch (e: Exception) {
             console().sendLang("script-invoke-exception", function, key)
             e.printStackTrace()
@@ -197,7 +213,11 @@ object ScriptManagerImpl : ScriptManager() {
                     console().sendLang("script-compile-fail", path)
                 }
             }
-            return Optional.of(optional.get().value)
+            return try {
+                Optional.of(optional.get().value)
+            } catch (e: Exception) {
+                Optional.ofNullable(null)
+            }
         }
     }
 

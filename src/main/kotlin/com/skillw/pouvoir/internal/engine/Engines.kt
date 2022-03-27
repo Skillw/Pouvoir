@@ -30,7 +30,11 @@ object JavaScriptEngine : PouScriptEngine(
     }, {
         handleMap(it, jsFunctionPattern)
     }, "js"
-)
+) {
+    override fun addFunctionStructure(script: String, name: String): String {
+        return "function $name(){$script}"
+    }
+}
 
 private val groovyFunctionPattern = Pattern.compile("^def (?<name>.*)\\(.*\\)(| +)\\{\$")
 
@@ -44,7 +48,11 @@ object GroovyScriptEngine : PouScriptEngine(
         handleMap(it, groovyFunctionPattern)
     },
     "groovy"
-)
+) {
+    override fun addFunctionStructure(script: String, name: String): String {
+        return "def $name(){$script}"
+    }
+}
 
 private fun handleMap(
     pair: Pair<CompiledFile, List<String>>,

@@ -2,6 +2,7 @@ package com.skillw.pouvoir.api.script
 
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.Pouvoir.listenerManager
+import com.skillw.pouvoir.Pouvoir.playerDataManager
 import com.skillw.pouvoir.Pouvoir.scriptManager
 import com.skillw.pouvoir.api.listener.ScriptListener
 import com.skillw.pouvoir.api.map.BaseMap
@@ -21,7 +22,6 @@ import org.bukkit.potion.PotionEffectType
 import org.bukkit.scheduler.BukkitRunnable
 import taboolib.common.platform.event.EventPriority
 import taboolib.expansion.DataContainer
-import taboolib.expansion.getDataContainer
 import taboolib.module.nms.getI18nName
 import taboolib.module.nms.getItemTag
 import taboolib.platform.BukkitCommand
@@ -33,56 +33,56 @@ import java.util.function.Function
 
 object ScriptTool : BaseMap<String, Any>() {
     @JvmStatic
-    fun runTask(task: Consumer<Unit>) {
+    fun runTask(task: Runnable) {
         object : BukkitRunnable() {
             override fun run() {
-                task.accept(Unit)
+                task.run()
             }
         }.runTask(Pouvoir.plugin)
     }
 
     @JvmStatic
-    fun runTaskAsync(task: Consumer<Unit>) {
+    fun runTaskAsync(task: Runnable) {
         object : BukkitRunnable() {
             override fun run() {
-                task.accept(Unit)
+                task.run()
             }
         }.runTaskAsynchronously(Pouvoir.plugin)
     }
 
     @JvmStatic
-    fun runTaskLater(task: Consumer<Unit>, delay: Long) {
+    fun runTaskLater(task: Runnable, delay: Long) {
         object : BukkitRunnable() {
             override fun run() {
-                task.accept(Unit)
+                task.run()
             }
         }.runTaskLater(Pouvoir.plugin, delay)
     }
 
     @JvmStatic
-    fun runTaskAsyncLater(task: Consumer<Unit>, delay: Long) {
+    fun runTaskAsyncLater(task: Runnable, delay: Long) {
 
         object : BukkitRunnable() {
             override fun run() {
-                task.accept(Unit)
+                task.run()
             }
         }.runTaskLaterAsynchronously(Pouvoir.plugin, delay)
     }
 
     @JvmStatic
-    fun runTaskTimer(task: Consumer<Unit>, delay: Long, period: Long) {
+    fun runTaskTimer(task: Runnable, delay: Long, period: Long) {
         object : BukkitRunnable() {
             override fun run() {
-                task.accept(Unit)
+                task.run()
             }
         }.runTaskTimer(Pouvoir.plugin, delay, period)
     }
 
     @JvmStatic
-    fun runTaskAsyncTimer(task: Consumer<Unit>, delay: Long, period: Long) {
+    fun runTaskAsyncTimer(task: Runnable, delay: Long, period: Long) {
         object : BukkitRunnable() {
             override fun run() {
-                task.accept(Unit)
+                task.run()
             }
         }.runTaskTimerAsynchronously(Pouvoir.plugin, delay, period)
     }
@@ -181,18 +181,18 @@ object ScriptTool : BaseMap<String, Any>() {
     }
 
     @JvmStatic
-    fun runTaskAsyncPool(task: Consumer<Unit>) {
-        Pouvoir.poolExecutor.execute { task.accept(Unit) }
+    fun runTaskAsyncPool(task: Runnable) {
+        Pouvoir.poolExecutor.execute { task.run() }
     }
 
     @JvmStatic
-    fun runTaskAsyncLaterPool(task: Consumer<Unit>, delay: Long) {
-        Pouvoir.poolExecutor.schedule({ task.accept(Unit) }, delay, TimeUnit.MILLISECONDS)
+    fun runTaskAsyncLaterPool(task: Runnable, delay: Long) {
+        Pouvoir.poolExecutor.schedule({ task.run() }, delay, TimeUnit.MILLISECONDS)
     }
 
     @JvmStatic
-    fun runTaskAsyncTimerPool(task: Consumer<Unit>, delay: Long, period: Long) {
-        Pouvoir.poolExecutor.scheduleAtFixedRate({ task.accept(Unit) }, delay, period, TimeUnit.MILLISECONDS)
+    fun runTaskAsyncTimerPool(task: Runnable, delay: Long, period: Long) {
+        Pouvoir.poolExecutor.scheduleAtFixedRate({ task.run() }, delay, period, TimeUnit.MILLISECONDS)
     }
 
     @JvmStatic
@@ -245,8 +245,39 @@ object ScriptTool : BaseMap<String, Any>() {
     }
 
     @JvmStatic
-    fun getContainer(player: Player): DataContainer {
-        return player.getDataContainer()
+    fun getContainer(player: Player): DataContainer? {
+        println("Outdated function Tool#getContainer!")
+        println("Please use Tool#get / Tool#set / Tool#delete !")
+        return null
     }
 
+    @JvmStatic
+    fun get(user: String, key: String): String? {
+        return playerDataManager[user, key]
+    }
+
+    @JvmStatic
+    fun delete(user: String, key: String) {
+        playerDataManager.delete(user, key)
+    }
+
+    @JvmStatic
+    fun set(user: String, key: String, value: String) {
+        playerDataManager[user, key] = value
+    }
+
+    @JvmStatic
+    fun get(player: Player, key: String): String? {
+        return get(player.name, key)
+    }
+
+    @JvmStatic
+    fun delete(player: Player, key: String) {
+        delete(player.name, key)
+    }
+
+    @JvmStatic
+    fun set(player: Player, key: String, value: String) {
+        set(player.name, key, value)
+    }
 }

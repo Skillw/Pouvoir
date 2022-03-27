@@ -8,7 +8,7 @@ import java.util.*
 import javax.script.ScriptEngine
 
 
-open class PouScriptEngine(
+abstract class PouScriptEngine(
     override val key: String,
     scriptEngine: ScriptEngine,
     private val functions: (Pair<CompiledFile, List<String>>) -> MutableMap<String, LinkedList<ScriptAnnotationData>>,
@@ -26,4 +26,6 @@ open class PouScriptEngine(
     override fun register() {
         Pouvoir.scriptEngineManager.register(this)
     }
+
+    abstract fun addFunctionStructure(script: String, name: String): String
 }

@@ -118,6 +118,7 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Keyab
     }
 
     internal fun run(manager: Manager, thing: String) {
-        exec[manager]?.run(thing)
+        if (!exec.containsKey(manager)) return
+        exec[manager]!!.run(thing)
     }
 }

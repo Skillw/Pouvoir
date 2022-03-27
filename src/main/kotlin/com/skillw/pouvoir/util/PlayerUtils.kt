@@ -116,7 +116,9 @@ object PlayerUtils {
     }
 
     private fun setFields(any: Any, vararg fields: Pair<String, Any?>): Any {
-        fields.forEach { (key, value) ->
+        fields.forEach { pair ->
+            val key = pair.key
+            val value = pair.value
             if (value != null) {
                 any.setProperty(key, value)
             }

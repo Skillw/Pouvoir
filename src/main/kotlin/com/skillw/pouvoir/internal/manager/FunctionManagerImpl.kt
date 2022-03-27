@@ -51,7 +51,9 @@ object FunctionManagerImpl : FunctionManager() {
         do {
             val func = map[matcher.group(1)] ?: continue
             val args = analysis(matcher.group(2))
-            matcher.appendReplacement(stringBuffer, func.apply(args.toArgs()).toString())
+            val result = func.apply(args.toArgs()).toString()
+            matcher.appendReplacement(stringBuffer, result)
+            Pouvoir.debug("$func(${matcher.group(2)}) -> $result")
         } while (matcher.find())
         return replace(matcher.appendTail(stringBuffer).toString())
     }

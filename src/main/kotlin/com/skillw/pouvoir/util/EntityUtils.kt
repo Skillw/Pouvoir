@@ -18,6 +18,7 @@ import taboolib.module.navigation.BoundingBox
 import taboolib.module.navigation.NMSImpl
 import taboolib.module.nms.MinecraftVersion
 import taboolib.module.nms.MinecraftVersion.isUniversal
+import taboolib.module.nms.MinecraftVersion.major
 import taboolib.module.nms.MinecraftVersion.majorLegacy
 import taboolib.module.nms.nmsClass
 import java.util.*
@@ -136,7 +137,7 @@ object EntityUtils {
         if (majorLegacy < 11300) {
             return spawnArmorStand(player, entityId, uuid, location)
         }
-        if (isUniversal) {
+        if (major == 9) {
             player.sendPacketWithFields(
                 nmsClass("PacketPlayOutSpawnEntityLiving").unsafeInstance(),
                 "id" to entityId,
@@ -159,6 +160,8 @@ object EntityUtils {
                 "a" to entityId,
                 "b" to uuid,
                 "c" to when {
+                    majorLegacy >= 11800 -> nmsClass("IRegistry").getField("W").get(null)!!
+                        .invokeMethod<Unit>("a", ARMOR_STAND_NMS)
                     majorLegacy >= 11400 -> nmsClass("IRegistry").getField("ENTITY_TYPE").get(null)!!
                         .invokeMethod<Unit>("a", ARMOR_STAND_NMS)
                     majorLegacy == 11300 -> nmsClass("IRegistry").getField("ENTITY_TYPE").get(null)!!
@@ -230,9 +233,9 @@ object EntityUtils {
             }
             val traces = RayTrace(livingEntity).traces(distance, 0.2)
             for (vector in traces) {
-                val firstOrNull = entities.firstOrNull { it.second.contains(vector) }
+                val firstOrNull = entities.firstOrNull { it.value.contains(vector) }
                 if (firstOrNull != null) {
-                    return@submit firstOrNull.first as? LivingEntity? ?: continue
+                    return@submit firstOrNull.key as? LivingEntity? ?: continue
                 }
             }
             return@submit null
