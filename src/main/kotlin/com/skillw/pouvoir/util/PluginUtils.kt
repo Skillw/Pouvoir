@@ -1,6 +1,5 @@
 package com.skillw.pouvoir.util
 
-import taboolib.common.platform.Plugin
 import java.io.File
 import java.net.URISyntaxException
 import java.util.jar.JarEntry

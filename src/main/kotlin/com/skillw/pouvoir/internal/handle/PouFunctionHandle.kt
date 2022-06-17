@@ -11,11 +11,10 @@ object PouFunctionHandle {
         try {
             if (!isPouFunction(clazz)) return
             val pouFunction = clazz.getField("INSTANCE").get(null) as PouFunction
-            if (Pouvoir.functionManager.containsKey(pouFunction.key))
-                return
+            if (Pouvoir.functionManager.containsKey(pouFunction.key)) return
             pouFunction.register()
         } catch (e: Exception) {
-            
+
         }
     }
 }

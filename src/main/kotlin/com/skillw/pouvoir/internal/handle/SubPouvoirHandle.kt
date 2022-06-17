@@ -22,15 +22,14 @@ object PManagerHandle {
     }
 
     fun getParams(field: Field, obj: Any?): Array<Any>? {
-        if (!isPManagerField(field)) {
-            return null
-        }
+        if (!isPManagerField(field)) return null
         val clazz = field.declaringClass
         val list = field.getAnnotation(PManager::class.java).params
         var fail = false
         val params = Array<Any>(list.size) {
             val key = list[it]
-            if (key == "this") obj!!
+            if (key == "this")
+                return@Array obj!!
             try {
                 clazz.getDeclaredField(key).get(obj)
             } catch (e: Exception) {

@@ -1,10 +1,10 @@
 package com.skillw.pouvoir.util
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.util.MessageUtils.wrong
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.configuration.serialization.ConfigurationSerializable
+import taboolib.common.platform.function.warning
 import java.io.File
 import java.util.*
 
@@ -67,13 +67,11 @@ object FileUtils {
         try {
             config.load(file)
         } catch (e: Exception) {
-            wrong("Wrong config! in ${file.name}")
-            wrong("Cause: " + ColorUtils.unColor(e.cause!!.message.toString()))
+            warning("Wrong config! in ${file.name}")
+            warning("Cause: " + ColorUtils.unColor(e.cause!!.message.toString()))
             return null
         }
-        return if (config.getKeys(false).isEmpty()) {
-            null
-        } else config
+        return config
     }
 
     @JvmStatic

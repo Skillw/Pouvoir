@@ -11,8 +11,7 @@ object PouPlaceHolderHandle {
         try {
             if (!isPouPlaceHolder(clazz)) return
             val pouPlaceHolder = clazz.getField("INSTANCE").get(null) as PouPlaceHolder
-            if (Pouvoir.pouPlaceholderManager.containsKey(pouPlaceHolder.key))
-                return
+            if (Pouvoir.pouPlaceholderManager.containsKey(pouPlaceHolder.key)) return
             pouPlaceHolder.register()
         } catch (e: Exception) {
 

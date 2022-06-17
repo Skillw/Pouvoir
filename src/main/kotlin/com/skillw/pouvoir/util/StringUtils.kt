@@ -17,18 +17,18 @@ object StringUtils {
         if (escapes.isEmpty())
             return substring(from, to)
         val it = escapes.iterator()
-        var currentfrom = from
-        var currentto = it.next()
-        while (currentto != to) {
-            builder.append(currentfrom, currentto)
-            currentfrom = currentto + 1
-            currentto = if (it.hasNext())
+        var currentFrom = from
+        var currentTo = it.next()
+        while (currentTo != to) {
+            builder.append(currentFrom, currentTo)
+            currentFrom = currentTo + 1
+            currentTo = if (it.hasNext())
                 it.next()
             else
                 to
         }
-        if (currentfrom != currentto)
-            builder.append(currentfrom, currentto)
+        if (currentFrom != currentTo)
+            builder.append(currentFrom, currentTo)
         return builder.toString()
     }
 
@@ -155,7 +155,7 @@ object StringUtils {
         } else if (indexes.size == 1) {
             strList[indexes[0]] + "\n"
         } else if (indexes.size == 2) {
-            val arrayList = java.util.ArrayList<String>()
+            val arrayList = ArrayList<String>()
             for (i in indexes[0]..indexes[1]) {
                 arrayList.add(strList[i])
             }

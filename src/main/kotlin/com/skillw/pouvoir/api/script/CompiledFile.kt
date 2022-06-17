@@ -3,6 +3,8 @@ package com.skillw.pouvoir.api.script
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.Pouvoir.scriptManager
 import com.skillw.pouvoir.api.able.Keyable
+import com.skillw.pouvoir.api.manager.Manager.Companion.ENABLE
+import com.skillw.pouvoir.api.manager.Manager.Companion.RELOAD
 import com.skillw.pouvoir.api.manager.Manager.Companion.addSingle
 import com.skillw.pouvoir.api.map.SingleExecMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
@@ -29,7 +31,11 @@ class CompiledFile(val file: File, val subPouvoir: SubPouvoir) : Keyable<String>
         }
     }
     private var compiledScript: CompiledScript? = Pouvoir.compileManager.compileFile(file)
-    val annotations = ConcurrentHashMap<String, LinkedList<ScriptAnnotationData>>()
+
+    // Function to Annotations
+    private val annotations = ConcurrentHashMap<String, LinkedList<ScriptAnnotationData>>()
+    val canCompiled: Boolean
+        get() = compiledScript != null
 
     val functions by lazy {
         val set = HashSet<String>()
@@ -43,22 +49,19 @@ class CompiledFile(val file: File, val subPouvoir: SubPouvoir) : Keyable<String>
 
     private fun init() {
         recompile()
-        if (compiledScript == null) {
+        compiledScript ?: run {
             wrong("CompiledScript is null in $key!")
             return
         }
         val script = file.readLines()
         annotations.clear()
-        pouScriptEngine.getAnnotationData(this to script).forEach {
+        pouScriptEngine.getAnnotationData(this, script).forEach {
             annotations[it.key] = it.value
         }
     }
 
-    fun canCompiled(): Boolean = compiledScript != null
-
-
     fun invoke(function: String, argsMap: MutableMap<String, Any> = HashMap(), vararg args: Any): Any? {
-        if (compiledScript == null) {
+        compiledScript ?: run {
             wrong("$key 's compiled script is null!")
             return null
         }
@@ -80,14 +83,14 @@ class CompiledFile(val file: File, val subPouvoir: SubPouvoir) : Keyable<String>
     }
 
     fun reload() {
-        run("reload")
+        run(RELOAD)
         init()
         register()
     }
 
     override fun register() {
         run("register")
-        if (compiledScript == null) {
+        compiledScript ?: run {
             wrong("$key 's compiled script is null!")
             return
         }
@@ -95,7 +98,7 @@ class CompiledFile(val file: File, val subPouvoir: SubPouvoir) : Keyable<String>
             data@ for (data in it) {
                 val annotation = Pouvoir.scriptAnnotationManager[data.annotation] ?: continue@data
                 if (annotation.awakeWhenEnable && !subPouvoir.plugin.isEnabled) {
-                    scriptManager.addSingle("Enable") {
+                    scriptManager.addSingle(ENABLE) {
                         annotation.handle(data)
                     }
                     continue@data
@@ -103,6 +106,6 @@ class CompiledFile(val file: File, val subPouvoir: SubPouvoir) : Keyable<String>
                 annotation.handle(data)
             }
         }
-        scriptManager.put(key, this)
+        scriptManager[key] = this
     }
 }

@@ -60,7 +60,7 @@ object PouPlaceHolderAPIImpl : PouPlaceHolderAPI {
     }
 
     private fun analysis(text: String): String {
-        return Pouvoir.functionManager.analysis(text).toString()
+        return Pouvoir.functionManager.analysis(text)
     }
 
 }

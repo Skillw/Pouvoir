@@ -1,1 +1,444 @@
-var typeSearchIndex = [{"p":"com.skillw.pouvoir","l":"Pouvoir","url":"com/skillw/pouvoir/Pouvoir.html"}, {"p":"com.skillw.pouvoir.api.able","l":"Keyable","url":"com/skillw/pouvoir/api/able/Keyable.html"}, {"p":"com.skillw.pouvoir.api.annotation","l":"Configurable","url":"com/skillw/pouvoir/api/annotation/Configurable.html"}, {"p":"com.skillw.pouvoir.api.annotation","l":"Defaultable","url":"com/skillw/pouvoir/api/annotation/Defaultable.html"}, {"p":"com.skillw.pouvoir.api.annotation","l":"PManager","url":"com/skillw/pouvoir/api/annotation/PManager.html"}, {"p":"com.skillw.pouvoir.api.event","l":"Time","url":"com/skillw/pouvoir/api/event/Time.html"}, {"p":"com.skillw.pouvoir.api.formula","l":"Formula","url":"com/skillw/pouvoir/api/formula/Formula.html"}, {"p":"com.skillw.pouvoir.api.function","l":"PouFunction","url":"com/skillw/pouvoir/api/function/PouFunction.html"}, {"p":"com.skillw.pouvoir.api.function","l":"PouScriptFunction","url":"com/skillw/pouvoir/api/function/PouScriptFunction.html"}, {"p":"com.skillw.pouvoir.api.hologram","l":"HologramBuilder","url":"com/skillw/pouvoir/api/hologram/HologramBuilder.html"}, {"p":"com.skillw.pouvoir.api.listener","l":"ScriptListener.Companion","url":"com/skillw/pouvoir/api/listener/ScriptListener.Companion.html"}, {"p":"com.skillw.pouvoir.api.listener","l":"ScriptListener","url":"com/skillw/pouvoir/api/listener/ScriptListener.html"}, {"p":"com.skillw.pouvoir.api.manager","l":"ConfigManager.Companion","url":"com/skillw/pouvoir/api/manager/ConfigManager.Companion.html"}, {"p":"com.skillw.pouvoir.api.manager","l":"ConfigManager","url":"com/skillw/pouvoir/api/manager/ConfigManager.html"}, {"p":"com.skillw.pouvoir.api.manager","l":"Manager.Companion","url":"com/skillw/pouvoir/api/manager/Manager.Companion.html"}, {"p":"com.skillw.pouvoir.api.manager","l":"Manager","url":"com/skillw/pouvoir/api/manager/Manager.html"}, {"p":"com.skillw.pouvoir.api.manager","l":"ManagerData","url":"com/skillw/pouvoir/api/manager/ManagerData.html"}, {"p":"com.skillw.pouvoir.api.manager.sub","l":"FunctionManager","url":"com/skillw/pouvoir/api/manager/sub/FunctionManager.html"}, {"p":"com.skillw.pouvoir.api.manager.sub","l":"ListenerManager","url":"com/skillw/pouvoir/api/manager/sub/ListenerManager.html"}, {"p":"com.skillw.pouvoir.api.manager.sub","l":"PlayerDataManager","url":"com/skillw/pouvoir/api/manager/sub/PlayerDataManager.html"}, {"p":"com.skillw.pouvoir.api.manager.sub","l":"PouPlaceHolderAPI","url":"com/skillw/pouvoir/api/manager/sub/PouPlaceHolderAPI.html"}, {"p":"com.skillw.pouvoir.api.manager.sub","l":"PouPlaceHolderManager","url":"com/skillw/pouvoir/api/manager/sub/PouPlaceHolderManager.html"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","l":"CompileManager","url":"com/skillw/pouvoir/api/manager/sub/script/CompileManager.html"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","l":"ScriptAnnotationManager","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptAnnotationManager.html"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","l":"ScriptEngineManager","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptEngineManager.html"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","l":"ScriptManager","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html"}, {"p":"com.skillw.pouvoir.api.map","l":"BaseMap","url":"com/skillw/pouvoir/api/map/BaseMap.html"}, {"p":"com.skillw.pouvoir.api.map","l":"ClazzMap","url":"com/skillw/pouvoir/api/map/ClazzMap.html"}, {"p":"com.skillw.pouvoir.api.map","l":"KeyMap","url":"com/skillw/pouvoir/api/map/KeyMap.html"}, {"p":"com.skillw.pouvoir.api.map","l":"LinkedKeyMap","url":"com/skillw/pouvoir/api/map/LinkedKeyMap.html"}, {"p":"com.skillw.pouvoir.api.map","l":"LinkedMap","url":"com/skillw/pouvoir/api/map/LinkedMap.html"}, {"p":"com.skillw.pouvoir.api.map","l":"LowerClazzMap","url":"com/skillw/pouvoir/api/map/LowerClazzMap.html"}, {"p":"com.skillw.pouvoir.api.map","l":"LowerKeyMap","url":"com/skillw/pouvoir/api/map/LowerKeyMap.html"}, {"p":"com.skillw.pouvoir.api.map","l":"LowerMap","url":"com/skillw/pouvoir/api/map/LowerMap.html"}, {"p":"com.skillw.pouvoir.api.map","l":"MultiExecMap","url":"com/skillw/pouvoir/api/map/MultiExecMap.html"}, {"p":"com.skillw.pouvoir.api.map","l":"SingleExecMap","url":"com/skillw/pouvoir/api/map/SingleExecMap.html"}, {"p":"com.skillw.pouvoir.api.object","l":"BaseObject","url":"com/skillw/pouvoir/api/object/BaseObject.html"}, {"p":"com.skillw.pouvoir.api.placeholder","l":"PouPlaceHolder","url":"com/skillw/pouvoir/api/placeholder/PouPlaceHolder.html"}, {"p":"com.skillw.pouvoir.api.plugin","l":"SubPouvoir","url":"com/skillw/pouvoir/api/plugin/SubPouvoir.html"}, {"p":"com.skillw.pouvoir.api.plugin","l":"TotalManager","url":"com/skillw/pouvoir/api/plugin/TotalManager.html"}, {"p":"com.skillw.pouvoir.api.script","l":"CompiledFile","url":"com/skillw/pouvoir/api/script/CompiledFile.html"}, {"p":"com.skillw.pouvoir.api.script","l":"ScriptGroup","url":"com/skillw/pouvoir/api/script/ScriptGroup.html"}, {"p":"com.skillw.pouvoir.api.script","l":"ScriptTool","url":"com/skillw/pouvoir/api/script/ScriptTool.html"}, {"p":"com.skillw.pouvoir.api.script.annotation","l":"ScriptAnnotation","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotation.html"}, {"p":"com.skillw.pouvoir.api.script.annotation","l":"ScriptAnnotationData","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html"}, {"p":"com.skillw.pouvoir.api.script.engine","l":"PouScriptEngine","url":"com/skillw/pouvoir/api/script/engine/PouScriptEngine.html"}, {"p":"com.skillw.pouvoir.api.thread","l":"BasicThreadFactory.Builder","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html"}, {"p":"com.skillw.pouvoir.api.thread","l":"BasicThreadFactory","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.html"}, {"p":"com.skillw.pouvoir.api.thread","l":"Builder","url":"com/skillw/pouvoir/api/thread/Builder.html"}, {"p":"com.skillw.pouvoir.internal.annotation","l":"Awake","url":"com/skillw/pouvoir/internal/annotation/Awake.html"}, {"p":"com.skillw.pouvoir.internal.annotation","l":"Listener","url":"com/skillw/pouvoir/internal/annotation/Listener.html"}, {"p":"com.skillw.pouvoir.internal.annotation","l":"Function","url":"com/skillw/pouvoir/internal/annotation/Function.html"}, {"p":"com.skillw.pouvoir.internal.annotation","l":"Annotation","url":"com/skillw/pouvoir/internal/annotation/Annotation.html"}, {"p":"com.skillw.pouvoir.internal.command","l":"PouvoirCommand","url":"com/skillw/pouvoir/internal/command/PouvoirCommand.html"}, {"p":"com.skillw.pouvoir.internal.engine","l":"JavaScriptEngine","url":"com/skillw/pouvoir/internal/engine/JavaScriptEngine.html"}, {"p":"com.skillw.pouvoir.internal.engine","l":"GroovyScriptEngine","url":"com/skillw/pouvoir/internal/engine/GroovyScriptEngine.html"}, {"p":"com.skillw.pouvoir.internal.function","l":"If","url":"com/skillw/pouvoir/internal/function/If.html"}, {"p":"com.skillw.pouvoir.internal.function","l":"abs","url":"com/skillw/pouvoir/internal/function/abs.html"}, {"p":"com.skillw.pouvoir.internal.function","l":"ceil","url":"com/skillw/pouvoir/internal/function/ceil.html"}, {"p":"com.skillw.pouvoir.internal.function","l":"format","url":"com/skillw/pouvoir/internal/function/format.html"}, {"p":"com.skillw.pouvoir.internal.function","l":"floor","url":"com/skillw/pouvoir/internal/function/floor.html"}, {"p":"com.skillw.pouvoir.internal.function","l":"max","url":"com/skillw/pouvoir/internal/function/max.html"}, {"p":"com.skillw.pouvoir.internal.function","l":"min","url":"com/skillw/pouvoir/internal/function/min.html"}, {"p":"com.skillw.pouvoir.internal.function","l":"random","url":"com/skillw/pouvoir/internal/function/random.html"}, {"p":"com.skillw.pouvoir.internal.function","l":"randomInt","url":"com/skillw/pouvoir/internal/function/randomInt.html"}, {"p":"com.skillw.pouvoir.internal.function","l":"round","url":"com/skillw/pouvoir/internal/function/round.html"}, {"p":"com.skillw.pouvoir.internal.function","l":"calculate","url":"com/skillw/pouvoir/internal/function/calculate.html"}, {"p":"com.skillw.pouvoir.internal.function","l":"repeat","url":"com/skillw/pouvoir/internal/function/repeat.html"}, {"p":"com.skillw.pouvoir.internal.function","l":"weight","url":"com/skillw/pouvoir/internal/function/weight.html"}, {"p":"com.skillw.pouvoir.internal.handle","l":"DefaultableHandle","url":"com/skillw/pouvoir/internal/handle/DefaultableHandle.html"}, {"p":"com.skillw.pouvoir.internal.handle","l":"PouEngineHandle","url":"com/skillw/pouvoir/internal/handle/PouEngineHandle.html"}, {"p":"com.skillw.pouvoir.internal.handle","l":"PouFunctionHandle","url":"com/skillw/pouvoir/internal/handle/PouFunctionHandle.html"}, {"p":"com.skillw.pouvoir.internal.handle","l":"PouPlaceHolderHandle","url":"com/skillw/pouvoir/internal/handle/PouPlaceHolderHandle.html"}, {"p":"com.skillw.pouvoir.internal.handle","l":"ScriptAnnotationHandler","url":"com/skillw/pouvoir/internal/handle/ScriptAnnotationHandler.html"}, {"p":"com.skillw.pouvoir.internal.handle","l":"PManagerHandle","url":"com/skillw/pouvoir/internal/handle/PManagerHandle.html"}, {"p":"com.skillw.pouvoir.internal.handle","l":"SubPouvoirHandle","url":"com/skillw/pouvoir/internal/handle/SubPouvoirHandle.html"}, {"p":"com.skillw.pouvoir.internal.hologram","l":"Hologram","url":"com/skillw/pouvoir/internal/hologram/Hologram.html"}, {"p":"com.skillw.pouvoir.internal.hologram","l":"HologramLine","url":"com/skillw/pouvoir/internal/hologram/HologramLine.html"}, {"p":"com.skillw.pouvoir.internal.hologram","l":"PouArmorStand","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html"}, {"p":"com.skillw.pouvoir.internal.hook","l":"PlaceholderAPIHooker","url":"com/skillw/pouvoir/internal/hook/PlaceholderAPIHooker.html"}, {"p":"com.skillw.pouvoir.internal.hook","l":"PouvoirHooker","url":"com/skillw/pouvoir/internal/hook/PouvoirHooker.html"}, {"p":"com.skillw.pouvoir.internal.listener","l":"PlayerListener","url":"com/skillw/pouvoir/internal/listener/PlayerListener.html"}, {"p":"com.skillw.pouvoir.internal.manager","l":"CompileManagerImpl","url":"com/skillw/pouvoir/internal/manager/CompileManagerImpl.html"}, {"p":"com.skillw.pouvoir.internal.manager","l":"FunctionManagerImpl","url":"com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html"}, {"p":"com.skillw.pouvoir.internal.manager","l":"ListenerManagerImpl","url":"com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html"}, {"p":"com.skillw.pouvoir.internal.manager","l":"PlayerDataManagerImpl","url":"com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html"}, {"p":"com.skillw.pouvoir.internal.manager","l":"PouPlaceHolderAPIImpl","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html"}, {"p":"com.skillw.pouvoir.internal.manager","l":"PouPlaceHolderManagerImpl","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html"}, {"p":"com.skillw.pouvoir.internal.manager","l":"PouvoirConfig","url":"com/skillw/pouvoir/internal/manager/PouvoirConfig.html"}, {"p":"com.skillw.pouvoir.internal.manager","l":"ScriptAnnotationManagerImpl","url":"com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html"}, {"p":"com.skillw.pouvoir.internal.manager","l":"ScriptEngineManagerImpl","url":"com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html"}, {"p":"com.skillw.pouvoir.internal.manager","l":"ScriptManagerImpl","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html"}, {"p":"com.skillw.pouvoir.internal.raytrace","l":"RayTrace","url":"com/skillw/pouvoir/internal/raytrace/RayTrace.html"}, {"p":"com.skillw.pouvoir.internal.script","l":"PouClassFilter","url":"com/skillw/pouvoir/internal/script/PouClassFilter.html"}, {"p":"com.skillw.pouvoir.util","l":"CalculationUtils","url":"com/skillw/pouvoir/util/CalculationUtils.html"}, {"p":"com.skillw.pouvoir.util","l":"ClassUtils","url":"com/skillw/pouvoir/util/ClassUtils.html"}, {"p":"com.skillw.pouvoir.util","l":"ColorUtils","url":"com/skillw/pouvoir/util/ColorUtils.html"}, {"p":"com.skillw.pouvoir.util","l":"EDCodeUtils","url":"com/skillw/pouvoir/util/EDCodeUtils.html"}, {"p":"com.skillw.pouvoir.util","l":"EntityUtils","url":"com/skillw/pouvoir/util/EntityUtils.html"}, {"p":"com.skillw.pouvoir.util","l":"FileUtils","url":"com/skillw/pouvoir/util/FileUtils.html"}, {"p":"com.skillw.pouvoir.util","l":"GsonUtils","url":"com/skillw/pouvoir/util/GsonUtils.html"}, {"p":"com.skillw.pouvoir.util","l":"ItemUtils","url":"com/skillw/pouvoir/util/ItemUtils.html"}, {"p":"com.skillw.pouvoir.util","l":"KetherUtils","url":"com/skillw/pouvoir/util/KetherUtils.html"}, {"p":"com.skillw.pouvoir.util","l":"MapUtils","url":"com/skillw/pouvoir/util/MapUtils.html"}, {"p":"com.skillw.pouvoir.util","l":"MessageUtils","url":"com/skillw/pouvoir/util/MessageUtils.html"}, {"p":"com.skillw.pouvoir.util","l":"NumberUtils","url":"com/skillw/pouvoir/util/NumberUtils.html"}, {"p":"com.skillw.pouvoir.util","l":"Pair","url":"com/skillw/pouvoir/util/Pair.html"}, {"p":"com.skillw.pouvoir.util","l":"PlayerUtils","url":"com/skillw/pouvoir/util/PlayerUtils.html"}, {"p":"com.skillw.pouvoir.util","l":"PluginUtils","url":"com/skillw/pouvoir/util/PluginUtils.html"}, {"p":"com.skillw.pouvoir.util","l":"StringUtils","url":"com/skillw/pouvoir/util/StringUtils.html"}, {"p":"com.skillw.pouvoir.util","l":"PairKt","url":"com/skillw/pouvoir/util/PairKt.html"}, {"l":"All classes","url":"allclasses.html"}]
+var typeSearchIndex = [{
+    "p": "com.skillw.pouvoir",
+    "l": "Pouvoir",
+    "url": "com/skillw/pouvoir/Pouvoir.html"
+}, {
+    "p": "com.skillw.pouvoir.api.able",
+    "l": "Keyable",
+    "url": "com/skillw/pouvoir/api/able/Keyable.html"
+}, {
+    "p": "com.skillw.pouvoir.api.annotation",
+    "l": "Configurable",
+    "url": "com/skillw/pouvoir/api/annotation/Configurable.html"
+}, {
+    "p": "com.skillw.pouvoir.api.annotation",
+    "l": "Defaultable",
+    "url": "com/skillw/pouvoir/api/annotation/Defaultable.html"
+}, {
+    "p": "com.skillw.pouvoir.api.annotation",
+    "l": "PManager",
+    "url": "com/skillw/pouvoir/api/annotation/PManager.html"
+}, {
+    "p": "com.skillw.pouvoir.api.event",
+    "l": "Time",
+    "url": "com/skillw/pouvoir/api/event/Time.html"
+}, {
+    "p": "com.skillw.pouvoir.api.formula",
+    "l": "Formula",
+    "url": "com/skillw/pouvoir/api/formula/Formula.html"
+}, {
+    "p": "com.skillw.pouvoir.api.function",
+    "l": "PouFunction",
+    "url": "com/skillw/pouvoir/api/function/PouFunction.html"
+}, {
+    "p": "com.skillw.pouvoir.api.function",
+    "l": "PouScriptFunction",
+    "url": "com/skillw/pouvoir/api/function/PouScriptFunction.html"
+}, {
+    "p": "com.skillw.pouvoir.api.hologram",
+    "l": "HologramBuilder",
+    "url": "com/skillw/pouvoir/api/hologram/HologramBuilder.html"
+}, {
+    "p": "com.skillw.pouvoir.api.listener",
+    "l": "ScriptListener.Companion",
+    "url": "com/skillw/pouvoir/api/listener/ScriptListener.Companion.html"
+}, {
+    "p": "com.skillw.pouvoir.api.listener",
+    "l": "ScriptListener",
+    "url": "com/skillw/pouvoir/api/listener/ScriptListener.html"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "l": "ConfigManager.Companion",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.Companion.html"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "l": "ConfigManager",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "l": "Manager.Companion",
+    "url": "com/skillw/pouvoir/api/manager/Manager.Companion.html"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "l": "Manager",
+    "url": "com/skillw/pouvoir/api/manager/Manager.html"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "l": "ManagerData",
+    "url": "com/skillw/pouvoir/api/manager/ManagerData.html"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub",
+    "l": "FunctionManager",
+    "url": "com/skillw/pouvoir/api/manager/sub/FunctionManager.html"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub",
+    "l": "ListenerManager",
+    "url": "com/skillw/pouvoir/api/manager/sub/ListenerManager.html"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub",
+    "l": "PlayerDataManager",
+    "url": "com/skillw/pouvoir/api/manager/sub/PlayerDataManager.html"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub",
+    "l": "PouPlaceHolderAPI",
+    "url": "com/skillw/pouvoir/api/manager/sub/PouPlaceHolderAPI.html"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub",
+    "l": "PouPlaceHolderManager",
+    "url": "com/skillw/pouvoir/api/manager/sub/PouPlaceHolderManager.html"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "l": "CompileManager",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/CompileManager.html"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "l": "ScriptAnnotationManager",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptAnnotationManager.html"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "l": "ScriptEngineManager",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptEngineManager.html"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "l": "ScriptManager",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "l": "BaseMap",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "l": "ClazzMap",
+    "url": "com/skillw/pouvoir/api/map/ClazzMap.html"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "l": "KeyMap",
+    "url": "com/skillw/pouvoir/api/map/KeyMap.html"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "l": "LinkedKeyMap",
+    "url": "com/skillw/pouvoir/api/map/LinkedKeyMap.html"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "l": "LinkedMap",
+    "url": "com/skillw/pouvoir/api/map/LinkedMap.html"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "l": "LowerClazzMap",
+    "url": "com/skillw/pouvoir/api/map/LowerClazzMap.html"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "l": "LowerKeyMap",
+    "url": "com/skillw/pouvoir/api/map/LowerKeyMap.html"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "l": "LowerMap",
+    "url": "com/skillw/pouvoir/api/map/LowerMap.html"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "l": "MultiExecMap",
+    "url": "com/skillw/pouvoir/api/map/MultiExecMap.html"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "l": "SingleExecMap",
+    "url": "com/skillw/pouvoir/api/map/SingleExecMap.html"
+}, {
+    "p": "com.skillw.pouvoir.api.object",
+    "l": "BaseObject",
+    "url": "com/skillw/pouvoir/api/object/BaseObject.html"
+}, {
+    "p": "com.skillw.pouvoir.api.placeholder",
+    "l": "PouPlaceHolder",
+    "url": "com/skillw/pouvoir/api/placeholder/PouPlaceHolder.html"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "l": "SubPouvoir",
+    "url": "com/skillw/pouvoir/api/plugin/SubPouvoir.html"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "l": "TotalManager",
+    "url": "com/skillw/pouvoir/api/plugin/TotalManager.html"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "l": "CompiledFile",
+    "url": "com/skillw/pouvoir/api/script/CompiledFile.html"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "l": "ScriptGroup",
+    "url": "com/skillw/pouvoir/api/script/ScriptGroup.html"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "l": "ScriptTool",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "l": "ScriptAnnotation",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotation.html"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "l": "ScriptAnnotationData",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html"
+}, {
+    "p": "com.skillw.pouvoir.api.script.engine",
+    "l": "PouScriptEngine",
+    "url": "com/skillw/pouvoir/api/script/engine/PouScriptEngine.html"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "l": "BasicThreadFactory.Builder",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "l": "BasicThreadFactory",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.html"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "l": "Builder",
+    "url": "com/skillw/pouvoir/api/thread/Builder.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.annotation",
+    "l": "Awake",
+    "url": "com/skillw/pouvoir/internal/annotation/Awake.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.annotation",
+    "l": "Listener",
+    "url": "com/skillw/pouvoir/internal/annotation/Listener.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.annotation",
+    "l": "Function",
+    "url": "com/skillw/pouvoir/internal/annotation/Function.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.annotation",
+    "l": "Annotation",
+    "url": "com/skillw/pouvoir/internal/annotation/Annotation.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.command",
+    "l": "PouvoirCommand",
+    "url": "com/skillw/pouvoir/internal/command/PouvoirCommand.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.engine",
+    "l": "JavaScriptEngine",
+    "url": "com/skillw/pouvoir/internal/engine/JavaScriptEngine.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.engine",
+    "l": "GroovyScriptEngine",
+    "url": "com/skillw/pouvoir/internal/engine/GroovyScriptEngine.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "l": "If",
+    "url": "com/skillw/pouvoir/internal/function/If.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "l": "abs",
+    "url": "com/skillw/pouvoir/internal/function/abs.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "l": "ceil",
+    "url": "com/skillw/pouvoir/internal/function/ceil.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "l": "format",
+    "url": "com/skillw/pouvoir/internal/function/format.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "l": "floor",
+    "url": "com/skillw/pouvoir/internal/function/floor.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "l": "max",
+    "url": "com/skillw/pouvoir/internal/function/max.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "l": "min",
+    "url": "com/skillw/pouvoir/internal/function/min.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "l": "random",
+    "url": "com/skillw/pouvoir/internal/function/random.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "l": "randomInt",
+    "url": "com/skillw/pouvoir/internal/function/randomInt.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "l": "round",
+    "url": "com/skillw/pouvoir/internal/function/round.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "l": "calculate",
+    "url": "com/skillw/pouvoir/internal/function/calculate.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "l": "repeat",
+    "url": "com/skillw/pouvoir/internal/function/repeat.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "l": "weight",
+    "url": "com/skillw/pouvoir/internal/function/weight.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "l": "DefaultableHandle",
+    "url": "com/skillw/pouvoir/internal/handle/DefaultableHandle.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "l": "PouEngineHandle",
+    "url": "com/skillw/pouvoir/internal/handle/PouEngineHandle.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "l": "PouFunctionHandle",
+    "url": "com/skillw/pouvoir/internal/handle/PouFunctionHandle.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "l": "PouPlaceHolderHandle",
+    "url": "com/skillw/pouvoir/internal/handle/PouPlaceHolderHandle.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "l": "ScriptAnnotationHandler",
+    "url": "com/skillw/pouvoir/internal/handle/ScriptAnnotationHandler.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "l": "PManagerHandle",
+    "url": "com/skillw/pouvoir/internal/handle/PManagerHandle.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "l": "SubPouvoirHandle",
+    "url": "com/skillw/pouvoir/internal/handle/SubPouvoirHandle.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "l": "Hologram",
+    "url": "com/skillw/pouvoir/internal/hologram/Hologram.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "l": "HologramLine",
+    "url": "com/skillw/pouvoir/internal/hologram/HologramLine.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "l": "PouArmorStand",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.hook",
+    "l": "PlaceholderAPIHooker",
+    "url": "com/skillw/pouvoir/internal/hook/PlaceholderAPIHooker.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.hook",
+    "l": "PouvoirHooker",
+    "url": "com/skillw/pouvoir/internal/hook/PouvoirHooker.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.listener",
+    "l": "PlayerListener",
+    "url": "com/skillw/pouvoir/internal/listener/PlayerListener.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "l": "CompileManagerImpl",
+    "url": "com/skillw/pouvoir/internal/manager/CompileManagerImpl.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "l": "FunctionManagerImpl",
+    "url": "com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "l": "ListenerManagerImpl",
+    "url": "com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "l": "PlayerDataManagerImpl",
+    "url": "com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "l": "PouPlaceHolderAPIImpl",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "l": "PouPlaceHolderManagerImpl",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "l": "PouvoirConfig",
+    "url": "com/skillw/pouvoir/internal/manager/PouvoirConfig.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "l": "ScriptAnnotationManagerImpl",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "l": "ScriptEngineManagerImpl",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "l": "ScriptManagerImpl",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.raytrace",
+    "l": "RayTrace",
+    "url": "com/skillw/pouvoir/internal/raytrace/RayTrace.html"
+}, {
+    "p": "com.skillw.pouvoir.internal.script",
+    "l": "PouClassFilter",
+    "url": "com/skillw/pouvoir/internal/script/PouClassFilter.html"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "l": "CalculationUtils",
+    "url": "com/skillw/pouvoir/util/CalculationUtils.html"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "l": "ClassUtils",
+    "url": "com/skillw/pouvoir/util/ClassUtils.html"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "l": "ColorUtils",
+    "url": "com/skillw/pouvoir/util/ColorUtils.html"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "l": "EDCodeUtils",
+    "url": "com/skillw/pouvoir/util/EDCodeUtils.html"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "l": "EntityUtils",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "l": "FileUtils",
+    "url": "com/skillw/pouvoir/util/FileUtils.html"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "l": "GsonUtils",
+    "url": "com/skillw/pouvoir/util/GsonUtils.html"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "l": "ItemUtils",
+    "url": "com/skillw/pouvoir/util/ItemUtils.html"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "l": "KetherUtils",
+    "url": "com/skillw/pouvoir/util/KetherUtils.html"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "l": "MapUtils",
+    "url": "com/skillw/pouvoir/util/MapUtils.html"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "l": "MessageUtils",
+    "url": "com/skillw/pouvoir/util/MessageUtils.html"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "l": "NumberUtils",
+    "url": "com/skillw/pouvoir/util/NumberUtils.html"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "l": "Pair",
+    "url": "com/skillw/pouvoir/util/Pair.html"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "l": "PlayerUtils",
+    "url": "com/skillw/pouvoir/util/PlayerUtils.html"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "l": "PluginUtils",
+    "url": "com/skillw/pouvoir/util/PluginUtils.html"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "l": "StringUtils",
+    "url": "com/skillw/pouvoir/util/StringUtils.html"
+}, {"p": "com.skillw.pouvoir.util", "l": "PairKt", "url": "com/skillw/pouvoir/util/PairKt.html"}, {
+    "l": "All classes",
+    "url": "allclasses.html"
+}]

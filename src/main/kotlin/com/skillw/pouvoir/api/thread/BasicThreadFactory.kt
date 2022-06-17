@@ -7,11 +7,11 @@ import java.util.concurrent.atomic.AtomicLong
 
 class BasicThreadFactory(builder: Builder) : ThreadFactory {
     private val threadCounter: AtomicLong
-    var wrappedFactory: ThreadFactory? = null
-    val uncaughtExceptionHandler: UncaughtExceptionHandler?
-    val namingPattern: String?
+    private var wrappedFactory: ThreadFactory? = null
+    private val uncaughtExceptionHandler: UncaughtExceptionHandler?
+    private val namingPattern: String?
     val priority: Int?
-    val daemonFlag: Boolean?
+    private val daemonFlag: Boolean?
     val threadCount: Long
         get() = threadCounter.get()
 
@@ -80,7 +80,7 @@ class BasicThreadFactory(builder: Builder) : ThreadFactory {
             }
         }
 
-        fun reset() {
+        private fun reset() {
             wrappedFactory = null
             exceptionHandler = null
             namingPattern = null
@@ -96,10 +96,10 @@ class BasicThreadFactory(builder: Builder) : ThreadFactory {
     }
 
     init {
-        if (builder.wrappedFactory == null) {
-            wrappedFactory = Executors.defaultThreadFactory()
+        wrappedFactory = if (builder.wrappedFactory == null) {
+            Executors.defaultThreadFactory()
         } else {
-            wrappedFactory = builder.wrappedFactory
+            builder.wrappedFactory
         }
         namingPattern = builder.namingPattern
         priority = builder.priority

@@ -1,1 +1,3776 @@
-var memberSearchIndex = [{"p":"com.skillw.pouvoir","c":"Pouvoir","l":"getConfigs()","url":"com/skillw/pouvoir/Pouvoir.html#getConfigs()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"isDepend(Plugin)","url":"com/skillw/pouvoir/Pouvoir.html#isDepend(Plugin)"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"onLoad()","url":"com/skillw/pouvoir/Pouvoir.html#onLoad()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"onEnable()","url":"com/skillw/pouvoir/Pouvoir.html#onEnable()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"onActive()","url":"com/skillw/pouvoir/Pouvoir.html#onActive()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"onDisable()","url":"com/skillw/pouvoir/Pouvoir.html#onDisable()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"getKey()","url":"com/skillw/pouvoir/Pouvoir.html#getKey()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"getPlugin()","url":"com/skillw/pouvoir/Pouvoir.html#getPlugin()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"getPoolExecutor()","url":"com/skillw/pouvoir/Pouvoir.html#getPoolExecutor()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"getConfig()","url":"com/skillw/pouvoir/Pouvoir.html#getConfig()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"setConfig(ConfigFile)","url":"com/skillw/pouvoir/Pouvoir.html#setConfig(ConfigFile)"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"getScript()","url":"com/skillw/pouvoir/Pouvoir.html#getScript()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"setScript(ConfigFile)","url":"com/skillw/pouvoir/Pouvoir.html#setScript(ConfigFile)"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"getManagerData()","url":"com/skillw/pouvoir/Pouvoir.html#getManagerData()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"setManagerData(ManagerData)","url":"com/skillw/pouvoir/Pouvoir.html#setManagerData(ManagerData)"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"getConfigManager()","url":"com/skillw/pouvoir/Pouvoir.html#getConfigManager()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"setConfigManager(PouvoirConfig)","url":"com/skillw/pouvoir/Pouvoir.html#setConfigManager(PouvoirConfig)"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"getFunctionManager()","url":"com/skillw/pouvoir/Pouvoir.html#getFunctionManager()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"setFunctionManager(FunctionManager)","url":"com/skillw/pouvoir/Pouvoir.html#setFunctionManager(FunctionManager)"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"getPouPlaceholderManager()","url":"com/skillw/pouvoir/Pouvoir.html#getPouPlaceholderManager()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"setPouPlaceholderManager(PouPlaceHolderManager)","url":"com/skillw/pouvoir/Pouvoir.html#setPouPlaceholderManager(PouPlaceHolderManager)"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"getPouPlaceHolderAPI()","url":"com/skillw/pouvoir/Pouvoir.html#getPouPlaceHolderAPI()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"setPouPlaceHolderAPI(PouPlaceHolderAPI)","url":"com/skillw/pouvoir/Pouvoir.html#setPouPlaceHolderAPI(PouPlaceHolderAPI)"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"getListenerManager()","url":"com/skillw/pouvoir/Pouvoir.html#getListenerManager()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"setListenerManager(ListenerManager)","url":"com/skillw/pouvoir/Pouvoir.html#setListenerManager(ListenerManager)"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"getScriptEngineManager()","url":"com/skillw/pouvoir/Pouvoir.html#getScriptEngineManager()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"setScriptEngineManager(ScriptEngineManager)","url":"com/skillw/pouvoir/Pouvoir.html#setScriptEngineManager(ScriptEngineManager)"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"getCompileManager()","url":"com/skillw/pouvoir/Pouvoir.html#getCompileManager()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"setCompileManager(CompileManager)","url":"com/skillw/pouvoir/Pouvoir.html#setCompileManager(CompileManager)"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"getScriptAnnotationManager()","url":"com/skillw/pouvoir/Pouvoir.html#getScriptAnnotationManager()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"setScriptAnnotationManager(ScriptAnnotationManager)","url":"com/skillw/pouvoir/Pouvoir.html#setScriptAnnotationManager(ScriptAnnotationManager)"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"getScriptManager()","url":"com/skillw/pouvoir/Pouvoir.html#getScriptManager()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"setScriptManager(ScriptManager)","url":"com/skillw/pouvoir/Pouvoir.html#setScriptManager(ScriptManager)"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"getPlayerDataManager()","url":"com/skillw/pouvoir/Pouvoir.html#getPlayerDataManager()"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"setPlayerDataManager(PlayerDataManager)","url":"com/skillw/pouvoir/Pouvoir.html#setPlayerDataManager(PlayerDataManager)"}, {"p":"com.skillw.pouvoir.api.able","c":"Keyable","l":"register()","url":"com/skillw/pouvoir/api/able/Keyable.html#register()"}, {"p":"com.skillw.pouvoir.api.able","c":"Keyable","l":"getKey()","url":"com/skillw/pouvoir/api/able/Keyable.html#getKey()"}, {"p":"com.skillw.pouvoir.api.formula","c":"Formula","l":"Formula(String, LivingEntity)","url":"com/skillw/pouvoir/api/formula/Formula.html#Formula(String,LivingEntity)"}, {"p":"com.skillw.pouvoir.api.formula","c":"Formula","l":"replace(Pair<String, String>)","url":"com/skillw/pouvoir/api/formula/Formula.html#replace(Pair)"}, {"p":"com.skillw.pouvoir.api.formula","c":"Formula","l":"formula()","url":"com/skillw/pouvoir/api/formula/Formula.html#formula()"}, {"p":"com.skillw.pouvoir.api.formula","c":"Formula","l":"result()","url":"com/skillw/pouvoir/api/formula/Formula.html#result()"}, {"p":"com.skillw.pouvoir.api.function","c":"PouFunction","l":"PouFunction(String, Predicate<Array<String>>, Function<Array<String>, Object>)","url":"com/skillw/pouvoir/api/function/PouFunction.html#PouFunction(String,Predicate,Function)"}, {"p":"com.skillw.pouvoir.api.function","c":"PouFunction","l":"getKey()","url":"com/skillw/pouvoir/api/function/PouFunction.html#getKey()"}, {"p":"com.skillw.pouvoir.api.function","c":"PouFunction","l":"register()","url":"com/skillw/pouvoir/api/function/PouFunction.html#register()"}, {"p":"com.skillw.pouvoir.api.function","c":"PouFunction","l":"apply(Array<String>)","url":"com/skillw/pouvoir/api/function/PouFunction.html#apply(Array)"}, {"p":"com.skillw.pouvoir.api.function","c":"PouScriptFunction","l":"PouScriptFunction(String, String)","url":"com/skillw/pouvoir/api/function/PouScriptFunction.html#PouScriptFunction(String,String)"}, {"p":"com.skillw.pouvoir.api.hologram","c":"HologramBuilder","l":"HologramBuilder(Location)","url":"com/skillw/pouvoir/api/hologram/HologramBuilder.html#HologramBuilder(Location)"}, {"p":"com.skillw.pouvoir.api.hologram","c":"HologramBuilder","l":"stay(Long)","url":"com/skillw/pouvoir/api/hologram/HologramBuilder.html#stay(Long)"}, {"p":"com.skillw.pouvoir.api.hologram","c":"HologramBuilder","l":"content(List<String>)","url":"com/skillw/pouvoir/api/hologram/HologramBuilder.html#content(List)"}, {"p":"com.skillw.pouvoir.api.hologram","c":"HologramBuilder","l":"viewers(Player)","url":"com/skillw/pouvoir/api/hologram/HologramBuilder.html#viewers(Player)"}, {"p":"com.skillw.pouvoir.api.hologram","c":"HologramBuilder","l":"viewers(List<Player>)","url":"com/skillw/pouvoir/api/hologram/HologramBuilder.html#viewers(List)"}, {"p":"com.skillw.pouvoir.api.hologram","c":"HologramBuilder","l":"addViewer(Player)","url":"com/skillw/pouvoir/api/hologram/HologramBuilder.html#addViewer(Player)"}, {"p":"com.skillw.pouvoir.api.hologram","c":"HologramBuilder","l":"animation(Integer, Location)","url":"com/skillw/pouvoir/api/hologram/HologramBuilder.html#animation(Integer,Location)"}, {"p":"com.skillw.pouvoir.api.hologram","c":"HologramBuilder","l":"placeholder(Player)","url":"com/skillw/pouvoir/api/hologram/HologramBuilder.html#placeholder(Player)"}, {"p":"com.skillw.pouvoir.api.hologram","c":"HologramBuilder","l":"build()","url":"com/skillw/pouvoir/api/hologram/HologramBuilder.html#build()"}, {"p":"com.skillw.pouvoir.api.listener","c":"ScriptListener.Companion","l":"build(String, Class<T>, EventPriority, Boolean, Consumer<T>)","url":"com/skillw/pouvoir/api/listener/ScriptListener.Companion.html#build(String,Class,EventPriority,Boolean,Consumer)"}, {"p":"com.skillw.pouvoir.api.listener","c":"ScriptListener","l":"getKey()","url":"com/skillw/pouvoir/api/listener/ScriptListener.html#getKey()"}, {"p":"com.skillw.pouvoir.api.listener","c":"ScriptListener","l":"getEventClass()","url":"com/skillw/pouvoir/api/listener/ScriptListener.html#getEventClass()"}, {"p":"com.skillw.pouvoir.api.listener","c":"ScriptListener","l":"getPriority()","url":"com/skillw/pouvoir/api/listener/ScriptListener.html#getPriority()"}, {"p":"com.skillw.pouvoir.api.listener","c":"ScriptListener","l":"getIgnoreCancel()","url":"com/skillw/pouvoir/api/listener/ScriptListener.html#getIgnoreCancel()"}, {"p":"com.skillw.pouvoir.api.listener","c":"ScriptListener","l":"getExec()","url":"com/skillw/pouvoir/api/listener/ScriptListener.html#getExec()"}, {"p":"com.skillw.pouvoir.api.listener","c":"ScriptListener","l":"unRegister()","url":"com/skillw/pouvoir/api/listener/ScriptListener.html#unRegister()"}, {"p":"com.skillw.pouvoir.api.listener","c":"ScriptListener","l":"register()","url":"com/skillw/pouvoir/api/listener/ScriptListener.html#register()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager.Companion","l":"getLocal()","url":"com/skillw/pouvoir/api/manager/ConfigManager.Companion.html#getLocal()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager.Companion","l":"getPluginPrefix()","url":"com/skillw/pouvoir/api/manager/ConfigManager.Companion.html#getPluginPrefix()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"ConfigManager(SubPouvoir)","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#ConfigManager(SubPouvoir)"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"getFileMap()","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#getFileMap()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"getDefaults()","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#getDefaults()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"getServerFile()","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#getServerFile()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"getKey()","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#getKey()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"getVersion()","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#getVersion()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"getLanguage()","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#getLanguage()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"getIsCheckVersion()","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#getIsCheckVersion()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"getSubPouvoir()","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#getSubPouvoir()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"get(String)","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#get(String)"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"defaultOptions()","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#defaultOptions()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"onReload()","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#onReload()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"getLang(String)","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#getLang(String)"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"createIfNotExists(String, String)","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#createIfNotExists(String,String)"}, {"p":"com.skillw.pouvoir.api.manager","c":"Manager.Companion","l":"run(Manager, String)","url":"com/skillw/pouvoir/api/manager/Manager.Companion.html#run(Manager,String)"}, {"p":"com.skillw.pouvoir.api.manager","c":"Manager.Companion","l":"addSingle(Manager, String, Function0<Unit>)","url":"com/skillw/pouvoir/api/manager/Manager.Companion.html#addSingle(Manager,String,Function0)"}, {"p":"com.skillw.pouvoir.api.manager","c":"Manager","l":"onInit()","url":"com/skillw/pouvoir/api/manager/Manager.html#onInit()"}, {"p":"com.skillw.pouvoir.api.manager","c":"Manager","l":"onLoad()","url":"com/skillw/pouvoir/api/manager/Manager.html#onLoad()"}, {"p":"com.skillw.pouvoir.api.manager","c":"Manager","l":"onEnable()","url":"com/skillw/pouvoir/api/manager/Manager.html#onEnable()"}, {"p":"com.skillw.pouvoir.api.manager","c":"Manager","l":"onActive()","url":"com/skillw/pouvoir/api/manager/Manager.html#onActive()"}, {"p":"com.skillw.pouvoir.api.manager","c":"Manager","l":"onReload()","url":"com/skillw/pouvoir/api/manager/Manager.html#onReload()"}, {"p":"com.skillw.pouvoir.api.manager","c":"Manager","l":"onDisable()","url":"com/skillw/pouvoir/api/manager/Manager.html#onDisable()"}, {"p":"com.skillw.pouvoir.api.manager","c":"Manager","l":"register()","url":"com/skillw/pouvoir/api/manager/Manager.html#register()"}, {"p":"com.skillw.pouvoir.api.manager","c":"Manager","l":"register(ManagerData)","url":"com/skillw/pouvoir/api/manager/Manager.html#register(ManagerData)"}, {"p":"com.skillw.pouvoir.api.manager","c":"Manager","l":"compareTo(Manager)","url":"com/skillw/pouvoir/api/manager/Manager.html#compareTo(Manager)"}, {"p":"com.skillw.pouvoir.api.manager","c":"Manager","l":"getPriority()","url":"com/skillw/pouvoir/api/manager/Manager.html#getPriority()"}, {"p":"com.skillw.pouvoir.api.manager","c":"Manager","l":"getSubPouvoir()","url":"com/skillw/pouvoir/api/manager/Manager.html#getSubPouvoir()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ManagerData","l":"ManagerData(SubPouvoir)","url":"com/skillw/pouvoir/api/manager/ManagerData.html#ManagerData(SubPouvoir)"}, {"p":"com.skillw.pouvoir.api.manager","c":"ManagerData","l":"getExec()","url":"com/skillw/pouvoir/api/manager/ManagerData.html#getExec()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ManagerData","l":"getPlugin()","url":"com/skillw/pouvoir/api/manager/ManagerData.html#getPlugin()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ManagerData","l":"getKey()","url":"com/skillw/pouvoir/api/manager/ManagerData.html#getKey()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ManagerData","l":"getSubPouvoir()","url":"com/skillw/pouvoir/api/manager/ManagerData.html#getSubPouvoir()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ManagerData","l":"register(String, Manager)","url":"com/skillw/pouvoir/api/manager/ManagerData.html#register(String,Manager)"}, {"p":"com.skillw.pouvoir.api.manager","c":"ManagerData","l":"register()","url":"com/skillw/pouvoir/api/manager/ManagerData.html#register()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ManagerData","l":"load()","url":"com/skillw/pouvoir/api/manager/ManagerData.html#load()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ManagerData","l":"enable()","url":"com/skillw/pouvoir/api/manager/ManagerData.html#enable()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ManagerData","l":"active()","url":"com/skillw/pouvoir/api/manager/ManagerData.html#active()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ManagerData","l":"reload()","url":"com/skillw/pouvoir/api/manager/ManagerData.html#reload()"}, {"p":"com.skillw.pouvoir.api.manager","c":"ManagerData","l":"disable()","url":"com/skillw/pouvoir/api/manager/ManagerData.html#disable()"}, {"p":"com.skillw.pouvoir.api.manager.sub","c":"FunctionManager","l":"FunctionManager()","url":"com/skillw/pouvoir/api/manager/sub/FunctionManager.html#FunctionManager()"}, {"p":"com.skillw.pouvoir.api.manager.sub","c":"FunctionManager","l":"getPriority()","url":"com/skillw/pouvoir/api/manager/sub/FunctionManager.html#getPriority()"}, {"p":"com.skillw.pouvoir.api.manager.sub","c":"FunctionManager","l":"analysis(String)","url":"com/skillw/pouvoir/api/manager/sub/FunctionManager.html#analysis(String)"}, {"p":"com.skillw.pouvoir.api.manager.sub","c":"ListenerManager","l":"ListenerManager()","url":"com/skillw/pouvoir/api/manager/sub/ListenerManager.html#ListenerManager()"}, {"p":"com.skillw.pouvoir.api.manager.sub","c":"PlayerDataManager","l":"PlayerDataManager()","url":"com/skillw/pouvoir/api/manager/sub/PlayerDataManager.html#PlayerDataManager()"}, {"p":"com.skillw.pouvoir.api.manager.sub","c":"PlayerDataManager","l":"get(String, String)","url":"com/skillw/pouvoir/api/manager/sub/PlayerDataManager.html#get(String,String)"}, {"p":"com.skillw.pouvoir.api.manager.sub","c":"PlayerDataManager","l":"delete(String, String)","url":"com/skillw/pouvoir/api/manager/sub/PlayerDataManager.html#delete(String,String)"}, {"p":"com.skillw.pouvoir.api.manager.sub","c":"PlayerDataManager","l":"set(String, String, String)","url":"com/skillw/pouvoir/api/manager/sub/PlayerDataManager.html#set(String,String,String)"}, {"p":"com.skillw.pouvoir.api.manager.sub","c":"PouPlaceHolderAPI","l":"replace(LivingEntity, String)","url":"com/skillw/pouvoir/api/manager/sub/PouPlaceHolderAPI.html#replace(LivingEntity,String)"}, {"p":"com.skillw.pouvoir.api.manager.sub","c":"PouPlaceHolderAPI","l":"replace(UUID, String)","url":"com/skillw/pouvoir/api/manager/sub/PouPlaceHolderAPI.html#replace(UUID,String)"}, {"p":"com.skillw.pouvoir.api.manager.sub","c":"PouPlaceHolderManager","l":"PouPlaceHolderManager()","url":"com/skillw/pouvoir/api/manager/sub/PouPlaceHolderManager.html#PouPlaceHolderManager()"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"CompileManager","l":"compileFile(File)","url":"com/skillw/pouvoir/api/manager/sub/script/CompileManager.html#compileFile(File)"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"CompileManager","l":"compileFile(String)","url":"com/skillw/pouvoir/api/manager/sub/script/CompileManager.html#compileFile(String)"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptAnnotationManager","l":"ScriptAnnotationManager()","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptAnnotationManager.html#ScriptAnnotationManager()"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptEngineManager","l":"ScriptEngineManager()","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptEngineManager.html#ScriptEngineManager()"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptEngineManager","l":"getEngine(String)","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptEngineManager.html#getEngine(String)"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptManager","l":"ScriptManager()","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#ScriptManager()"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptManager","l":"addDir(File, SubPouvoir)","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#addDir(File,SubPouvoir)"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptManager","l":"hasScript(String)","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#hasScript(String)"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptManager","l":"addScript(File, SubPouvoir)","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#addScript(File,SubPouvoir)"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptManager","l":"invoke(String, String, Map<String, Object>, Object)","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#invoke(String,String,Map,Object)"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptManager","l":"invoke(String, Map<String, Object>)","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#invoke(String,Map)"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptManager","l":"invoke(CompiledScript, String, Map<String, Object>, String, Object)","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#invoke(CompiledScript,String,Map,String,Object)"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptManager","l":"invokePathWithFunction(String, Map<String, Object>, Object)","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#invokePathWithFunction(String,Map,Object)"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptManager","l":"search(String, SubPouvoir)","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#search(String,SubPouvoir)"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptManager","l":"addParams(ScriptEngine, Map<String, Object>)","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#addParams(ScriptEngine,Map)"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptManager","l":"addStatic(ScriptEngine)","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#addStatic(ScriptEngine)"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptManager","l":"evalString(String, String, Map<String, Object>)","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#evalString(String,String,Map)"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptManager","l":"evalString(String, Map<String, Object>)","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#evalString(String,Map)"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptManager","l":"reloadDir(File, SubPouvoir)","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#reloadDir(File,SubPouvoir)"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptManager","l":"relocate(String)","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#relocate(String)"}, {"p":"com.skillw.pouvoir.api.manager.sub.script","c":"ScriptManager","l":"evalStringQuickly(String, String, Map<String, Object>)","url":"com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#evalStringQuickly(String,String,Map)"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"BaseMap()","url":"com/skillw/pouvoir/api/map/BaseMap.html#BaseMap()"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"getSize()","url":"com/skillw/pouvoir/api/map/BaseMap.html#getSize()"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"getEntries()","url":"com/skillw/pouvoir/api/map/BaseMap.html#getEntries()"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"getValues()","url":"com/skillw/pouvoir/api/map/BaseMap.html#getValues()"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"getKeys()","url":"com/skillw/pouvoir/api/map/BaseMap.html#getKeys()"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"register(K, V)","url":"com/skillw/pouvoir/api/map/BaseMap.html#register(K,V)"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"clear()","url":"com/skillw/pouvoir/api/map/BaseMap.html#clear()"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"containsKey(K)","url":"com/skillw/pouvoir/api/map/BaseMap.html#containsKey(K)"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"containsValue(V)","url":"com/skillw/pouvoir/api/map/BaseMap.html#containsValue(V)"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"put(K, V)","url":"com/skillw/pouvoir/api/map/BaseMap.html#put(K,V)"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"get(K)","url":"com/skillw/pouvoir/api/map/BaseMap.html#get(K)"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"putAll(Map<out K, V>)","url":"com/skillw/pouvoir/api/map/BaseMap.html#putAll(Map)"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"set(K, V)","url":"com/skillw/pouvoir/api/map/BaseMap.html#set(K,V)"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"isEmpty()","url":"com/skillw/pouvoir/api/map/BaseMap.html#isEmpty()"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"remove(K)","url":"com/skillw/pouvoir/api/map/BaseMap.html#remove(K)"}, {"p":"com.skillw.pouvoir.api.map","c":"ClazzMap","l":"ClazzMap()","url":"com/skillw/pouvoir/api/map/ClazzMap.html#ClazzMap()"}, {"p":"com.skillw.pouvoir.api.map","c":"ClazzMap","l":"register(Class<out T>)","url":"com/skillw/pouvoir/api/map/ClazzMap.html#register(Class)"}, {"p":"com.skillw.pouvoir.api.map","c":"ClazzMap","l":"removeByValue(Class<out T>)","url":"com/skillw/pouvoir/api/map/ClazzMap.html#removeByValue(Class)"}, {"p":"com.skillw.pouvoir.api.map","c":"ClazzMap","l":"containsValue(Class<out T>)","url":"com/skillw/pouvoir/api/map/ClazzMap.html#containsValue(Class)"}, {"p":"com.skillw.pouvoir.api.map","c":"ClazzMap","l":"getObject(String, Object)","url":"com/skillw/pouvoir/api/map/ClazzMap.html#getObject(String,Object)"}, {"p":"com.skillw.pouvoir.api.map","c":"KeyMap","l":"KeyMap()","url":"com/skillw/pouvoir/api/map/KeyMap.html#KeyMap()"}, {"p":"com.skillw.pouvoir.api.map","c":"KeyMap","l":"register(V)","url":"com/skillw/pouvoir/api/map/KeyMap.html#register(V)"}, {"p":"com.skillw.pouvoir.api.map","c":"KeyMap","l":"removeByValue(V)","url":"com/skillw/pouvoir/api/map/KeyMap.html#removeByValue(V)"}, {"p":"com.skillw.pouvoir.api.map","c":"LinkedKeyMap","l":"LinkedKeyMap()","url":"com/skillw/pouvoir/api/map/LinkedKeyMap.html#LinkedKeyMap()"}, {"p":"com.skillw.pouvoir.api.map","c":"LinkedKeyMap","l":"register(V)","url":"com/skillw/pouvoir/api/map/LinkedKeyMap.html#register(V)"}, {"p":"com.skillw.pouvoir.api.map","c":"LinkedKeyMap","l":"removeByValue(V)","url":"com/skillw/pouvoir/api/map/LinkedKeyMap.html#removeByValue(V)"}, {"p":"com.skillw.pouvoir.api.map","c":"LinkedMap","l":"LinkedMap()","url":"com/skillw/pouvoir/api/map/LinkedMap.html#LinkedMap()"}, {"p":"com.skillw.pouvoir.api.map","c":"LinkedMap","l":"put(K, V)","url":"com/skillw/pouvoir/api/map/LinkedMap.html#put(K,V)"}, {"p":"com.skillw.pouvoir.api.map","c":"LowerClazzMap","l":"LowerClazzMap()","url":"com/skillw/pouvoir/api/map/LowerClazzMap.html#LowerClazzMap()"}, {"p":"com.skillw.pouvoir.api.map","c":"LowerClazzMap","l":"put(String, Class<out T>)","url":"com/skillw/pouvoir/api/map/LowerClazzMap.html#put(String,Class)"}, {"p":"com.skillw.pouvoir.api.map","c":"LowerClazzMap","l":"get(String)","url":"com/skillw/pouvoir/api/map/LowerClazzMap.html#get(String)"}, {"p":"com.skillw.pouvoir.api.map","c":"LowerClazzMap","l":"remove(String)","url":"com/skillw/pouvoir/api/map/LowerClazzMap.html#remove(String)"}, {"p":"com.skillw.pouvoir.api.map","c":"LowerClazzMap","l":"containsKey(String)","url":"com/skillw/pouvoir/api/map/LowerClazzMap.html#containsKey(String)"}, {"p":"com.skillw.pouvoir.api.map","c":"LowerKeyMap","l":"LowerKeyMap()","url":"com/skillw/pouvoir/api/map/LowerKeyMap.html#LowerKeyMap()"}, {"p":"com.skillw.pouvoir.api.map","c":"LowerKeyMap","l":"get(String)","url":"com/skillw/pouvoir/api/map/LowerKeyMap.html#get(String)"}, {"p":"com.skillw.pouvoir.api.map","c":"LowerKeyMap","l":"remove(String)","url":"com/skillw/pouvoir/api/map/LowerKeyMap.html#remove(String)"}, {"p":"com.skillw.pouvoir.api.map","c":"LowerKeyMap","l":"containsKey(String)","url":"com/skillw/pouvoir/api/map/LowerKeyMap.html#containsKey(String)"}, {"p":"com.skillw.pouvoir.api.map","c":"LowerKeyMap","l":"put(String, V)","url":"com/skillw/pouvoir/api/map/LowerKeyMap.html#put(String,V)"}, {"p":"com.skillw.pouvoir.api.map","c":"LowerMap","l":"LowerMap()","url":"com/skillw/pouvoir/api/map/LowerMap.html#LowerMap()"}, {"p":"com.skillw.pouvoir.api.map","c":"LowerMap","l":"get(String)","url":"com/skillw/pouvoir/api/map/LowerMap.html#get(String)"}, {"p":"com.skillw.pouvoir.api.map","c":"LowerMap","l":"containsKey(String)","url":"com/skillw/pouvoir/api/map/LowerMap.html#containsKey(String)"}, {"p":"com.skillw.pouvoir.api.map","c":"LowerMap","l":"put(String, V)","url":"com/skillw/pouvoir/api/map/LowerMap.html#put(String,V)"}, {"p":"com.skillw.pouvoir.api.map","c":"LowerMap","l":"remove(String)","url":"com/skillw/pouvoir/api/map/LowerMap.html#remove(String)"}, {"p":"com.skillw.pouvoir.api.map","c":"MultiExecMap","l":"MultiExecMap()","url":"com/skillw/pouvoir/api/map/MultiExecMap.html#MultiExecMap()"}, {"p":"com.skillw.pouvoir.api.map","c":"MultiExecMap","l":"invoke()","url":"com/skillw/pouvoir/api/map/MultiExecMap.html#invoke()"}, {"p":"com.skillw.pouvoir.api.map","c":"MultiExecMap","l":"run(String)","url":"com/skillw/pouvoir/api/map/MultiExecMap.html#run(String)"}, {"p":"com.skillw.pouvoir.api.map","c":"SingleExecMap","l":"SingleExecMap()","url":"com/skillw/pouvoir/api/map/SingleExecMap.html#SingleExecMap()"}, {"p":"com.skillw.pouvoir.api.map","c":"SingleExecMap","l":"invoke()","url":"com/skillw/pouvoir/api/map/SingleExecMap.html#invoke()"}, {"p":"com.skillw.pouvoir.api.map","c":"SingleExecMap","l":"run(String)","url":"com/skillw/pouvoir/api/map/SingleExecMap.html#run(String)"}, {"p":"com.skillw.pouvoir.api.object","c":"BaseObject","l":"compareTo(BaseObject)","url":"com/skillw/pouvoir/api/object/BaseObject.html#compareTo(BaseObject)"}, {"p":"com.skillw.pouvoir.api.object","c":"BaseObject","l":"getKey()","url":"com/skillw/pouvoir/api/object/BaseObject.html#getKey()"}, {"p":"com.skillw.pouvoir.api.object","c":"BaseObject","l":"getPriority()","url":"com/skillw/pouvoir/api/object/BaseObject.html#getPriority()"}, {"p":"com.skillw.pouvoir.api.placeholder","c":"PouPlaceHolder","l":"PouPlaceHolder(String, SubPouvoir)","url":"com/skillw/pouvoir/api/placeholder/PouPlaceHolder.html#PouPlaceHolder(String,SubPouvoir)"}, {"p":"com.skillw.pouvoir.api.placeholder","c":"PouPlaceHolder","l":"getKey()","url":"com/skillw/pouvoir/api/placeholder/PouPlaceHolder.html#getKey()"}, {"p":"com.skillw.pouvoir.api.placeholder","c":"PouPlaceHolder","l":"getSubPouvoir()","url":"com/skillw/pouvoir/api/placeholder/PouPlaceHolder.html#getSubPouvoir()"}, {"p":"com.skillw.pouvoir.api.placeholder","c":"PouPlaceHolder","l":"onPlaceHolderRequest(String, LivingEntity, String)","url":"com/skillw/pouvoir/api/placeholder/PouPlaceHolder.html#onPlaceHolderRequest(String,LivingEntity,String)"}, {"p":"com.skillw.pouvoir.api.placeholder","c":"PouPlaceHolder","l":"register()","url":"com/skillw/pouvoir/api/placeholder/PouPlaceHolder.html#register()"}, {"p":"com.skillw.pouvoir.api.plugin","c":"SubPouvoir","l":"getConfigs()","url":"com/skillw/pouvoir/api/plugin/SubPouvoir.html#getConfigs()"}, {"p":"com.skillw.pouvoir.api.plugin","c":"SubPouvoir","l":"load()","url":"com/skillw/pouvoir/api/plugin/SubPouvoir.html#load()"}, {"p":"com.skillw.pouvoir.api.plugin","c":"SubPouvoir","l":"enable()","url":"com/skillw/pouvoir/api/plugin/SubPouvoir.html#enable()"}, {"p":"com.skillw.pouvoir.api.plugin","c":"SubPouvoir","l":"active()","url":"com/skillw/pouvoir/api/plugin/SubPouvoir.html#active()"}, {"p":"com.skillw.pouvoir.api.plugin","c":"SubPouvoir","l":"disable()","url":"com/skillw/pouvoir/api/plugin/SubPouvoir.html#disable()"}, {"p":"com.skillw.pouvoir.api.plugin","c":"SubPouvoir","l":"register()","url":"com/skillw/pouvoir/api/plugin/SubPouvoir.html#register()"}, {"p":"com.skillw.pouvoir.api.plugin","c":"SubPouvoir","l":"reload()","url":"com/skillw/pouvoir/api/plugin/SubPouvoir.html#reload()"}, {"p":"com.skillw.pouvoir.api.plugin","c":"SubPouvoir","l":"getManagerData()","url":"com/skillw/pouvoir/api/plugin/SubPouvoir.html#getManagerData()"}, {"p":"com.skillw.pouvoir.api.plugin","c":"SubPouvoir","l":"setManagerData(ManagerData)","url":"com/skillw/pouvoir/api/plugin/SubPouvoir.html#setManagerData(ManagerData)"}, {"p":"com.skillw.pouvoir.api.plugin","c":"SubPouvoir","l":"getPoolExecutor()","url":"com/skillw/pouvoir/api/plugin/SubPouvoir.html#getPoolExecutor()"}, {"p":"com.skillw.pouvoir.api.plugin","c":"SubPouvoir","l":"getPlugin()","url":"com/skillw/pouvoir/api/plugin/SubPouvoir.html#getPlugin()"}, {"p":"com.skillw.pouvoir.api.plugin","c":"TotalManager","l":"remove(Plugin)","url":"com/skillw/pouvoir/api/plugin/TotalManager.html#remove(Plugin)"}, {"p":"com.skillw.pouvoir.api.plugin","c":"TotalManager","l":"isSubPouvoir(Plugin)","url":"com/skillw/pouvoir/api/plugin/TotalManager.html#isSubPouvoir(Plugin)"}, {"p":"com.skillw.pouvoir.api.plugin","c":"TotalManager","l":"forEachClass(Consumer<Class<?>>)","url":"com/skillw/pouvoir/api/plugin/TotalManager.html#forEachClass(Consumer)"}, {"p":"com.skillw.pouvoir.api.plugin","c":"TotalManager","l":"init(Plugin)","url":"com/skillw/pouvoir/api/plugin/TotalManager.html#init(Plugin)"}, {"p":"com.skillw.pouvoir.api.plugin","c":"TotalManager","l":"onLoading()","url":"com/skillw/pouvoir/api/plugin/TotalManager.html#onLoading()"}, {"p":"com.skillw.pouvoir.api.plugin","c":"TotalManager","l":"register(Plugin)","url":"com/skillw/pouvoir/api/plugin/TotalManager.html#register(Plugin)"}, {"p":"com.skillw.pouvoir.api.script","c":"CompiledFile","l":"CompiledFile(File, SubPouvoir)","url":"com/skillw/pouvoir/api/script/CompiledFile.html#CompiledFile(File,SubPouvoir)"}, {"p":"com.skillw.pouvoir.api.script","c":"CompiledFile","l":"getKey()","url":"com/skillw/pouvoir/api/script/CompiledFile.html#getKey()"}, {"p":"com.skillw.pouvoir.api.script","c":"CompiledFile","l":"getAnnotations()","url":"com/skillw/pouvoir/api/script/CompiledFile.html#getAnnotations()"}, {"p":"com.skillw.pouvoir.api.script","c":"CompiledFile","l":"getFunctions()","url":"com/skillw/pouvoir/api/script/CompiledFile.html#getFunctions()"}, {"p":"com.skillw.pouvoir.api.script","c":"CompiledFile","l":"getFile()","url":"com/skillw/pouvoir/api/script/CompiledFile.html#getFile()"}, {"p":"com.skillw.pouvoir.api.script","c":"CompiledFile","l":"getSubPouvoir()","url":"com/skillw/pouvoir/api/script/CompiledFile.html#getSubPouvoir()"}, {"p":"com.skillw.pouvoir.api.script","c":"CompiledFile","l":"canCompiled()","url":"com/skillw/pouvoir/api/script/CompiledFile.html#canCompiled()"}, {"p":"com.skillw.pouvoir.api.script","c":"CompiledFile","l":"invoke(String, Map<String, Object>, Object)","url":"com/skillw/pouvoir/api/script/CompiledFile.html#invoke(String,Map,Object)"}, {"p":"com.skillw.pouvoir.api.script","c":"CompiledFile","l":"run(String)","url":"com/skillw/pouvoir/api/script/CompiledFile.html#run(String)"}, {"p":"com.skillw.pouvoir.api.script","c":"CompiledFile","l":"reload()","url":"com/skillw/pouvoir/api/script/CompiledFile.html#reload()"}, {"p":"com.skillw.pouvoir.api.script","c":"CompiledFile","l":"register()","url":"com/skillw/pouvoir/api/script/CompiledFile.html#register()"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptGroup","l":"ScriptGroup(Pair<String, String>)","url":"com/skillw/pouvoir/api/script/ScriptGroup.html#ScriptGroup(Pair)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptGroup","l":"ScriptGroup(Map<String, String>)","url":"com/skillw/pouvoir/api/script/ScriptGroup.html#ScriptGroup(Map)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptGroup","l":"ScriptGroup()","url":"com/skillw/pouvoir/api/script/ScriptGroup.html#ScriptGroup()"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptGroup","l":"invoke(String, Map<String, Object>)","url":"com/skillw/pouvoir/api/script/ScriptGroup.html#invoke(String,Map)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptGroup","l":"serialize()","url":"com/skillw/pouvoir/api/script/ScriptGroup.html#serialize()"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"runTask(Runnable)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#runTask(Runnable)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"runTaskAsync(Runnable)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#runTaskAsync(Runnable)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"runTaskLater(Runnable, Long)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#runTaskLater(Runnable,Long)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"runTaskAsyncLater(Runnable, Long)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#runTaskAsyncLater(Runnable,Long)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"runTaskTimer(Runnable, Long, Long)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#runTaskTimer(Runnable,Long,Long)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"runTaskAsyncTimer(Runnable, Long, Long)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#runTaskAsyncTimer(Runnable,Long,Long)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"placeHolder(String, String, String, String)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#placeHolder(String,String,String,String)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"addListener(String, String, String, Boolean, Consumer<Object>)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#addListener(String,String,String,Boolean,Consumer)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"addListener(String, Class<?>, EventPriority, Boolean, Consumer<Object>)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#addListener(String,Class,EventPriority,Boolean,Consumer)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"removeListener(String)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#removeListener(String)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"isPluginEnabled(String)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#isPluginEnabled(String)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"getPlugin(String)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#getPlugin(String)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"static(String)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#static(String)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"staticClass(String)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#staticClass(String)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"command(String)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#command(String)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"regCommand(PluginCommand)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#regCommand(PluginCommand)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"unRegCommand(String)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#unRegCommand(String)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"runTaskAsyncPool(Runnable)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#runTaskAsyncPool(Runnable)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"runTaskAsyncLaterPool(Runnable, Long)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#runTaskAsyncLaterPool(Runnable,Long)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"runTaskAsyncTimerPool(Runnable, Long, Long)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#runTaskAsyncTimerPool(Runnable,Long,Long)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"getItemName(ItemStack, Player)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#getItemName(ItemStack,Player)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"getItemName(ItemStack)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#getItemName(ItemStack)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"getEnchantName(Enchantment, Player)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#getEnchantName(Enchantment,Player)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"getEnchantName(Enchantment)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#getEnchantName(Enchantment)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"getPotionEffectName(PotionEffectType, Player)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#getPotionEffectName(PotionEffectType,Player)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"getPotionEffectName(PotionEffectType)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#getPotionEffectName(PotionEffectType)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"buildInventoryHolder(Function<Unit, Inventory>)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#buildInventoryHolder(Function)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"itemNBTMap(ItemStack, List<String>)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#itemNBTMap(ItemStack,List)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"itemNBTMap(ItemStack)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#itemNBTMap(ItemStack)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"getContainer(Player)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#getContainer(Player)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"get(String, String)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#get(String,String)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"get(Player, String)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#get(Player,String)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"delete(String, String)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#delete(String,String)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"delete(Player, String)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#delete(Player,String)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"set(String, String, String)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#set(String,String,String)"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"set(Player, String, String)","url":"com/skillw/pouvoir/api/script/ScriptTool.html#set(Player,String,String)"}, {"p":"com.skillw.pouvoir.api.script.annotation","c":"ScriptAnnotation","l":"ScriptAnnotation(String, Consumer<ScriptAnnotationData>, Boolean)","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotation.html#ScriptAnnotation(String,Consumer,Boolean)"}, {"p":"com.skillw.pouvoir.api.script.annotation","c":"ScriptAnnotation","l":"getKey()","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotation.html#getKey()"}, {"p":"com.skillw.pouvoir.api.script.annotation","c":"ScriptAnnotation","l":"getAwakeWhenEnable()","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotation.html#getAwakeWhenEnable()"}, {"p":"com.skillw.pouvoir.api.script.annotation","c":"ScriptAnnotation","l":"register()","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotation.html#register()"}, {"p":"com.skillw.pouvoir.api.script.annotation","c":"ScriptAnnotation","l":"handle(ScriptAnnotationData)","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotation.html#handle(ScriptAnnotationData)"}, {"p":"com.skillw.pouvoir.api.script.annotation","c":"ScriptAnnotationData","l":"ScriptAnnotationData(String, CompiledFile, String, String)","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#ScriptAnnotationData(String,CompiledFile,String,String)"}, {"p":"com.skillw.pouvoir.api.script.annotation","c":"ScriptAnnotationData","l":"getAnnotation()","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#getAnnotation()"}, {"p":"com.skillw.pouvoir.api.script.annotation","c":"ScriptAnnotationData","l":"getCompiledFile()","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#getCompiledFile()"}, {"p":"com.skillw.pouvoir.api.script.annotation","c":"ScriptAnnotationData","l":"getFunction()","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#getFunction()"}, {"p":"com.skillw.pouvoir.api.script.annotation","c":"ScriptAnnotationData","l":"getArgs()","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#getArgs()"}, {"p":"com.skillw.pouvoir.api.script.engine","c":"PouScriptEngine","l":"PouScriptEngine(String, ScriptEngine, Function1<Pair<CompiledFile, List<String>>, Map<String, LinkedList<ScriptAnnotationData>>>, String)","url":"com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#PouScriptEngine(String,ScriptEngine,Function1,String)"}, {"p":"com.skillw.pouvoir.api.script.engine","c":"PouScriptEngine","l":"getScriptEngine()","url":"com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#getScriptEngine()"}, {"p":"com.skillw.pouvoir.api.script.engine","c":"PouScriptEngine","l":"getKey()","url":"com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#getKey()"}, {"p":"com.skillw.pouvoir.api.script.engine","c":"PouScriptEngine","l":"getSuffixes()","url":"com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#getSuffixes()"}, {"p":"com.skillw.pouvoir.api.script.engine","c":"PouScriptEngine","l":"getAnnotationData(Pair<CompiledFile, List<String>>)","url":"com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#getAnnotationData(Pair)"}, {"p":"com.skillw.pouvoir.api.script.engine","c":"PouScriptEngine","l":"register()","url":"com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#register()"}, {"p":"com.skillw.pouvoir.api.script.engine","c":"PouScriptEngine","l":"addFunctionStructure(String, String)","url":"com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#addFunctionStructure(String,String)"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"BasicThreadFactory.Builder()","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#BasicThreadFactory.Builder()"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"getWrappedFactory()","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#getWrappedFactory()"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"setWrappedFactory(ThreadFactory)","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#setWrappedFactory(ThreadFactory)"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"getExceptionHandler()","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#getExceptionHandler()"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"setExceptionHandler(Thread.UncaughtExceptionHandler)","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#setExceptionHandler(Thread.UncaughtExceptionHandler)"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"getNamingPattern()","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#getNamingPattern()"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"setNamingPattern(String)","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#setNamingPattern(String)"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"getPriority()","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#getPriority()"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"setPriority(Integer)","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#setPriority(Integer)"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"getDaemonFlag()","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#getDaemonFlag()"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"setDaemonFlag(Boolean)","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#setDaemonFlag(Boolean)"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"wrappedFactory(ThreadFactory)","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#wrappedFactory(ThreadFactory)"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"namingPattern(String)","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#namingPattern(String)"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"daemon(Boolean)","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#daemon(Boolean)"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"priority(Integer)","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#priority(Integer)"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"uncaughtExceptionHandler(Thread.UncaughtExceptionHandler)","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#uncaughtExceptionHandler(Thread.UncaughtExceptionHandler)"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"reset()","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#reset()"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"build()","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#build()"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory","l":"BasicThreadFactory(BasicThreadFactory.Builder)","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.html#BasicThreadFactory(BasicThreadFactory.Builder)"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory","l":"getWrappedFactory()","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.html#getWrappedFactory()"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory","l":"setWrappedFactory(ThreadFactory)","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.html#setWrappedFactory(ThreadFactory)"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory","l":"getUncaughtExceptionHandler()","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.html#getUncaughtExceptionHandler()"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory","l":"getNamingPattern()","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.html#getNamingPattern()"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory","l":"getPriority()","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.html#getPriority()"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory","l":"getDaemonFlag()","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.html#getDaemonFlag()"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory","l":"getThreadCount()","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.html#getThreadCount()"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory","l":"newThread(Runnable)","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.html#newThread(Runnable)"}, {"p":"com.skillw.pouvoir.api.thread","c":"Builder","l":"build()","url":"com/skillw/pouvoir/api/thread/Builder.html#build()"}, {"p":"com.skillw.pouvoir.internal.command","c":"PouvoirCommand","l":"sendMessage(Array<String>, CommandSender)","url":"com/skillw/pouvoir/internal/command/PouvoirCommand.html#sendMessage(Array,CommandSender)"}, {"p":"com.skillw.pouvoir.internal.command","c":"PouvoirCommand","l":"getMain()","url":"com/skillw/pouvoir/internal/command/PouvoirCommand.html#getMain()"}, {"p":"com.skillw.pouvoir.internal.command","c":"PouvoirCommand","l":"getRun()","url":"com/skillw/pouvoir/internal/command/PouvoirCommand.html#getRun()"}, {"p":"com.skillw.pouvoir.internal.command","c":"PouvoirCommand","l":"getReload()","url":"com/skillw/pouvoir/internal/command/PouvoirCommand.html#getReload()"}, {"p":"com.skillw.pouvoir.internal.command","c":"PouvoirCommand","l":"getHelp()","url":"com/skillw/pouvoir/internal/command/PouvoirCommand.html#getHelp()"}, {"p":"com.skillw.pouvoir.internal.engine","c":"JavaScriptEngine","l":"addFunctionStructure(String, String)","url":"com/skillw/pouvoir/internal/engine/JavaScriptEngine.html#addFunctionStructure(String,String)"}, {"p":"com.skillw.pouvoir.internal.engine","c":"GroovyScriptEngine","l":"addFunctionStructure(String, String)","url":"com/skillw/pouvoir/internal/engine/GroovyScriptEngine.html#addFunctionStructure(String,String)"}, {"p":"com.skillw.pouvoir.internal.handle","c":"DefaultableHandle","l":"inject(Class<?>, Plugin)","url":"com/skillw/pouvoir/internal/handle/DefaultableHandle.html#inject(Class,Plugin)"}, {"p":"com.skillw.pouvoir.internal.handle","c":"PouEngineHandle","l":"inject(Class<?>)","url":"com/skillw/pouvoir/internal/handle/PouEngineHandle.html#inject(Class)"}, {"p":"com.skillw.pouvoir.internal.handle","c":"PouFunctionHandle","l":"inject(Class<?>)","url":"com/skillw/pouvoir/internal/handle/PouFunctionHandle.html#inject(Class)"}, {"p":"com.skillw.pouvoir.internal.handle","c":"PouPlaceHolderHandle","l":"inject(Class<?>)","url":"com/skillw/pouvoir/internal/handle/PouPlaceHolderHandle.html#inject(Class)"}, {"p":"com.skillw.pouvoir.internal.handle","c":"ScriptAnnotationHandler","l":"inject(Class<?>)","url":"com/skillw/pouvoir/internal/handle/ScriptAnnotationHandler.html#inject(Class)"}, {"p":"com.skillw.pouvoir.internal.handle","c":"PManagerHandle","l":"isPManagerField(Field)","url":"com/skillw/pouvoir/internal/handle/PManagerHandle.html#isPManagerField(Field)"}, {"p":"com.skillw.pouvoir.internal.handle","c":"PManagerHandle","l":"getImpl(Field)","url":"com/skillw/pouvoir/internal/handle/PManagerHandle.html#getImpl(Field)"}, {"p":"com.skillw.pouvoir.internal.handle","c":"PManagerHandle","l":"getParams(Field, Object)","url":"com/skillw/pouvoir/internal/handle/PManagerHandle.html#getParams(Field,Object)"}, {"p":"com.skillw.pouvoir.internal.handle","c":"PManagerHandle","l":"getPManagers(SubPouvoir)","url":"com/skillw/pouvoir/internal/handle/PManagerHandle.html#getPManagers(SubPouvoir)"}, {"p":"com.skillw.pouvoir.internal.handle","c":"PManagerHandle","l":"violation(Object, Field)","url":"com/skillw/pouvoir/internal/handle/PManagerHandle.html#violation(Object,Field)"}, {"p":"com.skillw.pouvoir.internal.handle","c":"SubPouvoirHandle","l":"inject(Class<?>, Plugin)","url":"com/skillw/pouvoir/internal/handle/SubPouvoirHandle.html#inject(Class,Plugin)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"Hologram","l":"Hologram(Location, List<String>, Player)","url":"com/skillw/pouvoir/internal/hologram/Hologram.html#Hologram(Location,List,Player)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"Hologram","l":"Hologram(Location, List<String>, Set<Player>)","url":"com/skillw/pouvoir/internal/hologram/Hologram.html#Hologram(Location,List,Set)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"Hologram","l":"Hologram(Location, List<String>)","url":"com/skillw/pouvoir/internal/hologram/Hologram.html#Hologram(Location,List)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"Hologram","l":"getViewers()","url":"com/skillw/pouvoir/internal/hologram/Hologram.html#getViewers()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"Hologram","l":"getLocation()","url":"com/skillw/pouvoir/internal/hologram/Hologram.html#getLocation()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"Hologram","l":"setLocation(Location)","url":"com/skillw/pouvoir/internal/hologram/Hologram.html#setLocation(Location)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"Hologram","l":"teleport(Location)","url":"com/skillw/pouvoir/internal/hologram/Hologram.html#teleport(Location)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"Hologram","l":"update(List<String>)","url":"com/skillw/pouvoir/internal/hologram/Hologram.html#update(List)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"Hologram","l":"delete()","url":"com/skillw/pouvoir/internal/hologram/Hologram.html#delete()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"Hologram","l":"destroy()","url":"com/skillw/pouvoir/internal/hologram/Hologram.html#destroy()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"HologramLine","l":"HologramLine(Location, String, Player)","url":"com/skillw/pouvoir/internal/hologram/HologramLine.html#HologramLine(Location,String,Player)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"HologramLine","l":"HologramLine(Location, String, Set<Player>)","url":"com/skillw/pouvoir/internal/hologram/HologramLine.html#HologramLine(Location,String,Set)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"HologramLine","l":"HologramLine(Location, String)","url":"com/skillw/pouvoir/internal/hologram/HologramLine.html#HologramLine(Location,String)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"HologramLine","l":"getViewers()","url":"com/skillw/pouvoir/internal/hologram/HologramLine.html#getViewers()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"HologramLine","l":"update(String)","url":"com/skillw/pouvoir/internal/hologram/HologramLine.html#update(String)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"HologramLine","l":"teleport(Location)","url":"com/skillw/pouvoir/internal/hologram/HologramLine.html#teleport(Location)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"HologramLine","l":"delete()","url":"com/skillw/pouvoir/internal/hologram/HologramLine.html#delete()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"HologramLine","l":"destroy()","url":"com/skillw/pouvoir/internal/hologram/HologramLine.html#destroy()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"PouArmorStand(Integer, Location, Consumer<PouArmorStand>)","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#PouArmorStand(Integer,Location,Consumer)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"getIsDeleted()","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#getIsDeleted()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"setIsDeleted(Boolean)","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setIsDeleted(Boolean)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"getUniqueId()","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#getUniqueId()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"getNormalizeUniqueId()","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#getNormalizeUniqueId()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"getViewers()","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#getViewers()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"getId()","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#getId()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"getLocation()","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#getLocation()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"setLocation(Location)","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setLocation(Location)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"setSmall(Boolean)","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setSmall(Boolean)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"isSmall()","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#isSmall()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"setGravity(Boolean)","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setGravity(Boolean)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"isGravity()","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#isGravity()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"setArms(Boolean)","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setArms(Boolean)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"hasArms()","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#hasArms()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"setBasePlate(Boolean)","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setBasePlate(Boolean)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"hasBasePlate()","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#hasBasePlate()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"setMarker(Boolean)","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setMarker(Boolean)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"isMarker()","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#isMarker()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"setInvisible(Boolean)","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setInvisible(Boolean)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"getCustomName()","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#getCustomName()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"setCustomName(String)","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setCustomName(String)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"setCustomNameVisible(Boolean)","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setCustomNameVisible(Boolean)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"delete()","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#delete()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"forViewers(Consumer<Player>)","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#forViewers(Consumer)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"visible(Player, Boolean)","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#visible(Player,Boolean)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"spawn(Player)","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#spawn(Player)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"destroy(Player)","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#destroy(Player)"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"destroy()","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#destroy()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"respawn()","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#respawn()"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"teleport(Location)","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#teleport(Location)"}, {"p":"com.skillw.pouvoir.internal.hook","c":"PlaceholderAPIHooker","l":"onPlaceholderRequest(Player, String)","url":"com/skillw/pouvoir/internal/hook/PlaceholderAPIHooker.html#onPlaceholderRequest(Player,String)"}, {"p":"com.skillw.pouvoir.internal.hook","c":"PlaceholderAPIHooker","l":"getIdentifier()","url":"com/skillw/pouvoir/internal/hook/PlaceholderAPIHooker.html#getIdentifier()"}, {"p":"com.skillw.pouvoir.internal.hook","c":"PouvoirHooker","l":"onPlaceHolderRequest(String, LivingEntity, String)","url":"com/skillw/pouvoir/internal/hook/PouvoirHooker.html#onPlaceHolderRequest(String,LivingEntity,String)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"CompileManagerImpl","l":"compileFile(File)","url":"com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#compileFile(File)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"CompileManagerImpl","l":"compileFile(String)","url":"com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#compileFile(String)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"CompileManagerImpl","l":"getKey()","url":"com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#getKey()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"CompileManagerImpl","l":"getPriority()","url":"com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#getPriority()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"CompileManagerImpl","l":"getSubPouvoir()","url":"com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#getSubPouvoir()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"FunctionManagerImpl","l":"register(PouFunction)","url":"com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#register(PouFunction)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"FunctionManagerImpl","l":"register(String, PouFunction)","url":"com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#register(String,PouFunction)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"FunctionManagerImpl","l":"onInit()","url":"com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#onInit()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"FunctionManagerImpl","l":"onLoad()","url":"com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#onLoad()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"FunctionManagerImpl","l":"analysis(String)","url":"com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#analysis(String)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"FunctionManagerImpl","l":"onReload()","url":"com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#onReload()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"FunctionManagerImpl","l":"getKey()","url":"com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#getKey()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"FunctionManagerImpl","l":"getPriority()","url":"com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#getPriority()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"FunctionManagerImpl","l":"getSubPouvoir()","url":"com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#getSubPouvoir()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ListenerManagerImpl","l":"remove(String)","url":"com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#remove(String)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ListenerManagerImpl","l":"onReload()","url":"com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#onReload()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ListenerManagerImpl","l":"getKey()","url":"com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#getKey()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ListenerManagerImpl","l":"getPriority()","url":"com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#getPriority()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ListenerManagerImpl","l":"getSubPouvoir()","url":"com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#getSubPouvoir()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PlayerDataManagerImpl","l":"onEnable()","url":"com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#onEnable()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PlayerDataManagerImpl","l":"get(String, String)","url":"com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#get(String,String)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PlayerDataManagerImpl","l":"delete(String, String)","url":"com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#delete(String,String)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PlayerDataManagerImpl","l":"set(String, String, String)","url":"com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#set(String,String,String)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PlayerDataManagerImpl","l":"getKey()","url":"com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#getKey()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PlayerDataManagerImpl","l":"getPriority()","url":"com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#getPriority()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PlayerDataManagerImpl","l":"getSubPouvoir()","url":"com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#getSubPouvoir()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderAPIImpl","l":"replace(LivingEntity, String)","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#replace(LivingEntity,String)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderAPIImpl","l":"replace(UUID, String)","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#replace(UUID,String)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderAPIImpl","l":"getKey()","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#getKey()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderAPIImpl","l":"getPriority()","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#getPriority()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderAPIImpl","l":"getSubPouvoir()","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#getSubPouvoir()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderManagerImpl","l":"onEnable()","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#onEnable()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderManagerImpl","l":"register(String, PouPlaceHolder)","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#register(String,PouPlaceHolder)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderManagerImpl","l":"getKey()","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#getKey()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderManagerImpl","l":"getPriority()","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#getPriority()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderManagerImpl","l":"getSubPouvoir()","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#getSubPouvoir()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouvoirConfig","l":"reloadStaticClasses()","url":"com/skillw/pouvoir/internal/manager/PouvoirConfig.html#reloadStaticClasses()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouvoirConfig","l":"onInit()","url":"com/skillw/pouvoir/internal/manager/PouvoirConfig.html#onInit()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouvoirConfig","l":"onEnable()","url":"com/skillw/pouvoir/internal/manager/PouvoirConfig.html#onEnable()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouvoirConfig","l":"defaultOptions()","url":"com/skillw/pouvoir/internal/manager/PouvoirConfig.html#defaultOptions()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouvoirConfig","l":"getPriority()","url":"com/skillw/pouvoir/internal/manager/PouvoirConfig.html#getPriority()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouvoirConfig","l":"getStaticClasses()","url":"com/skillw/pouvoir/internal/manager/PouvoirConfig.html#getStaticClasses()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouvoirConfig","l":"getIsCheckVersion()","url":"com/skillw/pouvoir/internal/manager/PouvoirConfig.html#getIsCheckVersion()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouvoirConfig","l":"setIsCheckVersion(Boolean)","url":"com/skillw/pouvoir/internal/manager/PouvoirConfig.html#setIsCheckVersion(Boolean)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouvoirConfig","l":"getNumberFormat()","url":"com/skillw/pouvoir/internal/manager/PouvoirConfig.html#getNumberFormat()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouvoirConfig","l":"getScale()","url":"com/skillw/pouvoir/internal/manager/PouvoirConfig.html#getScale()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptAnnotationManagerImpl","l":"onInit()","url":"com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#onInit()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptAnnotationManagerImpl","l":"onEnable()","url":"com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#onEnable()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptAnnotationManagerImpl","l":"getKey()","url":"com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#getKey()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptAnnotationManagerImpl","l":"getPriority()","url":"com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#getPriority()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptAnnotationManagerImpl","l":"getSubPouvoir()","url":"com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#getSubPouvoir()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptEngineManagerImpl","l":"register(String, PouScriptEngine)","url":"com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#register(String,PouScriptEngine)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptEngineManagerImpl","l":"getEngine(String)","url":"com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#getEngine(String)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptEngineManagerImpl","l":"onInit()","url":"com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#onInit()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptEngineManagerImpl","l":"getKey()","url":"com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#getKey()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptEngineManagerImpl","l":"getPriority()","url":"com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#getPriority()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptEngineManagerImpl","l":"getSubPouvoir()","url":"com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#getSubPouvoir()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"addDir(File, SubPouvoir)","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#addDir(File,SubPouvoir)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"reloadDir(File, SubPouvoir)","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#reloadDir(File,SubPouvoir)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"evalStringQuickly(String, String, Map<String, Object>)","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#evalStringQuickly(String,String,Map)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"evalString(String, String, Map<String, Object>)","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#evalString(String,String,Map)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"evalString(String, Map<String, Object>)","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#evalString(String,Map)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"addStatic(ScriptEngine)","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#addStatic(ScriptEngine)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"addParams(ScriptEngine, Map<String, Object>)","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#addParams(ScriptEngine,Map)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"invoke(CompiledScript, String, Map<String, Object>, String, Object)","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#invoke(CompiledScript,String,Map,String,Object)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"invoke(String, String, Map<String, Object>, Object)","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#invoke(String,String,Map,Object)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"invoke(String, Map<String, Object>)","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#invoke(String,Map)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"hasScript(String)","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#hasScript(String)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"onInit()","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#onInit()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"addScript(File, SubPouvoir)","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#addScript(File,SubPouvoir)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"invokePathWithFunction(String, Map<String, Object>, Object)","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#invokePathWithFunction(String,Map,Object)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"search(String, SubPouvoir)","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#search(String,SubPouvoir)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"get(String)","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#get(String)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"onReload()","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#onReload()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"onDisable()","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#onDisable()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"relocate(String)","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#relocate(String)"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"getKey()","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#getKey()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"getPriority()","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#getPriority()"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"getSubPouvoir()","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#getSubPouvoir()"}, {"p":"com.skillw.pouvoir.internal.raytrace","c":"RayTrace","l":"RayTrace(LivingEntity)","url":"com/skillw/pouvoir/internal/raytrace/RayTrace.html#RayTrace(LivingEntity)"}, {"p":"com.skillw.pouvoir.internal.raytrace","c":"RayTrace","l":"RayTrace(Vector, Vector)","url":"com/skillw/pouvoir/internal/raytrace/RayTrace.html#RayTrace(Vector,Vector)"}, {"p":"com.skillw.pouvoir.internal.raytrace","c":"RayTrace","l":"getOrigin()","url":"com/skillw/pouvoir/internal/raytrace/RayTrace.html#getOrigin()"}, {"p":"com.skillw.pouvoir.internal.raytrace","c":"RayTrace","l":"getDirection()","url":"com/skillw/pouvoir/internal/raytrace/RayTrace.html#getDirection()"}, {"p":"com.skillw.pouvoir.internal.raytrace","c":"RayTrace","l":"traces(Double, Double)","url":"com/skillw/pouvoir/internal/raytrace/RayTrace.html#traces(Double,Double)"}, {"p":"com.skillw.pouvoir.internal.raytrace","c":"RayTrace","l":"distance(Double)","url":"com/skillw/pouvoir/internal/raytrace/RayTrace.html#distance(Double)"}, {"p":"com.skillw.pouvoir.internal.script","c":"PouClassFilter","l":"exposeToScripts(String)","url":"com/skillw/pouvoir/internal/script/PouClassFilter.html#exposeToScripts(String)"}, {"p":"com.skillw.pouvoir.util","c":"CalculationUtils","l":"result(String)","url":"com/skillw/pouvoir/util/CalculationUtils.html#result(String)"}, {"p":"com.skillw.pouvoir.util","c":"CalculationUtils","l":"result(String, LivingEntity, Map<String, String>)","url":"com/skillw/pouvoir/util/CalculationUtils.html#result(String,LivingEntity,Map)"}, {"p":"com.skillw.pouvoir.util","c":"CalculationUtils","l":"resultDouble(String, LivingEntity, Map<String, String>)","url":"com/skillw/pouvoir/util/CalculationUtils.html#resultDouble(String,LivingEntity,Map)"}, {"p":"com.skillw.pouvoir.util","c":"CalculationUtils","l":"getResultDouble(String, LivingEntity, Map<String, String>)","url":"com/skillw/pouvoir/util/CalculationUtils.html#getResultDouble(String,LivingEntity,Map)"}, {"p":"com.skillw.pouvoir.util","c":"CalculationUtils","l":"getResultDouble(String)","url":"com/skillw/pouvoir/util/CalculationUtils.html#getResultDouble(String)"}, {"p":"com.skillw.pouvoir.util","c":"CalculationUtils","l":"getResult(String)","url":"com/skillw/pouvoir/util/CalculationUtils.html#getResult(String)"}, {"p":"com.skillw.pouvoir.util","c":"CalculationUtils","l":"getResult(String, LivingEntity, Map<String, String>)","url":"com/skillw/pouvoir/util/CalculationUtils.html#getResult(String,LivingEntity,Map)"}, {"p":"com.skillw.pouvoir.util","c":"ClassUtils","l":"getClass(String)","url":"com/skillw/pouvoir/util/ClassUtils.html#getClass(String)"}, {"p":"com.skillw.pouvoir.util","c":"ClassUtils","l":"staticClass(String)","url":"com/skillw/pouvoir/util/ClassUtils.html#staticClass(String)"}, {"p":"com.skillw.pouvoir.util","c":"ClassUtils","l":"isObj(Class<T>)","url":"com/skillw/pouvoir/util/ClassUtils.html#isObj(Class)"}, {"p":"com.skillw.pouvoir.util","c":"ClassUtils","l":"getStaticClass()","url":"com/skillw/pouvoir/util/ClassUtils.html#getStaticClass()"}, {"p":"com.skillw.pouvoir.util","c":"ColorUtils","l":"color(String)","url":"com/skillw/pouvoir/util/ColorUtils.html#color(String)"}, {"p":"com.skillw.pouvoir.util","c":"ColorUtils","l":"color(List<String>)","url":"com/skillw/pouvoir/util/ColorUtils.html#color(List)"}, {"p":"com.skillw.pouvoir.util","c":"ColorUtils","l":"unColor(String)","url":"com/skillw/pouvoir/util/ColorUtils.html#unColor(String)"}, {"p":"com.skillw.pouvoir.util","c":"ColorUtils","l":"unColor(List<String>)","url":"com/skillw/pouvoir/util/ColorUtils.html#unColor(List)"}, {"p":"com.skillw.pouvoir.util","c":"ColorUtils","l":"decolored(String)","url":"com/skillw/pouvoir/util/ColorUtils.html#decolored(String)"}, {"p":"com.skillw.pouvoir.util","c":"ColorUtils","l":"decolored(List<String>)","url":"com/skillw/pouvoir/util/ColorUtils.html#decolored(List)"}, {"p":"com.skillw.pouvoir.util","c":"EDCodeUtils","l":"enBase64(Object)","url":"com/skillw/pouvoir/util/EDCodeUtils.html#enBase64(Object)"}, {"p":"com.skillw.pouvoir.util","c":"EDCodeUtils","l":"deBase64(String, Class<T>)","url":"com/skillw/pouvoir/util/EDCodeUtils.html#deBase64(String,Class)"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"getDisplayName(LivingEntity)","url":"com/skillw/pouvoir/util/EntityUtils.html#getDisplayName(LivingEntity)"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"getName(LivingEntity)","url":"com/skillw/pouvoir/util/EntityUtils.html#getName(LivingEntity)"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"livingEntity(UUID)","url":"com/skillw/pouvoir/util/EntityUtils.html#livingEntity(UUID)"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"getLivingEntityByUUID(UUID)","url":"com/skillw/pouvoir/util/EntityUtils.html#getLivingEntityByUUID(UUID)"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"player(UUID)","url":"com/skillw/pouvoir/util/EntityUtils.html#player(UUID)"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"getPlayerByUUID(UUID)","url":"com/skillw/pouvoir/util/EntityUtils.html#getPlayerByUUID(UUID)"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"isAlive(UUID)","url":"com/skillw/pouvoir/util/EntityUtils.html#isAlive(UUID)"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"isAlive(Entity)","url":"com/skillw/pouvoir/util/EntityUtils.html#isAlive(Entity)"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"isLiving(UUID)","url":"com/skillw/pouvoir/util/EntityUtils.html#isLiving(UUID)"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"isLiving(Entity)","url":"com/skillw/pouvoir/util/EntityUtils.html#isLiving(Entity)"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"spawnArmorStand(Player, Integer, UUID, Location)","url":"com/skillw/pouvoir/util/EntityUtils.html#spawnArmorStand(Player,Integer,UUID,Location)"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"spawnEntityLiving(Player, Integer, UUID, Location)","url":"com/skillw/pouvoir/util/EntityUtils.html#spawnEntityLiving(Player,Integer,UUID,Location)"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"destroyEntity(Player, Integer)","url":"com/skillw/pouvoir/util/EntityUtils.html#destroyEntity(Player,Integer)"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"teleportEntity(Player, Integer, Location)","url":"com/skillw/pouvoir/util/EntityUtils.html#teleportEntity(Player,Integer,Location)"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"getEntityLookAt(LivingEntity, Double)","url":"com/skillw/pouvoir/util/EntityUtils.html#getEntityLookAt(LivingEntity,Double)"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"getEntityRayHit(LivingEntity, Double)","url":"com/skillw/pouvoir/util/EntityUtils.html#getEntityRayHit(LivingEntity,Double)"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"getARMOR_STAND_NEW()","url":"com/skillw/pouvoir/util/EntityUtils.html#getARMOR_STAND_NEW()"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"getARMOR_STAND_LEGACY()","url":"com/skillw/pouvoir/util/EntityUtils.html#getARMOR_STAND_LEGACY()"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"getARMOR_STAND_NMS()","url":"com/skillw/pouvoir/util/EntityUtils.html#getARMOR_STAND_NMS()"}, {"p":"com.skillw.pouvoir.util","c":"FileUtils","l":"listFiles(File)","url":"com/skillw/pouvoir/util/FileUtils.html#listFiles(File)"}, {"p":"com.skillw.pouvoir.util","c":"FileUtils","l":"loadMultiply(File, Class<T>)","url":"com/skillw/pouvoir/util/FileUtils.html#loadMultiply(File,Class)"}, {"p":"com.skillw.pouvoir.util","c":"FileUtils","l":"toMap(ConfigurationSection)","url":"com/skillw/pouvoir/util/FileUtils.html#toMap(ConfigurationSection)"}, {"p":"com.skillw.pouvoir.util","c":"FileUtils","l":"loadConfigFile(File)","url":"com/skillw/pouvoir/util/FileUtils.html#loadConfigFile(File)"}, {"p":"com.skillw.pouvoir.util","c":"FileUtils","l":"getYamlsFromFile(File)","url":"com/skillw/pouvoir/util/FileUtils.html#getYamlsFromFile(File)"}, {"p":"com.skillw.pouvoir.util","c":"FileUtils","l":"pathNormalize(File)","url":"com/skillw/pouvoir/util/FileUtils.html#pathNormalize(File)"}, {"p":"com.skillw.pouvoir.util","c":"GsonUtils","l":"getGson()","url":"com/skillw/pouvoir/util/GsonUtils.html#getGson()"}, {"p":"com.skillw.pouvoir.util","c":"ItemUtils","l":"papiItem(ItemStack, Player)","url":"com/skillw/pouvoir/util/ItemUtils.html#papiItem(ItemStack,Player)"}, {"p":"com.skillw.pouvoir.util","c":"ItemUtils","l":"getMythicItem(String, Player)","url":"com/skillw/pouvoir/util/ItemUtils.html#getMythicItem(String,Player)"}, {"p":"com.skillw.pouvoir.util","c":"ItemUtils","l":"getMythicItem(String)","url":"com/skillw/pouvoir/util/ItemUtils.html#getMythicItem(String)"}, {"p":"com.skillw.pouvoir.util","c":"ItemUtils","l":"getMythicItems(List<String>, Player)","url":"com/skillw/pouvoir/util/ItemUtils.html#getMythicItems(List,Player)"}, {"p":"com.skillw.pouvoir.util","c":"ItemUtils","l":"obj(ItemTagData)","url":"com/skillw/pouvoir/util/ItemUtils.html#obj(ItemTagData)"}, {"p":"com.skillw.pouvoir.util","c":"ItemUtils","l":"toMutableMap(ItemTag, List<String>)","url":"com/skillw/pouvoir/util/ItemUtils.html#toMutableMap(ItemTag,List)"}, {"p":"com.skillw.pouvoir.util","c":"ItemUtils","l":"toNBT(Object)","url":"com/skillw/pouvoir/util/ItemUtils.html#toNBT(Object)"}, {"p":"com.skillw.pouvoir.util","c":"KetherUtils","l":"invokeString(String, Map<String, Object>, CommandSender)","url":"com/skillw/pouvoir/util/KetherUtils.html#invokeString(String,Map,CommandSender)"}, {"p":"com.skillw.pouvoir.util","c":"MapUtils","l":"addSingleList(Map<K, LinkedList<V>>, K, V)","url":"com/skillw/pouvoir/util/MapUtils.html#addSingleList(Map,K,V)"}, {"p":"com.skillw.pouvoir.util","c":"MapUtils","l":"addSingleKV(Map<K, HashSet<V>>, K, V)","url":"com/skillw/pouvoir/util/MapUtils.html#addSingleKV(Map,K,V)"}, {"p":"com.skillw.pouvoir.util","c":"MapUtils","l":"add(Map<K, LinkedList<V>>, K, V)","url":"com/skillw/pouvoir/util/MapUtils.html#add(Map,K,V)"}, {"p":"com.skillw.pouvoir.util","c":"MapUtils","l":"addSingleSet(Map<K, HashSet<V>>, K, V)","url":"com/skillw/pouvoir/util/MapUtils.html#addSingleSet(Map,K,V)"}, {"p":"com.skillw.pouvoir.util","c":"MapUtils","l":"putFast(Map<K, Map<Z, V>>, K, Z, V)","url":"com/skillw/pouvoir/util/MapUtils.html#putFast(Map,K,Z,V)"}, {"p":"com.skillw.pouvoir.util","c":"MapUtils","l":"put(Map<K, Map<Z, V>>, K, Z, V)","url":"com/skillw/pouvoir/util/MapUtils.html#put(Map,K,Z,V)"}, {"p":"com.skillw.pouvoir.util","c":"MapUtils","l":"getAllValues(Map<K, Map<Z, V>>)","url":"com/skillw/pouvoir/util/MapUtils.html#getAllValues(Map)"}, {"p":"com.skillw.pouvoir.util","c":"MapUtils","l":"getValues(Map<K, Map<Z, V>>)","url":"com/skillw/pouvoir/util/MapUtils.html#getValues(Map)"}, {"p":"com.skillw.pouvoir.util","c":"MessageUtils","l":"message(CommandSender, String)","url":"com/skillw/pouvoir/util/MessageUtils.html#message(CommandSender,String)"}, {"p":"com.skillw.pouvoir.util","c":"MessageUtils","l":"wrong(String)","url":"com/skillw/pouvoir/util/MessageUtils.html#wrong(String)"}, {"p":"com.skillw.pouvoir.util","c":"MessageUtils","l":"info(String)","url":"com/skillw/pouvoir/util/MessageUtils.html#info(String)"}, {"p":"com.skillw.pouvoir.util","c":"MessageUtils","l":"debug(String)","url":"com/skillw/pouvoir/util/MessageUtils.html#debug(String)"}, {"p":"com.skillw.pouvoir.util","c":"NumberUtils","l":"format(Number, String)","url":"com/skillw/pouvoir/util/NumberUtils.html#format(Number,String)"}, {"p":"com.skillw.pouvoir.util","c":"NumberUtils","l":"format(Number)","url":"com/skillw/pouvoir/util/NumberUtils.html#format(Number,String)"}, {"p":"com.skillw.pouvoir.util","c":"NumberUtils","l":"randomInt(Integer, Integer)","url":"com/skillw/pouvoir/util/NumberUtils.html#randomInt(Integer,Integer)"}, {"p":"com.skillw.pouvoir.util","c":"NumberUtils","l":"random(Number, Number, String)","url":"com/skillw/pouvoir/util/NumberUtils.html#random(Number,Number,String)"}, {"p":"com.skillw.pouvoir.util","c":"Pair","l":"Pair(K, V)","url":"com/skillw/pouvoir/util/Pair.html#Pair(K,V)"}, {"p":"com.skillw.pouvoir.util","c":"Pair","l":"getKey()","url":"com/skillw/pouvoir/util/Pair.html#getKey()"}, {"p":"com.skillw.pouvoir.util","c":"Pair","l":"getValue()","url":"com/skillw/pouvoir/util/Pair.html#getValue()"}, {"p":"com.skillw.pouvoir.util","c":"PlayerUtils","l":"sendTitle(Player, String, String, Integer, Integer, Integer)","url":"com/skillw/pouvoir/util/PlayerUtils.html#sendTitle(Player,String,String,Integer,Integer,Integer)"}, {"p":"com.skillw.pouvoir.util","c":"PlayerUtils","l":"sendTitle(Player, String, Integer, Integer, Integer)","url":"com/skillw/pouvoir/util/PlayerUtils.html#sendTitle(Player,String,Integer,Integer,Integer)"}, {"p":"com.skillw.pouvoir.util","c":"PlayerUtils","l":"sendTitle(Player, String, String, Integer)","url":"com/skillw/pouvoir/util/PlayerUtils.html#sendTitle(Player,String,String,Integer)"}, {"p":"com.skillw.pouvoir.util","c":"PlayerUtils","l":"sendTitle(Player, String, Integer)","url":"com/skillw/pouvoir/util/PlayerUtils.html#sendTitle(Player,String,Integer)"}, {"p":"com.skillw.pouvoir.util","c":"PlayerUtils","l":"sendSubTitle(Player, String, Integer)","url":"com/skillw/pouvoir/util/PlayerUtils.html#sendSubTitle(Player,String,Integer)"}, {"p":"com.skillw.pouvoir.util","c":"PlayerUtils","l":"resetTitle(Player)","url":"com/skillw/pouvoir/util/PlayerUtils.html#resetTitle(Player)"}, {"p":"com.skillw.pouvoir.util","c":"PlayerUtils","l":"sendActionBar(Player, String)","url":"com/skillw/pouvoir/util/PlayerUtils.html#sendActionBar(Player,String)"}, {"p":"com.skillw.pouvoir.util","c":"PlayerUtils","l":"sendActionBar(Player, String, Long, JavaPlugin)","url":"com/skillw/pouvoir/util/PlayerUtils.html#sendActionBar(Player,String,Long,JavaPlugin)"}, {"p":"com.skillw.pouvoir.util","c":"PlayerUtils","l":"resetActionBar(Player)","url":"com/skillw/pouvoir/util/PlayerUtils.html#resetActionBar(Player)"}, {"p":"com.skillw.pouvoir.util","c":"PlayerUtils","l":"sendBossBar(Player, String, BarColor, BarStyle, Double)","url":"com/skillw/pouvoir/util/PlayerUtils.html#sendBossBar(Player,String,BarColor,BarStyle,Double)"}, {"p":"com.skillw.pouvoir.util","c":"PlayerUtils","l":"setCooldown(Player, Material, Integer)","url":"com/skillw/pouvoir/util/PlayerUtils.html#setCooldown(Player,Material,Integer)"}, {"p":"com.skillw.pouvoir.util","c":"PlayerUtils","l":"getCooldown(Player, Material)","url":"com/skillw/pouvoir/util/PlayerUtils.html#getCooldown(Player,Material)"}, {"p":"com.skillw.pouvoir.util","c":"PlayerUtils","l":"hasCooldown(Player, Material)","url":"com/skillw/pouvoir/util/PlayerUtils.html#hasCooldown(Player,Material)"}, {"p":"com.skillw.pouvoir.util","c":"PlayerUtils","l":"removeCooldown(Player, Material)","url":"com/skillw/pouvoir/util/PlayerUtils.html#removeCooldown(Player,Material)"}, {"p":"com.skillw.pouvoir.util","c":"PlayerUtils","l":"sendPacketWithFields(Player, Object, Pair<String, Object>)","url":"com/skillw/pouvoir/util/PlayerUtils.html#sendPacketWithFields(Player,Object,Pair)"}, {"p":"com.skillw.pouvoir.util","c":"PluginUtils","l":"getClasses(Plugin)","url":"com/skillw/pouvoir/util/PluginUtils.html#getClasses(Plugin)"}, {"p":"com.skillw.pouvoir.util","c":"StringUtils","l":"placeholder(String, LivingEntity)","url":"com/skillw/pouvoir/util/StringUtils.html#placeholder(String,LivingEntity)"}, {"p":"com.skillw.pouvoir.util","c":"StringUtils","l":"protectedSplit(String, Character, Pair<Character, Character>)","url":"com/skillw/pouvoir/util/StringUtils.html#protectedSplit(String,Character,Pair)"}, {"p":"com.skillw.pouvoir.util","c":"StringUtils","l":"toStringWithNext(Object)","url":"com/skillw/pouvoir/util/StringUtils.html#toStringWithNext(Object)"}, {"p":"com.skillw.pouvoir.util","c":"StringUtils","l":"toStringWithNext(Collection<?>)","url":"com/skillw/pouvoir/util/StringUtils.html#toStringWithNext(Collection)"}, {"p":"com.skillw.pouvoir.util","c":"StringUtils","l":"toList(String)","url":"com/skillw/pouvoir/util/StringUtils.html#toList(String)"}, {"p":"com.skillw.pouvoir.util","c":"StringUtils","l":"toArgs(String)","url":"com/skillw/pouvoir/util/StringUtils.html#toArgs(String)"}, {"p":"com.skillw.pouvoir.util","c":"StringUtils","l":"replacement(String, Map<String, Object>)","url":"com/skillw/pouvoir/util/StringUtils.html#replacement(String,Map)"}, {"p":"com.skillw.pouvoir.util","c":"StringUtils","l":"replacement(Collection<T>, Map<String, Object>)","url":"com/skillw/pouvoir/util/StringUtils.html#replacement(Collection,Map)"}, {"p":"com.skillw.pouvoir.util","c":"StringUtils","l":"replace(String, Map<String, Object>)","url":"com/skillw/pouvoir/util/StringUtils.html#replace(String,Map)"}, {"p":"com.skillw.pouvoir.util","c":"StringUtils","l":"getMultiple(List<String>, Array<String>)","url":"com/skillw/pouvoir/util/StringUtils.html#getMultiple(List,Array)"}, {"p":"com.skillw.pouvoir.util","c":"StringUtils","l":"parse1(String, Character, Character)","url":"com/skillw/pouvoir/util/StringUtils.html#parse1(String,Character,Character)"}, {"p":"com.skillw.pouvoir.util","c":"StringUtils","l":"parse(String, Character, Character)","url":"com/skillw/pouvoir/util/StringUtils.html#parse(String,Character,Character)"}, {"p":"com.skillw.pouvoir.util","c":"PairKt","l":"to(A, B)","url":"com/skillw/pouvoir/util/PairKt.html#to(A,B)"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"key","url":"com/skillw/pouvoir/Pouvoir.html#key"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"plugin","url":"com/skillw/pouvoir/Pouvoir.html#plugin"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"poolExecutor","url":"com/skillw/pouvoir/Pouvoir.html#poolExecutor"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"config","url":"com/skillw/pouvoir/Pouvoir.html#config"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"script","url":"com/skillw/pouvoir/Pouvoir.html#script"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"managerData","url":"com/skillw/pouvoir/Pouvoir.html#managerData"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"configManager","url":"com/skillw/pouvoir/Pouvoir.html#configManager"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"functionManager","url":"com/skillw/pouvoir/Pouvoir.html#functionManager"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"pouPlaceholderManager","url":"com/skillw/pouvoir/Pouvoir.html#pouPlaceholderManager"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"pouPlaceHolderAPI","url":"com/skillw/pouvoir/Pouvoir.html#pouPlaceHolderAPI"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"listenerManager","url":"com/skillw/pouvoir/Pouvoir.html#listenerManager"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"scriptEngineManager","url":"com/skillw/pouvoir/Pouvoir.html#scriptEngineManager"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"compileManager","url":"com/skillw/pouvoir/Pouvoir.html#compileManager"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"scriptAnnotationManager","url":"com/skillw/pouvoir/Pouvoir.html#scriptAnnotationManager"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"scriptManager","url":"com/skillw/pouvoir/Pouvoir.html#scriptManager"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"playerDataManager","url":"com/skillw/pouvoir/Pouvoir.html#playerDataManager"}, {"p":"com.skillw.pouvoir","c":"Pouvoir","l":"INSTANCE","url":"com/skillw/pouvoir/Pouvoir.html#INSTANCE"}, {"p":"com.skillw.pouvoir.api.annotation","c":"Configurable","l":"config","url":"com/skillw/pouvoir/api/annotation/Configurable.html#config"}, {"p":"com.skillw.pouvoir.api.annotation","c":"Configurable","l":"path","url":"com/skillw/pouvoir/api/annotation/Configurable.html#path"}, {"p":"com.skillw.pouvoir.api.annotation","c":"Defaultable","l":"config","url":"com/skillw/pouvoir/api/annotation/Defaultable.html#config"}, {"p":"com.skillw.pouvoir.api.annotation","c":"Defaultable","l":"path","url":"com/skillw/pouvoir/api/annotation/Defaultable.html#path"}, {"p":"com.skillw.pouvoir.api.annotation","c":"PManager","l":"impl","url":"com/skillw/pouvoir/api/annotation/PManager.html#impl"}, {"p":"com.skillw.pouvoir.api.annotation","c":"PManager","l":"params","url":"com/skillw/pouvoir/api/annotation/PManager.html#params"}, {"p":"com.skillw.pouvoir.api.function","c":"PouFunction","l":"key","url":"com/skillw/pouvoir/api/function/PouFunction.html#key"}, {"p":"com.skillw.pouvoir.api.listener","c":"ScriptListener.Companion","l":"INSTANCE","url":"com/skillw/pouvoir/api/listener/ScriptListener.Companion.html#INSTANCE"}, {"p":"com.skillw.pouvoir.api.listener","c":"ScriptListener","l":"key","url":"com/skillw/pouvoir/api/listener/ScriptListener.html#key"}, {"p":"com.skillw.pouvoir.api.listener","c":"ScriptListener","l":"eventClass","url":"com/skillw/pouvoir/api/listener/ScriptListener.html#eventClass"}, {"p":"com.skillw.pouvoir.api.listener","c":"ScriptListener","l":"priority","url":"com/skillw/pouvoir/api/listener/ScriptListener.html#priority"}, {"p":"com.skillw.pouvoir.api.listener","c":"ScriptListener","l":"ignoreCancel","url":"com/skillw/pouvoir/api/listener/ScriptListener.html#ignoreCancel"}, {"p":"com.skillw.pouvoir.api.listener","c":"ScriptListener","l":"exec","url":"com/skillw/pouvoir/api/listener/ScriptListener.html#exec"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager.Companion","l":"INSTANCE","url":"com/skillw/pouvoir/api/manager/ConfigManager.Companion.html#INSTANCE"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"fileMap","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#fileMap"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"defaults","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#defaults"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"serverFile","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#serverFile"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"key","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#key"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"version","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#version"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"language","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#language"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"isCheckVersion","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#isCheckVersion"}, {"p":"com.skillw.pouvoir.api.manager","c":"ConfigManager","l":"subPouvoir","url":"com/skillw/pouvoir/api/manager/ConfigManager.html#subPouvoir"}, {"p":"com.skillw.pouvoir.api.manager","c":"Manager.Companion","l":"INSTANCE","url":"com/skillw/pouvoir/api/manager/Manager.Companion.html#INSTANCE"}, {"p":"com.skillw.pouvoir.api.manager","c":"ManagerData","l":"exec","url":"com/skillw/pouvoir/api/manager/ManagerData.html#exec"}, {"p":"com.skillw.pouvoir.api.manager","c":"ManagerData","l":"plugin","url":"com/skillw/pouvoir/api/manager/ManagerData.html#plugin"}, {"p":"com.skillw.pouvoir.api.manager","c":"ManagerData","l":"key","url":"com/skillw/pouvoir/api/manager/ManagerData.html#key"}, {"p":"com.skillw.pouvoir.api.manager","c":"ManagerData","l":"subPouvoir","url":"com/skillw/pouvoir/api/manager/ManagerData.html#subPouvoir"}, {"p":"com.skillw.pouvoir.api.manager.sub","c":"FunctionManager","l":"priority","url":"com/skillw/pouvoir/api/manager/sub/FunctionManager.html#priority"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"size","url":"com/skillw/pouvoir/api/map/BaseMap.html#size"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"entries","url":"com/skillw/pouvoir/api/map/BaseMap.html#entries"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"values","url":"com/skillw/pouvoir/api/map/BaseMap.html#values"}, {"p":"com.skillw.pouvoir.api.map","c":"BaseMap","l":"keys","url":"com/skillw/pouvoir/api/map/BaseMap.html#keys"}, {"p":"com.skillw.pouvoir.api.placeholder","c":"PouPlaceHolder","l":"key","url":"com/skillw/pouvoir/api/placeholder/PouPlaceHolder.html#key"}, {"p":"com.skillw.pouvoir.api.placeholder","c":"PouPlaceHolder","l":"subPouvoir","url":"com/skillw/pouvoir/api/placeholder/PouPlaceHolder.html#subPouvoir"}, {"p":"com.skillw.pouvoir.api.plugin","c":"TotalManager","l":"INSTANCE","url":"com/skillw/pouvoir/api/plugin/TotalManager.html#INSTANCE"}, {"p":"com.skillw.pouvoir.api.script","c":"CompiledFile","l":"key","url":"com/skillw/pouvoir/api/script/CompiledFile.html#key"}, {"p":"com.skillw.pouvoir.api.script","c":"CompiledFile","l":"annotations","url":"com/skillw/pouvoir/api/script/CompiledFile.html#annotations"}, {"p":"com.skillw.pouvoir.api.script","c":"CompiledFile","l":"functions","url":"com/skillw/pouvoir/api/script/CompiledFile.html#functions"}, {"p":"com.skillw.pouvoir.api.script","c":"CompiledFile","l":"file","url":"com/skillw/pouvoir/api/script/CompiledFile.html#file"}, {"p":"com.skillw.pouvoir.api.script","c":"CompiledFile","l":"subPouvoir","url":"com/skillw/pouvoir/api/script/CompiledFile.html#subPouvoir"}, {"p":"com.skillw.pouvoir.api.script","c":"ScriptTool","l":"INSTANCE","url":"com/skillw/pouvoir/api/script/ScriptTool.html#INSTANCE"}, {"p":"com.skillw.pouvoir.api.script.annotation","c":"ScriptAnnotation","l":"key","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotation.html#key"}, {"p":"com.skillw.pouvoir.api.script.annotation","c":"ScriptAnnotation","l":"awakeWhenEnable","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotation.html#awakeWhenEnable"}, {"p":"com.skillw.pouvoir.api.script.annotation","c":"ScriptAnnotationData","l":"annotation","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#annotation"}, {"p":"com.skillw.pouvoir.api.script.annotation","c":"ScriptAnnotationData","l":"compiledFile","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#compiledFile"}, {"p":"com.skillw.pouvoir.api.script.annotation","c":"ScriptAnnotationData","l":"function","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#function"}, {"p":"com.skillw.pouvoir.api.script.annotation","c":"ScriptAnnotationData","l":"args","url":"com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#args"}, {"p":"com.skillw.pouvoir.api.script.engine","c":"PouScriptEngine","l":"scriptEngine","url":"com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#scriptEngine"}, {"p":"com.skillw.pouvoir.api.script.engine","c":"PouScriptEngine","l":"key","url":"com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#key"}, {"p":"com.skillw.pouvoir.api.script.engine","c":"PouScriptEngine","l":"suffixes","url":"com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#suffixes"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"wrappedFactory","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#wrappedFactory"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"exceptionHandler","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#exceptionHandler"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"namingPattern","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#namingPattern"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"priority","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#priority"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory.Builder","l":"daemonFlag","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#daemonFlag"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory","l":"wrappedFactory","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.html#wrappedFactory"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory","l":"uncaughtExceptionHandler","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.html#uncaughtExceptionHandler"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory","l":"namingPattern","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.html#namingPattern"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory","l":"priority","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.html#priority"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory","l":"daemonFlag","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.html#daemonFlag"}, {"p":"com.skillw.pouvoir.api.thread","c":"BasicThreadFactory","l":"threadCount","url":"com/skillw/pouvoir/api/thread/BasicThreadFactory.html#threadCount"}, {"p":"com.skillw.pouvoir.internal.annotation","c":"Awake","l":"INSTANCE","url":"com/skillw/pouvoir/internal/annotation/Awake.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.annotation","c":"Listener","l":"INSTANCE","url":"com/skillw/pouvoir/internal/annotation/Listener.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.annotation","c":"Function","l":"INSTANCE","url":"com/skillw/pouvoir/internal/annotation/Function.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.annotation","c":"Annotation","l":"INSTANCE","url":"com/skillw/pouvoir/internal/annotation/Annotation.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.command","c":"PouvoirCommand","l":"main","url":"com/skillw/pouvoir/internal/command/PouvoirCommand.html#main"}, {"p":"com.skillw.pouvoir.internal.command","c":"PouvoirCommand","l":"run","url":"com/skillw/pouvoir/internal/command/PouvoirCommand.html#run"}, {"p":"com.skillw.pouvoir.internal.command","c":"PouvoirCommand","l":"reload","url":"com/skillw/pouvoir/internal/command/PouvoirCommand.html#reload"}, {"p":"com.skillw.pouvoir.internal.command","c":"PouvoirCommand","l":"help","url":"com/skillw/pouvoir/internal/command/PouvoirCommand.html#help"}, {"p":"com.skillw.pouvoir.internal.command","c":"PouvoirCommand","l":"INSTANCE","url":"com/skillw/pouvoir/internal/command/PouvoirCommand.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.engine","c":"JavaScriptEngine","l":"INSTANCE","url":"com/skillw/pouvoir/internal/engine/JavaScriptEngine.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.engine","c":"GroovyScriptEngine","l":"INSTANCE","url":"com/skillw/pouvoir/internal/engine/GroovyScriptEngine.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.function","c":"If","l":"INSTANCE","url":"com/skillw/pouvoir/internal/function/If.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.function","c":"abs","l":"INSTANCE","url":"com/skillw/pouvoir/internal/function/abs.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.function","c":"ceil","l":"INSTANCE","url":"com/skillw/pouvoir/internal/function/ceil.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.function","c":"format","l":"INSTANCE","url":"com/skillw/pouvoir/internal/function/format.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.function","c":"floor","l":"INSTANCE","url":"com/skillw/pouvoir/internal/function/floor.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.function","c":"max","l":"INSTANCE","url":"com/skillw/pouvoir/internal/function/max.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.function","c":"min","l":"INSTANCE","url":"com/skillw/pouvoir/internal/function/min.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.function","c":"random","l":"INSTANCE","url":"com/skillw/pouvoir/internal/function/random.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.function","c":"randomInt","l":"INSTANCE","url":"com/skillw/pouvoir/internal/function/randomInt.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.function","c":"round","l":"INSTANCE","url":"com/skillw/pouvoir/internal/function/round.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.function","c":"calculate","l":"INSTANCE","url":"com/skillw/pouvoir/internal/function/calculate.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.function","c":"repeat","l":"INSTANCE","url":"com/skillw/pouvoir/internal/function/repeat.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.function","c":"weight","l":"INSTANCE","url":"com/skillw/pouvoir/internal/function/weight.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.handle","c":"DefaultableHandle","l":"INSTANCE","url":"com/skillw/pouvoir/internal/handle/DefaultableHandle.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.handle","c":"PouEngineHandle","l":"INSTANCE","url":"com/skillw/pouvoir/internal/handle/PouEngineHandle.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.handle","c":"PouFunctionHandle","l":"INSTANCE","url":"com/skillw/pouvoir/internal/handle/PouFunctionHandle.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.handle","c":"PouPlaceHolderHandle","l":"INSTANCE","url":"com/skillw/pouvoir/internal/handle/PouPlaceHolderHandle.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.handle","c":"ScriptAnnotationHandler","l":"INSTANCE","url":"com/skillw/pouvoir/internal/handle/ScriptAnnotationHandler.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.handle","c":"PManagerHandle","l":"INSTANCE","url":"com/skillw/pouvoir/internal/handle/PManagerHandle.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.handle","c":"SubPouvoirHandle","l":"INSTANCE","url":"com/skillw/pouvoir/internal/handle/SubPouvoirHandle.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"Hologram","l":"viewers","url":"com/skillw/pouvoir/internal/hologram/Hologram.html#viewers"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"Hologram","l":"location","url":"com/skillw/pouvoir/internal/hologram/Hologram.html#location"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"HologramLine","l":"viewers","url":"com/skillw/pouvoir/internal/hologram/HologramLine.html#viewers"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"isDeleted","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#isDeleted"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"uniqueId","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#uniqueId"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"normalizeUniqueId","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#normalizeUniqueId"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"viewers","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#viewers"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"id","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#id"}, {"p":"com.skillw.pouvoir.internal.hologram","c":"PouArmorStand","l":"location","url":"com/skillw/pouvoir/internal/hologram/PouArmorStand.html#location"}, {"p":"com.skillw.pouvoir.internal.hook","c":"PlaceholderAPIHooker","l":"identifier","url":"com/skillw/pouvoir/internal/hook/PlaceholderAPIHooker.html#identifier"}, {"p":"com.skillw.pouvoir.internal.hook","c":"PlaceholderAPIHooker","l":"INSTANCE","url":"com/skillw/pouvoir/internal/hook/PlaceholderAPIHooker.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.hook","c":"PouvoirHooker","l":"INSTANCE","url":"com/skillw/pouvoir/internal/hook/PouvoirHooker.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.listener","c":"PlayerListener","l":"INSTANCE","url":"com/skillw/pouvoir/internal/listener/PlayerListener.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.manager","c":"CompileManagerImpl","l":"key","url":"com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#key"}, {"p":"com.skillw.pouvoir.internal.manager","c":"CompileManagerImpl","l":"priority","url":"com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#priority"}, {"p":"com.skillw.pouvoir.internal.manager","c":"CompileManagerImpl","l":"subPouvoir","url":"com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#subPouvoir"}, {"p":"com.skillw.pouvoir.internal.manager","c":"CompileManagerImpl","l":"INSTANCE","url":"com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.manager","c":"FunctionManagerImpl","l":"key","url":"com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#key"}, {"p":"com.skillw.pouvoir.internal.manager","c":"FunctionManagerImpl","l":"priority","url":"com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#priority"}, {"p":"com.skillw.pouvoir.internal.manager","c":"FunctionManagerImpl","l":"subPouvoir","url":"com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#subPouvoir"}, {"p":"com.skillw.pouvoir.internal.manager","c":"FunctionManagerImpl","l":"INSTANCE","url":"com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ListenerManagerImpl","l":"key","url":"com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#key"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ListenerManagerImpl","l":"priority","url":"com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#priority"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ListenerManagerImpl","l":"subPouvoir","url":"com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#subPouvoir"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ListenerManagerImpl","l":"INSTANCE","url":"com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PlayerDataManagerImpl","l":"key","url":"com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#key"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PlayerDataManagerImpl","l":"priority","url":"com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#priority"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PlayerDataManagerImpl","l":"subPouvoir","url":"com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#subPouvoir"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PlayerDataManagerImpl","l":"INSTANCE","url":"com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderAPIImpl","l":"key","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#key"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderAPIImpl","l":"priority","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#priority"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderAPIImpl","l":"subPouvoir","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#subPouvoir"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderAPIImpl","l":"INSTANCE","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderManagerImpl","l":"key","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#key"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderManagerImpl","l":"priority","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#priority"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderManagerImpl","l":"subPouvoir","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#subPouvoir"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouPlaceHolderManagerImpl","l":"INSTANCE","url":"com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouvoirConfig","l":"priority","url":"com/skillw/pouvoir/internal/manager/PouvoirConfig.html#priority"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouvoirConfig","l":"staticClasses","url":"com/skillw/pouvoir/internal/manager/PouvoirConfig.html#staticClasses"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouvoirConfig","l":"isCheckVersion","url":"com/skillw/pouvoir/internal/manager/PouvoirConfig.html#isCheckVersion"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouvoirConfig","l":"numberFormat","url":"com/skillw/pouvoir/internal/manager/PouvoirConfig.html#numberFormat"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouvoirConfig","l":"scale","url":"com/skillw/pouvoir/internal/manager/PouvoirConfig.html#scale"}, {"p":"com.skillw.pouvoir.internal.manager","c":"PouvoirConfig","l":"INSTANCE","url":"com/skillw/pouvoir/internal/manager/PouvoirConfig.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptAnnotationManagerImpl","l":"key","url":"com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#key"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptAnnotationManagerImpl","l":"priority","url":"com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#priority"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptAnnotationManagerImpl","l":"subPouvoir","url":"com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#subPouvoir"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptAnnotationManagerImpl","l":"INSTANCE","url":"com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptEngineManagerImpl","l":"key","url":"com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#key"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptEngineManagerImpl","l":"priority","url":"com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#priority"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptEngineManagerImpl","l":"subPouvoir","url":"com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#subPouvoir"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptEngineManagerImpl","l":"INSTANCE","url":"com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"key","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#key"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"priority","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#priority"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"subPouvoir","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#subPouvoir"}, {"p":"com.skillw.pouvoir.internal.manager","c":"ScriptManagerImpl","l":"INSTANCE","url":"com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#INSTANCE"}, {"p":"com.skillw.pouvoir.internal.raytrace","c":"RayTrace","l":"origin","url":"com/skillw/pouvoir/internal/raytrace/RayTrace.html#origin"}, {"p":"com.skillw.pouvoir.internal.raytrace","c":"RayTrace","l":"direction","url":"com/skillw/pouvoir/internal/raytrace/RayTrace.html#direction"}, {"p":"com.skillw.pouvoir.internal.script","c":"PouClassFilter","l":"INSTANCE","url":"com/skillw/pouvoir/internal/script/PouClassFilter.html#INSTANCE"}, {"p":"com.skillw.pouvoir.util","c":"CalculationUtils","l":"INSTANCE","url":"com/skillw/pouvoir/util/CalculationUtils.html#INSTANCE"}, {"p":"com.skillw.pouvoir.util","c":"ClassUtils","l":"staticClass","url":"com/skillw/pouvoir/util/ClassUtils.html#staticClass"}, {"p":"com.skillw.pouvoir.util","c":"ClassUtils","l":"INSTANCE","url":"com/skillw/pouvoir/util/ClassUtils.html#INSTANCE"}, {"p":"com.skillw.pouvoir.util","c":"ColorUtils","l":"INSTANCE","url":"com/skillw/pouvoir/util/ColorUtils.html#INSTANCE"}, {"p":"com.skillw.pouvoir.util","c":"EDCodeUtils","l":"INSTANCE","url":"com/skillw/pouvoir/util/EDCodeUtils.html#INSTANCE"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"ARMOR_STAND_NEW","url":"com/skillw/pouvoir/util/EntityUtils.html#ARMOR_STAND_NEW"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"ARMOR_STAND_LEGACY","url":"com/skillw/pouvoir/util/EntityUtils.html#ARMOR_STAND_LEGACY"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"ARMOR_STAND_NMS","url":"com/skillw/pouvoir/util/EntityUtils.html#ARMOR_STAND_NMS"}, {"p":"com.skillw.pouvoir.util","c":"EntityUtils","l":"INSTANCE","url":"com/skillw/pouvoir/util/EntityUtils.html#INSTANCE"}, {"p":"com.skillw.pouvoir.util","c":"FileUtils","l":"INSTANCE","url":"com/skillw/pouvoir/util/FileUtils.html#INSTANCE"}, {"p":"com.skillw.pouvoir.util","c":"GsonUtils","l":"gson","url":"com/skillw/pouvoir/util/GsonUtils.html#gson"}, {"p":"com.skillw.pouvoir.util","c":"GsonUtils","l":"INSTANCE","url":"com/skillw/pouvoir/util/GsonUtils.html#INSTANCE"}, {"p":"com.skillw.pouvoir.util","c":"ItemUtils","l":"INSTANCE","url":"com/skillw/pouvoir/util/ItemUtils.html#INSTANCE"}, {"p":"com.skillw.pouvoir.util","c":"KetherUtils","l":"INSTANCE","url":"com/skillw/pouvoir/util/KetherUtils.html#INSTANCE"}, {"p":"com.skillw.pouvoir.util","c":"MapUtils","l":"INSTANCE","url":"com/skillw/pouvoir/util/MapUtils.html#INSTANCE"}, {"p":"com.skillw.pouvoir.util","c":"MessageUtils","l":"INSTANCE","url":"com/skillw/pouvoir/util/MessageUtils.html#INSTANCE"}, {"p":"com.skillw.pouvoir.util","c":"NumberUtils","l":"INSTANCE","url":"com/skillw/pouvoir/util/NumberUtils.html#INSTANCE"}, {"p":"com.skillw.pouvoir.util","c":"Pair","l":"key","url":"com/skillw/pouvoir/util/Pair.html#key"}, {"p":"com.skillw.pouvoir.util","c":"Pair","l":"value","url":"com/skillw/pouvoir/util/Pair.html#value"}, {"p":"com.skillw.pouvoir.util","c":"PlayerUtils","l":"INSTANCE","url":"com/skillw/pouvoir/util/PlayerUtils.html#INSTANCE"}, {"p":"com.skillw.pouvoir.util","c":"PluginUtils","l":"INSTANCE","url":"com/skillw/pouvoir/util/PluginUtils.html#INSTANCE"}, {"p":"com.skillw.pouvoir.util","c":"StringUtils","l":"INSTANCE","url":"com/skillw/pouvoir/util/StringUtils.html#INSTANCE"}, {"p":"com.skillw.pouvoir.api.event","c":"Time","l":"AFTER","url":"com/skillw/pouvoir/api/event/Time.html#AFTER"}, {"p":"com.skillw.pouvoir.api.event","c":"Time","l":"BEFORE","url":"com/skillw/pouvoir/api/event/Time.html#BEFORE"}]
+var memberSearchIndex = [{
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "getConfigs()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#getConfigs()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "isDepend(Plugin)",
+    "url": "com/skillw/pouvoir/Pouvoir.html#isDepend(Plugin)"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "onLoad()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#onLoad()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "onEnable()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#onEnable()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "onActive()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#onActive()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "onDisable()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#onDisable()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "getPlugin()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#getPlugin()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "getPoolExecutor()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#getPoolExecutor()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "getConfig()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#getConfig()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "setConfig(ConfigFile)",
+    "url": "com/skillw/pouvoir/Pouvoir.html#setConfig(ConfigFile)"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "getScript()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#getScript()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "setScript(ConfigFile)",
+    "url": "com/skillw/pouvoir/Pouvoir.html#setScript(ConfigFile)"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "getManagerData()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#getManagerData()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "setManagerData(ManagerData)",
+    "url": "com/skillw/pouvoir/Pouvoir.html#setManagerData(ManagerData)"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "getConfigManager()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#getConfigManager()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "setConfigManager(PouvoirConfig)",
+    "url": "com/skillw/pouvoir/Pouvoir.html#setConfigManager(PouvoirConfig)"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "getFunctionManager()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#getFunctionManager()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "setFunctionManager(FunctionManager)",
+    "url": "com/skillw/pouvoir/Pouvoir.html#setFunctionManager(FunctionManager)"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "getPouPlaceholderManager()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#getPouPlaceholderManager()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "setPouPlaceholderManager(PouPlaceHolderManager)",
+    "url": "com/skillw/pouvoir/Pouvoir.html#setPouPlaceholderManager(PouPlaceHolderManager)"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "getPouPlaceHolderAPI()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#getPouPlaceHolderAPI()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "setPouPlaceHolderAPI(PouPlaceHolderAPI)",
+    "url": "com/skillw/pouvoir/Pouvoir.html#setPouPlaceHolderAPI(PouPlaceHolderAPI)"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "getListenerManager()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#getListenerManager()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "setListenerManager(ListenerManager)",
+    "url": "com/skillw/pouvoir/Pouvoir.html#setListenerManager(ListenerManager)"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "getScriptEngineManager()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#getScriptEngineManager()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "setScriptEngineManager(ScriptEngineManager)",
+    "url": "com/skillw/pouvoir/Pouvoir.html#setScriptEngineManager(ScriptEngineManager)"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "getCompileManager()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#getCompileManager()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "setCompileManager(CompileManager)",
+    "url": "com/skillw/pouvoir/Pouvoir.html#setCompileManager(CompileManager)"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "getScriptAnnotationManager()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#getScriptAnnotationManager()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "setScriptAnnotationManager(ScriptAnnotationManager)",
+    "url": "com/skillw/pouvoir/Pouvoir.html#setScriptAnnotationManager(ScriptAnnotationManager)"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "getScriptManager()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#getScriptManager()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "setScriptManager(ScriptManager)",
+    "url": "com/skillw/pouvoir/Pouvoir.html#setScriptManager(ScriptManager)"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "getPlayerDataManager()",
+    "url": "com/skillw/pouvoir/Pouvoir.html#getPlayerDataManager()"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "setPlayerDataManager(PlayerDataManager)",
+    "url": "com/skillw/pouvoir/Pouvoir.html#setPlayerDataManager(PlayerDataManager)"
+}, {
+    "p": "com.skillw.pouvoir.api.able",
+    "c": "Keyable",
+    "l": "register()",
+    "url": "com/skillw/pouvoir/api/able/Keyable.html#register()"
+}, {
+    "p": "com.skillw.pouvoir.api.able",
+    "c": "Keyable",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/api/able/Keyable.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.api.formula",
+    "c": "Formula",
+    "l": "Formula(String, LivingEntity)",
+    "url": "com/skillw/pouvoir/api/formula/Formula.html#Formula(String,LivingEntity)"
+}, {
+    "p": "com.skillw.pouvoir.api.formula",
+    "c": "Formula",
+    "l": "replace(Pair<String, String>)",
+    "url": "com/skillw/pouvoir/api/formula/Formula.html#replace(Pair)"
+}, {
+    "p": "com.skillw.pouvoir.api.formula",
+    "c": "Formula",
+    "l": "formula()",
+    "url": "com/skillw/pouvoir/api/formula/Formula.html#formula()"
+}, {
+    "p": "com.skillw.pouvoir.api.formula",
+    "c": "Formula",
+    "l": "result()",
+    "url": "com/skillw/pouvoir/api/formula/Formula.html#result()"
+}, {
+    "p": "com.skillw.pouvoir.api.function",
+    "c": "PouFunction",
+    "l": "PouFunction(String, Predicate<Array<String>>, Function<Array<String>, Object>)",
+    "url": "com/skillw/pouvoir/api/function/PouFunction.html#PouFunction(String,Predicate,Function)"
+}, {
+    "p": "com.skillw.pouvoir.api.function",
+    "c": "PouFunction",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/api/function/PouFunction.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.api.function",
+    "c": "PouFunction",
+    "l": "register()",
+    "url": "com/skillw/pouvoir/api/function/PouFunction.html#register()"
+}, {
+    "p": "com.skillw.pouvoir.api.function",
+    "c": "PouFunction",
+    "l": "apply(Array<String>)",
+    "url": "com/skillw/pouvoir/api/function/PouFunction.html#apply(Array)"
+}, {
+    "p": "com.skillw.pouvoir.api.function",
+    "c": "PouScriptFunction",
+    "l": "PouScriptFunction(String, String)",
+    "url": "com/skillw/pouvoir/api/function/PouScriptFunction.html#PouScriptFunction(String,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.hologram",
+    "c": "HologramBuilder",
+    "l": "HologramBuilder(Location)",
+    "url": "com/skillw/pouvoir/api/hologram/HologramBuilder.html#HologramBuilder(Location)"
+}, {
+    "p": "com.skillw.pouvoir.api.hologram",
+    "c": "HologramBuilder",
+    "l": "stay(Long)",
+    "url": "com/skillw/pouvoir/api/hologram/HologramBuilder.html#stay(Long)"
+}, {
+    "p": "com.skillw.pouvoir.api.hologram",
+    "c": "HologramBuilder",
+    "l": "content(List<String>)",
+    "url": "com/skillw/pouvoir/api/hologram/HologramBuilder.html#content(List)"
+}, {
+    "p": "com.skillw.pouvoir.api.hologram",
+    "c": "HologramBuilder",
+    "l": "viewers(Player)",
+    "url": "com/skillw/pouvoir/api/hologram/HologramBuilder.html#viewers(Player)"
+}, {
+    "p": "com.skillw.pouvoir.api.hologram",
+    "c": "HologramBuilder",
+    "l": "viewers(List<Player>)",
+    "url": "com/skillw/pouvoir/api/hologram/HologramBuilder.html#viewers(List)"
+}, {
+    "p": "com.skillw.pouvoir.api.hologram",
+    "c": "HologramBuilder",
+    "l": "addViewer(Player)",
+    "url": "com/skillw/pouvoir/api/hologram/HologramBuilder.html#addViewer(Player)"
+}, {
+    "p": "com.skillw.pouvoir.api.hologram",
+    "c": "HologramBuilder",
+    "l": "animation(Integer, Location)",
+    "url": "com/skillw/pouvoir/api/hologram/HologramBuilder.html#animation(Integer,Location)"
+}, {
+    "p": "com.skillw.pouvoir.api.hologram",
+    "c": "HologramBuilder",
+    "l": "placeholder(Player)",
+    "url": "com/skillw/pouvoir/api/hologram/HologramBuilder.html#placeholder(Player)"
+}, {
+    "p": "com.skillw.pouvoir.api.hologram",
+    "c": "HologramBuilder",
+    "l": "build()",
+    "url": "com/skillw/pouvoir/api/hologram/HologramBuilder.html#build()"
+}, {
+    "p": "com.skillw.pouvoir.api.listener",
+    "c": "ScriptListener.Companion",
+    "l": "build(String, Class<T>, EventPriority, Boolean, Consumer<T>)",
+    "url": "com/skillw/pouvoir/api/listener/ScriptListener.Companion.html#build(String,Class,EventPriority,Boolean,Consumer)"
+}, {
+    "p": "com.skillw.pouvoir.api.listener",
+    "c": "ScriptListener",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/api/listener/ScriptListener.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.api.listener",
+    "c": "ScriptListener",
+    "l": "getEventClass()",
+    "url": "com/skillw/pouvoir/api/listener/ScriptListener.html#getEventClass()"
+}, {
+    "p": "com.skillw.pouvoir.api.listener",
+    "c": "ScriptListener",
+    "l": "getPriority()",
+    "url": "com/skillw/pouvoir/api/listener/ScriptListener.html#getPriority()"
+}, {
+    "p": "com.skillw.pouvoir.api.listener",
+    "c": "ScriptListener",
+    "l": "getIgnoreCancel()",
+    "url": "com/skillw/pouvoir/api/listener/ScriptListener.html#getIgnoreCancel()"
+}, {
+    "p": "com.skillw.pouvoir.api.listener",
+    "c": "ScriptListener",
+    "l": "getExec()",
+    "url": "com/skillw/pouvoir/api/listener/ScriptListener.html#getExec()"
+}, {
+    "p": "com.skillw.pouvoir.api.listener",
+    "c": "ScriptListener",
+    "l": "unRegister()",
+    "url": "com/skillw/pouvoir/api/listener/ScriptListener.html#unRegister()"
+}, {
+    "p": "com.skillw.pouvoir.api.listener",
+    "c": "ScriptListener",
+    "l": "register()",
+    "url": "com/skillw/pouvoir/api/listener/ScriptListener.html#register()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager.Companion",
+    "l": "getLocal()",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.Companion.html#getLocal()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager.Companion",
+    "l": "getPluginPrefix()",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.Companion.html#getPluginPrefix()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "ConfigManager(SubPouvoir)",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#ConfigManager(SubPouvoir)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "getFileMap()",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#getFileMap()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "getDefaults()",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#getDefaults()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "getServerFile()",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#getServerFile()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "getVersion()",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#getVersion()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "getLanguage()",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#getLanguage()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "getIsCheckVersion()",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#getIsCheckVersion()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "getSubPouvoir()",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#getSubPouvoir()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "get(String)",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#get(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "defaultOptions()",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#defaultOptions()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "onReload()",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#onReload()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "getLang(String)",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#getLang(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "createIfNotExists(String, String)",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#createIfNotExists(String,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "Manager.Companion",
+    "l": "run(Manager, String)",
+    "url": "com/skillw/pouvoir/api/manager/Manager.Companion.html#run(Manager,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "Manager.Companion",
+    "l": "addSingle(Manager, String, Function0<Unit>)",
+    "url": "com/skillw/pouvoir/api/manager/Manager.Companion.html#addSingle(Manager,String,Function0)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "Manager",
+    "l": "onInit()",
+    "url": "com/skillw/pouvoir/api/manager/Manager.html#onInit()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "Manager",
+    "l": "onLoad()",
+    "url": "com/skillw/pouvoir/api/manager/Manager.html#onLoad()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "Manager",
+    "l": "onEnable()",
+    "url": "com/skillw/pouvoir/api/manager/Manager.html#onEnable()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "Manager",
+    "l": "onActive()",
+    "url": "com/skillw/pouvoir/api/manager/Manager.html#onActive()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "Manager",
+    "l": "onReload()",
+    "url": "com/skillw/pouvoir/api/manager/Manager.html#onReload()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "Manager",
+    "l": "onDisable()",
+    "url": "com/skillw/pouvoir/api/manager/Manager.html#onDisable()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "Manager",
+    "l": "register()",
+    "url": "com/skillw/pouvoir/api/manager/Manager.html#register()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "Manager",
+    "l": "register(ManagerData)",
+    "url": "com/skillw/pouvoir/api/manager/Manager.html#register(ManagerData)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "Manager",
+    "l": "compareTo(Manager)",
+    "url": "com/skillw/pouvoir/api/manager/Manager.html#compareTo(Manager)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "Manager",
+    "l": "getPriority()",
+    "url": "com/skillw/pouvoir/api/manager/Manager.html#getPriority()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "Manager",
+    "l": "getSubPouvoir()",
+    "url": "com/skillw/pouvoir/api/manager/Manager.html#getSubPouvoir()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ManagerData",
+    "l": "ManagerData(SubPouvoir)",
+    "url": "com/skillw/pouvoir/api/manager/ManagerData.html#ManagerData(SubPouvoir)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ManagerData",
+    "l": "getExec()",
+    "url": "com/skillw/pouvoir/api/manager/ManagerData.html#getExec()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ManagerData",
+    "l": "getPlugin()",
+    "url": "com/skillw/pouvoir/api/manager/ManagerData.html#getPlugin()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ManagerData",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/api/manager/ManagerData.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ManagerData",
+    "l": "getSubPouvoir()",
+    "url": "com/skillw/pouvoir/api/manager/ManagerData.html#getSubPouvoir()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ManagerData",
+    "l": "register(String, Manager)",
+    "url": "com/skillw/pouvoir/api/manager/ManagerData.html#register(String,Manager)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ManagerData",
+    "l": "register()",
+    "url": "com/skillw/pouvoir/api/manager/ManagerData.html#register()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ManagerData",
+    "l": "load()",
+    "url": "com/skillw/pouvoir/api/manager/ManagerData.html#load()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ManagerData",
+    "l": "enable()",
+    "url": "com/skillw/pouvoir/api/manager/ManagerData.html#enable()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ManagerData",
+    "l": "active()",
+    "url": "com/skillw/pouvoir/api/manager/ManagerData.html#active()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ManagerData",
+    "l": "reload()",
+    "url": "com/skillw/pouvoir/api/manager/ManagerData.html#reload()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ManagerData",
+    "l": "disable()",
+    "url": "com/skillw/pouvoir/api/manager/ManagerData.html#disable()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub",
+    "c": "FunctionManager",
+    "l": "FunctionManager()",
+    "url": "com/skillw/pouvoir/api/manager/sub/FunctionManager.html#FunctionManager()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub",
+    "c": "FunctionManager",
+    "l": "getPriority()",
+    "url": "com/skillw/pouvoir/api/manager/sub/FunctionManager.html#getPriority()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub",
+    "c": "FunctionManager",
+    "l": "analysis(String)",
+    "url": "com/skillw/pouvoir/api/manager/sub/FunctionManager.html#analysis(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub",
+    "c": "ListenerManager",
+    "l": "ListenerManager()",
+    "url": "com/skillw/pouvoir/api/manager/sub/ListenerManager.html#ListenerManager()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub",
+    "c": "PlayerDataManager",
+    "l": "PlayerDataManager()",
+    "url": "com/skillw/pouvoir/api/manager/sub/PlayerDataManager.html#PlayerDataManager()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub",
+    "c": "PlayerDataManager",
+    "l": "get(String, String)",
+    "url": "com/skillw/pouvoir/api/manager/sub/PlayerDataManager.html#get(String,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub",
+    "c": "PlayerDataManager",
+    "l": "delete(String, String)",
+    "url": "com/skillw/pouvoir/api/manager/sub/PlayerDataManager.html#delete(String,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub",
+    "c": "PlayerDataManager",
+    "l": "set(String, String, String)",
+    "url": "com/skillw/pouvoir/api/manager/sub/PlayerDataManager.html#set(String,String,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub",
+    "c": "PouPlaceHolderAPI",
+    "l": "replace(LivingEntity, String)",
+    "url": "com/skillw/pouvoir/api/manager/sub/PouPlaceHolderAPI.html#replace(LivingEntity,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub",
+    "c": "PouPlaceHolderAPI",
+    "l": "replace(UUID, String)",
+    "url": "com/skillw/pouvoir/api/manager/sub/PouPlaceHolderAPI.html#replace(UUID,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub",
+    "c": "PouPlaceHolderManager",
+    "l": "PouPlaceHolderManager()",
+    "url": "com/skillw/pouvoir/api/manager/sub/PouPlaceHolderManager.html#PouPlaceHolderManager()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "CompileManager",
+    "l": "compileFile(File)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/CompileManager.html#compileFile(File)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "CompileManager",
+    "l": "compileFile(String)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/CompileManager.html#compileFile(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptAnnotationManager",
+    "l": "ScriptAnnotationManager()",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptAnnotationManager.html#ScriptAnnotationManager()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptEngineManager",
+    "l": "ScriptEngineManager()",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptEngineManager.html#ScriptEngineManager()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptEngineManager",
+    "l": "getEngine(String)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptEngineManager.html#getEngine(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptManager",
+    "l": "ScriptManager()",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#ScriptManager()"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptManager",
+    "l": "addDir(File, SubPouvoir)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#addDir(File,SubPouvoir)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptManager",
+    "l": "hasScript(String)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#hasScript(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptManager",
+    "l": "addScript(File, SubPouvoir)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#addScript(File,SubPouvoir)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptManager",
+    "l": "invoke(String, String, Map<String, Object>, Object)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#invoke(String,String,Map,Object)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptManager",
+    "l": "invoke(String, Map<String, Object>)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#invoke(String,Map)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptManager",
+    "l": "invoke(CompiledScript, String, Map<String, Object>, String, Object)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#invoke(CompiledScript,String,Map,String,Object)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptManager",
+    "l": "invokePathWithFunction(String, Map<String, Object>, Object)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#invokePathWithFunction(String,Map,Object)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptManager",
+    "l": "search(String, SubPouvoir)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#search(String,SubPouvoir)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptManager",
+    "l": "addParams(ScriptEngine, Map<String, Object>)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#addParams(ScriptEngine,Map)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptManager",
+    "l": "addStatic(ScriptEngine)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#addStatic(ScriptEngine)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptManager",
+    "l": "evalString(String, String, Map<String, Object>)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#evalString(String,String,Map)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptManager",
+    "l": "evalString(String, Map<String, Object>)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#evalString(String,Map)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptManager",
+    "l": "reloadDir(File, SubPouvoir)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#reloadDir(File,SubPouvoir)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptManager",
+    "l": "relocate(String)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#relocate(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub.script",
+    "c": "ScriptManager",
+    "l": "evalStringQuickly(String, String, Map<String, Object>)",
+    "url": "com/skillw/pouvoir/api/manager/sub/script/ScriptManager.html#evalStringQuickly(String,String,Map)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "BaseMap()",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#BaseMap()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "getSize()",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#getSize()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "getEntries()",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#getEntries()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "getValues()",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#getValues()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "getKeys()",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#getKeys()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "register(K, V)",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#register(K,V)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "clear()",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#clear()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "containsKey(K)",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#containsKey(K)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "containsValue(V)",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#containsValue(V)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "put(K, V)",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#put(K,V)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "get(K)",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#get(K)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "putAll(Map<out K, V>)",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#putAll(Map)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "set(K, V)",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#set(K,V)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "isEmpty()",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#isEmpty()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "remove(K)",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#remove(K)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "ClazzMap",
+    "l": "ClazzMap()",
+    "url": "com/skillw/pouvoir/api/map/ClazzMap.html#ClazzMap()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "ClazzMap",
+    "l": "register(Class<out T>)",
+    "url": "com/skillw/pouvoir/api/map/ClazzMap.html#register(Class)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "ClazzMap",
+    "l": "removeByValue(Class<out T>)",
+    "url": "com/skillw/pouvoir/api/map/ClazzMap.html#removeByValue(Class)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "ClazzMap",
+    "l": "containsValue(Class<out T>)",
+    "url": "com/skillw/pouvoir/api/map/ClazzMap.html#containsValue(Class)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "ClazzMap",
+    "l": "getObject(String, Object)",
+    "url": "com/skillw/pouvoir/api/map/ClazzMap.html#getObject(String,Object)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "KeyMap",
+    "l": "KeyMap()",
+    "url": "com/skillw/pouvoir/api/map/KeyMap.html#KeyMap()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "KeyMap",
+    "l": "register(V)",
+    "url": "com/skillw/pouvoir/api/map/KeyMap.html#register(V)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "KeyMap",
+    "l": "removeByValue(V)",
+    "url": "com/skillw/pouvoir/api/map/KeyMap.html#removeByValue(V)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LinkedKeyMap",
+    "l": "LinkedKeyMap()",
+    "url": "com/skillw/pouvoir/api/map/LinkedKeyMap.html#LinkedKeyMap()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LinkedKeyMap",
+    "l": "register(V)",
+    "url": "com/skillw/pouvoir/api/map/LinkedKeyMap.html#register(V)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LinkedKeyMap",
+    "l": "removeByValue(V)",
+    "url": "com/skillw/pouvoir/api/map/LinkedKeyMap.html#removeByValue(V)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LinkedMap",
+    "l": "LinkedMap()",
+    "url": "com/skillw/pouvoir/api/map/LinkedMap.html#LinkedMap()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LinkedMap",
+    "l": "put(K, V)",
+    "url": "com/skillw/pouvoir/api/map/LinkedMap.html#put(K,V)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LowerClazzMap",
+    "l": "LowerClazzMap()",
+    "url": "com/skillw/pouvoir/api/map/LowerClazzMap.html#LowerClazzMap()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LowerClazzMap",
+    "l": "put(String, Class<out T>)",
+    "url": "com/skillw/pouvoir/api/map/LowerClazzMap.html#put(String,Class)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LowerClazzMap",
+    "l": "get(String)",
+    "url": "com/skillw/pouvoir/api/map/LowerClazzMap.html#get(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LowerClazzMap",
+    "l": "remove(String)",
+    "url": "com/skillw/pouvoir/api/map/LowerClazzMap.html#remove(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LowerClazzMap",
+    "l": "containsKey(String)",
+    "url": "com/skillw/pouvoir/api/map/LowerClazzMap.html#containsKey(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LowerKeyMap",
+    "l": "LowerKeyMap()",
+    "url": "com/skillw/pouvoir/api/map/LowerKeyMap.html#LowerKeyMap()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LowerKeyMap",
+    "l": "get(String)",
+    "url": "com/skillw/pouvoir/api/map/LowerKeyMap.html#get(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LowerKeyMap",
+    "l": "remove(String)",
+    "url": "com/skillw/pouvoir/api/map/LowerKeyMap.html#remove(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LowerKeyMap",
+    "l": "containsKey(String)",
+    "url": "com/skillw/pouvoir/api/map/LowerKeyMap.html#containsKey(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LowerKeyMap",
+    "l": "put(String, V)",
+    "url": "com/skillw/pouvoir/api/map/LowerKeyMap.html#put(String,V)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LowerMap",
+    "l": "LowerMap()",
+    "url": "com/skillw/pouvoir/api/map/LowerMap.html#LowerMap()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LowerMap",
+    "l": "get(String)",
+    "url": "com/skillw/pouvoir/api/map/LowerMap.html#get(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LowerMap",
+    "l": "containsKey(String)",
+    "url": "com/skillw/pouvoir/api/map/LowerMap.html#containsKey(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LowerMap",
+    "l": "put(String, V)",
+    "url": "com/skillw/pouvoir/api/map/LowerMap.html#put(String,V)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "LowerMap",
+    "l": "remove(String)",
+    "url": "com/skillw/pouvoir/api/map/LowerMap.html#remove(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "MultiExecMap",
+    "l": "MultiExecMap()",
+    "url": "com/skillw/pouvoir/api/map/MultiExecMap.html#MultiExecMap()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "MultiExecMap",
+    "l": "invoke()",
+    "url": "com/skillw/pouvoir/api/map/MultiExecMap.html#invoke()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "MultiExecMap",
+    "l": "run(String)",
+    "url": "com/skillw/pouvoir/api/map/MultiExecMap.html#run(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "SingleExecMap",
+    "l": "SingleExecMap()",
+    "url": "com/skillw/pouvoir/api/map/SingleExecMap.html#SingleExecMap()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "SingleExecMap",
+    "l": "invoke()",
+    "url": "com/skillw/pouvoir/api/map/SingleExecMap.html#invoke()"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "SingleExecMap",
+    "l": "run(String)",
+    "url": "com/skillw/pouvoir/api/map/SingleExecMap.html#run(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.object",
+    "c": "BaseObject",
+    "l": "compareTo(BaseObject)",
+    "url": "com/skillw/pouvoir/api/object/BaseObject.html#compareTo(BaseObject)"
+}, {
+    "p": "com.skillw.pouvoir.api.object",
+    "c": "BaseObject",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/api/object/BaseObject.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.api.object",
+    "c": "BaseObject",
+    "l": "getPriority()",
+    "url": "com/skillw/pouvoir/api/object/BaseObject.html#getPriority()"
+}, {
+    "p": "com.skillw.pouvoir.api.placeholder",
+    "c": "PouPlaceHolder",
+    "l": "PouPlaceHolder(String, SubPouvoir)",
+    "url": "com/skillw/pouvoir/api/placeholder/PouPlaceHolder.html#PouPlaceHolder(String,SubPouvoir)"
+}, {
+    "p": "com.skillw.pouvoir.api.placeholder",
+    "c": "PouPlaceHolder",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/api/placeholder/PouPlaceHolder.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.api.placeholder",
+    "c": "PouPlaceHolder",
+    "l": "getSubPouvoir()",
+    "url": "com/skillw/pouvoir/api/placeholder/PouPlaceHolder.html#getSubPouvoir()"
+}, {
+    "p": "com.skillw.pouvoir.api.placeholder",
+    "c": "PouPlaceHolder",
+    "l": "onPlaceHolderRequest(String, LivingEntity, String)",
+    "url": "com/skillw/pouvoir/api/placeholder/PouPlaceHolder.html#onPlaceHolderRequest(String,LivingEntity,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.placeholder",
+    "c": "PouPlaceHolder",
+    "l": "register()",
+    "url": "com/skillw/pouvoir/api/placeholder/PouPlaceHolder.html#register()"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "SubPouvoir",
+    "l": "getConfigs()",
+    "url": "com/skillw/pouvoir/api/plugin/SubPouvoir.html#getConfigs()"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "SubPouvoir",
+    "l": "load()",
+    "url": "com/skillw/pouvoir/api/plugin/SubPouvoir.html#load()"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "SubPouvoir",
+    "l": "enable()",
+    "url": "com/skillw/pouvoir/api/plugin/SubPouvoir.html#enable()"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "SubPouvoir",
+    "l": "active()",
+    "url": "com/skillw/pouvoir/api/plugin/SubPouvoir.html#active()"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "SubPouvoir",
+    "l": "disable()",
+    "url": "com/skillw/pouvoir/api/plugin/SubPouvoir.html#disable()"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "SubPouvoir",
+    "l": "register()",
+    "url": "com/skillw/pouvoir/api/plugin/SubPouvoir.html#register()"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "SubPouvoir",
+    "l": "reload()",
+    "url": "com/skillw/pouvoir/api/plugin/SubPouvoir.html#reload()"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "SubPouvoir",
+    "l": "getManagerData()",
+    "url": "com/skillw/pouvoir/api/plugin/SubPouvoir.html#getManagerData()"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "SubPouvoir",
+    "l": "setManagerData(ManagerData)",
+    "url": "com/skillw/pouvoir/api/plugin/SubPouvoir.html#setManagerData(ManagerData)"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "SubPouvoir",
+    "l": "getPoolExecutor()",
+    "url": "com/skillw/pouvoir/api/plugin/SubPouvoir.html#getPoolExecutor()"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "SubPouvoir",
+    "l": "getPlugin()",
+    "url": "com/skillw/pouvoir/api/plugin/SubPouvoir.html#getPlugin()"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "TotalManager",
+    "l": "remove(Plugin)",
+    "url": "com/skillw/pouvoir/api/plugin/TotalManager.html#remove(Plugin)"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "TotalManager",
+    "l": "isSubPouvoir(Plugin)",
+    "url": "com/skillw/pouvoir/api/plugin/TotalManager.html#isSubPouvoir(Plugin)"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "TotalManager",
+    "l": "forEachClass(Consumer<Class<?>>)",
+    "url": "com/skillw/pouvoir/api/plugin/TotalManager.html#forEachClass(Consumer)"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "TotalManager",
+    "l": "init(Plugin)",
+    "url": "com/skillw/pouvoir/api/plugin/TotalManager.html#init(Plugin)"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "TotalManager",
+    "l": "onLoading()",
+    "url": "com/skillw/pouvoir/api/plugin/TotalManager.html#onLoading()"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "TotalManager",
+    "l": "register(Plugin)",
+    "url": "com/skillw/pouvoir/api/plugin/TotalManager.html#register(Plugin)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "CompiledFile",
+    "l": "CompiledFile(File, SubPouvoir)",
+    "url": "com/skillw/pouvoir/api/script/CompiledFile.html#CompiledFile(File,SubPouvoir)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "CompiledFile",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/api/script/CompiledFile.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "CompiledFile",
+    "l": "getAnnotations()",
+    "url": "com/skillw/pouvoir/api/script/CompiledFile.html#getAnnotations()"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "CompiledFile",
+    "l": "getFunctions()",
+    "url": "com/skillw/pouvoir/api/script/CompiledFile.html#getFunctions()"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "CompiledFile",
+    "l": "getFile()",
+    "url": "com/skillw/pouvoir/api/script/CompiledFile.html#getFile()"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "CompiledFile",
+    "l": "getSubPouvoir()",
+    "url": "com/skillw/pouvoir/api/script/CompiledFile.html#getSubPouvoir()"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "CompiledFile",
+    "l": "canCompiled()",
+    "url": "com/skillw/pouvoir/api/script/CompiledFile.html#canCompiled()"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "CompiledFile",
+    "l": "invoke(String, Map<String, Object>, Object)",
+    "url": "com/skillw/pouvoir/api/script/CompiledFile.html#invoke(String,Map,Object)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "CompiledFile",
+    "l": "run(String)",
+    "url": "com/skillw/pouvoir/api/script/CompiledFile.html#run(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "CompiledFile",
+    "l": "reload()",
+    "url": "com/skillw/pouvoir/api/script/CompiledFile.html#reload()"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "CompiledFile",
+    "l": "register()",
+    "url": "com/skillw/pouvoir/api/script/CompiledFile.html#register()"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptGroup",
+    "l": "ScriptGroup(Pair<String, String>)",
+    "url": "com/skillw/pouvoir/api/script/ScriptGroup.html#ScriptGroup(Pair)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptGroup",
+    "l": "ScriptGroup(Map<String, String>)",
+    "url": "com/skillw/pouvoir/api/script/ScriptGroup.html#ScriptGroup(Map)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptGroup",
+    "l": "ScriptGroup()",
+    "url": "com/skillw/pouvoir/api/script/ScriptGroup.html#ScriptGroup()"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptGroup",
+    "l": "invoke(String, Map<String, Object>)",
+    "url": "com/skillw/pouvoir/api/script/ScriptGroup.html#invoke(String,Map)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptGroup",
+    "l": "serialize()",
+    "url": "com/skillw/pouvoir/api/script/ScriptGroup.html#serialize()"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "runTask(Runnable)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#runTask(Runnable)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "runTaskAsync(Runnable)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#runTaskAsync(Runnable)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "runTaskLater(Runnable, Long)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#runTaskLater(Runnable,Long)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "runTaskAsyncLater(Runnable, Long)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#runTaskAsyncLater(Runnable,Long)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "runTaskTimer(Runnable, Long, Long)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#runTaskTimer(Runnable,Long,Long)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "runTaskAsyncTimer(Runnable, Long, Long)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#runTaskAsyncTimer(Runnable,Long,Long)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "placeHolder(String, String, String, String)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#placeHolder(String,String,String,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "addListener(String, String, String, Boolean, Consumer<Object>)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#addListener(String,String,String,Boolean,Consumer)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "addListener(String, Class<?>, EventPriority, Boolean, Consumer<Object>)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#addListener(String,Class,EventPriority,Boolean,Consumer)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "removeListener(String)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#removeListener(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "isPluginEnabled(String)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#isPluginEnabled(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "getPlugin(String)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#getPlugin(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "static(String)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#static(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "staticClass(String)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#staticClass(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "command(String)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#command(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "regCommand(PluginCommand)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#regCommand(PluginCommand)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "unRegCommand(String)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#unRegCommand(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "runTaskAsyncPool(Runnable)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#runTaskAsyncPool(Runnable)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "runTaskAsyncLaterPool(Runnable, Long)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#runTaskAsyncLaterPool(Runnable,Long)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "runTaskAsyncTimerPool(Runnable, Long, Long)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#runTaskAsyncTimerPool(Runnable,Long,Long)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "getItemName(ItemStack, Player)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#getItemName(ItemStack,Player)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "getItemName(ItemStack)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#getItemName(ItemStack)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "getEnchantName(Enchantment, Player)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#getEnchantName(Enchantment,Player)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "getEnchantName(Enchantment)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#getEnchantName(Enchantment)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "getPotionEffectName(PotionEffectType, Player)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#getPotionEffectName(PotionEffectType,Player)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "getPotionEffectName(PotionEffectType)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#getPotionEffectName(PotionEffectType)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "buildInventoryHolder(Function<Unit, Inventory>)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#buildInventoryHolder(Function)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "itemNBTMap(ItemStack, List<String>)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#itemNBTMap(ItemStack,List)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "itemNBTMap(ItemStack)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#itemNBTMap(ItemStack)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "getContainer(Player)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#getContainer(Player)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "get(String, String)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#get(String,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "get(Player, String)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#get(Player,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "delete(String, String)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#delete(String,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "delete(Player, String)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#delete(Player,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "set(String, String, String)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#set(String,String,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "set(Player, String, String)",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#set(Player,String,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "c": "ScriptAnnotation",
+    "l": "ScriptAnnotation(String, Consumer<ScriptAnnotationData>, Boolean)",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotation.html#ScriptAnnotation(String,Consumer,Boolean)"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "c": "ScriptAnnotation",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotation.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "c": "ScriptAnnotation",
+    "l": "getAwakeWhenEnable()",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotation.html#getAwakeWhenEnable()"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "c": "ScriptAnnotation",
+    "l": "register()",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotation.html#register()"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "c": "ScriptAnnotation",
+    "l": "handle(ScriptAnnotationData)",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotation.html#handle(ScriptAnnotationData)"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "c": "ScriptAnnotationData",
+    "l": "ScriptAnnotationData(String, CompiledFile, String, String)",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#ScriptAnnotationData(String,CompiledFile,String,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "c": "ScriptAnnotationData",
+    "l": "getAnnotation()",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#getAnnotation()"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "c": "ScriptAnnotationData",
+    "l": "getCompiledFile()",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#getCompiledFile()"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "c": "ScriptAnnotationData",
+    "l": "getFunction()",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#getFunction()"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "c": "ScriptAnnotationData",
+    "l": "getArgs()",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#getArgs()"
+}, {
+    "p": "com.skillw.pouvoir.api.script.engine",
+    "c": "PouScriptEngine",
+    "l": "PouScriptEngine(String, ScriptEngine, Function1<Pair<CompiledFile, List<String>>, Map<String, LinkedList<ScriptAnnotationData>>>, String)",
+    "url": "com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#PouScriptEngine(String,ScriptEngine,Function1,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.script.engine",
+    "c": "PouScriptEngine",
+    "l": "getScriptEngine()",
+    "url": "com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#getScriptEngine()"
+}, {
+    "p": "com.skillw.pouvoir.api.script.engine",
+    "c": "PouScriptEngine",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.api.script.engine",
+    "c": "PouScriptEngine",
+    "l": "getSuffixes()",
+    "url": "com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#getSuffixes()"
+}, {
+    "p": "com.skillw.pouvoir.api.script.engine",
+    "c": "PouScriptEngine",
+    "l": "getAnnotationData(Pair<CompiledFile, List<String>>)",
+    "url": "com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#getAnnotationData(Pair)"
+}, {
+    "p": "com.skillw.pouvoir.api.script.engine",
+    "c": "PouScriptEngine",
+    "l": "register()",
+    "url": "com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#register()"
+}, {
+    "p": "com.skillw.pouvoir.api.script.engine",
+    "c": "PouScriptEngine",
+    "l": "addFunctionStructure(String, String)",
+    "url": "com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#addFunctionStructure(String,String)"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "BasicThreadFactory.Builder()",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#BasicThreadFactory.Builder()"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "getWrappedFactory()",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#getWrappedFactory()"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "setWrappedFactory(ThreadFactory)",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#setWrappedFactory(ThreadFactory)"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "getExceptionHandler()",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#getExceptionHandler()"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "setExceptionHandler(Thread.UncaughtExceptionHandler)",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#setExceptionHandler(Thread.UncaughtExceptionHandler)"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "getNamingPattern()",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#getNamingPattern()"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "setNamingPattern(String)",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#setNamingPattern(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "getPriority()",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#getPriority()"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "setPriority(Integer)",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#setPriority(Integer)"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "getDaemonFlag()",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#getDaemonFlag()"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "setDaemonFlag(Boolean)",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#setDaemonFlag(Boolean)"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "wrappedFactory(ThreadFactory)",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#wrappedFactory(ThreadFactory)"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "namingPattern(String)",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#namingPattern(String)"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "daemon(Boolean)",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#daemon(Boolean)"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "priority(Integer)",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#priority(Integer)"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "uncaughtExceptionHandler(Thread.UncaughtExceptionHandler)",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#uncaughtExceptionHandler(Thread.UncaughtExceptionHandler)"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "reset()",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#reset()"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "build()",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#build()"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory",
+    "l": "BasicThreadFactory(BasicThreadFactory.Builder)",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.html#BasicThreadFactory(BasicThreadFactory.Builder)"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory",
+    "l": "getWrappedFactory()",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.html#getWrappedFactory()"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory",
+    "l": "setWrappedFactory(ThreadFactory)",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.html#setWrappedFactory(ThreadFactory)"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory",
+    "l": "getUncaughtExceptionHandler()",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.html#getUncaughtExceptionHandler()"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory",
+    "l": "getNamingPattern()",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.html#getNamingPattern()"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory",
+    "l": "getPriority()",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.html#getPriority()"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory",
+    "l": "getDaemonFlag()",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.html#getDaemonFlag()"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory",
+    "l": "getThreadCount()",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.html#getThreadCount()"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory",
+    "l": "newThread(Runnable)",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.html#newThread(Runnable)"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "Builder",
+    "l": "build()",
+    "url": "com/skillw/pouvoir/api/thread/Builder.html#build()"
+}, {
+    "p": "com.skillw.pouvoir.internal.command",
+    "c": "PouvoirCommand",
+    "l": "sendMessage(Array<String>, CommandSender)",
+    "url": "com/skillw/pouvoir/internal/command/PouvoirCommand.html#sendMessage(Array,CommandSender)"
+}, {
+    "p": "com.skillw.pouvoir.internal.command",
+    "c": "PouvoirCommand",
+    "l": "getMain()",
+    "url": "com/skillw/pouvoir/internal/command/PouvoirCommand.html#getMain()"
+}, {
+    "p": "com.skillw.pouvoir.internal.command",
+    "c": "PouvoirCommand",
+    "l": "getRun()",
+    "url": "com/skillw/pouvoir/internal/command/PouvoirCommand.html#getRun()"
+}, {
+    "p": "com.skillw.pouvoir.internal.command",
+    "c": "PouvoirCommand",
+    "l": "getReload()",
+    "url": "com/skillw/pouvoir/internal/command/PouvoirCommand.html#getReload()"
+}, {
+    "p": "com.skillw.pouvoir.internal.command",
+    "c": "PouvoirCommand",
+    "l": "getHelp()",
+    "url": "com/skillw/pouvoir/internal/command/PouvoirCommand.html#getHelp()"
+}, {
+    "p": "com.skillw.pouvoir.internal.engine",
+    "c": "JavaScriptEngine",
+    "l": "addFunctionStructure(String, String)",
+    "url": "com/skillw/pouvoir/internal/engine/JavaScriptEngine.html#addFunctionStructure(String,String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.engine",
+    "c": "GroovyScriptEngine",
+    "l": "addFunctionStructure(String, String)",
+    "url": "com/skillw/pouvoir/internal/engine/GroovyScriptEngine.html#addFunctionStructure(String,String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "DefaultableHandle",
+    "l": "inject(Class<?>, Plugin)",
+    "url": "com/skillw/pouvoir/internal/handle/DefaultableHandle.html#inject(Class,Plugin)"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "PouEngineHandle",
+    "l": "inject(Class<?>)",
+    "url": "com/skillw/pouvoir/internal/handle/PouEngineHandle.html#inject(Class)"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "PouFunctionHandle",
+    "l": "inject(Class<?>)",
+    "url": "com/skillw/pouvoir/internal/handle/PouFunctionHandle.html#inject(Class)"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "PouPlaceHolderHandle",
+    "l": "inject(Class<?>)",
+    "url": "com/skillw/pouvoir/internal/handle/PouPlaceHolderHandle.html#inject(Class)"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "ScriptAnnotationHandler",
+    "l": "inject(Class<?>)",
+    "url": "com/skillw/pouvoir/internal/handle/ScriptAnnotationHandler.html#inject(Class)"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "PManagerHandle",
+    "l": "isPManagerField(Field)",
+    "url": "com/skillw/pouvoir/internal/handle/PManagerHandle.html#isPManagerField(Field)"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "PManagerHandle",
+    "l": "getImpl(Field)",
+    "url": "com/skillw/pouvoir/internal/handle/PManagerHandle.html#getImpl(Field)"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "PManagerHandle",
+    "l": "getParams(Field, Object)",
+    "url": "com/skillw/pouvoir/internal/handle/PManagerHandle.html#getParams(Field,Object)"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "PManagerHandle",
+    "l": "getPManagers(SubPouvoir)",
+    "url": "com/skillw/pouvoir/internal/handle/PManagerHandle.html#getPManagers(SubPouvoir)"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "PManagerHandle",
+    "l": "violation(Object, Field)",
+    "url": "com/skillw/pouvoir/internal/handle/PManagerHandle.html#violation(Object,Field)"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "SubPouvoirHandle",
+    "l": "inject(Class<?>, Plugin)",
+    "url": "com/skillw/pouvoir/internal/handle/SubPouvoirHandle.html#inject(Class,Plugin)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "Hologram",
+    "l": "Hologram(Location, List<String>, Player)",
+    "url": "com/skillw/pouvoir/internal/hologram/Hologram.html#Hologram(Location,List,Player)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "Hologram",
+    "l": "Hologram(Location, List<String>, Set<Player>)",
+    "url": "com/skillw/pouvoir/internal/hologram/Hologram.html#Hologram(Location,List,Set)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "Hologram",
+    "l": "Hologram(Location, List<String>)",
+    "url": "com/skillw/pouvoir/internal/hologram/Hologram.html#Hologram(Location,List)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "Hologram",
+    "l": "getViewers()",
+    "url": "com/skillw/pouvoir/internal/hologram/Hologram.html#getViewers()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "Hologram",
+    "l": "getLocation()",
+    "url": "com/skillw/pouvoir/internal/hologram/Hologram.html#getLocation()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "Hologram",
+    "l": "setLocation(Location)",
+    "url": "com/skillw/pouvoir/internal/hologram/Hologram.html#setLocation(Location)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "Hologram",
+    "l": "teleport(Location)",
+    "url": "com/skillw/pouvoir/internal/hologram/Hologram.html#teleport(Location)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "Hologram",
+    "l": "update(List<String>)",
+    "url": "com/skillw/pouvoir/internal/hologram/Hologram.html#update(List)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "Hologram",
+    "l": "delete()",
+    "url": "com/skillw/pouvoir/internal/hologram/Hologram.html#delete()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "Hologram",
+    "l": "destroy()",
+    "url": "com/skillw/pouvoir/internal/hologram/Hologram.html#destroy()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "HologramLine",
+    "l": "HologramLine(Location, String, Player)",
+    "url": "com/skillw/pouvoir/internal/hologram/HologramLine.html#HologramLine(Location,String,Player)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "HologramLine",
+    "l": "HologramLine(Location, String, Set<Player>)",
+    "url": "com/skillw/pouvoir/internal/hologram/HologramLine.html#HologramLine(Location,String,Set)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "HologramLine",
+    "l": "HologramLine(Location, String)",
+    "url": "com/skillw/pouvoir/internal/hologram/HologramLine.html#HologramLine(Location,String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "HologramLine",
+    "l": "getViewers()",
+    "url": "com/skillw/pouvoir/internal/hologram/HologramLine.html#getViewers()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "HologramLine",
+    "l": "update(String)",
+    "url": "com/skillw/pouvoir/internal/hologram/HologramLine.html#update(String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "HologramLine",
+    "l": "teleport(Location)",
+    "url": "com/skillw/pouvoir/internal/hologram/HologramLine.html#teleport(Location)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "HologramLine",
+    "l": "delete()",
+    "url": "com/skillw/pouvoir/internal/hologram/HologramLine.html#delete()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "HologramLine",
+    "l": "destroy()",
+    "url": "com/skillw/pouvoir/internal/hologram/HologramLine.html#destroy()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "PouArmorStand(Integer, Location, Consumer<PouArmorStand>)",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#PouArmorStand(Integer,Location,Consumer)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "getIsDeleted()",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#getIsDeleted()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "setIsDeleted(Boolean)",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setIsDeleted(Boolean)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "getUniqueId()",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#getUniqueId()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "getNormalizeUniqueId()",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#getNormalizeUniqueId()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "getViewers()",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#getViewers()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "getId()",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#getId()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "getLocation()",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#getLocation()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "setLocation(Location)",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setLocation(Location)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "setSmall(Boolean)",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setSmall(Boolean)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "isSmall()",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#isSmall()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "setGravity(Boolean)",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setGravity(Boolean)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "isGravity()",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#isGravity()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "setArms(Boolean)",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setArms(Boolean)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "hasArms()",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#hasArms()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "setBasePlate(Boolean)",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setBasePlate(Boolean)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "hasBasePlate()",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#hasBasePlate()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "setMarker(Boolean)",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setMarker(Boolean)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "isMarker()",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#isMarker()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "setInvisible(Boolean)",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setInvisible(Boolean)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "getCustomName()",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#getCustomName()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "setCustomName(String)",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setCustomName(String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "setCustomNameVisible(Boolean)",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#setCustomNameVisible(Boolean)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "delete()",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#delete()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "forViewers(Consumer<Player>)",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#forViewers(Consumer)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "visible(Player, Boolean)",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#visible(Player,Boolean)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "spawn(Player)",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#spawn(Player)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "destroy(Player)",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#destroy(Player)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "destroy()",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#destroy()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "respawn()",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#respawn()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "teleport(Location)",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#teleport(Location)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hook",
+    "c": "PlaceholderAPIHooker",
+    "l": "onPlaceholderRequest(Player, String)",
+    "url": "com/skillw/pouvoir/internal/hook/PlaceholderAPIHooker.html#onPlaceholderRequest(Player,String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.hook",
+    "c": "PlaceholderAPIHooker",
+    "l": "getIdentifier()",
+    "url": "com/skillw/pouvoir/internal/hook/PlaceholderAPIHooker.html#getIdentifier()"
+}, {
+    "p": "com.skillw.pouvoir.internal.hook",
+    "c": "PouvoirHooker",
+    "l": "onPlaceHolderRequest(String, LivingEntity, String)",
+    "url": "com/skillw/pouvoir/internal/hook/PouvoirHooker.html#onPlaceHolderRequest(String,LivingEntity,String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "CompileManagerImpl",
+    "l": "compileFile(File)",
+    "url": "com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#compileFile(File)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "CompileManagerImpl",
+    "l": "compileFile(String)",
+    "url": "com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#compileFile(String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "CompileManagerImpl",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "CompileManagerImpl",
+    "l": "getPriority()",
+    "url": "com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#getPriority()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "CompileManagerImpl",
+    "l": "getSubPouvoir()",
+    "url": "com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#getSubPouvoir()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "FunctionManagerImpl",
+    "l": "register(PouFunction)",
+    "url": "com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#register(PouFunction)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "FunctionManagerImpl",
+    "l": "register(String, PouFunction)",
+    "url": "com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#register(String,PouFunction)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "FunctionManagerImpl",
+    "l": "onInit()",
+    "url": "com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#onInit()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "FunctionManagerImpl",
+    "l": "onLoad()",
+    "url": "com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#onLoad()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "FunctionManagerImpl",
+    "l": "analysis(String)",
+    "url": "com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#analysis(String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "FunctionManagerImpl",
+    "l": "onReload()",
+    "url": "com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#onReload()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "FunctionManagerImpl",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "FunctionManagerImpl",
+    "l": "getPriority()",
+    "url": "com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#getPriority()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "FunctionManagerImpl",
+    "l": "getSubPouvoir()",
+    "url": "com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#getSubPouvoir()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ListenerManagerImpl",
+    "l": "remove(String)",
+    "url": "com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#remove(String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ListenerManagerImpl",
+    "l": "onReload()",
+    "url": "com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#onReload()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ListenerManagerImpl",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ListenerManagerImpl",
+    "l": "getPriority()",
+    "url": "com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#getPriority()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ListenerManagerImpl",
+    "l": "getSubPouvoir()",
+    "url": "com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#getSubPouvoir()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PlayerDataManagerImpl",
+    "l": "onEnable()",
+    "url": "com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#onEnable()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PlayerDataManagerImpl",
+    "l": "get(String, String)",
+    "url": "com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#get(String,String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PlayerDataManagerImpl",
+    "l": "delete(String, String)",
+    "url": "com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#delete(String,String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PlayerDataManagerImpl",
+    "l": "set(String, String, String)",
+    "url": "com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#set(String,String,String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PlayerDataManagerImpl",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PlayerDataManagerImpl",
+    "l": "getPriority()",
+    "url": "com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#getPriority()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PlayerDataManagerImpl",
+    "l": "getSubPouvoir()",
+    "url": "com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#getSubPouvoir()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderAPIImpl",
+    "l": "replace(LivingEntity, String)",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#replace(LivingEntity,String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderAPIImpl",
+    "l": "replace(UUID, String)",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#replace(UUID,String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderAPIImpl",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderAPIImpl",
+    "l": "getPriority()",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#getPriority()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderAPIImpl",
+    "l": "getSubPouvoir()",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#getSubPouvoir()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderManagerImpl",
+    "l": "onEnable()",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#onEnable()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderManagerImpl",
+    "l": "register(String, PouPlaceHolder)",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#register(String,PouPlaceHolder)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderManagerImpl",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderManagerImpl",
+    "l": "getPriority()",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#getPriority()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderManagerImpl",
+    "l": "getSubPouvoir()",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#getSubPouvoir()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouvoirConfig",
+    "l": "reloadStaticClasses()",
+    "url": "com/skillw/pouvoir/internal/manager/PouvoirConfig.html#reloadStaticClasses()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouvoirConfig",
+    "l": "onInit()",
+    "url": "com/skillw/pouvoir/internal/manager/PouvoirConfig.html#onInit()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouvoirConfig",
+    "l": "onEnable()",
+    "url": "com/skillw/pouvoir/internal/manager/PouvoirConfig.html#onEnable()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouvoirConfig",
+    "l": "defaultOptions()",
+    "url": "com/skillw/pouvoir/internal/manager/PouvoirConfig.html#defaultOptions()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouvoirConfig",
+    "l": "getPriority()",
+    "url": "com/skillw/pouvoir/internal/manager/PouvoirConfig.html#getPriority()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouvoirConfig",
+    "l": "getStaticClasses()",
+    "url": "com/skillw/pouvoir/internal/manager/PouvoirConfig.html#getStaticClasses()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouvoirConfig",
+    "l": "getIsCheckVersion()",
+    "url": "com/skillw/pouvoir/internal/manager/PouvoirConfig.html#getIsCheckVersion()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouvoirConfig",
+    "l": "setIsCheckVersion(Boolean)",
+    "url": "com/skillw/pouvoir/internal/manager/PouvoirConfig.html#setIsCheckVersion(Boolean)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouvoirConfig",
+    "l": "getNumberFormat()",
+    "url": "com/skillw/pouvoir/internal/manager/PouvoirConfig.html#getNumberFormat()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouvoirConfig",
+    "l": "getScale()",
+    "url": "com/skillw/pouvoir/internal/manager/PouvoirConfig.html#getScale()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptAnnotationManagerImpl",
+    "l": "onInit()",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#onInit()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptAnnotationManagerImpl",
+    "l": "onEnable()",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#onEnable()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptAnnotationManagerImpl",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptAnnotationManagerImpl",
+    "l": "getPriority()",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#getPriority()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptAnnotationManagerImpl",
+    "l": "getSubPouvoir()",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#getSubPouvoir()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptEngineManagerImpl",
+    "l": "register(String, PouScriptEngine)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#register(String,PouScriptEngine)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptEngineManagerImpl",
+    "l": "getEngine(String)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#getEngine(String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptEngineManagerImpl",
+    "l": "onInit()",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#onInit()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptEngineManagerImpl",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptEngineManagerImpl",
+    "l": "getPriority()",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#getPriority()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptEngineManagerImpl",
+    "l": "getSubPouvoir()",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#getSubPouvoir()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "addDir(File, SubPouvoir)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#addDir(File,SubPouvoir)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "reloadDir(File, SubPouvoir)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#reloadDir(File,SubPouvoir)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "evalStringQuickly(String, String, Map<String, Object>)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#evalStringQuickly(String,String,Map)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "evalString(String, String, Map<String, Object>)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#evalString(String,String,Map)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "evalString(String, Map<String, Object>)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#evalString(String,Map)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "addStatic(ScriptEngine)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#addStatic(ScriptEngine)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "addParams(ScriptEngine, Map<String, Object>)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#addParams(ScriptEngine,Map)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "invoke(CompiledScript, String, Map<String, Object>, String, Object)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#invoke(CompiledScript,String,Map,String,Object)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "invoke(String, String, Map<String, Object>, Object)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#invoke(String,String,Map,Object)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "invoke(String, Map<String, Object>)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#invoke(String,Map)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "hasScript(String)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#hasScript(String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "onInit()",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#onInit()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "addScript(File, SubPouvoir)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#addScript(File,SubPouvoir)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "invokePathWithFunction(String, Map<String, Object>, Object)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#invokePathWithFunction(String,Map,Object)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "search(String, SubPouvoir)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#search(String,SubPouvoir)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "get(String)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#get(String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "onReload()",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#onReload()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "onDisable()",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#onDisable()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "relocate(String)",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#relocate(String)"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "getPriority()",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#getPriority()"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "getSubPouvoir()",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#getSubPouvoir()"
+}, {
+    "p": "com.skillw.pouvoir.internal.raytrace",
+    "c": "RayTrace",
+    "l": "RayTrace(LivingEntity)",
+    "url": "com/skillw/pouvoir/internal/raytrace/RayTrace.html#RayTrace(LivingEntity)"
+}, {
+    "p": "com.skillw.pouvoir.internal.raytrace",
+    "c": "RayTrace",
+    "l": "RayTrace(Vector, Vector)",
+    "url": "com/skillw/pouvoir/internal/raytrace/RayTrace.html#RayTrace(Vector,Vector)"
+}, {
+    "p": "com.skillw.pouvoir.internal.raytrace",
+    "c": "RayTrace",
+    "l": "getOrigin()",
+    "url": "com/skillw/pouvoir/internal/raytrace/RayTrace.html#getOrigin()"
+}, {
+    "p": "com.skillw.pouvoir.internal.raytrace",
+    "c": "RayTrace",
+    "l": "getDirection()",
+    "url": "com/skillw/pouvoir/internal/raytrace/RayTrace.html#getDirection()"
+}, {
+    "p": "com.skillw.pouvoir.internal.raytrace",
+    "c": "RayTrace",
+    "l": "traces(Double, Double)",
+    "url": "com/skillw/pouvoir/internal/raytrace/RayTrace.html#traces(Double,Double)"
+}, {
+    "p": "com.skillw.pouvoir.internal.raytrace",
+    "c": "RayTrace",
+    "l": "distance(Double)",
+    "url": "com/skillw/pouvoir/internal/raytrace/RayTrace.html#distance(Double)"
+}, {
+    "p": "com.skillw.pouvoir.internal.script",
+    "c": "PouClassFilter",
+    "l": "exposeToScripts(String)",
+    "url": "com/skillw/pouvoir/internal/script/PouClassFilter.html#exposeToScripts(String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "CalculationUtils",
+    "l": "result(String)",
+    "url": "com/skillw/pouvoir/util/CalculationUtils.html#result(String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "CalculationUtils",
+    "l": "result(String, LivingEntity, Map<String, String>)",
+    "url": "com/skillw/pouvoir/util/CalculationUtils.html#result(String,LivingEntity,Map)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "CalculationUtils",
+    "l": "resultDouble(String, LivingEntity, Map<String, String>)",
+    "url": "com/skillw/pouvoir/util/CalculationUtils.html#resultDouble(String,LivingEntity,Map)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "CalculationUtils",
+    "l": "getResultDouble(String, LivingEntity, Map<String, String>)",
+    "url": "com/skillw/pouvoir/util/CalculationUtils.html#getResultDouble(String,LivingEntity,Map)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "CalculationUtils",
+    "l": "getResultDouble(String)",
+    "url": "com/skillw/pouvoir/util/CalculationUtils.html#getResultDouble(String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "CalculationUtils",
+    "l": "getResult(String)",
+    "url": "com/skillw/pouvoir/util/CalculationUtils.html#getResult(String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "CalculationUtils",
+    "l": "getResult(String, LivingEntity, Map<String, String>)",
+    "url": "com/skillw/pouvoir/util/CalculationUtils.html#getResult(String,LivingEntity,Map)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ClassUtils",
+    "l": "getClass(String)",
+    "url": "com/skillw/pouvoir/util/ClassUtils.html#getClass(String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ClassUtils",
+    "l": "staticClass(String)",
+    "url": "com/skillw/pouvoir/util/ClassUtils.html#staticClass(String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ClassUtils",
+    "l": "isObj(Class<T>)",
+    "url": "com/skillw/pouvoir/util/ClassUtils.html#isObj(Class)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ClassUtils",
+    "l": "getStaticClass()",
+    "url": "com/skillw/pouvoir/util/ClassUtils.html#getStaticClass()"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ColorUtils",
+    "l": "color(String)",
+    "url": "com/skillw/pouvoir/util/ColorUtils.html#color(String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ColorUtils",
+    "l": "color(List<String>)",
+    "url": "com/skillw/pouvoir/util/ColorUtils.html#color(List)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ColorUtils",
+    "l": "unColor(String)",
+    "url": "com/skillw/pouvoir/util/ColorUtils.html#unColor(String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ColorUtils",
+    "l": "unColor(List<String>)",
+    "url": "com/skillw/pouvoir/util/ColorUtils.html#unColor(List)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ColorUtils",
+    "l": "decolored(String)",
+    "url": "com/skillw/pouvoir/util/ColorUtils.html#decolored(String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ColorUtils",
+    "l": "decolored(List<String>)",
+    "url": "com/skillw/pouvoir/util/ColorUtils.html#decolored(List)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EDCodeUtils",
+    "l": "enBase64(Object)",
+    "url": "com/skillw/pouvoir/util/EDCodeUtils.html#enBase64(Object)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EDCodeUtils",
+    "l": "deBase64(String, Class<T>)",
+    "url": "com/skillw/pouvoir/util/EDCodeUtils.html#deBase64(String,Class)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "getDisplayName(LivingEntity)",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#getDisplayName(LivingEntity)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "getName(LivingEntity)",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#getName(LivingEntity)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "livingEntity(UUID)",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#livingEntity(UUID)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "getLivingEntityByUUID(UUID)",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#getLivingEntityByUUID(UUID)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "player(UUID)",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#player(UUID)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "getPlayerByUUID(UUID)",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#getPlayerByUUID(UUID)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "isAlive(UUID)",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#isAlive(UUID)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "isAlive(Entity)",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#isAlive(Entity)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "isLiving(UUID)",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#isLiving(UUID)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "isLiving(Entity)",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#isLiving(Entity)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "spawnArmorStand(Player, Integer, UUID, Location)",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#spawnArmorStand(Player,Integer,UUID,Location)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "spawnEntityLiving(Player, Integer, UUID, Location)",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#spawnEntityLiving(Player,Integer,UUID,Location)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "destroyEntity(Player, Integer)",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#destroyEntity(Player,Integer)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "teleportEntity(Player, Integer, Location)",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#teleportEntity(Player,Integer,Location)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "getEntityLookAt(LivingEntity, Double)",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#getEntityLookAt(LivingEntity,Double)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "getEntityRayHit(LivingEntity, Double)",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#getEntityRayHit(LivingEntity,Double)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "getARMOR_STAND_NEW()",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#getARMOR_STAND_NEW()"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "getARMOR_STAND_LEGACY()",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#getARMOR_STAND_LEGACY()"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "getARMOR_STAND_NMS()",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#getARMOR_STAND_NMS()"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "FileUtils",
+    "l": "listFiles(File)",
+    "url": "com/skillw/pouvoir/util/FileUtils.html#listFiles(File)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "FileUtils",
+    "l": "loadMultiply(File, Class<T>)",
+    "url": "com/skillw/pouvoir/util/FileUtils.html#loadMultiply(File,Class)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "FileUtils",
+    "l": "toMap(ConfigurationSection)",
+    "url": "com/skillw/pouvoir/util/FileUtils.html#toMap(ConfigurationSection)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "FileUtils",
+    "l": "loadConfigFile(File)",
+    "url": "com/skillw/pouvoir/util/FileUtils.html#loadConfigFile(File)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "FileUtils",
+    "l": "getYamlsFromFile(File)",
+    "url": "com/skillw/pouvoir/util/FileUtils.html#getYamlsFromFile(File)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "FileUtils",
+    "l": "pathNormalize(File)",
+    "url": "com/skillw/pouvoir/util/FileUtils.html#pathNormalize(File)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "GsonUtils",
+    "l": "getGson()",
+    "url": "com/skillw/pouvoir/util/GsonUtils.html#getGson()"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ItemUtils",
+    "l": "papiItem(ItemStack, Player)",
+    "url": "com/skillw/pouvoir/util/ItemUtils.html#papiItem(ItemStack,Player)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ItemUtils",
+    "l": "getMythicItem(String, Player)",
+    "url": "com/skillw/pouvoir/util/ItemUtils.html#getMythicItem(String,Player)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ItemUtils",
+    "l": "getMythicItem(String)",
+    "url": "com/skillw/pouvoir/util/ItemUtils.html#getMythicItem(String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ItemUtils",
+    "l": "getMythicItems(List<String>, Player)",
+    "url": "com/skillw/pouvoir/util/ItemUtils.html#getMythicItems(List,Player)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ItemUtils",
+    "l": "obj(ItemTagData)",
+    "url": "com/skillw/pouvoir/util/ItemUtils.html#obj(ItemTagData)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ItemUtils",
+    "l": "toMutableMap(ItemTag, List<String>)",
+    "url": "com/skillw/pouvoir/util/ItemUtils.html#toMutableMap(ItemTag,List)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ItemUtils",
+    "l": "toNBT(Object)",
+    "url": "com/skillw/pouvoir/util/ItemUtils.html#toNBT(Object)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "KetherUtils",
+    "l": "invokeString(String, Map<String, Object>, CommandSender)",
+    "url": "com/skillw/pouvoir/util/KetherUtils.html#invokeString(String,Map,CommandSender)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "MapUtils",
+    "l": "addSingleList(Map<K, LinkedList<V>>, K, V)",
+    "url": "com/skillw/pouvoir/util/MapUtils.html#addSingleList(Map,K,V)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "MapUtils",
+    "l": "addSingleKV(Map<K, HashSet<V>>, K, V)",
+    "url": "com/skillw/pouvoir/util/MapUtils.html#addSingleKV(Map,K,V)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "MapUtils",
+    "l": "add(Map<K, LinkedList<V>>, K, V)",
+    "url": "com/skillw/pouvoir/util/MapUtils.html#add(Map,K,V)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "MapUtils",
+    "l": "addSingleSet(Map<K, HashSet<V>>, K, V)",
+    "url": "com/skillw/pouvoir/util/MapUtils.html#addSingleSet(Map,K,V)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "MapUtils",
+    "l": "putFast(Map<K, Map<Z, V>>, K, Z, V)",
+    "url": "com/skillw/pouvoir/util/MapUtils.html#putFast(Map,K,Z,V)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "MapUtils",
+    "l": "put(Map<K, Map<Z, V>>, K, Z, V)",
+    "url": "com/skillw/pouvoir/util/MapUtils.html#put(Map,K,Z,V)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "MapUtils",
+    "l": "getAllValues(Map<K, Map<Z, V>>)",
+    "url": "com/skillw/pouvoir/util/MapUtils.html#getAllValues(Map)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "MapUtils",
+    "l": "getValues(Map<K, Map<Z, V>>)",
+    "url": "com/skillw/pouvoir/util/MapUtils.html#getValues(Map)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "MessageUtils",
+    "l": "message(CommandSender, String)",
+    "url": "com/skillw/pouvoir/util/MessageUtils.html#message(CommandSender,String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "MessageUtils",
+    "l": "wrong(String)",
+    "url": "com/skillw/pouvoir/util/MessageUtils.html#wrong(String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "MessageUtils",
+    "l": "info(String)",
+    "url": "com/skillw/pouvoir/util/MessageUtils.html#info(String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "MessageUtils",
+    "l": "debug(String)",
+    "url": "com/skillw/pouvoir/util/MessageUtils.html#debug(String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "NumberUtils",
+    "l": "format(Number, String)",
+    "url": "com/skillw/pouvoir/util/NumberUtils.html#format(Number,String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "NumberUtils",
+    "l": "format(Number)",
+    "url": "com/skillw/pouvoir/util/NumberUtils.html#format(Number,String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "NumberUtils",
+    "l": "randomInt(Integer, Integer)",
+    "url": "com/skillw/pouvoir/util/NumberUtils.html#randomInt(Integer,Integer)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "NumberUtils",
+    "l": "random(Number, Number, String)",
+    "url": "com/skillw/pouvoir/util/NumberUtils.html#random(Number,Number,String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "Pair",
+    "l": "Pair(K, V)",
+    "url": "com/skillw/pouvoir/util/Pair.html#Pair(K,V)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "Pair",
+    "l": "getKey()",
+    "url": "com/skillw/pouvoir/util/Pair.html#getKey()"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "Pair",
+    "l": "getValue()",
+    "url": "com/skillw/pouvoir/util/Pair.html#getValue()"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PlayerUtils",
+    "l": "sendTitle(Player, String, String, Integer, Integer, Integer)",
+    "url": "com/skillw/pouvoir/util/PlayerUtils.html#sendTitle(Player,String,String,Integer,Integer,Integer)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PlayerUtils",
+    "l": "sendTitle(Player, String, Integer, Integer, Integer)",
+    "url": "com/skillw/pouvoir/util/PlayerUtils.html#sendTitle(Player,String,Integer,Integer,Integer)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PlayerUtils",
+    "l": "sendTitle(Player, String, String, Integer)",
+    "url": "com/skillw/pouvoir/util/PlayerUtils.html#sendTitle(Player,String,String,Integer)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PlayerUtils",
+    "l": "sendTitle(Player, String, Integer)",
+    "url": "com/skillw/pouvoir/util/PlayerUtils.html#sendTitle(Player,String,Integer)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PlayerUtils",
+    "l": "sendSubTitle(Player, String, Integer)",
+    "url": "com/skillw/pouvoir/util/PlayerUtils.html#sendSubTitle(Player,String,Integer)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PlayerUtils",
+    "l": "resetTitle(Player)",
+    "url": "com/skillw/pouvoir/util/PlayerUtils.html#resetTitle(Player)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PlayerUtils",
+    "l": "sendActionBar(Player, String)",
+    "url": "com/skillw/pouvoir/util/PlayerUtils.html#sendActionBar(Player,String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PlayerUtils",
+    "l": "sendActionBar(Player, String, Long, JavaPlugin)",
+    "url": "com/skillw/pouvoir/util/PlayerUtils.html#sendActionBar(Player,String,Long,JavaPlugin)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PlayerUtils",
+    "l": "resetActionBar(Player)",
+    "url": "com/skillw/pouvoir/util/PlayerUtils.html#resetActionBar(Player)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PlayerUtils",
+    "l": "sendBossBar(Player, String, BarColor, BarStyle, Double)",
+    "url": "com/skillw/pouvoir/util/PlayerUtils.html#sendBossBar(Player,String,BarColor,BarStyle,Double)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PlayerUtils",
+    "l": "setCooldown(Player, Material, Integer)",
+    "url": "com/skillw/pouvoir/util/PlayerUtils.html#setCooldown(Player,Material,Integer)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PlayerUtils",
+    "l": "getCooldown(Player, Material)",
+    "url": "com/skillw/pouvoir/util/PlayerUtils.html#getCooldown(Player,Material)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PlayerUtils",
+    "l": "hasCooldown(Player, Material)",
+    "url": "com/skillw/pouvoir/util/PlayerUtils.html#hasCooldown(Player,Material)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PlayerUtils",
+    "l": "removeCooldown(Player, Material)",
+    "url": "com/skillw/pouvoir/util/PlayerUtils.html#removeCooldown(Player,Material)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PlayerUtils",
+    "l": "sendPacketWithFields(Player, Object, Pair<String, Object>)",
+    "url": "com/skillw/pouvoir/util/PlayerUtils.html#sendPacketWithFields(Player,Object,Pair)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PluginUtils",
+    "l": "getClasses(Plugin)",
+    "url": "com/skillw/pouvoir/util/PluginUtils.html#getClasses(Plugin)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "StringUtils",
+    "l": "placeholder(String, LivingEntity)",
+    "url": "com/skillw/pouvoir/util/StringUtils.html#placeholder(String,LivingEntity)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "StringUtils",
+    "l": "protectedSplit(String, Character, Pair<Character, Character>)",
+    "url": "com/skillw/pouvoir/util/StringUtils.html#protectedSplit(String,Character,Pair)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "StringUtils",
+    "l": "toStringWithNext(Object)",
+    "url": "com/skillw/pouvoir/util/StringUtils.html#toStringWithNext(Object)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "StringUtils",
+    "l": "toStringWithNext(Collection<?>)",
+    "url": "com/skillw/pouvoir/util/StringUtils.html#toStringWithNext(Collection)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "StringUtils",
+    "l": "toList(String)",
+    "url": "com/skillw/pouvoir/util/StringUtils.html#toList(String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "StringUtils",
+    "l": "toArgs(String)",
+    "url": "com/skillw/pouvoir/util/StringUtils.html#toArgs(String)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "StringUtils",
+    "l": "replacement(String, Map<String, Object>)",
+    "url": "com/skillw/pouvoir/util/StringUtils.html#replacement(String,Map)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "StringUtils",
+    "l": "replacement(Collection<T>, Map<String, Object>)",
+    "url": "com/skillw/pouvoir/util/StringUtils.html#replacement(Collection,Map)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "StringUtils",
+    "l": "replace(String, Map<String, Object>)",
+    "url": "com/skillw/pouvoir/util/StringUtils.html#replace(String,Map)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "StringUtils",
+    "l": "getMultiple(List<String>, Array<String>)",
+    "url": "com/skillw/pouvoir/util/StringUtils.html#getMultiple(List,Array)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "StringUtils",
+    "l": "parse1(String, Character, Character)",
+    "url": "com/skillw/pouvoir/util/StringUtils.html#parse1(String,Character,Character)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "StringUtils",
+    "l": "parse(String, Character, Character)",
+    "url": "com/skillw/pouvoir/util/StringUtils.html#parse(String,Character,Character)"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PairKt",
+    "l": "to(A, B)",
+    "url": "com/skillw/pouvoir/util/PairKt.html#to(A,B)"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "key",
+    "url": "com/skillw/pouvoir/Pouvoir.html#key"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "plugin",
+    "url": "com/skillw/pouvoir/Pouvoir.html#plugin"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "poolExecutor",
+    "url": "com/skillw/pouvoir/Pouvoir.html#poolExecutor"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "config",
+    "url": "com/skillw/pouvoir/Pouvoir.html#config"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "script",
+    "url": "com/skillw/pouvoir/Pouvoir.html#script"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "managerData",
+    "url": "com/skillw/pouvoir/Pouvoir.html#managerData"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "configManager",
+    "url": "com/skillw/pouvoir/Pouvoir.html#configManager"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "functionManager",
+    "url": "com/skillw/pouvoir/Pouvoir.html#functionManager"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "pouPlaceholderManager",
+    "url": "com/skillw/pouvoir/Pouvoir.html#pouPlaceholderManager"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "pouPlaceHolderAPI",
+    "url": "com/skillw/pouvoir/Pouvoir.html#pouPlaceHolderAPI"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "listenerManager",
+    "url": "com/skillw/pouvoir/Pouvoir.html#listenerManager"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "scriptEngineManager",
+    "url": "com/skillw/pouvoir/Pouvoir.html#scriptEngineManager"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "compileManager",
+    "url": "com/skillw/pouvoir/Pouvoir.html#compileManager"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "scriptAnnotationManager",
+    "url": "com/skillw/pouvoir/Pouvoir.html#scriptAnnotationManager"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "scriptManager",
+    "url": "com/skillw/pouvoir/Pouvoir.html#scriptManager"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "playerDataManager",
+    "url": "com/skillw/pouvoir/Pouvoir.html#playerDataManager"
+}, {
+    "p": "com.skillw.pouvoir",
+    "c": "Pouvoir",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/Pouvoir.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.api.annotation",
+    "c": "Configurable",
+    "l": "config",
+    "url": "com/skillw/pouvoir/api/annotation/Configurable.html#config"
+}, {
+    "p": "com.skillw.pouvoir.api.annotation",
+    "c": "Configurable",
+    "l": "path",
+    "url": "com/skillw/pouvoir/api/annotation/Configurable.html#path"
+}, {
+    "p": "com.skillw.pouvoir.api.annotation",
+    "c": "Defaultable",
+    "l": "config",
+    "url": "com/skillw/pouvoir/api/annotation/Defaultable.html#config"
+}, {
+    "p": "com.skillw.pouvoir.api.annotation",
+    "c": "Defaultable",
+    "l": "path",
+    "url": "com/skillw/pouvoir/api/annotation/Defaultable.html#path"
+}, {
+    "p": "com.skillw.pouvoir.api.annotation",
+    "c": "PManager",
+    "l": "impl",
+    "url": "com/skillw/pouvoir/api/annotation/PManager.html#impl"
+}, {
+    "p": "com.skillw.pouvoir.api.annotation",
+    "c": "PManager",
+    "l": "params",
+    "url": "com/skillw/pouvoir/api/annotation/PManager.html#params"
+}, {
+    "p": "com.skillw.pouvoir.api.function",
+    "c": "PouFunction",
+    "l": "key",
+    "url": "com/skillw/pouvoir/api/function/PouFunction.html#key"
+}, {
+    "p": "com.skillw.pouvoir.api.listener",
+    "c": "ScriptListener.Companion",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/api/listener/ScriptListener.Companion.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.api.listener",
+    "c": "ScriptListener",
+    "l": "key",
+    "url": "com/skillw/pouvoir/api/listener/ScriptListener.html#key"
+}, {
+    "p": "com.skillw.pouvoir.api.listener",
+    "c": "ScriptListener",
+    "l": "eventClass",
+    "url": "com/skillw/pouvoir/api/listener/ScriptListener.html#eventClass"
+}, {
+    "p": "com.skillw.pouvoir.api.listener",
+    "c": "ScriptListener",
+    "l": "priority",
+    "url": "com/skillw/pouvoir/api/listener/ScriptListener.html#priority"
+}, {
+    "p": "com.skillw.pouvoir.api.listener",
+    "c": "ScriptListener",
+    "l": "ignoreCancel",
+    "url": "com/skillw/pouvoir/api/listener/ScriptListener.html#ignoreCancel"
+}, {
+    "p": "com.skillw.pouvoir.api.listener",
+    "c": "ScriptListener",
+    "l": "exec",
+    "url": "com/skillw/pouvoir/api/listener/ScriptListener.html#exec"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager.Companion",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.Companion.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "fileMap",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#fileMap"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "defaults",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#defaults"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "serverFile",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#serverFile"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "key",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#key"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "version",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#version"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "language",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#language"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "isCheckVersion",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#isCheckVersion"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ConfigManager",
+    "l": "subPouvoir",
+    "url": "com/skillw/pouvoir/api/manager/ConfigManager.html#subPouvoir"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "Manager.Companion",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/api/manager/Manager.Companion.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ManagerData",
+    "l": "exec",
+    "url": "com/skillw/pouvoir/api/manager/ManagerData.html#exec"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ManagerData",
+    "l": "plugin",
+    "url": "com/skillw/pouvoir/api/manager/ManagerData.html#plugin"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ManagerData",
+    "l": "key",
+    "url": "com/skillw/pouvoir/api/manager/ManagerData.html#key"
+}, {
+    "p": "com.skillw.pouvoir.api.manager",
+    "c": "ManagerData",
+    "l": "subPouvoir",
+    "url": "com/skillw/pouvoir/api/manager/ManagerData.html#subPouvoir"
+}, {
+    "p": "com.skillw.pouvoir.api.manager.sub",
+    "c": "FunctionManager",
+    "l": "priority",
+    "url": "com/skillw/pouvoir/api/manager/sub/FunctionManager.html#priority"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "size",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#size"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "entries",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#entries"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "values",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#values"
+}, {
+    "p": "com.skillw.pouvoir.api.map",
+    "c": "BaseMap",
+    "l": "keys",
+    "url": "com/skillw/pouvoir/api/map/BaseMap.html#keys"
+}, {
+    "p": "com.skillw.pouvoir.api.placeholder",
+    "c": "PouPlaceHolder",
+    "l": "key",
+    "url": "com/skillw/pouvoir/api/placeholder/PouPlaceHolder.html#key"
+}, {
+    "p": "com.skillw.pouvoir.api.placeholder",
+    "c": "PouPlaceHolder",
+    "l": "subPouvoir",
+    "url": "com/skillw/pouvoir/api/placeholder/PouPlaceHolder.html#subPouvoir"
+}, {
+    "p": "com.skillw.pouvoir.api.plugin",
+    "c": "TotalManager",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/api/plugin/TotalManager.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "CompiledFile",
+    "l": "key",
+    "url": "com/skillw/pouvoir/api/script/CompiledFile.html#key"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "CompiledFile",
+    "l": "annotations",
+    "url": "com/skillw/pouvoir/api/script/CompiledFile.html#annotations"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "CompiledFile",
+    "l": "functions",
+    "url": "com/skillw/pouvoir/api/script/CompiledFile.html#functions"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "CompiledFile",
+    "l": "file",
+    "url": "com/skillw/pouvoir/api/script/CompiledFile.html#file"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "CompiledFile",
+    "l": "subPouvoir",
+    "url": "com/skillw/pouvoir/api/script/CompiledFile.html#subPouvoir"
+}, {
+    "p": "com.skillw.pouvoir.api.script",
+    "c": "ScriptTool",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/api/script/ScriptTool.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "c": "ScriptAnnotation",
+    "l": "key",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotation.html#key"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "c": "ScriptAnnotation",
+    "l": "awakeWhenEnable",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotation.html#awakeWhenEnable"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "c": "ScriptAnnotationData",
+    "l": "annotation",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#annotation"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "c": "ScriptAnnotationData",
+    "l": "compiledFile",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#compiledFile"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "c": "ScriptAnnotationData",
+    "l": "function",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#function"
+}, {
+    "p": "com.skillw.pouvoir.api.script.annotation",
+    "c": "ScriptAnnotationData",
+    "l": "args",
+    "url": "com/skillw/pouvoir/api/script/annotation/ScriptAnnotationData.html#args"
+}, {
+    "p": "com.skillw.pouvoir.api.script.engine",
+    "c": "PouScriptEngine",
+    "l": "scriptEngine",
+    "url": "com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#scriptEngine"
+}, {
+    "p": "com.skillw.pouvoir.api.script.engine",
+    "c": "PouScriptEngine",
+    "l": "key",
+    "url": "com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#key"
+}, {
+    "p": "com.skillw.pouvoir.api.script.engine",
+    "c": "PouScriptEngine",
+    "l": "suffixes",
+    "url": "com/skillw/pouvoir/api/script/engine/PouScriptEngine.html#suffixes"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "wrappedFactory",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#wrappedFactory"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "exceptionHandler",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#exceptionHandler"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "namingPattern",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#namingPattern"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "priority",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#priority"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory.Builder",
+    "l": "daemonFlag",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html#daemonFlag"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory",
+    "l": "wrappedFactory",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.html#wrappedFactory"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory",
+    "l": "uncaughtExceptionHandler",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.html#uncaughtExceptionHandler"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory",
+    "l": "namingPattern",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.html#namingPattern"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory",
+    "l": "priority",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.html#priority"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory",
+    "l": "daemonFlag",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.html#daemonFlag"
+}, {
+    "p": "com.skillw.pouvoir.api.thread",
+    "c": "BasicThreadFactory",
+    "l": "threadCount",
+    "url": "com/skillw/pouvoir/api/thread/BasicThreadFactory.html#threadCount"
+}, {
+    "p": "com.skillw.pouvoir.internal.annotation",
+    "c": "Awake",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/annotation/Awake.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.annotation",
+    "c": "Listener",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/annotation/Listener.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.annotation",
+    "c": "Function",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/annotation/Function.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.annotation",
+    "c": "Annotation",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/annotation/Annotation.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.command",
+    "c": "PouvoirCommand",
+    "l": "main",
+    "url": "com/skillw/pouvoir/internal/command/PouvoirCommand.html#main"
+}, {
+    "p": "com.skillw.pouvoir.internal.command",
+    "c": "PouvoirCommand",
+    "l": "run",
+    "url": "com/skillw/pouvoir/internal/command/PouvoirCommand.html#run"
+}, {
+    "p": "com.skillw.pouvoir.internal.command",
+    "c": "PouvoirCommand",
+    "l": "reload",
+    "url": "com/skillw/pouvoir/internal/command/PouvoirCommand.html#reload"
+}, {
+    "p": "com.skillw.pouvoir.internal.command",
+    "c": "PouvoirCommand",
+    "l": "help",
+    "url": "com/skillw/pouvoir/internal/command/PouvoirCommand.html#help"
+}, {
+    "p": "com.skillw.pouvoir.internal.command",
+    "c": "PouvoirCommand",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/command/PouvoirCommand.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.engine",
+    "c": "JavaScriptEngine",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/engine/JavaScriptEngine.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.engine",
+    "c": "GroovyScriptEngine",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/engine/GroovyScriptEngine.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "c": "If",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/function/If.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "c": "abs",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/function/abs.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "c": "ceil",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/function/ceil.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "c": "format",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/function/format.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "c": "floor",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/function/floor.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "c": "max",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/function/max.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "c": "min",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/function/min.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "c": "random",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/function/random.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "c": "randomInt",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/function/randomInt.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "c": "round",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/function/round.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "c": "calculate",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/function/calculate.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "c": "repeat",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/function/repeat.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.function",
+    "c": "weight",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/function/weight.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "DefaultableHandle",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/handle/DefaultableHandle.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "PouEngineHandle",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/handle/PouEngineHandle.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "PouFunctionHandle",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/handle/PouFunctionHandle.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "PouPlaceHolderHandle",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/handle/PouPlaceHolderHandle.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "ScriptAnnotationHandler",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/handle/ScriptAnnotationHandler.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "PManagerHandle",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/handle/PManagerHandle.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.handle",
+    "c": "SubPouvoirHandle",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/handle/SubPouvoirHandle.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "Hologram",
+    "l": "viewers",
+    "url": "com/skillw/pouvoir/internal/hologram/Hologram.html#viewers"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "Hologram",
+    "l": "location",
+    "url": "com/skillw/pouvoir/internal/hologram/Hologram.html#location"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "HologramLine",
+    "l": "viewers",
+    "url": "com/skillw/pouvoir/internal/hologram/HologramLine.html#viewers"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "isDeleted",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#isDeleted"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "uniqueId",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#uniqueId"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "normalizeUniqueId",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#normalizeUniqueId"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "viewers",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#viewers"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "id",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#id"
+}, {
+    "p": "com.skillw.pouvoir.internal.hologram",
+    "c": "PouArmorStand",
+    "l": "location",
+    "url": "com/skillw/pouvoir/internal/hologram/PouArmorStand.html#location"
+}, {
+    "p": "com.skillw.pouvoir.internal.hook",
+    "c": "PlaceholderAPIHooker",
+    "l": "identifier",
+    "url": "com/skillw/pouvoir/internal/hook/PlaceholderAPIHooker.html#identifier"
+}, {
+    "p": "com.skillw.pouvoir.internal.hook",
+    "c": "PlaceholderAPIHooker",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/hook/PlaceholderAPIHooker.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.hook",
+    "c": "PouvoirHooker",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/hook/PouvoirHooker.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.listener",
+    "c": "PlayerListener",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/listener/PlayerListener.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "CompileManagerImpl",
+    "l": "key",
+    "url": "com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#key"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "CompileManagerImpl",
+    "l": "priority",
+    "url": "com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#priority"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "CompileManagerImpl",
+    "l": "subPouvoir",
+    "url": "com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#subPouvoir"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "CompileManagerImpl",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/manager/CompileManagerImpl.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "FunctionManagerImpl",
+    "l": "key",
+    "url": "com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#key"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "FunctionManagerImpl",
+    "l": "priority",
+    "url": "com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#priority"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "FunctionManagerImpl",
+    "l": "subPouvoir",
+    "url": "com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#subPouvoir"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "FunctionManagerImpl",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/manager/FunctionManagerImpl.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ListenerManagerImpl",
+    "l": "key",
+    "url": "com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#key"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ListenerManagerImpl",
+    "l": "priority",
+    "url": "com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#priority"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ListenerManagerImpl",
+    "l": "subPouvoir",
+    "url": "com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#subPouvoir"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ListenerManagerImpl",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/manager/ListenerManagerImpl.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PlayerDataManagerImpl",
+    "l": "key",
+    "url": "com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#key"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PlayerDataManagerImpl",
+    "l": "priority",
+    "url": "com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#priority"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PlayerDataManagerImpl",
+    "l": "subPouvoir",
+    "url": "com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#subPouvoir"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PlayerDataManagerImpl",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/manager/PlayerDataManagerImpl.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderAPIImpl",
+    "l": "key",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#key"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderAPIImpl",
+    "l": "priority",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#priority"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderAPIImpl",
+    "l": "subPouvoir",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#subPouvoir"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderAPIImpl",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderAPIImpl.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderManagerImpl",
+    "l": "key",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#key"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderManagerImpl",
+    "l": "priority",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#priority"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderManagerImpl",
+    "l": "subPouvoir",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#subPouvoir"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouPlaceHolderManagerImpl",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/manager/PouPlaceHolderManagerImpl.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouvoirConfig",
+    "l": "priority",
+    "url": "com/skillw/pouvoir/internal/manager/PouvoirConfig.html#priority"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouvoirConfig",
+    "l": "staticClasses",
+    "url": "com/skillw/pouvoir/internal/manager/PouvoirConfig.html#staticClasses"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouvoirConfig",
+    "l": "isCheckVersion",
+    "url": "com/skillw/pouvoir/internal/manager/PouvoirConfig.html#isCheckVersion"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouvoirConfig",
+    "l": "numberFormat",
+    "url": "com/skillw/pouvoir/internal/manager/PouvoirConfig.html#numberFormat"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouvoirConfig",
+    "l": "scale",
+    "url": "com/skillw/pouvoir/internal/manager/PouvoirConfig.html#scale"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "PouvoirConfig",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/manager/PouvoirConfig.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptAnnotationManagerImpl",
+    "l": "key",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#key"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptAnnotationManagerImpl",
+    "l": "priority",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#priority"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptAnnotationManagerImpl",
+    "l": "subPouvoir",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#subPouvoir"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptAnnotationManagerImpl",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptAnnotationManagerImpl.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptEngineManagerImpl",
+    "l": "key",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#key"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptEngineManagerImpl",
+    "l": "priority",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#priority"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptEngineManagerImpl",
+    "l": "subPouvoir",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#subPouvoir"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptEngineManagerImpl",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptEngineManagerImpl.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "key",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#key"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "priority",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#priority"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "subPouvoir",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#subPouvoir"
+}, {
+    "p": "com.skillw.pouvoir.internal.manager",
+    "c": "ScriptManagerImpl",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/manager/ScriptManagerImpl.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.internal.raytrace",
+    "c": "RayTrace",
+    "l": "origin",
+    "url": "com/skillw/pouvoir/internal/raytrace/RayTrace.html#origin"
+}, {
+    "p": "com.skillw.pouvoir.internal.raytrace",
+    "c": "RayTrace",
+    "l": "direction",
+    "url": "com/skillw/pouvoir/internal/raytrace/RayTrace.html#direction"
+}, {
+    "p": "com.skillw.pouvoir.internal.script",
+    "c": "PouClassFilter",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/internal/script/PouClassFilter.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "CalculationUtils",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/util/CalculationUtils.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ClassUtils",
+    "l": "staticClass",
+    "url": "com/skillw/pouvoir/util/ClassUtils.html#staticClass"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ClassUtils",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/util/ClassUtils.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ColorUtils",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/util/ColorUtils.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EDCodeUtils",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/util/EDCodeUtils.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "ARMOR_STAND_NEW",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#ARMOR_STAND_NEW"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "ARMOR_STAND_LEGACY",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#ARMOR_STAND_LEGACY"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "ARMOR_STAND_NMS",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#ARMOR_STAND_NMS"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "EntityUtils",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/util/EntityUtils.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "FileUtils",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/util/FileUtils.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "GsonUtils",
+    "l": "gson",
+    "url": "com/skillw/pouvoir/util/GsonUtils.html#gson"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "GsonUtils",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/util/GsonUtils.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "ItemUtils",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/util/ItemUtils.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "KetherUtils",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/util/KetherUtils.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "MapUtils",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/util/MapUtils.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "MessageUtils",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/util/MessageUtils.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "NumberUtils",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/util/NumberUtils.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "Pair",
+    "l": "key",
+    "url": "com/skillw/pouvoir/util/Pair.html#key"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "Pair",
+    "l": "value",
+    "url": "com/skillw/pouvoir/util/Pair.html#value"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PlayerUtils",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/util/PlayerUtils.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "PluginUtils",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/util/PluginUtils.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.util",
+    "c": "StringUtils",
+    "l": "INSTANCE",
+    "url": "com/skillw/pouvoir/util/StringUtils.html#INSTANCE"
+}, {
+    "p": "com.skillw.pouvoir.api.event",
+    "c": "Time",
+    "l": "AFTER",
+    "url": "com/skillw/pouvoir/api/event/Time.html#AFTER"
+}, {
+    "p": "com.skillw.pouvoir.api.event",
+    "c": "Time",
+    "l": "BEFORE",
+    "url": "com/skillw/pouvoir/api/event/Time.html#BEFORE"
+}]

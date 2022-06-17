@@ -6,7 +6,7 @@ import com.skillw.pouvoir.api.plugin.SubPouvoir
 import org.bukkit.entity.LivingEntity
 
 /**
- * ClassName : com.skillw.com.skillw.rpglib.api.analysis.PouPlaceHolder
+ * ClassName : com.skillw.pouvoir.api.analysis.PouPlaceHolder
  * Created by Glom_ on 2021-03-28 15:40:22
  * Copyright  2021 user. All rights reserved.
  */

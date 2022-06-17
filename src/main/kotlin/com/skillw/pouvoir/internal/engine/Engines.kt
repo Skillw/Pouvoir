@@ -1,6 +1,7 @@
 package com.skillw.pouvoir.internal.engine
 
 import com.skillw.pouvoir.Pouvoir
+import com.skillw.pouvoir.api.function.Function2To1
 import com.skillw.pouvoir.api.script.CompiledFile
 import com.skillw.pouvoir.api.script.annotation.ScriptAnnotationData
 import com.skillw.pouvoir.api.script.engine.PouScriptEngine
@@ -27,8 +28,8 @@ object JavaScriptEngine : PouScriptEngine(
         jdk.nashorn.api.scripting.NashornScriptEngineFactory().getScriptEngine(Pouvoir::class.java.classLoader)
     } catch (ex: ClassNotFoundException) {
         NashornScriptEngineFactory().getScriptEngine(Pouvoir::class.java.classLoader)
-    }, {
-        handleMap(it, jsFunctionPattern)
+    }, Function2To1 { compiledFile: CompiledFile, script: List<String> ->
+        handleMap(compiledFile, script, jsFunctionPattern)
     }, "js"
 ) {
     override fun addFunctionStructure(script: String, name: String): String {
@@ -44,8 +45,8 @@ private val groovyFunctionPattern = Pattern.compile("^def (?<name>.*)\\(.*\\)(| 
 )
 object GroovyScriptEngine : PouScriptEngine(
     "groovy", GroovyScriptEngineFactory().scriptEngine,
-    {
-        handleMap(it, groovyFunctionPattern)
+    Function2To1 { compiledFile: CompiledFile, script: List<String> ->
+        handleMap(compiledFile, script, groovyFunctionPattern)
     },
     "groovy"
 ) {
@@ -55,11 +56,10 @@ object GroovyScriptEngine : PouScriptEngine(
 }
 
 private fun handleMap(
-    pair: Pair<CompiledFile, List<String>>,
+    compiledFile: CompiledFile,
+    scripts: List<String>,
     pattern: Pattern
 ): MutableMap<String, LinkedList<ScriptAnnotationData>> {
-    val compiledFile = pair.first
-    val scripts = pair.second
     val map = ConcurrentHashMap<String, LinkedList<ScriptAnnotationData>>()
     for (index in scripts.indices) {
         val str = scripts[index]
@@ -88,7 +88,7 @@ private fun getAnnotations(
         val last = scripts[--lastIndex]
         val matcher = scriptAnnotationPattern.matcher(last)
         if (!matcher.find()) {
-            if (last.contains("@")) continue;
+            if (last.contains("@")) continue
             break
         }
         annotations.add(

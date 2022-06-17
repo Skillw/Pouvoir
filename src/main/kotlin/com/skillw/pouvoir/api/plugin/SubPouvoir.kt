@@ -2,22 +2,21 @@ package com.skillw.pouvoir.api.plugin
 
 import com.skillw.pouvoir.api.able.Keyable
 import com.skillw.pouvoir.api.manager.ManagerData
-import org.bukkit.configuration.file.YamlConfiguration
+import com.skillw.pouvoir.util.MessageUtils
 import org.bukkit.plugin.java.JavaPlugin
-import java.io.File
-import java.util.concurrent.ScheduledThreadPoolExecutor
 
 interface SubPouvoir : Keyable<String> {
     var managerData: ManagerData
-    val poolExecutor: ScheduledThreadPoolExecutor
     val plugin: JavaPlugin
-    fun getConfigs(): MutableMap<String, com.skillw.pouvoir.util.Pair<File, YamlConfiguration>>
+
 
     fun load() {
+        MessageUtils.info("&d[&9$key&d] &a$key is loaded...")
         managerData.load()
     }
 
     fun enable() {
+        MessageUtils.info("&d[&9$key&d] &e$key is enable...")
         managerData.enable()
     }
 
@@ -26,6 +25,7 @@ interface SubPouvoir : Keyable<String> {
     }
 
     fun disable() {
+        MessageUtils.info("&d[&9$key&d] &c$key is disable...")
         managerData.disable()
     }
 

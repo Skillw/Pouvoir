@@ -1,6 +1,6 @@
 plugins {
     `java-library`
-    id("io.izzel.taboolib") version "1.34"
+    id("io.izzel.taboolib") version "1.40"
     id("org.jetbrains.kotlin.jvm") version "1.6.10"
     id("org.jetbrains.dokka") version "1.6.10"
 }
@@ -28,7 +28,7 @@ tasks.dokkaJavadoc.configure {
 
 
 taboolib {
-
+//    options("skip-kotlin-relocate")
 
     description {
         contributors {
@@ -68,7 +68,7 @@ taboolib {
     options()
 
     classifier = null
-    version = "6.0.7-44"
+    version = "6.0.9-4"
 
 }
 

@@ -27,7 +27,7 @@ object ItemUtils {
         val meta = item.itemMeta
         meta as ItemMeta
         if (meta.hasDisplayName()) {
-            meta.setDisplayName(Pouvoir.pouPlaceHolderAPI.replace(player, meta.displayName));
+            meta.setDisplayName(Pouvoir.pouPlaceHolderAPI.replace(player, meta.displayName))
         }
         if (meta.hasLore()) {
             val lores = ArrayList<String>()

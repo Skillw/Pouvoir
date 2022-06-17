@@ -4,7 +4,7 @@ import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
 /**
- * ClassName : com.skillw.com.skillw.rpglib.util.MapUtils
+ * ClassName : com.skillw.pouvoir.util.MapUtils
  * Created by Glom_ on 2021-03-28 21:59:37
  * Copyright  2021 user. All rights reserved.
  */
@@ -45,7 +45,7 @@ object MapUtils {
 
     @JvmStatic
     fun <K, V, Z> MutableMap<K, MutableMap<Z, V>>.putFast(key1: K, key2: Z, value: V): Map<K, MutableMap<Z, V>> {
-        return MapUtils.put(this, key1, key2, value)
+        return put(this, key1, key2, value)
     }
 
     @JvmStatic

@@ -201,7 +201,7 @@ object ScriptManagerImpl : ScriptManager() {
                     val file = File(configManager.serverFile, path)
                     return if (file.exists() && file.isFile) {
                         val compiledFile = CompiledFile(file, subPouvoir)
-                        if (compiledFile.canCompiled()) {
+                        if (compiledFile.canCompiled) {
                             compiledFile.register()
                             Optional.of(compiledFile)
                         } else Optional.empty()

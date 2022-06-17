@@ -2,6 +2,7 @@ package com.skillw.pouvoir.api.formula
 
 import com.skillw.pouvoir.Pouvoir.pouPlaceHolderAPI
 import com.skillw.pouvoir.util.CalculationUtils
+import com.skillw.pouvoir.util.Pair
 import com.skillw.pouvoir.util.StringUtils.replacement
 import org.bukkit.entity.LivingEntity
 import java.math.BigDecimal
@@ -15,7 +16,9 @@ import java.util.concurrent.ConcurrentHashMap
 class Formula(private val formula: String, private val livingEntity: LivingEntity) {
     private val replacements = ConcurrentHashMap<String, String>()
     fun replace(vararg pairs: Pair<String, String>): Formula {
-        replacements.putAll(pairs)
+        pairs.forEach {
+            replacements[it.key] = it.value
+        }
         return this
     }
 

@@ -5,7 +5,7 @@ import org.bukkit.entity.LivingEntity
 import java.util.*
 
 /**
- * ClassName : com.skillw.com.skillw.rpglib.api.PouPlaceHolderAPI
+ * ClassName : com.skillw.pouvoir.api.PouPlaceHolderAPI
  * Created by Glom_ on 2021-03-28 15:41:27
  * Copyright  2021 user. All rights reserved.
  */

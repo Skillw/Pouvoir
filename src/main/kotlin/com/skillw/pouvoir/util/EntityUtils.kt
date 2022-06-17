@@ -16,7 +16,6 @@ import taboolib.common.reflect.Reflex.Companion.invokeMethod
 import taboolib.common.reflect.Reflex.Companion.unsafeInstance
 import taboolib.module.navigation.BoundingBox
 import taboolib.module.navigation.NMSImpl
-import taboolib.module.nms.MinecraftVersion
 import taboolib.module.nms.MinecraftVersion.isUniversal
 import taboolib.module.nms.MinecraftVersion.major
 import taboolib.module.nms.MinecraftVersion.majorLegacy
@@ -24,7 +23,7 @@ import taboolib.module.nms.nmsClass
 import java.util.*
 
 /**
- * ClassName : com.skillw.com.skillw.rpglib.util.EntityUtils
+ * ClassName : com.skillw.pouvoir.util.EntityUtils
  * Created by Glom_ on 2021-03-28 17:49:01
  * Copyright  2021 user. All rights reserved.
  */
@@ -82,10 +81,10 @@ object EntityUtils {
         return entity is LivingEntity && entity.getType() != EntityType.ARMOR_STAND && !entity.isDead()
     }
 
-    val ARMOR_STAND_NEW = Enums.getIfPresent(EntityType::class.java, "ARMOR_STAND").orNull()
-    val ARMOR_STAND_LEGACY = 78
-    val ARMOR_STAND_NMS: Any by lazy {
-        if (MinecraftVersion.major >= 5) {
+    private val ARMOR_STAND_NEW = Enums.getIfPresent(EntityType::class.java, "ARMOR_STAND").orNull()
+    private const val ARMOR_STAND_LEGACY = 78
+    private val ARMOR_STAND_NMS: Any by lazy {
+        if (major >= 5) {
             nmsClass("EntityTypes").getProperty<Any>(
                 "ARMOR_STAND", fixed = true
             )!!
@@ -219,7 +218,7 @@ object EntityUtils {
     fun LivingEntity.getEntityLookAt(
         distance: Double
     ): LivingEntity? {
-        return EntityUtils.getEntityRayHit(this, distance)
+        return getEntityRayHit(this, distance)
     }
 
     @JvmStatic

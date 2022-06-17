@@ -11,5 +11,4 @@ class PouScriptFunction(key: String, path: String) : PouFunction(key, { true },
                     "args" to it
                 )
             )
-    }) {
-}
+    })

@@ -11,11 +11,10 @@ object PouEngineHandle {
         try {
             if (!isPouEngineClass(clazz)) return
             val pouScriptEngine = clazz.getField("INSTANCE").get(null) as PouScriptEngine
-            if (Pouvoir.scriptEngineManager.containsKey(pouScriptEngine.key))
-                return
+            if (Pouvoir.scriptEngineManager.containsKey(pouScriptEngine.key)) return
             pouScriptEngine.register()
         } catch (e: Exception) {
-            
+
         }
     }
 }

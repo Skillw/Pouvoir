@@ -1,6 +1,7 @@
 package com.skillw.pouvoir.util
 
 import taboolib.module.chat.colored
+import taboolib.module.chat.uncolored
 
 /**
  * ClassName : com.skillw.classsystem.util.ColorUtils
@@ -20,12 +21,12 @@ object ColorUtils {
 
     @JvmStatic
     fun unColor(msg: String): String {
-        return msg.colored()
+        return msg.uncolored()
     }
 
     @JvmStatic
     fun unColor(messages: List<String>): List<String> {
-        return messages.colored()
+        return messages.uncolored()
     }
 
     @JvmStatic

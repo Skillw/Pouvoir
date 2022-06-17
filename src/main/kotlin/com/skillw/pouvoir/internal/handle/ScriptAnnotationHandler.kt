@@ -11,8 +11,7 @@ object ScriptAnnotationHandler {
         try {
             if (!isScriptAnnotation(clazz)) return
             val scriptAnnotation = clazz.getField("INSTANCE").get(null) as ScriptAnnotation
-            if (Pouvoir.scriptAnnotationManager.containsKey(scriptAnnotation.key))
-                return
+            if (Pouvoir.scriptAnnotationManager.containsKey(scriptAnnotation.key)) return
             scriptAnnotation.register()
         } catch (e: Exception) {
 

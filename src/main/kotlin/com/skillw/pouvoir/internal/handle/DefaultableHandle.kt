@@ -22,7 +22,7 @@ object DefaultableHandle {
         val key = defaultable.config
         val path = defaultable.path
         val manager = (subPouvoir.managerData["ConfigManager"] as ConfigManager)
-        if (!manager.defaults.contains(clazz)) {
+        if (clazz !in manager.defaults) {
             ConfigurationSerialization.registerClass(clazz.asSubclass(ConfigurationSerializable::class.java))
             manager.defaults.add(clazz)
         }

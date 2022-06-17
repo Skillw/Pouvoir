@@ -9,7 +9,7 @@ import java.util.*
 object EDCodeUtils {
     /**
      * 将对象进行 Base64 加密并输出字符串
-     * @param Object Object 待加密对象
+     * @param any Any 待加密对象
      * @return String Base64 加密文本
      */
     @JvmStatic
@@ -23,7 +23,7 @@ object EDCodeUtils {
 
     /**
      * 将 Base64 加密文本解析为对象
-     * @param String String Base64 加密文本
+     * @param base64String String Base64 加密文本
      * @param clazz Class 类
      * @return Object 相应对象
      */

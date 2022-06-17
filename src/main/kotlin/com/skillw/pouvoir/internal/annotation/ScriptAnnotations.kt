@@ -55,8 +55,7 @@ object Listener : ScriptAnnotation("Listener", handle@{ data ->
     compiledFile["reload-listener-$key"] = {
         Pouvoir.listenerManager.remove(key)
     }
-}, true) {
-}
+}, true)
 
 /**
  * Function
@@ -84,8 +83,7 @@ object Annotation : ScriptAnnotation("Annotation", handle@{ data ->
     val args = data.args.toArgs()
     val function = data.function
     val key = if (args.isEmpty() || args[0] == "") function else args[0]
-    val annotation = object : ScriptAnnotation(key, { compiledFile.invoke(function, mutableMapOf("data" to it)) }) {}
-    annotation.register()
+    object : ScriptAnnotation(key, { compiledFile.invoke(function, mutableMapOf("data" to it)) }) {}.register()
     compiledFile["register-annotation-this::$function"] = {
         Pouvoir.scriptAnnotationManager.remove(key)
     }

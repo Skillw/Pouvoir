@@ -17,13 +17,8 @@ import java.util.function.Consumer
 
 object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
     internal val pluginData = ConcurrentHashMap<Plugin, SubPouvoir>()
+    private val allClasses = HashSet<Class<*>>()
 
-
-    fun remove(plugin: Plugin) {
-        val subPouvoir = pluginData[plugin] ?: return
-        this.remove(subPouvoir)
-        pluginData.remove(plugin)
-    }
 
     private fun load(plugin: Plugin) {
         remove(plugin)
@@ -31,32 +26,10 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
         register(plugin)
     }
 
-
-    fun isSubPouvoir(plugin: Plugin): Boolean {
-        return Pouvoir.isDepend(plugin) || plugin.name == "Pouvoir"
-    }
-
-    private val allClasses = HashSet<Class<*>>()
-
-    fun forEachClass(consumer: Consumer<Class<*>>) {
-        allClasses.forEach {
-            consumer.accept(it)
-        }
-    }
-
-    fun init(plugin: Plugin) {
-        if (!isSubPouvoir(plugin)) {
-            return
-        }
-        val classes: List<Class<*>> = PluginUtils.getClasses(plugin)
-        for (clazz in classes) {
-            SubPouvoirHandle.inject(clazz, plugin)
-            DefaultableHandle.inject(clazz, plugin)
-            if (ConfigurationSerializable::class.java.isAssignableFrom(clazz)) {
-                ConfigurationSerialization.registerClass(clazz.asSubclass(ConfigurationSerializable::class.java))
-            }
-        }
-        allClasses.addAll(classes)
+    fun remove(plugin: Plugin) {
+        val subPouvoir = pluginData[plugin] ?: return
+        this.remove(subPouvoir)
+        pluginData.remove(plugin)
     }
 
     @Awake(LifeCycle.LOAD)
@@ -64,8 +37,39 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
         Bukkit.getPluginManager().plugins.forEach { load(it) }
     }
 
+    fun forEachClass(consumer: Consumer<Class<*>>) {
+        allClasses.forEach {
+            consumer.accept(it)
+        }
+    }
+
+
+    private fun init(plugin: Plugin) {
+        try {
+            if (!isSubPouvoir(plugin)) return
+            val classes = PluginUtils.getClasses(plugin)
+            for (clazz in classes) {
+                SubPouvoirHandle.inject(clazz, plugin)
+                DefaultableHandle.inject(clazz, plugin)
+                if (ConfigurationSerializable::class.java.isAssignableFrom(clazz)) {
+                    ConfigurationSerialization.registerClass(clazz.asSubclass(ConfigurationSerializable::class.java))
+                }
+            }
+            allClasses.addAll(classes)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+
     fun register(plugin: Plugin) {
-        val subPouvoir = pluginData[plugin] ?: return
-        ManagerData(subPouvoir).register()
+        pluginData[plugin]?.apply {
+            ManagerData(this).register()
+        } ?: return
+
+    }
+
+    fun isSubPouvoir(plugin: Plugin): Boolean {
+        return Pouvoir.isDepend(plugin) || plugin.name == "Pouvoir"
     }
 }

@@ -1,6 +1,19 @@
 package com.skillw.pouvoir.api.manager
 
+import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.able.Keyable
+import com.skillw.pouvoir.api.manager.Manager.Companion.ACTIVE
+import com.skillw.pouvoir.api.manager.Manager.Companion.BEFORE_ACTIVE
+import com.skillw.pouvoir.api.manager.Manager.Companion.BEFORE_DISABLE
+import com.skillw.pouvoir.api.manager.Manager.Companion.BEFORE_ENABLE
+import com.skillw.pouvoir.api.manager.Manager.Companion.BEFORE_INIT
+import com.skillw.pouvoir.api.manager.Manager.Companion.BEFORE_LOAD
+import com.skillw.pouvoir.api.manager.Manager.Companion.BEFORE_RELOAD
+import com.skillw.pouvoir.api.manager.Manager.Companion.DISABLE
+import com.skillw.pouvoir.api.manager.Manager.Companion.ENABLE
+import com.skillw.pouvoir.api.manager.Manager.Companion.INIT
+import com.skillw.pouvoir.api.manager.Manager.Companion.LOAD
+import com.skillw.pouvoir.api.manager.Manager.Companion.RELOAD
 import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.map.KeyMap
 import com.skillw.pouvoir.api.map.MultiExecMap
@@ -32,9 +45,9 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Keyab
     override fun register() {
         managers.forEach {
             try {
-                run(it, "BeforeInit")
+                run(it, BEFORE_INIT)
                 it.onInit()
-                run(it, "Init")
+                run(it, INIT)
             } catch (throwable: Throwable) {
                 throwable.printStackTrace()
 
@@ -44,12 +57,12 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Keyab
     }
 
     fun load() {
-        subPouvoir.poolExecutor.execute {
+        Pouvoir.poolExecutor.execute {
             managers.forEach {
                 try {
-                    run(it, "BeforeLoad")
+                    run(it, BEFORE_LOAD)
                     it.onLoad()
-                    run(it, "Load")
+                    run(it, LOAD)
                 } catch (throwable: Throwable) {
                     throwable.printStackTrace()
 
@@ -59,12 +72,12 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Keyab
     }
 
     fun enable() {
-        subPouvoir.poolExecutor.execute {
+        Pouvoir.poolExecutor.execute {
             managers.forEach {
                 try {
-                    run(it, "BeforeEnable")
+                    run(it, BEFORE_ENABLE)
                     it.onEnable()
-                    run(it, "Enable")
+                    run(it, ENABLE)
                 } catch (throwable: Throwable) {
                     throwable.printStackTrace()
 
@@ -74,12 +87,12 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Keyab
     }
 
     fun active() {
-        subPouvoir.poolExecutor.execute {
+        Pouvoir.poolExecutor.execute {
             managers.forEach {
                 try {
-                    run(it, "BeforeActive")
+                    run(it, BEFORE_ACTIVE)
                     it.onActive()
-                    run(it, "Active")
+                    run(it, ACTIVE)
                 } catch (throwable: Throwable) {
                     throwable.printStackTrace()
 
@@ -89,12 +102,12 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Keyab
     }
 
     fun reload() {
-        subPouvoir.poolExecutor.execute {
+        Pouvoir.poolExecutor.execute {
             managers.forEach {
                 try {
-                    run(it, "BeforeReload")
+                    run(it, BEFORE_RELOAD)
                     it.onReload()
-                    run(it, "Reload")
+                    run(it, RELOAD)
                 } catch (throwable: Throwable) {
                     throwable.printStackTrace()
                 }
@@ -103,12 +116,12 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Keyab
     }
 
     fun disable() {
-        subPouvoir.poolExecutor.execute {
+        Pouvoir.poolExecutor.execute {
             managers.forEach {
                 try {
-                    run(it, "BeforeDisable")
+                    run(it, BEFORE_DISABLE)
                     it.onDisable()
-                    run(it, "Disable")
+                    run(it, DISABLE)
                 } catch (throwable: Throwable) {
                     throwable.printStackTrace()
 

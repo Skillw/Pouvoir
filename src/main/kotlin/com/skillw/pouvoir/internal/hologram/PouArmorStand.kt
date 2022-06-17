@@ -61,10 +61,10 @@ class PouArmorStand(val id: Int, var location: Location, consumer: Consumer<PouA
     }
 
     fun isSmall(): Boolean {
-        if (MinecraftVersion.majorLegacy >= 11800) {
-            return armorStand.invokeMethod<Boolean>("n") == true
+        return if (MinecraftVersion.majorLegacy >= 11800) {
+            armorStand.invokeMethod<Boolean>("n") == true
         } else
-            return armorStand.invokeMethod<Boolean>("isSmall") == true
+            armorStand.invokeMethod<Boolean>("isSmall") == true
     }
 
     fun setGravity(value: Boolean) {
@@ -76,10 +76,10 @@ class PouArmorStand(val id: Int, var location: Location, consumer: Consumer<PouA
     }
 
     fun isGravity(): Boolean {
-        if (MinecraftVersion.majorLegacy >= 11800) {
-            return armorStand.invokeMethod<Boolean>("aM") == true
+        return if (MinecraftVersion.majorLegacy >= 11800) {
+            armorStand.invokeMethod<Boolean>("aM") == true
         } else
-            return armorStand.invokeMethod<Boolean>("hasGravity") == true
+            armorStand.invokeMethod<Boolean>("hasGravity") == true
     }
 
     fun setArms(value: Boolean) {

@@ -4,6 +4,7 @@ import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.internal.manager.PouvoirConfig
 import com.skillw.pouvoir.util.StringUtils.replace
 import org.bukkit.entity.LivingEntity
+import taboolib.common.platform.function.warning
 import java.math.BigDecimal
 import java.util.*
 import java.util.regex.Pattern
@@ -138,13 +139,13 @@ object CalculationUtils {
             }
             return number.pop() ?: BigDecimal("0.0")
         } catch (e: Exception) {
-            MessageUtils.wrong("计算式错误! $input")
+            warning("计算式错误! $input")
             e.printStackTrace()
             return BigDecimal.valueOf(0.0)
         }
     }
 
-    fun getResult(formula: String, entity: LivingEntity?, replacements: Map<String, String>): BigDecimal {
-        return getResult(Pouvoir.pouPlaceHolderAPI.replace(entity, replace(formula, replacements)))
+    fun getResult(formula: String, entity: LivingEntity?, replacements: Map<String, String>? = null): BigDecimal {
+        return getResult(Pouvoir.pouPlaceHolderAPI.replace(entity, replace(formula, replacements ?: HashMap())))
     }
 }

@@ -174,17 +174,23 @@ object ScriptTool : BaseMap<String, Any>() {
     fun command(
         name: String
     ): PluginCommand {
-        return BukkitCommand().constructor.newInstance(name, Pouvoir.plugin)
+        val bc = BukkitCommand()
+        bc.sync()
+        return bc.constructor.newInstance(name, Pouvoir.plugin)
     }
 
     @JvmStatic
     fun regCommand(command: PluginCommand) {
-        BukkitCommand().commandMap.register(command.name, command)
+        val bc = BukkitCommand()
+        bc.sync()
+        bc.commandMap.register(command.name, command)
     }
 
     @JvmStatic
     fun unRegCommand(name: String) {
-        BukkitCommand().unregisterCommand(name)
+        val bc = BukkitCommand()
+        bc.sync()
+        bc.unregisterCommand(name)
     }
 
     @JvmStatic
@@ -288,7 +294,7 @@ object ScriptTool : BaseMap<String, Any>() {
         set(player.name, key, value)
     }
 
-    val packetListeners by lazy {
+    private val packetListeners by lazy {
         BaseMap<String, PacketListener>()
     }
 

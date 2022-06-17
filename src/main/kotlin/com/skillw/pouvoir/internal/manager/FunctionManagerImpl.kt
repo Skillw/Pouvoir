@@ -62,9 +62,5 @@ object FunctionManagerImpl : FunctionManager() {
         return replace(text)
     }
 
-    override fun onReload() {
-
-    }
-
 
 }

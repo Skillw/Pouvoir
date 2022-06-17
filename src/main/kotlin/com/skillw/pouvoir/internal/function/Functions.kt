@@ -12,7 +12,7 @@ import taboolib.common5.RandomList
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.math.*
 
-private fun If(x: String, symbol: String, y: String): Boolean {
+private fun `if`(x: String, symbol: String, y: String): Boolean {
     return when (symbol) {
         "<" -> Coerce.toDouble(x) < Coerce.toDouble(y)
         "<=" -> Coerce.toDouble(x) <= Coerce.toDouble(y)
@@ -46,12 +46,12 @@ object If : PouFunction("if",
                 val y = args[2]
                 val trueValue = args[3]
                 val falseValue = args[4]
-                val compare = If(x, symbol, y)
+                val compare = `if`(x, symbol, y)
                 return@func if (compare) trueValue else falseValue
             }
             9 -> {
-                val bool1 = If(args[0], args[1], args[2])
-                val bool2 = If(args[4], args[5], args[6])
+                val bool1 = `if`(args[0], args[1], args[2])
+                val bool2 = `if`(args[4], args[5], args[6])
                 val trueValue = args[7]
                 val falseValue = args[8]
                 val bool = when (args[3]) {
@@ -71,7 +71,7 @@ object If : PouFunction("if",
         }
     })
 
-object abs : PouFunction("abs",
+object Abs : PouFunction("abs",
     {
         it.size == 1 && Coerce.asDouble(it[0]).isPresent
     }, func@{ args ->
@@ -79,7 +79,7 @@ object abs : PouFunction("abs",
         return@func abs(number)
     })
 
-object ceil : PouFunction("ceil",
+object Ceil : PouFunction("ceil",
     {
         it.size == 1 && Coerce.asDouble(it[0]).isPresent
     }, func@{ args ->
@@ -87,7 +87,7 @@ object ceil : PouFunction("ceil",
         return@func ceil(number)
     })
 
-object format : PouFunction("format",
+object Format : PouFunction("format",
     {
         it.size == 2 && Coerce.asDouble(it[0]).isPresent
     }, func@{ args ->
@@ -96,7 +96,7 @@ object format : PouFunction("format",
         return@func number.format(format)
     })
 
-object floor : PouFunction("floor",
+object Floor : PouFunction("floor",
     {
         it.size == 1 && Coerce.asDouble(it[0]).isPresent
     }, func@{ args ->
@@ -104,7 +104,7 @@ object floor : PouFunction("floor",
         return@func floor(number)
     })
 
-object max : PouFunction("max",
+object Max : PouFunction("max",
     {
         it.size == 2 && Coerce.asDouble(it[0]).isPresent && Coerce.asDouble(it[1]).isPresent
     }, func@{ args ->
@@ -113,7 +113,7 @@ object max : PouFunction("max",
         return@func max(x, y)
     })
 
-object min : PouFunction("min",
+object Min : PouFunction("min",
     {
         it.size == 2 && Coerce.asDouble(it[0]).isPresent && Coerce.asDouble(it[1]).isPresent
     }, func@{ args ->
@@ -122,7 +122,7 @@ object min : PouFunction("min",
         return@func min(x, y)
     })
 
-object random : PouFunction("random",
+object Random : PouFunction("random",
     {
         it.size >= 2 && Coerce.asDouble(it[0]).isPresent && Coerce.asDouble(it[1]).isPresent
     }, func@{ args ->
@@ -132,7 +132,7 @@ object random : PouFunction("random",
         return@func random(x, y).format(format)
     })
 
-object randomInt : PouFunction("randomInt",
+object RandomInt : PouFunction("randomInt",
     {
         it.size >= 2 && Coerce.asInteger(it[0]).isPresent && Coerce.asInteger(it[1]).isPresent
     }, func@{ args ->
@@ -141,7 +141,7 @@ object randomInt : PouFunction("randomInt",
         return@func randomInt(x, y)
     })
 
-object round : PouFunction("round",
+object Round : PouFunction("round",
     {
         it.size == 1 && Coerce.asDouble(it[0]).isPresent
     }, func@{ args ->
@@ -149,7 +149,7 @@ object round : PouFunction("round",
         return@func round(x)
     })
 
-object calculate : PouFunction("calculate",
+object Calculate : PouFunction("calculate",
     {
         it.isNotEmpty() && (it.size == 1 || it.filterIndexed { index, _ -> index != 0 }
             .all { it1 -> it1.matches(Regex(".*=.*")) })
@@ -165,7 +165,7 @@ object calculate : PouFunction("calculate",
         return@func formula.replace("[", "(").replace("]", ")").resultDouble(null, replaced)
     })
 
-object repeat : PouFunction("repeat",
+object Repeat : PouFunction("repeat",
     {
         it.size >= 2 && Coerce.asInteger(it[0]).isPresent
     }, func@{ args ->
@@ -185,7 +185,7 @@ object repeat : PouFunction("repeat",
         return@func result
     })
 
-object weight : PouFunction("weight",
+object Weight : PouFunction("weight",
     {
         it.isNotEmpty() && it.all { arg -> arg.contains("::") }
     }, func@{ args ->
