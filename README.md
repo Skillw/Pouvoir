@@ -1,19 +1,24 @@
-# Building
+# Pouvoir
 
-* [Gradle](https://gradle.org/) - Dependency Management
+插件永久免费
 
-The GradleWrapper in included in this project.
+---
 
-**Windows:**
+## 插件
 
-```
-gradlew.bat clean build
-```
+| 说明     | 内容                      |
+| -------- | ------------------------- |
+| 兼容版本 | 理论 全版本               |
+| 软依赖   | PlaceholderAPI Mythicmobs |
 
-**macOS/Linux:**
+## 介绍
 
-```
-./gradlew clean build
-```
+**Pouvoir** 是基于 **TabooLib VI** 编写的一款多线程脚本插件
 
-Build artifacts should be found in `./build/libs` folder.
+## Links
+
+JavaDoc [http://book.skillw.com/pouvoir/doc/](http://book.skillw.com/pouvoir/doc/)
+
+MCBBS [https://www.mcbbs.net/thread-1221977-1-1.html](https://www.mcbbs.net/thread-1221977-1-1.html)
+
+爱发电 [https://afdian.net/@glom\_](https://afdian.net/@glom_)
