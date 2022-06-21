@@ -1,11 +1,5 @@
 package com.skillw.pouvoir.api.script
 
-import com.comphenix.protocol.PacketType
-import com.comphenix.protocol.ProtocolLibrary
-import com.comphenix.protocol.events.ListenerPriority
-import com.comphenix.protocol.events.PacketAdapter
-import com.comphenix.protocol.events.PacketEvent
-import com.comphenix.protocol.events.PacketListener
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.Pouvoir.listenerManager
 import com.skillw.pouvoir.Pouvoir.playerDataManager
@@ -27,7 +21,6 @@ import org.bukkit.plugin.Plugin
 import org.bukkit.potion.PotionEffectType
 import org.bukkit.scheduler.BukkitRunnable
 import taboolib.common.platform.event.EventPriority
-import taboolib.common5.Coerce
 import taboolib.expansion.DataContainer
 import taboolib.module.nms.getI18nName
 import taboolib.module.nms.getItemTag
@@ -40,59 +33,51 @@ import java.util.function.Function
 
 object ScriptTool : BaseMap<String, Any>() {
     @JvmStatic
-    fun runTask(task: Runnable) {
+    fun runTask(task: Runnable) =
         object : BukkitRunnable() {
             override fun run() {
                 task.run()
             }
         }.runTask(Pouvoir.plugin)
-    }
 
     @JvmStatic
-    fun runTaskAsync(task: Runnable) {
+    fun runTaskAsync(task: Runnable) =
         object : BukkitRunnable() {
             override fun run() {
                 task.run()
             }
         }.runTaskAsynchronously(Pouvoir.plugin)
-    }
 
     @JvmStatic
-    fun runTaskLater(task: Runnable, delay: Long) {
+    fun runTaskLater(task: Runnable, delay: Long) =
         object : BukkitRunnable() {
             override fun run() {
                 task.run()
             }
         }.runTaskLater(Pouvoir.plugin, delay)
-    }
 
     @JvmStatic
-    fun runTaskAsyncLater(task: Runnable, delay: Long) {
-
+    fun runTaskAsyncLater(task: Runnable, delay: Long) =
         object : BukkitRunnable() {
             override fun run() {
                 task.run()
             }
         }.runTaskLaterAsynchronously(Pouvoir.plugin, delay)
-    }
 
     @JvmStatic
-    fun runTaskTimer(task: Runnable, delay: Long, period: Long) {
+    fun runTaskTimer(task: Runnable, delay: Long, period: Long) =
         object : BukkitRunnable() {
             override fun run() {
                 task.run()
             }
         }.runTaskTimer(Pouvoir.plugin, delay, period)
-    }
 
     @JvmStatic
-    fun runTaskAsyncTimer(task: Runnable, delay: Long, period: Long) {
-        object : BukkitRunnable() {
-            override fun run() {
-                task.run()
-            }
-        }.runTaskTimerAsynchronously(Pouvoir.plugin, delay, period)
-    }
+    fun runTaskAsyncTimer(task: Runnable, delay: Long, period: Long) = object : BukkitRunnable() {
+        override fun run() {
+            task.run()
+        }
+    }.runTaskTimerAsynchronously(Pouvoir.plugin, delay, period)
 
     @JvmStatic
     fun placeHolder(identifier: String, author: String, version: String, path: String) {
@@ -292,49 +277,5 @@ object ScriptTool : BaseMap<String, Any>() {
     @JvmStatic
     fun set(player: Player, key: String, value: String) {
         set(player.name, key, value)
-    }
-
-    private val packetListeners by lazy {
-        BaseMap<String, PacketListener>()
-    }
-
-    @JvmStatic
-    fun addPacketListener(
-        key: String,
-        priority: ListenerPriority,
-        types: Array<PacketType>,
-        sending: Consumer<PacketEvent>,
-        receiving: Consumer<PacketEvent>
-    ) {
-        val listener = object : PacketAdapter(Pouvoir.plugin, priority, *types) {
-            override fun onPacketSending(event: PacketEvent) {
-                sending.accept(event)
-            }
-
-            override fun onPacketReceiving(event: PacketEvent) {
-                receiving.accept(event)
-            }
-        }
-        packetListeners[key] = listener
-        ProtocolLibrary.getProtocolManager().addPacketListener(listener)
-    }
-
-    @JvmStatic
-    fun addPacketListener(
-        key: String,
-        priority: String,
-        types: Array<PacketType>,
-        sending: Consumer<PacketEvent>,
-        receiving: Consumer<PacketEvent>
-    ) {
-        val listenerPriority = Coerce.toEnum(priority, ListenerPriority::class.java, ListenerPriority.NORMAL)!!
-        addPacketListener(key, listenerPriority, types, sending, receiving)
-    }
-
-    @JvmStatic
-    fun removePacketListener(
-        key: String
-    ) {
-        ProtocolLibrary.getProtocolManager().removePacketListener(packetListeners[key] ?: return)
     }
 }

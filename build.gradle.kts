@@ -28,7 +28,7 @@ tasks.dokkaJavadoc.configure {
 
 
 taboolib {
-//    options("skip-kotlin-relocate")
+    options("skip-kotlin-relocate")
 
     description {
         contributors {
@@ -68,9 +68,10 @@ taboolib {
     options()
 
     classifier = null
-    version = "6.0.9-4"
+    version = "6.0.9-7"
 
 }
+
 
 repositories {
     maven { url = uri("https://repo.tabooproject.org/storages/public/releases") }
@@ -89,7 +90,17 @@ tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs = listOf("-Xjvm-default=all")
+    }
+}
+
+
 configure<JavaPluginConvention> {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
+
+

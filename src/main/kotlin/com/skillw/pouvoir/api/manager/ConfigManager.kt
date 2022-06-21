@@ -84,29 +84,8 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
         return result
     }
 
-    private fun default(configKey: String, config: YamlConfiguration) {
-        val map = defaultOptions()
-        if (!map.containsKey(configKey)) {
-            return
-        }
-        val defaultOptions = map[configKey]!!
-        for ((key, value) in defaultOptions) {
-            if (config.contains(key)) continue
-            config[key] = value
-        }
-    }
-
     final override fun onReload() {
         Language.reload()
-        fileMap.forEach {
-            val file = it.key
-            val config = it.value
-            config.load(file)
-            val key = it.key.nameWithoutExtension
-            default(key, config)
-            config.save(file)
-            this[key] = config
-        }
         subReload()
     }
 

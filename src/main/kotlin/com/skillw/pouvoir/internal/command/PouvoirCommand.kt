@@ -69,8 +69,8 @@ object PouvoirCommand {
     @CommandBody(permission = "pouvoir.command.reload")
     val reload = subCommand {
         execute<CommandSender> { sender, _, _ ->
-            Pouvoir.reload()
             sender.sendLang("command-reload")
+            Pouvoir.reload()
         }
     }
 

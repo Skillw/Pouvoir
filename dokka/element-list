@@ -30,9 +30,7 @@ com.skillw.pouvoir.internal.function
 com.skillw.pouvoir.internal.handle
 com.skillw.pouvoir.internal.hologram
 com.skillw.pouvoir.internal.hook
-com.skillw.pouvoir.internal.listener
 com.skillw.pouvoir.internal.manager
 com.skillw.pouvoir.internal.raytrace
-com.skillw.pouvoir.internal.script
 com.skillw.pouvoir.util
 

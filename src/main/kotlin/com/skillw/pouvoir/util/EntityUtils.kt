@@ -69,6 +69,7 @@ object EntityUtils {
     @JvmStatic
     fun isLiving(uuid: UUID?): Boolean {
         val entity = Bukkit.getEntity(uuid!!)
+       
         return isLiving(entity)
     }
 
