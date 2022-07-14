@@ -68,26 +68,8 @@ taboolib {
     options()
 
     classifier = null
-    version = "6.0.9-7"
+    version = "6.0.9-26"
 
-}
-
-
-repositories {
-    maven { url = uri("https://repo.tabooproject.org/storages/public/releases") }
-    mavenCentral()
-}
-
-dependencies {
-    compileOnly("org.codehaus.groovy:groovy-jsr223:3.0.9")
-    compileOnly("ink.ptms.core:v11605:11605")
-
-    compileOnly(kotlin("stdlib"))
-    compileOnly(fileTree("libs"))
-}
-
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -95,6 +77,28 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         jvmTarget = "1.8"
         freeCompilerArgs = listOf("-Xjvm-default=all")
     }
+}
+
+
+repositories {
+    maven { url = uri("https://repo.nukkitx.com/maven-snapshots") }
+    maven { url = uri("https://repo.spongepowered.org/maven") }
+    maven { url = uri("https://nexus.velocitypowered.com/repository/maven-public/") }
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly("ink.ptms:nms-all:1.0.0")
+    compileOnly("ink.ptms.core:v11900:11900-minimize:mapped")
+    compileOnly("ink.ptms.core:v11900:11900-minimize:universal")
+    compileOnly("org.codehaus.groovy:groovy-jsr223:3.0.9")
+
+    compileOnly(kotlin("stdlib"))
+    compileOnly(fileTree("libs"))
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
 }
 
 

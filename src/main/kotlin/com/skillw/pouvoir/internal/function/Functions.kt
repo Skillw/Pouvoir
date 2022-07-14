@@ -1,5 +1,6 @@
 package com.skillw.pouvoir.internal.function
 
+import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.api.function.PouFunction
 import com.skillw.pouvoir.internal.manager.PouvoirConfig
 import com.skillw.pouvoir.util.CalculationUtils.resultDouble
@@ -35,10 +36,13 @@ private fun `if`(x: String, symbol: String, y: String): Boolean {
     }
 }
 
-object If : PouFunction("if",
-    {
-        it.size == 5 || it.size == 9
-    }, func@{ args ->
+@AutoRegister
+object If : PouFunction("if") {
+    override fun predicate(args: Array<String>): Boolean {
+        return args.size == 5 || args.size == 9
+    }
+
+    override fun function(args: Array<String>): Any {
         when (args.size) {
             5 -> {
                 val x = args[0]
@@ -47,7 +51,7 @@ object If : PouFunction("if",
                 val trueValue = args[3]
                 val falseValue = args[4]
                 val compare = `if`(x, symbol, y)
-                return@func if (compare) trueValue else falseValue
+                return if (compare) trueValue else falseValue
             }
             9 -> {
                 val bool1 = `if`(args[0], args[1], args[2])
@@ -63,97 +67,137 @@ object If : PouFunction("if",
                         false
                     }
                 }
-                return@func if (bool) trueValue else falseValue
+                return if (bool) trueValue else falseValue
             }
             else -> {
-                return@func "Wrong arguments!"
+                return "Wrong arguments!"
             }
         }
-    })
+    }
+}
 
-object Abs : PouFunction("abs",
-    {
-        it.size == 1 && Coerce.asDouble(it[0]).isPresent
-    }, func@{ args ->
+@AutoRegister
+object Abs : PouFunction("abs") {
+    override fun predicate(args: Array<String>): Boolean {
+        return args.size == 1 && Coerce.asDouble(args[0]).isPresent
+    }
+
+    override fun function(args: Array<String>): Any? {
         val number = Coerce.toDouble(args[0])
-        return@func abs(number)
-    })
+        return abs(number)
+    }
+}
 
-object Ceil : PouFunction("ceil",
-    {
-        it.size == 1 && Coerce.asDouble(it[0]).isPresent
-    }, func@{ args ->
+@AutoRegister
+object Ceil : PouFunction("ceil") {
+    override fun predicate(args: Array<String>): Boolean {
+        return args.size == 1 && Coerce.asDouble(args[0]).isPresent
+    }
+
+    override fun function(args: Array<String>): Any? {
         val number = Coerce.toDouble(args[0])
-        return@func ceil(number)
-    })
+        return ceil(number)
+    }
+}
 
-object Format : PouFunction("format",
-    {
-        it.size == 2 && Coerce.asDouble(it[0]).isPresent
-    }, func@{ args ->
+@AutoRegister
+object Format : PouFunction("format") {
+    override fun predicate(args: Array<String>): Boolean {
+        return args.size == 2 && Coerce.asDouble(args[0]).isPresent
+    }
+
+    override fun function(args: Array<String>): Any? {
         val number = Coerce.toDouble(args[0])
         val format = args[1]
-        return@func number.format(format)
-    })
+        return number.format(format)
+    }
+}
 
-object Floor : PouFunction("floor",
-    {
-        it.size == 1 && Coerce.asDouble(it[0]).isPresent
-    }, func@{ args ->
+@AutoRegister
+object Floor : PouFunction("floor") {
+    override fun predicate(args: Array<String>): Boolean {
+        return args.size == 1 && Coerce.asDouble(args[0]).isPresent
+    }
+
+    override fun function(args: Array<String>): Any? {
         val number = Coerce.toDouble(args[0])
-        return@func floor(number)
-    })
+        return floor(number)
+    }
+}
 
-object Max : PouFunction("max",
-    {
-        it.size == 2 && Coerce.asDouble(it[0]).isPresent && Coerce.asDouble(it[1]).isPresent
-    }, func@{ args ->
+@AutoRegister
+object Max : PouFunction("max") {
+    override fun predicate(args: Array<String>): Boolean {
+        return args.size == 2 && Coerce.asDouble(args[0]).isPresent && Coerce.asDouble(args[1]).isPresent
+    }
+
+    override fun function(args: Array<String>): Any? {
         val x = Coerce.toDouble(args[0])
         val y = Coerce.toDouble(args[1])
-        return@func max(x, y)
-    })
+        return max(x, y)
+    }
+}
 
-object Min : PouFunction("min",
-    {
-        it.size == 2 && Coerce.asDouble(it[0]).isPresent && Coerce.asDouble(it[1]).isPresent
-    }, func@{ args ->
+@AutoRegister
+object Min : PouFunction("min") {
+    override fun predicate(args: Array<String>): Boolean {
+        return args.size == 2 && Coerce.asDouble(args[0]).isPresent && Coerce.asDouble(args[1]).isPresent
+    }
+
+    override fun function(args: Array<String>): Any? {
         val x = Coerce.toDouble(args[0])
         val y = Coerce.toDouble(args[1])
-        return@func min(x, y)
-    })
+        return min(x, y)
+    }
+}
 
-object Random : PouFunction("random",
-    {
-        it.size >= 2 && Coerce.asDouble(it[0]).isPresent && Coerce.asDouble(it[1]).isPresent
-    }, func@{ args ->
+@AutoRegister
+object Random : PouFunction("random") {
+    override fun predicate(args: Array<String>): Boolean {
+        return args.size >= 2 && Coerce.asDouble(args[0]).isPresent && Coerce.asDouble(args[1]).isPresent
+    }
+
+    override fun function(args: Array<String>): Any? {
         val x = Coerce.toDouble(args[0])
         val y = Coerce.toDouble(args[1])
         val format = if (args.size == 3) args[2] else PouvoirConfig.numberFormat
-        return@func random(x, y).format(format)
-    })
+        return random(x, y).format(format)
+    }
+}
 
-object RandomInt : PouFunction("randomInt",
-    {
-        it.size >= 2 && Coerce.asInteger(it[0]).isPresent && Coerce.asInteger(it[1]).isPresent
-    }, func@{ args ->
+@AutoRegister
+object RandomInt : PouFunction("randomInt") {
+    override fun predicate(args: Array<String>): Boolean {
+        return args.size >= 2 && Coerce.asInteger(args[0]).isPresent && Coerce.asInteger(args[1]).isPresent
+    }
+
+    override fun function(args: Array<String>): Any? {
         val x = Coerce.toInteger(args[0])
         val y = Coerce.toInteger(args[1])
-        return@func randomInt(x, y)
-    })
+        return randomInt(x, y)
+    }
+}
 
-object Round : PouFunction("round",
-    {
-        it.size == 1 && Coerce.asDouble(it[0]).isPresent
-    }, func@{ args ->
+@AutoRegister
+object Round : PouFunction("round") {
+    override fun predicate(args: Array<String>): Boolean {
+        return args.size == 1 && Coerce.asDouble(args[0]).isPresent
+    }
+
+    override fun function(args: Array<String>): Any? {
         val x = Coerce.toDouble(args[0])
-        return@func round(x)
-    })
+        return round(x)
+    }
+}
 
-object Calculate : PouFunction("calculate",
-    {
-        it.isNotEmpty() && (it.size == 1 || it.filterIndexed { index, _ -> index != 0 }
+@AutoRegister
+object Calculate : PouFunction("calculate") {
+    override fun predicate(args: Array<String>): Boolean {
+        return args.isNotEmpty() && (args.size == 1 || args.filterIndexed { index, _ -> index != 0 }
             .all { it1 -> it1.matches(Regex(".*=.*")) })
-    }, func@{ args ->
+    }
+
+    override fun function(args: Array<String>): Any? {
         val formula = args[0]
         val replaced = ConcurrentHashMap<String, String>()
         for (index in 1..args.lastIndex) {
@@ -162,13 +206,17 @@ object Calculate : PouFunction("calculate",
             val value = str.replace("$key=", "")
             replaced[key] = value
         }
-        return@func formula.replace("[", "(").replace("]", ")").resultDouble(null, replaced)
-    })
+        return formula.replace("[", "(").replace("]", ")").resultDouble(null, replaced)
+    }
+}
 
-object Repeat : PouFunction("repeat",
-    {
-        it.size >= 2 && Coerce.asInteger(it[0]).isPresent
-    }, func@{ args ->
+@AutoRegister
+object Repeat : PouFunction("repeat") {
+    override fun predicate(args: Array<String>): Boolean {
+        return args.size >= 2 && Coerce.asInteger(args[0]).isPresent
+    }
+
+    override fun function(args: Array<String>): Any? {
         val time = Coerce.toInteger(args[0])
         var value = ""
         for (index in args.indices) {
@@ -182,21 +230,28 @@ object Repeat : PouFunction("repeat",
         repeat(time) {
             result += value
         }
-        return@func result
-    })
+        return result
+    }
+}
 
-object Weight : PouFunction("weight",
-    {
-        it.isNotEmpty() && it.all { arg -> arg.contains("::") }
-    }, func@{ args ->
+@AutoRegister
+object Weight : PouFunction(
+    "weight"
+) {
+    override fun predicate(args: Array<String>): Boolean {
+        return args.isNotEmpty() && args.all { arg -> arg.contains("::") }
+    }
+
+    override fun function(args: Array<String>): Any? {
         val weightRandom = RandomList<String>()
         args.forEach {
             val weight = Coerce.toInteger(it.split("::")[0])
             val value = it.replace("$weight::", "")
             weightRandom.add(value, weight)
         }
-        return@func weightRandom.random()
-    })
+        return weightRandom.random()
+    }
+}
 
 
 

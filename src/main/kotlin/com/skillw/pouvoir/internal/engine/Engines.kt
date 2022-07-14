@@ -1,7 +1,7 @@
 package com.skillw.pouvoir.internal.engine
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.api.function.Function2To1
+import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.api.script.CompiledFile
 import com.skillw.pouvoir.api.script.annotation.ScriptAnnotationData
 import com.skillw.pouvoir.api.script.engine.PouScriptEngine
@@ -15,6 +15,17 @@ import java.util.regex.Pattern
 
 private val jsFunctionPattern = Pattern.compile("^function (?<name>.*)\\(.*\\)(| +)\\{$")
 
+
+private fun getNashorn() =
+    try {
+        System.setProperty("nashorn.args", "--language=es6")
+        Class.forName("jdk.nashorn.api.scripting.NashornScriptEngineFactory")
+        jdk.nashorn.api.scripting.NashornScriptEngineFactory().getScriptEngine(Pouvoir::class.java.classLoader)
+    } catch (ex: ClassNotFoundException) {
+        NashornScriptEngineFactory().getScriptEngine(Pouvoir::class.java.classLoader)
+    }
+
+@AutoRegister
 @RuntimeDependencies(
     RuntimeDependency(
         "!org.openjdk.nashorn:nashorn-core:15.3",
@@ -22,16 +33,13 @@ private val jsFunctionPattern = Pattern.compile("^function (?<name>.*)\\(.*\\)(|
     )
 )
 object JavaScriptEngine : PouScriptEngine(
-    "javascript", try {
-        System.setProperty("nashorn.args", "--language=es6")
-        Class.forName("jdk.nashorn.api.scripting.NashornScriptEngineFactory")
-        jdk.nashorn.api.scripting.NashornScriptEngineFactory().getScriptEngine(Pouvoir::class.java.classLoader)
-    } catch (ex: ClassNotFoundException) {
-        NashornScriptEngineFactory().getScriptEngine(Pouvoir::class.java.classLoader)
-    }, Function2To1 { compiledFile: CompiledFile, script: List<String> ->
-        handleMap(compiledFile, script, jsFunctionPattern)
-    }, "js"
+    "javascript", getNashorn(), "js"
 ) {
+    override fun getAnnotationData(
+        compiledFile: CompiledFile,
+        script: List<String>
+    ): MutableMap<String, LinkedList<ScriptAnnotationData>> = handleMap(compiledFile, script, jsFunctionPattern)
+
     override fun addFunctionStructure(script: String, name: String): String {
         return "function $name(){$script}"
     }
@@ -39,17 +47,20 @@ object JavaScriptEngine : PouScriptEngine(
 
 private val groovyFunctionPattern = Pattern.compile("^def (?<name>.*)\\(.*\\)(| +)\\{\$")
 
+@AutoRegister
 @RuntimeDependencies(
     RuntimeDependency("org.codehaus.groovy:groovy-jsr223:3.0.9"),
     RuntimeDependency("org.codehaus.groovy:groovy:3.0.9")
 )
 object GroovyScriptEngine : PouScriptEngine(
     "groovy", GroovyScriptEngineFactory().scriptEngine,
-    Function2To1 { compiledFile: CompiledFile, script: List<String> ->
-        handleMap(compiledFile, script, groovyFunctionPattern)
-    },
     "groovy"
 ) {
+    override fun getAnnotationData(
+        compiledFile: CompiledFile,
+        script: List<String>
+    ): MutableMap<String, LinkedList<ScriptAnnotationData>> = handleMap(compiledFile, script, groovyFunctionPattern)
+
     override fun addFunctionStructure(script: String, name: String): String {
         return "def $name(){$script}"
     }

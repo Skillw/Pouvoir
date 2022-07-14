@@ -13,7 +13,6 @@ open class LinkedKeyMap<K, V : Keyable<K>> : LinkedMap<K, V>() {
 
     fun removeByValue(value: V) {
         val key = getKey(value)
-        if (key != null)
-            map.remove(key)
+        key?.also { map.remove(it) }
     }
 }

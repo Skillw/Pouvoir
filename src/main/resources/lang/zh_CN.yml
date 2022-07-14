@@ -22,3 +22,4 @@ command-message:
   - '    &d- &erun &b脚本路径 函数名 (参数) &5—— &a运行一个脚本(函数)'
   - '    &d- &ereload &5—— &a重载插件'
   - '  &6================================'
+wrong-command-message: '&d[&9Pouvoir&d] &c你是不是输错指令啦!'

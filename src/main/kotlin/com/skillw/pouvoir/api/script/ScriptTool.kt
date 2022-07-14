@@ -4,6 +4,7 @@ import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.Pouvoir.listenerManager
 import com.skillw.pouvoir.Pouvoir.playerDataManager
 import com.skillw.pouvoir.Pouvoir.scriptManager
+import com.skillw.pouvoir.api.listener.Priority
 import com.skillw.pouvoir.api.listener.ScriptListener
 import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.util.ClassUtils
@@ -19,8 +20,9 @@ import org.bukkit.inventory.InventoryHolder
 import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.Plugin
 import org.bukkit.potion.PotionEffectType
-import org.bukkit.scheduler.BukkitRunnable
+import taboolib.common.platform.Platform
 import taboolib.common.platform.event.EventPriority
+import taboolib.common.platform.function.submit
 import taboolib.expansion.DataContainer
 import taboolib.module.nms.getI18nName
 import taboolib.module.nms.getItemTag
@@ -34,50 +36,27 @@ import java.util.function.Function
 object ScriptTool : BaseMap<String, Any>() {
     @JvmStatic
     fun runTask(task: Runnable) =
-        object : BukkitRunnable() {
-            override fun run() {
-                task.run()
-            }
-        }.runTask(Pouvoir.plugin)
+        submit { task.run() }
 
     @JvmStatic
     fun runTaskAsync(task: Runnable) =
-        object : BukkitRunnable() {
-            override fun run() {
-                task.run()
-            }
-        }.runTaskAsynchronously(Pouvoir.plugin)
+        submit(async = true) { task.run() }
 
     @JvmStatic
     fun runTaskLater(task: Runnable, delay: Long) =
-        object : BukkitRunnable() {
-            override fun run() {
-                task.run()
-            }
-        }.runTaskLater(Pouvoir.plugin, delay)
+        submit(delay = delay) { task.run() }
 
     @JvmStatic
     fun runTaskAsyncLater(task: Runnable, delay: Long) =
-        object : BukkitRunnable() {
-            override fun run() {
-                task.run()
-            }
-        }.runTaskLaterAsynchronously(Pouvoir.plugin, delay)
+        submit(delay = delay, async = true) { task.run() }
 
     @JvmStatic
     fun runTaskTimer(task: Runnable, delay: Long, period: Long) =
-        object : BukkitRunnable() {
-            override fun run() {
-                task.run()
-            }
-        }.runTaskTimer(Pouvoir.plugin, delay, period)
+        submit(delay = delay, period = period) { task.run() }
 
     @JvmStatic
-    fun runTaskAsyncTimer(task: Runnable, delay: Long, period: Long) = object : BukkitRunnable() {
-        override fun run() {
-            task.run()
-        }
-    }.runTaskTimerAsynchronously(Pouvoir.plugin, delay, period)
+    fun runTaskAsyncTimer(task: Runnable, delay: Long, period: Long) =
+        submit(async = true, delay = delay, period = period) { task.run() }
 
     @JvmStatic
     fun placeHolder(identifier: String, author: String, version: String, path: String) {
@@ -109,25 +88,50 @@ object ScriptTool : BaseMap<String, Any>() {
         exec: Consumer<Any>
     ) {
         val clazz = ClassUtils.getClass(path) ?: return
-        val priority = try {
-            EventPriority.valueOf(eventPriority.uppercase())
+        val level: Int = try {
+            EventPriority.valueOf(eventPriority.uppercase()).level
         } catch (e: Exception) {
-            EventPriority.NORMAL
+            eventPriority.toIntOrNull() ?: 0
         }
-        addListener(key, clazz, priority, ignoreCancel, exec)
+        val platform: Platform = Platform.BUKKIT
+        addListener(key, platform, clazz, level, ignoreCancel, exec)
     }
 
     @JvmStatic
     fun addListener(
         key: String,
-        event: Class<*>,
-        eventPriority: EventPriority = EventPriority.NORMAL,
+        platformStr: String,
+        path: String,
+        eventPriority: String = "NORMAL",
         ignoreCancel: Boolean = false,
         exec: Consumer<Any>
     ) {
-        ScriptListener.build(key, event, eventPriority, ignoreCancel) {
+        val clazz = ClassUtils.getClass(path) ?: return
+        val level: Int = try {
+            EventPriority.valueOf(eventPriority.uppercase()).level
+        } catch (e: Exception) {
+            eventPriority.toIntOrNull() ?: 0
+        }
+        val platform: Platform = try {
+            Platform.valueOf(platformStr.uppercase())
+        } catch (e: Exception) {
+            Platform.BUKKIT
+        }
+        addListener(key, platform, clazz, level, ignoreCancel, exec)
+    }
+
+    @JvmStatic
+    fun addListener(
+        key: String,
+        platform: Platform,
+        event: Class<*>,
+        level: Int = 0,
+        ignoreCancel: Boolean = false,
+        exec: Consumer<Any>
+    ) {
+        ScriptListener.Builder(key, platform, event, Priority(level), ignoreCancel) {
             exec.accept(it)
-        }.register()
+        }.build().register()
     }
 
     @JvmStatic

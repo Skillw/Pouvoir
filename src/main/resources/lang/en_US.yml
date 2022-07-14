@@ -19,5 +19,6 @@ command-message:
   - '    &d- &erun &bscript file path function (args) &5—— &aRun a function of a script'
   - '    &d- &ereload &5—— &aReload Pouvoir'
   - '  &6================================'
+wrong-command-message: '&d[&9Pouvoir&d] &cWrong command!'
    
 

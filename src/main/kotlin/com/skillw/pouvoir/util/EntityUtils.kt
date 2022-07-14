@@ -34,9 +34,7 @@ object EntityUtils {
 
     @JvmStatic
     fun getName(livingEntity: LivingEntity?): String? {
-        if (livingEntity == null) {
-            return null
-        }
+        livingEntity ?: return null
         val name = livingEntity.name
         return if (name.contains("§")) name else "&6$name"
     }
@@ -48,9 +46,11 @@ object EntityUtils {
     @JvmStatic
     fun getLivingEntityByUUID(uuid: UUID?): LivingEntity? {
         val entity = Bukkit.getEntity(uuid!!)
-        return if (entity != null && isLiving(entity)) {
-            entity as LivingEntity?
-        } else null
+        return entity?.run {
+            if (isLiving(this)) {
+                entity as LivingEntity?
+            } else null
+        }
     }
 
     fun UUID.player(): Player? {
@@ -69,7 +69,7 @@ object EntityUtils {
     @JvmStatic
     fun isLiving(uuid: UUID?): Boolean {
         val entity = Bukkit.getEntity(uuid!!)
-       
+
         return isLiving(entity)
     }
 

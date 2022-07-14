@@ -1,12 +1,12 @@
 package com.skillw.pouvoir.internal.hologram
 
-import io.netty.util.internal.ConcurrentSet
 import org.bukkit.Location
 import org.bukkit.entity.Player
+import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
 class Hologram(var location: Location, content: List<String>) {
-    val viewers = ConcurrentSet<Player>()
+    val viewers = Collections.synchronizedSet(HashSet<Player>())
 
     constructor(location: Location, content: List<String>, vararg viewers: Player) : this(location, content) {
         this.viewers.addAll(viewers)

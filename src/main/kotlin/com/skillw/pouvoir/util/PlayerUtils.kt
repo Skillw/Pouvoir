@@ -119,7 +119,7 @@ object PlayerUtils {
         fields.forEach { pair ->
             val key = pair.key
             val value = pair.value
-            if (value != null) {
+            value?.also {
                 any.setProperty(key, value)
             }
         }

@@ -56,7 +56,7 @@ object ScriptManagerImpl : ScriptManager() {
         argsMap: MutableMap<String, Any>
     ): Any? {
         val pouScriptEngine = scriptEngineManager[type] ?: scriptEngineManager.getEngine(type)
-        if (pouScriptEngine == null) {
+        pouScriptEngine ?: kotlin.run {
             console().sendLang("script-engine-not-found", type)
             return null
         }
@@ -70,7 +70,7 @@ object ScriptManagerImpl : ScriptManager() {
         argsMap: MutableMap<String, Any>
     ): Any? {
         val pouScriptEngine = scriptEngineManager[type] ?: scriptEngineManager.getEngine(type)
-        if (pouScriptEngine == null) {
+        pouScriptEngine ?: kotlin.run {
             console().sendLang("script-engine-not-found", type)
             return null
         }
@@ -197,7 +197,7 @@ object ScriptManagerImpl : ScriptManager() {
                 .findFirst()
             if (!optional.isPresent) {
                 val compiledScript: CompiledScript? = Pouvoir.compileManager.compileFile(path)
-                if (compiledScript != null) {
+                compiledScript?.also {
                     val file = File(configManager.serverFile, path)
                     return if (file.exists() && file.isFile) {
                         val compiledFile = CompiledFile(file, subPouvoir)
@@ -209,9 +209,7 @@ object ScriptManagerImpl : ScriptManager() {
                         console().sendLang("script-compile-fail", path)
                         Optional.empty()
                     }
-                } else {
-                    console().sendLang("script-compile-fail", path)
-                }
+                } ?: kotlin.run { console().sendLang("script-compile-fail", path) }
             }
             return try {
                 Optional.of(optional.get().value)

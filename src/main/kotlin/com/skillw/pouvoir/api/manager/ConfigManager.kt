@@ -8,7 +8,6 @@ import com.skillw.pouvoir.util.MessageUtils.wrong
 import com.skillw.pouvoir.util.Pair
 import org.bukkit.configuration.file.YamlConfiguration
 import taboolib.common.platform.function.getDataFolder
-import taboolib.common.platform.function.warning
 import taboolib.common.reflect.Reflex.Companion.getProperty
 import taboolib.common5.FileWatcher
 import taboolib.module.lang.Language
@@ -45,11 +44,7 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
         for (field in subPouvoir::class.java.fields) {
             if (!field.annotations.any { it.annotationClass.simpleName == "Config" }
             ) continue
-            val file = field.get(subPouvoir).getProperty("file") as File?
-            if (file == null) {
-                warning("${subPouvoir.key} 's ${field.name}'s file is null!")
-                continue
-            }
+            val file = field.get(subPouvoir).getProperty("file") as File? ?: continue
             map[field.name] =
                 Pair(file, FileUtils.loadConfigFile(file)!!)
         }
@@ -76,8 +71,7 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
     protected open fun subReload() {}
 
     override operator fun get(key: String): YamlConfiguration {
-        val result = super.get(key)
-        if (result == null) {
+        val result = super.get(key) ?: kotlin.run {
             wrong("The config $key dose not exist in the SubPouvoir ${subPouvoir.key}!")
             return YamlConfiguration.loadConfiguration(getDataFolder())
         }

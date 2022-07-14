@@ -6,6 +6,7 @@ import taboolib.common.platform.command.CommandBody
 import taboolib.common.platform.command.CommandHeader
 import taboolib.common.platform.command.mainCommand
 import taboolib.common.platform.command.subCommand
+import taboolib.module.lang.sendLang
 import taboolib.platform.util.sendLang
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
@@ -17,6 +18,9 @@ object PouvoirCommand {
     val main = mainCommand {
         execute<CommandSender> { sender, _, _ ->
             sender.sendLang("command-message")
+        }
+        incorrectCommand { sender, context, index, state ->
+            sender.sendLang("wrong-command-message")
         }
     }
 

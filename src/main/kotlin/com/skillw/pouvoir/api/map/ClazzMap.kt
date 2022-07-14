@@ -36,11 +36,9 @@ open class ClazzMap<T : Keyable<String>> : BaseMap<String, Class<out T>>() {
 
     @Suppress("UNCHECKED_CAST")
     fun getObject(key: String, vararg params: Any): T? {
-        if (!map.containsKey(key)) {
-            return null
-        }
+        val clazz = map[key] ?: return null
         try {
-            val constructor: Constructor<*> = ReflexClass(map[key]!!).findConstructor(*params) ?: return null
+            val constructor: Constructor<*> = ReflexClass(clazz).findConstructor(*params) ?: return null
             return constructor.newInstance(*params) as T
         } catch (e: InstantiationException) {
             e.printStackTrace()

@@ -1,6 +1,7 @@
 package com.skillw.pouvoir.internal.handle
 
 import com.skillw.pouvoir.Pouvoir
+import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.api.placeholder.PouPlaceHolder
 
 object PouPlaceHolderHandle {
@@ -9,7 +10,7 @@ object PouPlaceHolderHandle {
 
     fun inject(clazz: Class<*>) {
         try {
-            if (!isPouPlaceHolder(clazz)) return
+            if (!isPouPlaceHolder(clazz) || !clazz.isAnnotationPresent(AutoRegister::class.java)) return
             val pouPlaceHolder = clazz.getField("INSTANCE").get(null) as PouPlaceHolder
             if (Pouvoir.pouPlaceholderManager.containsKey(pouPlaceHolder.key)) return
             pouPlaceHolder.register()

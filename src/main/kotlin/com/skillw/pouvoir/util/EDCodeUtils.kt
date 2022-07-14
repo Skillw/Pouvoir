@@ -1,9 +1,10 @@
 package com.skillw.pouvoir.util
 
-import org.bukkit.craftbukkit.libs.org.apache.commons.io.output.ByteArrayOutputStream
+
 import org.bukkit.util.io.BukkitObjectInputStream
 import org.bukkit.util.io.BukkitObjectOutputStream
 import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 import java.util.*
 
 object EDCodeUtils {

@@ -28,8 +28,14 @@ object FunctionManagerImpl : FunctionManager() {
     }
 
     override fun onLoad() {
-        register(PouFunction("TEST", { false }) {
-            null
+        register(object : PouFunction("TEST") {
+            override fun predicate(args: Array<String>): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun function(args: Array<String>): Any? {
+                TODO("Not yet implemented")
+            }
         })
 
     }

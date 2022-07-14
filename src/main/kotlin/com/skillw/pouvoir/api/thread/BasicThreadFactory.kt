@@ -22,17 +22,17 @@ class BasicThreadFactory(builder: Builder) : ThreadFactory {
     }
 
     private fun initializeThread(t: Thread) {
-        if (namingPattern != null) {
+        namingPattern?.also {
             val count = threadCounter.incrementAndGet()
             t.name = String.format(namingPattern, count)
         }
-        if (uncaughtExceptionHandler != null) {
+        uncaughtExceptionHandler?.also {
             t.uncaughtExceptionHandler = uncaughtExceptionHandler
         }
-        if (priority != null) {
+        priority?.also {
             t.priority = priority
         }
-        if (daemonFlag != null) {
+        daemonFlag?.also {
             t.isDaemon = daemonFlag
         }
     }
@@ -43,22 +43,19 @@ class BasicThreadFactory(builder: Builder) : ThreadFactory {
         var namingPattern: String? = null
         var priority: Int? = null
         var daemonFlag: Boolean? = null
+
         fun wrappedFactory(factory: ThreadFactory?): Builder {
-            return if (factory == null) {
-                throw NullPointerException("Wrapped ThreadFactory must not be null!")
-            } else {
+            return factory?.run {
                 wrappedFactory = factory
-                this
-            }
+                this@Builder
+            } ?: throw NullPointerException("Wrapped ThreadFactory must not be null!")
         }
 
         fun namingPattern(pattern: String?): Builder {
-            return if (pattern == null) {
-                throw NullPointerException("Naming pattern must not be null!")
-            } else {
+            return pattern?.run {
                 namingPattern = pattern
-                this
-            }
+                this@Builder
+            } ?: throw NullPointerException("Naming pattern must not be null!")
         }
 
         fun daemon(f: Boolean): Builder {
@@ -72,12 +69,10 @@ class BasicThreadFactory(builder: Builder) : ThreadFactory {
         }
 
         fun uncaughtExceptionHandler(handler: UncaughtExceptionHandler?): Builder {
-            return if (handler == null) {
-                throw NullPointerException("Uncaught exception handler must not be null!")
-            } else {
+            return handler?.run {
                 exceptionHandler = handler
-                this
-            }
+                this@Builder
+            } ?: throw NullPointerException("Uncaught exception handler must not be null!")
         }
 
         private fun reset() {

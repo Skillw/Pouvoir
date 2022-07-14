@@ -1,6 +1,7 @@
 package com.skillw.pouvoir.internal.handle
 
 import com.skillw.pouvoir.Pouvoir
+import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.api.function.PouFunction
 
 object PouFunctionHandle {
@@ -9,7 +10,7 @@ object PouFunctionHandle {
 
     fun inject(clazz: Class<*>) {
         try {
-            if (!isPouFunction(clazz)) return
+            if (!isPouFunction(clazz) || !clazz.isAnnotationPresent(AutoRegister::class.java)) return
             val pouFunction = clazz.getField("INSTANCE").get(null) as PouFunction
             if (Pouvoir.functionManager.containsKey(pouFunction.key)) return
             pouFunction.register()

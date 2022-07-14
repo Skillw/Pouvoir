@@ -58,7 +58,7 @@ object CalculationUtils {
     }
 
     private fun getPriority(s: String?): Int {
-        if (s == null) return 0
+        s ?: return 0
         return when (s) {
             "(" -> 1
             "+" -> {

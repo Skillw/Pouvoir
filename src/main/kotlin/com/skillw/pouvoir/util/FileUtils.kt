@@ -24,24 +24,23 @@ object FileUtils {
     @Suppress("UNCHECKED_CAST")
     @JvmStatic
     fun <T : ConfigurationSerializable> loadMultiply(mainFile: File?, clazz: Class<T>): List<Pair<T, File>> {
-        if (mainFile == null) {
-            return emptyList()
-        }
-        val list = LinkedList<Pair<T, File>>()
-        for (file in getYamlsFromFile(mainFile)!!) {
-            val config = loadConfigFile(file) ?: continue
-            for (key in config.getKeys(false)) {
-                list.add(
-                    Pair(
-                        (clazz.getMethod(
-                            "deserialize",
-                            org.bukkit.configuration.ConfigurationSection::class.java
-                        ).invoke(null, config[key]!!) as? T? ?: continue), file
+        return mainFile?.run {
+            val list = LinkedList<Pair<T, File>>()
+            for (file in getYamlsFromFile(this)!!) {
+                val config = loadConfigFile(file) ?: continue
+                for (key in config.getKeys(false)) {
+                    list.add(
+                        Pair(
+                            (clazz.getMethod(
+                                "deserialize",
+                                org.bukkit.configuration.ConfigurationSection::class.java
+                            ).invoke(null, config[key]!!) as? T? ?: continue), file
+                        )
                     )
-                )
+                }
             }
-        }
-        return list
+            list
+        } ?: emptyList()
     }
 
     @JvmStatic
@@ -60,35 +59,35 @@ object FileUtils {
 
     @JvmStatic
     fun loadConfigFile(file: File?): YamlConfiguration? {
-        if (file == null) {
-            return null
+        return file?.run {
+            val config = YamlConfiguration()
+            try {
+                config.load(this)
+            } catch (e: Exception) {
+                warning("Wrong config! in $name")
+                warning("Cause: " + ColorUtils.unColor(e.cause!!.message.toString()))
+                return null
+            }
+            return config
         }
-        val config = YamlConfiguration()
-        try {
-            config.load(file)
-        } catch (e: Exception) {
-            warning("Wrong config! in ${file.name}")
-            warning("Cause: " + ColorUtils.unColor(e.cause!!.message.toString()))
-            return null
-        }
-        return config
+
     }
 
     @JvmStatic
     fun getYamlsFromFile(file: File?): List<File>? {
-        if (file == null) {
-            return null
-        }
-        val files: MutableList<File> = ArrayList()
-        val allFiles = file.listFiles() ?: return files
-        for (subFile in allFiles) {
-            if (subFile.isFile && subFile.name.endsWith(".yml")) {
-                files.add(subFile)
-                continue
+        return file?.run {
+            val files: MutableList<File> = ArrayList()
+            val allFiles = listFiles() ?: return files
+            for (subFile in allFiles) {
+                if (subFile.isFile && subFile.name.endsWith(".yml")) {
+                    files.add(subFile)
+                    continue
+                }
+                files.addAll(getYamlsFromFile(subFile)!!)
             }
-            files.addAll(getYamlsFromFile(subFile)!!)
+            return files
         }
-        return files
+
     }
 
     @JvmStatic

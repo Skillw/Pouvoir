@@ -1,6 +1,6 @@
 $dokka.format:javadoc-v1
 $dokka.linkExtension:html
-$dokka.location:com.skillw.pouvoir.api.listener/ScriptListener.Companion///PointingToDeclaration/com/skillw/pouvoir/api/listener/ScriptListener.Companion.html
+$dokka.location:com.skillw.pouvoir.api.listener/ScriptListener.Builder///PointingToDeclaration/com/skillw/pouvoir/api/listener/ScriptListener.Builder.html
 $dokka.location:com.skillw.pouvoir.api.manager/ConfigManager.Companion///PointingToDeclaration/com/skillw/pouvoir/api/manager/ConfigManager.Companion.html
 $dokka.location:com.skillw.pouvoir.api.manager/Manager.Companion///PointingToDeclaration/com/skillw/pouvoir/api/manager/Manager.Companion.html
 $dokka.location:com.skillw.pouvoir.api.thread/BasicThreadFactory.Builder///PointingToDeclaration/com/skillw/pouvoir/api/thread/BasicThreadFactory.Builder.html

@@ -1,9 +1,9 @@
 package com.skillw.pouvoir.internal.hologram
 
-import io.netty.util.internal.ConcurrentSet
 import org.bukkit.Location
 import org.bukkit.entity.Player
 import taboolib.module.chat.colored
+import java.util.*
 
 private var index = 114514
 
@@ -12,7 +12,7 @@ private fun nextInt(): Int {
 }
 
 class HologramLine(location: Location, line: String) {
-    val viewers = ConcurrentSet<Player>()
+    val viewers = Collections.synchronizedSet(HashSet<Player>())
 
     constructor(location: Location, line: String, vararg viewers: Player) : this(location, line) {
         this.viewers.addAll(viewers)

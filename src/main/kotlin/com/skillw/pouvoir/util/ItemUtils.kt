@@ -42,30 +42,20 @@ object ItemUtils {
 
     @JvmStatic
     fun getMythicItem(itemID: String, player: Player): ItemStack? {
-        val item = MythicMobs.inst().itemManager.getItemStack(itemID)
-        if (item != null) {
-            return papiItem(item, player)
-        }
-        return null
+        return MythicMobs.inst().itemManager.getItemStack(itemID)?.also { papiItem(it, player) }
     }
 
     @JvmStatic
     fun getMythicItem(itemID: String): ItemStack? {
-        val item = MythicMobs.inst()?.itemManager?.getItemStack(itemID)
-        if (item != null) {
-            return item
-        }
-        return null
+        return MythicMobs.inst()?.itemManager?.getItemStack(itemID)
     }
 
     @JvmStatic
     fun getMythicItems(list: List<String>, player: Player?): ArrayList<ItemStack> {
         val itemStacks: ArrayList<ItemStack> = java.util.ArrayList()
         for (id in list) {
-            val itemStack = if (player == null) getMythicItem(id) else getMythicItem(
-                id, player
-            )
-            if (itemStack != null) itemStacks.add(itemStack)
+            val itemStack = player?.run { getMythicItem(id, player) } ?: getMythicItem(id)
+            itemStack?.also { itemStacks.add(itemStack) }
         }
         return itemStacks
     }

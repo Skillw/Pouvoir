@@ -9,7 +9,7 @@ import java.math.BigDecimal
 import java.util.concurrent.ConcurrentHashMap
 
 /**
- * ClassName : com.skillw.classsystem.formula.Formula
+ * ClassName : com.skillw.pouvoir.formula.Formula
  * Created by Glom_ on 2021-03-25 20:49:58
  * Copyright  2021 user. All rights reserved.
  */

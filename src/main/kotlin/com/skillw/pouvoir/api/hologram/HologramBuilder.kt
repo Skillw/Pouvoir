@@ -1,7 +1,6 @@
 package com.skillw.pouvoir.api.hologram
 
 import com.skillw.pouvoir.internal.hologram.Hologram
-import io.netty.util.internal.ConcurrentSet
 import org.bukkit.Location
 import org.bukkit.entity.Player
 import org.bukkit.util.Vector
@@ -11,7 +10,7 @@ import java.util.*
 
 class HologramBuilder(private val location: Location) {
     private var content: MutableList<String> = LinkedList()
-    private val viewers: MutableSet<Player> = ConcurrentSet()
+    private val viewers: MutableSet<Player> = Collections.synchronizedSet(HashSet())
     private var stay: Long = -1
     private var time: Int = -1
     private var each: Vector? = null
@@ -61,21 +60,19 @@ class HologramBuilder(private val location: Location) {
     fun build(): Hologram {
         val hologram = Hologram(location, content, viewers)
         if (stay != -1L) {
-            if (each == null)
-                submit(async = true, delay = stay) {
-                    hologram.delete()
-                    cancel()
-                }
-            else {
+            each?.also { vector ->
                 var count = 0
                 submit(async = true, period = stay / time) {
                     if (count > time - 1) {
                         hologram.delete()
                         cancel()
                     }
-                    hologram.teleport(location.clone().add(each!!.clone().multiply(count)))
+                    hologram.teleport(location.clone().add(vector.clone().multiply(count)))
                     count++
                 }
+            } ?: submit(async = true, delay = stay) {
+                hologram.delete()
+                cancel()
             }
         }
         return hologram

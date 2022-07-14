@@ -20,7 +20,7 @@ object CompileManagerImpl : CompileManager {
     override fun compileFile(file: File): CompiledScript? {
         val suffix = file.extension
         val pouScriptEngine = Pouvoir.scriptEngineManager.getEngine(suffix)
-        if (pouScriptEngine == null) {
+        pouScriptEngine ?: kotlin.run {
             console().sendLang("script-engine-valid-suffix", suffix)
             return null
         }

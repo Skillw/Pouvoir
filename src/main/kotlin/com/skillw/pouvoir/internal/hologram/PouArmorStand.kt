@@ -1,7 +1,6 @@
 package com.skillw.pouvoir.internal.hologram
 
 import com.skillw.pouvoir.util.EntityUtils
-import io.netty.util.internal.ConcurrentSet
 import org.bukkit.Location
 import org.bukkit.entity.Player
 import taboolib.common.reflect.Reflex.Companion.getProperty
@@ -162,7 +161,7 @@ class PouArmorStand(val id: Int, var location: Location, consumer: Consumer<PouA
         }
     }
 
-    val viewers = ConcurrentSet<Player>()
+    val viewers = Collections.synchronizedSet(HashSet<Player>())
     fun forViewers(consumer: Consumer<Player>) {
         viewers.forEach(consumer)
     }

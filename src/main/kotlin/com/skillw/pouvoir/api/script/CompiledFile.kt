@@ -22,13 +22,8 @@ class CompiledFile(val file: File, val subPouvoir: SubPouvoir) : Keyable<String>
 
     override val key = FileUtils.pathNormalize(file)
     private val pouScriptEngine: PouScriptEngine by lazy {
-        val engine = Pouvoir.scriptEngineManager.getEngine(file.extension)
-        if (engine != null)
-            engine
-        else {
-            wrong("Pouvoir hasn't supported the script files with extension ${file.extension}!")
-            JavaScriptEngine
-        }
+        Pouvoir.scriptEngineManager.getEngine(file.extension)
+            ?: run { wrong("Pouvoir hasn't supported the script files with extension ${file.extension}!"); JavaScriptEngine }
     }
     private var compiledScript: CompiledScript? = Pouvoir.compileManager.compileFile(file)
 
@@ -55,9 +50,7 @@ class CompiledFile(val file: File, val subPouvoir: SubPouvoir) : Keyable<String>
         }
         val script = file.readLines()
         annotations.clear()
-        pouScriptEngine.getAnnotationData(this, script).forEach {
-            annotations[it.key] = it.value
-        }
+        annotations.putAll(pouScriptEngine.getAnnotationData(this, script))
     }
 
     fun invoke(function: String, argsMap: MutableMap<String, Any> = HashMap(), vararg args: Any): Any? {

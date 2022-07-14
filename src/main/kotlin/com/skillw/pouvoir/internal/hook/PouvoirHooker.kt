@@ -2,6 +2,7 @@ package com.skillw.pouvoir.internal.hook
 
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.Pouvoir.scriptManager
+import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.api.placeholder.PouPlaceHolder
 import com.skillw.pouvoir.util.Pair
 import com.skillw.pouvoir.util.StringUtils.protectedSplit
@@ -10,6 +11,7 @@ import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import taboolib.platform.compat.replacePlaceholder
 
+@AutoRegister
 object PouvoirHooker : PouPlaceHolder("pou", Pouvoir) {
     override fun onPlaceHolderRequest(params: String, livingEntity: LivingEntity, def: String): String {
         if (params.isBlank()) return def

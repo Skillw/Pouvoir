@@ -54,9 +54,7 @@ open class BaseMap<K, V> : MutableMap<K, V> {
         get() = map.values
 
     override fun remove(key: K): V? {
-        if (key != null)
-            return map.remove(key)
-        return null
+        return key?.run { map.remove(this) }
     }
 
     override val keys: MutableSet<K>
