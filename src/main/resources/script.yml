@@ -7,7 +7,6 @@ static-classes:
   CalculationUtils: 'com.skillw.pouvoir.util.CalculationUtils'
   MapUtils: 'com.skillw.pouvoir.util.MapUtils'
   ColorUtils: 'com.skillw.pouvoir.util.ColorUtils'
-  EDCodeUtils: 'com.skillw.pouvoir.util.EDCodeUtils'
   EntityUtils: 'com.skillw.pouvoir.util.EntityUtils'
   FileUtils: 'com.skillw.pouvoir.util.FileUtils'
   ItemUtils: 'com.skillw.pouvoir.util.ItemUtils'

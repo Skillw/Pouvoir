@@ -1,9 +1,9 @@
 package com.skillw.pouvoir.api.`object`
 
-import com.skillw.pouvoir.api.able.Keyable
+import com.skillw.pouvoir.api.able.Registrable
 import org.bukkit.configuration.serialization.ConfigurationSerializable
 
-interface BaseObject : Keyable<String>,
+interface BaseObject : Registrable<String>,
     Comparable<BaseObject>,
     ConfigurationSerializable {
     override val key: String

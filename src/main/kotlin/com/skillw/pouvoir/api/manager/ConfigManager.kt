@@ -2,8 +2,7 @@ package com.skillw.pouvoir.api.manager
 
 import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
-import com.skillw.pouvoir.internal.handle.DefaultableHandle
-import com.skillw.pouvoir.util.FileUtils
+import com.skillw.pouvoir.util.FileUtils.loadYaml
 import com.skillw.pouvoir.util.MessageUtils.wrong
 import com.skillw.pouvoir.util.Pair
 import org.bukkit.configuration.file.YamlConfiguration
@@ -11,50 +10,36 @@ import taboolib.common.platform.function.getDataFolder
 import taboolib.common.reflect.Reflex.Companion.getProperty
 import taboolib.common5.FileWatcher
 import taboolib.module.lang.Language
-import taboolib.module.lang.LanguageFile
-import taboolib.module.lang.Type
 import java.io.File
 
 abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manager,
     BaseMap<String, YamlConfiguration>() {
-    val serverFile: File by lazy {
-        File(subPouvoir.plugin.dataFolder.parentFile.absolutePath.toString().replace("\\plugins", ""))
-    }
-
     override val key = "ConfigManager"
-    val version by lazy {
-        var version = subPouvoir.plugin.description.version.replace(".", "")
-        if (version.length == 3) {
-            version += "0"
-        }
-        version.toInt()
+    private val fileMap = BaseMap<File, YamlConfiguration>()
+    private val watcher = FileWatcher()
+    val serverFile: File by lazy(LazyThreadSafetyMode.NONE) {
+        File(
+            getDataFolder().parentFile.absolutePath.toString().replace("\\plugins", "")
+        )
     }
-    val language: String
-        get() {
-            val lang: String = Language.getLocale()
-            return "languages/$lang/"
-        }
-    protected val fileMap = BaseMap<File, YamlConfiguration>()
-    val defaults = HashSet<Class<*>>()
-    private val watcher: FileWatcher = FileWatcher.INSTANCE
-    open val isCheckVersion: Boolean = false
 
     init {
         val map = HashMap<String, Pair<File, YamlConfiguration>>()
+        //Init Map
         for (field in subPouvoir::class.java.fields) {
-            if (!field.annotations.any { it.annotationClass.simpleName == "Config" }
-            ) continue
+            if (!field.annotations.any { it.annotationClass.simpleName == "Config" }) continue
             val file = field.get(subPouvoir).getProperty("file") as File? ?: continue
-            map[field.name] =
-                Pair(file, FileUtils.loadConfigFile(file)!!)
+            map[field.name] = Pair(file, file.loadYaml()!!)
         }
+        //Register Config
         map.forEach {
             val key = it.key
-            val value = it.value
-            fileMap.register(value.key, value.value)
-            this.register(key, value.value)
+            val pair = it.value
+            val file = pair.key
+            val yaml = pair.value
+            fileMap.register(file, yaml)
+            this.register(key, yaml)
         }
-        defaults.forEach { DefaultableHandle.inject(it, subPouvoir.plugin) }
         for (it in fileMap.keys) {
             if (watcher.hasListener(it)) {
                 watcher.removeListener(it)
@@ -67,9 +52,6 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
         }
     }
 
-    abstract fun defaultOptions(): Map<String, Map<String, Any>>
-    protected open fun subReload() {}
-
     override operator fun get(key: String): YamlConfiguration {
         val result = super.get(key) ?: kotlin.run {
             wrong("The config $key dose not exist in the SubPouvoir ${subPouvoir.key}!")
@@ -77,6 +59,8 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
         }
         return result
     }
+
+    protected open fun subReload() {}
 
     final override fun onReload() {
         Language.reload()
@@ -88,26 +72,12 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
         if (!dir.exists()) {
             dir.mkdir()
             for (fileName in fileNames) {
-                subPouvoir.plugin.saveResource("$name/$fileName", true)
+                try {
+                    subPouvoir.plugin.saveResource("$name/$fileName", true)
+                } catch (throwable: Throwable) {
+                    throwable.printStackTrace()
+                }
             }
-        }
-    }
-
-    fun getLang(path: String): Type? {
-        return getLocal().nodes[path]
-    }
-
-    companion object {
-        @JvmStatic
-        fun getLocal(): LanguageFile {
-            return Language.languageFile.entries.firstOrNull { it.key.equals(Language.getLocale(), true) }?.value
-                ?: Language.languageFile.values.firstOrNull()!!
-        }
-
-        @JvmStatic
-        fun getPluginPrefix(): String {
-            val local = getLocal()
-            return local.nodes["plugin-prefix"].toString()
         }
     }
 }

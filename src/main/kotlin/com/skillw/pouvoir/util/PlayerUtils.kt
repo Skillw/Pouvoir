@@ -11,49 +11,21 @@ import taboolib.common.reflect.Reflex.Companion.setProperty
 import taboolib.module.nms.sendPacket
 import taboolib.platform.BukkitAdapter
 
-
+// For script coders
 object PlayerUtils {
 
     @JvmStatic
-    fun sendTitle(player: Player, title: String?, subtitle: String?, fadeIn: Int, stay: Int, fadeOut: Int) {
+    fun sendTitle(
+        player: Player,
+        title: String?,
+        subtitle: String?,
+        fadeIn: Int = 0,
+        stay: Int = 20,
+        fadeOut: Int = 0
+    ) {
         val proxy = BukkitAdapter().adaptPlayer(player)
         player.resetTitle()
         proxy.sendTitle(title, subtitle, fadeIn, stay, fadeOut)
-    }
-
-    @JvmStatic
-    fun sendTitle(player: Player, title: String?, fadeIn: Int, stay: Int, fadeOut: Int) {
-        val proxy = BukkitAdapter().adaptPlayer(player)
-        player.resetTitle()
-        proxy.sendTitle(title, null, fadeIn, stay, fadeOut)
-    }
-
-    @JvmStatic
-    fun sendTitle(player: Player, title: String?, subtitle: String?, stay: Int) {
-        val proxy = BukkitAdapter().adaptPlayer(player)
-        player.resetTitle()
-        proxy.sendTitle(title, subtitle, 0, stay, 0)
-
-    }
-
-    @JvmStatic
-    fun sendTitle(player: Player, title: String?, stay: Int) {
-        val proxy = BukkitAdapter().adaptPlayer(player)
-        player.resetTitle()
-        proxy.sendTitle(title, null, 0, stay, 0)
-
-    }
-
-    @JvmStatic
-    fun sendSubTitle(player: Player, subTitle: String?, stay: Int) {
-        val proxy = BukkitAdapter().adaptPlayer(player)
-        player.resetTitle()
-        proxy.sendTitle(null, subTitle, 0, stay, 0)
-    }
-
-    @JvmStatic
-    fun resetTitle(player: Player) {
-        player.resetTitle()
     }
 
     @JvmStatic

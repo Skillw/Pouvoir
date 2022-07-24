@@ -2,7 +2,7 @@ package com.skillw.pouvoir.util
 
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.internal.manager.PouvoirConfig
-import com.skillw.pouvoir.util.StringUtils.replace
+import com.skillw.pouvoir.util.StringUtils.replacement
 import org.bukkit.entity.LivingEntity
 import taboolib.common.platform.function.warning
 import java.math.BigDecimal
@@ -12,35 +12,14 @@ import java.util.regex.Pattern
 object CalculationUtils {
 
     @JvmStatic
-    fun String.result(): BigDecimal {
-        return getResult(this)
+    fun String.calculate(entity: LivingEntity? = null, replacements: Map<String, String>? = null): BigDecimal {
+        return calculate(Pouvoir.pouPlaceHolderAPI.replace(entity, replacement(replacements ?: HashMap())))
     }
 
+    @JvmName("calculateToDouble")
     @JvmStatic
-    fun String.result(entity: LivingEntity? = null, replacements: Map<String, String> = emptyMap()): BigDecimal {
-        return getResult(this, entity, replacements)
-    }
-
-    @JvmStatic
-    fun String.resultDouble(entity: LivingEntity? = null, replacements: Map<String, String> = emptyMap()): Double {
-        return getResultDouble(this, entity, replacements)
-    }
-
-    @JvmStatic
-    fun getResultDouble(
-        formula: String,
-        entity: LivingEntity? = null,
-        replacements: Map<String, String> = emptyMap()
-    ): Double {
-        return getResult(formula, entity, replacements).setScale(PouvoirConfig.scale, BigDecimal.ROUND_HALF_UP)
-            .toDouble()
-    }
-
-    @JvmStatic
-    fun getResultDouble(
-        formula: String
-    ): Double {
-        return getResultDouble(formula, null, emptyMap())
+    fun String.calculateDouble(entity: LivingEntity? = null, replacements: Map<String, String>? = null): Double {
+        return calculate(entity, replacements).setScale(PouvoirConfig.scale, BigDecimal.ROUND_HALF_UP).toDouble()
     }
 
     private fun doubleCal(a1: BigDecimal, a2: BigDecimal, operator: Char): BigDecimal {
@@ -118,7 +97,7 @@ object CalculationUtils {
     }
 
     @JvmStatic
-    fun getResult(input: String): BigDecimal {
+    fun calculate(input: String): BigDecimal {
         try {
             val sufExpr = toSufExpr(input) // 转为后缀表达式
             /* 盛放数字栈 */
@@ -139,13 +118,9 @@ object CalculationUtils {
             }
             return number.pop() ?: BigDecimal("0.0")
         } catch (e: Exception) {
-            warning("计算式错误! $input")
+            warning("Wrong calculation formula! $input")
             e.printStackTrace()
             return BigDecimal.valueOf(0.0)
         }
-    }
-
-    fun getResult(formula: String, entity: LivingEntity?, replacements: Map<String, String>? = null): BigDecimal {
-        return getResult(Pouvoir.pouPlaceHolderAPI.replace(entity, replace(formula, replacements ?: HashMap())))
     }
 }

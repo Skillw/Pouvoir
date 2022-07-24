@@ -13,6 +13,7 @@ open class KeyMap<K, V : Keyable<K>> : BaseMap<K, V>() {
     }
 
     open fun register(value: V) {
+        val key = value.key
         register(value.key, value)
     }
 

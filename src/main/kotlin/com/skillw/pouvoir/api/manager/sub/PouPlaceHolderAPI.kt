@@ -12,4 +12,5 @@ import java.util.*
 interface PouPlaceHolderAPI : Manager {
     fun replace(livingEntity: LivingEntity?, text: String): String
     fun replace(uuid: UUID, text: String): String
+
 }

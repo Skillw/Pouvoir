@@ -30,25 +30,9 @@ object PouvoirHooker : PouPlaceHolder("pou", Pouvoir) {
                 val finalArgs = Array(spilt.size) {
                     Pouvoir.pouPlaceHolderAPI.replace(livingEntity, spilt[it])
                 }
-                return scriptManager.invokePathWithFunction(
+                return scriptManager.invoke<String>(
                     scriptPath,
-                    argsMap = hashMapOf("entity" to livingEntity, "args" to finalArgs)
-                )
-                    .toString()
-            }
-            "eval" -> {
-                args.removeAt(0)
-                if (args.isEmpty()) return def
-                val script = args[0]
-                args.removeAt(0)
-                val spilt: Array<String> = if (args.isNotEmpty()) params.replace("eval_", "").toArgs() else emptyArray()
-                val finalArgs = Array(spilt.size) {
-                    Pouvoir.pouPlaceHolderAPI.replace(livingEntity, spilt[it])
-                }
-                return scriptManager.evalStringQuickly(
-                    script,
-                    "javascript",
-                    argsMap = hashMapOf("entity" to livingEntity, "args" to finalArgs)
+                    variables = hashMapOf("entity" to livingEntity, "args" to finalArgs)
                 ).toString()
             }
         }

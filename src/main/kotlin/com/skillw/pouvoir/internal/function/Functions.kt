@@ -3,7 +3,7 @@ package com.skillw.pouvoir.internal.function
 import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.api.function.PouFunction
 import com.skillw.pouvoir.internal.manager.PouvoirConfig
-import com.skillw.pouvoir.util.CalculationUtils.resultDouble
+import com.skillw.pouvoir.util.CalculationUtils.calculateDouble
 import com.skillw.pouvoir.util.MessageUtils.wrong
 import com.skillw.pouvoir.util.NumberUtils.format
 import com.skillw.pouvoir.util.NumberUtils.randomInt
@@ -206,7 +206,7 @@ object Calculate : PouFunction("calculate") {
             val value = str.replace("$key=", "")
             replaced[key] = value
         }
-        return formula.replace("[", "(").replace("]", ")").resultDouble(null, replaced)
+        return formula.replace("[", "(").replace("]", ")").calculateDouble(null, replaced)
     }
 }
 

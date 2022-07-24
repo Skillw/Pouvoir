@@ -1,7 +1,6 @@
 package com.skillw.pouvoir.internal.manager
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.Pouvoir.debug
 import com.skillw.pouvoir.api.manager.sub.PouPlaceHolderAPI
 import com.skillw.pouvoir.util.EntityUtils.livingEntity
 import org.bukkit.entity.LivingEntity
@@ -44,7 +43,6 @@ object PouPlaceHolderAPIImpl : PouPlaceHolderAPI {
                     val requested: String =
                         rpgPlaceHolder.onPlaceHolderRequest(parameters, livingEntity, "0").toString()
                     matcher.appendReplacement(builder, requested)
-                    debug("$identifier -> $requested")
                 }
             } while (matcher.find())
             new = matcher.appendTail(builder).toString()
@@ -61,6 +59,11 @@ object PouPlaceHolderAPIImpl : PouPlaceHolderAPI {
 
     private fun analysis(text: String): String {
         return Pouvoir.functionManager.analysis(text)
+    }
+
+    @JvmStatic
+    fun String.placeholder(livingEntity: LivingEntity): String {
+        return Pouvoir.pouPlaceHolderAPI.replace(livingEntity, this)
     }
 
 }

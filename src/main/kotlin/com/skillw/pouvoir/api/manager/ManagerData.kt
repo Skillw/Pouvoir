@@ -1,28 +1,18 @@
 package com.skillw.pouvoir.api.manager
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.api.able.Keyable
-import com.skillw.pouvoir.api.manager.Manager.Companion.ACTIVE
-import com.skillw.pouvoir.api.manager.Manager.Companion.BEFORE_ACTIVE
-import com.skillw.pouvoir.api.manager.Manager.Companion.BEFORE_DISABLE
-import com.skillw.pouvoir.api.manager.Manager.Companion.BEFORE_ENABLE
-import com.skillw.pouvoir.api.manager.Manager.Companion.BEFORE_INIT
-import com.skillw.pouvoir.api.manager.Manager.Companion.BEFORE_LOAD
-import com.skillw.pouvoir.api.manager.Manager.Companion.BEFORE_RELOAD
-import com.skillw.pouvoir.api.manager.Manager.Companion.DISABLE
-import com.skillw.pouvoir.api.manager.Manager.Companion.ENABLE
-import com.skillw.pouvoir.api.manager.Manager.Companion.INIT
-import com.skillw.pouvoir.api.manager.Manager.Companion.LOAD
-import com.skillw.pouvoir.api.manager.Manager.Companion.RELOAD
+import com.skillw.pouvoir.api.able.Registrable
+import com.skillw.pouvoir.api.event.ManagerTime
+import com.skillw.pouvoir.api.event.PouManagerEvent
 import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.map.KeyMap
 import com.skillw.pouvoir.api.map.MultiExecMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
 import com.skillw.pouvoir.api.plugin.TotalManager
-import com.skillw.pouvoir.internal.handle.PManagerHandle
+import com.skillw.pouvoir.internal.plugin.PouManagerUtils.getPouManagers
 import org.bukkit.plugin.java.JavaPlugin
 
-class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Keyable<SubPouvoir> {
+class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Registrable<SubPouvoir> {
     val exec = BaseMap<Manager, MultiExecMap>()
     private val managers = ArrayList<Manager>()
     val plugin: JavaPlugin = subPouvoir.plugin
@@ -35,24 +25,14 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Keyab
     }
 
     init {
-        for (manager in PManagerHandle.getPManagers(subPouvoir)) {
-            manager.register(this)
+        for (manager in subPouvoir.getPouManagers()) {
+            this.register(manager)
         }
         val dataField = subPouvoir.javaClass.getField("managerData")
         dataField.set(subPouvoir, this)
     }
 
     override fun register() {
-        managers.forEach {
-            try {
-                run(it, BEFORE_INIT)
-                it.onInit()
-                run(it, INIT)
-            } catch (throwable: Throwable) {
-                throwable.printStackTrace()
-
-            }
-        }
         TotalManager.register(subPouvoir, this)
     }
 
@@ -60,9 +40,9 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Keyab
         Pouvoir.poolExecutor.execute {
             managers.forEach {
                 try {
-                    run(it, BEFORE_LOAD)
+                    call(it, ManagerTime.BEFORE_LOAD)
                     it.onLoad()
-                    run(it, LOAD)
+                    call(it, ManagerTime.LOAD)
                 } catch (throwable: Throwable) {
                     throwable.printStackTrace()
 
@@ -75,9 +55,9 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Keyab
         Pouvoir.poolExecutor.execute {
             managers.forEach {
                 try {
-                    run(it, BEFORE_ENABLE)
+                    call(it, ManagerTime.BEFORE_ENABLE)
                     it.onEnable()
-                    run(it, ENABLE)
+                    call(it, ManagerTime.ENABLE)
                 } catch (throwable: Throwable) {
                     throwable.printStackTrace()
 
@@ -90,9 +70,9 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Keyab
         Pouvoir.poolExecutor.execute {
             managers.forEach {
                 try {
-                    run(it, BEFORE_ACTIVE)
+                    call(it, ManagerTime.BEFORE_ACTIVE)
                     it.onActive()
-                    run(it, ACTIVE)
+                    call(it, ManagerTime.ACTIVE)
                 } catch (throwable: Throwable) {
                     throwable.printStackTrace()
 
@@ -105,9 +85,9 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Keyab
         Pouvoir.poolExecutor.execute {
             managers.forEach {
                 try {
-                    run(it, BEFORE_RELOAD)
+                    call(it, ManagerTime.BEFORE_RELOAD)
                     it.onReload()
-                    run(it, RELOAD)
+                    call(it, ManagerTime.RELOAD)
                 } catch (throwable: Throwable) {
                     throwable.printStackTrace()
                 }
@@ -119,9 +99,9 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Keyab
         Pouvoir.poolExecutor.execute {
             managers.forEach {
                 try {
-                    run(it, BEFORE_DISABLE)
+                    call(it, ManagerTime.BEFORE_DISABLE)
                     it.onDisable()
-                    run(it, DISABLE)
+                    call(it, ManagerTime.DISABLE)
                 } catch (throwable: Throwable) {
                     throwable.printStackTrace()
 
@@ -130,8 +110,7 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Keyab
         }
     }
 
-    internal fun run(manager: Manager, thing: String) {
-        if (!exec.containsKey(manager)) return
-        exec[manager]!!.run(thing)
+    internal fun call(manager: Manager, time: ManagerTime) {
+        PouManagerEvent(manager, time).call()
     }
 }

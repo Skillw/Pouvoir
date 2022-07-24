@@ -1,15 +1,13 @@
 plugins {
     `java-library`
-    id("io.izzel.taboolib") version "1.40"
+    id("org.gradle.java")
+    id("io.izzel.taboolib") version "1.41"
     id("org.jetbrains.kotlin.jvm") version "1.6.10"
     id("org.jetbrains.dokka") version "1.6.10"
 }
 
-
-
 tasks.dokkaJavadoc.configure {
-    val dokkaPath = projectDir.absolutePath.replace(rootDir.absolutePath, "")
-    outputDirectory.set(File(rootDir.absolutePath + File.separator + "dokka" + dokkaPath))
+    outputDirectory.set(File("C:\\Users\\Administrator\\Desktop\\Doc\\pouvoir\\doc"))
     dokkaSourceSets {
         named("main") {
             noJdkLink.set(true)
@@ -17,16 +15,9 @@ tasks.dokkaJavadoc.configure {
             noAndroidSdkLink.set(true)
             suppressInheritedMembers.set(true)
             suppressObviousFunctions.set(false)
-            sourceRoots.from(
-                file("src/main/kotlin/com/skillw/pouvoir/api"),
-                file("src/main/kotlin/com/skillw/pouvoir/util"),
-                file("src/main/kotlin/com/skillw/pouvoir/internal/annotation")
-            )
         }
     }
 }
-
-
 taboolib {
     options("skip-kotlin-relocate")
 
@@ -37,8 +28,8 @@ taboolib {
         dependencies {
             name("MythicMobs").optional(true).loadafter(true)
             name("PlaceholderAPI").optional(true).loadafter(true)
-            name("RandomItem").optional(true).loadbefore(true)
             name("AttributeSystem").optional(true).loadbefore(true)
+            name("RandomItem").optional(true).loadbefore(true)
         }
     }
 
@@ -60,16 +51,18 @@ taboolib {
         "module-porticus",
         "module-ui",
         "module-ui-receptacle",
-        "platform-bukkit",
         "expansion-player-database",
         "expansion-javascript"
     )
+    install(
+        "platform-bukkit"
+    )
+
 
     options()
 
     classifier = null
-    version = "6.0.9-26"
-
+    version = "6.0.9-40"
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -80,22 +73,25 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 
+
 repositories {
-    maven { url = uri("https://repo.nukkitx.com/maven-snapshots") }
-    maven { url = uri("https://repo.spongepowered.org/maven") }
-    maven { url = uri("https://nexus.velocitypowered.com/repository/maven-public/") }
     mavenCentral()
 }
 
 dependencies {
     compileOnly("ink.ptms:nms-all:1.0.0")
-    compileOnly("ink.ptms.core:v11900:11900-minimize:mapped")
-    compileOnly("ink.ptms.core:v11900:11900-minimize:universal")
-    compileOnly("org.codehaus.groovy:groovy-jsr223:3.0.9")
+    compileOnly("ink.ptms.core:v11200:11200-minimize")
+    compileOnly("org.codehaus.groovy:groovy-jsr223:3.0.11")
 
+    compileOnly("com.alibaba:fastjson:2.0.9.graal")
     compileOnly(kotlin("stdlib"))
     compileOnly(fileTree("libs"))
+
+    taboo("com.alibaba:fastjson:2.0.9.graal")
+
 }
+
+
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"

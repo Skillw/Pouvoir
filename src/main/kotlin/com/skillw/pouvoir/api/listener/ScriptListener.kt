@@ -1,7 +1,7 @@
 package com.skillw.pouvoir.api.listener
 
 import com.skillw.pouvoir.Pouvoir.listenerManager
-import com.skillw.pouvoir.api.able.Keyable
+import com.skillw.pouvoir.api.able.Registrable
 import taboolib.common.platform.Platform
 import taboolib.common.platform.function.registerBukkitListener
 import taboolib.common.platform.function.registerBungeeListener
@@ -17,7 +17,7 @@ class ScriptListener<T> private constructor(
     val priority: Priority,
     val ignoreCancel: Boolean = false,
     val exec: Closeable.(T) -> Unit
-) : Keyable<String> {
+) : Registrable<String> {
 
     class Builder<T>(
         val key: String,

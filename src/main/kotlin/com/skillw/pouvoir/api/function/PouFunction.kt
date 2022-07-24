@@ -1,12 +1,12 @@
 package com.skillw.pouvoir.api.function
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.api.able.Keyable
+import com.skillw.pouvoir.api.able.Registrable
 import java.util.function.Function
 
 abstract class PouFunction(
     override val key: String,
-) : Keyable<String>,
+) : Registrable<String>,
     Function<Array<String>, Any?> {
 
     protected abstract fun predicate(args: Array<String>): Boolean

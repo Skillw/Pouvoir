@@ -12,7 +12,7 @@ import taboolib.common5.Coerce
 import java.util.function.Consumer
 
 object ProtocolTool {
-    private val packetListeners by lazy {
+    private val packetListeners by lazy(LazyThreadSafetyMode.NONE) {
         BaseMap<String, PacketListener>()
     }
 

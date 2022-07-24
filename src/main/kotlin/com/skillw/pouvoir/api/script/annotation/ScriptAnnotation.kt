@@ -1,12 +1,12 @@
 package com.skillw.pouvoir.api.script.annotation
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.api.able.Keyable
+import com.skillw.pouvoir.api.able.Registrable
 
 abstract class ScriptAnnotation(
     override val key: String,
     val awakeWhenEnable: Boolean = false
-) : Keyable<String> {
+) : Registrable<String> {
     override fun register() {
         Pouvoir.scriptAnnotationManager.register(this)
     }

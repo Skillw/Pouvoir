@@ -14,8 +14,7 @@ class HologramBuilder(private val location: Location) {
     private var stay: Long = -1
     private var time: Int = -1
     private var each: Vector? = null
-
-
+    
     fun stay(stay: Long): HologramBuilder {
         this.stay = stay
         return this

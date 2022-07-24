@@ -3,6 +3,7 @@ package com.skillw.pouvoir.util
 import com.skillw.pouvoir.internal.manager.PouvoirConfig
 import java.text.DecimalFormat
 
+// For script coders
 object NumberUtils {
     @JvmOverloads
     @JvmStatic

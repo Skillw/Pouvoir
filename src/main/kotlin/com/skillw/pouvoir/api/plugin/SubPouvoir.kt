@@ -1,11 +1,11 @@
 package com.skillw.pouvoir.api.plugin
 
-import com.skillw.pouvoir.api.able.Keyable
+import com.skillw.pouvoir.api.able.Registrable
 import com.skillw.pouvoir.api.manager.ManagerData
 import com.skillw.pouvoir.util.MessageUtils
 import org.bukkit.plugin.java.JavaPlugin
 
-interface SubPouvoir : Keyable<String> {
+interface SubPouvoir : Registrable<String> {
     var managerData: ManagerData
     val plugin: JavaPlugin
 
@@ -30,7 +30,7 @@ interface SubPouvoir : Keyable<String> {
     }
 
     override fun register() {
-        TotalManager.register(this.plugin)
+        TotalManager.register(this.managerData)
     }
 
     fun reload() {

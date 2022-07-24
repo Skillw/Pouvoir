@@ -1,7 +1,7 @@
 package com.skillw.pouvoir.api.placeholder
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.api.able.Keyable
+import com.skillw.pouvoir.api.able.Registrable
 import com.skillw.pouvoir.api.plugin.SubPouvoir
 import org.bukkit.entity.LivingEntity
 
@@ -13,7 +13,7 @@ import org.bukkit.entity.LivingEntity
 abstract class PouPlaceHolder(
     identifier: String,
     val subPouvoir: SubPouvoir
-) : Keyable<String> {
+) : Registrable<String> {
     final override val key: String = identifier
     abstract fun onPlaceHolderRequest(params: String, livingEntity: LivingEntity, def: String): String?
     override fun register() {

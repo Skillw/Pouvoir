@@ -1,75 +1,71 @@
 package com.skillw.pouvoir.api.plugin
 
 import com.skillw.pouvoir.Pouvoir
+import com.skillw.pouvoir.api.able.Registrable
+import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.api.manager.ManagerData
 import com.skillw.pouvoir.api.map.KeyMap
-import com.skillw.pouvoir.internal.handle.DefaultableHandle
-import com.skillw.pouvoir.internal.handle.SubPouvoirHandle
+import com.skillw.pouvoir.api.plugin.handler.ClassHandler
 import com.skillw.pouvoir.util.PluginUtils
 import org.bukkit.Bukkit
-import org.bukkit.configuration.serialization.ConfigurationSerializable
-import org.bukkit.configuration.serialization.ConfigurationSerialization
 import org.bukkit.plugin.Plugin
 import taboolib.common.LifeCycle
 import taboolib.common.platform.Awake
+import java.util.*
 import java.util.concurrent.ConcurrentHashMap
-import java.util.function.Consumer
 
 object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
     internal val pluginData = ConcurrentHashMap<Plugin, SubPouvoir>()
-    private val allClasses = HashSet<Class<*>>()
-
-
-    private fun load(plugin: Plugin) {
-        remove(plugin)
-        init(plugin)
-        register(plugin)
-    }
-
-    fun remove(plugin: Plugin) {
-        val subPouvoir = pluginData[plugin] ?: return
-        this.remove(subPouvoir)
-        pluginData.remove(plugin)
-    }
 
     @Awake(LifeCycle.LOAD)
-    fun onLoading() {
-        Bukkit.getPluginManager().plugins.forEach { load(it) }
-    }
+    fun load() {
+        Bukkit.getPluginManager().plugins.filter { dependPouvoir(it) }.forEach {
+            try {
+                loadSubPou(it)
 
-    fun forEachClass(consumer: Consumer<Class<*>>) {
-        allClasses.forEach {
-            consumer.accept(it)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 
+    private val handlers = LinkedList<ClassHandler>()
 
-    private fun init(plugin: Plugin) {
-        try {
-            if (!isSubPouvoir(plugin)) return
-            val classes = PluginUtils.getClasses(plugin)
-            for (clazz in classes) {
-                SubPouvoirHandle.inject(clazz, plugin)
-                DefaultableHandle.inject(clazz, plugin)
-                if (ConfigurationSerializable::class.java.isAssignableFrom(clazz)) {
-                    ConfigurationSerialization.registerClass(clazz.asSubclass(ConfigurationSerializable::class.java))
+    private fun loadSubPou(plugin: Plugin) {
+        if (!dependPouvoir(plugin)) return
+
+        val classes = PluginUtils.getClasses(plugin)
+        handlers.addAll(classes
+            .filter { ClassHandler::class.java.isAssignableFrom(it) && it.simpleName != "ClassHandler" }
+            .mapNotNull {
+                it.getField("INSTANCE").get(null) as? ClassHandler?
+            })
+
+        classes.forEach classFor@{ clazz ->
+            handlers.forEach { handler ->
+                try {
+                    handler.inject(clazz, plugin)
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
             }
-            allClasses.addAll(classes)
-        } catch (e: Exception) {
-            e.printStackTrace()
+        }
+        pluginData[plugin]?.let {
+            ManagerData(it).register()
+        }
+
+        classes.filter { clazz ->
+            clazz.isAnnotationPresent(AutoRegister::class.java)
+        }.forEach { clazz ->
+            try {
+                (clazz.getField("INSTANCE").get(null) as? Registrable<*>?)?.register()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 
-
-    fun register(plugin: Plugin) {
-        pluginData[plugin]?.apply {
-            ManagerData(this).register()
-        } ?: return
-
-    }
-
-    fun isSubPouvoir(plugin: Plugin): Boolean {
+    fun dependPouvoir(plugin: Plugin): Boolean {
         return Pouvoir.isDepend(plugin) || plugin.name == "Pouvoir"
     }
 }

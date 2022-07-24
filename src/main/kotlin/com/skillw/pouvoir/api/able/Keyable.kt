@@ -7,5 +7,4 @@ package com.skillw.pouvoir.api.able
  */
 interface Keyable<K> {
     val key: K
-    fun register()
 }

@@ -11,15 +11,20 @@ import taboolib.module.nms.nmsClass
 import taboolib.module.nms.obcClass
 import taboolib.module.nms.sendPacket
 import java.util.*
+import java.util.concurrent.ConcurrentHashMap
 import java.util.function.Consumer
 
 class PouArmorStand(val id: Int, var location: Location, consumer: Consumer<PouArmorStand>) {
     var isDeleted: Boolean = false
-    val uniqueId by lazy {
-        armorStand.getProperty<UUID>(if (!MinecraftVersion.isUniversal) "uniqueID" else "aj").toString()
+    val uniqueId by lazy(LazyThreadSafetyMode.NONE) {
+        armorStand.getProperty<UUID>(
+            when (MinecraftVersion.major) {
+                in 0..8 -> "uniqueID"
+                9 -> "aj"
+                else -> "uuid"
+            }
+        ).toString()
             .replace("-", "")
-
-
     }
     private var armorStand: Any =
         nmsClass("EntityArmorStand")
@@ -36,7 +41,7 @@ class PouArmorStand(val id: Int, var location: Location, consumer: Consumer<PouA
     }
 
     /**
-     * 标准化 UUID
+     * 标准化 UniqueUtils
      */
     val normalizeUniqueId: UUID
         get() {
@@ -50,7 +55,6 @@ class PouArmorStand(val id: Int, var location: Location, consumer: Consumer<PouA
                 }-${u.substring(20)}"
             )
         }
-
 
     fun setSmall(value: Boolean) {
         if (MinecraftVersion.majorLegacy >= 11800) {
@@ -161,7 +165,8 @@ class PouArmorStand(val id: Int, var location: Location, consumer: Consumer<PouA
         }
     }
 
-    val viewers = Collections.synchronizedSet(HashSet<Player>())
+    val viewers = ConcurrentHashMap.newKeySet<Player>()
+
     fun forViewers(consumer: Consumer<Player>) {
         viewers.forEach(consumer)
     }
@@ -183,6 +188,8 @@ class PouArmorStand(val id: Int, var location: Location, consumer: Consumer<PouA
             true
         )
         EntityUtils.spawnEntityLiving(viewer, id, normalizeUniqueId, location)
+        viewer.sendPacket(packetMeta)
+        viewer.sendPacket(packetMeta)
         viewer.sendPacket(packetMeta)
     }
 

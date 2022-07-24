@@ -1,17 +1,10 @@
 package com.skillw.pouvoir.util
 
-import com.skillw.pouvoir.Pouvoir
-import org.bukkit.entity.LivingEntity
 import taboolib.common.util.asList
 import java.util.*
 import java.util.regex.Pattern
 
 object StringUtils {
-    @JvmStatic
-    fun String.placeholder(livingEntity: LivingEntity): String {
-        return Pouvoir.pouPlaceHolderAPI.replace(livingEntity, this)
-    }
-
     private fun String.subStringWithEscape(from: Int, to: Int, escapes: List<Int>): String {
         val builder = StringBuilder()
         if (escapes.isEmpty())
@@ -74,6 +67,13 @@ object StringUtils {
     }
 
     @JvmStatic
+    fun String.toList(): List<String> {
+        return if (this.contains("\n")) {
+            this.split("\n").asList()
+        } else listOf(this)
+    }
+
+    @JvmStatic
     fun Collection<*>.toStringWithNext(): String {
         val stringBuilder = StringBuilder()
         this.forEachIndexed { index, it ->
@@ -86,13 +86,6 @@ object StringUtils {
     }
 
     @JvmStatic
-    fun String.toList(): List<String> {
-        return if (this.contains("\n")) {
-            this.split("\n").asList()
-        } else listOf(this)
-    }
-
-    @JvmStatic
     fun String.toArgs(): Array<String> =
         if (this.contains(","))
             this.replace(" ", "").split(",").toTypedArray()
@@ -101,23 +94,7 @@ object StringUtils {
 
     @JvmStatic
     fun String.replacement(replaces: Map<String, Any>): String {
-        return replace(this, replaces)
-    }
-
-    @JvmStatic
-    fun <T> Collection<T>.replacement(replaces: Map<String, Any>): List<String> {
-        val list = LinkedList<String>()
-        for (it in this) {
-            list.add(it.toString().replacement(replaces))
-        }
-        return list
-    }
-
-
-    @JvmStatic
-    fun replace(formula: String, replaces: Map<String, Any>): String {
-
-        var formulaCopy = formula
+        var formulaCopy = this
         for (key in replaces.keys) {
             val value = replaces[key]!!
             formulaCopy = if (value is List<*>) {
@@ -136,6 +113,16 @@ object StringUtils {
         }
         return formulaCopy
     }
+
+    @JvmStatic
+    fun <T> Collection<T>.replacement(replaces: Map<String, Any>): List<String> {
+        val list = LinkedList<String>()
+        for (it in this) {
+            list.add(it.toString().replacement(replaces))
+        }
+        return list
+    }
+
 
     @JvmStatic
     fun List<String>.getMultiple(args: Array<String>): String {
@@ -168,11 +155,7 @@ object StringUtils {
     @JvmName("parse1")
     @JvmStatic
     fun String.parse(leftChar: Char = '(', rightChar: Char = ')'): List<String> {
-        return parse(this, leftChar, rightChar)
-    }
-
-    @JvmStatic
-    fun parse(text: String, leftChar: Char = '(', rightChar: Char = ')'): List<String> {
+        val text = this
         val stack = Stack<Int>()
         var left = false
         val list = LinkedList<String>()

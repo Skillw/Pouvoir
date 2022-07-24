@@ -6,6 +6,9 @@ import taboolib.module.chat.colored
 import taboolib.module.lang.sendWarnMessage
 
 /**
+ *
+ * For script coders
+ *
  * ClassName : com.skillw.classsystem.util.MessageUtils
  * Created by Glom_ on 2021-03-25 20:25:13
  * Copyright  2021 user. All rights reserved.

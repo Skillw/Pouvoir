@@ -1,18 +1,22 @@
 package com.skillw.pouvoir.internal.annotation
 
 import com.skillw.pouvoir.Pouvoir
+import com.skillw.pouvoir.Pouvoir.debug
 import com.skillw.pouvoir.Pouvoir.scriptManager
 import com.skillw.pouvoir.api.annotation.AutoRegister
-import com.skillw.pouvoir.api.function.PouScriptFunction
+import com.skillw.pouvoir.api.event.ManagerTime
 import com.skillw.pouvoir.api.listener.Priority
 import com.skillw.pouvoir.api.listener.ScriptListener
-import com.skillw.pouvoir.api.manager.Manager.Companion.addSingle
+import com.skillw.pouvoir.api.manager.Manager.Companion.addExec
 import com.skillw.pouvoir.api.script.annotation.ScriptAnnotation
 import com.skillw.pouvoir.api.script.annotation.ScriptAnnotationData
-import com.skillw.pouvoir.util.ClassUtils
+import com.skillw.pouvoir.internal.function.PouScriptFunction
+import com.skillw.pouvoir.util.ClassUtils.findClass
 import com.skillw.pouvoir.util.StringUtils.toArgs
 import taboolib.common.platform.Platform
 import taboolib.common.platform.event.EventPriority
+import taboolib.common.platform.function.warning
+import taboolib.common5.Coerce
 import taboolib.common5.Demand
 
 /**
@@ -23,16 +27,25 @@ import taboolib.common5.Demand
 @AutoRegister
 object Awake : ScriptAnnotation("Awake") {
     override fun handle(data: ScriptAnnotationData) {
-        val compiledFile = data.compiledFile
+        val script = data.script
+        val path = script.key
         val args = data.args.toArgs()
         val function = data.function
         if (args.isEmpty() || args[0] == "") return
-        val key = args[0]
-        scriptManager.addSingle(key) {
-            scriptManager.invokePathWithFunction(
-                "${compiledFile.key}::$function",
-                argsMap = mutableMapOf("awakeType" to key.lowercase())
-            )
+        val key = "$path::$function@Awake(${args[0]})"
+        val time = Coerce.toEnum(args[0].uppercase(), ManagerTime::class.java)
+        if (time == null) {
+            warning("No such ManagerTime called '${args[0]}',this is from $path::$function !")
+            warning("Usable ManagerTime: ${ManagerTime.values().map { it.name.lowercase() }}")
+            return
+        }
+        scriptManager.addExec(key, time) {
+            val scriptToRun = scriptManager.search(path)
+            if (scriptToRun != null && scriptToRun.annotationData.containsKey(function))
+                scriptManager.invoke<Unit>(
+                    "$path::$function",
+                    variables = mutableMapOf("awakeType" to key.lowercase())
+                )
         }
     }
 
@@ -44,14 +57,14 @@ object Awake : ScriptAnnotation("Awake") {
  * @constructor -event <Class Name> -priority <Event Priority> -platform <Platform> --ignoreCancel
  */
 @AutoRegister
-object Listener : ScriptAnnotation("Listener") {
+object Listener : ScriptAnnotation("Listener", true) {
     override fun handle(data: ScriptAnnotationData) {
-        val compiledFile = data.compiledFile
+        val script = data.script
         val args = data.args
         val function = data.function
         if (args.isEmpty()) return
         val demand = Demand("dem $args")
-        val clazz = ClassUtils.getClass(demand.get("event") ?: return) ?: return
+        val clazz = (demand.get("event") ?: return).findClass() ?: return
         val level: Int = try {
             EventPriority.valueOf(demand.get("priority", "NORMAL").toString().uppercase()).level
         } catch (e: Exception) {
@@ -63,11 +76,13 @@ object Listener : ScriptAnnotation("Listener") {
             Platform.BUKKIT
         }
         val ignoreCancel = demand.tags.contains("--ignoreCancel")
-        val key = "annotation-${compiledFile.key}::$function-${clazz.name}"
+        val key = "annotation-${script.key}::$function-${clazz.name}"
         ScriptListener.Builder(key, platform, clazz, Priority(level), ignoreCancel) { event ->
-            compiledFile.invoke(function, argsMap = mutableMapOf("event" to event))
+            script.invoke(function, variables = mutableMapOf("event" to event))
         }.build().register()
-        compiledFile["reload-listener-$key"] = {
+        debug("&aScriptListener $key has been registered!")
+        script.onRemove {
+            debug("&cScriptListener $key has been unregistered!")
             Pouvoir.listenerManager.remove(key)
         }
     }
@@ -81,12 +96,14 @@ object Listener : ScriptAnnotation("Listener") {
 @AutoRegister
 object Function : ScriptAnnotation("Function") {
     override fun handle(data: ScriptAnnotationData) {
-        val compiledFile = data.compiledFile
+        val script = data.script
         val args = data.args.toArgs()
         val function = data.function
         val key = if (args.isEmpty() || args[0] == "") function else args[0]
-        PouScriptFunction(key, "${compiledFile.key}::$function").register()
-        compiledFile["register-function-this::$function"] = {
+        PouScriptFunction(key, "${script.key}::$function").register()
+        debug("&aFunction $key has been registered!")
+        script.onRemove {
+            debug("&cFunction $key has been unregistered!")
             Pouvoir.functionManager.remove(key)
         }
     }
@@ -100,16 +117,18 @@ object Function : ScriptAnnotation("Function") {
 @AutoRegister
 object Annotation : ScriptAnnotation("Annotation") {
     override fun handle(data: ScriptAnnotationData) {
-        val compiledFile = data.compiledFile
+        val script = data.script
         val args = data.args.toArgs()
         val function = data.function
         val key = if (args.isEmpty() || args[0] == "") function else args[0]
         object : ScriptAnnotation(key) {
             override fun handle(data: ScriptAnnotationData) {
-                compiledFile.invoke(function, mutableMapOf("data" to data))
+                script.invoke(function, mutableMapOf("data" to data))
             }
         }.register()
-        compiledFile["register-annotation-this::$function"] = {
+        debug("&aAnnotation $key has been registered!")
+        script.onRemove {
+            debug("&cAnnotation $key has been unregistered!")
             Pouvoir.scriptAnnotationManager.remove(key)
         }
     }

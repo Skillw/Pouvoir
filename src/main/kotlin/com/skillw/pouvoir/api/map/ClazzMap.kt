@@ -1,8 +1,7 @@
 package com.skillw.pouvoir.api.map
 
 import com.skillw.pouvoir.api.able.Keyable
-import taboolib.common.reflect.ReflexClass
-import java.lang.reflect.Constructor
+import taboolib.library.reflex.ReflexClass
 import java.lang.reflect.InvocationTargetException
 
 /**
@@ -38,8 +37,8 @@ open class ClazzMap<T : Keyable<String>> : BaseMap<String, Class<out T>>() {
     fun getObject(key: String, vararg params: Any): T? {
         val clazz = map[key] ?: return null
         try {
-            val constructor: Constructor<*> = ReflexClass(clazz).findConstructor(*params) ?: return null
-            return constructor.newInstance(*params) as T
+            val constructor = ReflexClass.of(clazz).getConstructor(params)
+            return constructor.instance(*params) as T
         } catch (e: InstantiationException) {
             e.printStackTrace()
         } catch (e: IllegalAccessException) {

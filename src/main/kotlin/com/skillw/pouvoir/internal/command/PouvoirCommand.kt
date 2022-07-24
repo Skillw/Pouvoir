@@ -8,7 +8,6 @@ import taboolib.common.platform.command.mainCommand
 import taboolib.common.platform.command.subCommand
 import taboolib.module.lang.sendLang
 import taboolib.platform.util.sendLang
-import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
 @CommandHeader(name = "pouvoir", aliases = ["pou"], permission = "pouvoir.command")
@@ -34,16 +33,12 @@ object PouvoirCommand {
     val run = subCommand {
         dynamic {
             suggestion<CommandSender>(uncheck = true) { _, _ ->
-                Pouvoir.scriptManager.values.map { it.key }
+                Pouvoir.scriptManager.map { it.key }
             }
             dynamic {
-                suggestion<CommandSender>(uncheck = true) { _, context ->
-                    val list = LinkedList<String>()
-                    val compiledFile = Pouvoir.scriptManager[context.argument(-1)] ?: return@suggestion emptyList()
-                    compiledFile.functions.forEach { function ->
-                        list.add(function)
-                    }
-                    list
+                suggestion<CommandSender> { _, context ->
+                    (Pouvoir.scriptManager[context.argument(-1)]
+                        ?: return@suggestion emptyList()).annotationData.keys.toList()
                 }
                 execute<CommandSender> { sender, context, argument ->
                     val function = argument.split(" ")[0]
@@ -57,14 +52,7 @@ object PouvoirCommand {
                     argsMap["sender"] = sender
                     argsMap["args"] = args
                     sender.sendLang("command-script-invoke", fileName)
-                    Pouvoir.scriptManager.invokePathWithFunction("$fileName::$function", argsMap = argsMap)?.run {
-                        when (this.toString()) {
-                            "wrong", "!wrong!" -> sender.sendLang("command-script-wrong", fileName)
-                            "!wrong-format!" -> sender.sendLang("script-invoke-wrong-format")
-                            else -> {
-                            }
-                        }
-                    }
+                    Pouvoir.scriptManager.invoke<Unit>("$fileName::$function", variables = argsMap)
                 }
             }
         }

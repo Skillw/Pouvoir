@@ -1,21 +1,24 @@
 package com.skillw.pouvoir.util
 
+import taboolib.library.reflex.ReflexClass
+
 @Suppress("UNCHECKED_CAST")
 object ClassUtils {
     @JvmStatic
-    fun getClass(path: String): Class<*>? {
+    fun String.findClass(): Class<*>? {
         val clazz: Class<*>
         try {
-            clazz = Class.forName(path)
+            clazz = Class.forName(this)
         } catch (e: Exception) {
-            MessageUtils.wrong("The class $path dose not exist!")
+            MessageUtils.wrong("The class $this dose not exist!")
             return null
         }
         return clazz
     }
 
+
     @JvmStatic
-    val staticClass: Class<*> by lazy {
+    val staticClass: Class<*> by lazy(LazyThreadSafetyMode.NONE) {
         try {
             Class.forName("jdk.internal.dynalink.beans.StaticClass")
         } catch (throwable: Throwable) {
@@ -26,23 +29,6 @@ object ClassUtils {
 
     @JvmStatic
     fun staticClass(className: String): Any? {
-        return try {
-            staticClass.getMethod("forClass", Class::class.java).invoke(null, Class.forName(className))
-        } catch (e: Exception) {
-            null
-        }
-    }
-
-    @JvmStatic
-    fun <T> Class<T>.isObj(): Boolean {
-        val fields = this.fields
-        var isObj = false
-        for (field in fields) {
-            if (field.name == "INSTANCE") {
-                isObj = true
-                break
-            }
-        }
-        return isObj
+        return ReflexClass.of(staticClass).getMethod("forClass").invokeStatic(className.findClass())
     }
 }

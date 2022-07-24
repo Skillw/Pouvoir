@@ -4,6 +4,8 @@ import com.google.common.base.Enums
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.internal.raytrace.RayTrace
 import com.skillw.pouvoir.util.PlayerUtils.sendPacketWithFields
+import net.minecraft.server.v1_16_R1.DataWatcher
+import net.minecraft.server.v1_16_R1.PacketPlayOutEntityMetadata
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.entity.Entity
@@ -13,6 +15,7 @@ import org.bukkit.entity.Player
 import taboolib.common.reflect.Reflex.Companion.getProperty
 import taboolib.common.reflect.Reflex.Companion.invokeConstructor
 import taboolib.common.reflect.Reflex.Companion.invokeMethod
+import taboolib.common.reflect.Reflex.Companion.setProperty
 import taboolib.common.reflect.Reflex.Companion.unsafeInstance
 import taboolib.module.navigation.BoundingBox
 import taboolib.module.navigation.NMSImpl
@@ -20,9 +23,12 @@ import taboolib.module.nms.MinecraftVersion.isUniversal
 import taboolib.module.nms.MinecraftVersion.major
 import taboolib.module.nms.MinecraftVersion.majorLegacy
 import taboolib.module.nms.nmsClass
+import taboolib.module.nms.sendPacket
 import java.util.*
 
 /**
+ *
+ *
  * ClassName : com.skillw.pouvoir.util.EntityUtils
  * Created by Glom_ on 2021-03-28 17:49:01
  * Copyright  2021 user. All rights reserved.
@@ -84,7 +90,7 @@ object EntityUtils {
 
     private val ARMOR_STAND_NEW = Enums.getIfPresent(EntityType::class.java, "ARMOR_STAND").orNull()
     private const val ARMOR_STAND_LEGACY = 78
-    private val ARMOR_STAND_NMS: Any by lazy {
+    private val ARMOR_STAND_NMS: Any by lazy(LazyThreadSafetyMode.NONE) {
         if (major >= 5) {
             nmsClass("EntityTypes").getProperty<Any>(
                 "ARMOR_STAND", fixed = true
@@ -137,7 +143,7 @@ object EntityUtils {
         if (majorLegacy < 11300) {
             return spawnArmorStand(player, entityId, uuid, location)
         }
-        if (major == 9) {
+        if (isUniversal) {
             player.sendPacketWithFields(
                 nmsClass("PacketPlayOutSpawnEntityLiving").unsafeInstance(),
                 "id" to entityId,
@@ -183,9 +189,38 @@ object EntityUtils {
 
     }
 
+    private fun sendPacket(player: Player, packet: Any, vararg fields: Pair<Any, Any>) {
+        fields.forEach { packet.setProperty(it.key.toString(), it.value) }
+        player.sendPacket(packet)
+    }
+
+    /**
+     * 更新实体属性 Metadata
+     */
+    @JvmStatic
+    fun sendEntityMetadata(player: Player, entityId: Int, vararg objects: Any) {
+        if (isUniversal) {
+            sendPacket(
+                player,
+                PacketPlayOutEntityMetadata::class.java.unsafeInstance(),
+                "id" to entityId,
+                "packedItems" to objects.map { it as DataWatcher.Item<*> }.toList()
+            )
+        } else {
+            sendPacket(
+                player,
+                PacketPlayOutEntityMetadata(),
+                "a" to entityId,
+                "b" to objects.map { it as DataWatcher.Item<*> }.toList()
+            )
+        }
+    }
+
     @JvmStatic
     fun destroyEntity(player: Player, entityId: Int) {
-        player.sendPacketWithFields(nmsClass("PacketPlayOutEntityDestroy").invokeConstructor(intArrayOf(entityId)))
+        player.sendPacketWithFields(
+            nmsClass("PacketPlayOutEntityDestroy").newInstance().apply { setProperty("a", intArrayOf(entityId)) }
+        )
     }
 
     @JvmStatic
@@ -216,22 +251,15 @@ object EntityUtils {
     }
 
     @JvmStatic
-    fun LivingEntity.getEntityLookAt(
+    fun LivingEntity.getEntityRayHit(
         distance: Double
-    ): LivingEntity? {
-        return getEntityRayHit(this, distance)
-    }
-
-    @JvmStatic
-    fun getEntityRayHit(
-        livingEntity: LivingEntity, distance: Double
     ): LivingEntity? {
         return Pouvoir.poolExecutor.submit<LivingEntity?> {
             val entities = ArrayList<Pair<Entity, BoundingBox>>()
-            livingEntity.getNearbyEntities(distance, distance, distance).forEach {
+            getNearbyEntities(distance, distance, distance).forEach {
                 entities += it to NMSImpl().getBoundingBox(it)
             }
-            val traces = RayTrace(livingEntity).traces(distance, 0.2)
+            val traces = RayTrace(this).traces(distance, 0.2)
             for (vector in traces) {
                 val firstOrNull = entities.firstOrNull { it.value.contains(vector) }
                 if (firstOrNull != null) {

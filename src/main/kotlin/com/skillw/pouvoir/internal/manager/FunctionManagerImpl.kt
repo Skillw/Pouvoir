@@ -3,9 +3,8 @@ package com.skillw.pouvoir.internal.manager
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.function.PouFunction
 import com.skillw.pouvoir.api.manager.sub.FunctionManager
-import com.skillw.pouvoir.api.plugin.TotalManager
-import com.skillw.pouvoir.internal.handle.PouFunctionHandle
 import com.skillw.pouvoir.util.StringUtils.toArgs
+import org.bukkit.entity.LivingEntity
 import java.util.regex.Pattern
 
 object FunctionManagerImpl : FunctionManager() {
@@ -19,12 +18,6 @@ object FunctionManagerImpl : FunctionManager() {
 
     override fun register(value: PouFunction) {
         register(value.key, value)
-    }
-
-    override fun onInit() {
-        TotalManager.forEachClass {
-            PouFunctionHandle.inject(it)
-        }
     }
 
     override fun onLoad() {
@@ -50,7 +43,7 @@ object FunctionManagerImpl : FunctionManager() {
         functionPattern = Pattern.compile(regex, 2)
     }
 
-    private fun replace(text: String): String {
+    override fun analysis(text: String): String {
         val matcher = functionPattern.matcher(text)
         if (!matcher.find()) return text
         val stringBuffer = StringBuffer()
@@ -61,11 +54,13 @@ object FunctionManagerImpl : FunctionManager() {
             matcher.appendReplacement(stringBuffer, result)
             Pouvoir.debug("$func(${matcher.group(2)}) -> $result")
         } while (matcher.find())
-        return replace(matcher.appendTail(stringBuffer).toString())
+        return analysis(matcher.appendTail(stringBuffer).toString())
     }
 
-    override fun analysis(text: String): String {
-        return replace(text)
+
+    @JvmStatic
+    fun String.analysis(livingEntity: LivingEntity): String {
+        return Pouvoir.functionManager.analysis(this)
     }
 
 

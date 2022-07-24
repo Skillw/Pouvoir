@@ -35,7 +35,7 @@ class HologramLine(location: Location, line: String) {
             it.setBasePlate(false)
             it.setInvisible(true)
             it.setCustomName(line.colored())
-            it.setCustomNameVisible(true)
+            it.setCustomNameVisible(line.isNotEmpty())
         }
 
 
@@ -43,6 +43,7 @@ class HologramLine(location: Location, line: String) {
         if (!armorStand.isDeleted) {
             armorStand.destroy()
             armorStand.setCustomName(line.colored())
+            armorStand.setCustomNameVisible(line.isNotEmpty())
             armorStand.respawn()
         }
     }

@@ -1,13 +1,14 @@
 package com.skillw.pouvoir.api.script
 
 import com.skillw.pouvoir.Pouvoir
+import com.skillw.pouvoir.Pouvoir.containerManager
 import com.skillw.pouvoir.Pouvoir.listenerManager
-import com.skillw.pouvoir.Pouvoir.playerDataManager
 import com.skillw.pouvoir.Pouvoir.scriptManager
 import com.skillw.pouvoir.api.listener.Priority
 import com.skillw.pouvoir.api.listener.ScriptListener
 import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.util.ClassUtils
+import com.skillw.pouvoir.util.ClassUtils.findClass
 import com.skillw.pouvoir.util.ItemUtils.toMutableMap
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.Bukkit
@@ -23,7 +24,6 @@ import org.bukkit.potion.PotionEffectType
 import taboolib.common.platform.Platform
 import taboolib.common.platform.event.EventPriority
 import taboolib.common.platform.function.submit
-import taboolib.expansion.DataContainer
 import taboolib.module.nms.getI18nName
 import taboolib.module.nms.getItemTag
 import taboolib.platform.BukkitCommand
@@ -74,7 +74,7 @@ object ScriptTool : BaseMap<String, Any>() {
             }
 
             override fun onRequest(player: OfflinePlayer, params: String): String {
-                return scriptManager.invokePathWithFunction(path, args = arrayOf(player, params)).toString()
+                return scriptManager.invoke<String>(path, arguments = arrayOf(player, params)).toString()
             }
         }.register()
     }
@@ -87,7 +87,7 @@ object ScriptTool : BaseMap<String, Any>() {
         ignoreCancel: Boolean = false,
         exec: Consumer<Any>
     ) {
-        val clazz = ClassUtils.getClass(path) ?: return
+        val clazz = path.findClass() ?: return
         val level: Int = try {
             EventPriority.valueOf(eventPriority.uppercase()).level
         } catch (e: Exception) {
@@ -106,7 +106,7 @@ object ScriptTool : BaseMap<String, Any>() {
         ignoreCancel: Boolean = false,
         exec: Consumer<Any>
     ) {
-        val clazz = ClassUtils.getClass(path) ?: return
+        val clazz = path.findClass() ?: return
         val level: Int = try {
             EventPriority.valueOf(eventPriority.uppercase()).level
         } catch (e: Exception) {
@@ -247,25 +247,18 @@ object ScriptTool : BaseMap<String, Any>() {
     }
 
     @JvmStatic
-    fun getContainer(player: Player): DataContainer? {
-        println("Outdated function Tool#getContainer!")
-        println("Please use Tool#get / Tool#set / Tool#delete !")
-        return null
-    }
-
-    @JvmStatic
     fun get(user: String, key: String): String? {
-        return playerDataManager[user, key]
+        return containerManager[user, key]
     }
 
     @JvmStatic
     fun delete(user: String, key: String) {
-        playerDataManager.delete(user, key)
+        containerManager.delete(user, key)
     }
 
     @JvmStatic
     fun set(user: String, key: String, value: String) {
-        playerDataManager[user, key] = value
+        containerManager[user, key] = value
     }
 
     @JvmStatic
