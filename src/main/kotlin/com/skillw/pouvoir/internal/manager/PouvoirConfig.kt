@@ -3,7 +3,7 @@ package com.skillw.pouvoir.internal.manager
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.ConfigManager
 import com.skillw.pouvoir.util.ClassUtils
-import com.skillw.pouvoir.util.MessageUtils.wrong
+import com.skillw.pouvoir.util.MessageUtils.warning
 import org.spigotmc.AsyncCatcher
 import taboolib.common.platform.Platform
 import taboolib.common.platform.function.console
@@ -48,7 +48,7 @@ object PouvoirConfig : ConfigManager(Pouvoir) {
                 val field = clazz.getField("INSTANCE")
                 staticClass = field.get(null)
                 if (staticClass == null) {
-                    wrong("The $path is not a object!")
+                    warning("The $path is not a object!")
                     continue
                 }
             }

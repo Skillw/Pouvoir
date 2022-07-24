@@ -19,7 +19,7 @@ tasks.dokkaJavadoc.configure {
     }
 }
 taboolib {
-    options("skip-kotlin-relocate")
+//    options("skip-kotlin-relocate")
 
     description {
         contributors {
@@ -88,6 +88,7 @@ dependencies {
     compileOnly(fileTree("libs"))
 
     taboo("com.alibaba:fastjson:2.0.9.graal")
+    implementation(kotlin("reflect"))
 
 }
 

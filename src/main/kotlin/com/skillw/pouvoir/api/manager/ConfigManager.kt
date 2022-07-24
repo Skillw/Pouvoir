@@ -3,7 +3,7 @@ package com.skillw.pouvoir.api.manager
 import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
 import com.skillw.pouvoir.util.FileUtils.loadYaml
-import com.skillw.pouvoir.util.MessageUtils.wrong
+import com.skillw.pouvoir.util.MessageUtils.warning
 import com.skillw.pouvoir.util.Pair
 import org.bukkit.configuration.file.YamlConfiguration
 import taboolib.common.platform.function.getDataFolder
@@ -54,7 +54,7 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
 
     override operator fun get(key: String): YamlConfiguration {
         val result = super.get(key) ?: kotlin.run {
-            wrong("The config $key dose not exist in the SubPouvoir ${subPouvoir.key}!")
+            warning("The config $key dose not exist in the SubPouvoir ${subPouvoir.key}!")
             return YamlConfiguration.loadConfiguration(getDataFolder())
         }
         return result

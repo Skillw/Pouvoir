@@ -61,9 +61,5 @@ object PouPlaceHolderAPIImpl : PouPlaceHolderAPI {
         return Pouvoir.functionManager.analysis(text)
     }
 
-    @JvmStatic
-    fun String.placeholder(livingEntity: LivingEntity): String {
-        return Pouvoir.pouPlaceHolderAPI.replace(livingEntity, this)
-    }
 
 }

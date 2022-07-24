@@ -18,7 +18,6 @@ object ScriptEngineManagerImpl : ScriptEngineManager() {
     private val suffixMap = ConcurrentHashMap<String, PouScriptEngine>()
     override val globalVariables: MutableMap<String, Any> = ConcurrentHashMap()
 
-
     override fun register(key: String, value: PouScriptEngine) {
         super.register(key, value)
         for (suffix in value.suffixes) {

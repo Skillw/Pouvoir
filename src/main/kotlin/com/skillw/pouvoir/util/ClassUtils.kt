@@ -10,7 +10,7 @@ object ClassUtils {
         try {
             clazz = Class.forName(this)
         } catch (e: Exception) {
-            MessageUtils.wrong("The class $this dose not exist!")
+            MessageUtils.warning("The class $this dose not exist!")
             return null
         }
         return clazz
@@ -26,9 +26,14 @@ object ClassUtils {
         }
 
     }
-
+    
     @JvmStatic
     fun staticClass(className: String): Any? {
-        return ReflexClass.of(staticClass).getMethod("forClass").invokeStatic(className.findClass())
+        return className.findClass()?.static()
+    }
+
+    @JvmStatic
+    fun Class<*>.static(): Any {
+        return ReflexClass.of(staticClass).structure.getMethod("forClass", this).invokeStatic(this)!!
     }
 }

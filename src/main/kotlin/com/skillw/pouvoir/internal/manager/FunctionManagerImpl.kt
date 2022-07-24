@@ -4,7 +4,6 @@ import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.function.PouFunction
 import com.skillw.pouvoir.api.manager.sub.FunctionManager
 import com.skillw.pouvoir.util.StringUtils.toArgs
-import org.bukkit.entity.LivingEntity
 import java.util.regex.Pattern
 
 object FunctionManagerImpl : FunctionManager() {
@@ -56,12 +55,4 @@ object FunctionManagerImpl : FunctionManager() {
         } while (matcher.find())
         return analysis(matcher.appendTail(stringBuffer).toString())
     }
-
-
-    @JvmStatic
-    fun String.analysis(livingEntity: LivingEntity): String {
-        return Pouvoir.functionManager.analysis(this)
-    }
-
-
 }

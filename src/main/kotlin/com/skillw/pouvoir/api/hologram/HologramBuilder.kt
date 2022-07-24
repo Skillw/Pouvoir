@@ -1,5 +1,6 @@
 package com.skillw.pouvoir.api.hologram
 
+import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import com.skillw.pouvoir.internal.hologram.Hologram
 import org.bukkit.Location
 import org.bukkit.entity.Player
@@ -8,13 +9,14 @@ import taboolib.common.platform.function.submit
 import taboolib.platform.compat.replacePlaceholder
 import java.util.*
 
+@ScriptTopLevel
 class HologramBuilder(private val location: Location) {
     private var content: MutableList<String> = LinkedList()
     private val viewers: MutableSet<Player> = Collections.synchronizedSet(HashSet())
     private var stay: Long = -1
     private var time: Int = -1
     private var each: Vector? = null
-    
+
     fun stay(stay: Long): HologramBuilder {
         this.stay = stay
         return this

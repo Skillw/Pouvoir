@@ -4,7 +4,7 @@ import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.api.function.PouFunction
 import com.skillw.pouvoir.internal.manager.PouvoirConfig
 import com.skillw.pouvoir.util.CalculationUtils.calculateDouble
-import com.skillw.pouvoir.util.MessageUtils.wrong
+import com.skillw.pouvoir.util.MessageUtils.warning
 import com.skillw.pouvoir.util.NumberUtils.format
 import com.skillw.pouvoir.util.NumberUtils.randomInt
 import taboolib.common.util.random
@@ -30,7 +30,7 @@ private fun `if`(x: String, symbol: String, y: String): Boolean {
         "equalsIgnore" -> x.lowercase() == y.lowercase()
         "!equalsIgnore" -> x.lowercase() != y.lowercase()
         else -> {
-            wrong("Unknown symbol $symbol!")
+            warning("Unknown symbol $symbol!")
             false
         }
     }
@@ -63,7 +63,7 @@ object If : PouFunction("if") {
                     "||" -> bool1 || bool2
                     "^" -> bool1 && !bool2
                     else -> {
-                        wrong("Unknown logical operator ${args[3]}!")
+                        warning("Unknown logical operator ${args[3]}!")
                         false
                     }
                 }

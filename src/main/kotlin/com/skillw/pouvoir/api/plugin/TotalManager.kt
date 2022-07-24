@@ -42,13 +42,14 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
             })
 
         classes.forEach classFor@{ clazz ->
-            handlers.forEach { handler ->
-                try {
-                    handler.inject(clazz, plugin)
-                } catch (e: Exception) {
-                    e.printStackTrace()
+            handlers
+                .forEach { handler ->
+                    try {
+                        handler.inject(clazz, plugin)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
                 }
-            }
         }
         pluginData[plugin]?.let {
             ManagerData(it).register()

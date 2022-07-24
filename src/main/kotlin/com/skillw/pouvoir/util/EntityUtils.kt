@@ -2,6 +2,7 @@ package com.skillw.pouvoir.util
 
 import com.google.common.base.Enums
 import com.skillw.pouvoir.Pouvoir
+import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import com.skillw.pouvoir.internal.raytrace.RayTrace
 import com.skillw.pouvoir.util.PlayerUtils.sendPacketWithFields
 import net.minecraft.server.v1_16_R1.DataWatcher
@@ -49,6 +50,7 @@ object EntityUtils {
         return getLivingEntityByUUID(this)
     }
 
+    @ScriptTopLevel
     @JvmStatic
     fun getLivingEntityByUUID(uuid: UUID?): LivingEntity? {
         val entity = Bukkit.getEntity(uuid!!)
@@ -63,6 +65,7 @@ object EntityUtils {
         return getPlayerByUUID(this)
     }
 
+
     @JvmStatic
     fun getPlayerByUUID(uuid: UUID?): Player? {
         return Bukkit.getPlayer(uuid!!)
@@ -75,7 +78,6 @@ object EntityUtils {
     @JvmStatic
     fun isLiving(uuid: UUID?): Boolean {
         val entity = Bukkit.getEntity(uuid!!)
-
         return isLiving(entity)
     }
 
@@ -250,6 +252,7 @@ object EntityUtils {
         }
     }
 
+    @ScriptTopLevel
     @JvmStatic
     fun LivingEntity.getEntityRayHit(
         distance: Double
@@ -261,10 +264,8 @@ object EntityUtils {
             }
             val traces = RayTrace(this).traces(distance, 0.2)
             for (vector in traces) {
-                val firstOrNull = entities.firstOrNull { it.value.contains(vector) }
-                if (firstOrNull != null) {
-                    return@submit firstOrNull.key as? LivingEntity? ?: continue
-                }
+                val firstOrNull = entities.firstOrNull { it.value.contains(vector) } ?: continue
+                return@submit firstOrNull.key as? LivingEntity? ?: continue
             }
             return@submit null
         }.get()

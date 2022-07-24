@@ -87,7 +87,7 @@ object ScriptManagerImpl : ScriptManager() {
             addScript(scriptFile)
             return this[path]
         } catch (e: FileNotFoundException) {
-            console().sendLang("script-file-not-found", key)
+            console().sendLang("script-file-not-found", path)
         }
         return null
     }
@@ -109,11 +109,11 @@ object ScriptManagerImpl : ScriptManager() {
         val result = try {
             script.invoke(function, variables, arguments)
         } catch (e: ScriptException) {
-            console().sendLang("script-invoke-script-exception", function, key)
+            console().sendLang("script-invoke-script-exception", function, script.key)
             e.printStackTrace()
             null
         } catch (e: Exception) {
-            console().sendLang("script-invoke-exception", function, key)
+            console().sendLang("script-invoke-exception", function, script.key)
             e.printStackTrace()
             null
         }

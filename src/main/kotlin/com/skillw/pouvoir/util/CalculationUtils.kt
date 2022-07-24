@@ -1,6 +1,7 @@
 package com.skillw.pouvoir.util
 
 import com.skillw.pouvoir.Pouvoir
+import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import com.skillw.pouvoir.internal.manager.PouvoirConfig
 import com.skillw.pouvoir.util.StringUtils.replacement
 import org.bukkit.entity.LivingEntity
@@ -11,11 +12,13 @@ import java.util.regex.Pattern
 
 object CalculationUtils {
 
+    @ScriptTopLevel
     @JvmStatic
     fun String.calculate(entity: LivingEntity? = null, replacements: Map<String, String>? = null): BigDecimal {
         return calculate(Pouvoir.pouPlaceHolderAPI.replace(entity, replacement(replacements ?: HashMap())))
     }
 
+    @ScriptTopLevel
     @JvmName("calculateToDouble")
     @JvmStatic
     fun String.calculateDouble(entity: LivingEntity? = null, replacements: Map<String, String>? = null): Double {
