@@ -28,7 +28,7 @@
 (支持Class,Static Field,Static Method)
 使用:
 ```javascript
-placeholder("%as_att:PhysicalDamage_value%,entity")
+placeholder(["%as_att:PhysicalDamage_value%",entity])
 ```
 
 #### "abs function" 字符串内联函数拓展 (Inline String Function Extension)
