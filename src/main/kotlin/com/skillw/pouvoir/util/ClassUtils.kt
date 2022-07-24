@@ -1,5 +1,6 @@
 package com.skillw.pouvoir.util
 
+import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import taboolib.library.reflex.ReflexClass
 
 @Suppress("UNCHECKED_CAST")
@@ -16,6 +17,11 @@ object ClassUtils {
         return clazz
     }
 
+    @ScriptTopLevel
+    @JvmStatic
+    fun find(name: String): Any? {
+        return name.findClass()?.static()
+    }
 
     @JvmStatic
     val staticClass: Class<*> by lazy(LazyThreadSafetyMode.NONE) {
@@ -26,7 +32,8 @@ object ClassUtils {
         }
 
     }
-    
+
+
     @JvmStatic
     fun staticClass(className: String): Any? {
         return className.findClass()?.static()

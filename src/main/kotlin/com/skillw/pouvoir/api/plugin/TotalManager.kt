@@ -3,9 +3,12 @@ package com.skillw.pouvoir.api.plugin
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.able.Registrable
 import com.skillw.pouvoir.api.annotation.AutoRegister
+import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import com.skillw.pouvoir.api.manager.ManagerData
 import com.skillw.pouvoir.api.map.KeyMap
 import com.skillw.pouvoir.api.plugin.handler.ClassHandler
+import com.skillw.pouvoir.util.ClassUtils.findClass
+import com.skillw.pouvoir.util.ClassUtils.static
 import com.skillw.pouvoir.util.PluginUtils
 import org.bukkit.Bukkit
 import org.bukkit.plugin.Plugin
@@ -16,6 +19,16 @@ import java.util.concurrent.ConcurrentHashMap
 
 object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
     internal val pluginData = ConcurrentHashMap<Plugin, SubPouvoir>()
+    val allStaticClasses = ConcurrentHashMap<String, Any>()
+
+    @ScriptTopLevel
+    @JvmStatic
+    fun static(name: String): Any? {
+        return if (!name.contains("."))
+            allStaticClasses[name]
+        else
+            name.findClass()?.static()
+    }
 
     @Awake(LifeCycle.LOAD)
     fun load() {
@@ -35,6 +48,15 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
         if (!dependPouvoir(plugin)) return
 
         val classes = PluginUtils.getClasses(plugin)
+
+        classes.forEach {
+            try {
+                allStaticClasses[it.simpleName] = it.static()
+            } catch (t: Throwable) {
+
+            }
+        }
+
         handlers.addAll(classes
             .filter { ClassHandler::class.java.isAssignableFrom(it) && it.simpleName != "ClassHandler" }
             .mapNotNull {
