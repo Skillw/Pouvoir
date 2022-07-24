@@ -25,7 +25,7 @@
         return Pouvoir.pouPlaceHolderAPI.replace(entity, this)
     }
 ```
-(支持Class,Static Field,Static Method)
+(支持Class,Static Field,Static Method)   
 使用:
 ```javascript
 placeholder(["%as_att:PhysicalDamage_value%",entity])
