@@ -1,4 +1,4 @@
-package com.skillw.pouvoir.internal.engine.javascript
+package com.skillw.pouvoir.internal.script.javascript
 
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.annotation.AutoRegister
@@ -7,6 +7,7 @@ import com.skillw.pouvoir.api.script.PouCompiledScript
 import com.skillw.pouvoir.api.script.engine.PouScriptEngine
 import com.skillw.pouvoir.util.FileUtils.md5
 import com.skillw.pouvoir.util.FileUtils.pathNormalize
+import com.skillw.pouvoir.util.StringUtils.toStringWithNext
 import org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory
 import taboolib.common.env.RuntimeDependencies
 import taboolib.common.env.RuntimeDependency
@@ -56,8 +57,9 @@ object PouJavaScriptEngine : PouScriptEngine() {
         if (md5Script != null && md5Hex == md5Script.md5) {
             return md5Script
         }
-        val compiledScript = (engine as Compilable).compile(file.readText())
-        return PouJavaScript(file, md5Hex, compiledScript).also { scripts[normalizePath] = it }
+        val scriptLines = file.readLines()
+        val script = (engine as Compilable).compile(scriptLines.toStringWithNext())
+        return PouJavaScript(file, scriptLines, md5Hex, script).also { scripts[normalizePath] = it }
 
     }
 }

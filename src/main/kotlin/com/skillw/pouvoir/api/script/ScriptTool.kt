@@ -281,6 +281,9 @@ object ScriptTool : BaseMap<String, Any>() {
     @ScriptTopLevel
     @JvmStatic
     fun arrayOf(it: Any?): Array<Any?> {
+        if (it is Array<*>) {
+            return it as Array<Any?>
+        }
         return if (it is ScriptObjectMirror && it.isArray) {
             it.values.toTypedArray()
         } else {
@@ -291,6 +294,12 @@ object ScriptTool : BaseMap<String, Any>() {
     @ScriptTopLevel
     @JvmStatic
     fun listOf(it: Any?): List<Any?> {
+        if (it is List<*>) {
+            return it
+        }
+        if (it is Array<*>) {
+            return it.toList()
+        }
         return if (it is ScriptObjectMirror && it.isArray) {
             it.values.toList()
         } else {

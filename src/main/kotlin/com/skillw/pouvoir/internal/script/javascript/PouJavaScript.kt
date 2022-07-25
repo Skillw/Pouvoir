@@ -1,4 +1,4 @@
-package com.skillw.pouvoir.internal.engine.javascript
+package com.skillw.pouvoir.internal.script.javascript
 
 import com.skillw.pouvoir.api.script.PouCompiledScript
 import com.skillw.pouvoir.api.script.engine.PouScriptEngine.Companion.addCheckVarsFunc
@@ -12,8 +12,8 @@ import javax.script.SimpleScriptContext
 
 
 // Key = file.pathNormalize();
-class PouJavaScript(file: File, val md5: String, val script: CompiledScript) :
-    PouCompiledScript(file, PouJavaScriptEngine) {
+class PouJavaScript(file: File, scripts: List<String>, val md5: String, val script: CompiledScript) :
+    PouCompiledScript(file, scripts, PouJavaScriptEngine) {
 
     override fun invoke(function: String, variables: Map<String, Any>, vararg arguments: Any?): Any? {
         val engine = script.engine.addCheckVarsFunc()

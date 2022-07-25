@@ -13,9 +13,11 @@ import java.io.File
 import java.util.concurrent.ConcurrentHashMap
 
 // key = file.pathNormalize();
-abstract class PouCompiledScript(val file: File, val engine: PouScriptEngine) :
+abstract class PouCompiledScript(val file: File, val scripts: List<String>, val engine: PouScriptEngine) :
     Registrable<String> {
-    //"this" to this annotations
+    //this annotations
+    var scriptAnnotations = HashSet<ScriptAnnotationData>()
+
     //function name to annotations
     val annotationData = BaseMap<String, Set<ScriptAnnotationData>>()
     override val key: String = file.pathNormalize()
@@ -30,38 +32,27 @@ abstract class PouCompiledScript(val file: File, val engine: PouScriptEngine) :
         annotationData.putAll(initAnnotation())
     }
 
+    private var lastHeadIndex = -1
+
     private fun initAnnotation(): Map<String, Set<ScriptAnnotationData>> {
         val map = ConcurrentHashMap<String, Set<ScriptAnnotationData>>()
-        val scripts = file.readLines()
         if (scripts.isEmpty()) return map
-        val thisMatcher = engine.getAnnotationPattern().matcher(scripts[0])
-        if (thisMatcher.find()) {
-            annotationData.put(
-                "this", setOf(
-                    ScriptAnnotationData(
-                        thisMatcher.group("key"),
-                        this,
-                        "this",
-                        thisMatcher.group("args")
-                    )
-                )
-            )
-        }
         for (index in scripts.indices) {
             val str = scripts[index]
             val matcher = engine.functionPattern.matcher(str)
             if (!matcher.find()) continue
             val function = matcher.group("name")
-            val annotations = getAnnotations(index, this, scripts, function)
+            val annotations = getAnnotations(index, function)
             map[function] = annotations
         }
+
+        scriptAnnotations.addAll(getAnnotations(lastHeadIndex, "null"))
+
         return map
     }
 
     private fun getAnnotations(
         index: Int,
-        script: PouCompiledScript,
-        scripts: List<String>,
         function: String
     ): Set<ScriptAnnotationData> {
         val annotations = HashSet<ScriptAnnotationData>()
@@ -70,13 +61,14 @@ abstract class PouCompiledScript(val file: File, val engine: PouScriptEngine) :
             val last = scripts[--lastIndex]
             val matcher = engine.getAnnotationPattern().matcher(last)
             if (!matcher.find()) {
-                if (last.contains("@")) continue
+                if (lastHeadIndex == -1)
+                    lastHeadIndex = lastIndex
                 break
             }
             annotations.add(
                 ScriptAnnotationData(
                     matcher.group("key"),
-                    script,
+                    this,
                     function,
                     matcher.group("args")
                 )

@@ -1,4 +1,4 @@
-package com.skillw.pouvoir.internal.engine.groovy
+package com.skillw.pouvoir.internal.script.groovy
 
 import com.skillw.pouvoir.api.able.Registrable
 import com.skillw.pouvoir.api.script.PouCompiledScript
@@ -9,8 +9,8 @@ import javax.script.CompiledScript
 import javax.script.Invocable
 import javax.script.SimpleScriptContext
 
-class PouGroovyScript(file: File, val md5: String, val script: CompiledScript) :
-    Registrable<String>, PouCompiledScript(file, PouGroovyScriptEngine) {
+class PouGroovyScript(file: File, scripts: List<String>, val md5: String, val script: CompiledScript) :
+    Registrable<String>, PouCompiledScript(file, scripts, PouGroovyScriptEngine) {
 
     override fun invoke(function: String, variables: Map<String, Any>, vararg arguments: Any?): Any? {
         val engine = script.engine.addCheckVarsFunc()

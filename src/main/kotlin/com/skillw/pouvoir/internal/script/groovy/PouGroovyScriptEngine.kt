@@ -1,4 +1,4 @@
-package com.skillw.pouvoir.internal.engine.groovy
+package com.skillw.pouvoir.internal.script.groovy
 
 import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.api.map.KeyMap
@@ -6,6 +6,7 @@ import com.skillw.pouvoir.api.script.PouCompiledScript
 import com.skillw.pouvoir.api.script.engine.PouScriptEngine
 import com.skillw.pouvoir.util.FileUtils.md5
 import com.skillw.pouvoir.util.FileUtils.pathNormalize
+import com.skillw.pouvoir.util.StringUtils.toStringWithNext
 import org.codehaus.groovy.jsr223.GroovyScriptEngineFactory
 import taboolib.common.env.RuntimeDependencies
 import taboolib.common.env.RuntimeDependency
@@ -39,7 +40,8 @@ object PouGroovyScriptEngine : PouScriptEngine() {
         if (md5Script != null && md5Hex == md5Script.md5) {
             return md5Script
         }
-        val script = (engine as Compilable).compile(file.readText())
-        return PouGroovyScript(file, md5Hex, script).also { scripts[normalizePath] = it }
+        val scriptLines = file.readLines()
+        val script = (engine as Compilable).compile(scriptLines.toStringWithNext())
+        return PouGroovyScript(file, scriptLines, md5Hex, script).also { scripts[normalizePath] = it }
     }
 }

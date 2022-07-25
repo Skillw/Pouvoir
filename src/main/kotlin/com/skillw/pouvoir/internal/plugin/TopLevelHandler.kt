@@ -32,8 +32,12 @@ object TopLevelHandler : ClassHandler(1) {
             .forEach { method ->
                 val key = structure.getAnnotation(ScriptTopLevel::class.java)?.property<String>("key") ?: ""
                 globalVariables[key.ifEmpty(method.name)] = Function { it: Any? ->
-                    val args = ScriptTool.arrayOf(it)
-                    return@Function method.invokeStatic(*args)
+                    val single = method.parameterTypes.size == 1
+                    return@Function if (single) {
+                        method.invokeStatic(it)
+                    } else {
+                        method.invokeStatic(*ScriptTool.arrayOf(it))
+                    }
                 }
             }
     }
