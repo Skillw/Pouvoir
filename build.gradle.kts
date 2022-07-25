@@ -7,7 +7,7 @@ plugins {
 }
 
 tasks.dokkaJavadoc.configure {
-    outputDirectory.set(File("C:\\Users\\Administrator\\Desktop\\Doc\\pouvoir\\doc"))
+    outputDirectory.set(File("C:\\Users\\Administrator\\Desktop\\Doc\\pouvoir"))
     dokkaSourceSets {
         named("main") {
             noJdkLink.set(true)

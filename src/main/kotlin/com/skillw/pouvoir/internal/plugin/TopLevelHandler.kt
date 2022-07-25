@@ -3,6 +3,7 @@ package com.skillw.pouvoir.internal.plugin
 import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import com.skillw.pouvoir.api.plugin.handler.ClassHandler
 import com.skillw.pouvoir.api.script.ScriptTool
+import com.skillw.pouvoir.api.script.ScriptTool.toObject
 import com.skillw.pouvoir.internal.manager.ScriptEngineManagerImpl.globalVariables
 import com.skillw.pouvoir.util.ClassUtils.static
 import org.bukkit.plugin.Plugin
@@ -24,17 +25,20 @@ object TopLevelHandler : ClassHandler(1) {
         structure.fields
             .filter { it.isStatic && it.isAnnotationPresent(ScriptTopLevel::class.java) }
             .forEach {
-                val key = structure.getAnnotation(ScriptTopLevel::class.java)?.property<String>("key") ?: ""
+                val key = it.getAnnotation(ScriptTopLevel::class.java)?.property<String>("key") ?: ""
                 globalVariables[key.ifEmpty(it.name)] = it.get(null) ?: return@forEach
             }
         structure.methods
             .filter { it.isStatic && it.isAnnotationPresent(ScriptTopLevel::class.java) }
             .forEach { method ->
-                val key = structure.getAnnotation(ScriptTopLevel::class.java)?.property<String>("key") ?: ""
+                val key = method.getAnnotation(ScriptTopLevel::class.java)?.property<String>("key") ?: ""
                 globalVariables[key.ifEmpty(method.name)] = Function { it: Any? ->
                     val single = method.parameterTypes.size == 1
                     return@Function if (single) {
-                        method.invokeStatic(it)
+                        if (it?.javaClass?.simpleName == "ScriptObjectMirror")
+                            method.invokeStatic(it.toObject())
+                        else
+                            method.invokeStatic(it)
                     } else {
                         method.invokeStatic(*ScriptTool.arrayOf(it))
                     }

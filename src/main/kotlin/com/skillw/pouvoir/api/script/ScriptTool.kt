@@ -24,9 +24,13 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.Plugin
 import org.bukkit.potion.PotionEffectType
 import taboolib.common.platform.Platform
+import taboolib.common.platform.ProxyParticle
 import taboolib.common.platform.event.EventPriority
+import taboolib.common.platform.function.adaptLocation
 import taboolib.common.platform.function.submit
+import taboolib.common.platform.sendTo
 import taboolib.common.platform.service.PlatformExecutor
+import taboolib.common.util.Vector
 import taboolib.library.reflex.Reflex.Companion.getProperty
 import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import taboolib.module.nms.getI18nName
@@ -344,34 +348,31 @@ object ScriptTool : BaseMap<String, Any>() {
         if (it is Array<*>) {
             return it as Array<Any?>
         }
-        return if (it is ScriptObjectMirror) {
-            if (it.isArray) it.toObject() as Array<Any?>
+        return if (it?.javaClass?.simpleName == "ScriptObjectMirror") {
+            if (it.invokeMethod<Boolean>("isArray") == true) it.toObject() as Array<Any?>
             else arrayOf(it.toObject())
         } else {
             kotlin.arrayOf(it)
         }
     }
 
-    private fun ScriptObjectMirror.toObject(): Any? {
-        if (this.isFunction) {
+    internal fun Any.toObject(): Any {
+        if (this.invokeMethod<Boolean>("isFunction") == true) {
             val paramSize =
                 (this.getProperty<Any>("sobj")!!).getProperty<Any>("data")!!.invokeMethod<Any>("getGenericType")
                     ?.invokeMethod<Int>("parameterCount")!! - 2
             return when (paramSize) {
-                0 -> Runnable { this.call(null) }
+                0 -> Runnable { this.invokeMethod<Any>("call", null) }
                 1 -> fun(param: Any?) {
-                    this.call(
-                        null,
-                        param
-                    )
+                    this.invokeMethod<Any>("call", null, kotlin.arrayOf(param))
                 }
-                else -> fun(params: Array<Any?>) { this.call(null, *params) }
+                else -> fun(params: Array<Any?>) { this.invokeMethod<Any>("call", null, params) }
             }
         }
-        if (isEmpty()) return this
-        if (isArray) {
+        if (this.invokeMethod<Boolean>("isEmpty") == true) return this
+        if (this.invokeMethod<Boolean>("isArray") == true) {
             val list: MutableList<Any?> = ArrayList()
-            for ((_, result) in this) {
+            for ((_, result) in this as Map<*, *>) {
                 if (result is ScriptObjectMirror) {
                     list.add(result.toObject())
                 } else {
@@ -381,11 +382,11 @@ object ScriptTool : BaseMap<String, Any>() {
             return list.toTypedArray()
         }
         val map: MutableMap<String, Any?> = HashMap()
-        for ((key, result) in this) {
+        for ((key, result) in this as Map<*, *>) {
             if (result is ScriptObjectMirror) {
-                map[key] = result.toObject()
+                map[key.toString()] = result.toObject()
             } else {
-                map[key] = result
+                map[key.toString()] = result
             }
         }
         return map
@@ -408,4 +409,29 @@ object ScriptTool : BaseMap<String, Any>() {
         }
     }
 
+    @ScriptTopLevel
+    @JvmStatic
+    fun sendParticle(
+        particle: ProxyParticle,
+        location: org.bukkit.Location,
+        range: Double = 128.0,
+        offset: Vector = Vector(0, 0, 0),
+        count: Int = 1,
+        speed: Double = 0.0,
+        data: ProxyParticle.Data? = null
+    ) {
+        particle.sendTo(adaptLocation(location), range, offset, count, speed, data)
+    }
+
+    @ScriptTopLevel("sendSimpleParticle")
+    @JvmStatic
+    fun sendParticle(
+        particle: ProxyParticle,
+        location: org.bukkit.Location,
+        range: Double = 128.0,
+        count: Int = 1,
+        speed: Double = 0.0
+    ) {
+        sendParticle(particle, location, range, Vector(0, 0, 0), count, speed)
+    }
 }

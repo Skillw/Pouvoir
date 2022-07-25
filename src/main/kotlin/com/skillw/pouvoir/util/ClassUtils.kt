@@ -20,6 +20,9 @@ object ClassUtils {
     @ScriptTopLevel
     @JvmStatic
     fun find(name: String): Any? {
+        if (name.contains(">taboolib.")) {
+            return "com.skillw.pouvoir.${name.replace(">", "")}".findClass()?.static()
+        }
         return name.findClass()?.static()
     }
 

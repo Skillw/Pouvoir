@@ -3,6 +3,7 @@ package com.skillw.pouvoir.internal.script.javascript
 import com.skillw.pouvoir.api.script.PouCompiledScript
 import com.skillw.pouvoir.api.script.engine.PouScriptEngine.Companion.addCheckVarsFunc
 import com.skillw.pouvoir.internal.manager.ScriptEngineManagerImpl.globalVariables
+import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import java.io.File
 import javax.script.CompiledScript
 import javax.script.Invocable
@@ -23,6 +24,6 @@ class PouJavaScript(file: File, scripts: List<String>, val md5: String, val scri
         val context: ScriptContext = SimpleScriptContext().apply { setBindings(bindings, ENGINE_SCOPE) }
         script.eval(context)
         engine.context = context
-        return (engine as Invocable).invokeFunction(function, *arguments)
+        return (engine as Invocable).invokeMethod<Any?>("invokeFunction", function, arguments)
     }
 }
