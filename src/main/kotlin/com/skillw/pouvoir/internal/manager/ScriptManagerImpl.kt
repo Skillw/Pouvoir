@@ -94,7 +94,7 @@ object ScriptManagerImpl : ScriptManager() {
 
     override fun <T> invoke(path: String, function: String, variables: Map<String, Any>, vararg arguments: Any?): T? {
         val script = search(path) ?: return null
-        return invoke(script, function, variables, arguments)
+        return invoke(script, function, variables, *arguments)
     }
 
     override fun <T> invoke(
@@ -116,7 +116,7 @@ object ScriptManagerImpl : ScriptManager() {
         }
         val start = System.currentTimeMillis()
         val result = try {
-            script.invoke(function, variables, arguments)
+            script.invoke(function, variables, *arguments)
         } catch (e: ScriptException) {
             console().sendLang("script-invoke-script-exception", function, script.key)
             e.printStackTrace()
