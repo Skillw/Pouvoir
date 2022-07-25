@@ -15,6 +15,7 @@ import java.util.concurrent.ConcurrentHashMap
 // key = file.pathNormalize();
 abstract class PouCompiledScript(val file: File, val engine: PouScriptEngine) :
     Registrable<String> {
+    //"this" to this annotations
     //function name to annotations
     val annotationData = BaseMap<String, Set<ScriptAnnotationData>>()
     override val key: String = file.pathNormalize()
@@ -32,6 +33,20 @@ abstract class PouCompiledScript(val file: File, val engine: PouScriptEngine) :
     private fun initAnnotation(): Map<String, Set<ScriptAnnotationData>> {
         val map = ConcurrentHashMap<String, Set<ScriptAnnotationData>>()
         val scripts = file.readLines()
+        if (scripts.isEmpty()) return map
+        val thisMatcher = engine.getAnnotationPattern().matcher(scripts[0])
+        if (thisMatcher.find()) {
+            annotationData.put(
+                "this", setOf(
+                    ScriptAnnotationData(
+                        thisMatcher.group("key"),
+                        this,
+                        "this",
+                        thisMatcher.group("args")
+                    )
+                )
+            )
+        }
         for (index in scripts.indices) {
             val str = scripts[index]
             val matcher = engine.functionPattern.matcher(str)
