@@ -10,9 +10,7 @@ class PouScriptFunction(key: String, val path: String) : PouFunction(key) {
         return scriptManager
             .invoke(
                 path,
-                variables = hashMapOf(
-                    "args" to args
-                )
+                arguments = arrayOf(args)
             )
     }
 }

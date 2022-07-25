@@ -19,7 +19,7 @@ import javax.script.ScriptEngine
 @AutoRegister
 @RuntimeDependencies(
     RuntimeDependency(
-        "!org.openjdk.nashorn:nashorn-core:15.3",
+        "!org.openjdk.nashorn:nashorn-core:15.4",
         test = "!jdk.nashorn.api.scripting.NashornScriptEngineFactory"
     )
 )

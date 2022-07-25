@@ -21,19 +21,19 @@ object MessageUtils {
 
     @JvmStatic
     @ScriptTopLevel
-    fun warning(msg: String) {
-        taboolib.common.platform.function.warning(msg.colored())
+    fun warning(msg: Any?) {
+        taboolib.common.platform.function.warning(msg.toString().colored())
     }
 
     @JvmStatic
     @ScriptTopLevel
-    fun info(msg: String) {
-        taboolib.common.platform.function.info(msg.colored())
+    fun info(msg: Any?) {
+        taboolib.common.platform.function.info(msg.toString().colored())
     }
 
     @JvmStatic
     @ScriptTopLevel
-    fun debug(msg: String) {
+    fun debug(msg: Any?) {
         info("&9[&eDebug&9] &e${msg}")
     }
 }

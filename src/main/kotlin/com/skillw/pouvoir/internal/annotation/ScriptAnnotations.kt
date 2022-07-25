@@ -45,8 +45,7 @@ object Awake : ScriptAnnotation("Awake") {
             val scriptToRun = scriptManager.search(path)
             if (scriptToRun != null && scriptToRun.annotationData.containsKey(function))
                 scriptManager.invoke<Unit>(
-                    "$path::$function",
-                    variables = mutableMapOf("awakeType" to key.lowercase())
+                    "$path::$function", arguments = arrayOf(time.name)
                 )
         }
     }
@@ -80,7 +79,7 @@ object Listener : ScriptAnnotation("Listener", true) {
         val ignoreCancel = demand.tags.contains("--ignoreCancel")
         val key = "annotation-${script.key}::$function-${clazz.name}"
         ScriptListener.Builder(key, platform, clazz, Priority(level), ignoreCancel) { event ->
-            script.invoke(function, variables = mutableMapOf("event" to event))
+            script.invoke(function, arguments = arrayOf(event))
         }.build().register()
         debug("&aScript ScriptListener &6$key &ahas been registered!")
         script.onRemove {
@@ -125,7 +124,7 @@ object Annotation : ScriptAnnotation("Annotation") {
         val key = if (args.isEmpty() || args[0] == "") function else args[0]
         object : ScriptAnnotation(key) {
             override fun handle(data: ScriptAnnotationData) {
-                script.invoke(function, mutableMapOf("data" to data))
+                script.invoke(function, arguments = arrayOf(data))
             }
         }.register()
         debug("&aScript Annotation &6$key &ahas been registered!")

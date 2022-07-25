@@ -26,6 +26,9 @@ import org.bukkit.potion.PotionEffectType
 import taboolib.common.platform.Platform
 import taboolib.common.platform.event.EventPriority
 import taboolib.common.platform.function.submit
+import taboolib.common.platform.service.PlatformExecutor
+import taboolib.library.reflex.Reflex.Companion.getProperty
+import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import taboolib.module.nms.getI18nName
 import taboolib.module.nms.getItemTag
 import taboolib.platform.BukkitCommand
@@ -35,30 +38,87 @@ import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
 import java.util.function.Function
 
+
 object ScriptTool : BaseMap<String, Any>() {
+
+    @ScriptTopLevel
     @JvmStatic
-    fun runTask(task: Runnable) =
-        submit { task.run() }
+    fun task(task: PlatformExecutor.PlatformTask.() -> Unit) =
+        submit { task(this) }
+
+    @ScriptTopLevel
+    @JvmStatic
+    fun taskAsync(task: PlatformExecutor.PlatformTask.() -> Unit) =
+        submit(async = true) { task(this) }
+
+    @ScriptTopLevel
+    @JvmStatic
+    fun taskLater(task: PlatformExecutor.PlatformTask.() -> Unit, delay: Long) =
+        submit(delay = delay) { task(this) }
+
+    @ScriptTopLevel
+    @JvmStatic
+    fun taskAsyncLater(task: PlatformExecutor.PlatformTask.() -> Unit, delay: Long) =
+        submit(delay = delay, async = true) { task(this) }
+
+    @ScriptTopLevel
+    @JvmStatic
+    fun taskTimer(task: PlatformExecutor.PlatformTask.() -> Unit, delay: Long, period: Long) =
+        submit(delay = delay, period = period) { task(this) }
+
+    @ScriptTopLevel
+    @JvmStatic
+    fun taskAsyncTimer(task: PlatformExecutor.PlatformTask.() -> Unit, delay: Long, period: Long) =
+        submit(async = true, delay = delay, period = period) { task(this) }
 
     @JvmStatic
-    fun runTaskAsync(task: Runnable) =
-        submit(async = true) { task.run() }
+    @Deprecated(
+        "Old params; Please use 'task'",
+        ReplaceWith("task(runnable)")
+    )
+    fun runTask(runnable: Runnable) =
+        submit { runnable.run() }
 
     @JvmStatic
-    fun runTaskLater(task: Runnable, delay: Long) =
-        submit(delay = delay) { task.run() }
+    @Deprecated(
+        "Old params; Please ues 'taskAsync'",
+        ReplaceWith("taskAsync(runnable)")
+    )
+    fun runTaskAsync(runnable: Runnable) =
+        submit(async = true) { runnable.run() }
 
     @JvmStatic
-    fun runTaskAsyncLater(task: Runnable, delay: Long) =
-        submit(delay = delay, async = true) { task.run() }
+    @Deprecated(
+        "Old params; Please ues 'taskLater'",
+        ReplaceWith("taskLater(runnable)")
+    )
+    fun runTaskLater(runnable: Runnable, delay: Long) =
+        submit(delay = delay) { runnable.run() }
 
     @JvmStatic
-    fun runTaskTimer(task: Runnable, delay: Long, period: Long) =
-        submit(delay = delay, period = period) { task.run() }
+    @Deprecated(
+        "Old params; Please ues 'taskAsyncLater'",
+        ReplaceWith("taskAsyncLater(runnable)")
+    )
+    fun runTaskAsyncLater(runnable: Runnable, delay: Long) =
+        submit(delay = delay, async = true) { runnable.run() }
 
     @JvmStatic
-    fun runTaskAsyncTimer(task: Runnable, delay: Long, period: Long) =
-        submit(async = true, delay = delay, period = period) { task.run() }
+    @Deprecated(
+        "Old params; Please ues 'taskTimer'",
+        ReplaceWith("taskTimer(runnable)")
+    )
+    fun runTaskTimer(runnable: Runnable, delay: Long, period: Long) =
+        submit(delay = delay, period = period) { runnable.run() }
+
+    @JvmStatic
+    @Deprecated(
+        "Old params; Please ues 'taskAsyncTimer'",
+        ReplaceWith("taskAsyncTimer(runnable)")
+    )
+    fun runTaskAsyncTimer(runnable: Runnable, delay: Long, period: Long) =
+        submit(async = true, delay = delay, period = period) { runnable.run() }
+
 
     @JvmStatic
     fun placeHolder(identifier: String, author: String, version: String, path: String) {
@@ -284,11 +344,51 @@ object ScriptTool : BaseMap<String, Any>() {
         if (it is Array<*>) {
             return it as Array<Any?>
         }
-        return if (it is ScriptObjectMirror && it.isArray) {
-            it.values.toTypedArray()
+        return if (it is ScriptObjectMirror) {
+            if (it.isArray) it.toObject() as Array<Any?>
+            else arrayOf(it.toObject())
         } else {
             kotlin.arrayOf(it)
         }
+    }
+
+    private fun ScriptObjectMirror.toObject(): Any? {
+        if (this.isFunction) {
+            val paramSize =
+                (this.getProperty<Any>("sobj")!!).getProperty<Any>("data")!!.invokeMethod<Any>("getGenericType")
+                    ?.invokeMethod<Int>("parameterCount")!! - 2
+            return when (paramSize) {
+                0 -> Runnable { this.call(null) }
+                1 -> fun(param: Any?) {
+                    this.call(
+                        null,
+                        param
+                    )
+                }
+                else -> fun(params: Array<Any?>) { this.call(null, *params) }
+            }
+        }
+        if (isEmpty()) return this
+        if (isArray) {
+            val list: MutableList<Any?> = ArrayList()
+            for ((_, result) in this) {
+                if (result is ScriptObjectMirror) {
+                    list.add(result.toObject())
+                } else {
+                    list.add(result)
+                }
+            }
+            return list.toTypedArray()
+        }
+        val map: MutableMap<String, Any?> = HashMap()
+        for ((key, result) in this) {
+            if (result is ScriptObjectMirror) {
+                map[key] = result.toObject()
+            } else {
+                map[key] = result
+            }
+        }
+        return map
     }
 
     @ScriptTopLevel
@@ -300,8 +400,9 @@ object ScriptTool : BaseMap<String, Any>() {
         if (it is Array<*>) {
             return it.toList()
         }
-        return if (it is ScriptObjectMirror && it.isArray) {
-            it.values.toList()
+        return if (it is ScriptObjectMirror) {
+            if (it.isArray) it.values.toList()
+            else listOf(it.toObject())
         } else {
             kotlin.collections.listOf(it)
         }
