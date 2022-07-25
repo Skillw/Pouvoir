@@ -2,9 +2,9 @@ package com.skillw.pouvoir.internal.plugin
 
 import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import com.skillw.pouvoir.api.plugin.handler.ClassHandler
+import com.skillw.pouvoir.api.script.ScriptTool
 import com.skillw.pouvoir.internal.manager.ScriptEngineManagerImpl.globalVariables
 import com.skillw.pouvoir.util.ClassUtils.static
-import jdk.nashorn.api.scripting.ScriptObjectMirror
 import org.bukkit.plugin.Plugin
 import taboolib.common.env.RuntimeDependencies
 import taboolib.common.env.RuntimeDependency
@@ -32,11 +32,7 @@ object TopLevelHandler : ClassHandler(1) {
             .forEach { method ->
                 val key = structure.getAnnotation(ScriptTopLevel::class.java)?.property<String>("key") ?: ""
                 globalVariables[key.ifEmpty(method.name)] = Function { it: Any? ->
-                    val args = if (it is ScriptObjectMirror && it.isArray) {
-                        it.values.toTypedArray()
-                    } else {
-                        arrayOf(it)
-                    }
+                    val args = ScriptTool.arrayOf(it)
                     return@Function method.invokeStatic(*args)
                 }
             }

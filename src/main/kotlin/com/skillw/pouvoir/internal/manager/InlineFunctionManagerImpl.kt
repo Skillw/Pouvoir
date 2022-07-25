@@ -2,12 +2,12 @@ package com.skillw.pouvoir.internal.manager
 
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.function.PouFunction
-import com.skillw.pouvoir.api.manager.sub.FunctionManager
+import com.skillw.pouvoir.api.manager.sub.InlineFunctionManager
 import com.skillw.pouvoir.util.StringUtils.toArgs
 import java.util.regex.Pattern
 
-object FunctionManagerImpl : FunctionManager() {
-    override val key = "FunctionManager"
+object InlineFunctionManagerImpl : InlineFunctionManager() {
+    override val key = "InlineFunctionManager"
     override val priority = 4
     override val subPouvoir = Pouvoir
 

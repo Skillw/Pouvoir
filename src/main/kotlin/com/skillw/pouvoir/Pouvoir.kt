@@ -55,7 +55,7 @@ object Pouvoir : Plugin(), SubPouvoir {
 
     @JvmStatic
     @PouManager
-    lateinit var functionManager: FunctionManager
+    lateinit var inlineFunctionManager: InlineFunctionManager
 
     @JvmStatic
     @PouManager

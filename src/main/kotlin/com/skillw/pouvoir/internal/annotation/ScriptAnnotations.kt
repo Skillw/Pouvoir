@@ -39,7 +39,9 @@ object Awake : ScriptAnnotation("Awake") {
             warning("Usable ManagerTime: ${ManagerTime.values().map { it.name.lowercase() }}")
             return
         }
+        debug("&aScript &6$key &ahas been registered!")
         scriptManager.addExec(key, time) {
+            debug("&9Script &6$key &9is running!")
             val scriptToRun = scriptManager.search(path)
             if (scriptToRun != null && scriptToRun.annotationData.containsKey(function))
                 scriptManager.invoke<Unit>(
@@ -80,18 +82,18 @@ object Listener : ScriptAnnotation("Listener", true) {
         ScriptListener.Builder(key, platform, clazz, Priority(level), ignoreCancel) { event ->
             script.invoke(function, variables = mutableMapOf("event" to event))
         }.build().register()
-        debug("&aScriptListener $key has been registered!")
+        debug("&aScript ScriptListener &6$key &ahas been registered!")
         script.onRemove {
-            debug("&cScriptListener $key has been unregistered!")
+            debug("&cScript ScriptListener &6$key &chas been unregistered!")
             Pouvoir.listenerManager.remove(key)
         }
     }
 }
 
 /**
- * Function
+ * Inline Function
  *
- * @constructor Function Key(Optional)
+ * @constructor Inline Function  Key(Optional)
  */
 @AutoRegister
 object Function : ScriptAnnotation("Function") {
@@ -101,10 +103,10 @@ object Function : ScriptAnnotation("Function") {
         val function = data.function
         val key = if (args.isEmpty() || args[0] == "") function else args[0]
         PouScriptFunction(key, "${script.key}::$function").register()
-        debug("&aFunction $key has been registered!")
+        debug("&aScript Inline Function &6$key &ahas been registered!")
         script.onRemove {
-            debug("&cFunction $key has been unregistered!")
-            Pouvoir.functionManager.remove(key)
+            debug("&cScript Inline Function &6$key &chas been unregistered!")
+            Pouvoir.inlineFunctionManager.remove(key)
         }
     }
 }
@@ -126,9 +128,9 @@ object Annotation : ScriptAnnotation("Annotation") {
                 script.invoke(function, mutableMapOf("data" to data))
             }
         }.register()
-        debug("&aAnnotation $key has been registered!")
+        debug("&aScript Annotation &6$key &ahas been registered!")
         script.onRemove {
-            debug("&cAnnotation $key has been unregistered!")
+            debug("&cScript Annotation &6$key &chas been unregistered!")
             Pouvoir.scriptAnnotationManager.remove(key)
         }
     }

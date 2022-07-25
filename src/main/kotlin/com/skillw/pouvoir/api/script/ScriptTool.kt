@@ -4,12 +4,14 @@ import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.Pouvoir.containerManager
 import com.skillw.pouvoir.Pouvoir.listenerManager
 import com.skillw.pouvoir.Pouvoir.scriptManager
+import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import com.skillw.pouvoir.api.listener.Priority
 import com.skillw.pouvoir.api.listener.ScriptListener
 import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.util.ClassUtils
 import com.skillw.pouvoir.util.ClassUtils.findClass
 import com.skillw.pouvoir.util.ItemUtils.toMutableMap
+import jdk.nashorn.api.scripting.ScriptObjectMirror
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
@@ -275,4 +277,25 @@ object ScriptTool : BaseMap<String, Any>() {
     fun set(player: Player, key: String, value: String) {
         set(player.name, key, value)
     }
+
+    @ScriptTopLevel
+    @JvmStatic
+    fun arrayOf(it: Any?): Array<Any?> {
+        return if (it is ScriptObjectMirror && it.isArray) {
+            it.values.toTypedArray()
+        } else {
+            kotlin.arrayOf(it)
+        }
+    }
+
+    @ScriptTopLevel
+    @JvmStatic
+    fun listOf(it: Any?): List<Any?> {
+        return if (it is ScriptObjectMirror && it.isArray) {
+            it.values.toList()
+        } else {
+            kotlin.collections.listOf(it)
+        }
+    }
+
 }

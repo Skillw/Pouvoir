@@ -88,9 +88,9 @@ object StringUtils {
     @JvmStatic
     fun String.toArgs(): Array<String> =
         if (this.contains(","))
-            this.replace(" ", "").split(",").toTypedArray()
+            split(",").toTypedArray()
         else
-            arrayOf(this.replace(" ", ""))
+            arrayOf(this)
 
     @JvmStatic
     fun String.replacement(replaces: Map<String, Any>): String {

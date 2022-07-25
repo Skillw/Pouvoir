@@ -13,7 +13,7 @@ abstract class PouFunction(
     protected abstract fun function(args: Array<String>): Any?
 
     override fun register() {
-        Pouvoir.functionManager.register(this)
+        Pouvoir.inlineFunctionManager.register(this)
     }
 
     override fun apply(args: Array<String>) = if (predicate(args)) function(args) else null

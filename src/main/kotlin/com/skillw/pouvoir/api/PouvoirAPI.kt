@@ -8,7 +8,7 @@ object PouvoirAPI {
     @ScriptTopLevel
     @JvmStatic
     fun String.analysis(): String {
-        return Pouvoir.functionManager.analysis(this)
+        return Pouvoir.inlineFunctionManager.analysis(this)
     }
 
     @ScriptTopLevel

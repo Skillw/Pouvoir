@@ -5,6 +5,6 @@ import com.skillw.pouvoir.api.manager.Manager
 import com.skillw.pouvoir.api.map.KeyMap
 
 
-abstract class FunctionManager : KeyMap<String, PouFunction>(), Manager {
+abstract class InlineFunctionManager : KeyMap<String, PouFunction>(), Manager {
     abstract fun analysis(text: String): String
 }

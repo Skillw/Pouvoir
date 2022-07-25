@@ -23,4 +23,11 @@ abstract class ScriptManager : Manager, KeyMap<String, PouCompiledScript>() {
         variables: Map<String, Any> = emptyMap(),
         vararg arguments: Any?
     ): T?
+
+    abstract fun <T> invoke(
+        script: PouCompiledScript,
+        function: String = "main",
+        variables: Map<String, Any> = emptyMap(),
+        vararg arguments: Any?
+    ): T?
 }

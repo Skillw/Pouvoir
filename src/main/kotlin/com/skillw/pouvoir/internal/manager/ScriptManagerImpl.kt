@@ -94,6 +94,15 @@ object ScriptManagerImpl : ScriptManager() {
 
     override fun <T> invoke(path: String, function: String, variables: Map<String, Any>, vararg arguments: Any?): T? {
         val script = search(path) ?: return null
+        return invoke(script, function, variables, arguments)
+    }
+
+    override fun <T> invoke(
+        script: PouCompiledScript,
+        function: String,
+        variables: Map<String, Any>,
+        vararg arguments: Any?
+    ): T? {
         if (debug) {
             Pouvoir.debug("&eInvoking script &6${script.key} &e's function &d$function")
             Pouvoir.debug("&eVariables: ")
