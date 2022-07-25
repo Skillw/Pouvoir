@@ -32,7 +32,7 @@ abstract class PouCompiledScript(val file: File, val scripts: List<String>, val 
         annotationData.putAll(initAnnotation())
     }
 
-    private var lastHeadIndex = -1
+    private var lastHeadIndex = 0
 
     private fun initAnnotation(): Map<String, Set<ScriptAnnotationData>> {
         val map = ConcurrentHashMap<String, Set<ScriptAnnotationData>>()
@@ -61,7 +61,7 @@ abstract class PouCompiledScript(val file: File, val scripts: List<String>, val 
             val last = scripts[--lastIndex]
             val matcher = engine.getAnnotationPattern().matcher(last)
             if (!matcher.find()) {
-                if (lastHeadIndex == -1)
+                if (lastHeadIndex == 0)
                     lastHeadIndex = lastIndex
                 break
             }
@@ -88,22 +88,25 @@ abstract class PouCompiledScript(val file: File, val scripts: List<String>, val 
         execs.forEach { it.invoke() }
     }
 
-    override fun register() {
-        annotationData.values.forEach {
-            data@ for (data in it) {
-                val annotation = Pouvoir.scriptAnnotationManager[data.annotation] ?: continue@data
-                if (annotation.awakeWhenEnable && !Pouvoir.plugin.isEnabled) {
-                    scriptManager.addExec(
-                        data.script.key + "::" + data.function + "@" + data.annotation,
-                        ManagerTime.ENABLE
-                    ) {
-                        annotation.handle(data)
-                    }
-                    continue@data
+    private fun Set<ScriptAnnotationData>.process() {
+        data@ for (data in this) {
+            val annotation = Pouvoir.scriptAnnotationManager[data.annotation] ?: continue@data
+            if (annotation.awakeWhenEnable && !Pouvoir.plugin.isEnabled) {
+                scriptManager.addExec(
+                    data.script.key + "::" + data.function + "@" + data.annotation,
+                    ManagerTime.ENABLE
+                ) {
+                    annotation.handle(data)
                 }
-                annotation.handle(data)
+                continue@data
             }
+            annotation.handle(data)
         }
+    }
+
+    override fun register() {
+        scriptAnnotations.process()
+        annotationData.values.forEach { it.process() }
         scriptManager[key] = this
     }
 }
