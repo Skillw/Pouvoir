@@ -71,7 +71,7 @@ object ScriptManagerImpl : ScriptManager() {
         }
         val path = splits[0]
         val function = splits[1]
-        return invoke<T>(path, function, variables, arguments)
+        return invoke<T>(path, function, variables, *arguments)
     }
 
     override fun search(path: String): PouCompiledScript? {

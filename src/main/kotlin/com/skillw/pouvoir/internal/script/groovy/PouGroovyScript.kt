@@ -21,7 +21,7 @@ class PouGroovyScript(file: File, scripts: List<String>, val md5: String, val sc
             engine.put(key, value)
         }
         script.eval(engine.context)
-        val result = (engine as Invocable).invokeFunction(function)
+        val result = (engine as Invocable).invokeFunction(function, *arguments)
         engine.context = SimpleScriptContext()
         return result
     }
