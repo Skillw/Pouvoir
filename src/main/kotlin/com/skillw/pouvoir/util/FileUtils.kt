@@ -19,7 +19,7 @@ object FileUtils {
     fun <T : ConfigurationSerializable> loadMultiply(mainFile: File, clazz: Class<T>): List<Pair<T, File>> {
         return mainFile.run {
             val list = LinkedList<Pair<T, File>>()
-            for (file in listFiles()?.filter { it.extension == "yml" } ?: return list) {
+            for (file in listSubFiles()?.filter { it.extension == "yml" } ?: return list) {
                 val config = file.loadYaml() ?: continue
                 for (key in config.getKeys(false)) {
                     try {
@@ -59,18 +59,29 @@ object FileUtils {
         val config = YamlConfiguration()
         try {
             config.load(this)
-        } catch (e: Exception) {
+        } catch (e: Throwable) {
             warning("Wrong config! in $name")
-            warning("Cause: " + ColorUtils.unColor(e.cause!!.message.toString()))
+            warning("Cause: " + ColorUtils.unColor(e.cause?.message.toString()))
             return null
         }
         return config
     }
 
     @JvmStatic
+    fun File.listSubFiles(): List<File> {
+        val files: MutableList<File> = ArrayList()
+        if (isDirectory) {
+            listFiles()?.forEach { files.addAll(it.listSubFiles()) }
+        } else {
+            files.add(this)
+        }
+        return files
+    }
+
+    @JvmStatic
     fun File.loadYamls(): List<YamlConfiguration> {
         val yamls = LinkedList<YamlConfiguration>()
-        for (subFile in listFiles() ?: return yamls) {
+        for (subFile in listSubFiles() ?: return yamls) {
             if (subFile.isFile && subFile.name.endsWith(".yml")) {
                 yamls.add(subFile.loadYaml() ?: continue)
                 continue

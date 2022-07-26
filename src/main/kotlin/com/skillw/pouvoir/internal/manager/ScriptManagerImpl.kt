@@ -6,6 +6,7 @@ import com.skillw.pouvoir.api.manager.sub.script.ScriptEngineManager.Companion.s
 import com.skillw.pouvoir.api.manager.sub.script.ScriptManager
 import com.skillw.pouvoir.api.script.PouCompiledScript
 import com.skillw.pouvoir.internal.manager.PouvoirConfig.debug
+import com.skillw.pouvoir.util.FileUtils.listSubFiles
 import taboolib.common.platform.function.console
 import taboolib.common.platform.function.getDataFolder
 import taboolib.common5.FileWatcher
@@ -57,9 +58,9 @@ object ScriptManagerImpl : ScriptManager() {
 
     override fun addScriptDir(file: File) {
         dirs.add(file)
-        file.listFiles()?.filter {
+        file.listSubFiles().filter {
             it.searchEngine() != null
-        }?.forEach {
+        }.forEach {
             addScript(it)
         }
     }

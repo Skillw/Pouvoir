@@ -21,7 +21,7 @@ class ContainerSQL(host: String, port: Int, user: String, password: String, data
             if (player) {
                 add("username") {
                     type(ColumnTypeSQL.CHAR, 36) {
-                        options(if (playerKey) ColumnOptionSQL.UNIQUE_KEY else ColumnOptionSQL.KEY)
+                        options(if (playerKey && !player) ColumnOptionSQL.UNIQUE_KEY else ColumnOptionSQL.KEY)
                     }
                 }
             }

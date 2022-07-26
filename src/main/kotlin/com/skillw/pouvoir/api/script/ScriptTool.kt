@@ -27,16 +27,19 @@ import taboolib.common.platform.Platform
 import taboolib.common.platform.ProxyParticle
 import taboolib.common.platform.event.EventPriority
 import taboolib.common.platform.function.adaptLocation
+import taboolib.common.platform.function.adaptPlayer
 import taboolib.common.platform.function.submit
 import taboolib.common.platform.sendTo
 import taboolib.common.platform.service.PlatformExecutor
+import taboolib.common.reflect.Reflex.Companion.invokeMethod
 import taboolib.common.util.Vector
 import taboolib.library.reflex.Reflex.Companion.getProperty
-import taboolib.library.reflex.Reflex.Companion.invokeMethod
+import taboolib.module.chat.TellrawJson
 import taboolib.module.nms.getI18nName
 import taboolib.module.nms.getItemTag
 import taboolib.platform.BukkitCommand
 import taboolib.platform.util.hasName
+import taboolib.platform.util.hoverItem
 import taboolib.platform.util.isNotAir
 import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
@@ -434,4 +437,17 @@ object ScriptTool : BaseMap<String, Any>() {
     ) {
         sendParticle(particle, location, range, Vector(0, 0, 0), count, speed)
     }
+
+    @ScriptTopLevel()
+    @JvmStatic
+    fun hoverItem(tellrawJson: TellrawJson, itemStack: ItemStack): TellrawJson {
+        return tellrawJson.hoverItem(itemStack)
+    }
+
+    @ScriptTopLevel()
+    @JvmStatic
+    fun sendTellraw(tellrawJson: TellrawJson, player: Player) {
+        tellrawJson.sendTo(adaptPlayer(player))
+    }
+
 }

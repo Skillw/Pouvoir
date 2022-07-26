@@ -83,11 +83,11 @@ dependencies {
     compileOnly("ink.ptms.core:v11200:11200-minimize")
     compileOnly("org.codehaus.groovy:groovy-jsr223:3.0.11")
 
-    compileOnly("com.alibaba:fastjson:2.0.9.graal")
+    compileOnly("com.alibaba:fastjson:1.2.83")
     compileOnly(kotlin("stdlib"))
     compileOnly(fileTree("libs"))
 
-    taboo("com.alibaba:fastjson:2.0.9.graal")
+    taboo("com.alibaba:fastjson:1.2.83")
     implementation(kotlin("reflect"))
 
 }

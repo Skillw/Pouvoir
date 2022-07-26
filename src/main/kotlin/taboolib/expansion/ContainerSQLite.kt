@@ -21,7 +21,7 @@ class ContainerSQLite(file: File) : Container() {
             if (player) {
                 add("username") {
                     type(ColumnTypeSQLite.TEXT, 36) {
-                        if (playerKey) {
+                        if (playerKey && !player) {
                             options(ColumnOptionSQLite.PRIMARY_KEY)
                         }
                     }
