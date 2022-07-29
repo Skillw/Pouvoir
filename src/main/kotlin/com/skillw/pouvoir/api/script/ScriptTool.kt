@@ -8,6 +8,8 @@ import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import com.skillw.pouvoir.api.listener.Priority
 import com.skillw.pouvoir.api.listener.ScriptListener
 import com.skillw.pouvoir.api.map.BaseMap
+import com.skillw.pouvoir.internal.hologram.ConcurrentHashSet
+import com.skillw.pouvoir.internal.script.javascript.PouJavaScriptEngine
 import com.skillw.pouvoir.util.ClassUtils
 import com.skillw.pouvoir.util.ClassUtils.findClass
 import com.skillw.pouvoir.util.ItemUtils.toMutableMap
@@ -28,12 +30,14 @@ import taboolib.common.platform.ProxyParticle
 import taboolib.common.platform.event.EventPriority
 import taboolib.common.platform.function.adaptLocation
 import taboolib.common.platform.function.adaptPlayer
+import taboolib.common.platform.function.console
 import taboolib.common.platform.function.submit
 import taboolib.common.platform.sendTo
 import taboolib.common.platform.service.PlatformExecutor
 import taboolib.common.reflect.Reflex.Companion.invokeMethod
 import taboolib.common.util.Vector
-import taboolib.library.reflex.Reflex.Companion.getProperty
+import taboolib.common5.Mirror
+import taboolib.common5.mirrorNow
 import taboolib.module.chat.TellrawJson
 import taboolib.module.nms.getI18nName
 import taboolib.module.nms.getItemTag
@@ -41,12 +45,18 @@ import taboolib.platform.BukkitCommand
 import taboolib.platform.util.hasName
 import taboolib.platform.util.hoverItem
 import taboolib.platform.util.isNotAir
-import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
 import java.util.function.Function
+import java.util.function.Supplier
 
 
 object ScriptTool : BaseMap<String, Any>() {
+
+    @ScriptTopLevel
+    @JvmStatic
+    fun sync(task: () -> Any?) = taboolib.common.util.sync {
+        task.invoke()
+    }
 
     @ScriptTopLevel
     @JvmStatic
@@ -60,22 +70,22 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @ScriptTopLevel
     @JvmStatic
-    fun taskLater(task: PlatformExecutor.PlatformTask.() -> Unit, delay: Long) =
+    fun taskLater(delay: Long, task: PlatformExecutor.PlatformTask.() -> Unit) =
         submit(delay = delay) { task(this) }
 
     @ScriptTopLevel
     @JvmStatic
-    fun taskAsyncLater(task: PlatformExecutor.PlatformTask.() -> Unit, delay: Long) =
+    fun taskAsyncLater(delay: Long, task: PlatformExecutor.PlatformTask.() -> Unit) =
         submit(delay = delay, async = true) { task(this) }
 
     @ScriptTopLevel
     @JvmStatic
-    fun taskTimer(task: PlatformExecutor.PlatformTask.() -> Unit, delay: Long, period: Long) =
+    fun taskTimer(delay: Long, period: Long, task: PlatformExecutor.PlatformTask.() -> Unit) =
         submit(delay = delay, period = period) { task(this) }
 
     @ScriptTopLevel
     @JvmStatic
-    fun taskAsyncTimer(task: PlatformExecutor.PlatformTask.() -> Unit, delay: Long, period: Long) =
+    fun taskAsyncTimer(delay: Long, period: Long, task: PlatformExecutor.PlatformTask.() -> Unit) =
         submit(async = true, delay = delay, period = period) { task(this) }
 
     @JvmStatic
@@ -143,7 +153,7 @@ object ScriptTool : BaseMap<String, Any>() {
             }
 
             override fun onRequest(player: OfflinePlayer, params: String): String {
-                return scriptManager.invoke<String>(path, arguments = arrayOf(player, params)).toString()
+                return scriptManager.invoke<String>(path, parameters = arrayOf(player, params)).toString()
             }
         }.register()
     }
@@ -154,7 +164,7 @@ object ScriptTool : BaseMap<String, Any>() {
         path: String,
         eventPriority: String = "NORMAL",
         ignoreCancel: Boolean = false,
-        exec: Consumer<Any>
+        exec: Consumer<Any>,
     ) {
         val clazz = path.findClass() ?: return
         val level: Int = try {
@@ -173,7 +183,7 @@ object ScriptTool : BaseMap<String, Any>() {
         path: String,
         eventPriority: String = "NORMAL",
         ignoreCancel: Boolean = false,
-        exec: Consumer<Any>
+        exec: Consumer<Any>,
     ) {
         val clazz = path.findClass() ?: return
         val level: Int = try {
@@ -196,7 +206,7 @@ object ScriptTool : BaseMap<String, Any>() {
         event: Class<*>,
         level: Int = 0,
         ignoreCancel: Boolean = false,
-        exec: Consumer<Any>
+        exec: Consumer<Any>,
     ) {
         ScriptListener.Builder(key, platform, event, Priority(level), ignoreCancel) {
             exec.accept(it)
@@ -230,7 +240,7 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     fun command(
-        name: String
+        name: String,
     ): PluginCommand {
         val bc = BukkitCommand()
         bc.sync()
@@ -239,6 +249,7 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     fun regCommand(command: PluginCommand) {
+
         val bc = BukkitCommand()
         bc.sync()
         bc.commandMap.register(command.name, command)
@@ -251,20 +262,6 @@ object ScriptTool : BaseMap<String, Any>() {
         bc.unregisterCommand(name)
     }
 
-    @JvmStatic
-    fun runTaskAsyncPool(task: Runnable) {
-        Pouvoir.poolExecutor.execute { task.run() }
-    }
-
-    @JvmStatic
-    fun runTaskAsyncLaterPool(task: Runnable, delay: Long) {
-        Pouvoir.poolExecutor.schedule({ task.run() }, delay, TimeUnit.MILLISECONDS)
-    }
-
-    @JvmStatic
-    fun runTaskAsyncTimerPool(task: Runnable, delay: Long, period: Long) {
-        Pouvoir.poolExecutor.scheduleAtFixedRate({ task.run() }, delay, period, TimeUnit.MILLISECONDS)
-    }
 
     @JvmStatic
     fun getItemName(itemStack: ItemStack, player: Player? = null): String? {
@@ -359,41 +356,7 @@ object ScriptTool : BaseMap<String, Any>() {
         }
     }
 
-    internal fun Any.toObject(): Any {
-        if (this.invokeMethod<Boolean>("isFunction") == true) {
-            val paramSize =
-                (this.getProperty<Any>("sobj")!!).getProperty<Any>("data")!!.invokeMethod<Any>("getGenericType")
-                    ?.invokeMethod<Int>("parameterCount")!! - 2
-            return when (paramSize) {
-                0 -> Runnable { this.invokeMethod<Any>("call", null) }
-                1 -> fun(param: Any?) {
-                    this.invokeMethod<Any>("call", null, kotlin.arrayOf(param))
-                }
-                else -> fun(params: Array<Any?>) { this.invokeMethod<Any>("call", null, params) }
-            }
-        }
-        if (this.invokeMethod<Boolean>("isEmpty") == true) return this
-        if (this.invokeMethod<Boolean>("isArray") == true) {
-            val list: MutableList<Any?> = ArrayList()
-            for ((_, result) in this as Map<*, *>) {
-                if (result is ScriptObjectMirror) {
-                    list.add(result.toObject())
-                } else {
-                    list.add(result)
-                }
-            }
-            return list.toTypedArray()
-        }
-        val map: MutableMap<String, Any?> = HashMap()
-        for ((key, result) in this as Map<*, *>) {
-            if (result is ScriptObjectMirror) {
-                map[key.toString()] = result.toObject()
-            } else {
-                map[key.toString()] = result
-            }
-        }
-        return map
-    }
+    internal fun Any.toObject(): Any = PouJavaScriptEngine.bridge.toObject(this)!!
 
     @ScriptTopLevel
     @JvmStatic
@@ -412,7 +375,6 @@ object ScriptTool : BaseMap<String, Any>() {
         }
     }
 
-    @ScriptTopLevel
     @JvmStatic
     fun sendParticle(
         particle: ProxyParticle,
@@ -421,33 +383,90 @@ object ScriptTool : BaseMap<String, Any>() {
         offset: Vector = Vector(0, 0, 0),
         count: Int = 1,
         speed: Double = 0.0,
-        data: ProxyParticle.Data? = null
+        data: ProxyParticle.Data? = null,
     ) {
         particle.sendTo(adaptLocation(location), range, offset, count, speed, data)
     }
 
-    @ScriptTopLevel("sendSimpleParticle")
     @JvmStatic
     fun sendParticle(
         particle: ProxyParticle,
         location: org.bukkit.Location,
         range: Double = 128.0,
         count: Int = 1,
-        speed: Double = 0.0
+        speed: Double = 0.0,
     ) {
         sendParticle(particle, location, range, Vector(0, 0, 0), count, speed)
     }
 
-    @ScriptTopLevel()
     @JvmStatic
     fun hoverItem(tellrawJson: TellrawJson, itemStack: ItemStack): TellrawJson {
         return tellrawJson.hoverItem(itemStack)
     }
 
-    @ScriptTopLevel()
     @JvmStatic
     fun sendTellraw(tellrawJson: TellrawJson, player: Player) {
         tellrawJson.sendTo(adaptPlayer(player))
+    }
+
+    @ScriptTopLevel
+    @JvmStatic
+    fun monitorNow(key: String, func: () -> Any?): Any? {
+        return mirrorNow(key) { func.invoke() }
+    }
+
+    @ScriptTopLevel
+    @JvmStatic
+    fun monitorFuture(key: String, func: Mirror.MirrorFuture<Any?>.() -> Unit): Any {
+        return taboolib.common5.mirrorFuture(key, func)
+    }
+
+    @JvmStatic
+    fun checkMonitor(key: String) {
+        val options = Mirror.MirrorSettings()
+        val collect = Mirror.MirrorCollect(options, "/", "/")
+        Mirror.mirrorData.keys().toList().filter {
+            it.startsWith(key)
+        }.forEach { mirrorKey ->
+            var point = collect
+            mirrorKey.split(":").forEach {
+                point = point.sub.computeIfAbsent(it) { _ -> Mirror.MirrorCollect(options, mirrorKey, it) }
+            }
+        }
+        collect.print(console(), collect.getTotal(), 0)
+    }
+
+    @JvmStatic
+    fun clearMonitor(key: String?) {
+        key ?: kotlin.run {
+            Mirror.mirrorData.clear()
+            return
+        }
+        Mirror.mirrorData.keys().toList().filter {
+            it.startsWith(key)
+        }.forEach { mirrorKey ->
+            Mirror.mirrorData.remove(mirrorKey)
+        }
+    }
+
+    private val syncSet = ConcurrentHashSet<String>()
+
+    @JvmStatic
+    fun synchronized(key: String, cancel: Supplier<Boolean>, func: Supplier<Any?>): Any? {
+        while (syncSet.contains(key)) {
+            if (cancel.get()) {
+                return null
+            }
+        }
+        syncSet += key
+        val result = try {
+            func.get()
+        } catch (e: Exception) {
+            null
+        } finally {
+            syncSet -= key
+        }
+        return result
     }
 
 }

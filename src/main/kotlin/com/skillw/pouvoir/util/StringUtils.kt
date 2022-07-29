@@ -75,14 +75,7 @@ object StringUtils {
 
     @JvmStatic
     fun Collection<*>.toStringWithNext(): String {
-        val stringBuilder = StringBuilder()
-        this.forEachIndexed { index, it ->
-            stringBuilder.append(it.toString())
-            if (index != this.size - 1) {
-                stringBuilder.append("\n")
-            }
-        }
-        return stringBuilder.toString()
+        return this.joinToString("\n")
     }
 
     @JvmStatic

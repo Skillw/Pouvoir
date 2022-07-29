@@ -8,6 +8,7 @@ import com.skillw.pouvoir.api.event.ManagerTime
 import com.skillw.pouvoir.api.listener.Priority
 import com.skillw.pouvoir.api.listener.ScriptListener
 import com.skillw.pouvoir.api.manager.Manager.Companion.addExec
+import com.skillw.pouvoir.api.manager.Manager.Companion.removeExec
 import com.skillw.pouvoir.api.script.annotation.ScriptAnnotation
 import com.skillw.pouvoir.api.script.annotation.ScriptAnnotationData
 import com.skillw.pouvoir.internal.function.PouScriptFunction
@@ -15,8 +16,6 @@ import com.skillw.pouvoir.util.ClassUtils.findClass
 import com.skillw.pouvoir.util.StringUtils.toArgs
 import taboolib.common.platform.Platform
 import taboolib.common.platform.event.EventPriority
-import taboolib.common.platform.function.warning
-import taboolib.common5.Coerce
 import taboolib.common5.Demand
 
 /**
@@ -26,6 +25,7 @@ import taboolib.common5.Demand
  */
 @AutoRegister
 object Awake : ScriptAnnotation("Awake") {
+
     override fun handle(data: ScriptAnnotationData) {
         val script = data.script
         val path = script.key
@@ -33,20 +33,16 @@ object Awake : ScriptAnnotation("Awake") {
         val function = data.function
         if (args.isEmpty() || args[0] == "") return
         val key = "$path::$function@Awake(${args[0]})"
-        val time = Coerce.toEnum(args[0].uppercase(), ManagerTime::class.java)
-        if (time == null) {
-            warning("No such ManagerTime called '${args[0]}',this is from $path::$function !")
-            warning("Usable ManagerTime: ${ManagerTime.values().map { it.name.lowercase() }}")
-            return
-        }
-        debug("&aScript &6$key &ahas been registered!")
+        val time = ManagerTime(args[0])
+        debug { "&aScript &6$key &ahas been registered!" }
         scriptManager.addExec(key, time) {
-            debug("&9Script &6$key &9is running!")
-            val scriptToRun = scriptManager.search(path)
-            if (scriptToRun != null && scriptToRun.annotationData.containsKey(function))
-                scriptManager.invoke<Unit>(
-                    "$path::$function", arguments = arrayOf(time.name)
-                )
+            val scriptToRun = scriptManager.search(path, true)
+            if (scriptToRun == null || !scriptToRun.annotationData.containsKey(function)) {
+                scriptManager.removeExec(key, time)
+                return@addExec
+            }
+            debug { "&9Script &6$key &9is running!" }
+            scriptManager.invoke<Unit>(scriptToRun, function, parameters = arrayOf(time.key.uppercase()))
         }
     }
 
@@ -77,13 +73,13 @@ object Listener : ScriptAnnotation("Listener", true) {
             Platform.BUKKIT
         }
         val ignoreCancel = demand.tags.contains("--ignoreCancel")
-        val key = "annotation-${script.key}::$function-${clazz.name}"
+        val key = "${script.key}::$function-${clazz.simpleName}"
         ScriptListener.Builder(key, platform, clazz, Priority(level), ignoreCancel) { event ->
-            script.invoke(function, arguments = arrayOf(event))
+            script.invoke(function, parameters = arrayOf(event))
         }.build().register()
-        debug("&aScript ScriptListener &6$key &ahas been registered!")
-        script.onRemove {
-            debug("&cScript ScriptListener &6$key &chas been unregistered!")
+        debug { "&aScriptListener &6$key &ahas been registered!" }
+        script.onDeleted("Script-Listener-$key") {
+            debug { "&cScriptListener &6$key &chas been unregistered!" }
             Pouvoir.listenerManager.remove(key)
         }
     }
@@ -102,9 +98,9 @@ object Function : ScriptAnnotation("Function") {
         val function = data.function
         val key = if (args.isEmpty() || args[0] == "") function else args[0]
         PouScriptFunction(key, "${script.key}::$function").register()
-        debug("&aScript Inline Function &6$key &ahas been registered!")
-        script.onRemove {
-            debug("&cScript Inline Function &6$key &chas been unregistered!")
+        debug { "&aScript Inline Function &6$key &ahas been registered!" }
+        script.onDeleted("Inline-Function-$key") {
+            debug { "&cScript Inline Function &6$key &chas been unregistered!" }
             Pouvoir.inlineFunctionManager.remove(key)
         }
     }
@@ -124,12 +120,12 @@ object Annotation : ScriptAnnotation("Annotation") {
         val key = if (args.isEmpty() || args[0] == "") function else args[0]
         object : ScriptAnnotation(key) {
             override fun handle(data: ScriptAnnotationData) {
-                script.invoke(function, arguments = arrayOf(data))
+                script.invoke(function, parameters = arrayOf(data))
             }
         }.register()
-        debug("&aScript Annotation &6$key &ahas been registered!")
-        script.onRemove {
-            debug("&cScript Annotation &6$key &chas been unregistered!")
+        debug { "&aScript Annotation &6$key &ahas been registered!" }
+        script.onDeleted("Script-Annotation-$key") {
+            debug { "&cScript Annotation &6$key &chas been unregistered!" }
             Pouvoir.scriptAnnotationManager.remove(key)
         }
     }

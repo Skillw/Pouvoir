@@ -7,13 +7,16 @@ import com.skillw.pouvoir.util.MessageUtils.warning
 import org.spigotmc.AsyncCatcher
 import taboolib.common.platform.Platform
 import taboolib.common.platform.function.console
+import taboolib.module.lang.asLangText
 import taboolib.module.lang.sendLang
 import taboolib.module.metrics.Metrics
+import taboolib.module.metrics.charts.AdvancedPie
+import taboolib.module.metrics.charts.MultiLineChart
 import taboolib.module.metrics.charts.SingleLineChart
 import taboolib.platform.BukkitPlugin
 import java.util.concurrent.ConcurrentHashMap
 
-object PouvoirConfig : ConfigManager(Pouvoir) {
+object PouConfig : ConfigManager(Pouvoir) {
     override val priority = 0
 
 
@@ -57,9 +60,17 @@ object PouvoirConfig : ConfigManager(Pouvoir) {
         globalVars.putAll(staticClasses)
     }
 
+    val debugPrefix by lazy {
+        console().asLangText("plugin-debug")
+    }
+    val threadPoolSize by lazy {
+        this["config"].getInt("options.thread-pool-size", 4)
+    }
     val debug: Boolean
         get() = this["config"].getBoolean("options.debug")
 
+    val debugFunc: Boolean
+        get() = this["config"].getBoolean("options.debug-function")
 
     override fun onLoad() {
         AsyncCatcher.enabled = false
@@ -72,9 +83,23 @@ object PouvoirConfig : ConfigManager(Pouvoir) {
     }
 
     private fun metrics() {
-        val metrics = Metrics(14180, BukkitPlugin.getInstance().description.version, Platform.BUKKIT).run {
-            addCustomChart(SingleLineChart("scripts") {
-                Pouvoir.scriptManager.size
+        Metrics(14180, BukkitPlugin.getInstance().description.version, Platform.BUKKIT).run {
+            addCustomChart(SingleLineChart("script_listeners") {
+                Pouvoir.listenerManager.size
+            })
+            addCustomChart(MultiLineChart("scripts") {
+                val map = HashMap<String, Int>()
+                Pouvoir.scriptEngineManager.keys.forEach {
+                    map[it] = Pouvoir.scriptManager.filterValues { script -> script.pouEngine.key == it }.size
+                }
+                map
+            })
+            addCustomChart(AdvancedPie("scripts_using") {
+                val map = HashMap<String, Int>()
+                Pouvoir.scriptEngineManager.keys.forEach {
+                    map[it] = Pouvoir.scriptManager.filterValues { script -> script.pouEngine.key == it }.size
+                }
+                map
             })
         }
     }

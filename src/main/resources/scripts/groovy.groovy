@@ -3,7 +3,3 @@
 //def hi() {
 //    event.player.sendMessage 'Hi! I\'m groovy.groovy::hi'
 //}
-
-def hi(event) {
-
-}

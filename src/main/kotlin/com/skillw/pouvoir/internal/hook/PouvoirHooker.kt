@@ -32,7 +32,7 @@ object PouvoirHooker : PouPlaceHolder("pou", Pouvoir) {
                 }
                 return scriptManager.invoke<String>(
                     scriptPath,
-                    variables = hashMapOf("entity" to livingEntity, "args" to finalArgs)
+                    arguments = hashMapOf("entity" to livingEntity, "args" to finalArgs)
                 ).toString()
             }
         }

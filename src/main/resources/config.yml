@@ -9,5 +9,8 @@ database:
   table: my_database
 options:
   debug: false
+  debug-function: false
+  #你的核心数
+  thread-pool-size: 4
   number-format: "#.##"
   big-decimal-scale: 4

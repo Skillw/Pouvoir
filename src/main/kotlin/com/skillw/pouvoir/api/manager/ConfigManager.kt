@@ -17,7 +17,7 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
     override val key = "ConfigManager"
     private val fileMap = BaseMap<File, YamlConfiguration>()
     private val watcher = FileWatcher()
-    val serverFile: File by lazy(LazyThreadSafetyMode.NONE) {
+    val serverFile: File by lazy {
         File(
             getDataFolder().parentFile.absolutePath.toString().replace("\\plugins", "")
         )

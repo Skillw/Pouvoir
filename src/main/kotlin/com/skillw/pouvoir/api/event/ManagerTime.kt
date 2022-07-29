@@ -6,15 +6,33 @@ package com.skillw.pouvoir.api.event
  * @date 2022/7/22 16:11
  * Copyright  2022 user. All rights reserved.
  */
-enum class ManagerTime {
-    BEFORE_LOAD,
-    LOAD,
-    BEFORE_ENABLE,
-    ENABLE,
-    BEFORE_ACTIVE,
-    ACTIVE,
-    BEFORE_RELOAD,
-    RELOAD,
-    BEFORE_DISABLE,
-    DISABLE
+class ManagerTime(val key: String) {
+    companion object {
+
+        val BEFORE_INIT = ManagerTime("BeforeInit")
+        val INIT = ManagerTime("Init")
+        val BEFORE_LOAD = ManagerTime("BeforeLoad")
+        val LOAD = ManagerTime("Load")
+        val BEFORE_ENABLE = ManagerTime("BeforeEnable")
+        val ENABLE = ManagerTime("Enable")
+        val BEFORE_ACTIVE = ManagerTime("BeforeActive")
+        val ACTIVE = ManagerTime("Active")
+        val BEFORE_RELOAD = ManagerTime("BeforeReload")
+        val RELOAD = ManagerTime("Reload")
+        val BEFORE_DISABLE = ManagerTime("BeforeDisable")
+        val DISABLE = ManagerTime("Disable")
+    }
+
+    override fun equals(other: Any?): Boolean {
+
+        if (this === other) return true
+        if (other !is ManagerTime) return false
+        return other.key.equals(key, true)
+    }
+
+    override fun hashCode(): Int {
+        return javaClass.hashCode()
+    }
+
+
 }

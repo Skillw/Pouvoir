@@ -1,7 +1,10 @@
 package com.skillw.pouvoir.util
 
 import com.skillw.pouvoir.api.annotation.ScriptTopLevel
+import com.skillw.pouvoir.util.ClassUtils.isStaticClass
+import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
+import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import taboolib.module.chat.colored
 
 /**
@@ -14,7 +17,6 @@ import taboolib.module.chat.colored
  */
 object MessageUtils {
     @JvmStatic
-    @ScriptTopLevel
     fun message(sender: CommandSender, msg: String) {
         sender.sendMessage(msg.colored())
     }
@@ -22,18 +24,28 @@ object MessageUtils {
     @JvmStatic
     @ScriptTopLevel
     fun warning(msg: Any?) {
-        taboolib.common.platform.function.warning(msg.toString().colored())
+        Bukkit.getLogger().warning(msg.toString().colored())
     }
 
     @JvmStatic
     @ScriptTopLevel
     fun info(msg: Any?) {
-        taboolib.common.platform.function.info(msg.toString().colored())
+        Bukkit.getLogger().info(msg.toString().colored())
     }
 
     @JvmStatic
     @ScriptTopLevel
     fun debug(msg: Any?) {
         info("&9[&eDebug&9] &e${msg}")
+    }
+
+    @JvmStatic
+    internal fun Any.information(key: String): String {
+        return "&f$key  ${
+            if (isStaticClass()) "&7= &6${
+                this.invokeMethod<Class<*>>("getRepresentedClass")
+                    ?.invokeMethod<String>("getName")
+            }" else "&7: &6${javaClass.name}"
+        }"
     }
 }

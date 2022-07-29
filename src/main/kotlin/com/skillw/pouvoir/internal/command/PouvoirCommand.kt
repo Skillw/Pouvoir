@@ -2,12 +2,19 @@ package com.skillw.pouvoir.internal.command
 
 import com.skillw.pouvoir.Pouvoir
 import org.bukkit.command.CommandSender
+import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.command.CommandBody
 import taboolib.common.platform.command.CommandHeader
 import taboolib.common.platform.command.mainCommand
 import taboolib.common.platform.command.subCommand
+import taboolib.common.platform.function.pluginVersion
+import taboolib.common.platform.function.submit
+import taboolib.common5.Mirror
+import taboolib.module.chat.TellrawJson
+import taboolib.module.chat.colored
 import taboolib.module.lang.sendLang
 import taboolib.platform.util.sendLang
+import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
 @CommandHeader(name = "pouvoir", aliases = ["pou"], permission = "pouvoir.command")
@@ -18,7 +25,7 @@ object PouvoirCommand {
         execute<CommandSender> { sender, _, _ ->
             sender.sendLang("command-message")
         }
-        incorrectCommand { sender, context, index, state ->
+        incorrectCommand { sender, _, _, _ ->
             sender.sendLang("wrong-command-message")
         }
     }
@@ -32,12 +39,12 @@ object PouvoirCommand {
     @CommandBody(permission = "pouvoir.command.js")
     val run = subCommand {
         dynamic {
-            suggestion<CommandSender>(uncheck = true) { _, _ ->
+            suggestion<CommandSender> { _, _ ->
                 Pouvoir.scriptManager.map { it.key }
             }
             dynamic {
                 suggestion<CommandSender> { _, context ->
-                    (Pouvoir.scriptManager[context.argument(-1)]
+                    (Pouvoir.scriptManager.search(context.argument(-1))
                         ?: return@suggestion emptyList()).annotationData.keys.toList()
                 }
                 execute<CommandSender> { sender, context, argument ->
@@ -52,7 +59,17 @@ object PouvoirCommand {
                     argsMap["sender"] = sender
                     argsMap["args"] = args
                     sender.sendLang("command-script-invoke", fileName)
-                    Pouvoir.scriptManager.invoke<Unit>("$fileName::$function", variables = argsMap)
+                    submit(async = true) {
+                        val start = System.currentTimeMillis()
+                        val path = "$fileName::$function"
+                        val result = Pouvoir.scriptManager.invoke<Any?>(
+                            path,
+                            arguments = argsMap
+                        )
+                        val end = System.currentTimeMillis()
+                        sender.sendLang("command-script-invoke-end", path, result.toString(), (end - start))
+                    }
+
                 }
             }
         }
@@ -73,5 +90,56 @@ object PouvoirCommand {
         }
     }
 
+    @CommandBody(permission = "pouvoir.command.report")
+    val report = subCommand {
+        execute<ProxyCommandSender> { sender, _, _ ->
+            Mirror.report(sender)
+        }
+    }
 
+    @CommandBody(permission = "pouvoir.command.clear")
+    val clear = subCommand {
+        execute<ProxyCommandSender> { sender, _, _ ->
+            Mirror.mirrorData.clear()
+            sender.sendLang("command-clear")
+        }
+    }
+
+    @CommandBody(permission = "pouvoir.command.info")
+    val info = subCommand {
+        execute<ProxyCommandSender> { sender, _, _ ->
+            sender.sendMessage("&aPouvoir &9v$pluginVersion &6By Glom_".colored())
+        }
+    }
+
+    @CommandBody(permission = "pouvoir.command.pool")
+    val engine = subCommand {
+        literal("info", optional = true) {
+            execute<ProxyCommandSender> { sender, _, _ ->
+                val messages = LinkedList<TellrawJson>()
+                messages += TellrawJson().append("&aPouvoir &9v$pluginVersion &6By Glom_ &eScript Engine Running Info:".colored())
+                Pouvoir.scriptTaskManager.values.forEach { pool ->
+                    messages.addAll(pool.info())
+                }
+                if (messages.size == 1) messages += TellrawJson().append("&7 No engine are running now!".colored())
+                messages.forEach {
+                    it.sendTo(sender)
+                }
+            }
+        }
+        literal("stop", optional = true) {
+            dynamic {
+                suggestion<ProxyCommandSender> { sender, context ->
+                    Pouvoir.scriptTaskManager.workingEngines
+                }
+                execute<ProxyCommandSender> { sender, _, argument ->
+                    Pouvoir.scriptTaskManager.values.forEach {
+                        if (!it.stop(argument)) return@forEach
+                        sender.sendMessage("&cYou canceled the &6$argument &c!".colored())
+                        return@execute
+                    }
+                }
+            }
+        }
+    }
 }

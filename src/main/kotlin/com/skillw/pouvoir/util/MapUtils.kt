@@ -32,7 +32,7 @@ object MapUtils {
     }
 
     @JvmStatic
-    fun <K, V, Z> MutableMap<K, MutableMap<Z, V>>.put(key1: K, key2: Z, value: V): Map<K, MutableMap<Z, V>> {
+    fun <K, V, Z> MutableMap<K, MutableMap<Z, V>>.put(key1: K, key2: Z, value: V): MutableMap<K, MutableMap<Z, V>> {
         if (!containsKey(key1)) {
             val map1: MutableMap<Z, V> = ConcurrentHashMap()
             map1[key2] = value
@@ -40,6 +40,17 @@ object MapUtils {
         } else {
             this[key1]!![key2] = value
         }
+        return this
+    }
+
+    @JvmName("putKZListV")
+    fun <K, V, Z> MutableMap<K, MutableMap<Z, LinkedList<V>>>.put(
+        key1: K,
+        key2: Z,
+        value: V
+    ): MutableMap<K, MutableMap<Z, LinkedList<V>>> {
+        if (!containsKey(key1)) put(key1, ConcurrentHashMap())
+        get(key1)!!.put(key2, value)
         return this
     }
 

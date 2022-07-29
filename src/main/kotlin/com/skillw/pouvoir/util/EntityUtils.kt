@@ -1,8 +1,6 @@
 package com.skillw.pouvoir.util
 
 import com.google.common.base.Enums
-import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import com.skillw.pouvoir.internal.raytrace.RayTrace
 import com.skillw.pouvoir.util.PlayerUtils.sendPacketWithFields
 import net.minecraft.server.v1_16_R1.DataWatcher
@@ -50,7 +48,7 @@ object EntityUtils {
         return getLivingEntityByUUID(this)
     }
 
-    @ScriptTopLevel
+
     @JvmStatic
     fun getLivingEntityByUUID(uuid: UUID?): LivingEntity? {
         val entity = Bukkit.getEntity(uuid!!)
@@ -140,7 +138,7 @@ object EntityUtils {
         player: Player,
         entityId: Int,
         uuid: UUID,
-        location: Location
+        location: Location,
     ) {
         if (majorLegacy < 11300) {
             return spawnArmorStand(player, entityId, uuid, location)
@@ -170,10 +168,13 @@ object EntityUtils {
                 "c" to when {
                     majorLegacy >= 11800 -> nmsClass("IRegistry").getField("W").get(null)!!
                         .invokeMethod<Unit>("a", ARMOR_STAND_NMS)
+
                     majorLegacy >= 11400 -> nmsClass("IRegistry").getField("ENTITY_TYPE").get(null)!!
                         .invokeMethod<Unit>("a", ARMOR_STAND_NMS)
+
                     majorLegacy == 11300 -> nmsClass("IRegistry").getField("ENTITY_TYPE").get(null)!!
                         .invokeMethod<Unit>("a", ARMOR_STAND_NMS)
+
                     else -> ARMOR_STAND_LEGACY
                 },
                 "d" to location.x,
@@ -252,23 +253,21 @@ object EntityUtils {
         }
     }
 
-    @ScriptTopLevel
+
     @JvmStatic
     fun LivingEntity.getEntityRayHit(
-        distance: Double
+        distance: Double,
     ): LivingEntity? {
-        return Pouvoir.poolExecutor.submit<LivingEntity?> {
-            val entities = ArrayList<Pair<Entity, BoundingBox>>()
-            getNearbyEntities(distance, distance, distance).forEach {
-                entities += it to NMSImpl().getBoundingBox(it)
-            }
-            val traces = RayTrace(this).traces(distance, 0.2)
-            for (vector in traces) {
-                val firstOrNull = entities.firstOrNull { it.value.contains(vector) } ?: continue
-                return@submit firstOrNull.key as? LivingEntity? ?: continue
-            }
-            return@submit null
-        }.get()
+        val entities = ArrayList<Pair<Entity, BoundingBox>>()
+        getNearbyEntities(distance, distance, distance).forEach {
+            entities += it to NMSImpl().getBoundingBox(it)
+        }
+        val traces = RayTrace(this).traces(distance, 0.2)
+        for (vector in traces) {
+            val firstOrNull = entities.firstOrNull { it.value.contains(vector) } ?: continue
+            return firstOrNull.key as? LivingEntity? ?: continue
+        }
+        return null
     }
 
 }

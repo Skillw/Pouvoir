@@ -1,7 +1,6 @@
 package com.skillw.pouvoir.util
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.configuration.serialization.ConfigurationSerializable
@@ -97,7 +96,7 @@ object FileUtils {
         return absolutePath.replace(Pouvoir.configManager.serverFile.absolutePath, "").replace("\\", "/")
     }
 
-    @ScriptTopLevel
+
     @JvmStatic
     fun File.md5(): String? {
         val bi: BigInteger

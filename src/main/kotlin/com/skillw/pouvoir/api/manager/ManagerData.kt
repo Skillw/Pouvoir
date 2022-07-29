@@ -1,6 +1,5 @@
 package com.skillw.pouvoir.api.manager
 
-import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.able.Registrable
 import com.skillw.pouvoir.api.event.ManagerTime
 import com.skillw.pouvoir.api.event.PouManagerEvent
@@ -11,6 +10,7 @@ import com.skillw.pouvoir.api.plugin.SubPouvoir
 import com.skillw.pouvoir.api.plugin.TotalManager
 import com.skillw.pouvoir.internal.plugin.PouManagerUtils.getPouManagers
 import org.bukkit.plugin.java.JavaPlugin
+import taboolib.common.platform.function.submit
 
 class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Registrable<SubPouvoir> {
     val exec = BaseMap<Manager, MultiExecMap>()
@@ -37,7 +37,7 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Regis
     }
 
     fun load() {
-        Pouvoir.poolExecutor.execute {
+        submit(async = true) {
             managers.forEach {
                 try {
                     call(it, ManagerTime.BEFORE_LOAD)
@@ -52,7 +52,7 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Regis
     }
 
     fun enable() {
-        Pouvoir.poolExecutor.execute {
+        submit(async = true) {
             managers.forEach {
                 try {
                     call(it, ManagerTime.BEFORE_ENABLE)
@@ -67,7 +67,7 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Regis
     }
 
     fun active() {
-        Pouvoir.poolExecutor.execute {
+        submit(async = true) {
             managers.forEach {
                 try {
                     call(it, ManagerTime.BEFORE_ACTIVE)
@@ -82,7 +82,7 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Regis
     }
 
     fun reload() {
-        Pouvoir.poolExecutor.execute {
+        submit(async = true) {
             managers.forEach {
                 try {
                     call(it, ManagerTime.BEFORE_RELOAD)
@@ -96,7 +96,7 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Regis
     }
 
     fun disable() {
-        Pouvoir.poolExecutor.execute {
+        submit(async = true) {
             managers.forEach {
                 try {
                     call(it, ManagerTime.BEFORE_DISABLE)

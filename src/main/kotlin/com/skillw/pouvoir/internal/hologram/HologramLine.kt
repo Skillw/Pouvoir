@@ -3,7 +3,6 @@ package com.skillw.pouvoir.internal.hologram
 import org.bukkit.Location
 import org.bukkit.entity.Player
 import taboolib.module.chat.colored
-import java.util.*
 
 private var index = 114514
 
@@ -12,7 +11,7 @@ private fun nextInt(): Int {
 }
 
 class HologramLine(location: Location, line: String) {
-    val viewers = Collections.synchronizedSet(HashSet<Player>())
+    val viewers = ConcurrentHashSet<Player>()
 
     constructor(location: Location, line: String, vararg viewers: Player) : this(location, line) {
         this.viewers.addAll(viewers)

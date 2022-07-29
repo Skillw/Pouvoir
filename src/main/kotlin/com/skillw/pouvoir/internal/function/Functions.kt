@@ -2,7 +2,7 @@ package com.skillw.pouvoir.internal.function
 
 import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.api.function.PouFunction
-import com.skillw.pouvoir.internal.manager.PouvoirConfig
+import com.skillw.pouvoir.internal.manager.PouConfig
 import com.skillw.pouvoir.util.CalculationUtils.calculateDouble
 import com.skillw.pouvoir.util.MessageUtils.warning
 import com.skillw.pouvoir.util.NumberUtils.format
@@ -53,6 +53,7 @@ object If : PouFunction("if") {
                 val compare = `if`(x, symbol, y)
                 return if (compare) trueValue else falseValue
             }
+
             9 -> {
                 val bool1 = `if`(args[0], args[1], args[2])
                 val bool2 = `if`(args[4], args[5], args[6])
@@ -69,6 +70,7 @@ object If : PouFunction("if") {
                 }
                 return if (bool) trueValue else falseValue
             }
+
             else -> {
                 return "Wrong arguments!"
             }
@@ -160,7 +162,7 @@ object Random : PouFunction("random") {
     override fun function(args: Array<String>): Any? {
         val x = Coerce.toDouble(args[0])
         val y = Coerce.toDouble(args[1])
-        val format = if (args.size == 3) args[2] else PouvoirConfig.numberFormat
+        val format = if (args.size == 3) args[2] else PouConfig.numberFormat
         return random(x, y).format(format)
     }
 }

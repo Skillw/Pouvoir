@@ -3,7 +3,10 @@ package com.skillw.pouvoir.internal.manager
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.function.PouFunction
 import com.skillw.pouvoir.api.manager.sub.InlineFunctionManager
+import com.skillw.pouvoir.internal.manager.PouConfig.debugFunc
 import com.skillw.pouvoir.util.StringUtils.toArgs
+import taboolib.common.platform.function.info
+import taboolib.module.chat.colored
 import java.util.regex.Pattern
 
 object InlineFunctionManagerImpl : InlineFunctionManager() {
@@ -51,7 +54,9 @@ object InlineFunctionManagerImpl : InlineFunctionManager() {
             val args = analysis(matcher.group(2))
             val result = func.apply(args.toArgs()).toString()
             matcher.appendReplacement(stringBuffer, result)
-            Pouvoir.debug("$func(${matcher.group(2)}) -> $result")
+            if (debugFunc) {
+                info((PouConfig.debugPrefix + "$func(${matcher.group(2)}) -> $result").colored())
+            }
         } while (matcher.find())
         return analysis(matcher.appendTail(stringBuffer).toString())
     }

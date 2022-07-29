@@ -46,4 +46,9 @@ object ClassUtils {
     fun Class<*>.static(): Any {
         return ReflexClass.of(staticClass).structure.getMethod("forClass", this).invokeStatic(this)!!
     }
+
+    @JvmStatic
+    fun Any.isStaticClass(): Boolean {
+        return javaClass.simpleName == "StaticClass"
+    }
 }

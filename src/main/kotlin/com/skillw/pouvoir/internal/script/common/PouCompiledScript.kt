@@ -1,4 +1,4 @@
-package com.skillw.pouvoir.api.script
+package com.skillw.pouvoir.internal.script.common
 
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.Pouvoir.scriptManager
@@ -6,60 +6,89 @@ import com.skillw.pouvoir.api.able.Registrable
 import com.skillw.pouvoir.api.event.ManagerTime
 import com.skillw.pouvoir.api.manager.Manager.Companion.addExec
 import com.skillw.pouvoir.api.map.BaseMap
+import com.skillw.pouvoir.api.map.SingleExecMap
 import com.skillw.pouvoir.api.script.annotation.ScriptAnnotationData
 import com.skillw.pouvoir.api.script.engine.PouScriptEngine
+import com.skillw.pouvoir.internal.hologram.ConcurrentHashSet
+import com.skillw.pouvoir.internal.script.common.pool.TaskStatus
 import com.skillw.pouvoir.util.FileUtils.pathNormalize
+import taboolib.common.platform.function.console
+import taboolib.module.lang.sendLang
 import java.io.File
-import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.CancellationException
+import javax.script.CompiledScript
+import javax.script.ScriptException
 
 // key = file.pathNormalize();
-abstract class PouCompiledScript(val file: File, val scripts: List<String>, val engine: PouScriptEngine) :
-    Registrable<String> {
+class PouCompiledScript(
+    val file: File,
+    val md5: String,
+    private val scriptLines: List<String>,
+    val script: CompiledScript,
+    val pouEngine: PouScriptEngine,
+) : Registrable<String> {
+
+    override val key: String = file.pathNormalize()
+    private val actives = ConcurrentHashSet<TaskStatus>()
+    private val engine = script.engine
+
     //this annotations
     var scriptAnnotations = HashSet<ScriptAnnotationData>()
 
     //function name to annotations
     val annotationData = BaseMap<String, Set<ScriptAnnotationData>>()
-    override val key: String = file.pathNormalize()
-
-    abstract fun invoke(
-        function: String = "main",
-        variables: Map<String, Any> = emptyMap(),
-        vararg arguments: Any?
-    ): Any?
 
     init {
-        annotationData.putAll(initAnnotation())
+        initAnnotation()
+    }
+
+
+    fun invoke(
+        function: String = "main",
+        arguments: Map<String, Any> = emptyMap(),
+        vararg parameters: Any?,
+    ): Any? {
+        val task: TaskStatus? = Pouvoir.scriptTaskManager.start(this, function, arguments, *parameters)
+        actives += task
+        val result = try {
+            task?.get()
+        } catch (e: InterruptedException) {
+            console().sendLang("script-invoke-task-cancelled", function, key)
+        } catch (e: CancellationException) {
+            console().sendLang("script-invoke-task-cancelled", function, key)
+        } catch (e: ScriptException) {
+            console().sendLang("script-invoke-exception", function, key)
+            e.printStackTrace()
+        } finally {
+            actives.remove(task)
+            task?.stop()
+        }
+        return result
     }
 
     private var lastHeadIndex = 0
-
-    private fun initAnnotation(): Map<String, Set<ScriptAnnotationData>> {
-        val map = ConcurrentHashMap<String, Set<ScriptAnnotationData>>()
-        if (scripts.isEmpty()) return map
-        for (index in scripts.indices) {
-            val str = scripts[index]
-            val matcher = engine.functionPattern.matcher(str)
+    private fun initAnnotation() {
+        for (index in scriptLines.indices) {
+            val str = scriptLines[index]
+            val matcher = pouEngine.functionPattern.matcher(str)
             if (!matcher.find()) continue
             val function = matcher.group("name")
             val annotations = getAnnotations(index, function)
-            map[function] = annotations
+            annotationData[function] = annotations
         }
 
         scriptAnnotations.addAll(getAnnotations(lastHeadIndex, "null"))
-
-        return map
     }
 
     private fun getAnnotations(
         index: Int,
-        function: String
+        function: String,
     ): Set<ScriptAnnotationData> {
         val annotations = HashSet<ScriptAnnotationData>()
         var lastIndex = index
         while (lastIndex >= 1) {
-            val last = scripts[--lastIndex]
-            val matcher = engine.getAnnotationPattern().matcher(last)
+            val last = scriptLines[--lastIndex]
+            val matcher = pouEngine.getAnnotationPattern().matcher(last)
             if (!matcher.find()) {
                 if (lastHeadIndex == 0)
                     lastHeadIndex = lastIndex
@@ -77,15 +106,18 @@ abstract class PouCompiledScript(val file: File, val scripts: List<String>, val 
         return annotations
     }
 
-    private val execs = HashSet<() -> Unit>()
-    fun onRemove(exec: (() -> Unit)) {
-        execs += exec
+    private val execs = SingleExecMap()
+    fun onDeleted(key: String, exec: (() -> Unit)) {
+        execs += key to exec
     }
 
-    var remove: Boolean = false
-    fun remove() {
-        remove = true
-        execs.forEach { it.invoke() }
+
+    private var deleted: Boolean = false
+
+    fun delete() {
+        deleted = true
+        execs.forEach { it.value.invoke() }
+        actives.forEach { it.stop() }
     }
 
     private fun Set<ScriptAnnotationData>.process() {
@@ -105,6 +137,7 @@ abstract class PouCompiledScript(val file: File, val scripts: List<String>, val 
     }
 
     override fun register() {
+        scriptManager.remove(key)?.delete()
         scriptAnnotations.process()
         annotationData.values.forEach { it.process() }
         scriptManager[key] = this

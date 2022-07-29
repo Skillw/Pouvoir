@@ -6,6 +6,7 @@ import org.bukkit.entity.Player
 import taboolib.common.reflect.Reflex.Companion.getProperty
 import taboolib.common.reflect.Reflex.Companion.invokeConstructor
 import taboolib.common.reflect.Reflex.Companion.invokeMethod
+import taboolib.common.util.unsafeLazy
 import taboolib.module.nms.MinecraftVersion
 import taboolib.module.nms.nmsClass
 import taboolib.module.nms.obcClass
@@ -16,7 +17,7 @@ import java.util.function.Consumer
 
 class PouArmorStand(val id: Int, var location: Location, consumer: Consumer<PouArmorStand>) {
     var isDeleted: Boolean = false
-    val uniqueId by lazy(LazyThreadSafetyMode.NONE) {
+    val uniqueId by unsafeLazy {
         armorStand.getProperty<UUID>(
             when (MinecraftVersion.major) {
                 in 0..8 -> "uniqueID"

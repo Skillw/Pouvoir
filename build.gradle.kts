@@ -59,8 +59,6 @@ taboolib {
     )
 
 
-    options()
-
     classifier = null
     version = "6.0.9-40"
 }
@@ -88,8 +86,6 @@ dependencies {
     compileOnly(fileTree("libs"))
 
     taboo("com.alibaba:fastjson:1.2.83")
-    implementation(kotlin("reflect"))
-
 }
 
 
