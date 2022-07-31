@@ -19,7 +19,7 @@ tasks.dokkaJavadoc.configure {
     }
 }
 taboolib {
-    options("skip-kotlin-relocate")
+//    options("skip-kotlin-relocate")
 
     description {
         contributors {
