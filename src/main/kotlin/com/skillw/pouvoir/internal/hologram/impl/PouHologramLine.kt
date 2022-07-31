@@ -1,5 +1,6 @@
-package com.skillw.pouvoir.internal.hologram
+package com.skillw.pouvoir.internal.hologram.impl
 
+import com.skillw.pouvoir.internal.hologram.PouHolo
 import com.skillw.pouvoir.util.EntityUtils
 import org.bukkit.Location
 import org.bukkit.entity.Player
@@ -7,6 +8,7 @@ import taboolib.common.reflect.Reflex.Companion.getProperty
 import taboolib.common.reflect.Reflex.Companion.invokeConstructor
 import taboolib.common.reflect.Reflex.Companion.invokeMethod
 import taboolib.common.util.unsafeLazy
+import taboolib.module.chat.colored
 import taboolib.module.nms.MinecraftVersion
 import taboolib.module.nms.nmsClass
 import taboolib.module.nms.obcClass
@@ -15,9 +17,23 @@ import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 import java.util.function.Consumer
 
-class PouArmorStand(val id: Int, var location: Location, consumer: Consumer<PouArmorStand>) {
-    var isDeleted: Boolean = false
-    val uniqueId by unsafeLazy {
+
+private var index = 114514
+
+private fun nextInt(): Int {
+    return index++
+}
+
+/**
+ * @className PouHologramLine
+ * @author Glom
+ * @date 2022/7/31 19:33
+ * Copyright  2022 user. All rights reserved.
+ */
+internal class PouHologramLine(var location: Location, consumer: Consumer<PouHologramLine>) : PouHolo {
+    val id: Int = nextInt()
+    override var isDeleted: Boolean = false
+    private val uniqueId by unsafeLazy {
         armorStand.getProperty<UUID>(
             when (MinecraftVersion.major) {
                 in 0..8 -> "uniqueID"
@@ -159,7 +175,7 @@ class PouArmorStand(val id: Int, var location: Location, consumer: Consumer<PouA
             armorStand.invokeMethod<Unit>("setCustomNameVisible", value)
     }
 
-    fun delete() {
+    override fun delete() {
         isDeleted = true
         forViewers {
             visible(it, false)
@@ -172,7 +188,7 @@ class PouArmorStand(val id: Int, var location: Location, consumer: Consumer<PouA
         viewers.forEach(consumer)
     }
 
-    fun visible(viewer: Player, visible: Boolean) {
+    override fun visible(viewer: Player, visible: Boolean) {
         if (visible) {
             viewers.add(viewer)
             spawn(viewer)
@@ -180,6 +196,13 @@ class PouArmorStand(val id: Int, var location: Location, consumer: Consumer<PouA
             viewers.remove(viewer)
             destroy(viewer)
         }
+    }
+
+    override fun update(line: String) {
+        destroy()
+        setCustomName(line.colored())
+        setCustomNameVisible(line.isNotEmpty())
+        respawn()
     }
 
     fun spawn(viewer: Player) {
@@ -198,19 +221,25 @@ class PouArmorStand(val id: Int, var location: Location, consumer: Consumer<PouA
         EntityUtils.destroyEntity(viewer, id)
     }
 
-    fun destroy() {
+    override fun destroy() {
         forViewers {
             destroy(it)
         }
     }
 
-    fun respawn() {
+    override fun respawn() {
         forViewers {
             spawn(it)
         }
     }
 
-    fun teleport(location: Location) {
+    override fun spawn(location: Location) {
+        viewers.forEach {
+            spawn(it)
+        }
+    }
+
+    override fun teleport(location: Location) {
         this.location = location
         armorStand = nmsClass("EntityArmorStand").invokeConstructor(
             obcClass("CraftWorld").cast(location.world).invokeMethod("getHandle"),

@@ -13,8 +13,8 @@ tasks.dokkaJavadoc.configure {
             noJdkLink.set(true)
             noStdlibLink.set(true)
             noAndroidSdkLink.set(true)
-            suppressInheritedMembers.set(true)
             suppressObviousFunctions.set(false)
+            suppressInheritedMembers.set(true)
         }
     }
 }
@@ -27,9 +27,11 @@ taboolib {
         }
         dependencies {
             name("PlaceholderAPI").optional(true).loadafter(true)
-            name("MythicMobs").optional(true).loadafter(true)
             name("RandomItem").optional(true).loadbefore(true)
             name("AttributeSystem").optional(true).loadbefore(true)
+            name("MythicMobs").optional(true).loadafter(true)
+            name("DecentHolograms").optional(true)
+            name("Adyeshach").optional(true)
         }
     }
 
@@ -78,8 +80,8 @@ repositories {
 
 dependencies {
     compileOnly("ink.ptms:nms-all:1.0.0")
-    compileOnly("ink.ptms.core:v11200:11200-minimize")
     compileOnly("org.codehaus.groovy:groovy-jsr223:3.0.11")
+    compileOnly("ink.ptms.core:v11200:11200-minimize")
 
     compileOnly("com.alibaba:fastjson:2.0.7")
     compileOnly(kotlin("stdlib"))

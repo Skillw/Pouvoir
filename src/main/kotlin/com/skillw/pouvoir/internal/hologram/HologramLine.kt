@@ -2,48 +2,25 @@ package com.skillw.pouvoir.internal.hologram
 
 import org.bukkit.Location
 import org.bukkit.entity.Player
-import taboolib.module.chat.colored
 
-private var index = 114514
+internal class HologramLine(location: Location, line: String, vararg viewers: Player) {
+    private val armorStand = PouHolo.create(location, line, *viewers)
 
-private fun nextInt(): Int {
-    return index++
-}
-
-class HologramLine(location: Location, line: String) {
-    val viewers = ConcurrentHashSet<Player>()
-
-    constructor(location: Location, line: String, vararg viewers: Player) : this(location, line) {
-        this.viewers.addAll(viewers)
+    init {
         for (viewer in viewers) {
             armorStand.visible(viewer, true)
         }
     }
 
     constructor(location: Location, line: String, viewers: Set<Player>) : this(location, line) {
-        this.viewers.addAll(viewers)
         for (viewer in viewers) {
             armorStand.visible(viewer, true)
         }
     }
 
-    private val armorStand =
-        PouArmorStand(nextInt(), location) {
-            it.setSmall(true)
-            it.setMarker(true)
-            it.setBasePlate(false)
-            it.setInvisible(true)
-            it.setCustomName(line.colored())
-            it.setCustomNameVisible(line.isNotEmpty())
-        }
-
-
     fun update(line: String) {
         if (!armorStand.isDeleted) {
-            armorStand.destroy()
-            armorStand.setCustomName(line.colored())
-            armorStand.setCustomNameVisible(line.isNotEmpty())
-            armorStand.respawn()
+            armorStand.update(line)
         }
     }
 
