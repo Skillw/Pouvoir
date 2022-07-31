@@ -10,16 +10,16 @@ tasks.dokkaJavadoc.configure {
     outputDirectory.set(File("C:\\Users\\Administrator\\Desktop\\Doc\\pouvoir"))
     dokkaSourceSets {
         named("main") {
-            noJdkLink.set(true)
-            noStdlibLink.set(true)
-            noAndroidSdkLink.set(true)
+            jdkVersion.set(8)
+            noStdlibLink.set(false)
+            noJdkLink.set(false)
             suppressObviousFunctions.set(false)
             suppressInheritedMembers.set(true)
         }
     }
 }
 taboolib {
-//    options("skip-kotlin-relocate")
+    options("skip-kotlin-relocate")
 
     description {
         contributors {
@@ -79,6 +79,7 @@ repositories {
 }
 
 dependencies {
+    dokkaGfmPlugin("org.jetbrains.dokka:javadoc-plugin:1.6.10")
     compileOnly("ink.ptms:nms-all:1.0.0")
     compileOnly("org.codehaus.groovy:groovy-jsr223:3.0.11")
     compileOnly("ink.ptms.core:v11200:11200-minimize")

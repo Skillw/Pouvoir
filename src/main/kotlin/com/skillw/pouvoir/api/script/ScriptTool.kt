@@ -137,6 +137,12 @@ object ScriptTool : BaseMap<String, Any>() {
         submit(async = true, delay = delay, period = period) { runnable.run() }
 
 
+    /**
+     * @param identifier String 识别符
+     * @param author String 作者
+     * @param version String 版本
+     * @param path String 脚本路径::函数名
+     */
     @JvmStatic
     fun placeHolder(identifier: String, author: String, version: String, path: String) {
         object : PlaceholderExpansion() {
@@ -159,6 +165,13 @@ object ScriptTool : BaseMap<String, Any>() {
     }
 
 
+    /**
+     * @param identifier String 识别符
+     * @param name String 名称
+     * @param author String 作者
+     * @param version String 版本
+     * @param path String 脚本路径::函数名
+     */
     @JvmStatic
     fun pouPlaceHolder(identifier: String, name: String, author: String, version: String, path: String) {
         object : PouPlaceHolder(identifier, name, author, version) {
@@ -168,6 +181,15 @@ object ScriptTool : BaseMap<String, Any>() {
         }.register()
     }
 
+    /**
+     * 注册监听器
+     *
+     * @param key String 用于注销的键
+     * @param path String 事件类路径
+     * @param eventPriority String 事件优先级
+     * @param ignoreCancel Boolean 忽略取消事件
+     * @param exec Consumer<Any> 事件执行方法
+     */
     @JvmStatic
     fun addListener(
         key: String,
@@ -186,6 +208,16 @@ object ScriptTool : BaseMap<String, Any>() {
         addListener(key, platform, clazz, level, ignoreCancel, exec)
     }
 
+    /**
+     * 注册监听器
+     *
+     * @param key String 用于注销的键
+     * @param path String 事件类路径
+     * @param eventPriority String 事件优先级
+     * @param ignoreCancel Boolean 忽略取消事件
+     * @param exec Consumer<Any> 事件执行方法
+     * @param platform Platform 监听器平台
+     */
     @JvmStatic
     fun addListener(
         key: String,
@@ -223,6 +255,11 @@ object ScriptTool : BaseMap<String, Any>() {
         }.build().register()
     }
 
+    /**
+     * 注销监听器
+     *
+     * @param key String 键
+     */
     @JvmStatic
     fun removeListener(key: String) {
         listenerManager.remove(key)
@@ -325,31 +362,71 @@ object ScriptTool : BaseMap<String, Any>() {
         return itemNBTMap(itemStack, emptyList())
     }
 
+    /**
+     * 从数据库获取用户数据
+     *
+     * @param user String 用户名
+     * @param key String 键
+     * @return String? 获取到的数据
+     */
     @JvmStatic
     fun get(user: String, key: String): String? {
         return containerManager[user, key]
     }
 
+    /**
+     * 从数据库删除用户数据
+     *
+     * @param user String 用户名
+     * @param key String 键
+     */
     @JvmStatic
     fun delete(user: String, key: String) {
         containerManager.delete(user, key)
     }
 
+    /**
+     * 向数据库写入用户数据
+     *
+     * @param user String 用户名
+     * @param key String 键
+     * @param value String 数据
+     */
     @JvmStatic
     fun set(user: String, key: String, value: String) {
         containerManager[user, key] = value
     }
 
+    /**
+     * 获取用户数据库
+     *
+     * @param player Player 玩家
+     * @param key String 键
+     * @return String? 获取到的数据
+     */
     @JvmStatic
     fun get(player: Player, key: String): String? {
         return get(player.name, key)
     }
 
+    /**
+     * 数据库删除用户数据
+     *
+     * @param player Player 玩家
+     * @param key String 键
+     */
     @JvmStatic
     fun delete(player: Player, key: String) {
         delete(player.name, key)
     }
 
+    /**
+     * 向数据库写入用户数据
+     *
+     * @param player Player 玩家
+     * @param key String 键
+     * @param value String 数据
+     */
     @JvmStatic
     fun set(player: Player, key: String, value: String) {
         set(player.name, key, value)

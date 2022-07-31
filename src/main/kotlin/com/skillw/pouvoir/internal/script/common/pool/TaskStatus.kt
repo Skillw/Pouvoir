@@ -10,9 +10,9 @@ import java.util.concurrent.Future
 
 /**
  * @className TaskStatus
+ *
  * @author Glom
- * @date 2022/7/28 1:48
- * Copyright  2022 user. All rights reserved.
+ * @date 2022/7/28 1:48 Copyright 2022 user. All rights reserved.
  */
 class TaskStatus(override val key: String, private val invoker: Invoker) :
     Keyable<String> {
@@ -58,9 +58,9 @@ class TaskStatus(override val key: String, private val invoker: Invoker) :
 
     /**
      * @className ScriptTask
+     *
      * @author Glom
-     * @date 2022/7/29 20:47
-     * Copyright  2022 user. All rights reserved.
+     * @date 2022/7/29 20:47 Copyright 2022 user. All rights reserved.
      */
     class ScriptTask(val function: String, callable: Callable<Any?>) {
         private val task: Future<Any?>

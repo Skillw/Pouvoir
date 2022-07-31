@@ -14,9 +14,8 @@ import taboolib.module.nms.ItemTagType
 import java.util.regex.Pattern
 
 /**
- * ClassName : com.skillw.classsystem.util.ItemUtils
- * Created by Glom_ on 2021-03-12 23:40:01
- * Copyright  2021 user. All rights reserved.
+ * ClassName : com.skillw.classsystem.util.ItemUtils Created by Glom_ on
+ * 2021-03-12 23:40:01 Copyright 2021 user. All rights reserved.
  */
 object ItemUtils {
     @JvmStatic
@@ -27,7 +26,7 @@ object ItemUtils {
         val meta = item.itemMeta
         meta as ItemMeta
         if (meta.hasDisplayName()) {
-            meta.setDisplayName(Pouvoir.pouPlaceHolderAPI.replace(player, meta.displayName))
+            meta.displayName = Pouvoir.pouPlaceHolderAPI.replace(player, meta.displayName)
         }
         if (meta.hasLore()) {
             val lores = ArrayList<String>()
@@ -81,6 +80,7 @@ object ItemUtils {
             is ItemTag -> {
                 value.toMutableMap()
             }
+
             is ItemTagList -> {
                 val list = java.util.ArrayList<Any>()
                 value.forEach {
@@ -88,6 +88,7 @@ object ItemUtils {
                 }
                 list
             }
+
             else -> {
                 value
             }

@@ -26,9 +26,9 @@ private fun nextInt(): Int {
 
 /**
  * @className PouHologramLine
+ *
  * @author Glom
- * @date 2022/7/31 19:33
- * Copyright  2022 user. All rights reserved.
+ * @date 2022/7/31 19:33 Copyright 2022 user. All rights reserved.
  */
 internal class PouHologramLine(var location: Location, consumer: Consumer<PouHologramLine>) : PouHolo {
     val id: Int = nextInt()
@@ -57,9 +57,7 @@ internal class PouHologramLine(var location: Location, consumer: Consumer<PouHol
         consumer.accept(this)
     }
 
-    /**
-     * 标准化 UniqueUtils
-     */
+    /** 标准化 UniqueUtils */
     val normalizeUniqueId: UUID
         get() {
             val u = uniqueId

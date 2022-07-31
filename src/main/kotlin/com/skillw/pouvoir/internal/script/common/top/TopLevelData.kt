@@ -7,7 +7,7 @@ internal data class TopLevelData(
     val source: String,
     val type: TopLevel.Type,
     val member: Any,
-    val info: String
+    val info: String,
 ) : Registrable<String> {
 
     override fun register() {

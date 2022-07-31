@@ -34,18 +34,14 @@ object Pouvoir : Plugin(), SubPouvoir {
     }
 
 
-    /**
-     * Config
-     */
+    /** Config */
     @Config(migrate = true, autoReload = true)
     lateinit var config: ConfigFile
 
     @Config("script.yml", true, autoReload = true)
     lateinit var script: ConfigFile
 
-    /**
-     * Managers
-     */
+    /** Managers */
     override lateinit var managerData: ManagerData
 
     @JvmStatic

@@ -13,7 +13,7 @@ import taboolib.module.lang.sendLang
 /**
  * Inline Function
  *
- * @constructor Inline Function  Key(Optional)
+ * @constructor Inline Function Key(Optional)
  */
 @AutoRegister
 object Function : ScriptAnnotation("Function") {

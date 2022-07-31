@@ -84,7 +84,7 @@ object Abs : PouFunction("abs") {
         return args.size == 1 && Coerce.asDouble(args[0]).isPresent
     }
 
-    override fun function(args: Array<String>): Any? {
+    override fun function(args: Array<String>): Any {
         val number = Coerce.toDouble(args[0])
         return abs(number)
     }
@@ -96,7 +96,7 @@ object Ceil : PouFunction("ceil") {
         return args.size == 1 && Coerce.asDouble(args[0]).isPresent
     }
 
-    override fun function(args: Array<String>): Any? {
+    override fun function(args: Array<String>): Any {
         val number = Coerce.toDouble(args[0])
         return ceil(number)
     }
@@ -108,7 +108,7 @@ object Format : PouFunction("format") {
         return args.size == 2 && Coerce.asDouble(args[0]).isPresent
     }
 
-    override fun function(args: Array<String>): Any? {
+    override fun function(args: Array<String>): Any {
         val number = Coerce.toDouble(args[0])
         val format = args[1]
         return number.format(format)
@@ -121,7 +121,7 @@ object Floor : PouFunction("floor") {
         return args.size == 1 && Coerce.asDouble(args[0]).isPresent
     }
 
-    override fun function(args: Array<String>): Any? {
+    override fun function(args: Array<String>): Any {
         val number = Coerce.toDouble(args[0])
         return floor(number)
     }
@@ -133,7 +133,7 @@ object Max : PouFunction("max") {
         return args.size == 2 && Coerce.asDouble(args[0]).isPresent && Coerce.asDouble(args[1]).isPresent
     }
 
-    override fun function(args: Array<String>): Any? {
+    override fun function(args: Array<String>): Any {
         val x = Coerce.toDouble(args[0])
         val y = Coerce.toDouble(args[1])
         return max(x, y)
@@ -146,7 +146,7 @@ object Min : PouFunction("min") {
         return args.size == 2 && Coerce.asDouble(args[0]).isPresent && Coerce.asDouble(args[1]).isPresent
     }
 
-    override fun function(args: Array<String>): Any? {
+    override fun function(args: Array<String>): Any {
         val x = Coerce.toDouble(args[0])
         val y = Coerce.toDouble(args[1])
         return min(x, y)
@@ -159,7 +159,7 @@ object Random : PouFunction("random") {
         return args.size >= 2 && Coerce.asDouble(args[0]).isPresent && Coerce.asDouble(args[1]).isPresent
     }
 
-    override fun function(args: Array<String>): Any? {
+    override fun function(args: Array<String>): Any {
         val x = Coerce.toDouble(args[0])
         val y = Coerce.toDouble(args[1])
         val format = if (args.size == 3) args[2] else PouConfig.numberFormat
@@ -173,7 +173,7 @@ object RandomInt : PouFunction("randomInt") {
         return args.size >= 2 && Coerce.asInteger(args[0]).isPresent && Coerce.asInteger(args[1]).isPresent
     }
 
-    override fun function(args: Array<String>): Any? {
+    override fun function(args: Array<String>): Any {
         val x = Coerce.toInteger(args[0])
         val y = Coerce.toInteger(args[1])
         return randomInt(x, y)
@@ -186,7 +186,7 @@ object Round : PouFunction("round") {
         return args.size == 1 && Coerce.asDouble(args[0]).isPresent
     }
 
-    override fun function(args: Array<String>): Any? {
+    override fun function(args: Array<String>): Any {
         val x = Coerce.toDouble(args[0])
         return round(x)
     }
@@ -199,7 +199,7 @@ object Calculate : PouFunction("calculate") {
             .all { it1 -> it1.matches(Regex(".*=.*")) })
     }
 
-    override fun function(args: Array<String>): Any? {
+    override fun function(args: Array<String>): Any {
         val formula = args[0]
         val replaced = ConcurrentHashMap<String, String>()
         for (index in 1..args.lastIndex) {
@@ -218,7 +218,7 @@ object Repeat : PouFunction("repeat") {
         return args.size >= 2 && Coerce.asInteger(args[0]).isPresent
     }
 
-    override fun function(args: Array<String>): Any? {
+    override fun function(args: Array<String>): Any {
         val time = Coerce.toInteger(args[0])
         var value = ""
         for (index in args.indices) {

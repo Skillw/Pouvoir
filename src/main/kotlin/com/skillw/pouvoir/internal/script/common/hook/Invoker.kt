@@ -2,9 +2,9 @@ package com.skillw.pouvoir.internal.script.common.hook
 
 /**
  * @className Invoker
+ *
  * @author Glom
- * @date 2022/7/29 21:51
- * Copyright  2022 user. All rights reserved.
+ * @date 2022/7/29 21:51 Copyright 2022 user. All rights reserved.
  */
 fun interface Invoker {
     fun invoke(

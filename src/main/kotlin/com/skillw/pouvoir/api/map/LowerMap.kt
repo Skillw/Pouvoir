@@ -1,5 +1,11 @@
 package com.skillw.pouvoir.api.map
 
+/**
+ * Lower map
+ *
+ * @param V
+ * @constructor Create empty Lower map
+ */
 open class LowerMap<V : Any> : BaseMap<String, V>() {
     override fun get(key: String): V? {
         return super.get(key.lowercase())

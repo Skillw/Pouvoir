@@ -6,9 +6,8 @@ import com.skillw.pouvoir.api.plugin.SubPouvoir
 import org.bukkit.entity.LivingEntity
 
 /**
- * ClassName : com.skillw.pouvoir.api.analysis.PouPlaceHolder
- * Created by Glom_ on 2021-03-28 15:40:22
- * Copyright  2021 user. All rights reserved.
+ * ClassName : com.skillw.pouvoir.api.analysis.PouPlaceHolder Created by
+ * Glom_ on 2021-03-28 15:40:22 Copyright 2021 user. All rights reserved.
  */
 abstract class PouPlaceHolder(
     identifier: String,
@@ -25,6 +24,15 @@ abstract class PouPlaceHolder(
     )
 
     final override val key: String = identifier
+
+    /**
+     * On place holder request
+     *
+     * @param params 参数
+     * @param entity 实体
+     * @param def 默认值
+     * @return 返回值
+     */
     abstract fun onPlaceHolderRequest(params: String, entity: LivingEntity, def: String): String?
     override fun register() {
         Pouvoir.pouPlaceholderManager.register(key, this)

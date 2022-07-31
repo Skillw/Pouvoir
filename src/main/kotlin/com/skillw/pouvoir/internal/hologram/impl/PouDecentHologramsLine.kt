@@ -9,9 +9,9 @@ import java.util.*
 
 /**
  * @className PouHolographicDisplaysLine
+ *
  * @author Glom
- * @date 2022/7/31 19:02
- * Copyright  2022 user. All rights reserved.
+ * @date 2022/7/31 19:02 Copyright 2022 user. All rights reserved.
  */
 internal class PouDecentHologramsLine(location: Location, line: String, vararg viewers: Player) : PouHolo {
 
@@ -41,11 +41,11 @@ internal class PouDecentHologramsLine(location: Location, line: String, vararg v
     }
 
     override fun spawn(location: Location) {
-        DHAPI.moveHologram(hologram, location);
+        DHAPI.moveHologram(hologram, location)
     }
 
     override fun teleport(location: Location) {
-        DHAPI.moveHologram(hologram, location);
+        DHAPI.moveHologram(hologram, location)
     }
 
     override fun delete() {
@@ -60,6 +60,6 @@ internal class PouDecentHologramsLine(location: Location, line: String, vararg v
     }
 
     override fun update(line: String) {
-        DHAPI.setHologramLine(hologram, 0, line);
+        DHAPI.setHologramLine(hologram, 0, line)
     }
 }

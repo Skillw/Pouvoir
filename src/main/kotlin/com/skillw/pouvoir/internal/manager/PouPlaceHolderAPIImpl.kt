@@ -25,9 +25,9 @@ object PouPlaceHolderAPIImpl : PouPlaceHolderAPI {
         )
     )
 
-    override fun replace(livingEntity: LivingEntity?, text: String): String {
+    override fun replace(entity: LivingEntity?, text: String): String {
         var new = text
-        livingEntity ?: kotlin.run {
+        entity ?: kotlin.run {
             return analysis(new)
         }
         val matcher = pattern.matcher(new)
@@ -41,13 +41,13 @@ object PouPlaceHolderAPIImpl : PouPlaceHolderAPI {
                 val rpgPlaceHolder = Pouvoir.pouPlaceholderManager[identifier]
                 rpgPlaceHolder?.also {
                     val requested: String =
-                        rpgPlaceHolder.onPlaceHolderRequest(parameters, livingEntity, "0").toString()
+                        rpgPlaceHolder.onPlaceHolderRequest(parameters, entity, "0").toString()
                     matcher.appendReplacement(builder, requested)
                 }
             } while (matcher.find())
             new = matcher.appendTail(builder).toString()
-            if (livingEntity is Player) {
-                new = new.replacePlaceholder(livingEntity)
+            if (entity is Player) {
+                new = new.replacePlaceholder(entity)
             }
             analysis(new).colored()
         }

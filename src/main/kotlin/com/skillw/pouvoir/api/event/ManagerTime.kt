@@ -2,9 +2,9 @@ package com.skillw.pouvoir.api.event
 
 /**
  * @className ManagerTime
+ *
  * @author Glom
- * @date 2022/7/22 16:11
- * Copyright  2022 user. All rights reserved.
+ * @date 2022/7/22 16:11 Copyright 2022 user. All rights reserved.
  */
 class ManagerTime(val key: String) {
     companion object {

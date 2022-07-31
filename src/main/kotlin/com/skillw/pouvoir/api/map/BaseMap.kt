@@ -4,7 +4,15 @@ import com.skillw.pouvoir.api.able.RegContainer
 import java.util.concurrent.ConcurrentHashMap
 
 
+/**
+ * Base map
+ *
+ * @param K
+ * @param V
+ * @constructor Create empty Base map
+ */
 open class BaseMap<K : Any, V : Any> : RegContainer<K, V> {
+    /** Map */
     val map = ConcurrentHashMap<K, V>()
     override fun register(key: K, value: V) {
         put(key, value)
@@ -28,6 +36,12 @@ open class BaseMap<K : Any, V : Any> : RegContainer<K, V> {
         return map.isEmpty()
     }
 
+    /**
+     * For each
+     *
+     * @param action
+     * @receiver
+     */
     inline fun forEach(action: (Map.Entry<K, V>) -> Unit) {
         for (element in map) action(element)
     }
@@ -40,6 +54,11 @@ open class BaseMap<K : Any, V : Any> : RegContainer<K, V> {
         return map.containsValue(value)
     }
 
+    /**
+     * Put all
+     *
+     * @param baseMap
+     */
     fun putAll(baseMap: BaseMap<K, out V>) {
         map.putAll(baseMap.map)
     }
@@ -60,20 +79,53 @@ open class BaseMap<K : Any, V : Any> : RegContainer<K, V> {
         return map.put(key, value)
     }
 
+    /**
+     * Is not empty
+     *
+     * @return
+     */
     fun isNotEmpty(): Boolean = !isEmpty()
 
+    /**
+     * Contains
+     *
+     * @param key
+     * @return
+     */
     operator fun contains(key: K): Boolean =
         containsKey(key)
 
 
+    /**
+     * Set
+     *
+     * @param key
+     * @param value
+     */
     open operator fun set(key: K, value: V) {
         put(key, value)
     }
 
 
+    /**
+     * Get or else
+     *
+     * @param key
+     * @param defaultValue
+     * @return
+     * @receiver
+     */
     inline fun getOrElse(key: K, defaultValue: () -> V): V = get(key) ?: defaultValue()
 
 
+    /**
+     * Get or else nullable
+     *
+     * @param key
+     * @param defaultValue
+     * @return
+     * @receiver
+     */
     internal inline fun getOrElseNullable(key: K, defaultValue: () -> V): V {
         val value = get(key)
         if (value == null && !containsKey(key)) {
@@ -85,6 +137,14 @@ open class BaseMap<K : Any, V : Any> : RegContainer<K, V> {
     }
 
 
+    /**
+     * Get or put
+     *
+     * @param key
+     * @param defaultValue
+     * @return
+     * @receiver
+     */
     inline fun getOrPut(key: K, defaultValue: () -> V): V {
         val value = get(key)
         return if (value == null) {
@@ -97,9 +157,24 @@ open class BaseMap<K : Any, V : Any> : RegContainer<K, V> {
     }
 
 
+    /**
+     * Iterator
+     *
+     * @return
+     */
     operator fun iterator(): Iterator<Map.Entry<K, V>> = entries.iterator()
 
 
+    /**
+     * Map values to
+     *
+     * @param destination
+     * @param transform
+     * @param R
+     * @param M
+     * @return
+     * @receiver
+     */
     inline fun <R, M : MutableMap<in K, in R>> mapValuesTo(
         destination: M,
         transform: (MutableMap.MutableEntry<K, V>) -> R,
@@ -108,6 +183,16 @@ open class BaseMap<K : Any, V : Any> : RegContainer<K, V> {
     }
 
 
+    /**
+     * Map keys to
+     *
+     * @param destination
+     * @param transform
+     * @param R
+     * @param M
+     * @return
+     * @receiver
+     */
     inline fun <R, M : MutableMap<R, V>> mapKeysTo(
         destination: M,
         transform: (MutableMap.MutableEntry<K, V>) -> R,
@@ -116,6 +201,11 @@ open class BaseMap<K : Any, V : Any> : RegContainer<K, V> {
     }
 
 
+    /**
+     * Put all
+     *
+     * @param pairs
+     */
     fun putAll(pairs: Array<out Pair<K, V>>) {
         for ((key, value) in pairs) {
             put(key, value)
@@ -123,15 +213,38 @@ open class BaseMap<K : Any, V : Any> : RegContainer<K, V> {
     }
 
 
+    /**
+     * Map values
+     *
+     * @param transform
+     * @param R
+     * @return
+     * @receiver
+     */
     inline fun <R> mapValues(transform: (Map.Entry<K, V>) -> R): Map<K, R> {
         return mapValuesTo(LinkedHashMap(size), transform) // .optimizeReadOnlyMap()
     }
 
+    /**
+     * Map keys
+     *
+     * @param transform
+     * @param R
+     * @return
+     * @receiver
+     */
     inline fun <R : Any> mapKeys(transform: (Map.Entry<K, V>) -> R): Map<R, V> {
         return mapKeysTo(LinkedHashMap(size), transform) // .optimizeReadOnlyMap()
     }
 
 
+    /**
+     * Filter keys
+     *
+     * @param predicate
+     * @return
+     * @receiver
+     */
     inline fun filterKeys(predicate: (K) -> Boolean): Map<K, V> {
         val result = LinkedHashMap<K, V>()
         for (entry in map) {
@@ -142,6 +255,13 @@ open class BaseMap<K : Any, V : Any> : RegContainer<K, V> {
         return result
     }
 
+    /**
+     * Filter values
+     *
+     * @param predicate
+     * @return
+     * @receiver
+     */
     inline fun filterValues(predicate: (V) -> Boolean): Map<K, V> {
         val result = LinkedHashMap<K, V>()
         for (entry in map) {
@@ -153,52 +273,112 @@ open class BaseMap<K : Any, V : Any> : RegContainer<K, V> {
     }
 
 
+    /**
+     * Plus
+     *
+     * @param pair
+     * @return
+     */
     operator fun plus(pair: Pair<K, V>): BaseMap<K, V> {
         this.map += pair
         return this
     }
 
 
+    /**
+     * Plus
+     *
+     * @param pairs
+     * @return
+     */
     operator fun plus(pairs: Array<out Pair<K, V>>): BaseMap<K, V> {
         this.map.putAll(pairs)
         return this
     }
 
 
+    /**
+     * Plus
+     *
+     * @param map
+     * @return
+     */
     operator fun plus(map: Map<out K, V>): BaseMap<K, V> {
         this.map.putAll(map)
         return this
     }
 
 
+    /**
+     * Plus assign
+     *
+     * @param pair
+     */
     operator fun plusAssign(pair: Pair<K, V>) {
         this.map[pair.first] = pair.second
     }
 
 
+    /**
+     * Plus assign
+     *
+     * @param pairs
+     */
     operator fun plusAssign(pairs: Iterable<Pair<K, V>>) {
         this.map.putAll(pairs)
     }
 
 
+    /**
+     * Plus assign
+     *
+     * @param pairs
+     */
     operator fun plusAssign(pairs: Array<out Pair<K, V>>) {
         this.map.putAll(pairs)
     }
 
 
+    /**
+     * Plus assign
+     *
+     * @param pairs
+     */
     operator fun plusAssign(pairs: Sequence<Pair<K, V>>) {
         this.map.putAll(pairs)
     }
 
 
+    /**
+     * Plus assign
+     *
+     * @param map
+     */
     operator fun plusAssign(map: Map<out K, V>) {
         this.map.putAll(map)
     }
 
+    /**
+     * Filter
+     *
+     * @param predicate
+     * @return
+     * @receiver
+     */
     inline fun filter(predicate: (Map.Entry<K, V>) -> Boolean): Map<K, V> {
         return map.filterTo(LinkedHashMap(), predicate)
     }
 
+    /**
+     * Flat map to
+     *
+     * @param destination
+     * @param transform
+     * @param R
+     * @param C
+     * @return
+     * @receiver
+     */
     inline fun <R, C : MutableCollection<in R>> flatMapTo(
         destination: C,
         transform: (Map.Entry<K, V>) -> Sequence<R>,
@@ -210,14 +390,40 @@ open class BaseMap<K : Any, V : Any> : RegContainer<K, V> {
         return destination
     }
 
+    /**
+     * Map
+     *
+     * @param transform
+     * @param R
+     * @return
+     * @receiver
+     */
     inline fun <R> map(transform: (Map.Entry<K, V>) -> R): List<R> {
         return map.mapTo(ArrayList(size), transform)
     }
 
+    /**
+     * Map not null
+     *
+     * @param transform
+     * @param R
+     * @return
+     * @receiver
+     */
     inline fun <R : Any> mapNotNull(transform: (Map.Entry<K, V>) -> R?): List<R> {
         return mapNotNullTo(ArrayList(), transform)
     }
 
+    /**
+     * Map not null to
+     *
+     * @param destination
+     * @param transform
+     * @param R
+     * @param C
+     * @return
+     * @receiver
+     */
     inline fun <R : Any, C : MutableCollection<in R>> mapNotNullTo(
         destination: C,
         transform: (Map.Entry<K, V>) -> R?,
@@ -226,6 +432,13 @@ open class BaseMap<K : Any, V : Any> : RegContainer<K, V> {
         return destination
     }
 
+    /**
+     * Any
+     *
+     * @param predicate
+     * @return
+     * @receiver
+     */
     inline fun any(predicate: (Map.Entry<K, V>) -> Boolean): Boolean {
         if (isEmpty()) return false
         for (element in this) if (predicate(element)) return true

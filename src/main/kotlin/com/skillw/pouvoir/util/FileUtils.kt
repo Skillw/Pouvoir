@@ -104,19 +104,19 @@ object FileUtils {
         try {
             val buffer = ByteArray(8192)
             var len: Int
-            val md = MessageDigest.getInstance("MD5");
+            val md = MessageDigest.getInstance("MD5")
             val fis = this.inputStream()
             while ((fis.read(buffer).also { len = it }) != -1) {
-                md.update(buffer, 0, len);
+                md.update(buffer, 0, len)
             }
-            fis.close();
-            val b = md.digest();
-            bi = BigInteger(1, b);
+            fis.close()
+            val b = md.digest()
+            bi = BigInteger(1, b)
         } catch (e: Exception) {
             e.printStackTrace()
             return null
         }
-        return bi.toString(16);
+        return bi.toString(16)
     }
 
 

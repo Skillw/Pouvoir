@@ -6,9 +6,9 @@ import java.util.concurrent.ConcurrentHashMap
 
 /**
  * @className ConcrrentSet
+ *
  * @author Glom
- * @date 2022/7/28 11:37
- * Copyright  2022 user. All rights reserved.
+ * @date 2022/7/28 11:37 Copyright 2022 user. All rights reserved.
  */
 class ConcurrentHashSet<E> : AbstractSet<E>(), Serializable {
     private val map = ConcurrentHashMap<E, Boolean?>()

@@ -26,11 +26,8 @@ import taboolib.module.nms.sendPacket
 import java.util.*
 
 /**
- *
- *
- * ClassName : com.skillw.pouvoir.util.EntityUtils
- * Created by Glom_ on 2021-03-28 17:49:01
- * Copyright  2021 user. All rights reserved.
+ * ClassName : com.skillw.pouvoir.util.EntityUtils Created by Glom_ on
+ * 2021-03-28 17:49:01 Copyright 2021 user. All rights reserved.
  */
 object EntityUtils {
     fun LivingEntity.getDisplayName(): String {
@@ -197,9 +194,7 @@ object EntityUtils {
         player.sendPacket(packet)
     }
 
-    /**
-     * 更新实体属性 Metadata
-     */
+    /** 更新实体属性 Metadata */
     @JvmStatic
     fun sendEntityMetadata(player: Player, entityId: Int, vararg objects: Any) {
         if (isUniversal) {

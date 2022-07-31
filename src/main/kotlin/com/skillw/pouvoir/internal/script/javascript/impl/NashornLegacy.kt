@@ -19,9 +19,9 @@ import javax.script.ScriptEngine
 
 /**
  * @className NashornLegacy
+ *
  * @author Glom
- * @date 2022/7/29 21:06
- * Copyright  2022 user. All rights reserved.
+ * @date 2022/7/29 21:06 Copyright 2022 user. All rights reserved.
  */
 object NashornLegacy : ScriptBridge {
     override fun getEngine(vararg args: String): ScriptEngine =

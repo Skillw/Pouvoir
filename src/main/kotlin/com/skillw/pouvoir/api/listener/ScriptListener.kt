@@ -16,7 +16,7 @@ class ScriptListener<T> private constructor(
     val eventClass: Class<T>,
     val priority: Priority,
     val ignoreCancel: Boolean = false,
-    val exec: Closeable.(T) -> Unit
+    val exec: Closeable.(T) -> Unit,
 ) : Registrable<String> {
 
     class Builder<T>(
@@ -25,7 +25,7 @@ class ScriptListener<T> private constructor(
         val event: Class<T>,
         val eventPriority: Priority = Priority(0),
         val ignoreCancel: Boolean = false,
-        val exec: Consumer<T>
+        val exec: Consumer<T>,
     ) {
         fun build(): ScriptListener<T> {
             return ScriptListener(key, platform, event, eventPriority, ignoreCancel) {
@@ -48,7 +48,9 @@ class ScriptListener<T> private constructor(
             Platform.BUKKIT -> registerBukkitListener(eventClass, priority.toBukkit(), ignoreCancel, exec)
             Platform.SPONGE_API_9,
             Platform.SPONGE_API_8,
-            Platform.SPONGE_API_7 -> registerSpongeListener(eventClass, priority.toSponge(), ignoreCancel, exec)
+            Platform.SPONGE_API_7,
+            -> registerSpongeListener(eventClass, priority.toSponge(), ignoreCancel, exec)
+
             Platform.BUNGEE -> registerBungeeListener(eventClass, priority.level, ignoreCancel, exec)
             else -> registerBukkitListener(eventClass, priority.toBukkit(), ignoreCancel, exec)
         }

@@ -17,7 +17,8 @@ import taboolib.module.lang.sendLang
 /**
  * Listener
  *
- * @constructor -event <Class Name> -priority <Event Priority> -platform <Platform> --ignoreCancel
+ * @constructor -event <Class Name> -priority <Event Priority> -platform
+ *     <Platform> --ignoreCancel
  */
 @AutoRegister
 object Listener : ScriptAnnotation("Listener", true) {

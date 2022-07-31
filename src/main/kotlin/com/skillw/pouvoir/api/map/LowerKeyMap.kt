@@ -3,6 +3,12 @@ package com.skillw.pouvoir.api.map
 import com.skillw.pouvoir.api.able.Keyable
 
 
+/**
+ * Lower key map
+ *
+ * @param V
+ * @constructor Create empty Lower key map
+ */
 open class LowerKeyMap<V : Keyable<String>> : KeyMap<String, V>() {
 
     override operator fun get(key: String): V? {

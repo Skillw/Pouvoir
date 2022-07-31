@@ -21,7 +21,7 @@ object PlayerUtils {
         subtitle: String?,
         fadeIn: Int = 0,
         stay: Int = 20,
-        fadeOut: Int = 0
+        fadeOut: Int = 0,
     ) {
         val proxy = BukkitAdapter().adaptPlayer(player)
         player.resetTitle()

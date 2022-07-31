@@ -8,12 +8,10 @@ import taboolib.common.reflect.Reflex.Companion.invokeMethod
 import taboolib.module.chat.colored
 
 /**
- *
  * For script coders
  *
- * ClassName : com.skillw.classsystem.util.MessageUtils
- * Created by Glom_ on 2021-03-25 20:25:13
- * Copyright  2021 user. All rights reserved.
+ * ClassName : com.skillw.classsystem.util.MessageUtils Created by Glom_ on
+ * 2021-03-25 20:25:13 Copyright 2021 user. All rights reserved.
  */
 object MessageUtils {
     @JvmStatic

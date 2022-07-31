@@ -16,7 +16,8 @@ import taboolib.module.lang.sendLang
 /**
  * Awake
  *
- * @constructor When( BeforeReload / Reload / enable / disable / active / load)
+ * @constructor When( BeforeReload / Reload / enable / disable / active /
+ *     load)
  */
 @AutoRegister
 object Awake : ScriptAnnotation("Awake") {

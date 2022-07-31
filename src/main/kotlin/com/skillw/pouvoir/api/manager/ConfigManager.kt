@@ -12,11 +12,19 @@ import taboolib.common5.FileWatcher
 import taboolib.module.lang.Language
 import java.io.File
 
+/**
+ * Config manager
+ *
+ * @constructor Create empty Config manager
+ * @property subPouvoir
+ */
 abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manager,
     BaseMap<String, YamlConfiguration>() {
     override val key = "ConfigManager"
     private val fileMap = BaseMap<File, YamlConfiguration>()
     private val watcher = FileWatcher()
+
+    /** Server file */
     val serverFile: File by lazy {
         File(
             getDataFolder().parentFile.absolutePath.toString().replace("\\plugins", "")
@@ -60,6 +68,7 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
         return result
     }
 
+    /** Sub reload */
     protected open fun subReload() {}
 
     final override fun onReload() {
@@ -67,6 +76,12 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
         subReload()
     }
 
+    /**
+     * Create if not exists
+     *
+     * @param name
+     * @param fileNames
+     */
     fun createIfNotExists(name: String, vararg fileNames: String) {
         val dir = File(subPouvoir.plugin.dataFolder.path + "/$name")
         if (!dir.exists()) {

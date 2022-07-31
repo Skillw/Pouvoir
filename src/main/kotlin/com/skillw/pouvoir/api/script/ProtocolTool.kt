@@ -22,7 +22,7 @@ object ProtocolTool {
         priority: ListenerPriority,
         types: Array<PacketType>,
         sending: Consumer<PacketEvent>,
-        receiving: Consumer<PacketEvent>
+        receiving: Consumer<PacketEvent>,
     ) {
         val listener = object : PacketAdapter(Pouvoir.plugin, priority, *types) {
             override fun onPacketSending(event: PacketEvent) {
@@ -43,7 +43,7 @@ object ProtocolTool {
         priority: String,
         types: Array<PacketType>,
         sending: Consumer<PacketEvent>,
-        receiving: Consumer<PacketEvent>
+        receiving: Consumer<PacketEvent>,
     ) {
         val listenerPriority = Coerce.toEnum(priority, ListenerPriority::class.java, ListenerPriority.NORMAL)!!
         addPacketListener(key, listenerPriority, types, sending, receiving)
@@ -51,7 +51,7 @@ object ProtocolTool {
 
     @JvmStatic
     fun removePacketListener(
-        key: String
+        key: String,
     ) {
         ProtocolLibrary.getProtocolManager().removePacketListener(packetListeners[key] ?: return)
     }

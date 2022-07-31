@@ -6,7 +6,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature
 
 
 object GsonUtils {
-   
+
     @JvmStatic
     fun Any.toJson(vararg features: SerializerFeature): String {
         return JSON.toJSONString(this, *features)

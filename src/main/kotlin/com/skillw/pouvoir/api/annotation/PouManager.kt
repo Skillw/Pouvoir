@@ -1,5 +1,10 @@
 package com.skillw.pouvoir.api.annotation
 
+/**
+ * Pou manager
+ *
+ * @constructor
+ */
 @Target(AnnotationTarget.FIELD)
-@kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
+@Retention(AnnotationRetention.RUNTIME)
 annotation class PouManager

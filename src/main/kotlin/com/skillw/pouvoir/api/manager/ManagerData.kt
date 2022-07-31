@@ -3,9 +3,7 @@ package com.skillw.pouvoir.api.manager
 import com.skillw.pouvoir.api.able.Registrable
 import com.skillw.pouvoir.api.event.ManagerTime
 import com.skillw.pouvoir.api.manager.Manager.Companion.call
-import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.map.KeyMap
-import com.skillw.pouvoir.api.map.MultiExecMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
 import com.skillw.pouvoir.api.plugin.TotalManager
 import com.skillw.pouvoir.internal.plugin.PouManagerUtils.getPouManagers
@@ -13,7 +11,6 @@ import org.bukkit.plugin.java.JavaPlugin
 import taboolib.common.platform.function.submit
 
 class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Registrable<SubPouvoir> {
-    val exec = BaseMap<Manager, MultiExecMap>()
     private val managers = ArrayList<Manager>()
     val plugin: JavaPlugin = subPouvoir.plugin
     override val key: SubPouvoir = subPouvoir

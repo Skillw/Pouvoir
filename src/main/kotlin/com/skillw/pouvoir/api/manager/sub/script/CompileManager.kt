@@ -7,11 +7,17 @@ import java.io.File
 
 /**
  * @className CompileManager
+ *
  * @author Glom
- * @date 2022/7/28 2:08
- * Copyright  2022 user. All rights reserved.
+ * @date 2022/7/28 2:08 Copyright 2022 user. All rights reserved.
  */
 abstract class CompileManager : Manager {
+    /**
+     * Compile
+     *
+     * @param file 你需要编译的文件
+     * @return 预编译脚本
+     */
     abstract fun compile(file: File): PouCompiledScript?
 
     companion object {

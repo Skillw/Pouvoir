@@ -46,6 +46,7 @@ object StringUtils {
                         escapes.clear()
                         startIndex = endIndex + 1
                     }
+
                     protector.key -> {
                         inner = true
                         escapes.add(endIndex)
@@ -124,10 +125,12 @@ object StringUtils {
             1 -> intArrayOf(
                 args[0].toInt()
             )
+
             2 -> intArrayOf(
                 args[0].toInt(),
                 args[1].toInt()
             )
+
             else -> intArrayOf()
         }
         return if (indexes.isEmpty()) {
