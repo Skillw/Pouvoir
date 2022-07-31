@@ -1,7 +1,8 @@
 package com.skillw.pouvoir.util
 
 import com.skillw.pouvoir.api.annotation.ScriptTopLevel
-import taboolib.library.reflex.ReflexClass
+import taboolib.common.platform.function.console
+import taboolib.module.lang.sendLang
 
 @Suppress("UNCHECKED_CAST")
 object ClassUtils {
@@ -11,7 +12,7 @@ object ClassUtils {
         try {
             clazz = Class.forName(this)
         } catch (e: Exception) {
-            MessageUtils.warning("The class $this dose not exist!")
+            console().sendLang("class-not-found", this)
             return null
         }
         return clazz
@@ -44,7 +45,7 @@ object ClassUtils {
 
     @JvmStatic
     fun Class<*>.static(): Any {
-        return ReflexClass.of(staticClass).structure.getMethod("forClass", this).invokeStatic(this)!!
+        return staticClass.getMethod("forClass", Class::class.java).invoke(null, this)!!
     }
 
     @JvmStatic

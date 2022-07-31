@@ -12,9 +12,6 @@ import java.io.File
  * Copyright  2022 user. All rights reserved.
  */
 abstract class CompileManager : Manager {
-
-    abstract fun addScript(file: File)
-    abstract fun addScriptDir(file: File)
     abstract fun compile(file: File): PouCompiledScript?
 
     companion object {

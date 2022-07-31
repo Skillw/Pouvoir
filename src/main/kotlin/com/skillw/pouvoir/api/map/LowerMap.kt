@@ -1,6 +1,6 @@
 package com.skillw.pouvoir.api.map
 
-open class LowerMap<V> : BaseMap<String, V>() {
+open class LowerMap<V : Any> : BaseMap<String, V>() {
     override fun get(key: String): V? {
         return super.get(key.lowercase())
     }
@@ -9,7 +9,7 @@ open class LowerMap<V> : BaseMap<String, V>() {
         return super.containsKey(key.lowercase())
     }
 
-    override fun put(key: String, value: V): V {
+    override fun put(key: String, value: V): V? {
         return super.put(key.lowercase(), value)
     }
 

@@ -9,8 +9,8 @@ import jdk.nashorn.api.scripting.NashornScriptEngineFactory
 import jdk.nashorn.api.scripting.ScriptObjectMirror
 import jdk.nashorn.internal.runtime.ScriptFunction
 import jdk.nashorn.internal.runtime.ScriptFunctionData
+import taboolib.common.reflect.Reflex.Companion.getProperty
 import taboolib.common.reflect.Reflex.Companion.invokeMethod
-import taboolib.library.reflex.Reflex.Companion.getProperty
 import java.lang.invoke.MethodType
 import java.util.function.Supplier
 import javax.script.CompiledScript

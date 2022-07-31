@@ -107,4 +107,11 @@ object PouConfig : ConfigManager(Pouvoir) {
     override fun subReload() {
         reloadStaticClasses()
     }
+
+    @JvmStatic
+    fun debug(debug: () -> Unit) {
+        if (this.debug) {
+            debug.invoke()
+        }
+    }
 }

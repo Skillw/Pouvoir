@@ -2,7 +2,7 @@ package com.skillw.pouvoir.api.manager
 
 import com.skillw.pouvoir.api.able.Registrable
 import com.skillw.pouvoir.api.event.ManagerTime
-import com.skillw.pouvoir.api.event.PouManagerEvent
+import com.skillw.pouvoir.api.manager.Manager.Companion.call
 import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.map.KeyMap
 import com.skillw.pouvoir.api.map.MultiExecMap
@@ -37,46 +37,39 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Regis
     }
 
     fun load() {
-        submit(async = true) {
-            managers.forEach {
-                try {
-                    call(it, ManagerTime.BEFORE_LOAD)
-                    it.onLoad()
-                    call(it, ManagerTime.LOAD)
-                } catch (throwable: Throwable) {
-                    throwable.printStackTrace()
+        managers.forEach {
+            try {
+                it.call(ManagerTime.BEFORE_LOAD)
+                it.onLoad()
+                it.call(ManagerTime.LOAD)
+            } catch (throwable: Throwable) {
+                throwable.printStackTrace()
 
-                }
             }
         }
     }
 
     fun enable() {
-        submit(async = true) {
-            managers.forEach {
-                try {
-                    call(it, ManagerTime.BEFORE_ENABLE)
-                    it.onEnable()
-                    call(it, ManagerTime.ENABLE)
-                } catch (throwable: Throwable) {
-                    throwable.printStackTrace()
+        managers.forEach {
+            try {
+                it.call(ManagerTime.BEFORE_ENABLE)
+                it.onEnable()
+                it.call(ManagerTime.ENABLE)
+            } catch (throwable: Throwable) {
+                throwable.printStackTrace()
 
-                }
             }
         }
     }
 
     fun active() {
-        submit(async = true) {
-            managers.forEach {
-                try {
-                    call(it, ManagerTime.BEFORE_ACTIVE)
-                    it.onActive()
-                    call(it, ManagerTime.ACTIVE)
-                } catch (throwable: Throwable) {
-                    throwable.printStackTrace()
-
-                }
+        managers.forEach {
+            try {
+                it.call(ManagerTime.BEFORE_ACTIVE)
+                it.onActive()
+                it.call(ManagerTime.ACTIVE)
+            } catch (throwable: Throwable) {
+                throwable.printStackTrace()
             }
         }
     }
@@ -85,9 +78,9 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Regis
         submit(async = true) {
             managers.forEach {
                 try {
-                    call(it, ManagerTime.BEFORE_RELOAD)
+                    it.call(ManagerTime.BEFORE_RELOAD)
                     it.onReload()
-                    call(it, ManagerTime.RELOAD)
+                    it.call(ManagerTime.RELOAD)
                 } catch (throwable: Throwable) {
                     throwable.printStackTrace()
                 }
@@ -96,21 +89,16 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Regis
     }
 
     fun disable() {
-        submit(async = true) {
-            managers.forEach {
-                try {
-                    call(it, ManagerTime.BEFORE_DISABLE)
-                    it.onDisable()
-                    call(it, ManagerTime.DISABLE)
-                } catch (throwable: Throwable) {
-                    throwable.printStackTrace()
+        managers.forEach {
+            try {
+                it.call(ManagerTime.BEFORE_DISABLE)
+                it.onDisable()
+                it.call(ManagerTime.DISABLE)
+            } catch (throwable: Throwable) {
+                throwable.printStackTrace()
 
-                }
             }
         }
     }
 
-    internal fun call(manager: Manager, time: ManagerTime) {
-        PouManagerEvent(manager, time).call()
-    }
 }

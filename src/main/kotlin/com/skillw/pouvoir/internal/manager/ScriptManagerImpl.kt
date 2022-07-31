@@ -1,25 +1,68 @@
 package com.skillw.pouvoir.internal.manager
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.Pouvoir.compileManager
+import com.skillw.pouvoir.api.manager.sub.script.CompileManager.Companion.compileScript
+import com.skillw.pouvoir.api.manager.sub.script.ScriptEngineManager.Companion.searchEngine
 import com.skillw.pouvoir.api.manager.sub.script.ScriptManager
 import com.skillw.pouvoir.internal.manager.PouConfig.debug
 import com.skillw.pouvoir.internal.script.common.PouCompiledScript
+import com.skillw.pouvoir.util.FileUtils.listSubFiles
 import taboolib.common.platform.function.console
 import taboolib.common.platform.function.getDataFolder
+import taboolib.common5.FileWatcher
+import taboolib.module.chat.colored
 import taboolib.module.lang.sendLang
 import java.io.File
 import java.io.FileNotFoundException
-import javax.script.ScriptException
 
 object ScriptManagerImpl : ScriptManager() {
-    override val key = "ScriptEngineManager"
+    override val key = "ScriptManager"
     override val priority: Int = 8
     override val subPouvoir = Pouvoir
 
 
+    private val dirs = HashSet<File>()
+
+    private val watcher by lazy {
+        dirs.runCatching { }
+        FileWatcher()
+    }
+
+    override fun onLoad() {
+        dirs += File(getDataFolder(), "scripts")
+    }
+
+    override fun onEnable() {
+        reloadScripts()
+    }
+
     override fun onReload() {
-        clear()
+        reloadScripts()
+    }
+
+    private fun reloadScripts() {
+        clear();dirs.forEach { addScript(it) }
+    }
+
+    override fun addScript(file: File) {
+        if (file.isDirectory) {
+            addScriptDir(file)
+            return
+        }
+        file.compileScript()?.apply { register() }
+        if (watcher.hasListener(file)) return
+        watcher.addSimpleListener(file) {
+            addScript(file)
+        }
+    }
+
+    override fun addScriptDir(file: File) {
+        dirs.add(file)
+        file.listSubFiles().filter {
+            it.searchEngine() != null
+        }.forEach {
+            addScript(it)
+        }
     }
 
     override fun clear() {
@@ -51,7 +94,7 @@ object ScriptManagerImpl : ScriptManager() {
                 }
             val scriptFile = File(getDataFolder(), path)
             if (!scriptFile.exists() || scriptFile.isDirectory) throw FileNotFoundException()
-            compileManager.addScript(scriptFile)
+            addScript(scriptFile)
             return this[path]
         } catch (e: FileNotFoundException) {
             if (!silent)
@@ -77,23 +120,13 @@ object ScriptManagerImpl : ScriptManager() {
         vararg parameters: Any?,
     ): T? {
         if (debug) {
-            Pouvoir.debug { "&eInvoking script &6${script.key} &e's function &d$function" }
-            Pouvoir.debug { "&eVariables: " }
-            Pouvoir.debug { "&3$arguments" }
-            Pouvoir.debug { "&eArguments: " }
-            Pouvoir.debug { "&3$parameters" }
+            debug { console().sendLang("script-invoking-info", script.key, function) }
+            debug { console().sendLang("script-invoking-arguments") }
+            debug { console().sendMessage("&3$arguments".colored()) }
+            debug { console().sendLang("script-invoking-parameters") }
+            debug { console().sendMessage("&3$parameters".colored()) }
         }
-        val result = try {
-            script.invoke(function, arguments, *parameters)
-        } catch (e: ScriptException) {
-            console().sendLang("script-invoke-script-exception", function, script.key)
-            e.printStackTrace()
-            null
-        } catch (e: Exception) {
-            console().sendLang("script-invoke-exception", function, script.key)
-            e.printStackTrace()
-            null
-        }
+        val result = script.invoke(function, arguments, *parameters)
         return result as T?
     }
 

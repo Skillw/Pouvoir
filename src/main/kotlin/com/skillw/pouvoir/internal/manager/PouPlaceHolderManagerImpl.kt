@@ -13,13 +13,12 @@ object PouPlaceHolderManagerImpl : PouPlaceHolderManager() {
 
     override fun register(key: String, value: PouPlaceHolder) {
         super.register(key, value)
-        val description = value.subPouvoir.plugin.description
         console().sendLang(
             "pou-placeholder-register",
             key,
-            description.name,
-            description.version,
-            description.authors.toString()
+            value.name,
+            value.version,
+            value.author
         )
     }
 }

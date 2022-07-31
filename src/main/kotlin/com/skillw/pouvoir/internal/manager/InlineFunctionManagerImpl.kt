@@ -36,7 +36,7 @@ object InlineFunctionManagerImpl : InlineFunctionManager() {
     }
 
     override fun register(key: String, value: PouFunction) {
-        map[key] = value
+        this[key] = value
         if (regexCache.isNotEmpty()) {
             regexCache.append("|")
         }
@@ -50,7 +50,7 @@ object InlineFunctionManagerImpl : InlineFunctionManager() {
         if (!matcher.find()) return text
         val stringBuffer = StringBuffer()
         do {
-            val func = map[matcher.group(1)] ?: continue
+            val func = this[matcher.group(1)] ?: continue
             val args = analysis(matcher.group(2))
             val result = func.apply(args.toArgs()).toString()
             matcher.appendReplacement(stringBuffer, result)

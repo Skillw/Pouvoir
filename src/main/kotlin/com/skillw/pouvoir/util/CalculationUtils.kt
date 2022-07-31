@@ -9,7 +9,6 @@ import org.bukkit.entity.LivingEntity
 import taboolib.common.platform.function.warning
 import taboolib.common5.Coerce
 import java.math.BigDecimal
-import javax.script.ScriptException
 
 object CalculationUtils {
 
@@ -36,7 +35,7 @@ object CalculationUtils {
             val optional = Coerce.asDouble(calEngine.eval(input))
             if (!optional.isPresent) error("Wrong calculation formula! $input")
             BigDecimal.valueOf(optional.get())
-        } catch (e: ScriptException) {
+        } catch (e: Exception) {
             warning("Wrong calculation formula! $input")
             BigDecimal.valueOf(0.0)
         }

@@ -8,7 +8,7 @@ import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import com.skillw.pouvoir.api.listener.Priority
 import com.skillw.pouvoir.api.listener.ScriptListener
 import com.skillw.pouvoir.api.map.BaseMap
-import com.skillw.pouvoir.internal.hologram.ConcurrentHashSet
+import com.skillw.pouvoir.api.placeholder.PouPlaceHolder
 import com.skillw.pouvoir.internal.script.javascript.PouJavaScriptEngine
 import com.skillw.pouvoir.util.ClassUtils
 import com.skillw.pouvoir.util.ClassUtils.findClass
@@ -19,6 +19,7 @@ import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
 import org.bukkit.command.PluginCommand
 import org.bukkit.enchantments.Enchantment
+import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.InventoryHolder
@@ -47,7 +48,6 @@ import taboolib.platform.util.hoverItem
 import taboolib.platform.util.isNotAir
 import java.util.function.Consumer
 import java.util.function.Function
-import java.util.function.Supplier
 
 
 object ScriptTool : BaseMap<String, Any>() {
@@ -90,7 +90,7 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     @Deprecated(
-        "Old params; Please use 'task'",
+        "To-update params; Please use 'task'",
         ReplaceWith("task(runnable)")
     )
     fun runTask(runnable: Runnable) =
@@ -98,7 +98,7 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     @Deprecated(
-        "Old params; Please ues 'taskAsync'",
+        "To-update params; Please ues 'taskAsync'",
         ReplaceWith("taskAsync(runnable)")
     )
     fun runTaskAsync(runnable: Runnable) =
@@ -106,7 +106,7 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     @Deprecated(
-        "Old params; Please ues 'taskLater'",
+        "To-update params; Please ues 'taskLater'",
         ReplaceWith("taskLater(runnable)")
     )
     fun runTaskLater(runnable: Runnable, delay: Long) =
@@ -114,7 +114,7 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     @Deprecated(
-        "Old params; Please ues 'taskAsyncLater'",
+        "To-update params; Please ues 'taskAsyncLater'",
         ReplaceWith("taskAsyncLater(runnable)")
     )
     fun runTaskAsyncLater(runnable: Runnable, delay: Long) =
@@ -122,7 +122,7 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     @Deprecated(
-        "Old params; Please ues 'taskTimer'",
+        "To-update params; Please ues 'taskTimer'",
         ReplaceWith("taskTimer(runnable)")
     )
     fun runTaskTimer(runnable: Runnable, delay: Long, period: Long) =
@@ -130,7 +130,7 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     @Deprecated(
-        "Old params; Please ues 'taskAsyncTimer'",
+        "To-update params; Please ues 'taskAsyncTimer'",
         ReplaceWith("taskAsyncTimer(runnable)")
     )
     fun runTaskAsyncTimer(runnable: Runnable, delay: Long, period: Long) =
@@ -154,6 +154,16 @@ object ScriptTool : BaseMap<String, Any>() {
 
             override fun onRequest(player: OfflinePlayer, params: String): String {
                 return scriptManager.invoke<String>(path, parameters = arrayOf(player, params)).toString()
+            }
+        }.register()
+    }
+
+
+    @JvmStatic
+    fun pouPlaceHolder(identifier: String, name: String, author: String, version: String, path: String) {
+        object : PouPlaceHolder(identifier, name, author, version) {
+            override fun onPlaceHolderRequest(params: String, entity: LivingEntity, def: String): String {
+                return scriptManager.invoke<String>(path, parameters = arrayOf(entity, params)).toString()
             }
         }.register()
     }
@@ -249,17 +259,20 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     fun regCommand(command: PluginCommand) {
-
-        val bc = BukkitCommand()
-        bc.sync()
-        bc.commandMap.register(command.name, command)
+        task {
+            val bc = BukkitCommand()
+            bc.sync()
+            bc.commandMap.register(command.name, command)
+        }
     }
 
     @JvmStatic
     fun unRegCommand(name: String) {
-        val bc = BukkitCommand()
-        bc.sync()
-        bc.unregisterCommand(name)
+        task {
+            val bc = BukkitCommand()
+            bc.sync()
+            bc.unregisterCommand(name)
+        }
     }
 
 
@@ -447,26 +460,6 @@ object ScriptTool : BaseMap<String, Any>() {
         }.forEach { mirrorKey ->
             Mirror.mirrorData.remove(mirrorKey)
         }
-    }
-
-    private val syncSet = ConcurrentHashSet<String>()
-
-    @JvmStatic
-    fun synchronized(key: String, cancel: Supplier<Boolean>, func: Supplier<Any?>): Any? {
-        while (syncSet.contains(key)) {
-            if (cancel.get()) {
-                return null
-            }
-        }
-        syncSet += key
-        val result = try {
-            func.get()
-        } catch (e: Exception) {
-            null
-        } finally {
-            syncSet -= key
-        }
-        return result
     }
 
 }

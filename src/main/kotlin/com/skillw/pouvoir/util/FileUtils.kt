@@ -4,7 +4,8 @@ import com.skillw.pouvoir.Pouvoir
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.configuration.serialization.ConfigurationSerializable
-import taboolib.common.platform.function.warning
+import taboolib.common.platform.function.console
+import taboolib.module.lang.sendLang
 import java.io.File
 import java.math.BigInteger
 import java.security.MessageDigest
@@ -18,7 +19,7 @@ object FileUtils {
     fun <T : ConfigurationSerializable> loadMultiply(mainFile: File, clazz: Class<T>): List<Pair<T, File>> {
         return mainFile.run {
             val list = LinkedList<Pair<T, File>>()
-            for (file in listSubFiles()?.filter { it.extension == "yml" } ?: return list) {
+            for (file in listSubFiles().filter { it.extension == "yml" }) {
                 val config = file.loadYaml() ?: continue
                 for (key in config.getKeys(false)) {
                     try {
@@ -59,8 +60,8 @@ object FileUtils {
         try {
             config.load(this)
         } catch (e: Throwable) {
-            warning("Wrong config! in $name")
-            warning("Cause: " + ColorUtils.unColor(e.cause?.message.toString()))
+            console().sendLang("wrong-config", name)
+            console().sendLang("wrong-config-cause", ColorUtils.unColor(e.cause?.message.toString()))
             return null
         }
         return config
@@ -80,7 +81,7 @@ object FileUtils {
     @JvmStatic
     fun File.loadYamls(): List<YamlConfiguration> {
         val yamls = LinkedList<YamlConfiguration>()
-        for (subFile in listSubFiles() ?: return yamls) {
+        for (subFile in listSubFiles()) {
             if (subFile.isFile && subFile.name.endsWith(".yml")) {
                 yamls.add(subFile.loadYaml() ?: continue)
                 continue

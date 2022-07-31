@@ -20,7 +20,7 @@ object ScriptTaskManagerImpl : ScriptTaskManager() {
         createPool(script).register()
     }
 
-    override val workingEngines: List<String>
+    override val workingTasks: List<String>
         get() {
             val set = LinkedList<String>()
             values.forEach {

@@ -11,7 +11,7 @@ import com.skillw.pouvoir.util.MessageUtils.information
 import org.bukkit.plugin.Plugin
 import taboolib.common.env.RuntimeDependencies
 import taboolib.common.env.RuntimeDependency
-import taboolib.library.reflex.ReflexClass
+import taboolib.common.reflect.ReflexClass
 import java.util.function.Function
 
 @RuntimeDependencies(RuntimeDependency("!org.jetbrains.kotlin:kotlin-reflect:1.6.10"))
@@ -20,32 +20,32 @@ object TopLevelHandler : ClassHandler(1) {
 
     override fun inject(clazz: Class<*>, plugin: Plugin) {
         val source = plugin.name
-        val structure = ReflexClass.of(clazz).structure
-        if (structure.isAnnotationPresent(ScriptTopLevel::class.java)) {
-            val annotation = structure.getAnnotation(ScriptTopLevel::class.java) ?: return
-            val key = (annotation.property<String>("key") ?: "").ifEmpty(clazz.simpleName)
-            val description = annotation.property<String>("description")
+        val structure = ReflexClass(clazz)
+        if (clazz.isAnnotationPresent(ScriptTopLevel::class.java)) {
+            val annotation = clazz.getAnnotation(ScriptTopLevel::class.java) ?: return
+            val key = (annotation.key).ifEmpty(clazz.simpleName)
+            val description = annotation.description
             val member = clazz.static()
             val clazzStr = "&f$key &7= &6${clazz.name}"
             val info = "$clazzStr &8$description"
             TopLevelData(key, source, TopLevel.Type.CLASS, member, info).register()
         }
-        structure.fields
-            .filter { it.isStatic && it.isAnnotationPresent(ScriptTopLevel::class.java) }
+        structure.savingFields
+            .filter { it.isAnnotationPresent(ScriptTopLevel::class.java) }
             .forEach {
                 val annotation = it.getAnnotation(ScriptTopLevel::class.java) ?: return
-                val key = (annotation.property<String>("key") ?: "").ifEmpty(it.name)
-                val description = annotation.property<String>("description")
+                val key = (annotation.key).ifEmpty(it.name)
+                val description = annotation.description
                 val member = it.get(null) ?: return@forEach
                 val info = "${member.information(key)} &8$description"
                 TopLevelData(key, source, TopLevel.Type.FIELD, member, info).register()
             }
-        structure.methods
-            .filter { it.isStatic && it.isAnnotationPresent(ScriptTopLevel::class.java) }
+        structure.savingMethods
+            .filter { it.isAnnotationPresent(ScriptTopLevel::class.java) }
             .forEach { method ->
                 val annotation = method.getAnnotation(ScriptTopLevel::class.java) ?: return
-                val key = (annotation.property<String>("key") ?: "").ifEmpty(method.name)
-                val description = annotation.property<String>("description")
+                val key = (annotation.key).ifEmpty(method.name)
+                val description = annotation.description
                 val paramTypes = method.parameterTypes
                 val paramStr = StringBuilder()
                 paramTypes.forEachIndexed { index, clazz ->
@@ -58,11 +58,11 @@ object TopLevelHandler : ClassHandler(1) {
                     val single = method.parameterTypes.size == 1
                     return@Function if (single) {
                         if (it?.javaClass?.simpleName == "ScriptObjectMirror")
-                            method.invokeStatic(it.toObject())
+                            method.invoke(null, it.toObject())
                         else
-                            method.invokeStatic(it)
+                            method.invoke(null, it)
                     } else {
-                        method.invokeStatic(*ScriptTool.arrayOf(it))
+                        method.invoke(null, *ScriptTool.arrayOf(it))
                     }
                 }, info).register()
             }

@@ -12,10 +12,20 @@ import org.bukkit.entity.LivingEntity
  */
 abstract class PouPlaceHolder(
     identifier: String,
-    val subPouvoir: SubPouvoir
+    val name: String,
+    val author: String,
+    val version: String,
 ) : Registrable<String> {
+
+    constructor(identifier: String, subPouvoir: SubPouvoir) : this(
+        identifier,
+        subPouvoir.plugin.name,
+        subPouvoir.plugin.description.authors.toString(),
+        subPouvoir.plugin.description.version
+    )
+
     final override val key: String = identifier
-    abstract fun onPlaceHolderRequest(params: String, livingEntity: LivingEntity, def: String): String?
+    abstract fun onPlaceHolderRequest(params: String, entity: LivingEntity, def: String): String?
     override fun register() {
         Pouvoir.pouPlaceholderManager.register(key, this)
     }

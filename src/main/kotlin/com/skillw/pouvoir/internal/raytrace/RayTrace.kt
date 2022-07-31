@@ -3,7 +3,7 @@ package com.skillw.pouvoir.internal.raytrace
 import org.bukkit.entity.LivingEntity
 import org.bukkit.util.Vector
 
-class RayTrace(val origin: Vector, val direction: Vector) {
+class RayTrace(private val origin: Vector, private val direction: Vector) {
 
     constructor(livingEntity: LivingEntity) : this(
         livingEntity.eyeLocation.toVector(),
@@ -21,7 +21,7 @@ class RayTrace(val origin: Vector, val direction: Vector) {
         }
     }
 
-    fun distance(distance: Double): Vector {
+    private fun distance(distance: Double): Vector {
         return origin.clone().add(direction.clone().multiply(distance))
     }
 }

@@ -2,8 +2,9 @@ package com.skillw.pouvoir.api.plugin
 
 import com.skillw.pouvoir.api.able.Registrable
 import com.skillw.pouvoir.api.manager.ManagerData
-import com.skillw.pouvoir.util.MessageUtils
 import org.bukkit.plugin.java.JavaPlugin
+import taboolib.common.platform.function.console
+import taboolib.module.lang.sendLang
 
 interface SubPouvoir : Registrable<String> {
     var managerData: ManagerData
@@ -11,12 +12,12 @@ interface SubPouvoir : Registrable<String> {
 
 
     fun load() {
-        MessageUtils.info("&d[&9$key&d] &a$key is loaded...")
+        console().sendLang("plugin-load", key)
         managerData.load()
     }
 
     fun enable() {
-        MessageUtils.info("&d[&9$key&d] &e$key is enable...")
+        console().sendLang("plugin-enable", key)
         managerData.enable()
     }
 
@@ -25,7 +26,7 @@ interface SubPouvoir : Registrable<String> {
     }
 
     fun disable() {
-        MessageUtils.info("&d[&9$key&d] &c$key is disable...")
+        console().sendLang("plugin-disable", key)
         managerData.disable()
     }
 

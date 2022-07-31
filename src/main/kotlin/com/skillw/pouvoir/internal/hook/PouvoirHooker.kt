@@ -13,11 +13,11 @@ import taboolib.platform.compat.replacePlaceholder
 
 @AutoRegister
 object PouvoirHooker : PouPlaceHolder("pou", Pouvoir) {
-    override fun onPlaceHolderRequest(params: String, livingEntity: LivingEntity, def: String): String {
+    override fun onPlaceHolderRequest(params: String, entity: LivingEntity, def: String): String {
         if (params.isBlank()) return def
         var argsStr = params.replace("@", "%")
-        if (livingEntity is Player) {
-            argsStr = argsStr.replacePlaceholder(livingEntity)
+        if (entity is Player) {
+            argsStr = argsStr.replacePlaceholder(entity)
         }
         val args = argsStr.protectedSplit('_', Pair('[', ']'))
         if (args.isEmpty()) return def
@@ -28,11 +28,11 @@ object PouvoirHooker : PouPlaceHolder("pou", Pouvoir) {
                 val scriptPath = args[0]
                 val spilt: Array<String> = if (args.size > 1) params.replace("run_", "").toArgs() else emptyArray()
                 val finalArgs = Array(spilt.size) {
-                    Pouvoir.pouPlaceHolderAPI.replace(livingEntity, spilt[it])
+                    Pouvoir.pouPlaceHolderAPI.replace(entity, spilt[it])
                 }
                 return scriptManager.invoke<String>(
                     scriptPath,
-                    arguments = hashMapOf("entity" to livingEntity, "args" to finalArgs)
+                    arguments = hashMapOf("entity" to entity, "args" to finalArgs)
                 ).toString()
             }
         }

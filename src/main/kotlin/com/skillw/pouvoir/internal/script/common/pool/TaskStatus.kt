@@ -1,9 +1,12 @@
 package com.skillw.pouvoir.internal.script.common.pool
 
+import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.able.Keyable
 import com.skillw.pouvoir.internal.script.common.hook.Invoker
 import taboolib.module.chat.TellrawJson
 import taboolib.module.chat.colored
+import java.util.concurrent.Callable
+import java.util.concurrent.Future
 
 /**
  * @className TaskStatus
@@ -24,7 +27,7 @@ class TaskStatus(override val key: String, private val invoker: Invoker) :
         val end = System.currentTimeMillis()
         return if (start != 0L) TellrawJson().append("&e - &6$key &aFunction: &b${scriptTask?.function} &aTotal: &9${end - start}ms".colored())
             .hoverText("&cClick to cancel!".colored())
-            .runCommand("/pou engine stop $key") else null
+            .runCommand("/pou task stop $key") else null
     }
 
     fun start(
@@ -53,4 +56,29 @@ class TaskStatus(override val key: String, private val invoker: Invoker) :
         return scriptTask?.get()
     }
 
+    /**
+     * @className ScriptTask
+     * @author Glom
+     * @date 2022/7/29 20:47
+     * Copyright  2022 user. All rights reserved.
+     */
+    class ScriptTask(val function: String, callable: Callable<Any?>) {
+        private val task: Future<Any?>
+
+        init {
+            task = Pouvoir.poolExecutor.submit(callable)
+        }
+
+        var isCancelled = false
+        fun cancel() {
+            isCancelled = true
+            task.cancel(true)
+        }
+
+        /*
+        InterruptedException CancellationException ScriptException
+        (逃)
+         */
+        fun get(): Any? = task.get()
+    }
 }

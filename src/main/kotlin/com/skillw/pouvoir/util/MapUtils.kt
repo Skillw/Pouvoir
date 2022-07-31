@@ -1,7 +1,7 @@
 package com.skillw.pouvoir.util
 
+import com.skillw.pouvoir.api.map.BaseMap
 import java.util.*
-import java.util.concurrent.ConcurrentHashMap
 
 /**
  * ClassName : com.skillw.pouvoir.util.MapUtils
@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap
 object MapUtils {
     @JvmName("addSingleKListV")
     @JvmStatic
-    fun <K, V> MutableMap<K, LinkedList<V>>.put(key: K, value: V): Map<K, LinkedList<V>> {
+    fun <K : Any, V> BaseMap<K, LinkedList<V>>.put(key: K, value: V): BaseMap<K, LinkedList<V>> {
         if (!containsKey(key)) {
             this[key] = LinkedList(listOf(value))
         } else {
@@ -22,7 +22,7 @@ object MapUtils {
 
     @JvmName("addSingleKSetV")
     @JvmStatic
-    fun <K, V> MutableMap<K, HashSet<V>>.put(key: K, value: V): Map<K, HashSet<V>> {
+    fun <K : Any, V> BaseMap<K, HashSet<V>>.put(key: K, value: V): BaseMap<K, HashSet<V>> {
         if (!containsKey(key)) {
             this[key] = HashSet(listOf(value))
         } else {
@@ -32,9 +32,13 @@ object MapUtils {
     }
 
     @JvmStatic
-    fun <K, V, Z> MutableMap<K, MutableMap<Z, V>>.put(key1: K, key2: Z, value: V): MutableMap<K, MutableMap<Z, V>> {
+    fun <K : Any, V : Any, Z : Any> BaseMap<K, BaseMap<Z, V>>.put(
+        key1: K,
+        key2: Z,
+        value: V,
+    ): BaseMap<K, BaseMap<Z, V>> {
         if (!containsKey(key1)) {
-            val map1: MutableMap<Z, V> = ConcurrentHashMap()
+            val map1: BaseMap<Z, V> = BaseMap()
             map1[key2] = value
             this[key1] = map1
         } else {
@@ -44,18 +48,18 @@ object MapUtils {
     }
 
     @JvmName("putKZListV")
-    fun <K, V, Z> MutableMap<K, MutableMap<Z, LinkedList<V>>>.put(
+    fun <K : Any, V, Z : Any> BaseMap<K, BaseMap<Z, LinkedList<V>>>.put(
         key1: K,
         key2: Z,
-        value: V
-    ): MutableMap<K, MutableMap<Z, LinkedList<V>>> {
-        if (!containsKey(key1)) put(key1, ConcurrentHashMap())
+        value: V,
+    ): BaseMap<K, BaseMap<Z, LinkedList<V>>> {
+        if (!containsKey(key1)) put(key1, BaseMap())
         get(key1)!!.put(key2, value)
         return this
     }
 
     @JvmStatic
-    fun <K, Z, V> Map<K, Map<Z, V>>.getAllValues(): List<V> {
+    fun <K : Any, Z, V> BaseMap<K, Map<Z, V>>.getAllValues(): List<V> {
         val list = LinkedList<V>()
         forEach {
             list.addAll(it.value.values)

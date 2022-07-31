@@ -23,5 +23,5 @@ abstract class ScriptTaskManager : Manager, KeyMap<String, TaskPool>() {
         vararg parameters: Any?,
     ): TaskStatus?
 
-    abstract val workingEngines: List<String>
+    abstract val workingTasks: List<String>
 }

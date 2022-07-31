@@ -258,14 +258,13 @@ object EntityUtils {
     fun LivingEntity.getEntityRayHit(
         distance: Double,
     ): LivingEntity? {
-        val entities = ArrayList<Pair<Entity, BoundingBox>>()
-        getNearbyEntities(distance, distance, distance).forEach {
-            entities += it to NMSImpl().getBoundingBox(it)
+        val entities = ArrayList<Pair<Entity, BoundingBox>>().apply {
+            getNearbyEntities(distance, distance, distance).forEach {
+                this += it to NMSImpl().getBoundingBox(it)
+            }
         }
-        val traces = RayTrace(this).traces(distance, 0.2)
-        for (vector in traces) {
-            val firstOrNull = entities.firstOrNull { it.value.contains(vector) } ?: continue
-            return firstOrNull.key as? LivingEntity? ?: continue
+        for (vector in RayTrace(this).traces(distance, 0.2)) {
+            return entities.firstOrNull { it.value.contains(vector) } as? LivingEntity? ?: continue
         }
         return null
     }

@@ -7,11 +7,11 @@ import taboolib.module.chat.colored
 import java.util.*
 
 internal object TopLevel : KeyMap<String, TopLevelData>() {
-    private val membersInfo = BaseMap<String, MutableMap<Type, LinkedList<String>>>()
+    private val membersInfo = BaseMap<String, BaseMap<Type, LinkedList<String>>>()
 
-    private fun LinkedList<String>.addTypeMessages(type: Type, data: MutableMap<Type, LinkedList<String>>) {
+    private fun LinkedList<String>.addTypeMessages(type: Type, data: BaseMap<Type, LinkedList<String>>) {
         val messages = data[type]?.sorted()
-        add("    &f- &a${type.display}&f: " + if (messages == null || messages.isEmpty()) "&7Empty" else "")
+        add("    &f- &a${type.display}&f: " + if (messages.isNullOrEmpty()) "&7Empty" else "")
         data[type]?.sorted()?.forEach {
             add("       $it")
         }

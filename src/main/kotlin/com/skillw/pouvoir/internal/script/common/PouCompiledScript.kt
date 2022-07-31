@@ -53,11 +53,14 @@ class PouCompiledScript(
         val result = try {
             task?.get()
         } catch (e: InterruptedException) {
-            console().sendLang("script-invoke-task-cancelled", function, key)
+            console().sendLang("script-invoke-task-cancelled", function, key, task?.key.toString())
         } catch (e: CancellationException) {
-            console().sendLang("script-invoke-task-cancelled", function, key)
+            console().sendLang("script-invoke-task-cancelled", function, key, task?.key.toString())
         } catch (e: ScriptException) {
-            console().sendLang("script-invoke-exception", function, key)
+            console().sendLang("script-invoke-script-exception", function, key, task?.key.toString())
+            e.printStackTrace()
+        } catch (e: Throwable) {
+            console().sendLang("script-invoke-exception", function, key, task?.key.toString())
             e.printStackTrace()
         } finally {
             actives.remove(task)

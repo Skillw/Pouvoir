@@ -3,19 +3,14 @@ package com.skillw.pouvoir.internal.manager
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.Pouvoir.scriptTaskManager
 import com.skillw.pouvoir.api.manager.sub.script.CompileManager
-import com.skillw.pouvoir.api.manager.sub.script.ScriptEngineManager.Companion.searchEngine
 import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
 import com.skillw.pouvoir.api.script.engine.PouScriptEngine
 import com.skillw.pouvoir.internal.script.common.PouCompiledScript
-import com.skillw.pouvoir.util.FileUtils.listSubFiles
 import com.skillw.pouvoir.util.FileUtils.md5
 import com.skillw.pouvoir.util.FileUtils.pathNormalize
 import com.skillw.pouvoir.util.StringUtils.toStringWithNext
 import taboolib.common.platform.function.console
-import taboolib.common.platform.function.getDataFolder
-import taboolib.common.platform.function.submit
-import taboolib.common5.FileWatcher
 import taboolib.module.lang.sendLang
 import java.io.File
 import java.io.FileNotFoundException
@@ -24,53 +19,9 @@ import javax.script.Compilable
 object CompileManagerImpl : CompileManager() {
 
     override val key: String = "CompileManager"
-    override val priority: Int = 9
+    override val priority: Int = 7
     override val subPouvoir: SubPouvoir = Pouvoir
     private val scripts = BaseMap<String, PouCompiledScript>()
-
-    private val dirs = HashSet<File>()
-
-    private val watcher by lazy {
-        dirs.runCatching { }
-        FileWatcher()
-    }
-
-    override fun onLoad() {
-        dirs += File(getDataFolder(), "scripts")
-    }
-
-    override fun onEnable() {
-        reloadScripts()
-    }
-
-    override fun onReload() {
-        reloadScripts()
-    }
-
-    private fun reloadScripts() {
-        submit(async = true) { dirs.forEach { addScript(it) } }
-    }
-
-    override fun addScript(file: File) {
-        if (file.isDirectory) {
-            addScriptDir(file)
-            return
-        }
-        file.compileScript()?.apply { register() }
-        if (watcher.hasListener(file)) return
-        watcher.addSimpleListener(file) {
-            addScript(file)
-        }
-    }
-
-    override fun addScriptDir(file: File) {
-        dirs.add(file)
-        file.listSubFiles().filter {
-            it.searchEngine() != null
-        }.forEach {
-            addScript(it)
-        }
-    }
 
     private fun compileToScript(file: File, pouEngine: PouScriptEngine): PouCompiledScript? {
         val md5Hex = file.md5() ?: return null

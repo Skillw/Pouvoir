@@ -19,17 +19,17 @@ tasks.dokkaJavadoc.configure {
     }
 }
 taboolib {
-//    options("skip-kotlin-relocate")
+    options("skip-kotlin-relocate")
 
     description {
         contributors {
             name("Glom_")
         }
         dependencies {
-            name("MythicMobs").optional(true).loadafter(true)
             name("PlaceholderAPI").optional(true).loadafter(true)
-            name("AttributeSystem").optional(true).loadbefore(true)
+            name("MythicMobs").optional(true).loadafter(true)
             name("RandomItem").optional(true).loadbefore(true)
+            name("AttributeSystem").optional(true).loadbefore(true)
         }
     }
 
@@ -45,8 +45,8 @@ taboolib {
         "module-kether",
         "module-metrics",
         "module-navigation",
-        "module-lang",
         "module-nms",
+        "module-lang",
         "module-nms-util",
         "module-porticus",
         "module-ui",
@@ -60,7 +60,7 @@ taboolib {
 
 
     classifier = null
-    version = "6.0.9-40"
+    version = "6.0.9-35"
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -81,11 +81,9 @@ dependencies {
     compileOnly("ink.ptms.core:v11200:11200-minimize")
     compileOnly("org.codehaus.groovy:groovy-jsr223:3.0.11")
 
-    compileOnly("com.alibaba:fastjson:1.2.83")
+    compileOnly("com.alibaba:fastjson:2.0.7")
     compileOnly(kotlin("stdlib"))
     compileOnly(fileTree("libs"))
-
-    taboo("com.alibaba:fastjson:1.2.83")
 }
 
 

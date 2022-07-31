@@ -4,7 +4,7 @@ import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import com.skillw.pouvoir.util.ClassUtils.isStaticClass
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
-import taboolib.library.reflex.Reflex.Companion.invokeMethod
+import taboolib.common.reflect.Reflex.Companion.invokeMethod
 import taboolib.module.chat.colored
 
 /**
