@@ -26,7 +26,7 @@ object NashornNew : ScriptBridge {
         script.eval()
         engine.eval(
             """
-                        class NeigeNB{}
+                        function NeigeNB(){}
                         NeigeNB.prototype = this
                         function $SCRIPT_OBJ(){
                           return new NeigeNB()
