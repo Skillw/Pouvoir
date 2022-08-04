@@ -26,7 +26,7 @@ object Function : ScriptAnnotation("Function") {
         PouConfig.debug { console().sendLang("annotation-function-register", key) }
         script.onDeleted("Inline-Function-$key") {
             PouConfig.debug { console().sendLang("annotation-function-unregister", key) }
-            Pouvoir.inlineFunctionManager.remove(key)
+            Pouvoir.pouFunctionManager.remove(key)
         }
     }
 }

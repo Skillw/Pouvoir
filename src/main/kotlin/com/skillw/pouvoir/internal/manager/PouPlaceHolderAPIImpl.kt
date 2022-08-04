@@ -1,6 +1,7 @@
 package com.skillw.pouvoir.internal.manager
 
 import com.skillw.pouvoir.Pouvoir
+import com.skillw.pouvoir.api.PouvoirAPI.analysis
 import com.skillw.pouvoir.api.manager.sub.PouPlaceHolderAPI
 import com.skillw.pouvoir.util.EntityUtils.livingEntity
 import org.bukkit.entity.LivingEntity
@@ -28,11 +29,11 @@ object PouPlaceHolderAPIImpl : PouPlaceHolderAPI {
     override fun replace(entity: LivingEntity?, text: String): String {
         var new = text
         entity ?: kotlin.run {
-            return analysis(new)
+            return new.analysis()
         }
         val matcher = pattern.matcher(new)
         return if (!matcher.find()) {
-            analysis(new)
+            new.analysis()
         } else {
             val builder = StringBuffer()
             do {
@@ -49,16 +50,12 @@ object PouPlaceHolderAPIImpl : PouPlaceHolderAPI {
             if (entity is Player) {
                 new = new.replacePlaceholder(entity)
             }
-            analysis(new).colored()
+            new.analysis().colored()
         }
     }
 
     override fun replace(uuid: UUID, text: String): String {
         return replace(uuid.livingEntity(), text)
-    }
-
-    private fun analysis(text: String): String {
-        return Pouvoir.inlineFunctionManager.analysis(text)
     }
 
 

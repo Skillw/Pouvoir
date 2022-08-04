@@ -6,17 +6,11 @@ plugins {
     id("org.jetbrains.dokka") version "1.6.10"
 }
 
-tasks.dokkaJavadoc.configure {
+tasks.dokkaHtml.configure {
     outputDirectory.set(File("C:\\Users\\Administrator\\Desktop\\Doc\\pouvoir"))
-    dokkaSourceSets {
-        named("main") {
-            jdkVersion.set(8)
-            noStdlibLink.set(false)
-            noJdkLink.set(false)
-            suppressObviousFunctions.set(false)
-            suppressInheritedMembers.set(true)
-        }
-    }
+    suppressObviousFunctions.set(false)
+    suppressInheritedMembers.set(true)
+
 }
 taboolib {
     options("skip-kotlin-relocate")
@@ -79,12 +73,15 @@ repositories {
 }
 
 dependencies {
-    dokkaGfmPlugin("org.jetbrains.dokka:javadoc-plugin:1.6.10")
+    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.6.10")
     compileOnly("ink.ptms:nms-all:1.0.0")
     compileOnly("org.codehaus.groovy:groovy-jsr223:3.0.11")
     compileOnly("ink.ptms.core:v11200:11200-minimize")
+    compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
+    compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.3")
+    compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:1.3.3")
 
-    compileOnly("com.alibaba:fastjson:2.0.7")
     compileOnly(kotlin("stdlib"))
     compileOnly(fileTree("libs"))
 }

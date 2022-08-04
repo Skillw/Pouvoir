@@ -50,7 +50,6 @@ object NashornLegacy : ScriptBridge {
         val scriptObject = any as? ScriptObjectMirror ?: return null
         if (scriptObject.isFunction) {
             val paramSize = scriptObject.getProperty<ScriptFunction>("sobj")!!
-                .also { it.keySet().forEach { key -> println("$key = ${it.get(key)} ") } }
                 .getProperty<ScriptFunctionData>("data")!!
                 .invokeMethod<MethodType>("getGenericType")!!
                 .parameterCount() - 2

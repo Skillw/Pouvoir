@@ -35,7 +35,7 @@ object StringUtils {
         for (endIndex in 0 until len) {
             val c = this[endIndex]
             if (inner) {
-                if (c == protector.value) {
+                if (c == protector.value && this[endIndex - 1] != '\\') {
                     inner = false
                     escapes.add(endIndex)
                 }
@@ -48,8 +48,10 @@ object StringUtils {
                     }
 
                     protector.key -> {
-                        inner = true
-                        escapes.add(endIndex)
+                        if (this[endIndex - 1] != '\\') {
+                            inner = true
+                            escapes.add(endIndex)
+                        }
                     }
                 }
             }
@@ -177,5 +179,9 @@ object StringUtils {
         return list
     }
 
+
+    internal fun String.format(): String {
+        return this.replace(Regex("\\s+"), " ")
+    }
 
 }

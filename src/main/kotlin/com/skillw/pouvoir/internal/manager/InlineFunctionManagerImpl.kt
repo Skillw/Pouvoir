@@ -1,7 +1,7 @@
 package com.skillw.pouvoir.internal.manager
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.api.function.PouFunction
+import com.skillw.pouvoir.api.function.LegacyFunction
 import com.skillw.pouvoir.api.manager.sub.InlineFunctionManager
 import com.skillw.pouvoir.internal.manager.PouConfig.debugFunc
 import com.skillw.pouvoir.util.StringUtils.toArgs
@@ -18,12 +18,12 @@ object InlineFunctionManagerImpl : InlineFunctionManager() {
     private lateinit var functionPattern: Pattern
     private val regexCache = StringBuilder()
 
-    override fun register(value: PouFunction) {
+    override fun register(value: LegacyFunction) {
         register(value.key, value)
     }
 
     override fun onLoad() {
-        register(object : PouFunction("TEST") {
+        register(object : LegacyFunction("TEST") {
             override fun predicate(args: Array<String>): Boolean {
                 TODO("Not yet implemented")
             }
@@ -35,7 +35,7 @@ object InlineFunctionManagerImpl : InlineFunctionManager() {
 
     }
 
-    override fun register(key: String, value: PouFunction) {
+    override fun register(key: String, value: LegacyFunction) {
         this[key] = value
         if (regexCache.isNotEmpty()) {
             regexCache.append("|")
@@ -45,19 +45,19 @@ object InlineFunctionManagerImpl : InlineFunctionManager() {
         functionPattern = Pattern.compile(regex, 2)
     }
 
-    override fun analysis(text: String): String {
+    override fun legacyAnalysis(text: String): String {
         val matcher = functionPattern.matcher(text)
         if (!matcher.find()) return text
         val stringBuffer = StringBuffer()
         do {
             val func = this[matcher.group(1)] ?: continue
-            val args = analysis(matcher.group(2))
+            val args = legacyAnalysis(matcher.group(2))
             val result = func.apply(args.toArgs()).toString()
             matcher.appendReplacement(stringBuffer, result)
             if (debugFunc) {
                 info((PouConfig.debugPrefix + "$func(${matcher.group(2)}) -> $result").colored())
             }
         } while (matcher.find())
-        return analysis(matcher.appendTail(stringBuffer).toString())
+        return legacyAnalysis(matcher.appendTail(stringBuffer).toString())
     }
 }

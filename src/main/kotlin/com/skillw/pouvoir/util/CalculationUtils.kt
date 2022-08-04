@@ -33,7 +33,7 @@ object CalculationUtils {
     fun calculate(input: String): BigDecimal {
         return try {
             val optional = Coerce.asDouble(calEngine.eval(input))
-            if (!optional.isPresent) error("Wrong calculation formula! $input")
+            if (!optional.isPresent) error("Wrong calculation formula! $input");
             BigDecimal.valueOf(optional.get())
         } catch (e: Exception) {
             warning("Wrong calculation formula! $input")

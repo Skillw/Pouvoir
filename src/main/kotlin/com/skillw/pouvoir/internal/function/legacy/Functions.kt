@@ -1,7 +1,7 @@
 package com.skillw.pouvoir.internal.function
 
 import com.skillw.pouvoir.api.annotation.AutoRegister
-import com.skillw.pouvoir.api.function.PouFunction
+import com.skillw.pouvoir.api.function.LegacyFunction
 import com.skillw.pouvoir.internal.manager.PouConfig
 import com.skillw.pouvoir.util.CalculationUtils.calculateDouble
 import com.skillw.pouvoir.util.MessageUtils.warning
@@ -37,7 +37,7 @@ private fun `if`(x: String, symbol: String, y: String): Boolean {
 }
 
 @AutoRegister
-object If : PouFunction("if") {
+object If : LegacyFunction("if") {
     override fun predicate(args: Array<String>): Boolean {
         return args.size == 5 || args.size == 9
     }
@@ -79,7 +79,7 @@ object If : PouFunction("if") {
 }
 
 @AutoRegister
-object Abs : PouFunction("abs") {
+object Abs : LegacyFunction("abs") {
     override fun predicate(args: Array<String>): Boolean {
         return args.size == 1 && Coerce.asDouble(args[0]).isPresent
     }
@@ -91,7 +91,7 @@ object Abs : PouFunction("abs") {
 }
 
 @AutoRegister
-object Ceil : PouFunction("ceil") {
+object Ceil : LegacyFunction("ceil") {
     override fun predicate(args: Array<String>): Boolean {
         return args.size == 1 && Coerce.asDouble(args[0]).isPresent
     }
@@ -103,7 +103,7 @@ object Ceil : PouFunction("ceil") {
 }
 
 @AutoRegister
-object Format : PouFunction("format") {
+object Format : LegacyFunction("format") {
     override fun predicate(args: Array<String>): Boolean {
         return args.size == 2 && Coerce.asDouble(args[0]).isPresent
     }
@@ -116,7 +116,7 @@ object Format : PouFunction("format") {
 }
 
 @AutoRegister
-object Floor : PouFunction("floor") {
+object Floor : LegacyFunction("floor") {
     override fun predicate(args: Array<String>): Boolean {
         return args.size == 1 && Coerce.asDouble(args[0]).isPresent
     }
@@ -128,7 +128,7 @@ object Floor : PouFunction("floor") {
 }
 
 @AutoRegister
-object Max : PouFunction("max") {
+object Max : LegacyFunction("max") {
     override fun predicate(args: Array<String>): Boolean {
         return args.size == 2 && Coerce.asDouble(args[0]).isPresent && Coerce.asDouble(args[1]).isPresent
     }
@@ -141,7 +141,7 @@ object Max : PouFunction("max") {
 }
 
 @AutoRegister
-object Min : PouFunction("min") {
+object Min : LegacyFunction("min") {
     override fun predicate(args: Array<String>): Boolean {
         return args.size == 2 && Coerce.asDouble(args[0]).isPresent && Coerce.asDouble(args[1]).isPresent
     }
@@ -154,7 +154,7 @@ object Min : PouFunction("min") {
 }
 
 @AutoRegister
-object Random : PouFunction("random") {
+object Random : LegacyFunction("random") {
     override fun predicate(args: Array<String>): Boolean {
         return args.size >= 2 && Coerce.asDouble(args[0]).isPresent && Coerce.asDouble(args[1]).isPresent
     }
@@ -168,7 +168,7 @@ object Random : PouFunction("random") {
 }
 
 @AutoRegister
-object RandomInt : PouFunction("randomInt") {
+object RandomInt : LegacyFunction("randomInt") {
     override fun predicate(args: Array<String>): Boolean {
         return args.size >= 2 && Coerce.asInteger(args[0]).isPresent && Coerce.asInteger(args[1]).isPresent
     }
@@ -181,7 +181,7 @@ object RandomInt : PouFunction("randomInt") {
 }
 
 @AutoRegister
-object Round : PouFunction("round") {
+object Round : LegacyFunction("round") {
     override fun predicate(args: Array<String>): Boolean {
         return args.size == 1 && Coerce.asDouble(args[0]).isPresent
     }
@@ -193,7 +193,7 @@ object Round : PouFunction("round") {
 }
 
 @AutoRegister
-object Calculate : PouFunction("calculate") {
+object Calculate : LegacyFunction("calculate") {
     override fun predicate(args: Array<String>): Boolean {
         return args.isNotEmpty() && (args.size == 1 || args.filterIndexed { index, _ -> index != 0 }
             .all { it1 -> it1.matches(Regex(".*=.*")) })
@@ -213,7 +213,7 @@ object Calculate : PouFunction("calculate") {
 }
 
 @AutoRegister
-object Repeat : PouFunction("repeat") {
+object Repeat : LegacyFunction("repeat") {
     override fun predicate(args: Array<String>): Boolean {
         return args.size >= 2 && Coerce.asInteger(args[0]).isPresent
     }
@@ -237,7 +237,7 @@ object Repeat : PouFunction("repeat") {
 }
 
 @AutoRegister
-object Weight : PouFunction(
+object Weight : LegacyFunction(
     "weight"
 ) {
     override fun predicate(args: Array<String>): Boolean {

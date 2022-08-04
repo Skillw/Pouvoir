@@ -1,5 +1,6 @@
 package com.skillw.pouvoir
 
+
 import com.skillw.pouvoir.api.annotation.PouManager
 import com.skillw.pouvoir.api.manager.ManagerData
 import com.skillw.pouvoir.api.manager.sub.*
@@ -9,15 +10,13 @@ import com.skillw.pouvoir.api.thread.BasicThreadFactory
 import com.skillw.pouvoir.internal.manager.PouConfig
 import com.skillw.pouvoir.internal.manager.PouConfig.threadPoolSize
 import org.bukkit.plugin.java.JavaPlugin
-import taboolib.common.env.RuntimeDependencies
-import taboolib.common.env.RuntimeDependency
 import taboolib.common.platform.Plugin
 import taboolib.module.configuration.Config
 import taboolib.module.configuration.ConfigFile
 import taboolib.platform.BukkitPlugin
 import java.util.concurrent.ScheduledThreadPoolExecutor
 
-@RuntimeDependencies(RuntimeDependency("com.alibaba:fastjson:2.0.7"))
+
 object Pouvoir : Plugin(), SubPouvoir {
 
     override val key = "Pouvoir"
@@ -51,6 +50,10 @@ object Pouvoir : Plugin(), SubPouvoir {
     @JvmStatic
     @PouManager
     lateinit var compileManager: CompileManager
+
+    @JvmStatic
+    @PouManager
+    lateinit var pouFunctionManager: PouFunctionManager
 
     @JvmStatic
     @PouManager
