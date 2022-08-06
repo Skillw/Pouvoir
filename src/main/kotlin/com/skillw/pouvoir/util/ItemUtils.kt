@@ -1,11 +1,6 @@
 package com.skillw.pouvoir.util
 
-import com.skillw.pouvoir.Pouvoir
-import io.lumine.xikage.mythicmobs.MythicMobs
 import org.bukkit.configuration.ConfigurationSection
-import org.bukkit.entity.Player
-import org.bukkit.inventory.ItemStack
-import org.bukkit.inventory.meta.ItemMeta
 import taboolib.common5.Coerce
 import taboolib.module.nms.ItemTag
 import taboolib.module.nms.ItemTagData
@@ -18,47 +13,6 @@ import java.util.regex.Pattern
  * 2021-03-12 23:40:01 Copyright 2021 user. All rights reserved.
  */
 object ItemUtils {
-    @JvmStatic
-    fun papiItem(item: ItemStack, player: Player): ItemStack {
-        if (!item.hasItemMeta()) {
-            return item
-        }
-        val meta = item.itemMeta
-        meta as ItemMeta
-        if (meta.hasDisplayName()) {
-            meta.displayName = Pouvoir.pouPlaceHolderAPI.replace(player, meta.displayName)
-        }
-        if (meta.hasLore()) {
-            val lores = ArrayList<String>()
-            for (lore in meta.lore!!) {
-                lores.add(Pouvoir.pouPlaceHolderAPI.replace(player, lore))
-            }
-            meta.lore = lores
-        }
-        item.itemMeta = meta
-        return item
-    }
-
-    @JvmStatic
-    fun getMythicItem(itemID: String, player: Player): ItemStack? {
-        return MythicMobs.inst().itemManager.getItemStack(itemID)?.also { papiItem(it, player) }
-    }
-
-    @JvmStatic
-    fun getMythicItem(itemID: String): ItemStack? {
-        return MythicMobs.inst()?.itemManager?.getItemStack(itemID)
-    }
-
-    @JvmStatic
-    fun getMythicItems(list: List<String>, player: Player?): ArrayList<ItemStack> {
-        val itemStacks: ArrayList<ItemStack> = java.util.ArrayList()
-        for (id in list) {
-            val itemStack = player?.run { getMythicItem(id, player) } ?: getMythicItem(id)
-            itemStack?.also { itemStacks.add(itemStack) }
-        }
-        return itemStacks
-    }
-
     @Suppress("IMPLICIT_CAST_TO_ANY")
     @JvmStatic
     fun ItemTagData.obj(): Any {

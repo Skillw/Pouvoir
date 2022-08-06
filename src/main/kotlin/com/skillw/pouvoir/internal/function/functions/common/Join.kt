@@ -22,7 +22,6 @@ object Join : PouFunction<String>(
             }
             if (!except("by")) return null
             val by = parseString(context) ?: return null
-            println("\"$by\"")
             return list.joinToString(by)
         }
     }

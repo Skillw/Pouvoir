@@ -14,11 +14,14 @@ object Weight : PouFunction<Any>(
     override fun execute(reader: IReader, context: Context): Any? {
         val weightRandom = RandomList<Any>()
         with(reader) {
+            if (!except("[")) return null
             while (hasNext()) {
                 val weight = parseInt(context) ?: return null
-                if (!except("to")) return null
-                val value = parseAny(context) ?: return null
-                weightRandom.add(value, weight)
+                except("to")
+                val any = parseAny(context) ?: return null
+                weightRandom.add(any, weight)
+                if (except(",")) continue
+                else if (except("]")) break
             }
         }
         return weightRandom.random()

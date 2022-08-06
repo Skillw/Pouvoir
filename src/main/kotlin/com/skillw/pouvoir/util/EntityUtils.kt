@@ -11,6 +11,7 @@ import org.bukkit.entity.Entity
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
+import taboolib.common.platform.function.warning
 import taboolib.common.reflect.Reflex.Companion.getProperty
 import taboolib.common.reflect.Reflex.Companion.invokeConstructor
 import taboolib.common.reflect.Reflex.Companion.invokeMethod
@@ -216,9 +217,19 @@ object EntityUtils {
 
     @JvmStatic
     fun destroyEntity(player: Player, entityId: Int) {
-        player.sendPacketWithFields(
-            nmsClass("PacketPlayOutEntityDestroy").newInstance().apply { setProperty("a", intArrayOf(entityId)) }
-        )
+        try {
+            player.sendPacketWithFields(
+                if (majorLegacy >= 11900) {
+                    nmsClass("PacketPlayOutEntityDestroy").invokeConstructor(arrayOf(entityId))
+                } else {
+                    nmsClass("PacketPlayOutEntityDestroy").newInstance().apply {
+                        setProperty("a", listOf(entityId))
+                    }
+                }
+            )
+        } catch (e: NoSuchMethodException) {
+            warning("Please install DecentHolograms or Adyeshach !")
+        }
     }
 
     @JvmStatic

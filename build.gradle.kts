@@ -47,7 +47,6 @@ taboolib {
         "module-porticus",
         "module-ui",
         "module-ui-receptacle",
-        "expansion-player-database",
         "expansion-javascript"
     )
     install(
@@ -75,12 +74,10 @@ repositories {
 dependencies {
     dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.6.10")
     compileOnly("ink.ptms:nms-all:1.0.0")
+    compileOnly("ink.ptms.core:v11901:11901-minimize:mapped")
     compileOnly("org.codehaus.groovy:groovy-jsr223:3.0.11")
     compileOnly("ink.ptms.core:v11200:11200-minimize")
-    compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
-    compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.3")
-    compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:1.3.3")
+    compileOnly("com.google.code.gson:gson:2.9.0")
 
     compileOnly(kotlin("stdlib"))
     compileOnly(fileTree("libs"))

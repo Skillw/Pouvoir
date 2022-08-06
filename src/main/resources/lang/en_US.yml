@@ -48,6 +48,8 @@ annotation-awake-unregister: '&d[&9Pouvoir&d] &cScript Awake &6{0} &chas been un
 annotation-awake-running: '&d[&9Pouvoir&d] &aScript Awake &6{0} &ais running!'
 annotation-annotation-register: '&d[&9Pouvoir&d] &aScript Annotation &6{0} &ahas been registered!'
 annotation-annotation-unregister: '&d[&9Pouvoir&d] &cScript Annotation &6{0} &chas been unregistered!'
+annotation-placeholder-register: '&d[&9Pouvoir&d] &aScript Placeholder &6{0} &ahas been registered!'
+annotation-placeholder-unregister: '&d[&9Pouvoir&d] &cScript Placeholder &6{0} &chas been unregistered!'
 
 kotlin-unit: '&7null'
 class-not-found: '&d[&9Pouvoir&d] &cClass &6{0} &cdosen`t exist!'

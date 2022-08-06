@@ -22,7 +22,7 @@
 #### 脚本顶级成员 (Script Top Level Function)
 
 ```kotlin
-    @ScriptTopLevel
+@ScriptTopLevel
 @JvmStatic
 fun String.placeholder(entity: LivingEntity): String {
     return Pouvoir.pouPlaceHolderAPI.replace(entity, this)
@@ -40,13 +40,9 @@ placeholder(["%as_att:PhysicalDamage_value%", entity])
 
 ```kotlin
 @AutoRegister
-object Abs : PouFunction("abs") {
-    override fun predicate(args: Array<String>): Boolean {
-        return args.size == 1 && Coerce.asDouble(args[0]).isPresent
-    }
-
-    override fun function(args: Array<String>): Any? {
-        val number = Coerce.toDouble(args[0])
+object Abs : PouFunction<Double>("abs") {
+    override fun execute(reader: IReader, context: Context): Double? {
+        val number = reader.parseDouble(context) ?: return null
         return abs(number)
     }
 }
@@ -57,22 +53,21 @@ object Abs : PouFunction("abs") {
 ```javascript
 var Coerce = static("Coerce");
 
-//@Function(plus)
-function example(args) {
-    if (args.length < 2) return "wrong-arguments";
-    var a = Coerce.toDouble(args[0]);
-    var b = Coerce.toDouble(args[1]);
-    return a + b;
+//@Function(abs)
+function example(reader, context) {
+    var number = reader.parseDouble(context)
+    if (number == null) return null;
+    return abs(number)
 }
 ```
 
 使用:
 
 ```kotlin
- println("plus(1,2)".analysis())
+ println("abs(-1)".parse())
 ```
 
-打印: 3
+打印: 1
 
 ## Links
 

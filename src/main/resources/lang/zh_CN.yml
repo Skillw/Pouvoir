@@ -49,7 +49,8 @@ annotation-awake-unregister: '&d[&9Pouvoir&d] &c脚本启动器 &6{0} &c已注�
 annotation-awake-running: '&d[&9Pouvoir&d] &c脚本启动器 &6{0} &c正在运行!'
 annotation-annotation-register: '&d[&9Pouvoir&d] &a脚本注解 &6{0} &a注册成功!'
 annotation-annotation-unregister: '&d[&9Pouvoir&d] &c脚本注解 &6{0} &c已注销!'
-
+annotation-placeholder-register: '&d[&9Pouvoir&d] &a脚本占位符 &6{0} &a注册成功!'
+annotation-placeholder-unregister: '&d[&9Pouvoir&d] &c脚本占位符 &6{0} &c已注销!'
 kotlin-unit: '&7无'
 class-not-found: '&d[&9Pouvoir&d] &c未发现类 &6{0} &c! 请检查.'
 wrong-config: '&d[&9Pouvoir&d] &c配置文件 &6{0} &c错误! 请检查.'
