@@ -5,12 +5,12 @@ import com.skillw.pouvoir.api.manager.sub.script.CompileManager.Companion.SCRIPT
 import com.skillw.pouvoir.api.script.ScriptTool.toObject
 import com.skillw.pouvoir.internal.script.common.hook.Invoker
 import com.skillw.pouvoir.internal.script.common.hook.ScriptBridge
+import taboolib.library.reflex.Reflex.Companion.getProperty
+import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory
 import org.openjdk.nashorn.api.scripting.ScriptObjectMirror
 import org.openjdk.nashorn.internal.runtime.ScriptFunction
 import org.openjdk.nashorn.internal.runtime.ScriptFunctionData
-import taboolib.common.reflect.Reflex.Companion.getProperty
-import taboolib.common.reflect.Reflex.Companion.invokeMethod
 import java.lang.invoke.MethodType
 import java.util.function.Supplier
 import javax.script.CompiledScript

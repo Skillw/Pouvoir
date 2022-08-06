@@ -13,6 +13,7 @@ import com.skillw.pouvoir.internal.script.javascript.PouJavaScriptEngine
 import com.skillw.pouvoir.util.ClassUtils
 import com.skillw.pouvoir.util.ClassUtils.findClass
 import com.skillw.pouvoir.util.ItemUtils.toMutableMap
+import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import jdk.nashorn.api.scripting.ScriptObjectMirror
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.Bukkit
@@ -35,7 +36,6 @@ import taboolib.common.platform.function.console
 import taboolib.common.platform.function.submit
 import taboolib.common.platform.sendTo
 import taboolib.common.platform.service.PlatformExecutor
-import taboolib.common.reflect.Reflex.Companion.invokeMethod
 import taboolib.common.util.Vector
 import taboolib.common5.Mirror
 import taboolib.common5.mirrorNow

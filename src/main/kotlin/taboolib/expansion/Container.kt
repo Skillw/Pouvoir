@@ -1,6 +1,6 @@
 package taboolib.expansion
 
-import taboolib.common.reflect.Reflex.Companion.invokeMethod
+import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import taboolib.module.database.Host
 import taboolib.module.database.Table
 

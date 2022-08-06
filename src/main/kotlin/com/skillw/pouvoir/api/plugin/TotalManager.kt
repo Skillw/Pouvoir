@@ -81,6 +81,14 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
             clazz.isAnnotationPresent(AutoRegister::class.java)
         }.forEach { clazz ->
             try {
+                val auto = clazz.getAnnotation(AutoRegister::class.java)
+                if(auto.test.isNotEmpty()){
+                    try {
+                        Class.forName(auto.test)
+                    } catch (e: Exception) {
+                        return@forEach
+                    }
+                }
                 (clazz.getField("INSTANCE").get(null) as? Registrable<*>?)?.register()
             } catch (e: Exception) {
                 e.printStackTrace()

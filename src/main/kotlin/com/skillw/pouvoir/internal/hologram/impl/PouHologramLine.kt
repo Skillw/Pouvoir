@@ -2,12 +2,12 @@ package com.skillw.pouvoir.internal.hologram.impl
 
 import com.skillw.pouvoir.internal.hologram.PouHolo
 import com.skillw.pouvoir.util.EntityUtils
+import taboolib.library.reflex.Reflex.Companion.getProperty
+import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import org.bukkit.Location
 import org.bukkit.entity.Player
-import taboolib.common.reflect.Reflex.Companion.getProperty
-import taboolib.common.reflect.Reflex.Companion.invokeConstructor
-import taboolib.common.reflect.Reflex.Companion.invokeMethod
 import taboolib.common.util.unsafeLazy
+import taboolib.library.reflex.Reflex.Companion.invokeConstructor
 import taboolib.module.chat.colored
 import taboolib.module.nms.MinecraftVersion
 import taboolib.module.nms.nmsClass
@@ -162,7 +162,7 @@ internal class PouHologramLine(var location: Location, consumer: Consumer<PouHol
         else
             armorStand.invokeMethod<Unit>(
                 if (MinecraftVersion.majorLegacy >= 11800) "a" else "setCustomName",
-                obcClass("util.CraftChatMessage").invokeMethod<Array<*>>("fromString", name, fixed = true)!![0]
+                obcClass("util.CraftChatMessage").invokeMethod<Array<*>>("fromString", name,findToParent = true, isStatic = true)!![0]
             )
     }
 

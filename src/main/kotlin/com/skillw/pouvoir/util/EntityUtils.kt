@@ -3,6 +3,7 @@ package com.skillw.pouvoir.util
 import com.google.common.base.Enums
 import com.skillw.pouvoir.internal.raytrace.RayTrace
 import com.skillw.pouvoir.util.PlayerUtils.sendPacketWithFields
+import net.minecraft.network.protocol.game.PacketPlayOutEntityDestroy
 import net.minecraft.server.v1_16_R1.DataWatcher
 import net.minecraft.server.v1_16_R1.PacketPlayOutEntityMetadata
 import org.bukkit.Bukkit
@@ -12,11 +13,12 @@ import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import taboolib.common.platform.function.warning
-import taboolib.common.reflect.Reflex.Companion.getProperty
-import taboolib.common.reflect.Reflex.Companion.invokeConstructor
-import taboolib.common.reflect.Reflex.Companion.invokeMethod
 import taboolib.common.reflect.Reflex.Companion.setProperty
-import taboolib.common.reflect.Reflex.Companion.unsafeInstance
+import taboolib.library.reflex.Reflex.Companion.getProperty
+import taboolib.library.reflex.Reflex.Companion.invokeConstructor
+import taboolib.library.reflex.Reflex.Companion.invokeMethod
+import taboolib.library.reflex.Reflex.Companion.setProperty
+import taboolib.library.reflex.Reflex.Companion.unsafeInstance
 import taboolib.module.navigation.BoundingBox
 import taboolib.module.navigation.NMSImpl
 import taboolib.module.nms.MinecraftVersion.isUniversal
@@ -24,6 +26,7 @@ import taboolib.module.nms.MinecraftVersion.major
 import taboolib.module.nms.MinecraftVersion.majorLegacy
 import taboolib.module.nms.nmsClass
 import taboolib.module.nms.sendPacket
+import java.lang.ClassCastException
 import java.util.*
 
 /**
@@ -91,7 +94,7 @@ object EntityUtils {
     private val ARMOR_STAND_NMS: Any by lazy(LazyThreadSafetyMode.NONE) {
         if (major >= 5) {
             nmsClass("EntityTypes").getProperty<Any>(
-                "ARMOR_STAND", fixed = true
+                "ARMOR_STAND", isStatic = true
             )!!
         } else {
             ARMOR_STAND_LEGACY
@@ -142,22 +145,26 @@ object EntityUtils {
             return spawnArmorStand(player, entityId, uuid, location)
         }
         if (isUniversal) {
-            player.sendPacketWithFields(
-                nmsClass("PacketPlayOutSpawnEntityLiving").unsafeInstance(),
-                "id" to entityId,
-                "uuid" to uuid,
-                "type" to nmsClass("IRegistry").getField("Y").get(null)!!
-                    .invokeMethod<Int>("getId", ARMOR_STAND_NMS)!!,
-                "x" to location.x,
-                "y" to location.y,
-                "z" to location.z,
-                "xd" to 0,
-                "yd" to 0,
-                "zd" to 0,
-                "yRot" to (location.yaw * 256.0f / 360.0f).toInt().toByte(),
-                "xRot" to (location.pitch * 256.0f / 360.0f).toInt().toByte(),
-                "yHeadRot" to (location.yaw * 256.0f / 360.0f).toInt().toByte()
-            )
+            try {
+                player.sendPacketWithFields(
+                    nmsClass("PacketPlayOutSpawnEntityLiving").unsafeInstance(),
+                    "id" to entityId,
+                    "uuid" to uuid,
+                    "type" to nmsClass("IRegistry").getField("Y").get(null)!!
+                        .invokeMethod<Int>("getId", ARMOR_STAND_NMS)!!,
+                    "x" to location.x,
+                    "y" to location.y,
+                    "z" to location.z,
+                    "xd" to 0,
+                    "yd" to 0,
+                    "zd" to 0,
+                    "yRot" to (location.yaw * 256.0f / 360.0f).toInt().toByte(),
+                    "xRot" to (location.pitch * 256.0f / 360.0f).toInt().toByte(),
+                    "yHeadRot" to (location.yaw * 256.0f / 360.0f).toInt().toByte()
+                )
+            } catch (e: NoSuchMethodException) {
+                warning("Please install DecentHolograms or Adyeshach !")
+            }
         } else {
             player.sendPacketWithFields(
                 nmsClass("PacketPlayOutSpawnEntityLiving").unsafeInstance(),
@@ -219,13 +226,7 @@ object EntityUtils {
     fun destroyEntity(player: Player, entityId: Int) {
         try {
             player.sendPacketWithFields(
-                if (majorLegacy >= 11900) {
-                    nmsClass("PacketPlayOutEntityDestroy").invokeConstructor(arrayOf(entityId))
-                } else {
-                    nmsClass("PacketPlayOutEntityDestroy").newInstance().apply {
-                        setProperty("a", listOf(entityId))
-                    }
-                }
+                nmsClass("PacketPlayOutEntityDestroy").newInstance().apply { setProperty("a", intArrayOf(entityId)) }
             )
         } catch (e: NoSuchMethodException) {
             warning("Please install DecentHolograms or Adyeshach !")

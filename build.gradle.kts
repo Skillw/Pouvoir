@@ -13,7 +13,7 @@ tasks.dokkaHtml.configure {
 
 }
 taboolib {
-    options("skip-kotlin-relocate")
+//    options("skip-kotlin-relocate")
 
     description {
         contributors {
@@ -55,7 +55,7 @@ taboolib {
 
 
     classifier = null
-    version = "6.0.9-35"
+    version = "6.0.9-48"
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
