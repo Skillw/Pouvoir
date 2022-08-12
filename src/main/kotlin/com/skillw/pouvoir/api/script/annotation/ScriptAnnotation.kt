@@ -13,6 +13,7 @@ import com.skillw.pouvoir.api.able.Registrable
 abstract class ScriptAnnotation(
     override val key: String,
     val awakeWhenEnable: Boolean = false,
+    val fileAnnotation: Boolean = false,
 ) : Registrable<String> {
     override fun register() {
         Pouvoir.scriptAnnotationManager.register(this)

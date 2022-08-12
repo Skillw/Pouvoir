@@ -7,6 +7,7 @@ import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
 import com.skillw.pouvoir.api.script.engine.PouScriptEngine
 import com.skillw.pouvoir.internal.script.common.PouCompiledScript
+import com.skillw.pouvoir.internal.script.javascript.PouJavaScriptEngine
 import com.skillw.pouvoir.util.FileUtils.md5
 import com.skillw.pouvoir.util.FileUtils.pathNormalize
 import com.skillw.pouvoir.util.StringUtils.toStringWithNext
@@ -15,6 +16,7 @@ import taboolib.module.lang.sendLang
 import java.io.File
 import java.io.FileNotFoundException
 import javax.script.Compilable
+import javax.script.CompiledScript
 
 object CompileManagerImpl : CompileManager() {
 
@@ -22,6 +24,19 @@ object CompileManagerImpl : CompileManager() {
     override val priority: Int = 7
     override val subPouvoir: SubPouvoir = Pouvoir
     private val scripts = BaseMap<String, PouCompiledScript>()
+
+    private fun CompiledScript.init() {
+        eval()
+        engine.eval(
+            """
+                        function NeigeNB(){}
+                        NeigeNB.prototype = this
+                        function $SCRIPT_OBJ(){
+                          return new NeigeNB()
+                         }
+                          """.trimIndent()
+        )
+    }
 
     private fun compileToScript(file: File, pouEngine: PouScriptEngine): PouCompiledScript? {
         val md5Hex = file.md5() ?: return null
@@ -32,6 +47,7 @@ object CompileManagerImpl : CompileManager() {
         }
         val scriptLines = file.readLines()
         val script = (pouEngine.engine as Compilable).compile(scriptLines.toStringWithNext())
+            .apply { if (pouEngine.key == ("javascript")) init() }
         return PouCompiledScript(
             file,
             md5Hex,
@@ -39,6 +55,13 @@ object CompileManagerImpl : CompileManager() {
             script,
             pouEngine
         ).also { scriptTaskManager.initPool(it);scripts[normalizePath] = it }
+    }
+
+    private val evalCache = BaseMap<Int, CompiledScript>()
+    override fun compile(script: String): CompiledScript {
+        return evalCache.map.getOrPut(script.hashCode()) {
+            (PouJavaScriptEngine.engine as Compilable).compile("function main(){$script}".trimIndent()).apply { init() }
+        }
     }
 
     override fun compile(file: File): PouCompiledScript? {

@@ -4,6 +4,7 @@ import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.ConfigManager
 import com.skillw.pouvoir.util.ClassUtils
 import com.skillw.pouvoir.util.MessageUtils.warning
+import org.spigotmc.AsyncCatcher
 import taboolib.common.platform.Platform
 import taboolib.common.platform.function.console
 import taboolib.module.lang.asLangText
@@ -72,6 +73,7 @@ object PouConfig : ConfigManager(Pouvoir) {
         get() = this["config"].getBoolean("options.debug-function")
 
     override fun onLoad() {
+        AsyncCatcher.enabled = false
         createIfNotExists("scripts", "example.js", "groovy.groovy")
         reloadStaticClasses()
     }

@@ -32,11 +32,10 @@ class PouCompiledScript(
     private val actives = ConcurrentHashSet<TaskStatus>()
     private val engine = script.engine
 
-    //this annotations
-    var scriptAnnotations = HashSet<ScriptAnnotationData>()
-
     //function name to annotations
     val annotationData = BaseMap<String, Set<ScriptAnnotationData>>()
+
+    private val fileAnnotations = HashSet<ScriptAnnotationData>()
 
     init {
         initAnnotation()
@@ -70,6 +69,7 @@ class PouCompiledScript(
     }
 
     private var lastHeadIndex = 0
+
     private fun initAnnotation() {
         for (index in scriptLines.indices) {
             val str = scriptLines[index]
@@ -80,8 +80,13 @@ class PouCompiledScript(
             annotationData[function] = annotations
         }
 
-        scriptAnnotations.addAll(getAnnotations(lastHeadIndex, "null"))
+        fileAnnotations.addAll(
+            getAnnotations(
+                1,
+                "null"
+            ).filter { Pouvoir.scriptAnnotationManager[it.annotation]?.fileAnnotation == true })
     }
+
 
     private fun getAnnotations(
         index: Int,
@@ -141,7 +146,7 @@ class PouCompiledScript(
 
     override fun register() {
         scriptManager.remove(key)?.delete()
-        scriptAnnotations.process()
+        fileAnnotations.process()
         annotationData.values.forEach { it.process() }
         scriptManager[key] = this
     }

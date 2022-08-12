@@ -2,7 +2,6 @@ package com.skillw.pouvoir.util
 
 import taboolib.common.util.asList
 import java.util.*
-import java.util.regex.Pattern
 
 object StringUtils {
     private fun String.subStringWithEscape(from: Int, to: Int, escapes: List<Int>): String {
@@ -91,21 +90,8 @@ object StringUtils {
     @JvmStatic
     fun String.replacement(replaces: Map<String, Any>): String {
         var formulaCopy = this
-        for (key in replaces.keys) {
-            val value = replaces[key]!!
-            formulaCopy = if (value is List<*>) {
-                val pattern = Pattern.compile("$key\\((.*)\\)")
-                val matcher = pattern.matcher(formulaCopy)
-                if (!matcher.find()) return formulaCopy
-                val stringBuffer = StringBuffer()
-                do {
-                    val args = matcher.group(1)?.toArgs() ?: continue
-                    matcher.appendReplacement(stringBuffer, value.asList().getMultiple(args))
-                } while (matcher.find())
-                matcher.appendTail(stringBuffer).toString()
-            } else {
-                formulaCopy.replace(key, value.toString())
-            }
+        replaces.forEach {
+            formulaCopy = formulaCopy.replace(it.key, it.value.toString())
         }
         return formulaCopy
     }

@@ -6,11 +6,14 @@ import com.skillw.pouvoir.api.manager.sub.script.ScriptEngineManager.Companion.s
 import com.skillw.pouvoir.api.manager.sub.script.ScriptManager
 import com.skillw.pouvoir.internal.manager.PouConfig.debug
 import com.skillw.pouvoir.internal.script.common.PouCompiledScript
+import com.skillw.pouvoir.internal.script.javascript.PouJavaScriptEngine
 import com.skillw.pouvoir.util.FileUtils.listSubFiles
+import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.function.console
 import taboolib.common.platform.function.getDataFolder
 import taboolib.common5.FileWatcher
 import taboolib.module.chat.colored
+import taboolib.module.lang.asLangText
 import taboolib.module.lang.sendLang
 import java.io.File
 import java.io.FileNotFoundException
@@ -73,7 +76,8 @@ object ScriptManagerImpl : ScriptManager() {
     }
 
     override fun <T> invoke(
-        pathWithFunction: String, arguments: Map<String, Any>, vararg parameters: Any?,
+        pathWithFunction: String, arguments: Map<String, Any>,
+        sender: ProxyCommandSender, vararg parameters: Any?,
     ): T? {
         val splits = pathWithFunction.split("::")
         if (splits.size < 2) {
@@ -81,7 +85,7 @@ object ScriptManagerImpl : ScriptManager() {
         }
         val path = splits[0]
         val function = splits[1]
-        return invoke<T>(path, function, arguments, *parameters)
+        return invoke<T>(path, function, arguments, sender, *parameters)
     }
 
     override fun search(path: String, silent: Boolean): PouCompiledScript? {
@@ -107,26 +111,65 @@ object ScriptManagerImpl : ScriptManager() {
         path: String,
         function: String,
         arguments: Map<String, Any>,
+        sender: ProxyCommandSender,
         vararg parameters: Any?,
     ): T? {
         val script = search(path) ?: return null
-        return invoke(script, function, arguments, *parameters)
+        return invoke(script, function, arguments, sender, *parameters)
+    }
+
+
+    override fun <T> evalJs(
+        script: String,
+        arguments: Map<String, Any>,
+        sender: ProxyCommandSender,
+    ): T? {
+        val hash = script.hashCode()
+        if (debug) {
+            debug { sender.sendLang("script-invoking-info", hash, "EvalScript") }
+            debug { sender.sendLang("script-invoking-arguments") }
+            debug { sender.sendMessage("&3$arguments".colored()) }
+        }
+        val start = System.currentTimeMillis()
+        val compiledScript = Pouvoir.compileManager.compile(script)
+        val result = PouJavaScriptEngine.bridge.buildInvoker(compiledScript).invoke("main", arguments = arguments) {}
+        val end = System.currentTimeMillis()
+        debug {
+            sender.sendLang(
+                "command-script-invoke-end",
+                hash,
+                result.run { if (this is Unit) console().asLangText("kotlin-unit") else toString() },
+                (end - start)
+            )
+        }
+        return result as T?
     }
 
     override fun <T> invoke(
         script: PouCompiledScript,
         function: String,
         arguments: Map<String, Any>,
+        sender: ProxyCommandSender,
         vararg parameters: Any?,
     ): T? {
         if (debug) {
-            debug { console().sendLang("script-invoking-info", script.key, function) }
-            debug { console().sendLang("script-invoking-arguments") }
-            debug { console().sendMessage("&3$arguments".colored()) }
-            debug { console().sendLang("script-invoking-parameters") }
-            debug { console().sendMessage("&3$parameters".colored()) }
+            debug { sender.sendLang("script-invoking-info", script.key, function) }
+            debug { sender.sendLang("script-invoking-arguments") }
+            debug { sender.sendMessage("&3$arguments".colored()) }
+            debug { sender.sendLang("script-invoking-parameters") }
+            debug { sender.sendMessage("&3$parameters".colored()) }
         }
+        val start = System.currentTimeMillis()
         val result = script.invoke(function, arguments, *parameters)
+        val end = System.currentTimeMillis()
+        debug {
+            sender.sendLang(
+                "command-script-invoke-end",
+                script.key,
+                result.run { if (this is Unit) console().asLangText("kotlin-unit") else toString() },
+                (end - start)
+            )
+        }
         return result as T?
     }
 

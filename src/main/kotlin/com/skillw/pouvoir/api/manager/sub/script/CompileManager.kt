@@ -4,6 +4,7 @@ import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.Manager
 import com.skillw.pouvoir.internal.script.common.PouCompiledScript
 import java.io.File
+import javax.script.CompiledScript
 
 /**
  * @className CompileManager
@@ -28,4 +29,6 @@ abstract class CompileManager : Manager {
 
         const val SCRIPT_OBJ = "this\$scriptObj"
     }
+
+    abstract fun compile(script: String): CompiledScript
 }

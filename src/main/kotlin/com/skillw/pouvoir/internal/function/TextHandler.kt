@@ -1,8 +1,8 @@
 package com.skillw.pouvoir.internal.function
 
 import com.skillw.pouvoir.Pouvoir.pouFunctionManager
+import com.skillw.pouvoir.api.function.context.IContext
 import com.skillw.pouvoir.internal.function.context.SimpleContext
-import com.skillw.pouvoir.internal.function.reader.SimpleReader
 
 /**
  * @className FileReader
@@ -43,9 +43,8 @@ object TextHandler {
 //            result = result.replaceFirst("{$originStr}", replaced)
 //        }
 //    }
-    fun analysis(text: String): String {
+    fun analysis(text: String, global: IContext = SimpleContext()): String {
         var result = text
-        val global = SimpleContext()
         var ignore = false
         var start = -1
         var count = 0
@@ -65,7 +64,7 @@ object TextHandler {
                     val origin = text.substring(start + 1, index)
                     val replaced =
                         pouFunctionManager.parse(
-                            SimpleReader(origin),
+                            origin,
                             context = global
                         ).toString()
                     result = result.replaceFirst("{$origin}", replaced)

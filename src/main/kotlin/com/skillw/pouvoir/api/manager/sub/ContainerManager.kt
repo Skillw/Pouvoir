@@ -29,7 +29,7 @@ abstract class ContainerManager : Manager, IPersistentContainer {
     abstract fun delete(user: String, key: String)
 
     /**
-     * Set
+     * FunctionSet
      *
      * @param user 用户名
      * @param key 键

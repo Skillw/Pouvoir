@@ -28,6 +28,9 @@ object Listener : ScriptAnnotation("Listener", true) {
         val function = data.function
         if (args.isEmpty()) return
         val demand = Demand("dem $args")
+        demand.get("bind")?.run {
+            kotlin.runCatching { Class.forName(this) }.getOrNull() ?: return
+        }
         val clazz = (demand.get("event") ?: return).findClass() ?: return
         val level: Int = try {
             EventPriority.valueOf(demand.get("priority", "NORMAL").toString().uppercase()).level
@@ -42,7 +45,7 @@ object Listener : ScriptAnnotation("Listener", true) {
         val ignoreCancel = demand.tags.contains("--ignoreCancel")
         val key = "${script.key}::$function-${clazz.simpleName}"
         ScriptListener.Builder(key, platform, clazz, Priority(level), ignoreCancel) { event ->
-            script.invoke(function, parameters = arrayOf(event))
+            Pouvoir.scriptManager.invoke<Unit>(script, function, parameters = arrayOf(event))
         }.build().register()
         PouConfig.debug { console().sendLang("annotation-listener-register", key) }
         script.onDeleted("Script-Listener-$key") {

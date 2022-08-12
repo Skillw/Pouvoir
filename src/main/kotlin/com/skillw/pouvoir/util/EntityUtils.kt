@@ -3,7 +3,6 @@ package com.skillw.pouvoir.util
 import com.google.common.base.Enums
 import com.skillw.pouvoir.internal.raytrace.RayTrace
 import com.skillw.pouvoir.util.PlayerUtils.sendPacketWithFields
-import net.minecraft.network.protocol.game.PacketPlayOutEntityDestroy
 import net.minecraft.server.v1_16_R1.DataWatcher
 import net.minecraft.server.v1_16_R1.PacketPlayOutEntityMetadata
 import org.bukkit.Bukkit
@@ -17,7 +16,6 @@ import taboolib.common.reflect.Reflex.Companion.setProperty
 import taboolib.library.reflex.Reflex.Companion.getProperty
 import taboolib.library.reflex.Reflex.Companion.invokeConstructor
 import taboolib.library.reflex.Reflex.Companion.invokeMethod
-import taboolib.library.reflex.Reflex.Companion.setProperty
 import taboolib.library.reflex.Reflex.Companion.unsafeInstance
 import taboolib.module.navigation.BoundingBox
 import taboolib.module.navigation.NMSImpl
@@ -26,7 +24,6 @@ import taboolib.module.nms.MinecraftVersion.major
 import taboolib.module.nms.MinecraftVersion.majorLegacy
 import taboolib.module.nms.nmsClass
 import taboolib.module.nms.sendPacket
-import java.lang.ClassCastException
 import java.util.*
 
 /**
@@ -267,7 +264,7 @@ object EntityUtils {
     ): LivingEntity? {
         val entities = ArrayList<Pair<Entity, BoundingBox>>()
         getNearbyEntities(distance, distance, distance).forEach {
-            entities += it to NMSImpl().getBoundingBox(it)
+            entities += it to NMSImpl().getBoundingBox(it);
         }
         val traces = RayTrace(this).traces(distance, 0.2)
         for (vector in traces) {

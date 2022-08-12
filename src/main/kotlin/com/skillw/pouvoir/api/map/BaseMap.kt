@@ -96,8 +96,8 @@ open class BaseMap<K : Any, V : Any> : RegContainer<K, V> {
         containsKey(key)
 
 
-    open operator fun set(key: K, value: V) {
-        put(key, value)
+    open operator fun set(key: K, value: V): V? {
+        return put(key, value)
     }
 
 

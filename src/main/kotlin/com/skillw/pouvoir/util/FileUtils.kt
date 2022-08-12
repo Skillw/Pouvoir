@@ -61,7 +61,8 @@ object FileUtils {
             config.load(this)
         } catch (e: Throwable) {
             console().sendLang("wrong-config", name)
-            console().sendLang("wrong-config-cause", ColorUtils.unColor(e.cause?.message.toString()))
+            console().sendLang("wrong-config-cause", ColorUtils.unColor(e.message ?: "null"))
+            e.printStackTrace()
             return null
         }
         return config

@@ -3,6 +3,8 @@ package com.skillw.pouvoir.api.manager.sub.script
 import com.skillw.pouvoir.api.manager.Manager
 import com.skillw.pouvoir.api.map.KeyMap
 import com.skillw.pouvoir.internal.script.common.PouCompiledScript
+import taboolib.common.platform.ProxyCommandSender
+import taboolib.common.platform.function.console
 import java.io.File
 
 /**
@@ -46,6 +48,7 @@ abstract class ScriptManager : Manager, KeyMap<String, PouCompiledScript>() {
     abstract fun <T> invoke(
         pathWithFunction: String,
         arguments: Map<String, Any> = emptyMap(),
+        sender: ProxyCommandSender = console(),
         vararg parameters: Any?,
     ): T?
 
@@ -63,6 +66,7 @@ abstract class ScriptManager : Manager, KeyMap<String, PouCompiledScript>() {
         path: String,
         function: String = "main",
         arguments: Map<String, Any> = emptyMap(),
+        sender: ProxyCommandSender = console(),
         vararg parameters: Any?,
     ): T?
 
@@ -80,6 +84,9 @@ abstract class ScriptManager : Manager, KeyMap<String, PouCompiledScript>() {
         script: PouCompiledScript,
         function: String = "main",
         arguments: Map<String, Any> = emptyMap(),
+        sender: ProxyCommandSender = console(),
         vararg parameters: Any?,
     ): T?
+
+    abstract fun <T> evalJs(script: String, arguments: Map<String, Any>, sender: ProxyCommandSender): T?
 }

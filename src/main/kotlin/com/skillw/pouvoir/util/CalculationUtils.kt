@@ -9,6 +9,8 @@ import org.bukkit.entity.LivingEntity
 import taboolib.common.platform.function.warning
 import taboolib.common5.Coerce
 import java.math.BigDecimal
+import java.util.concurrent.ExecutionException
+import javax.script.ScriptException
 
 object CalculationUtils {
 
@@ -32,11 +34,20 @@ object CalculationUtils {
     @JvmStatic
     fun calculate(input: String): BigDecimal {
         return try {
-            val optional = Coerce.asDouble(calEngine.eval(input))
-            if (!optional.isPresent) error("Wrong calculation formula! $input");
+            val optional = Coerce.asDouble(calEngine.eval(input.filter { it != ' ' }))
+            if (!optional.isPresent) warning("Wrong calculation formula! $input");
             BigDecimal.valueOf(optional.get())
-        } catch (e: Exception) {
-            warning("Wrong calculation formula! $input")
+        } catch (e: ScriptException) {
+            warning("Wrong calculation formula! $input");
+            BigDecimal.valueOf(0.0)
+        } catch (e: IllegalStateException) {
+            warning("Wrong calculation formula! $input");
+            BigDecimal.valueOf(0.0)
+        } catch (e: RuntimeException) {
+            warning("Wrong calculation formula! $input");
+            BigDecimal.valueOf(0.0)
+        } catch (e: ExecutionException) {
+            warning("Wrong calculation formula! $input");
             BigDecimal.valueOf(0.0)
         }
     }

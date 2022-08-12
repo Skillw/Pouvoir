@@ -13,8 +13,6 @@ import com.skillw.pouvoir.internal.script.javascript.PouJavaScriptEngine
 import com.skillw.pouvoir.util.ClassUtils
 import com.skillw.pouvoir.util.ClassUtils.findClass
 import com.skillw.pouvoir.util.ItemUtils.toMutableMap
-import taboolib.library.reflex.Reflex.Companion.invokeMethod
-import jdk.nashorn.api.scripting.ScriptObjectMirror
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
@@ -39,6 +37,7 @@ import taboolib.common.platform.service.PlatformExecutor
 import taboolib.common.util.Vector
 import taboolib.common5.Mirror
 import taboolib.common5.mirrorNow
+import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import taboolib.module.chat.TellrawJson
 import taboolib.module.nms.getI18nName
 import taboolib.module.nms.getItemTag
@@ -446,7 +445,7 @@ object ScriptTool : BaseMap<String, Any>() {
         }
     }
 
-    internal fun Any.toObject(): Any = PouJavaScriptEngine.bridge.toObject(this)!!
+    fun Any.toObject(): Any? = PouJavaScriptEngine.bridge.toObject(this)
 
     @ScriptTopLevel
     @JvmStatic
@@ -457,13 +456,15 @@ object ScriptTool : BaseMap<String, Any>() {
         if (it is Array<*>) {
             return it.toList()
         }
-        return if (it is ScriptObjectMirror) {
-            if (it.isArray) it.values.toList()
-            else listOf(it.toObject())
-        } else {
-            kotlin.collections.listOf(it)
-        }
+        return (it?.toObject() as? Array<Any>?)?.toList() ?: kotlin.collections.listOf(it)
     }
+
+    @ScriptTopLevel
+    @JvmStatic
+    fun mapOf(it: Any?): MutableMap<String, Any?> {
+        return it?.toObject() as? MutableMap<String, Any?>? ?: mutableMapOf()
+    }
+
 
     @JvmStatic
     fun sendParticle(
@@ -538,5 +539,6 @@ object ScriptTool : BaseMap<String, Any>() {
             Mirror.mirrorData.remove(mirrorKey)
         }
     }
+
 
 }

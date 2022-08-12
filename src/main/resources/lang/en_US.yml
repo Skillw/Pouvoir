@@ -54,7 +54,7 @@ annotation-placeholder-unregister: '&d[&9Pouvoir&d] &cScript Placeholder &6{0} &
 kotlin-unit: '&7null'
 class-not-found: '&d[&9Pouvoir&d] &cClass &6{0} &cdosen`t exist!'
 wrong-config: '&d[&9Pouvoir&d] &cConfig &6{0} &cis wrong!'
-wrong-config-cause: '&d[&9Pouvoir&d] &cCause: &f{1}'
+wrong-config-cause: '&d[&9Pouvoir&d] &cCause: &f{0}'
 
 plugin-load: '&d[&9{0}&d] &6{0} &ahas been loaded!'
 plugin-enable: '&d[&9{0}&d] &6{0} &ahas been enabled!'

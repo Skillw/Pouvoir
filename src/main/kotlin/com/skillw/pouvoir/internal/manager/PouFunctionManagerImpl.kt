@@ -2,7 +2,8 @@ package com.skillw.pouvoir.internal.manager
 
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.function.PouFunction
-import com.skillw.pouvoir.api.function.context.Context
+import com.skillw.pouvoir.api.function.context.IContext
+import com.skillw.pouvoir.api.function.parse.Parser
 import com.skillw.pouvoir.api.function.reader.IReader
 import com.skillw.pouvoir.api.manager.sub.PouFunctionManager
 import com.skillw.pouvoir.api.map.BaseMap
@@ -23,22 +24,23 @@ object PouFunctionManagerImpl : PouFunctionManager() {
         register(value.key, value)
     }
 
+    override fun remove(key: String): PouFunction<*>? {
+        return super.remove(key)?.apply {
+            aliases.forEach { remove(it) }
+        }
+    }
+    
 
-    override fun parse(text: String): String {
-        return parse(text, receiver = {})?.toString() ?: text
+    private val cache = BaseMap<Int, SimpleReader>()
+    override fun parse(string: String, namespaces: Array<String>, context: IContext): Any? {
+        return parse(SimpleReader(cache.getOrPut(string.hashCode()) { SimpleReader(string) }), namespaces, context)
     }
 
-    override fun parse(string: String, namespaces: Array<String>, receiver: Context.() -> Unit): Any? {
-        val reader = SimpleReader(string)
-        return parse(reader, namespaces, receiver)
+    override fun parse(string: String, namespaces: Array<String>, receiver: IContext.() -> Unit): Any? {
+        return parse(string, namespaces, SimpleContext().apply(receiver))
     }
 
-    override fun parse(reader: IReader, namespaces: Array<String>, receiver: Context.() -> Unit): Any? {
-        val context = SimpleContext().also(receiver)
-        return parse(reader, namespaces, context)
-    }
-
-    override fun parse(reader: IReader, namespaces: Array<String>, context: Context): Any? {
+    private fun parse(reader: IReader, namespaces: Array<String>, context: IContext): Any? {
         context.apply {
             namespaces.forEach {
                 this@PouFunctionManagerImpl.namespaces[it]?.forEach { function ->
@@ -46,11 +48,12 @@ object PouFunctionManagerImpl : PouFunctionManager() {
                 }
             }
         }
-        with(reader) {
+        val parser = Parser(reader, context)
+        with(parser) {
             while (hasNext()) {
-                parseAny(context).also {
+                parseAny()?.also {
                     if (!hasNext()) return it
-                }
+                } ?: break
             }
         }
         return null

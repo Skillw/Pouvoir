@@ -10,7 +10,7 @@ import com.skillw.pouvoir.api.script.annotation.ScriptAnnotationData
 import com.skillw.pouvoir.internal.manager.PouConfig.debug
 import com.skillw.pouvoir.util.StringUtils.toArgs
 import taboolib.common.platform.function.console
-import taboolib.module.lang.asLangText
+import taboolib.common.platform.function.submitAsync
 import taboolib.module.lang.sendLang
 
 /**
@@ -39,12 +39,9 @@ object Awake : ScriptAnnotation("Awake") {
                 return@addExec
             }
             debug { console().sendLang("annotation-awake-running", key) }
-            val start = System.currentTimeMillis()
-            val result =
+            submitAsync {
                 Pouvoir.scriptManager.invoke<Any?>(scriptToRun, function, parameters = arrayOf(time.key.uppercase()))
-                    .run { if (this is Unit) console().asLangText("kotlin-unit") else toString() }
-            val end = System.currentTimeMillis()
-            console().sendLang("command-script-invoke-end", path, result, (end - start))
+            }
         }
     }
 

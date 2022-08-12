@@ -40,15 +40,15 @@ object PouvoirCommand {
     @CommandBody(permission = "pouvoir.command.js")
     val run = subCommand {
         dynamic {
-            suggestion<CommandSender> { _, _ ->
+            suggestion<ProxyCommandSender> { _, _ ->
                 Pouvoir.scriptManager.map.map { it.key }
             }
             dynamic {
-                suggestion<CommandSender> { _, context ->
+                suggestion<ProxyCommandSender> { _, context ->
                     (Pouvoir.scriptManager.search(context.argument(-1))
                         ?: return@suggestion emptyList()).annotationData.keys.toList()
                 }
-                execute<CommandSender> { sender, context, argument ->
+                execute<ProxyCommandSender> { sender, context, argument ->
                     submit(async = true) {
                         val function = argument.split(" ")[0]
                         val args =
@@ -62,14 +62,11 @@ object PouvoirCommand {
                         arguments["sender"] = sender
                         arguments["args"] = args
                         sender.sendLang("command-script-invoke", fileName)
-                        val start = System.currentTimeMillis()
-                        val path = "$fileName::$function"
-                        val result = Pouvoir.scriptManager.invoke<Any?>(
-                            path,
-                            arguments = arguments
-                        ).run { if (this is Unit) console().asLangText("kotlin-unit") else toString() }
-                        val end = System.currentTimeMillis()
-                        sender.sendLang("command-script-invoke-end", path, result, (end - start))
+                        Pouvoir.scriptManager.invoke<Any?>(
+                            "$fileName::$function",
+                            arguments = arguments,
+                            sender = sender
+                        )
                     }
 
                 }

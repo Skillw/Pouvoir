@@ -54,7 +54,7 @@ annotation-placeholder-unregister: '&d[&9Pouvoir&d] &c脚本占位符 &6{0} &c�
 kotlin-unit: '&7无'
 class-not-found: '&d[&9Pouvoir&d] &c未发现类 &6{0} &c! 请检查.'
 wrong-config: '&d[&9Pouvoir&d] &c配置文件 &6{0} &c错误! 请检查.'
-wrong-config-cause: '&d[&9Pouvoir&d] &c原因: {1}'
+wrong-config-cause: '&d[&9Pouvoir&d] &c原因: {0}'
 
 plugin-load: '&d[&9{0}&d] &6{0} &a加载成功!'
 plugin-enable: '&d[&9{0}&d] &6{0} &a启用成功!'

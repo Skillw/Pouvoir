@@ -6,11 +6,10 @@ plugins {
     id("org.jetbrains.dokka") version "1.6.10"
 }
 
-tasks.dokkaHtml.configure {
+tasks.dokkaJavadoc.configure {
     outputDirectory.set(File("C:\\Users\\Administrator\\Desktop\\Doc\\pouvoir"))
     suppressObviousFunctions.set(false)
     suppressInheritedMembers.set(true)
-
 }
 taboolib {
 //    options("skip-kotlin-relocate")
@@ -55,7 +54,7 @@ taboolib {
 
 
     classifier = null
-    version = "6.0.9-48"
+    version = "6.0.9-54"
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

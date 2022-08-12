@@ -1,6 +1,5 @@
 package com.skillw.pouvoir.util
 
-import taboolib.library.reflex.Reflex.Companion.setProperty
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.boss.BarColor
@@ -8,6 +7,7 @@ import org.bukkit.boss.BarStyle
 import org.bukkit.boss.BossBar
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
+import taboolib.library.reflex.Reflex.Companion.setProperty
 import taboolib.module.nms.sendPacket
 import taboolib.platform.BukkitAdapter
 

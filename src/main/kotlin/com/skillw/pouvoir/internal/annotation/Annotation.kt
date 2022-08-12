@@ -23,7 +23,7 @@ object Annotation : ScriptAnnotation("Annotation") {
         val key = if (args.isEmpty() || args[0] == "") function else args[0]
         object : ScriptAnnotation(key) {
             override fun handle(data: ScriptAnnotationData) {
-                script.invoke(function, parameters = arrayOf(data))
+                Pouvoir.scriptManager.invoke<Unit>(script, function, parameters = arrayOf(data))
             }
         }.register()
         debug { console().sendLang("annotation-annotation-register", key) }

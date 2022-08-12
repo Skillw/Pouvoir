@@ -5,12 +5,12 @@ import com.skillw.pouvoir.api.manager.sub.script.CompileManager.Companion.SCRIPT
 import com.skillw.pouvoir.api.script.ScriptTool.toObject
 import com.skillw.pouvoir.internal.script.common.hook.Invoker
 import com.skillw.pouvoir.internal.script.common.hook.ScriptBridge
-import taboolib.library.reflex.Reflex.Companion.getProperty
-import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory
 import org.openjdk.nashorn.api.scripting.ScriptObjectMirror
 import org.openjdk.nashorn.internal.runtime.ScriptFunction
 import org.openjdk.nashorn.internal.runtime.ScriptFunctionData
+import taboolib.library.reflex.Reflex.Companion.getProperty
+import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import java.lang.invoke.MethodType
 import java.util.function.Supplier
 import javax.script.CompiledScript
@@ -23,16 +23,6 @@ object NashornNew : ScriptBridge {
 
     override fun buildInvoker(script: CompiledScript) = Invoker { function, arguments, parameters, receiver ->
         val engine = script.engine
-        script.eval()
-        engine.eval(
-            """
-                        function NeigeNB(){}
-                        NeigeNB.prototype = this
-                        function $SCRIPT_OBJ(){
-                          return new NeigeNB()
-                         }
-                          """.trimIndent()
-        )
         val sObj = (engine as Invocable).invokeFunction(SCRIPT_OBJ) as ScriptObjectMirror
         sObj.putAll(arguments)
         receiver(sObj)
@@ -40,10 +30,10 @@ object NashornNew : ScriptBridge {
     }
 
     override fun toObject(any: Any): Any? {
-        val scriptObject = any as? ScriptObjectMirror ?: return null
+        val scriptObject = any as? ScriptObjectMirror ?: return any
         if (scriptObject.isFunction) {
             val paramSize = scriptObject.getProperty<ScriptFunction>("sobj")!!
-                
+
                 .getProperty<ScriptFunctionData>("data")!!
                 .invokeMethod<MethodType>("getGenericType")!!
                 .parameterCount() - 2

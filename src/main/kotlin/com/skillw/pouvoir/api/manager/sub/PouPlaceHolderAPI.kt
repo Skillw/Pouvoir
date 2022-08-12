@@ -16,7 +16,9 @@ interface PouPlaceHolderAPI : Manager {
      * @param text 待处理的文本
      * @return 处理后的文本
      */
-    fun replace(entity: LivingEntity?, text: String): String
+    fun replace(entity: LivingEntity?, text: String): String {
+        return replace(entity, text, true)
+    }
 
     /**
      * Replace
@@ -27,4 +29,5 @@ interface PouPlaceHolderAPI : Manager {
      */
     fun replace(uuid: UUID, text: String): String
 
+    fun replace(entity: LivingEntity?, text: String, analysis: Boolean): String
 }

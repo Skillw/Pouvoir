@@ -26,14 +26,14 @@ object PouPlaceHolderAPIImpl : PouPlaceHolderAPI {
         )
     )
 
-    override fun replace(entity: LivingEntity?, text: String): String {
+    override fun replace(entity: LivingEntity?, text: String, analysis: Boolean): String {
         var new = text
         entity ?: kotlin.run {
             return new.analysis()
         }
         val matcher = pattern.matcher(new)
         return if (!matcher.find()) {
-            new.analysis()
+            if (analysis) new.analysis() else new
         } else {
             val builder = StringBuffer()
             do {
@@ -50,7 +50,7 @@ object PouPlaceHolderAPIImpl : PouPlaceHolderAPI {
             if (entity is Player) {
                 new = new.replacePlaceholder(entity)
             }
-            new.analysis().colored()
+            new.run { if (analysis) analysis() else this }.colored()
         }
     }
 

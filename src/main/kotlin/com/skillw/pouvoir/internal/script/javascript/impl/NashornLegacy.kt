@@ -5,12 +5,12 @@ import com.skillw.pouvoir.api.manager.sub.script.CompileManager.Companion.SCRIPT
 import com.skillw.pouvoir.api.script.ScriptTool.toObject
 import com.skillw.pouvoir.internal.script.common.hook.Invoker
 import com.skillw.pouvoir.internal.script.common.hook.ScriptBridge
-import taboolib.library.reflex.Reflex.Companion.getProperty
-import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import jdk.nashorn.api.scripting.NashornScriptEngineFactory
 import jdk.nashorn.api.scripting.ScriptObjectMirror
 import jdk.nashorn.internal.runtime.ScriptFunction
 import jdk.nashorn.internal.runtime.ScriptFunctionData
+import taboolib.library.reflex.Reflex.Companion.getProperty
+import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import java.lang.invoke.MethodType
 import java.util.function.Supplier
 import javax.script.CompiledScript
@@ -29,16 +29,6 @@ object NashornLegacy : ScriptBridge {
 
     override fun buildInvoker(script: CompiledScript) = Invoker { function, arguments, parameters, receiver ->
         val engine = script.engine
-        script.eval()
-        engine.eval(
-            """
-                        function NeigeNB(){}
-                        NeigeNB.prototype = this
-                        function $SCRIPT_OBJ(){
-                          return new NeigeNB()
-                         }
-                          """.trimIndent()
-        )
         val sObj =
             (engine as Invocable).invokeFunction(SCRIPT_OBJ) as ScriptObjectMirror
         sObj.putAll(arguments)
@@ -47,7 +37,7 @@ object NashornLegacy : ScriptBridge {
     }
 
     override fun toObject(any: Any): Any? {
-        val scriptObject = any as? ScriptObjectMirror ?: return null
+        val scriptObject = any as? ScriptObjectMirror ?: return any
         if (scriptObject.isFunction) {
             val paramSize = scriptObject.getProperty<ScriptFunction>("sobj")!!
                 .getProperty<ScriptFunctionData>("data")!!
