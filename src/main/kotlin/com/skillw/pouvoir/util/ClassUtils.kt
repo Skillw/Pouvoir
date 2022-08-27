@@ -6,6 +6,7 @@ import taboolib.module.lang.sendLang
 
 @Suppress("UNCHECKED_CAST")
 object ClassUtils {
+
     @JvmStatic
     fun String.findClass(): Class<*>? {
         val clazz: Class<*>

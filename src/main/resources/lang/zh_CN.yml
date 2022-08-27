@@ -33,7 +33,7 @@ command-message:
 wrong-command-message: '&d[&9Pouvoir&d] &c你是不是输错指令啦!'
 command-clear: '&d[&9Pouvoir&d] &a耗时数据已清楚!'
 command-task-info: '&e正在运行的任务:'
-command-task-empty: '&7没有正在运行的任务!'
+running-task-empty: '&7没有正在运行的任务!'
 command-task-stop: '&d[&9Pouvoir&d] &c任务 &6{0} 已取消!'
 
 script-invoking-info: "&e正在调用脚本 &6{0} &e的函数 &d{1}"

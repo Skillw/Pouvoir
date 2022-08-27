@@ -6,7 +6,7 @@ import com.skillw.pouvoir.api.manager.Manager.Companion.call
 import com.skillw.pouvoir.api.map.KeyMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
 import com.skillw.pouvoir.api.plugin.TotalManager
-import com.skillw.pouvoir.internal.plugin.PouManagerUtils.getPouManagers
+import com.skillw.pouvoir.internal.core.plugin.PouManagerUtils.getPouManagers
 import org.bukkit.plugin.java.JavaPlugin
 import taboolib.common.platform.function.submit
 

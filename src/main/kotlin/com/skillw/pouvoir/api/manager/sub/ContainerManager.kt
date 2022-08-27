@@ -2,15 +2,16 @@ package com.skillw.pouvoir.api.manager.sub
 
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.Manager
+import com.skillw.pouvoir.api.map.KeyMap
+import com.skillw.pouvoir.internal.feature.container.Container
 import org.bukkit.entity.Entity
-import taboolib.expansion.IPersistentContainer
 
 /**
  * Container manager
  *
  * @constructor Create empty Container manager
  */
-abstract class ContainerManager : Manager, IPersistentContainer {
+abstract class ContainerManager : Manager, KeyMap<String, Container>() {
     /**
      * Get
      *

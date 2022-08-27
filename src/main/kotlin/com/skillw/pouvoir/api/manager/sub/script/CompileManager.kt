@@ -2,7 +2,7 @@ package com.skillw.pouvoir.api.manager.sub.script
 
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.Manager
-import com.skillw.pouvoir.internal.script.common.PouCompiledScript
+import com.skillw.pouvoir.internal.core.script.common.PouCompiledScript
 import java.io.File
 import javax.script.CompiledScript
 

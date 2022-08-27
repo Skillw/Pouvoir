@@ -82,6 +82,7 @@ object StringUtils {
 
     @JvmStatic
     fun String.toArgs(): Array<String> =
+        
         if (this.contains(","))
             split(",").toTypedArray()
         else

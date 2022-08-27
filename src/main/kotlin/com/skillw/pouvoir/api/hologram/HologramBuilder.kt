@@ -1,6 +1,6 @@
 package com.skillw.pouvoir.api.hologram
 
-import com.skillw.pouvoir.internal.hologram.Hologram
+import com.skillw.pouvoir.internal.feature.hologram.Hologram
 import org.bukkit.Location
 import org.bukkit.entity.Player
 import org.bukkit.util.Vector
@@ -127,7 +127,7 @@ class HologramBuilder(private val location: Location) {
                     hologram.teleport(location.clone().add(vector.clone().multiply(count)))
                     count++
                 }
-            } ?: submit(async = true, delay = stay) {
+            } ?: submit(delay = stay) {
                 hologram.delete()
                 cancel()
             }

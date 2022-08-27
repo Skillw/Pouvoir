@@ -33,7 +33,7 @@ wrong-command-message: '&d[&9Pouvoir&d] &cWrong command!'
 command-clear: '&d[&9Pouvoir&d] &aMirrorData has been cleared!'
 command-task-info: '&eRunning Tasks Info:'
 running-task-empty: '&7No running tasks.'
-command-stop-task: '&d[&9Pouvoir&d] &cTask &6{0} &chas been cancelled!'
+command-task-stop: '&d[&9Pouvoir&d] &cTask &6{0} &chas been cancelled!'
 
 script-invoking-info: "&eInvoking script &6{0} &e's function &d{1}"
 script-invoking-arguments: "&eArguments: "
@@ -48,8 +48,8 @@ annotation-awake-unregister: '&d[&9Pouvoir&d] &cScript Awake &6{0} &chas been un
 annotation-awake-running: '&d[&9Pouvoir&d] &aScript Awake &6{0} &ais running!'
 annotation-annotation-register: '&d[&9Pouvoir&d] &aScript Annotation &6{0} &ahas been registered!'
 annotation-annotation-unregister: '&d[&9Pouvoir&d] &cScript Annotation &6{0} &chas been unregistered!'
-annotation-placeholder-register: '&d[&9Pouvoir&d] &aScript Placeholder &6{0} &ahas been registered!'
-annotation-placeholder-unregister: '&d[&9Pouvoir&d] &cScript Placeholder &6{0} &chas been unregistered!'
+annotation-placeholder-register: '&d[&9Pouvoir&d] &aScript FunctionPlaceholder &6{0} &ahas been registered!'
+annotation-placeholder-unregister: '&d[&9Pouvoir&d] &cScript FunctionPlaceholder &6{0} &chas been unregistered!'
 
 kotlin-unit: '&7null'
 class-not-found: '&d[&9Pouvoir&d] &cClass &6{0} &cdosen`t exist!'

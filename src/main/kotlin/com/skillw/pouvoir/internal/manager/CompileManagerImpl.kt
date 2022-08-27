@@ -6,8 +6,8 @@ import com.skillw.pouvoir.api.manager.sub.script.CompileManager
 import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
 import com.skillw.pouvoir.api.script.engine.PouScriptEngine
-import com.skillw.pouvoir.internal.script.common.PouCompiledScript
-import com.skillw.pouvoir.internal.script.javascript.PouJavaScriptEngine
+import com.skillw.pouvoir.internal.core.script.common.PouCompiledScript
+import com.skillw.pouvoir.internal.core.script.javascript.PouJavaScriptEngine
 import com.skillw.pouvoir.util.FileUtils.md5
 import com.skillw.pouvoir.util.FileUtils.pathNormalize
 import com.skillw.pouvoir.util.StringUtils.toStringWithNext

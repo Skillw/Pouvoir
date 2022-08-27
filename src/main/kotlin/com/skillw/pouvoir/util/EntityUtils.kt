@@ -1,7 +1,7 @@
 package com.skillw.pouvoir.util
 
 import com.google.common.base.Enums
-import com.skillw.pouvoir.internal.raytrace.RayTrace
+import com.skillw.pouvoir.internal.feature.raytrace.RayTrace
 import com.skillw.pouvoir.util.PlayerUtils.sendPacketWithFields
 import net.minecraft.server.v1_16_R1.DataWatcher
 import net.minecraft.server.v1_16_R1.PacketPlayOutEntityMetadata
@@ -22,6 +22,7 @@ import taboolib.module.navigation.NMSImpl
 import taboolib.module.nms.MinecraftVersion.isUniversal
 import taboolib.module.nms.MinecraftVersion.major
 import taboolib.module.nms.MinecraftVersion.majorLegacy
+import taboolib.module.nms.getI18nName
 import taboolib.module.nms.nmsClass
 import taboolib.module.nms.sendPacket
 import java.util.*
@@ -36,10 +37,9 @@ object EntityUtils {
     }
 
     @JvmStatic
-    fun getName(livingEntity: LivingEntity?): String? {
-        livingEntity ?: return null
-        val name = livingEntity.name
-        return if (name.contains("§")) name else "&6$name"
+    fun getName(entity: LivingEntity?): String? {
+        entity ?: return null
+        return entity.getI18nName()
     }
 
     fun UUID.livingEntity(): LivingEntity? {
@@ -83,7 +83,7 @@ object EntityUtils {
 
     @JvmStatic
     fun isLiving(entity: Entity?): Boolean {
-        return entity is LivingEntity && entity.getType() != EntityType.ARMOR_STAND && !entity.isDead()
+        return entity is LivingEntity && !entity.isDead()
     }
 
     private val ARMOR_STAND_NEW = Enums.getIfPresent(EntityType::class.java, "ARMOR_STAND").orNull()

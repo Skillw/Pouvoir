@@ -54,7 +54,7 @@ taboolib {
 
 
     classifier = null
-    version = "6.0.9-54"
+    version = "6.0.9-72"
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -67,6 +67,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 

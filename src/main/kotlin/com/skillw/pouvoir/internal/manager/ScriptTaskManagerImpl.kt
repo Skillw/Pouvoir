@@ -3,9 +3,9 @@ package com.skillw.pouvoir.internal.manager
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.sub.script.ScriptTaskManager
 import com.skillw.pouvoir.api.plugin.SubPouvoir
-import com.skillw.pouvoir.internal.script.common.PouCompiledScript
-import com.skillw.pouvoir.internal.script.common.pool.TaskPool
-import com.skillw.pouvoir.internal.script.common.pool.TaskStatus
+import com.skillw.pouvoir.internal.core.script.common.PouCompiledScript
+import com.skillw.pouvoir.internal.core.script.common.pool.TaskPool
+import com.skillw.pouvoir.internal.core.script.common.pool.TaskStatus
 import java.util.*
 
 object ScriptTaskManagerImpl : ScriptTaskManager() {

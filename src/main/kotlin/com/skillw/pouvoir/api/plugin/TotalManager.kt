@@ -14,6 +14,7 @@ import org.bukkit.Bukkit
 import org.bukkit.plugin.Plugin
 import taboolib.common.LifeCycle
 import taboolib.common.platform.Awake
+import taboolib.library.reflex.ReflexClass
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
@@ -47,18 +48,14 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
     private fun loadSubPou(plugin: Plugin) {
         if (!dependPouvoir(plugin)) return
 
-        val classes = PluginUtils.getClasses(plugin)
+        val classes = PluginUtils.getClasses(plugin).map { ReflexClass.of(it).structure }
 
         classes.forEach {
-            try {
-                allStaticClasses[it.simpleName] = it.static()
-            } catch (t: Throwable) {
-
-            }
+            kotlin.runCatching { allStaticClasses[it.simpleName.toString()] = it.owner.static() }
         }
 
         handlers.addAll(classes
-            .filter { ClassHandler::class.java.isAssignableFrom(it) && it.simpleName != "ClassHandler" }
+            .filter { ClassHandler::class.java.isAssignableFrom(it.owner) && it.simpleName != "ClassHandler" }
             .mapNotNull {
                 it.getField("INSTANCE").get(null) as? ClassHandler?
             })
@@ -67,7 +64,7 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
             handlers
                 .forEach { handler ->
                     try {
-                        handler.inject(clazz, plugin)
+                        handler.inject(clazz.owner, plugin)
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
@@ -80,20 +77,26 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
         classes.filter { clazz ->
             clazz.isAnnotationPresent(AutoRegister::class.java)
         }.forEach { clazz ->
-            try {
+            kotlin.runCatching {
                 val auto = clazz.getAnnotation(AutoRegister::class.java)
-                if(auto.test.isNotEmpty()){
-                    try {
-                        Class.forName(auto.test)
-                    } catch (e: Exception) {
-                        return@forEach
-                    }
+                val test = auto.property("test", "")
+                if (test.isNotEmpty()) {
+                    kotlin.runCatching { Class.forName(test) }
                 }
                 (clazz.getField("INSTANCE").get(null) as? Registrable<*>?)?.register()
-            } catch (e: Exception) {
-                e.printStackTrace()
             }
         }
+        classes
+            .forEach { clazz ->
+                clazz.fields.forEach { field ->
+                    if (field.isAnnotationPresent(AutoRegister::class.java)) {
+                        kotlin.runCatching {
+                            val obj = field.get()
+                            if (obj is Registrable<*>) obj.register()
+                        }
+                    }
+                }
+            }
     }
 
     fun dependPouvoir(plugin: Plugin): Boolean {

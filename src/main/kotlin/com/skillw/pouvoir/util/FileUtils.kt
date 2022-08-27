@@ -87,7 +87,8 @@ object FileUtils {
                 yamls.add(subFile.loadYaml() ?: continue)
                 continue
             }
-            yamls.addAll(subFile.loadYamls())
+            if (subFile.isDirectory)
+                yamls.addAll(subFile.loadYamls())
         }
         return yamls
 

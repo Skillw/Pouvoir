@@ -2,7 +2,7 @@ package com.skillw.pouvoir.api.script.engine
 
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.able.Registrable
-import com.skillw.pouvoir.internal.script.common.hook.ScriptBridge
+import com.skillw.pouvoir.internal.core.script.common.hook.ScriptBridge
 import java.util.regex.Pattern
 import javax.script.ScriptEngine
 

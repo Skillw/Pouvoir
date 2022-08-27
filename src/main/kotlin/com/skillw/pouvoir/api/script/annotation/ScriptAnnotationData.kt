@@ -1,6 +1,6 @@
 package com.skillw.pouvoir.api.script.annotation
 
-import com.skillw.pouvoir.internal.script.common.PouCompiledScript
+import com.skillw.pouvoir.internal.core.script.common.PouCompiledScript
 
 /**
  * Script annotation data

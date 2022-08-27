@@ -29,6 +29,10 @@ object PouConfig : ConfigManager(Pouvoir) {
     val scale: Int
         get() = this["config"].getInt("options.big-decimal-scale")
 
+    override fun onActive() {
+        AsyncCatcher.enabled = false
+    }
+
     private fun reloadStaticClasses() {
         val globalVars = Pouvoir.scriptEngineManager.globalVariables
         staticClasses.forEach {

@@ -5,8 +5,8 @@ import com.skillw.pouvoir.api.manager.sub.script.CompileManager.Companion.compil
 import com.skillw.pouvoir.api.manager.sub.script.ScriptEngineManager.Companion.searchEngine
 import com.skillw.pouvoir.api.manager.sub.script.ScriptManager
 import com.skillw.pouvoir.internal.manager.PouConfig.debug
-import com.skillw.pouvoir.internal.script.common.PouCompiledScript
-import com.skillw.pouvoir.internal.script.javascript.PouJavaScriptEngine
+import com.skillw.pouvoir.internal.core.script.common.PouCompiledScript
+import com.skillw.pouvoir.internal.core.script.javascript.PouJavaScriptEngine
 import com.skillw.pouvoir.util.FileUtils.listSubFiles
 import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.function.console

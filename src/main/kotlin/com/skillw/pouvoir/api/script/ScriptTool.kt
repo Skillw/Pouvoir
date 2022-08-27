@@ -9,7 +9,7 @@ import com.skillw.pouvoir.api.listener.Priority
 import com.skillw.pouvoir.api.listener.ScriptListener
 import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.placeholder.PouPlaceHolder
-import com.skillw.pouvoir.internal.script.javascript.PouJavaScriptEngine
+import com.skillw.pouvoir.internal.core.script.javascript.PouJavaScriptEngine
 import com.skillw.pouvoir.util.ClassUtils
 import com.skillw.pouvoir.util.ClassUtils.findClass
 import com.skillw.pouvoir.util.ItemUtils.toMutableMap
@@ -539,6 +539,5 @@ object ScriptTool : BaseMap<String, Any>() {
             Mirror.mirrorData.remove(mirrorKey)
         }
     }
-
 
 }

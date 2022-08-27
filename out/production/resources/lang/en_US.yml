@@ -33,7 +33,7 @@ wrong-command-message: '&d[&9Pouvoir&d] &cWrong command!'
 command-clear: '&d[&9Pouvoir&d] &aMirrorData has been cleared!'
 command-task-info: '&eRunning Tasks Info:'
 running-task-empty: '&7No running tasks.'
-command-stop-task: '&d[&9Pouvoir&d] &cTask &6{0} &chas been cancelled!'
+command-task-stop: '&d[&9Pouvoir&d] &cTask &6{0} &chas been cancelled!'
 
 script-invoking-info: "&eInvoking script &6{0} &e's function &d{1}"
 script-invoking-arguments: "&eArguments: "

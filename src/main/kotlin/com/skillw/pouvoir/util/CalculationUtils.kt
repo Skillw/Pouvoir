@@ -3,7 +3,7 @@ package com.skillw.pouvoir.util
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import com.skillw.pouvoir.internal.manager.PouConfig
-import com.skillw.pouvoir.internal.script.javascript.PouJavaScriptEngine
+import com.skillw.pouvoir.internal.core.script.javascript.PouJavaScriptEngine
 import com.skillw.pouvoir.util.StringUtils.replacement
 import org.bukkit.entity.LivingEntity
 import taboolib.common.platform.function.warning

@@ -5,7 +5,7 @@ import com.skillw.pouvoir.api.function.context.IContext
 import com.skillw.pouvoir.api.manager.Manager
 import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.map.KeyMap
-import com.skillw.pouvoir.internal.function.context.SimpleContext
+import com.skillw.pouvoir.internal.core.function.context.SimpleContext
 
 
 /**
@@ -18,15 +18,16 @@ abstract class PouFunctionManager : KeyMap<String, PouFunction<*>>(), Manager {
     /** Namespaces */
     abstract val namespaces: BaseMap<String, HashSet<PouFunction<*>>>
 
-    abstract fun parse(
+    abstract fun eval(
         string: String,
         namespaces: Array<String> = arrayOf("common"),
         context: IContext = SimpleContext(),
     ): Any?
 
-    abstract fun parse(
+    abstract fun eval(
         string: String,
         namespaces: Array<String> = arrayOf("common"),
         receiver: IContext.() -> Unit = {},
     ): Any?
+
 }

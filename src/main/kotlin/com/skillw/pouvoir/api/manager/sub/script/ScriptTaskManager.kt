@@ -2,9 +2,9 @@ package com.skillw.pouvoir.api.manager.sub.script
 
 import com.skillw.pouvoir.api.manager.Manager
 import com.skillw.pouvoir.api.map.KeyMap
-import com.skillw.pouvoir.internal.script.common.PouCompiledScript
-import com.skillw.pouvoir.internal.script.common.pool.TaskPool
-import com.skillw.pouvoir.internal.script.common.pool.TaskStatus
+import com.skillw.pouvoir.internal.core.script.common.PouCompiledScript
+import com.skillw.pouvoir.internal.core.script.common.pool.TaskPool
+import com.skillw.pouvoir.internal.core.script.common.pool.TaskStatus
 
 /**
  * @className ScriptTaskManager

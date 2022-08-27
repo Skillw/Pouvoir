@@ -3,7 +3,7 @@ package com.skillw.pouvoir.internal.manager
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.sub.script.ScriptEngineManager
 import com.skillw.pouvoir.api.script.engine.PouScriptEngine
-import com.skillw.pouvoir.internal.script.common.top.TopLevel
+import com.skillw.pouvoir.internal.core.script.common.top.TopLevel
 import com.skillw.pouvoir.util.MessageUtils.information
 import taboolib.common.platform.function.info
 import taboolib.module.chat.colored

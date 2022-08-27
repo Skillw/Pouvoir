@@ -138,7 +138,7 @@ object PouvoirCommand {
                 execute<ProxyCommandSender> { sender, _, argument ->
                     Pouvoir.scriptTaskManager.values.forEach {
                         if (!it.stop(argument)) return@forEach
-                        sender.sendLang("command-stop-task", argument)
+                        sender.sendLang("command-task-stop", argument)
                         return@execute
                     }
                 }

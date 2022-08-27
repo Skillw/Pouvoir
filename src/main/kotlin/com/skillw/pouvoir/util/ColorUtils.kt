@@ -10,7 +10,6 @@ import taboolib.module.chat.uncolored
  * ClassName : com.skillw.classsystem.util.ColorUtils Created by Glom_ on
  * 2021-03-25 20:26:01 Copyright 2021 user. All rights reserved.
  */
-@ScriptTopLevel
 object ColorUtils {
 
     @ScriptTopLevel
@@ -24,6 +23,7 @@ object ColorUtils {
         return messages.colored()
     }
 
+    @ScriptTopLevel
     @JvmStatic
     fun unColor(msg: String): String {
         return msg.uncolored()
@@ -34,6 +34,7 @@ object ColorUtils {
         return messages.uncolored()
     }
 
+    @ScriptTopLevel
     @JvmStatic
     fun String.decolored(): String {
         return this.replace("§", "&")
