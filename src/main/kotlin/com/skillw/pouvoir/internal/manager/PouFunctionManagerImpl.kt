@@ -53,6 +53,7 @@ object PouFunctionManagerImpl : PouFunctionManager() {
             while (hasNext()) {
                 parseNext<Any?>()?.also {
                     if (!hasNext()) return it
+                    println(it)
                 } ?: break
             }
         }

@@ -12,7 +12,7 @@ object FunctionForeach : PouFunction<Unit>(
     override fun execute(parser: Parser) {
 
         with(parser) {
-            val paramName = parseString()
+            val paramName = next() ?: return
             except("in")
             val collection = parseAny()
             if (collection !is Array<*> && collection !is Collection<*>) error("parse Collection or Array error")

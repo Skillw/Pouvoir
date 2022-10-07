@@ -13,7 +13,7 @@ object FunctionSet : PouFunction<Any>("set") {
 
     override fun execute(parser: Parser): Any? {
         with(parser) {
-            val key = parseString()
+            val key = next() ?: return null
             when {
                 except("ifndef") -> if (context.containsKey(key)) return context[key]
 

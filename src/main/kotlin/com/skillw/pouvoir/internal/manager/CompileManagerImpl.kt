@@ -60,7 +60,8 @@ object CompileManagerImpl : CompileManager() {
     private val evalCache = BaseMap<Int, CompiledScript>()
     override fun compile(script: String): CompiledScript {
         return evalCache.map.getOrPut(script.hashCode()) {
-            (PouJavaScriptEngine.engine as Compilable).compile("function main(){$script}".trimIndent()).apply { init() }
+            (PouJavaScriptEngine.engine as Compilable).compile(("function main(){$script\n}").trimIndent())
+                .apply { init() }
         }
     }
 
