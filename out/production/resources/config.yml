@@ -1,0 +1,16 @@
+#aaaa
+database:
+  enable: false
+  host: localhost
+  port: 3306
+  user: root
+  password: root
+  database: root
+  table: my_database
+options:
+  debug: false
+  debug-function: false
+  #Your CPU Core
+  thread-pool-size: 4
+  number-format: "#.##"
+  big-decimal-scale: 4
