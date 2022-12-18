@@ -24,7 +24,7 @@ task("versionPlus") {
         properties["subVersion"] = (++subVersion).toString()
         properties.store(file.outputStream(), null)
     }
-    project.version = project.version.toString() + "-$subVersionStr"
+    project.version = project.version.toString() + "-$subVersion"
 }
 task("buildCode") {
     if (code == null) return@task
