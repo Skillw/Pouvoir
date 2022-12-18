@@ -16,11 +16,11 @@ val code: String? by project
 task("buildCode") {
     if (code == null) return@task
     val origin = project.version.toString()
-    project.version = "$origin-code"
+    project.version = "$origin-api"
 }
 
 taboolib {
-    if (project.version.toString().contains("-code")) {
+    if (project.version.toString().contains("-api")) {
         options("skip-kotlin-relocate")
     }
     description {
