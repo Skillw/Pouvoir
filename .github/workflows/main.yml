@@ -75,4 +75,4 @@ jobs:
         with:
           branch: master
           folder: .
-          commit-message: 'sync version'
+          commit-message: 'sync version.'
