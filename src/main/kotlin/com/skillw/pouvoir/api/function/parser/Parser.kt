@@ -1,12 +1,12 @@
 package com.skillw.pouvoir.api.function.parser
 
 import com.skillw.pouvoir.api.function.IBlock
-import com.skillw.pouvoir.api.function.action.IAction.Companion.action
 import com.skillw.pouvoir.api.function.context.IContext
 import com.skillw.pouvoir.api.function.reader.IReader
-import com.skillw.pouvoir.internal.core.function.parser.FunctionParser
-import com.skillw.pouvoir.internal.core.function.parser.StringParser
-import com.skillw.pouvoir.internal.core.function.parser.VarParser
+import com.skillw.pouvoir.internal.core.function.parser.ParserFunction
+import com.skillw.pouvoir.internal.core.function.parser.ParserString
+import com.skillw.pouvoir.internal.core.function.parser.ParserVar
+import com.skillw.pouvoir.internal.manager.PouActionManagerImpl.action
 import com.skillw.pouvoir.util.ColorUtils.decolored
 import taboolib.common.util.nonPrimitive
 import taboolib.module.chat.uncolored
@@ -27,14 +27,15 @@ class Parser private constructor(val reader: IReader, val context: IContext) : I
      * @return
      */
     inline fun <reified T> parseNext(): T? {
-        val token = peekNext()
+        val token = peekNextIgnoreBlank()
         if (token == null || token == "null") kotlin.run { next();return null }
         val subParser = when {
-            token.startsWith("&") -> VarParser
-            functions.containsKey(token) -> FunctionParser
+            token.startsWith("&") -> ParserVar
+            functions.containsKey(token) -> ParserFunction
             else -> T::class.java.getParser()
         }
-        return action(subParser.parse(this)) as? T?
+        val result = subParser.parse(this) ?: return null
+        return action(this, result) as? T?
     }
 
     /**
@@ -173,7 +174,7 @@ class Parser private constructor(val reader: IReader, val context: IContext) : I
      */
     fun except(vararg excepts: String): Boolean {
         return excepts.any {
-            (peekNext() == it).also { bool ->
+            (peek() == it).also { bool ->
                 if (bool) {
                     next();return@any true
                 }
@@ -211,7 +212,7 @@ class Parser private constructor(val reader: IReader, val context: IContext) : I
      */
     fun error(string: String): Nothing {
         kotlin.error(
-            "$string at ${reader.currentIndex()} : ${reader.current()} in\n ${reader.string}".uncolored()
+            "$string at line ${reader.currentLine()} ${reader.currentLineIndex()} : ${reader.current()} in\n ${reader.string}".uncolored()
                 .decolored()
         )
     }
@@ -221,7 +222,7 @@ class Parser private constructor(val reader: IReader, val context: IContext) : I
         private val registry = HashMap<Class<*>, TokenParser>()
 
         fun Class<*>.getParser(): TokenParser {
-            return registry[this] ?: registry[registry.keys.firstOrNull { it.isAssignableFrom(this) }] ?: StringParser
+            return registry[this] ?: registry[registry.keys.firstOrNull { it.isAssignableFrom(this) }] ?: ParserString
         }
 
         fun register(parser: TokenParser) {

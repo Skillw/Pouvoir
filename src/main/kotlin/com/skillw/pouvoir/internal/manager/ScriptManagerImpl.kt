@@ -4,9 +4,9 @@ import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.sub.script.CompileManager.Companion.compileScript
 import com.skillw.pouvoir.api.manager.sub.script.ScriptEngineManager.Companion.searchEngine
 import com.skillw.pouvoir.api.manager.sub.script.ScriptManager
-import com.skillw.pouvoir.internal.manager.PouConfig.debug
 import com.skillw.pouvoir.internal.core.script.common.PouCompiledScript
 import com.skillw.pouvoir.internal.core.script.javascript.PouJavaScriptEngine
+import com.skillw.pouvoir.internal.manager.PouConfig.debug
 import com.skillw.pouvoir.util.FileUtils.listSubFiles
 import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.function.console
@@ -88,7 +88,10 @@ object ScriptManagerImpl : ScriptManager() {
         return invoke<T>(path, function, arguments, sender, *parameters)
     }
 
-    override fun search(path: String, silent: Boolean): PouCompiledScript? {
+    override fun search(
+        path: String,
+        sender: ProxyCommandSender, silent: Boolean,
+    ): PouCompiledScript? {
         try {
             if (containsKey(path)) return this[path]
             this.keys
@@ -102,7 +105,7 @@ object ScriptManagerImpl : ScriptManager() {
             return this[path]
         } catch (e: FileNotFoundException) {
             if (!silent)
-                console().sendLang("script-file-not-found", path)
+                sender.sendLang("script-file-not-found", path)
         }
         return null
     }
@@ -114,7 +117,7 @@ object ScriptManagerImpl : ScriptManager() {
         sender: ProxyCommandSender,
         vararg parameters: Any?,
     ): T? {
-        val script = search(path) ?: return null
+        val script = search(path, sender, true) ?: return null
         return invoke(script, function, arguments, sender, *parameters)
     }
 

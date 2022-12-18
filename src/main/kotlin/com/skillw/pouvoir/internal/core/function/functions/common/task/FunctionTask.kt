@@ -28,10 +28,10 @@ object FunctionTask : PouFunction<PlatformExecutor.PlatformTask>(
                 period = parseLong()
             }
             val block = parseBlock()
-            val syncContext = SimpleContext(context)
+            val syncContext = context.clone()
             return submit(now = delay == 0L, async = false, delay = delay, period = period) {
                 block.execute(syncContext)
-                context.putAll(syncContext)
+                context.putAllContext(syncContext)
             }
         }
     }

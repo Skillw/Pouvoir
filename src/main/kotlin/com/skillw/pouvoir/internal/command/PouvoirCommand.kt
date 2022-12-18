@@ -1,7 +1,13 @@
 package com.skillw.pouvoir.internal.command
 
 import com.skillw.pouvoir.Pouvoir
+import com.skillw.pouvoir.Pouvoir.messagerBuilderManager
+import com.skillw.pouvoir.Pouvoir.personalManager
+import com.skillw.pouvoir.util.PlayerUtils.soundClick
+import com.skillw.pouvoir.util.PlayerUtils.soundFail
+import com.skillw.pouvoir.util.PlayerUtils.soundSuccess
 import org.bukkit.command.CommandSender
+import org.bukkit.entity.Player
 import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.command.CommandBody
 import taboolib.common.platform.command.CommandHeader
@@ -20,31 +26,40 @@ import java.util.*
 
 @CommandHeader(name = "pouvoir", aliases = ["pou"], permission = "pouvoir.command")
 object PouvoirCommand {
+    private fun ProxyCommandSender.soundSuccess() {
+        (this.origin as? Player?)?.soundSuccess()
+    }
+
+    private fun ProxyCommandSender.soundFail() {
+        (this.origin as? Player?)?.soundFail()
+    }
+
+    private fun ProxyCommandSender.soundClick() {
+        (this.origin as? Player?)?.soundClick()
+    }
 
     @CommandBody
     val main = mainCommand {
-        execute<CommandSender> { sender, _, _ ->
+        execute<ProxyCommandSender> { sender, _, _ ->
             sender.sendLang("command-message")
+            sender.soundSuccess()
         }
         incorrectCommand { sender, _, _, _ ->
             sender.sendLang("wrong-command-message")
+            sender.soundFail()
         }
     }
 
-    fun Array<String>.sendMessage(sender: CommandSender) {
-        this.forEach {
-            sender.sendMessage(it)
-        }
-    }
-
-    @CommandBody(permission = "pouvoir.command.js")
+    @CommandBody(permission = "pouvoir.command.run")
     val run = subCommand {
         dynamic {
-            suggestion<ProxyCommandSender> { _, _ ->
+            suggestion<ProxyCommandSender> { sender, _ ->
+                sender.soundClick()
                 Pouvoir.scriptManager.map.map { it.key }
             }
             dynamic {
-                suggestion<ProxyCommandSender> { _, context ->
+                suggestion<ProxyCommandSender> { sender, context ->
+                    sender.soundClick()
                     (Pouvoir.scriptManager.search(context.argument(-1))
                         ?: return@suggestion emptyList()).annotationData.keys.toList()
                 }
@@ -61,6 +76,7 @@ object PouvoirCommand {
                         val arguments = HashMap<String, Any>()
                         arguments["sender"] = sender
                         arguments["args"] = args
+                        sender.soundSuccess()
                         sender.sendLang("command-script-invoke", fileName)
                         Pouvoir.scriptManager.invoke<Any?>(
                             "$fileName::$function",
@@ -77,6 +93,7 @@ object PouvoirCommand {
     @CommandBody(permission = "pouvoir.command.reload")
     val reload = subCommand {
         execute<CommandSender> { sender, _, _ ->
+            (sender as? Player?)?.soundSuccess()
             sender.sendLang("command-reload")
             Pouvoir.reload()
         }
@@ -85,6 +102,7 @@ object PouvoirCommand {
     @CommandBody(permission = "pouvoir.command.help")
     val help = subCommand {
         execute<CommandSender> { sender, _, _ ->
+            (sender as? Player?)?.soundSuccess()
             sender.sendLang("command-message")
         }
     }
@@ -92,6 +110,7 @@ object PouvoirCommand {
     @CommandBody(permission = "pouvoir.command.report")
     val report = subCommand {
         execute<ProxyCommandSender> { sender, _, _ ->
+            sender.soundSuccess()
             Mirror.report(sender)
         }
     }
@@ -99,6 +118,7 @@ object PouvoirCommand {
     @CommandBody(permission = "pouvoir.command.clear")
     val clear = subCommand {
         execute<ProxyCommandSender> { sender, _, _ ->
+            sender.soundSuccess()
             Mirror.mirrorData.clear()
             sender.sendLang("command-clear")
         }
@@ -107,6 +127,7 @@ object PouvoirCommand {
     @CommandBody(permission = "pouvoir.command.info")
     val info = subCommand {
         execute<ProxyCommandSender> { sender, _, _ ->
+            sender.soundSuccess()
             sender.sendMessage("&aPouvoir &9v$pluginVersion &6By Glom_".colored())
         }
     }
@@ -116,6 +137,7 @@ object PouvoirCommand {
         literal("info", optional = true) {
             execute<ProxyCommandSender> { sender, _, _ ->
                 val messages = LinkedList<TellrawJson>()
+                sender.soundSuccess()
                 messages += TellrawJson().append(
                     ("&aPouvoir &9v$pluginVersion &6By Glom_ " + console().asLangText("command-task-info")).colored()
                 )
@@ -132,10 +154,12 @@ object PouvoirCommand {
         }
         literal("stop", optional = true) {
             dynamic {
-                suggestion<ProxyCommandSender> { _, _ ->
+                suggestion<ProxyCommandSender> { sender, _ ->
+                    sender.soundClick()
                     Pouvoir.scriptTaskManager.workingTasks
                 }
                 execute<ProxyCommandSender> { sender, _, argument ->
+                    sender.soundSuccess()
                     Pouvoir.scriptTaskManager.values.forEach {
                         if (!it.stop(argument)) return@forEach
                         sender.sendLang("command-task-stop", argument)
@@ -145,4 +169,22 @@ object PouvoirCommand {
             }
         }
     }
+
+    @CommandBody(permission = "pouvoir.command.message")
+    val message = subCommand {
+        dynamic {
+            suggestion<Player> { sender, _ ->
+                sender.soundClick()
+                messagerBuilderManager.keys.toList()
+            }
+            execute<Player> { sender, _, argument ->
+                sender.soundSuccess()
+                val uuid = sender.uniqueId
+                personalManager[uuid] = argument
+                sender.sendMessage("&aPouvoir &9v$pluginVersion &6By Glom_".colored())
+            }
+        }
+    }
+
+
 }

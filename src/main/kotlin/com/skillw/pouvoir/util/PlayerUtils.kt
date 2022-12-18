@@ -1,5 +1,6 @@
 package com.skillw.pouvoir.util
 
+import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.boss.BarColor
@@ -8,12 +9,48 @@ import org.bukkit.boss.BossBar
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import taboolib.library.reflex.Reflex.Companion.setProperty
+import taboolib.library.xseries.XSound
 import taboolib.module.nms.sendPacket
 import taboolib.platform.BukkitAdapter
 
 // For script coders
 object PlayerUtils {
+    @JvmStatic
+    @ScriptTopLevel
+    fun Player.soundClick() {
+        XSound.UI_BUTTON_CLICK.play(this)
+    }
 
+    @JvmStatic
+    @ScriptTopLevel
+    fun Player.soundLevelUp() {
+        XSound.ENTITY_PLAYER_LEVELUP.play(this)
+    }
+
+    @JvmStatic
+    @ScriptTopLevel
+    fun Player.soundChallenge() {
+        XSound.UI_TOAST_CHALLENGE_COMPLETE.play(this)
+    }
+
+    @JvmStatic
+    @ScriptTopLevel
+    fun Player.soundSuccess() {
+        XSound.ENTITY_EXPERIENCE_ORB_PICKUP.play(this)
+    }
+
+    @JvmStatic
+    @ScriptTopLevel
+    fun Player.soundFail() {
+        XSound.ENTITY_VILLAGER_NO.play(this)
+    }
+
+    @JvmStatic
+    @ScriptTopLevel
+    fun Player.soundFinish() {
+        XSound.BLOCK_ANVIL_USE.play(this)
+    }
+    
     @JvmStatic
     fun sendTitle(
         player: Player,
@@ -92,7 +129,7 @@ object PlayerUtils {
             val key = pair.key
             val value = pair.value
             value?.also {
-                any.setProperty(key, value)
+                any.setProperty(key, value, isStatic = false, findToParent = false)
             }
         }
         return any

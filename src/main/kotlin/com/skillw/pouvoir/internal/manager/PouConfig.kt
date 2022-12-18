@@ -3,6 +3,7 @@ package com.skillw.pouvoir.internal.manager
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.ConfigManager
 import com.skillw.pouvoir.util.ClassUtils
+import com.skillw.pouvoir.util.MessageUtils.information
 import com.skillw.pouvoir.util.MessageUtils.warning
 import org.spigotmc.AsyncCatcher
 import taboolib.common.platform.Platform
@@ -26,11 +27,21 @@ object PouConfig : ConfigManager(Pouvoir) {
         get() {
             return this["config"].getString("options.number-format")!!
         }
+    val defaultMessage: String
+        get() = this["config"].getString("options.message.default", "chat")!!
+    val lockedDefaultMessage: Boolean
+        get() = this["config"].getBoolean("options.message.locked-to-default")
+
     val scale: Int
         get() = this["config"].getInt("options.big-decimal-scale")
 
     override fun onActive() {
         AsyncCatcher.enabled = false
+    }
+
+    internal fun getStaticClassesInfo(): List<String> {
+        return staticClasses.map { (key, value) -> value.information(key) }.toMutableList()
+            .apply { add(0, "&5&lStaticClasses(script.yml):") }
     }
 
     private fun reloadStaticClasses() {
@@ -61,7 +72,9 @@ object PouConfig : ConfigManager(Pouvoir) {
             }
             staticClasses[key] = staticClass
         }
-        globalVars.putAll(staticClasses)
+        staticClasses.forEach { (key, value) ->
+            globalVars[key] = value
+        }
     }
 
     val debugPrefix by lazy {

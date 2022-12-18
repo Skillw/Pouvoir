@@ -19,10 +19,10 @@ object FunctionSync : PouFunction<Any>(
     override fun execute(parser: Parser): Any? {
         with(parser) {
             val block = parseBlock()
-            val syncContext = SimpleContext(context)
+            val syncContext = context.clone()
             return sync {
                 val result = block.execute(syncContext)
-                context.putAll(syncContext)
+                context.putAllContext(syncContext)
                 result
             }
         }

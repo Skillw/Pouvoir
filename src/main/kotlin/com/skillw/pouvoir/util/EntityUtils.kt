@@ -1,6 +1,7 @@
 package com.skillw.pouvoir.util
 
 import com.google.common.base.Enums
+import com.skillw.pouvoir.Pouvoir.sync
 import com.skillw.pouvoir.internal.feature.raytrace.RayTrace
 import com.skillw.pouvoir.util.PlayerUtils.sendPacketWithFields
 import net.minecraft.server.v1_16_R1.DataWatcher
@@ -11,8 +12,10 @@ import org.bukkit.entity.Entity
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
+import taboolib.common.platform.function.isPrimaryThread
 import taboolib.common.platform.function.warning
 import taboolib.common.reflect.Reflex.Companion.setProperty
+import taboolib.common.util.sync
 import taboolib.library.reflex.Reflex.Companion.getProperty
 import taboolib.library.reflex.Reflex.Companion.invokeConstructor
 import taboolib.library.reflex.Reflex.Companion.invokeMethod
@@ -49,7 +52,7 @@ object EntityUtils {
 
     @JvmStatic
     fun getLivingEntityByUUID(uuid: UUID?): LivingEntity? {
-        val entity = Bukkit.getEntity(uuid!!)
+        val entity = getEntity(uuid)
         return entity?.run {
             if (isLiving(this)) {
                 entity as LivingEntity?
@@ -72,8 +75,13 @@ object EntityUtils {
     }
 
     @JvmStatic
+    fun getEntity(uuid: UUID?): Entity? {
+        return uuid?.let { if (sync && !isPrimaryThread) sync { Bukkit.getEntity(it) } else Bukkit.getEntity(it) }
+    }
+
+    @JvmStatic
     fun isLiving(uuid: UUID?): Boolean {
-        val entity = Bukkit.getEntity(uuid!!)
+        val entity = getEntity(uuid)
         return isLiving(entity)
     }
 
@@ -159,8 +167,8 @@ object EntityUtils {
                     "xRot" to (location.pitch * 256.0f / 360.0f).toInt().toByte(),
                     "yHeadRot" to (location.yaw * 256.0f / 360.0f).toInt().toByte()
                 )
-            } catch (e: NoSuchMethodException) {
-                warning("Please install DecentHolograms or Adyeshach !")
+            } catch (t: Throwable) {
+                warning("Unsupportable Minecraft Version, Please install DecentHolograms or Adyeshach !")
             }
         } else {
             player.sendPacketWithFields(
@@ -225,8 +233,8 @@ object EntityUtils {
             player.sendPacketWithFields(
                 nmsClass("PacketPlayOutEntityDestroy").newInstance().apply { setProperty("a", intArrayOf(entityId)) }
             )
-        } catch (e: NoSuchMethodException) {
-            warning("Please install DecentHolograms or Adyeshach !")
+        } catch (t: Throwable) {
+            warning("Unsupportable Minecraft Version, Please install DecentHolograms or Adyeshach !")
         }
     }
 
@@ -263,9 +271,13 @@ object EntityUtils {
         distance: Double,
     ): LivingEntity? {
         val entities = ArrayList<Pair<Entity, BoundingBox>>()
-        getNearbyEntities(distance, distance, distance).forEach {
-            entities += it to NMSImpl().getBoundingBox(it);
-        }
+        fun getEntities() = getNearbyEntities(distance, distance, distance)
+        (if (sync && !isPrimaryThread)
+            sync { getEntities() }
+        else getEntities())
+            .forEach {
+                entities += it to NMSImpl().getBoundingBox(it);
+            }
         val traces = RayTrace(this).traces(distance, 0.2)
         for (vector in traces) {
             val firstOrNull = entities.firstOrNull { it.value.contains(vector) } ?: continue

@@ -5,10 +5,10 @@ import com.skillw.pouvoir.Pouvoir.containerManager
 import com.skillw.pouvoir.Pouvoir.listenerManager
 import com.skillw.pouvoir.Pouvoir.scriptManager
 import com.skillw.pouvoir.api.annotation.ScriptTopLevel
-import com.skillw.pouvoir.api.listener.Priority
-import com.skillw.pouvoir.api.listener.ScriptListener
 import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.placeholder.PouPlaceHolder
+import com.skillw.pouvoir.api.script.listener.Priority
+import com.skillw.pouvoir.api.script.listener.ScriptListener
 import com.skillw.pouvoir.internal.core.script.javascript.PouJavaScriptEngine
 import com.skillw.pouvoir.util.ClassUtils
 import com.skillw.pouvoir.util.ClassUtils.findClass
@@ -16,6 +16,7 @@ import com.skillw.pouvoir.util.ItemUtils.toMutableMap
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
+import org.bukkit.command.CommandSender
 import org.bukkit.command.PluginCommand
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.LivingEntity
@@ -26,12 +27,10 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.Plugin
 import org.bukkit.potion.PotionEffectType
 import taboolib.common.platform.Platform
+import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.ProxyParticle
 import taboolib.common.platform.event.EventPriority
-import taboolib.common.platform.function.adaptLocation
-import taboolib.common.platform.function.adaptPlayer
-import taboolib.common.platform.function.console
-import taboolib.common.platform.function.submit
+import taboolib.common.platform.function.*
 import taboolib.common.platform.sendTo
 import taboolib.common.platform.service.PlatformExecutor
 import taboolib.common.util.Vector
@@ -47,6 +46,7 @@ import taboolib.platform.util.hoverItem
 import taboolib.platform.util.isNotAir
 import java.util.function.Consumer
 import java.util.function.Function
+import java.util.function.Supplier
 
 
 object ScriptTool : BaseMap<String, Any>() {
@@ -502,18 +502,23 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @ScriptTopLevel
     @JvmStatic
-    fun monitorNow(key: String, func: () -> Any?): Any? {
-        return mirrorNow(key) { func.invoke() }
+    fun monitorNow(key: String, func: Supplier<Any?>): Any? {
+        return mirrorNow(key) { func.get() }
     }
 
     @ScriptTopLevel
     @JvmStatic
-    fun monitorFuture(key: String, func: Mirror.MirrorFuture<Any?>.() -> Unit): Any {
-        return taboolib.common5.mirrorFuture(key, func)
+    fun monitorFuture(key: String, func: Consumer<Mirror.MirrorFuture<Any?>>): Any {
+        return taboolib.common5.mirrorFuture<Any?>(key) { func.accept(this) }
     }
 
     @JvmStatic
-    fun checkMonitor(key: String) {
+    @ScriptTopLevel
+    fun checkMonitor(key: String, commandSender: CommandSender) {
+        checkMonitor(key, adaptCommandSender(commandSender))
+    }
+
+    private fun checkMonitor(key: String, commandSender: ProxyCommandSender) {
         val options = Mirror.MirrorSettings()
         val collect = Mirror.MirrorCollect(options, "/", "/")
         Mirror.mirrorData.keys().toList().filter {
@@ -524,10 +529,17 @@ object ScriptTool : BaseMap<String, Any>() {
                 point = point.sub.computeIfAbsent(it) { _ -> Mirror.MirrorCollect(options, mirrorKey, it) }
             }
         }
-        collect.print(console(), collect.getTotal(), 0)
+        collect.print(commandSender, collect.getTotal(), 0)
     }
 
     @JvmStatic
+    @ScriptTopLevel
+    fun checkMonitorConsole(key: String) {
+        checkMonitor(key, console())
+    }
+
+    @JvmStatic
+    @ScriptTopLevel
     fun clearMonitor(key: String?) {
         key ?: kotlin.run {
             Mirror.mirrorData.clear()

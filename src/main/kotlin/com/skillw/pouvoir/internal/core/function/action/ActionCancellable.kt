@@ -1,8 +1,8 @@
 package com.skillw.pouvoir.internal.core.function.action
 
 import com.skillw.pouvoir.api.annotation.AutoRegister
-import com.skillw.pouvoir.api.function.action.IAction
-import com.skillw.pouvoir.api.function.parser.Parser
+import com.skillw.pouvoir.api.function.action.ActionExecutor
+import com.skillw.pouvoir.api.function.action.PouAction
 import org.bukkit.event.Cancellable
 
 /**
@@ -12,27 +12,11 @@ import org.bukkit.event.Cancellable
  * @date 2022/8/9 16:26 Copyright 2022 user. All rights reserved.
  */
 @AutoRegister
-object ActionCancellable : IAction {
-    override val actions: Set<String> =
-        hashSetOf("isCancelled")
-    override val type: Class<*> = Cancellable::class.java
-
-    override fun action(parser: Parser, obj: Any, action: String): Any? {
-        if (obj !is Cancellable) error("$obj is not a Cancellable")
-        with(parser) {
-            when (action) {
-                "isCancelled" -> {
-                    if (except("to")) {
-                        obj.isCancelled = parseBoolean()
-                    }
-                    return obj.isCancelled
-                }
-
-                else -> {
-                    error("unknown Cancellable $obj action $action")
-                }
-            }
+object ActionCancellable : PouAction<Cancellable>(
+    Cancellable::class.java,
+    "isCancelled" to ActionExecutor {
+        if (except("to")) {
+            it.isCancelled = parseBoolean()
         }
-    }
-
-}
+        return@ActionExecutor it.isCancelled
+    })

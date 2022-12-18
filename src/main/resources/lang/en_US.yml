@@ -17,7 +17,7 @@ script-engine-valid-suffix: '&d[&9Pouvoir&d] &cCan t found the PouScriptEngine w
 function-wrong-arguments: '&d[&9Pouvoir&d] &cWrong arguments while calling the function &6{0} &c!'
 pou-placeholder-register: '&d[&9Pouvoir&d] &ePouPlaceholder &6{0} &ehas successfully registered! From: &d{1} &9{2} &eBy: &a{3}'
 command-message:
-  - '&6================================'
+  - '&f&m─&6&m────────────────────────────────&6&f&m─'
   - ' &9Command List:'
   - '    &d- &ehelp &5—— &aShow the help of command'
   - '    &d- &einfo &5—— &aShow the info of Pouvoir.'
@@ -28,12 +28,13 @@ command-message:
   - '      &7- &einfo &5—— &aCheck Script Task Info.'
   - '      &7- &estop {Task ID} &5—— &aStop a running task.'
   - '    &d- &ereload &5—— &aReload Pouvoir'
-  - '  &6================================'
+  - '&f&m─&6&m────────────────────────────────&6&f&m─'
 wrong-command-message: '&d[&9Pouvoir&d] &cWrong command!'
 command-clear: '&d[&9Pouvoir&d] &aMirrorData has been cleared!'
 command-task-info: '&eRunning Tasks Info:'
 running-task-empty: '&7No running tasks.'
 command-task-stop: '&d[&9Pouvoir&d] &cTask &6{0} &chas been cancelled!'
+command-switch-message: '&d[&9Pouvoir&d] &aYou selected the message type &6{0} &a!'
 
 script-invoking-info: "&eInvoking script &6{0} &e's function &d{1}"
 script-invoking-arguments: "&eArguments: "

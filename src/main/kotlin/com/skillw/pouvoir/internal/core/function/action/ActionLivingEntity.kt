@@ -1,8 +1,7 @@
 package com.skillw.pouvoir.internal.core.function.action
 
 import com.skillw.pouvoir.api.annotation.AutoRegister
-import com.skillw.pouvoir.api.function.action.IAction
-import com.skillw.pouvoir.api.function.parser.Parser
+import com.skillw.pouvoir.api.function.action.PouAction
 import com.skillw.pouvoir.util.EntityUtils.getDisplayName
 import org.bukkit.Location
 import org.bukkit.entity.Entity
@@ -17,77 +16,60 @@ import taboolib.platform.util.setMeta
  * @date 2022/8/9 16:26 Copyright 2022 user. All rights reserved.
  */
 @AutoRegister
-object ActionLivingEntity : IAction {
-    override val actions: Set<String>
-        get() = hashSetOf(
-            "location",
-            "teleport",
-            "name",
-            "displayName",
-            "health",
-            "maxHealth",
-            "velocity",
-            "metadata",
-        )
-    override val type: Class<*>
-        get() = LivingEntity::class.java
+object ActionLivingEntity : PouAction<LivingEntity>(LivingEntity::class.java) {
+    init {
+        addExec("location") { entity ->
+            entity.location
+        }
 
-    override fun action(parser: Parser, obj: Any, action: String): Any? {
-        if (obj !is LivingEntity) error("obj is not a LivingEntity")
-        with(parser) {
-            return when (action) {
-                "location" -> {
-                    return obj.location
-                }
-
-                "teleport" -> {
-                    except("to")
-                    when (val any = parseAny()) {
-                        is Entity -> obj.teleport(any)
-                        is Location -> obj.teleport(any)
-                        else -> error("Wrong argument type, only Location / Entity")
-                    }
-                }
-
-                "name" -> {
-                    return obj.name
-                }
-
-                "displayName" -> {
-                    return obj.getDisplayName()
-                }
-
-                "health" -> {
-                    if (except("to"))
-                        obj.health = parseDouble()
-                    else
-                        return obj.health
-                }
-
-                "maxHealth" -> {
-                    if (except("to"))
-                        obj.maxHealth = parseDouble()
-                    else
-                        return obj.maxHealth
-                }
-
-                "velocity" -> {
-                    if (except("to"))
-                        obj.velocity = parse()
-                    else
-                        return obj.velocity
-                }
-
-                "metadata" -> {
-                    val key = parseString()
-                    if (except("to"))
-                        obj.setMeta(key, parseAny())
-                    else
-                        return obj.getMetaFirst(key)
-                }
-
-                else -> null
+        addExec("teleport") { entity ->
+            except("to")
+            when (val any = parseAny()) {
+                is Entity -> entity.teleport(any)
+                is Location -> entity.teleport(any)
+                else -> error("Wrong argument type, only Location / Entity")
             }
+            
+        }
+
+        addExec("name") { entity ->
+            entity.name
+        }
+
+        addExec("displayName") { entity ->
+            entity.getDisplayName()
+        }
+
+        addExec("health") { entity ->
+            if (except("to"))
+                entity.health = parseDouble()
+            else
+                entity.health
+        }
+
+        addExec("maxHealth") { entity ->
+            if (except("to"))
+                entity.maxHealth = parseDouble()
+            else
+                entity.maxHealth
+        }
+
+        addExec("velocity") { entity ->
+            if (except("to"))
+                entity.velocity = parse()
+            else
+                entity.velocity
+        }
+
+        addExec("metadata") { entity ->
+            val key = parseString()
+            if (except("to"))
+                entity.setMeta(key, parseAny())
+            else
+                entity.getMetaFirst(key)
+        }
+        addExec("potion") { entity ->
+
         }
     }
 }

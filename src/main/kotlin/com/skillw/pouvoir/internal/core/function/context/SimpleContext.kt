@@ -9,7 +9,9 @@ import com.skillw.pouvoir.api.function.context.IContext
  * @constructor Create empty SimpleContext
  */
 class SimpleContext(val map: MutableMap<String, Any> = HashMap()) : IContext {
+
     override val functions = HashMap<String, PouFunction<*>>()
+
     override val entries: MutableSet<MutableMap.MutableEntry<String, Any>>
         get() = map.entries
     override val keys: MutableSet<String>
@@ -49,5 +51,9 @@ class SimpleContext(val map: MutableMap<String, Any> = HashMap()) : IContext {
 
     override fun remove(key: String): Any? {
         return map.remove(key)
+    }
+
+    override fun toString(): String {
+        return "SimpleContext{ variables: $map, functions: $functions}"
     }
 }

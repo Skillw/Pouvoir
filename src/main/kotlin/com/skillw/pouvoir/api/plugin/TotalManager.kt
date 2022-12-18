@@ -7,6 +7,7 @@ import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import com.skillw.pouvoir.api.manager.ManagerData
 import com.skillw.pouvoir.api.map.KeyMap
 import com.skillw.pouvoir.api.plugin.handler.ClassHandler
+import com.skillw.pouvoir.util.ClassUtils.existClass
 import com.skillw.pouvoir.util.ClassUtils.findClass
 import com.skillw.pouvoir.util.ClassUtils.static
 import com.skillw.pouvoir.util.PluginUtils
@@ -91,8 +92,10 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
                 clazz.fields.forEach { field ->
                     if (field.isAnnotationPresent(AutoRegister::class.java)) {
                         kotlin.runCatching {
+                            val autoRegister = field.getAnnotation(AutoRegister::class.java)
+                            val test = autoRegister.property<String>("test") ?: ""
                             val obj = field.get()
-                            if (obj is Registrable<*>) obj.register()
+                            if (obj is Registrable<*> && (test.isEmpty() || test.existClass())) obj.register()
                         }
                     }
                 }

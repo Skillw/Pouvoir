@@ -28,19 +28,11 @@ abstract class ScriptManager : Manager, KeyMap<String, PouCompiledScript>() {
     abstract fun addScriptDir(file: File)
 
     /**
-     * Search
-     *
-     * @param path 路径
-     * @param silent 如有错是否报
-     * @return 查找到的预编译脚本
-     */
-    abstract fun search(path: String, silent: Boolean = false): PouCompiledScript?
-
-    /**
      * Invoke
      *
      * @param pathWithFunction 路径::函数名
      * @param arguments 参数
+     * @param sender 接收结果的对象
      * @param parameters 函数参数
      * @param T 返回类型
      * @return 返回值
@@ -58,6 +50,7 @@ abstract class ScriptManager : Manager, KeyMap<String, PouCompiledScript>() {
      * @param path 路径
      * @param function 函数名
      * @param arguments 参数
+     * @param sender 接收结果的对象
      * @param parameters 函数参数
      * @param T 返回类型
      * @return 返回值
@@ -76,6 +69,7 @@ abstract class ScriptManager : Manager, KeyMap<String, PouCompiledScript>() {
      * @param script 预编译脚本
      * @param function 函数名
      * @param arguments 参数
+     * @param sender 接收结果的对象
      * @param parameters 函数参数
      * @param T 返回类型
      * @return 返回值
@@ -93,4 +87,19 @@ abstract class ScriptManager : Manager, KeyMap<String, PouCompiledScript>() {
         arguments: Map<String, Any> = emptyMap(),
         sender: ProxyCommandSender = console(),
     ): T?
+
+
+    /**
+     * Search
+     *
+     * @param path 路径
+     * @param sender 接收报错的对象
+     * @param silent 如有错是否报
+     * @return 查找到的预编译脚本
+     */
+    abstract fun search(
+        path: String,
+        sender: ProxyCommandSender = console(),
+        silent: Boolean = true,
+    ): PouCompiledScript?
 }

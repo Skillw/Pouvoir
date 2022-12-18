@@ -23,5 +23,8 @@ abstract class PouFunction<T>(
         }
     }
 
+    override fun toString(): String {
+        return "PouFunction::$key"
+    }
 
 }

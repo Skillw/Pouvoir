@@ -34,7 +34,7 @@ interface IReader {
 
     fun current(): String
 
-    fun peekNext(): String?
+    fun peek(): String?
 
 
     fun skipTill(reader: IReader, from: String, till: String): Boolean
@@ -42,7 +42,11 @@ interface IReader {
 
     fun reset(): IReader
 
+    fun currentLine(): Int
+
     fun exit()
 
+    fun currentLineIndex(): Int
+    fun peekNextIgnoreBlank(): String?
 }
 

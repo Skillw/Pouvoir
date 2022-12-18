@@ -24,6 +24,9 @@ abstract class ScriptEngineManager : KeyMap<String, PouScriptEngine>(), Manager 
      */
     abstract fun getEngine(suffix: String): PouScriptEngine?
 
+    abstract fun relocate(from: String, to: String)
+    abstract fun deleteRelocate(from: String)
+
     companion object {
 
         @JvmStatic

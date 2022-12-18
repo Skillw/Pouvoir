@@ -3,7 +3,6 @@ package com.skillw.pouvoir.internal.core.function.functions.common.task
 import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.api.function.PouFunction
 import com.skillw.pouvoir.api.function.parser.Parser
-import com.skillw.pouvoir.internal.core.function.context.SimpleContext
 import taboolib.common.platform.function.submitAsync
 import taboolib.common.platform.service.PlatformExecutor
 
@@ -28,10 +27,10 @@ object FunctionAsync : PouFunction<PlatformExecutor.PlatformTask>(
                 period = parseLong()
             }
             val block = parseBlock()
-            val asyncContext = SimpleContext(context)
+            val asyncContext = context.clone()
             return submitAsync(delay == 0L, delay, period) {
                 block.execute(asyncContext)
-                context.putAll(asyncContext)
+                context.putAllContext(asyncContext)
             }
         }
     }

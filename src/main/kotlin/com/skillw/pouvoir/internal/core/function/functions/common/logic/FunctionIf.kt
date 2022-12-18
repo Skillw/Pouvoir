@@ -29,13 +29,13 @@ object FunctionIf : PouFunction<Any>("if") {
                 }
             }
             if (bool) {
-                return (if (peekNext() == "{") {
+                return (if (peek() == "{") {
                     Supplier { parseBlock().execute(parser) }
                 } else {
                     Supplier { parser.parseNext() }
                 }).get().also {
                     except("else");
-                    if (peekNext() == "{") {
+                    if (peek() == "{") {
                         parseBlock()
                     } else {
                         parseNext<Any?>()
@@ -44,7 +44,7 @@ object FunctionIf : PouFunction<Any>("if") {
             }
             var ifFalse: Supplier<Any?>? = null
             if (skipTill("then", "else")) {
-                ifFalse = if (peekNext() == "{") {
+                ifFalse = if (peek() == "{") {
                     Supplier { parseBlock().execute(parser) }
                 } else {
                     Supplier { parser.parseNext() }

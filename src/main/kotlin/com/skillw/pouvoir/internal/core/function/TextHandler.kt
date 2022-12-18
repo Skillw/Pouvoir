@@ -12,6 +12,10 @@ import com.skillw.pouvoir.internal.core.function.context.SimpleContext
  */
 object TextHandler {
     fun analysis(text: String, global: IContext = SimpleContext()): String {
+        /*
+        start 当前开始下标
+        count 有多少个'}'待跳过 ({}嵌套)
+         */
         var result = text
         var ignore = false
         var start = -1
@@ -20,6 +24,10 @@ object TextHandler {
             when (text[index]) {
                 '\\' -> ignore = true
                 '{' -> if (!ignore) {
+                    if (index - 1 >= 0 && text[index - 1] == '&' && index + 1 < text.length && text[index + 1] == '#') {
+                        ignore = true
+                        continue
+                    }
                     if (start != -1) {
                         count++
                         continue

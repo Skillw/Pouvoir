@@ -11,7 +11,6 @@ import jdk.nashorn.internal.runtime.ScriptFunction
 import jdk.nashorn.internal.runtime.ScriptFunctionData
 import taboolib.library.reflex.Reflex.Companion.getProperty
 import taboolib.library.reflex.Reflex.Companion.invokeMethod
-import java.lang.invoke.MethodType
 import java.util.function.Supplier
 import javax.script.CompiledScript
 import javax.script.Invocable
@@ -40,11 +39,9 @@ object NashornLegacy : ScriptBridge {
         val scriptObject = any as? ScriptObjectMirror ?: return any
         if (scriptObject.isFunction) {
             val paramSize = scriptObject.getProperty<ScriptFunction>("sobj")!!
-                .getProperty<ScriptFunctionData>("data")!!
-                .invokeMethod<MethodType>("getGenericType")!!
-                .parameterCount() - 2
+                .getProperty<ScriptFunctionData>("data")!!.getProperty<Int>("arity")
             return when (paramSize) {
-                0 -> Supplier<Any?> { return@Supplier scriptObject.invokeMethod<Any>("call", null) }
+                0 -> Supplier<Any?> { return@Supplier scriptObject.invokeMethod<Any?>("call", null, emptyArray<Any>()) }
                 1 -> fun(param: Any?): Any? {
                     return scriptObject.call(null, param)
                 }

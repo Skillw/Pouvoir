@@ -31,7 +31,7 @@ internal object TopLevel : KeyMap<String, TopLevelData>() {
             val data = membersInfo[source] ?: return@forEach
             list.add("  &f-> &6From &d$source&f:")
             list.addTypeMessages(Type.CLASS, data)
-            list.addTypeMessages(Type.FIELD, data)
+            list.addTypeMessages(Type.OBJECT, data)
             list.addTypeMessages(Type.FUNCTION, data)
         }
         return list
@@ -42,7 +42,20 @@ internal object TopLevel : KeyMap<String, TopLevelData>() {
         super.register(key, value)
     }
 
+    fun addFunction(key: String, function: Any, source: String, info: String, description: String) {
+        register(TopLevelData(key, source, Type.FUNCTION, function, "$info $description"))
+    }
+
+    fun addClass(key: String, clazz: Any, source: String, info: String, description: String) {
+
+        register(TopLevelData(key, source, Type.CLASS, clazz, "$info $description"))
+    }
+
+    fun addObject(key: String, obj: Any, source: String, info: String, description: String) {
+        register(TopLevelData(key, source, Type.OBJECT, obj, "$info $description"))
+    }
+
     enum class Type(val display: String) {
-        CLASS("Classes"), FUNCTION("Functions"), FIELD("Fields")
+        CLASS("Classes"), FUNCTION("Functions"), OBJECT("Objects")
     }
 }

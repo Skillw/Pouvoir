@@ -43,7 +43,7 @@ class HologramBuilder(private val location: Location) {
      * @param content 内容
      * @return 自身
      */
-    fun content(content: MutableList<String>): HologramBuilder {
+    fun content(content: Collection<String>): HologramBuilder {
         this.content.clear()
         this.content.addAll(content)
         return this

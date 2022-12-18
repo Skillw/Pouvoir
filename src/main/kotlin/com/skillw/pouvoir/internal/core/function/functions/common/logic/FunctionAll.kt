@@ -6,7 +6,7 @@ import com.skillw.pouvoir.api.function.parser.Parser
 import taboolib.common5.Coerce
 
 /**
- * @className FunctionBlock
+ * @className FunctionAll
  *
  * @author Glom
  * @date 2022/8/9 16:26 Copyright 2022 user. All rights reserved.

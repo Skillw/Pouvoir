@@ -1,3 +1,7 @@
+#全局静态类导入
+#格式:
+#  变量名: '类名'
+#在这里的静态类可以直接在脚本里调用
 static-classes:
   Bukkit: 'org.bukkit.Bukkit'
   Arrays: 'java.util.Arrays'

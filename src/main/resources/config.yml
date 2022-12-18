@@ -1,4 +1,4 @@
-#aaaa
+#数据库配置
 database:
   enable: false
   host: localhost
@@ -8,9 +8,18 @@ database:
   database: root
   table: my_database
 options:
+  #调试模式
   debug: false
+  #内联函数-调试模式
   debug-function: false
-  #Your CPU Core
+  #(脚本任务)线程池容量
   thread-pool-size: 4
+  #默认的数字格式
+  #会影响Pouvoir的所有附属
   number-format: "#.##"
+  #默认的小数精确位数
+  #会影响Pouvoir的所有附属
   big-decimal-scale: 4
+  message:
+    default: 'CHAT'
+    locked-to-default: false

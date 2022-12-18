@@ -4,6 +4,7 @@ package com.skillw.pouvoir.internal.core.function.functions.common.logic
 import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.api.function.PouFunction
 import com.skillw.pouvoir.api.function.parser.Parser
+import com.skillw.pouvoir.util.ClassUtils.instanceof
 import taboolib.common.platform.function.warning
 import taboolib.common5.Coerce
 
@@ -11,43 +12,55 @@ import taboolib.common5.Coerce
 object FunctionCheck : PouFunction<Boolean>("check") {
 
     private fun Any?.toDouble() = Coerce.toDouble(this)
+    private fun Any?.isNumber() = Coerce.asDouble(this).isPresent
 
-    private fun check(x: Any?, symbol: String, y: Any?): Boolean {
+    @JvmStatic
+    fun check(a: Any?, symbol: String, b: Any?): Boolean {
         return when (symbol) {
-            "<" -> x.toDouble() < y.toDouble()
-            "<=" -> x.toDouble() <= y.toDouble()
-            "==" -> x.toDouble() == y.toDouble()
-            "!=" -> x != y
-            "===" -> x === y
-            "!==" -> x !== y
-            ">" -> x.toDouble() > y.toDouble()
-            ">=" -> x.toDouble() >= y.toDouble()
-            "equals" -> x == y
-            "!equals" -> x != y
-            "in" -> when (y) {
-                is Collection<*> -> x in y
-                else -> x.toString() in y.toString()
+            "<" -> a.toDouble() < b.toDouble()
+            "<=" -> a.toDouble() <= b.toDouble()
+            "==" -> when{
+                a.isNumber() && b.isNumber() -> a.toDouble() == b.toDouble()
+                else -> a == b
+            }
+            "!=" -> when{
+                a.isNumber() && b.isNumber() -> a.toDouble() != b.toDouble()
+                else -> a != b
+            }
+            "===" -> a === b
+            "!==" -> a !== b
+            ">" -> a.toDouble() > b.toDouble()
+            ">=" -> a.toDouble() >= b.toDouble()
+            "equals" -> a == b
+            "!equals" -> a != b
+            "in" -> when (b) {
+                is Collection<*> -> a in b
+                //                  内联函数range的返回值就是ClosedRange<Double> 所以直接强转了
+                is ClosedRange<*> -> (b as ClosedRange<Double>).contains(a.toDouble())
+                else -> a.toString() in b.toString()
             }
 
-            "!in" -> when (y) {
-                is Collection<*> -> x !in y
-                else -> x.toString() !in y.toString()
+            "!in" -> when (b) {
+                is Collection<*> -> a !in b
+                //                  内联函数range的返回值就是ClosedRange<Double> 所以直接强转了
+                is ClosedRange<*> -> !(b as ClosedRange<Double>).contains(a.toDouble())
+                else -> a.toString() !in b.toString()
             }
 
-            "is" -> when (y) {
-                is Class<*> -> y.isInstance(x)
-                else -> false
+            "is" -> when {
+                b is Class<*> -> b.isInstance(a)
+                else -> b?.let { a?.instanceof(it) } == true
             }
 
-            "!is" -> when (y) {
-                is Class<*> -> !y.isInstance(x)
-                else -> false
+            "!is" -> when (b) {
+                is Class<*> -> !b.isInstance(a)
+                else -> b?.let { a?.instanceof(it) } == false
             }
 
-            "contains" -> x.toString().contains(y.toString())
-            "!contains" -> !x.toString().contains(y.toString())
-            "equalsIgnore" -> x.toString().equals(y.toString(), true)
-            "!equalsIgnore" -> !x.toString().equals(y.toString(), true)
+            "contains" -> a.toString().contains(b.toString())
+            "!contains" -> !a.toString().contains(b.toString())
+            "equalsIgnore" -> a.toString().equals(b.toString(), true)
+            "!equalsIgnore" -> !a.toString().equals(b.toString(), true)
             else -> {
                 warning("Unknown symbol $symbol!")
                 false

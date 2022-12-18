@@ -5,7 +5,7 @@ import com.skillw.pouvoir.api.function.PouFunction
 import com.skillw.pouvoir.api.function.parser.Parser
 
 /**
- * @className FunctionBlock
+ * @className FunctionNot
  *
  * @author Glom
  * @date 2022/8/9 16:26 Copyright 2022 user. All rights reserved.

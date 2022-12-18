@@ -3,7 +3,14 @@ package com.skillw.pouvoir
 
 import com.skillw.pouvoir.api.annotation.PouManager
 import com.skillw.pouvoir.api.manager.ManagerData
-import com.skillw.pouvoir.api.manager.sub.*
+import com.skillw.pouvoir.api.manager.sub.ContainerManager
+import com.skillw.pouvoir.api.manager.sub.ListenerManager
+import com.skillw.pouvoir.api.manager.sub.PouPlaceHolderAPI
+import com.skillw.pouvoir.api.manager.sub.PouPlaceHolderManager
+import com.skillw.pouvoir.api.manager.sub.function.PouActionManager
+import com.skillw.pouvoir.api.manager.sub.function.PouFunctionManager
+import com.skillw.pouvoir.api.manager.sub.message.MessagerBuilderManager
+import com.skillw.pouvoir.api.manager.sub.message.PersonalManager
 import com.skillw.pouvoir.api.manager.sub.script.*
 import com.skillw.pouvoir.api.plugin.SubPouvoir
 import com.skillw.pouvoir.api.thread.BasicThreadFactory
@@ -13,6 +20,7 @@ import org.bukkit.plugin.java.JavaPlugin
 import taboolib.common.platform.Plugin
 import taboolib.module.configuration.Config
 import taboolib.module.configuration.ConfigFile
+import taboolib.module.nms.MinecraftVersion
 import taboolib.platform.BukkitPlugin
 import java.util.concurrent.ScheduledThreadPoolExecutor
 
@@ -30,6 +38,9 @@ object Pouvoir : Plugin(), SubPouvoir {
             threadPoolSize,
             BasicThreadFactory.Builder().daemon(true).namingPattern("pouvoir-schedule-pool-%d").build()
         )
+    }
+    val sync by lazy {
+        MinecraftVersion.majorLegacy >= 11900
     }
 
 
@@ -54,6 +65,10 @@ object Pouvoir : Plugin(), SubPouvoir {
     @JvmStatic
     @PouManager
     lateinit var pouFunctionManager: PouFunctionManager
+
+    @JvmStatic
+    @PouManager
+    lateinit var pouActionManager: PouActionManager
 
     @JvmStatic
     @PouManager
@@ -86,6 +101,15 @@ object Pouvoir : Plugin(), SubPouvoir {
     @JvmStatic
     @PouManager
     lateinit var scriptTaskManager: ScriptTaskManager
+
+
+    @JvmStatic
+    @PouManager
+    lateinit var messagerBuilderManager: MessagerBuilderManager
+
+    @JvmStatic
+    @PouManager
+    lateinit var personalManager: PersonalManager
 
     fun isDepend(plugin: org.bukkit.plugin.Plugin) =
         plugin.description.depend.contains("Pouvoir") || plugin.description.softDepend.contains("Pouvoir")

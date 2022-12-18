@@ -5,7 +5,7 @@ import taboolib.module.database.Table
 import taboolib.module.database.Where
 import java.util.*
 import javax.sql.DataSource
-
+// 来自TLib6
 class ContainerOperatorFlatten(
     val table: Table<*, *>,
     val dataSource: DataSource,

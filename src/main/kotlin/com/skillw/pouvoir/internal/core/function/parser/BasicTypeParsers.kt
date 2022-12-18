@@ -13,48 +13,48 @@ import taboolib.common5.Coerce
  */
 
 @AutoRegister
-object IntParser : TokenParser(Int::class.java) {
+object ParserInt : TokenParser(Int::class.java) {
     override fun parse(parser: Parser): Any? =
-        Coerce.asInteger(StringParser.parse(parser)).run { if (isPresent) get() else null }
+        Coerce.asInteger(ParserString.parse(parser)).run { if (isPresent) get() else null }
 }
 
 @AutoRegister
-object LongParser : TokenParser(Long::class.java) {
+object ParserLong : TokenParser(Long::class.java) {
     override fun parse(parser: Parser): Any? =
-        Coerce.asLong(StringParser.parse(parser)).run { if (isPresent) get() else null }
+        Coerce.asLong(ParserString.parse(parser)).run { if (isPresent) get() else null }
 }
 
 @AutoRegister
-object FloatParser : TokenParser(Float::class.java) {
+object ParserFloat : TokenParser(Float::class.java) {
     override fun parse(parser: Parser): Any? =
-        Coerce.asFloat(StringParser.parse(parser)).run { if (isPresent) get() else null }
+        Coerce.asFloat(ParserString.parse(parser)).run { if (isPresent) get() else null }
 }
 
 @AutoRegister
-object DoubleParser : TokenParser(Double::class.java) {
+object ParserDouble : TokenParser(Double::class.java) {
     override fun parse(parser: Parser): Double? =
-        Coerce.asDouble(StringParser.parse(parser)).run { if (isPresent) get() else null }
+        Coerce.asDouble(ParserString.parse(parser)).run { if (isPresent) get() else null }
 }
 
 @AutoRegister
-object CharParser : TokenParser(Char::class.java) {
+object ParserChar : TokenParser(Char::class.java) {
     override fun parse(parser: Parser): Any? = parser.parseString().first()
 }
 
 @AutoRegister
-object ByteParser : TokenParser(Byte::class.java) {
+object ParserByte : TokenParser(Byte::class.java) {
     override fun parse(parser: Parser): Any? =
-        Coerce.asByte(StringParser.parse(parser)).run { if (isPresent) get() else null }
+        Coerce.asByte(ParserString.parse(parser)).run { if (isPresent) get() else null }
 }
 
 @AutoRegister
-object ShortParser : TokenParser(Short::class.java) {
+object ParserShort : TokenParser(Short::class.java) {
     override fun parse(parser: Parser): Any? =
-        Coerce.asShort(StringParser.parse(parser)).run { if (isPresent) get() else null }
+        Coerce.asShort(ParserString.parse(parser)).run { if (isPresent) get() else null }
 }
 
 @AutoRegister
-object BooleanParser : TokenParser(Boolean::class.java) {
+object ParserBoolean : TokenParser(Boolean::class.java) {
     override fun parse(parser: Parser): Any? =
-        Coerce.asBoolean(StringParser.parse(parser)).run { if (isPresent) get() else null }
+        Coerce.asBoolean(ParserString.parse(parser)).run { if (isPresent) get() else null }
 }
