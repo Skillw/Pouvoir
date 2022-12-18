@@ -28,14 +28,14 @@ class SimpleEvaluator(namespaces: Array<String> = arrayOf(), baseContext: IConte
     override fun evaluate(reader: IReader): Any? {
         val parser = Parser.createParser(reader, baseContext)
         with(parser) {
-            kotlin.runCatching<Any?> {
+            runCatching<Any?> {
                 while (hasNext()) {
                     parseNext<Any?>()?.also {
                         if (!hasNext()) return it
                     } ?: break
                 }
                 return null
-            }.getOrElse { it.printStackTrace(); error("Error occurred!"); }
+            }.getOrElse { it.printStackTrace(); error("Error occurred! See the details above me!"); }
         }
         return null
     }

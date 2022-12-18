@@ -12,7 +12,20 @@ tasks.dokkaJavadoc.configure {
     suppressInheritedMembers.set(true)
 }
 val code: String? by project
+val special = arrayOf("release", "SNAPSHOT", "alpha", "beta", "rc", "gamma")
 
+task("versionPlus") {
+    val file = file("version.properties")
+    val properties = org.jetbrains.kotlin.konan.properties.loadProperties(file.path)
+    val subVersionStr = properties.getProperty("subVersion").toString()
+    var subVersion = 0
+    if (subVersionStr !in special) subVersion = subVersionStr.toInt()
+    if (code == null) {
+        properties["subVersion"] = (++subVersion).toString()
+        properties.store(file.outputStream(), null)
+    }
+    project.version = project.version.toString() + "-$subVersionStr"
+}
 task("buildCode") {
     if (code == null) return@task
     val origin = project.version.toString()
