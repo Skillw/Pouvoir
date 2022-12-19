@@ -2,9 +2,10 @@ name: build
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   build:
+    name: Build Jar
     runs-on: ubuntu-latest
     steps:
       - name: checkout repository
@@ -22,57 +23,130 @@ jobs:
       - name: build
         continue-on-error: true
         id: build_1
-        run: ./gradlew build
+        run: ./gradlew build -Porder=$GITHUB_RUN_NUMBER
       # 第二次构建
       - name: build (retry 1)
         continue-on-error: true
         id: build_2
         if: steps.build_1.outcome == 'failure'
-        run: ./gradlew build
+        run: ./gradlew build -Porder=$GITHUB_RUN_NUMBER
       # 第三次构建
       - name: build (retry 2)
         continue-on-error: true
         id: build_3
         if: steps.build_2.outcome == 'failure'
-        run: ./gradlew build
+        run: ./gradlew build -Porder=$GITHUB_RUN_NUMBER
       # 第四次构建
       - name: build (retry 3)
         id: build_4
         if: steps.build_3.outcome == 'failure'
-        run: ./gradlew build
+        run: ./gradlew build -Porder=$GITHUB_RUN_NUMBER
       # 上传构建文件
       - name: capture build artifacts
         uses: actions/upload-artifact@v2
         with:
           name: Artifacts
           path: build/libs/
+  build-api:
+    name: Build API Jar
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: validate gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+      - name: setup jdk 8.0
+        uses: actions/setup-java@v2
+        with:
+          distribution: adopt
+          java-version: 8.0
+      - name: make gradle wrapper executable
+        run: chmod +x ./gradlew
       - name: build
         continue-on-error: true
         id: build_api_1
-        run: ./gradlew build -Pcode=true
+        run: ./gradlew build -Papi=true -Porder=$GITHUB_RUN_NUMBER
       - name: build (retry 1)
         continue-on-error: true
         id: build_api_2
         if: steps.build_api_1.outcome == 'failure'
-        run: ./gradlew build -Pcode=true
+        run: ./gradlew build -Papi=true -Porder=$GITHUB_RUN_NUMBER
       - name: build (retry 2)
         continue-on-error: true
         id: build_api_3
         if: steps.build_api_2.outcome == 'failure'
-        run: ./gradlew build -Pcode=true
+        run: ./gradlew build -Papi=true -Porder=$GITHUB_RUN_NUMBER
       - name: build (retry 3)
         id: build_api_4
         if: steps.build_api_3.outcome == 'failure'
-        run: ./gradlew build -Pcode=true
+        run: ./gradlew build -Papi=true -Porder=$GITHUB_RUN_NUMBER
       # 上传构建文件
-      - name: capture build artifacts
+      - name: capture build api artifacts
         uses: actions/upload-artifact@v2
         with:
           name: Artifacts
           path: build/libs
-      - name: Sync version
-        uses: JamesIves/github-pages-deploy-action@4.0.0
+  release:
+    name: Release Jar
+    needs: [ build, build-api ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: validate gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+      - name: setup jdk 8.0
+        uses: actions/setup-java@v2
         with:
-          branch: master
-          folder: .
-          commit-message: 'sync version'
+          distribution: adopt
+          java-version: 8.0
+      - name: make gradle wrapper executable
+        run: chmod +x ./gradlew
+      - name: Get Project name
+        id: get_name
+        run: |
+          output=$(./gradlew properties)
+          name=$(echo "$output" | grep "^name:" | cut -d' ' -f2)
+          echo "Project name: $name"
+          echo "::set-output name=project_name::$name"
+        env:
+          project_name: ${{ steps.get_name.outputs.project_name }}
+      - name: Get Project version
+        id: get_version
+        run: |
+          output=$(./gradlew properties)
+          version=$(echo "$output" | grep "^version:" | cut -d' ' -f2)
+          echo "Project version: $version-$GITHUB_RUN_NUMBER"
+          echo "::set-output name=project_version::$version-$GITHUB_RUN_NUMBER"
+        env:
+          project_version: ${{ steps.get_version.outputs.project_version }}
+      - name: Download Content
+        uses: actions/download-artifact@v2
+        with:
+          name: Artifacts
+      - name: Create release
+        id: create-new-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.get_version.outputs.project_version }}
+          release_name: ${{ steps.get_version.outputs.project_name }} ${{ steps.get_version.outputs.project_version }}
+      - name: Upload API Jar asset to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+          asset_path: ${{ steps.get_name.outputs.project_name }}-${{ steps.get_version.outputs.project_version }}-api.jar
+          asset_name: ${{ steps.get_name.outputs.project_name }}-${{ steps.get_version.outputs.project_version }}-api.jar
+          asset_content_type: application/zip
+      - name: Upload Jar asset to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+          asset_path: ${{ steps.get_name.outputs.project_name }}-${{ steps.get_version.outputs.project_version }}.jar
+          asset_name: ${{ steps.get_name.outputs.project_name }}-${{ steps.get_version.outputs.project_version }}.jar
+          asset_content_type: application/zip

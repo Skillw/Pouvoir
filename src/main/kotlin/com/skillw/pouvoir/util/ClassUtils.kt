@@ -23,10 +23,11 @@ object ClassUtils {
     @JvmStatic
     fun String.findClass(): Class<*>? {
         val clazz: Class<*>
+        val path = replacement(relocates)
         try {
-            clazz = Class.forName(replacement(relocates))
+            clazz = Class.forName(path)
         } catch (e: Exception) {
-            console().sendLang("class-not-found", this)
+            console().sendLang("class-not-found", path)
             return null
         }
         return clazz

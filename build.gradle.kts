@@ -11,27 +11,27 @@ tasks.dokkaJavadoc.configure {
     suppressObviousFunctions.set(false)
     suppressInheritedMembers.set(true)
 }
-val code: String? by project
-val special = arrayOf("release", "SNAPSHOT", "alpha", "beta", "rc", "gamma")
+val api: String? by project
+val order: String? by project
 
-task("versionPlus") {
-    val file = file("version.properties")
-    val properties = org.jetbrains.kotlin.konan.properties.loadProperties(file.path)
-    val subVersionStr = properties.getProperty("subVersion").toString()
-    var subVersion = 0
-    if (subVersionStr !in special) subVersion = subVersionStr.toInt()
-    if (code == null) {
-        properties["subVersion"] = (++subVersion).toString()
-        properties.store(file.outputStream(), null)
-    }
-    project.version = project.version.toString() + "-$subVersion"
+task("versionModify") {
+    project.version = project.version.toString() + (order?.let { "-$it" } ?: "")
 }
-task("buildCode") {
-    if (code == null) return@task
+
+task("versionAddAPI") {
+    if (api == null) return@task
     val origin = project.version.toString()
     project.version = "$origin-api"
 }
 
+
+task("releaseName") {
+    println(project.name + "-" + project.version)
+}
+
+task("version") {
+    println(project.version.toString())
+}
 taboolib {
     if (project.version.toString().contains("-api")) {
         options("skip-kotlin-relocate")
