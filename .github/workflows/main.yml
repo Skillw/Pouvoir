@@ -47,16 +47,6 @@ jobs:
         with:
           name: Artifacts
           path: build/libs/
-      - name: Decode
-        run: |
-          echo "${{secrets.$SIGNING_KEY_ID}}"
-          echo "${{secrets.SIGNING_SECRET_KEY_RING_FILE}}" > ~/.gradle/secring.gpg.base64
-          base64 -d ~/.gradle/secring.gpg.base64 > ~/.gradle/secring.gpg
-      - name: Publish package
-        run: gradle publish -Porder=$GITHUB_RUN_NUMBER -Psigning.keyId=$SIGNING_KEY_ID -Psigning.password=$SIGNING_KEY_PASSWORD -Psigning.secretKeyRingFile=$(echo ~/.gradle/secring.gpg)
-        env:
-          OSSRH_USERNAME: ${{ secrets.USERNAME }}
-          OSSRH_PASSWORD: ${{ secrets.PASSWORD }}
   build-api:
     name: Build API Jar
     runs-on: ubuntu-latest
@@ -96,15 +86,6 @@ jobs:
         with:
           name: Artifacts
           path: build/libs
-      - name: Decode
-        run: |
-          echo "${{secrets.SIGNING_SECRET_KEY_RING_FILE}}" > ~/.gradle/secring.gpg.base64
-          base64 -d ~/.gradle/secring.gpg.base64 > ~/.gradle/secring.gpg
-      - name: Publish package
-        run: gradle publish -Porder=$GITHUB_RUN_NUMBER -Pcode=true -Psigning.keyId=$SIGNING_KEY_ID -Psigning.password=$SIGNING_KEY_PASSWORD -Psigning.secretKeyRingFile=$(echo ~/.gradle/secring.gpg)
-        env:
-          OSSRH_USERNAME: ${{ secrets.USERNAME }}
-          OSSRH_PASSWORD: ${{ secrets.PASSWORD }}
   release:
     name: Release Jar
     needs: [ build, build-api ]
