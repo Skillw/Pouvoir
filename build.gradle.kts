@@ -1,6 +1,7 @@
 plugins {
     `java-library`
-    id("org.gradle.java")
+    `maven-publish`
+    `signing`
     id("io.izzel.taboolib") version "1.51"
     id("org.jetbrains.kotlin.jvm") version "1.6.10"
     id("org.jetbrains.dokka") version "1.6.10"
@@ -10,6 +11,7 @@ tasks.dokkaJavadoc.configure {
     outputDirectory.set(File("C:\\Users\\Administrator\\Desktop\\Doc\\pouvoir"))
     suppressObviousFunctions.set(false)
     suppressInheritedMembers.set(true)
+
 }
 val api: String? by project
 val order: String? by project
@@ -116,4 +118,31 @@ configure<JavaPluginConvention> {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+publishing {
+    repositories {
+        maven {
+            url = if (project.version.toString().contains("-SNAPSHOT")) {
+                uri("https://s01.oss.sonatype.org/content/repositories/snapshots")
+            } else {
+                uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            }
+            credentials {
+                username = project.findProperty("username").toString()
+                password = project.findProperty("password").toString()
+            }
+            authentication {
+                create<BasicAuthentication>("basic")
+            }
+        }
+    }
+    publications {
+        create<MavenPublication>("library") {
+            from(components["java"])
+            groupId = project.group.toString()
+        }
+    }
+}
 
+signing {
+    sign(publishing.publications.getAt("library"))
+}
