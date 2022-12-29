@@ -1,6 +1,5 @@
 package com.skillw.pouvoir.util
 
-import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.boss.BarColor
@@ -15,42 +14,42 @@ import taboolib.platform.BukkitAdapter
 
 // For script coders
 object PlayerUtils {
+
     @JvmStatic
-    @ScriptTopLevel
+    fun Player.playSound(sound: XSound) {
+        sound.play(this)
+    }
+
+    @JvmStatic
     fun Player.soundClick() {
         XSound.UI_BUTTON_CLICK.play(this)
     }
 
     @JvmStatic
-    @ScriptTopLevel
     fun Player.soundLevelUp() {
         XSound.ENTITY_PLAYER_LEVELUP.play(this)
     }
 
     @JvmStatic
-    @ScriptTopLevel
     fun Player.soundChallenge() {
         XSound.UI_TOAST_CHALLENGE_COMPLETE.play(this)
     }
 
     @JvmStatic
-    @ScriptTopLevel
     fun Player.soundSuccess() {
         XSound.ENTITY_EXPERIENCE_ORB_PICKUP.play(this)
     }
 
     @JvmStatic
-    @ScriptTopLevel
     fun Player.soundFail() {
         XSound.ENTITY_VILLAGER_NO.play(this)
     }
 
     @JvmStatic
-    @ScriptTopLevel
     fun Player.soundFinish() {
         XSound.BLOCK_ANVIL_USE.play(this)
     }
-    
+
     @JvmStatic
     fun sendTitle(
         player: Player,

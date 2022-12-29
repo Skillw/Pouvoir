@@ -8,9 +8,6 @@ script-compile-start: '&d[&9Pouvoir&d] &a开始编译 &6{0}&a...'
 script-compile-end: '&d[&9Pouvoir&d] &a脚本 &6{0} &a编译成功! 耗时 &9{1}ms!'
 script-compile-fail: '&d[&9Pouvoir&d] &c在编译 &6{0} &c时发生了错误! 请检查.'
 script-file-not-found: '&d[&9Pouvoir&d] &c未发现脚本文件 &6{0} &c! 请检查.'
-script-invoke-script-exception: '&d[&9Pouvoir&d] &c在调用脚本 &6{1} &c的函数 &d{0} &c时发生了错误! 任务ID: &6{2}'
-script-invoke-exception: '&d[&9Pouvoir&d] &c在调用脚本 &6{1} &c的函数 &d{0} &c时发生了错误! 任务ID: &6{2}'
-script-invoke-task-cancelled: '&d[&9Pouvoir&d] &c调用 &6{1} &c的函数 &d{0} &c的任务 &6{2} &c取消!'
 script-invoke-wrong-format: '&d[&9Pouvoir&d] &c如果你想调用某个脚本文件的函数, 请以此格式输入: &6脚本文件名称.js::函数名 &c!'
 script-engine-not-found: '&d[&9Pouvoir&d] &c未发现PouScriptEngine &6{0} &c! 请检查.'
 script-engine-valid-suffix: '&d[&9Pouvoir&d] &c未发现含后缀 &6{0} &c的PouScriptEngine&c! 请检查.'
@@ -25,21 +22,17 @@ command-message:
   - '    &d- &erun &b脚本路径 (函数名) (参数) &5—— &a运行一个脚本函数'
   - '    &d- &ereport &5—— &a查看耗时数据'
   - '    &d- &eclear &5—— &a清除耗时数据'
-  - '    &d- &etask'
-  - '      &7- &einfo &5—— &a查看脚本任务信息'
-  - '      &7- &estop {Task ID} &5—— &a停止一个任务'
   - '    &d- &ereload &5—— &a重载插件'
   - '&f&m─&6&m────────────────────────────────&6&f&m─'
 wrong-command-message: '&d[&9Pouvoir&d] &c你是不是输错指令啦!'
 command-clear: '&d[&9Pouvoir&d] &a耗时数据已清楚!'
-command-task-info: '&e正在运行的任务:'
-running-task-empty: '&7没有正在运行的任务!'
-command-task-stop: '&d[&9Pouvoir&d] &c任务 &6{0} 已取消!'
 command-switch-message: '&d[&9Pouvoir&d] &a你将消息类型更为了 &6{0} &a!'
 
 script-invoking-info: "&e正在调用脚本 &6{0} &e的函数 &d{1}"
 script-invoking-arguments: "&e全局参数: "
 script-invoking-parameters: "&e函数参数: "
+
+script-global-js-not-found: '&d[&9Pouvoir&d] &c未发现名/路径为 &6{0} &c的脚本!'
 
 annotation-listener-register: '&d[&9Pouvoir&d] &a脚本监听器 &6{0} &a注册成功!'
 annotation-listener-unregister: '&d[&9Pouvoir&d] &c脚本监听器 &6{0} &c已注销!'

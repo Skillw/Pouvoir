@@ -83,7 +83,8 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
      * @param fileNames
      */
     fun createIfNotExists(name: String, vararg fileNames: String) {
-        val dir = File(subPouvoir.plugin.dataFolder.path + "/$name")
+        val path = subPouvoir.plugin.dataFolder.path
+        val dir = File("$path/$name")
         if (!dir.exists()) {
             dir.mkdir()
             for (fileName in fileNames) {

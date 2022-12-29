@@ -1,18 +1,19 @@
 package com.skillw.pouvoir.util
 
-import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import taboolib.module.chat.colored
 import taboolib.module.chat.uncolored
 
 /**
- * For script coders
+ * 给我整吐了，怎么有人插件是什么功能都不看，上来劈头盖脸说我重复造轮子
  *
- * ClassName : com.skillw.classsystem.util.ColorUtils Created by Glom_ on
- * 2021-03-25 20:26:01 Copyright 2021 user. All rights reserved.
+ * 在这里声明一下： 这是给脚本直接调用的，你脚本里能直接调到TLib提供的顶级函数？
+ *
+ * Created by Glom_ on 2021-03-25 20:26:01
+ *
+ * Copyright 2021 user. All rights reserved.
  */
 object ColorUtils {
 
-    @ScriptTopLevel
     @JvmStatic
     fun color(msg: String): String {
         return msg.colored()
@@ -23,7 +24,6 @@ object ColorUtils {
         return messages.colored()
     }
 
-    @ScriptTopLevel
     @JvmStatic
     fun unColor(msg: String): String {
         return msg.uncolored()
@@ -34,7 +34,6 @@ object ColorUtils {
         return messages.uncolored()
     }
 
-    @ScriptTopLevel
     @JvmStatic
     fun String.decolored(): String {
         return this.replace("§", "&")

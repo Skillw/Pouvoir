@@ -1,7 +1,6 @@
 package com.skillw.pouvoir.api
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import com.skillw.pouvoir.api.function.context.IContext
 import com.skillw.pouvoir.api.manager.sub.message.PersonalManager.Companion.getMessageType
 import com.skillw.pouvoir.api.message.MessageData
@@ -19,7 +18,6 @@ object PouvoirAPI {
      * @return String 解析后的文本
      * @receiver String 含内联函数的文本
      */
-    @ScriptTopLevel
     @JvmStatic
     fun String.analysis(): String {
         return TextHandler.analysis(this)
@@ -44,7 +42,6 @@ object PouvoirAPI {
      * @return Any 结果
      * @receiver String 内联函数
      */
-    @ScriptTopLevel
     @JvmStatic
     fun String.eval(): Any {
         return PouFunctionManagerImpl.eval(this, context = SimpleContext()) ?: this
@@ -74,7 +71,6 @@ object PouvoirAPI {
      * @return String 解析后的文本
      * @receiver String 待解析的文本
      */
-    @ScriptTopLevel
     @JvmStatic
     fun String.placeholder(entity: LivingEntity): String {
         return Pouvoir.pouPlaceHolderAPI.replace(entity, this)
@@ -102,7 +98,6 @@ object PouvoirAPI {
      * @receiver Player 向谁发送
      */
     @JvmStatic
-    @ScriptTopLevel
     fun Player.send(type: String, dataFunc: MessageData.() -> Unit) {
         Pouvoir.messagerBuilderManager.build(type, this, dataFunc)
     }
@@ -115,7 +110,6 @@ object PouvoirAPI {
      * @receiver Player 向谁发送
      */
     @JvmStatic
-    @ScriptTopLevel
     fun Player.sendFast(dataFunc: MessageData.() -> Unit) {
         Pouvoir.messagerBuilderManager.build(getMessageType(), this, dataFunc)
     }

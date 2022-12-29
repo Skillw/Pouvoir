@@ -4,12 +4,10 @@ import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.Pouvoir.containerManager
 import com.skillw.pouvoir.Pouvoir.listenerManager
 import com.skillw.pouvoir.Pouvoir.scriptManager
-import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.placeholder.PouPlaceHolder
 import com.skillw.pouvoir.api.script.listener.Priority
 import com.skillw.pouvoir.api.script.listener.ScriptListener
-import com.skillw.pouvoir.internal.core.script.javascript.PouJavaScriptEngine
 import com.skillw.pouvoir.util.ClassUtils
 import com.skillw.pouvoir.util.ClassUtils.findClass
 import com.skillw.pouvoir.util.ItemUtils.toMutableMap
@@ -36,7 +34,6 @@ import taboolib.common.platform.service.PlatformExecutor
 import taboolib.common.util.Vector
 import taboolib.common5.Mirror
 import taboolib.common5.mirrorNow
-import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import taboolib.module.chat.TellrawJson
 import taboolib.module.nms.getI18nName
 import taboolib.module.nms.getItemTag
@@ -51,38 +48,38 @@ import java.util.function.Supplier
 
 object ScriptTool : BaseMap<String, Any>() {
 
-    @ScriptTopLevel
+
     @JvmStatic
     fun sync(task: () -> Any?) = taboolib.common.util.sync {
         task.invoke()
     }
 
-    @ScriptTopLevel
+
     @JvmStatic
     fun task(task: PlatformExecutor.PlatformTask.() -> Unit) =
         submit { task(this) }
 
-    @ScriptTopLevel
+
     @JvmStatic
     fun taskAsync(task: PlatformExecutor.PlatformTask.() -> Unit) =
         submit(async = true) { task(this) }
 
-    @ScriptTopLevel
+
     @JvmStatic
     fun taskLater(delay: Long, task: PlatformExecutor.PlatformTask.() -> Unit) =
         submit(delay = delay) { task(this) }
 
-    @ScriptTopLevel
+
     @JvmStatic
     fun taskAsyncLater(delay: Long, task: PlatformExecutor.PlatformTask.() -> Unit) =
         submit(delay = delay, async = true) { task(this) }
 
-    @ScriptTopLevel
+
     @JvmStatic
     fun taskTimer(delay: Long, period: Long, task: PlatformExecutor.PlatformTask.() -> Unit) =
         submit(delay = delay, period = period) { task(this) }
 
-    @ScriptTopLevel
+
     @JvmStatic
     fun taskAsyncTimer(delay: Long, period: Long, task: PlatformExecutor.PlatformTask.() -> Unit) =
         submit(async = true, delay = delay, period = period) { task(this) }
@@ -431,40 +428,6 @@ object ScriptTool : BaseMap<String, Any>() {
         set(player.name, key, value)
     }
 
-    @ScriptTopLevel
-    @JvmStatic
-    fun arrayOf(it: Any?): Array<Any?> {
-        if (it is Array<*>) {
-            return it as Array<Any?>
-        }
-        return if (it?.javaClass?.simpleName == "ScriptObjectMirror") {
-            if (it.invokeMethod<Boolean>("isArray") == true) it.toObject() as Array<Any?>
-            else arrayOf(it.toObject())
-        } else {
-            kotlin.arrayOf(it)
-        }
-    }
-
-    fun Any.toObject(): Any? = PouJavaScriptEngine.bridge.toObject(this)
-
-    @ScriptTopLevel
-    @JvmStatic
-    fun listOf(it: Any?): List<Any?> {
-        if (it is List<*>) {
-            return it
-        }
-        if (it is Array<*>) {
-            return it.toList()
-        }
-        return (it?.toObject() as? Array<Any>?)?.toList() ?: kotlin.collections.listOf(it)
-    }
-
-    @ScriptTopLevel
-    @JvmStatic
-    fun mapOf(it: Any?): MutableMap<String, Any?> {
-        return it?.toObject() as? MutableMap<String, Any?>? ?: mutableMapOf()
-    }
-
 
     @JvmStatic
     fun sendParticle(
@@ -500,20 +463,20 @@ object ScriptTool : BaseMap<String, Any>() {
         tellrawJson.sendTo(adaptPlayer(player))
     }
 
-    @ScriptTopLevel
+
     @JvmStatic
     fun monitorNow(key: String, func: Supplier<Any?>): Any? {
         return mirrorNow(key) { func.get() }
     }
 
-    @ScriptTopLevel
+
     @JvmStatic
     fun monitorFuture(key: String, func: Consumer<Mirror.MirrorFuture<Any?>>): Any {
         return taboolib.common5.mirrorFuture<Any?>(key) { func.accept(this) }
     }
 
     @JvmStatic
-    @ScriptTopLevel
+
     fun checkMonitor(key: String, commandSender: CommandSender) {
         checkMonitor(key, adaptCommandSender(commandSender))
     }
@@ -533,13 +496,13 @@ object ScriptTool : BaseMap<String, Any>() {
     }
 
     @JvmStatic
-    @ScriptTopLevel
+
     fun checkMonitorConsole(key: String) {
         checkMonitor(key, console())
     }
 
     @JvmStatic
-    @ScriptTopLevel
+
     fun clearMonitor(key: String?) {
         key ?: kotlin.run {
             Mirror.mirrorData.clear()

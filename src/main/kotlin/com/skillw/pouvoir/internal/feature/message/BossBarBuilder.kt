@@ -7,6 +7,7 @@ import com.skillw.pouvoir.api.message.MessagerBuilder
 import com.skillw.pouvoir.util.PlayerUtils
 import org.bukkit.boss.BarColor
 import org.bukkit.boss.BarStyle
+import taboolib.common5.Coerce
 
 
 @AutoRegister
@@ -14,8 +15,8 @@ internal object BossBarBuilder : MessagerBuilder("boss_bar") {
     /**
      * 参数:
      * - text 主标题
-     * - color BarColor
-     * - style BarStyle
+     * - color BarColor的id 字符串
+     * - style BarStyle的id 字符串
      * - progress 进度(0到1)
      *
      * @param data MessageData
@@ -23,8 +24,8 @@ internal object BossBarBuilder : MessagerBuilder("boss_bar") {
      */
     override fun build(data: MessageData): Messager {
         val text = data.get("text", "")
-        val color = data.get("color", BarColor.PURPLE)
-        val style = data.get("style", BarStyle.SEGMENTED_10)
+        val color = Coerce.toEnum(data.get("color", "PURPLE"), BarColor::class.java)
+        val style = Coerce.toEnum(data.get("style", "SEGMENTED_10"), BarStyle::class.java)
         val progress = data.get("progress", 1.0)
         return Messager { players ->
             players.forEach {

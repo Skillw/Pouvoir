@@ -1,6 +1,5 @@
 package com.skillw.pouvoir.util
 
-import com.skillw.pouvoir.api.annotation.ScriptTopLevel
 import com.skillw.pouvoir.util.ClassUtils.isStaticClass
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
@@ -20,19 +19,16 @@ object MessageUtils {
     }
 
     @JvmStatic
-    @ScriptTopLevel
     fun warning(msg: Any?) {
         Bukkit.getLogger().warning(msg.toString().colored())
     }
 
     @JvmStatic
-    @ScriptTopLevel
     fun info(msg: Any?) {
         Bukkit.getLogger().info(msg.toString().colored())
     }
 
     @JvmStatic
-    @ScriptTopLevel
     fun debug(msg: Any?) {
         info("&9[&eDebug&9] &e${msg}")
     }

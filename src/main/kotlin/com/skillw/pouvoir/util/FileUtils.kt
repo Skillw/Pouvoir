@@ -5,6 +5,7 @@ import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.configuration.serialization.ConfigurationSerializable
 import taboolib.common.platform.function.console
+import taboolib.common.platform.function.getDataFolder
 import taboolib.module.lang.sendLang
 import java.io.File
 import java.math.BigInteger
@@ -67,6 +68,9 @@ object FileUtils {
         }
         return config
     }
+
+    @JvmStatic
+    val serverFolder = getDataFolder().parentFile.parentFile
 
     @JvmStatic
     fun File.listSubFiles(): List<File> {

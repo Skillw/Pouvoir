@@ -2,26 +2,17 @@ package com.skillw.pouvoir.internal.manager
 
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.ConfigManager
-import com.skillw.pouvoir.util.ClassUtils
-import com.skillw.pouvoir.util.MessageUtils.information
-import com.skillw.pouvoir.util.MessageUtils.warning
 import org.spigotmc.AsyncCatcher
 import taboolib.common.platform.Platform
-import taboolib.common.platform.function.console
-import taboolib.module.lang.asLangText
-import taboolib.module.lang.sendLang
 import taboolib.module.metrics.Metrics
 import taboolib.module.metrics.charts.AdvancedPie
 import taboolib.module.metrics.charts.MultiLineChart
 import taboolib.module.metrics.charts.SingleLineChart
 import taboolib.platform.BukkitPlugin
-import java.util.concurrent.ConcurrentHashMap
 
 object PouConfig : ConfigManager(Pouvoir) {
     override val priority = 0
 
-
-    private val staticClasses = ConcurrentHashMap<String, Any>()
 
     val numberFormat: String
         get() {
@@ -39,47 +30,7 @@ object PouConfig : ConfigManager(Pouvoir) {
         AsyncCatcher.enabled = false
     }
 
-    internal fun getStaticClassesInfo(): List<String> {
-        return staticClasses.map { (key, value) -> value.information(key) }.toMutableList()
-            .apply { add(0, "&5&lStaticClasses(script.yml):") }
-    }
 
-    private fun reloadStaticClasses() {
-        val globalVars = Pouvoir.scriptEngineManager.globalVariables
-        staticClasses.forEach {
-            globalVars.remove(it.key)
-        }
-        staticClasses.clear()
-        val script = this["script"]
-        val staticSection = script.getConfigurationSection("static-classes")!!
-        for (key in staticSection.getKeys(false)) {
-            var path = staticSection[key].toString()
-            val isObj = path.endsWith(";object")
-            path = path.replace(";object", "")
-            var staticClass = ClassUtils.staticClass(path)
-            if (staticClass == null) {
-                console().sendLang("static-class-not-found", path)
-                continue
-            }
-            if (isObj) {
-                val clazz = staticClass.javaClass.getMethod("getRepresentedClass").invoke(staticClass) as Class<*>
-                val field = clazz.getField("INSTANCE")
-                staticClass = field.get(null)
-                if (staticClass == null) {
-                    warning("The $path is not a object!")
-                    continue
-                }
-            }
-            staticClasses[key] = staticClass
-        }
-        staticClasses.forEach { (key, value) ->
-            globalVars[key] = value
-        }
-    }
-
-    val debugPrefix by lazy {
-        console().asLangText("plugin-debug")
-    }
     val threadPoolSize by lazy {
         this["config"].getInt("options.thread-pool-size", 4)
     }
@@ -91,8 +42,19 @@ object PouConfig : ConfigManager(Pouvoir) {
 
     override fun onLoad() {
         AsyncCatcher.enabled = false
-        createIfNotExists("scripts", "example.js", "groovy.groovy")
-        reloadStaticClasses()
+        createIfNotExists(
+            "scripts", "example.js", "groovy.groovy",
+            "core/inline_func.js",
+            "core/basic.js",
+            "core/util/ray_trace.js",
+            "core/util/color.js",
+            "core/util/container.js",
+            "core/util/menu.js",
+            "core/util/message.js",
+            "core/util/number.js",
+            "core/util/placeholder.js",
+            "core/util/player.js"
+        )
     }
 
     override fun onEnable() {
@@ -119,10 +81,6 @@ object PouConfig : ConfigManager(Pouvoir) {
                 map
             })
         }
-    }
-
-    override fun subReload() {
-        reloadStaticClasses()
     }
 
     @JvmStatic

@@ -17,18 +17,29 @@ abstract class ScriptEngineManager : KeyMap<String, PouScriptEngine>(), Manager 
     abstract val globalVariables: MutableMap<String, Any>
 
     /**
-     * Get engine
+     * 根据文件后缀名获取Pou的脚本引擎
      *
      * @param suffix 文件后缀名
      * @return 根据后缀名获取的引擎
      */
     abstract fun getEngine(suffix: String): PouScriptEngine?
 
+    /**
+     * 导入重定向，仅支持js中find与static
+     *
+     * @param from
+     * @param to
+     */
     abstract fun relocate(from: String, to: String)
+
+    /**
+     * 删除重定向
+     *
+     * @param from
+     */
     abstract fun deleteRelocate(from: String)
 
     companion object {
-
         @JvmStatic
         fun File.searchEngine(): PouScriptEngine? {
             return Pouvoir.scriptEngineManager.getEngine(this.extension)

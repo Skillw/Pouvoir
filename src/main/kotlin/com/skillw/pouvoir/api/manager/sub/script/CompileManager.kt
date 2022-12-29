@@ -13,6 +13,21 @@ import javax.script.CompiledScript
  * @date 2022/7/28 2:08 Copyright 2022 user. All rights reserved.
  */
 abstract class CompileManager : Manager {
+
+    /**
+     * 添加全局脚本文件
+     *
+     * @param file 文件夹/js脚本文件
+     */
+    abstract fun addGlobal(file: File)
+
+    /**
+     * 删除全局脚本文件
+     *
+     * @param file 文件夹/js脚本文件
+     */
+    abstract fun removeGlobal(file: File)
+
     /**
      * Compile
      *

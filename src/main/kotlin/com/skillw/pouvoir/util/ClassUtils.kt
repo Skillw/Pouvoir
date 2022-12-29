@@ -1,6 +1,6 @@
 package com.skillw.pouvoir.util
 
-import com.skillw.pouvoir.api.annotation.ScriptTopLevel
+import com.skillw.pouvoir.api.plugin.TotalManager
 import com.skillw.pouvoir.internal.manager.ScriptEngineManagerImpl.relocates
 import com.skillw.pouvoir.util.StringUtils.replacement
 import ink.ptms.adyeshach.taboolib.common.reflect.Reflex.Companion.getProperty
@@ -33,7 +33,6 @@ object ClassUtils {
         return clazz
     }
 
-    @ScriptTopLevel
     @JvmStatic
     fun find(name: String): Any? {
         return name.findClass()?.static()
@@ -52,7 +51,9 @@ object ClassUtils {
 
     @JvmStatic
     fun staticClass(className: String): Any? {
-        return className.findClass()?.static()
+        return if (!className.contains("."))
+            return TotalManager.allStaticClasses[className]
+        else className.findClass()?.static()
     }
 
     @JvmStatic

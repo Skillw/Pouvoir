@@ -1,15 +1,14 @@
 package com.skillw.pouvoir.internal.manager
 
 import com.skillw.pouvoir.Pouvoir
+import com.skillw.pouvoir.api.PouvoirAPI
 import com.skillw.pouvoir.api.manager.sub.script.ScriptEngineManager
 import com.skillw.pouvoir.api.script.engine.PouScriptEngine
-import com.skillw.pouvoir.internal.core.script.common.top.TopLevel
-import com.skillw.pouvoir.internal.manager.PouConfig.getStaticClassesInfo
-import taboolib.common.platform.function.info
-import taboolib.module.chat.colored
+import com.skillw.pouvoir.util.ClassUtils
+import com.skillw.pouvoir.util.MessageUtils
+import taboolib.common.platform.function.console
+import taboolib.module.lang.sendLang
 import java.util.concurrent.ConcurrentHashMap
-import javax.script.ScriptContext
-import javax.script.ScriptContext.ENGINE_SCOPE
 
 object ScriptEngineManagerImpl : ScriptEngineManager() {
     override val key = "ScriptEngineManager"
@@ -18,18 +17,17 @@ object ScriptEngineManagerImpl : ScriptEngineManager() {
     private val suffixMap = ConcurrentHashMap<String, PouScriptEngine>()
     override val globalVariables: MutableMap<String, Any> = ConcurrentHashMap()
     internal val relocates = HashMap<String, String>()
-    internal fun ScriptContext.addCheckVarsFunc() {
-        setAttribute(
-            "globalVars",
-            Runnable {
-                getStaticClassesInfo().map(String::colored).forEach(::info)
-                TopLevel.getInfo().map(String::colored).forEach(::info)
-            }, ENGINE_SCOPE
-        )
-    }
+
+    private val staticClasses = ConcurrentHashMap<String, Any>()
+
 
     override fun onLoad() {
         relocate(">taboolib.", "com.skillw.pouvoir.taboolib.")
+        reloadStaticClasses()
+    }
+
+    override fun onReload() {
+        reloadStaticClasses()
     }
 
     override fun register(key: String, value: PouScriptEngine) {
@@ -49,5 +47,39 @@ object ScriptEngineManagerImpl : ScriptEngineManager() {
 
     override fun deleteRelocate(from: String) {
         relocates.remove(from)
+    }
+
+    private fun reloadStaticClasses() {
+        val globalVariables = Pouvoir.scriptEngineManager.globalVariables
+        staticClasses.forEach {
+            globalVariables.remove(it.key)
+        }
+        staticClasses.clear()
+        val script = PouConfig["script"]
+        val staticSection = script.getConfigurationSection("static-classes")!!
+        for (key in staticSection.getKeys(false)) {
+            var path = staticSection[key].toString()
+            val isObj = path.endsWith(";object")
+            path = path.replace(";object", "")
+            var staticClass = ClassUtils.staticClass(path)
+            if (staticClass == null) {
+                console().sendLang("static-class-not-found", path)
+                continue
+            }
+            if (isObj) {
+                val clazz = staticClass.javaClass.getMethod("getRepresentedClass").invoke(staticClass) as Class<*>
+                val field = clazz.getField("INSTANCE")
+                staticClass = field.get(null)
+                if (staticClass == null) {
+                    MessageUtils.warning("The $path is not a object!")
+                    continue
+                }
+            }
+            staticClasses[key] = staticClass
+        }
+        staticClasses.forEach { (key, value) ->
+            globalVariables[key] = value
+        }
+        globalVariables["PouvoirAPI"] = PouvoirAPI
     }
 }

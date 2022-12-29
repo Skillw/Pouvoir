@@ -13,16 +13,12 @@ import taboolib.common.platform.command.CommandBody
 import taboolib.common.platform.command.CommandHeader
 import taboolib.common.platform.command.mainCommand
 import taboolib.common.platform.command.subCommand
-import taboolib.common.platform.function.console
 import taboolib.common.platform.function.pluginVersion
 import taboolib.common.platform.function.submit
 import taboolib.common5.Mirror
-import taboolib.module.chat.TellrawJson
 import taboolib.module.chat.colored
-import taboolib.module.lang.asLangText
 import taboolib.module.lang.sendLang
 import taboolib.platform.util.sendLang
-import java.util.*
 
 @CommandHeader(name = "pouvoir", aliases = ["pou"], permission = "pouvoir.command")
 object PouvoirCommand {
@@ -129,44 +125,6 @@ object PouvoirCommand {
         execute<ProxyCommandSender> { sender, _, _ ->
             sender.soundSuccess()
             sender.sendMessage("&aPouvoir &9v$pluginVersion &6By Glom_".colored())
-        }
-    }
-
-    @CommandBody(permission = "pouvoir.command.pool")
-    val task = subCommand {
-        literal("info", optional = true) {
-            execute<ProxyCommandSender> { sender, _, _ ->
-                val messages = LinkedList<TellrawJson>()
-                sender.soundSuccess()
-                messages += TellrawJson().append(
-                    ("&aPouvoir &9v$pluginVersion &6By Glom_ " + console().asLangText("command-task-info")).colored()
-                )
-                Pouvoir.scriptTaskManager.values.forEach { pool ->
-                    messages.addAll(pool.info())
-                }
-                if (messages.size == 1) messages += TellrawJson().append(
-                    console().asLangText("running-task-empty").colored()
-                )
-                messages.forEach {
-                    it.sendTo(sender)
-                }
-            }
-        }
-        literal("stop", optional = true) {
-            dynamic {
-                suggestion<ProxyCommandSender> { sender, _ ->
-                    sender.soundClick()
-                    Pouvoir.scriptTaskManager.workingTasks
-                }
-                execute<ProxyCommandSender> { sender, _, argument ->
-                    sender.soundSuccess()
-                    Pouvoir.scriptTaskManager.values.forEach {
-                        if (!it.stop(argument)) return@forEach
-                        sender.sendLang("command-task-stop", argument)
-                        return@execute
-                    }
-                }
-            }
         }
     }
 

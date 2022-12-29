@@ -14,14 +14,14 @@ import java.io.File
  */
 abstract class ScriptManager : Manager, KeyMap<String, PouCompiledScript>() {
     /**
-     * Add script
+     * 添加脚本文件
      *
      * @param file 单个脚本文件
      */
     abstract fun addScript(file: File)
 
     /**
-     * Add script dir
+     * 添加脚本文件夹
      *
      * @param file 脚本文件夹
      */
@@ -90,7 +90,7 @@ abstract class ScriptManager : Manager, KeyMap<String, PouCompiledScript>() {
 
 
     /**
-     * Search
+     * 搜索
      *
      * @param path 路径
      * @param sender 接收报错的对象

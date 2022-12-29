@@ -12,6 +12,7 @@ import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.function.console
 import taboolib.common.platform.function.getDataFolder
 import taboolib.common5.FileWatcher
+import taboolib.common5.mirrorNow
 import taboolib.module.chat.colored
 import taboolib.module.lang.asLangText
 import taboolib.module.lang.sendLang
@@ -128,14 +129,16 @@ object ScriptManagerImpl : ScriptManager() {
         sender: ProxyCommandSender,
     ): T? {
         val hash = script.hashCode()
-        if (debug) {
-            debug { sender.sendLang("script-invoking-info", hash, "EvalScript") }
-            debug { sender.sendLang("script-invoking-arguments") }
-            debug { sender.sendMessage("&3$arguments".colored()) }
+        debug {
+            sender.apply {
+                sendLang("script-invoking-info", hash, "EvalScript")
+                sendLang("script-invoking-arguments")
+                sendMessage("&3$arguments".colored())
+            }
         }
         val start = System.currentTimeMillis()
         val compiledScript = Pouvoir.compileManager.compile(script)
-        val result = PouJavaScriptEngine.bridge.buildInvoker(compiledScript).invoke("main", arguments = arguments) {}
+        val result = PouJavaScriptEngine.bridge.invoke(compiledScript, "main", arguments = arguments)
         val end = System.currentTimeMillis()
         debug {
             sender.sendLang(
@@ -145,7 +148,7 @@ object ScriptManagerImpl : ScriptManager() {
                 (end - start)
             )
         }
-        return result as T?
+        return result as? T?
     }
 
     override fun <T> invoke(
@@ -155,15 +158,17 @@ object ScriptManagerImpl : ScriptManager() {
         sender: ProxyCommandSender,
         vararg parameters: Any?,
     ): T? {
-        if (debug) {
-            debug { sender.sendLang("script-invoking-info", script.key, function) }
-            debug { sender.sendLang("script-invoking-arguments") }
-            debug { sender.sendMessage("&3$arguments".colored()) }
-            debug { sender.sendLang("script-invoking-parameters") }
-            debug { sender.sendMessage("&3$parameters".colored()) }
+        debug {
+            sender.apply {
+                sendLang("script-invoking-info", script.key, function)
+                sendLang("script-invoking-arguments")
+                sendMessage("&3$arguments".colored())
+                sendLang("script-invoking-parameters")
+                sendMessage("&3$parameters".colored())
+            }
         }
         val start = System.currentTimeMillis()
-        val result = script.invoke(function, arguments, *parameters)
+        val result = mirrorNow("${script.key}::$function") { script.invoke(function, arguments, *parameters) }
         val end = System.currentTimeMillis()
         debug {
             sender.sendLang(
@@ -173,7 +178,7 @@ object ScriptManagerImpl : ScriptManager() {
                 (end - start)
             )
         }
-        return result as T?
+        return result as? T?
     }
 
 }

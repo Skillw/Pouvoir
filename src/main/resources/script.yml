@@ -20,3 +20,5 @@ static-classes:
   PlayerUtils: 'com.skillw.pouvoir.util.PlayerUtils'
   ClassUtils: 'com.skillw.pouvoir.util.ClassUtils'
   StringUtils: 'com.skillw.pouvoir.util.StringUtils'
+global-scripts:
+  - "plugins/Pouvoir/scripts/core/"

@@ -68,8 +68,6 @@ taboolib {
         "module-lang",
         "module-porticus",
         "module-nms-util",
-        "module-ui",
-        "module-ui-receptacle",
         "expansion-javascript"
     )
     install(
