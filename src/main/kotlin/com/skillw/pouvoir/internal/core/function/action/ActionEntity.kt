@@ -4,6 +4,7 @@ import com.skillw.pouvoir.api.annotation.AutoRegister
 import com.skillw.pouvoir.api.function.action.PouAction
 import org.bukkit.Location
 import org.bukkit.entity.Entity
+import org.bukkit.entity.Player
 import taboolib.module.nms.getI18nName
 import taboolib.platform.util.getMetaFirst
 import taboolib.platform.util.setMeta
@@ -50,6 +51,9 @@ object ActionEntity : PouAction<Entity>(Entity::class.java) {
                 obj.setMeta(key, parseAny())
             else
                 obj.getMetaFirst(key)
+        }
+        addExec("isPlayer") { obj ->
+            obj is Player
         }
     }
 }
