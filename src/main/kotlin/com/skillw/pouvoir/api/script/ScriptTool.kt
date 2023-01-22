@@ -1,16 +1,15 @@
 package com.skillw.pouvoir.api.script
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.Pouvoir.containerManager
 import com.skillw.pouvoir.Pouvoir.listenerManager
 import com.skillw.pouvoir.Pouvoir.scriptManager
-import com.skillw.pouvoir.api.map.BaseMap
-import com.skillw.pouvoir.api.placeholder.PouPlaceHolder
-import com.skillw.pouvoir.api.script.listener.Priority
-import com.skillw.pouvoir.api.script.listener.ScriptListener
-import com.skillw.pouvoir.util.ClassUtils
-import com.skillw.pouvoir.util.ClassUtils.findClass
-import com.skillw.pouvoir.util.ItemUtils.toMutableMap
+import com.skillw.pouvoir.api.feature.placeholder.PouPlaceHolder
+import com.skillw.pouvoir.api.plugin.map.BaseMap
+import com.skillw.pouvoir.internal.feature.database.PouvoirContainer
+import com.skillw.pouvoir.internal.feature.listener.CustomListener
+import com.skillw.pouvoir.util.findClass
+import com.skillw.pouvoir.util.safe
+import com.skillw.pouvoir.util.script.ItemUtil.toMutableMap
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
@@ -86,7 +85,7 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     @Deprecated(
-        "To-update params; Please use 'task'",
+        "To-update demand; Please use 'task'",
         ReplaceWith("task(runnable)")
     )
     fun runTask(runnable: Runnable) =
@@ -94,7 +93,7 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     @Deprecated(
-        "To-update params; Please ues 'taskAsync'",
+        "To-update demand; Please ues 'taskAsync'",
         ReplaceWith("taskAsync(runnable)")
     )
     fun runTaskAsync(runnable: Runnable) =
@@ -102,7 +101,7 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     @Deprecated(
-        "To-update params; Please ues 'taskLater'",
+        "To-update demand; Please ues 'taskLater'",
         ReplaceWith("taskLater(runnable)")
     )
     fun runTaskLater(runnable: Runnable, delay: Long) =
@@ -110,7 +109,7 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     @Deprecated(
-        "To-update params; Please ues 'taskAsyncLater'",
+        "To-update demand; Please ues 'taskAsyncLater'",
         ReplaceWith("taskAsyncLater(runnable)")
     )
     fun runTaskAsyncLater(runnable: Runnable, delay: Long) =
@@ -118,7 +117,7 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     @Deprecated(
-        "To-update params; Please ues 'taskTimer'",
+        "To-update demand; Please ues 'taskTimer'",
         ReplaceWith("taskTimer(runnable)")
     )
     fun runTaskTimer(runnable: Runnable, delay: Long, period: Long) =
@@ -126,7 +125,7 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     @Deprecated(
-        "To-update params; Please ues 'taskAsyncTimer'",
+        "To-update demand; Please ues 'taskAsyncTimer'",
         ReplaceWith("taskAsyncTimer(runnable)")
     )
     fun runTaskAsyncTimer(runnable: Runnable, delay: Long, period: Long) =
@@ -195,13 +194,9 @@ object ScriptTool : BaseMap<String, Any>() {
         exec: Consumer<Any>,
     ) {
         val clazz = path.findClass() ?: return
-        val level: Int = try {
-            EventPriority.valueOf(eventPriority.uppercase()).level
-        } catch (e: Exception) {
-            eventPriority.toIntOrNull() ?: 0
-        }
+        val priority = EventPriority.valueOf(eventPriority.uppercase())
         val platform: Platform = Platform.BUKKIT
-        addListener(key, platform, clazz, level, ignoreCancel, exec)
+        addListener(key, platform, clazz, priority, ignoreCancel, exec)
     }
 
     /**
@@ -224,17 +219,9 @@ object ScriptTool : BaseMap<String, Any>() {
         exec: Consumer<Any>,
     ) {
         val clazz = path.findClass() ?: return
-        val level: Int = try {
-            EventPriority.valueOf(eventPriority.uppercase()).level
-        } catch (e: Exception) {
-            eventPriority.toIntOrNull() ?: 0
-        }
-        val platform: Platform = try {
-            Platform.valueOf(platformStr.uppercase())
-        } catch (e: Exception) {
-            Platform.BUKKIT
-        }
-        addListener(key, platform, clazz, level, ignoreCancel, exec)
+        val priority = EventPriority.valueOf(eventPriority.uppercase())
+        val platform: Platform = safe { Platform.valueOf(platformStr.uppercase()) } ?: Platform.BUKKIT
+        addListener(key, platform, clazz, priority, ignoreCancel, exec)
     }
 
     @JvmStatic
@@ -242,11 +229,11 @@ object ScriptTool : BaseMap<String, Any>() {
         key: String,
         platform: Platform,
         event: Class<*>,
-        level: Int = 0,
+        priority: EventPriority = EventPriority.NORMAL,
         ignoreCancel: Boolean = false,
         exec: Consumer<Any>,
     ) {
-        ScriptListener.Builder(key, platform, event, Priority(level), ignoreCancel) {
+        CustomListener.Builder(key, platform, event, priority, ignoreCancel) {
             exec.accept(it)
         }.build().register()
     }
@@ -278,7 +265,7 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     fun staticClass(className: String): Any? {
-        return ClassUtils.staticClass(className)
+        return staticClass(className)
     }
 
     @JvmStatic
@@ -358,6 +345,10 @@ object ScriptTool : BaseMap<String, Any>() {
         return itemNBTMap(itemStack, emptyList())
     }
 
+    private val container by lazy {
+        PouvoirContainer.container
+    }
+
     /**
      * 从数据库获取用户数据
      *
@@ -367,7 +358,7 @@ object ScriptTool : BaseMap<String, Any>() {
      */
     @JvmStatic
     fun get(user: String, key: String): String? {
-        return containerManager[user, key]
+        return container[user, key]
     }
 
     /**
@@ -378,7 +369,7 @@ object ScriptTool : BaseMap<String, Any>() {
      */
     @JvmStatic
     fun delete(user: String, key: String) {
-        containerManager.delete(user, key)
+        container.delete(user, key)
     }
 
     /**
@@ -390,7 +381,7 @@ object ScriptTool : BaseMap<String, Any>() {
      */
     @JvmStatic
     fun set(user: String, key: String, value: String) {
-        containerManager[user, key] = value
+        container[user, key] = value
     }
 
     /**

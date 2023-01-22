@@ -1,11 +1,11 @@
 plugin-prefix: '&d[&9Pouvoir&d] '
 plugin-debug: '&d[&9Pouvoir-Debug&d] '
 command-reload: '&d[&9Pouvoir&d] &aPouvoir 已重载!'
-command-script-invoke: '&d[&9Pouvoir&d] &a正在调用脚本 &6{0} &a!'
-command-script-invoke-end: "&d[&9Pouvoir&d] &e脚本 &6{0} &e返回值: &b{1} &e, 耗时 &9{2}ms"
+command-script-invoke: '&d[&9Pouvoir&d] &a正在调用脚本 &6{0} &a函数 &3{1}&a!'
+command-script-invoke-end: "&d[&9Pouvoir&d] &e脚本 &6{0} &e执行完毕! 返回值: &b{1} &e, 耗时 &9{2}"
 static-class-not-found: '&d[&9Pouvoir&d] &c未发现类 &6{0} &c!'
 script-compile-start: '&d[&9Pouvoir&d] &a开始编译 &6{0}&a...'
-script-compile-end: '&d[&9Pouvoir&d] &a脚本 &6{0} &a编译成功! 耗时 &9{1}ms!'
+script-compile-end: '&d[&9Pouvoir&d] &a脚本 &6{0} &a编译成功! 耗时 &9{1}!'
 script-compile-fail: '&d[&9Pouvoir&d] &c在编译 &6{0} &c时发生了错误! 请检查.'
 script-file-not-found: '&d[&9Pouvoir&d] &c未发现脚本文件 &6{0} &c! 请检查.'
 script-invoke-wrong-format: '&d[&9Pouvoir&d] &c如果你想调用某个脚本文件的函数, 请以此格式输入: &6脚本文件名称.js::函数名 &c!'
@@ -19,7 +19,8 @@ command-message:
   - '  &6/pouvoir'
   - '    &d- &ehelp &5—— &a显示帮助.'
   - '    &d- &einfo &5—— &a显示插件信息.'
-  - '    &d- &erun &b脚本路径 (函数名) (参数) &5—— &a运行一个脚本函数'
+  - '    &d- &erun &b脚本类型 脚本路径 (函数名) (参数) &5—— &a运行一个脚本函数'
+  - '    &d- &erun &b脚本类型 脚本内容 &5—— &a执行脚本'
   - '    &d- &ereport &5—— &a查看耗时数据'
   - '    &d- &eclear &5—— &a清除耗时数据'
   - '    &d- &ereload &5—— &a重载插件'
@@ -28,18 +29,22 @@ wrong-command-message: '&d[&9Pouvoir&d] &c你是不是输错指令啦!'
 command-clear: '&d[&9Pouvoir&d] &a耗时数据已清楚!'
 command-switch-message: '&d[&9Pouvoir&d] &a你将消息类型更为了 &6{0} &a!'
 
+command-script-eval: '&d[&9Pouvoir&d] &a正在执行脚本 &6Eval-{0} &a!'
+command-script-eval-done: '&d[&9Pouvoir&d] &a脚本 &6Eval-{0} &a执行完毕! 返回值: &b{1}&a, 耗时 &9{2} &a!'
+
 script-invoking-info: "&e正在调用脚本 &6{0} &e的函数 &d{1}"
 script-invoking-arguments: "&e全局参数: "
 script-invoking-parameters: "&e函数参数: "
+script-invoking-error: "&d[&9Pouvoir&d] &c在调用脚本 &6{0} &c的函数 &d{1} &c时发生了错误！"
 
 script-global-js-not-found: '&d[&9Pouvoir&d] &c未发现名/路径为 &6{0} &c的脚本!'
 
 annotation-listener-register: '&d[&9Pouvoir&d] &a脚本监听器 &6{0} &a注册成功!'
 annotation-listener-unregister: '&d[&9Pouvoir&d] &c脚本监听器 &6{0} &c已注销!'
-annotation-function-register: '&d[&9Pouvoir&d] &a脚本函数 &6{0} &a注册成功!'
-annotation-function-unregister: '&d[&9Pouvoir&d] &c脚本函数 &6{0} &c已注销!'
-annotation-action-register: '&d[&9Pouvoir&d] &a脚本内联函数动作 &6{0} &a注册成功!'
-annotation-action-unregister: '&d[&9Pouvoir&d] &c脚本内联函数动作 &6{0} &c已注销!'
+annotation-asahi-prefix-register: '&d[&9Pouvoir&d] &a脚本Asahi前缀解释器 &6{0} &a注册成功!'
+annotation-asahi-prefix-unregister: '&d[&9Pouvoir&d] &c脚本Asahi前缀解释器 &6{0} &c已注销!'
+annotation-action-register: '&d[&9Pouvoir&d] &a脚本Asahi中缀解释器 &6{0} &a注册成功!'
+annotation-action-unregister: '&d[&9Pouvoir&d] &c脚本Asahi中缀解释器 &6{0} &c已注销!'
 annotation-awake-register: '&d[&9Pouvoir&d] &a脚本启动器 &6{0} &a注册成功!'
 annotation-awake-unregister: '&d[&9Pouvoir&d] &c脚本启动器 &6{0} &c已注销!'
 annotation-awake-running: '&d[&9Pouvoir&d] &c脚本启动器 &6{0} &c正在运行!'

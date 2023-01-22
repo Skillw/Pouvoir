@@ -5,9 +5,9 @@ import org.bukkit.util.Vector
 
 class RayTrace(private val origin: Vector, private val direction: Vector) {
 
-    constructor(livingEntity: LivingEntity) : this(
-        livingEntity.eyeLocation.toVector(),
-        livingEntity.eyeLocation.direction
+    constructor(entity: LivingEntity) : this(
+        entity.eyeLocation.toVector(),
+        entity.eyeLocation.direction
     )
 
     fun traces(distance: Double, accuracy: Double): Set<Vector> {

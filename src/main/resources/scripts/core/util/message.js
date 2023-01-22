@@ -3,7 +3,7 @@ load("plugins/Pouvoir/scripts/core/basic.js");
  * @description 根据消息类型与数据构建Messager
  * @author Glom
  * @date 2022/12/20
- * player 玩家(json中的内联函数会基于此玩家解析)
+ * player 玩家(json中的Asahi会基于此玩家解析)
  * type 消息类型(action_bar,boss_bar,chat,holo,title)
  * json 详细参数见下面注释
  * @returns {*} messager (可调用 messager.sendTo([player1,player2,...]))

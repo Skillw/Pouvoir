@@ -1,8 +1,8 @@
 package com.skillw.pouvoir.internal.core.script.groovy
 
-import com.skillw.pouvoir.api.annotation.AutoRegister
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
 import com.skillw.pouvoir.api.script.engine.PouScriptEngine
-import com.skillw.pouvoir.internal.core.script.common.hook.ScriptBridge
+import com.skillw.pouvoir.api.script.engine.hook.ScriptBridge
 import org.codehaus.groovy.jsr223.GroovyScriptEngineFactory
 import taboolib.common.env.RuntimeDependencies
 import taboolib.common.env.RuntimeDependency
@@ -22,7 +22,7 @@ object PouGroovyScriptEngine : PouScriptEngine() {
     override val functionPattern: Pattern = Pattern.compile("^def (?<name>.*)\\(.*\\)(| +)\\{\$")
     override val bridge: ScriptBridge = GroovyBridge
 
-    private val factory: ScriptEngineFactory by lazy(LazyThreadSafetyMode.NONE) { GroovyScriptEngineFactory() }
+    private val factory: ScriptEngineFactory by lazy { GroovyScriptEngineFactory() }
     override val engine: ScriptEngine
         get() = factory.scriptEngine
 }

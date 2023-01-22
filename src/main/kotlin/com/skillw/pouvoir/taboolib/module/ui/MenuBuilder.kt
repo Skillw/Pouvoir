@@ -12,11 +12,7 @@ inline fun <reified T : Menu> buildMenu(title: String = "chest", builder: T.() -
 }
 
 inline fun <reified T : Menu> Player.openMenu(title: String = "chest", builder: T.() -> Unit) {
-    try {
-        openInventory(buildMenu(title, builder))
-    } catch (ex: Throwable) {
-        ex.printStackTrace()
-    }
+    runCatching { openInventory(buildMenu(title, builder)) }.exceptionOrNull()?.printStackTrace()
 }
 
 /** 获取当前点击事件下所有受影响的物品 */

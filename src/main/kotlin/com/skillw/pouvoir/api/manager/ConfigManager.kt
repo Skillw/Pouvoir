@@ -1,12 +1,13 @@
 package com.skillw.pouvoir.api.manager
 
-import com.skillw.pouvoir.api.map.BaseMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
-import com.skillw.pouvoir.util.FileUtils.loadYaml
-import com.skillw.pouvoir.util.MessageUtils.warning
-import com.skillw.pouvoir.util.Pair
+import com.skillw.pouvoir.api.plugin.map.BaseMap
+import com.skillw.pouvoir.util.loadYaml
+import com.skillw.pouvoir.util.plugin.Pair
+import com.skillw.pouvoir.util.safe
 import org.bukkit.configuration.file.YamlConfiguration
 import taboolib.common.platform.function.getDataFolder
+import taboolib.common.platform.function.warning
 import taboolib.common5.FileWatcher
 import taboolib.library.reflex.Reflex.Companion.getProperty
 import taboolib.module.lang.Language
@@ -88,11 +89,7 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
         if (!dir.exists()) {
             dir.mkdir()
             for (fileName in fileNames) {
-                try {
-                    subPouvoir.plugin.saveResource("$name/$fileName", true)
-                } catch (throwable: Throwable) {
-                    throwable.printStackTrace()
-                }
+                safe { subPouvoir.plugin.saveResource("$name/$fileName", true) }
             }
         }
     }

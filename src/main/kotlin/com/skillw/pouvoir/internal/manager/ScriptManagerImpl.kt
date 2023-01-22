@@ -4,10 +4,14 @@ import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.sub.script.CompileManager.Companion.compileScript
 import com.skillw.pouvoir.api.manager.sub.script.ScriptEngineManager.Companion.searchEngine
 import com.skillw.pouvoir.api.manager.sub.script.ScriptManager
-import com.skillw.pouvoir.internal.core.script.common.PouCompiledScript
+import com.skillw.pouvoir.api.plugin.ManagerTime
+import com.skillw.pouvoir.api.plugin.map.MultiExecMap
+import com.skillw.pouvoir.api.plugin.map.SingleExecMap
+import com.skillw.pouvoir.api.script.PouFileCompiledScript
 import com.skillw.pouvoir.internal.core.script.javascript.PouJavaScriptEngine
 import com.skillw.pouvoir.internal.manager.PouConfig.debug
-import com.skillw.pouvoir.util.FileUtils.listSubFiles
+import com.skillw.pouvoir.util.listSubFiles
+import com.skillw.pouvoir.util.safe
 import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.function.console
 import taboolib.common.platform.function.getDataFolder
@@ -18,8 +22,10 @@ import taboolib.module.lang.asLangText
 import taboolib.module.lang.sendLang
 import java.io.File
 import java.io.FileNotFoundException
+import kotlin.time.ExperimentalTime
+import kotlin.time.TimeSource
 
-object ScriptManagerImpl : ScriptManager() {
+internal object ScriptManagerImpl : ScriptManager() {
     override val key = "ScriptManager"
     override val priority: Int = 8
     override val subPouvoir = Pouvoir
@@ -33,15 +39,31 @@ object ScriptManagerImpl : ScriptManager() {
     }
 
     override fun onLoad() {
+        call(ManagerTime.BEFORE_LOAD)
         dirs += File(getDataFolder(), "scripts")
+        call(ManagerTime.LOAD)
     }
 
     override fun onEnable() {
+        call(ManagerTime.BEFORE_ENABLE)
         reloadScripts()
+        call(ManagerTime.ENABLE)
+    }
+
+    override fun onActive() {
+        call(ManagerTime.BEFORE_ACTIVE)
+        call(ManagerTime.ACTIVE)
     }
 
     override fun onReload() {
+        call(ManagerTime.BEFORE_RELOAD)
         reloadScripts()
+        call(ManagerTime.RELOAD)
+    }
+
+    override fun onDisable() {
+        call(ManagerTime.BEFORE_DISABLE)
+        call(ManagerTime.DISABLE)
     }
 
     private fun reloadScripts() {
@@ -53,7 +75,7 @@ object ScriptManagerImpl : ScriptManager() {
             addScriptDir(file)
             return
         }
-        file.compileScript()?.apply { register() }
+        safe { file.compileScript()?.apply { register() } }
         if (watcher.hasListener(file)) return
         watcher.addSimpleListener(file) {
             addScript(file)
@@ -92,7 +114,7 @@ object ScriptManagerImpl : ScriptManager() {
     override fun search(
         path: String,
         sender: ProxyCommandSender, silent: Boolean,
-    ): PouCompiledScript? {
+    ): PouFileCompiledScript? {
         try {
             if (containsKey(path)) return this[path]
             this.keys
@@ -151,8 +173,9 @@ object ScriptManagerImpl : ScriptManager() {
         return result as? T?
     }
 
+    @OptIn(ExperimentalTime::class)
     override fun <T> invoke(
-        script: PouCompiledScript,
+        script: PouFileCompiledScript,
         function: String,
         arguments: Map<String, Any>,
         sender: ProxyCommandSender,
@@ -167,18 +190,47 @@ object ScriptManagerImpl : ScriptManager() {
                 sendMessage("&3$parameters".colored())
             }
         }
-        val start = System.currentTimeMillis()
-        val result = mirrorNow("${script.key}::$function") { script.invoke(function, arguments, *parameters) }
-        val end = System.currentTimeMillis()
+        val mark = TimeSource.Monotonic.markNow()
+        val result =
+            runCatching {
+                mirrorNow("${script.key}::$function") {
+                    script.invoke(
+                        function,
+                        arguments,
+                        *parameters
+                    )
+                }
+            }.run {
+                if (isSuccess) getOrNull()
+                else {
+                    console().sendLang("script-invoking-error", script.key, function)
+                    throw exceptionOrNull()!!
+                }
+            }
+        val duration = mark.elapsedNow()
         debug {
             sender.sendLang(
                 "command-script-invoke-end",
                 script.key,
                 result.run { if (this is Unit) console().asLangText("kotlin-unit") else toString() },
-                (end - start)
+                duration
             )
         }
         return result as? T?
     }
 
+
+    private val execMap = MultiExecMap()
+
+    override fun addExec(managerTime: ManagerTime, key: String, exec: () -> Unit) {
+        execMap.map.computeIfAbsent(managerTime.key) { SingleExecMap() }[key] = exec
+    }
+
+    private fun call(managerTime: ManagerTime) {
+        execMap.run(managerTime.key)
+    }
+
+    override fun removeExec(managerTime: ManagerTime, key: String) {
+        execMap[managerTime.key]?.remove(key)
+    }
 }

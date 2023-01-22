@@ -2,10 +2,8 @@ package com.skillw.pouvoir.internal.feature.hologram
 
 import com.skillw.pouvoir.internal.feature.hologram.impl.PouAdyHologramsLine
 import com.skillw.pouvoir.internal.feature.hologram.impl.PouDecentHologramsLine
-import com.skillw.pouvoir.internal.feature.hologram.impl.PouHologramLine
 import org.bukkit.Location
 import org.bukkit.entity.Player
-import taboolib.module.chat.colored
 
 /**
  * @className PouHolo
@@ -25,20 +23,20 @@ interface PouHolo {
 
     companion object {
         @JvmStatic
-        fun create(location: Location, line: String, vararg viewers: Player): PouHolo {
-            if (PouDecentHologramsLine.enable) {
-                return PouDecentHologramsLine(location, line, *viewers)
-            } else if (PouAdyHologramsLine.enable) {
-                return PouAdyHologramsLine(location, line, *viewers)
-            } else return PouHologramLine(location) {
-                it.setSmall(true)
-                it.setMarker(true)
-                it.setBasePlate(false)
-                it.setInvisible(true)
-                it.setCustomName(line.colored())
-                it.setCustomNameVisible(line.isNotEmpty())
-                viewers.forEach { player -> it.visible(player, true) }
+        fun create(location: Location, line: String, vararg viewers: Player): PouHolo? {
+            return when {
+                PouDecentHologramsLine.enable -> {
+                    PouDecentHologramsLine(location, line, *viewers)
+                }
 
+                PouAdyHologramsLine.enable -> {
+                    PouAdyHologramsLine(location, line, *viewers)
+                }
+
+                else -> {
+                    taboolib.common.platform.function.warning("PouHologram required Adyeshach or DecentHologram")
+                    null
+                }
             }
         }
     }

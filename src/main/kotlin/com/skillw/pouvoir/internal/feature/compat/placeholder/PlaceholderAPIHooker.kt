@@ -8,6 +8,6 @@ object PlaceholderAPIHooker : PlaceholderExpansion {
     override val identifier = "pou"
     override fun onPlaceholderRequest(player: Player?, args: String): String {
         player ?: return args
-        return Pouvoir.pouPlaceHolderAPI.replace(player, "%pou_$args%")
+        return Pouvoir.placeholderManager.replace(player, "%pou_$args%")
     }
 }

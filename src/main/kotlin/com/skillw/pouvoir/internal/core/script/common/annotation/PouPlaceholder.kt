@@ -2,12 +2,12 @@ package com.skillw.pouvoir.internal.core.script.common.annotation
 
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.Pouvoir.scriptManager
-import com.skillw.pouvoir.api.annotation.AutoRegister
-import com.skillw.pouvoir.api.placeholder.PouPlaceHolder
+import com.skillw.pouvoir.api.feature.placeholder.PouPlaceHolder
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
 import com.skillw.pouvoir.api.script.annotation.ScriptAnnotation
 import com.skillw.pouvoir.api.script.annotation.ScriptAnnotationData
 import com.skillw.pouvoir.internal.manager.PouConfig
-import com.skillw.pouvoir.util.StringUtils.toArgs
+import com.skillw.pouvoir.util.toArgs
 import org.bukkit.entity.LivingEntity
 import taboolib.common.platform.function.console
 import taboolib.module.lang.sendLang
@@ -36,7 +36,7 @@ internal object PouPlaceholder : ScriptAnnotation("PouPlaceholder") {
         PouConfig.debug { console().sendLang("annotation-pou-placeholder-register", key) }
         script.onDeleted("PouPlaceholder-$key") {
             PouConfig.debug { console().sendLang("annotation-pou-placeholder-unregister", key) }
-            Pouvoir.pouPlaceholderManager.remove(key)
+            Pouvoir.placeholderManager.remove(key)
         }
     }
 }

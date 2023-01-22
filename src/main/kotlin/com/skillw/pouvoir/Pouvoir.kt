@@ -1,36 +1,32 @@
 package com.skillw.pouvoir
 
 
-import com.skillw.pouvoir.api.annotation.PouManager
 import com.skillw.pouvoir.api.manager.ManagerData
-import com.skillw.pouvoir.api.manager.sub.ContainerManager
-import com.skillw.pouvoir.api.manager.sub.ListenerManager
-import com.skillw.pouvoir.api.manager.sub.PouPlaceHolderAPI
-import com.skillw.pouvoir.api.manager.sub.PouPlaceHolderManager
-import com.skillw.pouvoir.api.manager.sub.function.PouActionManager
-import com.skillw.pouvoir.api.manager.sub.function.PouFunctionManager
-import com.skillw.pouvoir.api.manager.sub.message.MessagerBuilderManager
-import com.skillw.pouvoir.api.manager.sub.message.PersonalManager
+import com.skillw.pouvoir.api.manager.sub.*
 import com.skillw.pouvoir.api.manager.sub.script.CompileManager
 import com.skillw.pouvoir.api.manager.sub.script.ScriptAnnotationManager
 import com.skillw.pouvoir.api.manager.sub.script.ScriptEngineManager
 import com.skillw.pouvoir.api.manager.sub.script.ScriptManager
 import com.skillw.pouvoir.api.plugin.SubPouvoir
+import com.skillw.pouvoir.api.plugin.annotation.PouManager
 import com.skillw.pouvoir.internal.manager.PouConfig
 import org.bukkit.plugin.java.JavaPlugin
 import taboolib.common.platform.Plugin
 import taboolib.module.configuration.Config
 import taboolib.module.configuration.ConfigFile
 import taboolib.module.nms.MinecraftVersion
-import taboolib.platform.BukkitPlugin
+import taboolib.platform.util.bukkitPlugin
 
-
-object Pouvoir : Plugin(), SubPouvoir {
-
+/**
+ * Pouvoir 的主类 提供API
+ *
+ * @constructor Create empty Pouvoir
+ */
+object Pouvoir : SubPouvoir, Plugin() {
     override val key = "Pouvoir"
 
     override val plugin: JavaPlugin by lazy {
-        BukkitPlugin.getInstance()
+        bukkitPlugin
     }
     val sync by lazy {
         MinecraftVersion.majorLegacy >= 11900
@@ -57,19 +53,7 @@ object Pouvoir : Plugin(), SubPouvoir {
 
     @JvmStatic
     @PouManager
-    lateinit var pouFunctionManager: PouFunctionManager
-
-    @JvmStatic
-    @PouManager
-    lateinit var pouActionManager: PouActionManager
-
-    @JvmStatic
-    @PouManager
-    lateinit var pouPlaceholderManager: PouPlaceHolderManager
-
-    @JvmStatic
-    @PouManager
-    lateinit var pouPlaceHolderAPI: PouPlaceHolderAPI
+    lateinit var placeholderManager: PouPlaceholderManager
 
     @JvmStatic
     @PouManager
@@ -89,18 +73,23 @@ object Pouvoir : Plugin(), SubPouvoir {
 
     @JvmStatic
     @PouManager
-    lateinit var containerManager: ContainerManager
+    lateinit var databaseManager: DatabaseManager
 
     @JvmStatic
     @PouManager
-    lateinit var messagerBuilderManager: MessagerBuilderManager
+    lateinit var triggerManager: TriggerManager
 
     @JvmStatic
     @PouManager
-    lateinit var personalManager: PersonalManager
+    lateinit var triggerHandlerManager: TriggerHandlerManager
 
-    fun isDepend(plugin: org.bukkit.plugin.Plugin) =
-        plugin.description.depend.contains("Pouvoir") || plugin.description.softDepend.contains("Pouvoir")
+    @JvmStatic
+    @PouManager
+    lateinit var selectorManager: SelectorManager
+
+    @JvmStatic
+    @PouManager
+    lateinit var hologramManager: HologramManager
 
     override fun onLoad() {
         load()

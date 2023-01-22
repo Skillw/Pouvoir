@@ -1,14 +1,12 @@
 package com.skillw.pouvoir.internal.core.script.common.annotation
 
-import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.api.annotation.AutoRegister
-import com.skillw.pouvoir.api.event.ManagerTime
-import com.skillw.pouvoir.api.manager.Manager.Companion.addExec
-import com.skillw.pouvoir.api.manager.Manager.Companion.removeExec
+import com.skillw.pouvoir.Pouvoir.scriptManager
+import com.skillw.pouvoir.api.plugin.ManagerTime
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
 import com.skillw.pouvoir.api.script.annotation.ScriptAnnotation
 import com.skillw.pouvoir.api.script.annotation.ScriptAnnotationData
 import com.skillw.pouvoir.internal.manager.PouConfig.debug
-import com.skillw.pouvoir.util.StringUtils.toArgs
+import com.skillw.pouvoir.util.toArgs
 import taboolib.common.platform.function.console
 import taboolib.common.platform.function.submitAsync
 import taboolib.module.lang.sendLang
@@ -31,16 +29,16 @@ internal object Awake : ScriptAnnotation("Awake") {
         val key = "$path::$function@Awake(${args[0]})"
         val time = ManagerTime(args[0])
         debug { console().sendLang("annotation-awake-register", key) }
-        Pouvoir.scriptManager.addExec(key, time) {
-            val scriptToRun = Pouvoir.scriptManager.search(path)
+        scriptManager.addExec(time, key) {
+            val scriptToRun = scriptManager.search(path)
             if (scriptToRun == null || !scriptToRun.annotationData.containsKey(function)) {
                 debug { console().sendLang("annotation-awake-unregister", key) }
-                Pouvoir.scriptManager.removeExec(key, time)
+                scriptManager.removeExec(time, key)
                 return@addExec
             }
             debug { console().sendLang("annotation-awake-running", key) }
             submitAsync {
-                Pouvoir.scriptManager.invoke<Any?>(scriptToRun, function, parameters = arrayOf(time.key.uppercase()))
+                scriptManager.invoke<Any?>(scriptToRun, function, parameters = arrayOf(time.key.uppercase()))
             }
         }
     }

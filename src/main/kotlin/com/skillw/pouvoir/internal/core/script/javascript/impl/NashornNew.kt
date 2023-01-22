@@ -1,13 +1,14 @@
 package com.skillw.pouvoir.internal.core.script.javascript.impl
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.api.manager.sub.script.CompileManager.Companion.SCRIPT_OBJ
-import com.skillw.pouvoir.internal.core.script.common.hook.ScriptBridge
+import com.skillw.pouvoir.api.script.engine.hook.ScriptBridge
+import com.skillw.pouvoir.internal.core.script.javascript.PouJavaScriptEngine.SCRIPT_OBJ
 import org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory
 import org.openjdk.nashorn.api.scripting.ScriptObjectMirror
 import javax.script.CompiledScript
 import javax.script.Invocable
 import javax.script.ScriptEngine
+
 
 object NashornNew : ScriptBridge {
     override fun getEngine(vararg args: String): ScriptEngine =

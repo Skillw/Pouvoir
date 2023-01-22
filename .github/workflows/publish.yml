@@ -1,0 +1,67 @@
+name: publish
+on:
+  push:
+    branches:
+      - master
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: validate gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+      - name: setup jdk 8.0
+        uses: actions/setup-java@v2
+        with:
+          distribution: adopt
+          java-version: 8.0
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+      - name: make gradle wrapper executable
+        run: chmod +x ./gradlew
+      - name: Create Sign File
+        run: |
+          echo "${{secrets.SIGNING_SECRET_KEY_RING_FILE}}" > ~/secring.pgp.b64
+          base64 -d ~/secring.pgp.b64 > ~/secring.pgp
+      # 发布到仓库
+      - name: publish
+        id: publish_1
+        continue-on-error: true
+        env:
+          NEXUS_USERNAME: ${{ secrets.USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.PASSWORD }}
+        run: ./gradlew publish -Papi=true -Porder=$GITHUB_RUN_NUMBER -Pbuild=$GITHUB_RUN_NUMBER -Pusername=$NEXUS_USERNAME -Ppassword=$NEXUS_PASSWORD -Psigning.keyId=${{secrets.SIGNING_KEY_ID}} -Psigning.password=${{secrets.SIGNING_KEY_PASSWORD}} -Psigning.secretKeyRingFile=$(echo ~/secring.pgp)
+
+      # 发布到仓库: 重试-1
+      - name: publish (retry 1)
+        id: publish_2
+        if: steps.publish_1.outcome == 'failure'
+        continue-on-error: true
+        env:
+          NEXUS_USERNAME: ${{ secrets.USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.PASSWORD }}
+        run: ./gradlew publish -Papi=true -Porder=$GITHUB_RUN_NUMBER -Pbuild=$GITHUB_RUN_NUMBER -Pusername=$NEXUS_USERNAME -Ppassword=$NEXUS_PASSWORD -Psigning.keyId=${{secrets.SIGNING_KEY_ID}} -Psigning.password=${{secrets.SIGNING_KEY_PASSWORD}} -Psigning.secretKeyRingFile=$(echo ~/secring.pgp)
+
+      # 发布到仓库: 重试-2
+      - name: publish (retry 2)
+        id: publish_3
+        if: steps.publish_2.outcome == 'failure'
+        continue-on-error: true
+        env:
+          NEXUS_USERNAME: ${{ secrets.USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.PASSWORD }}
+        run: ./gradlew publish -Papi=true -Porder=$GITHUB_RUN_NUMBER -Pbuild=$GITHUB_RUN_NUMBER -Pusername=$NEXUS_USERNAME -Ppassword=$NEXUS_PASSWORD -Psigning.keyId=${{secrets.SIGNING_KEY_ID}} -Psigning.password=${{secrets.SIGNING_KEY_PASSWORD}} -Psigning.secretKeyRingFile=$(echo ~/secring.pgp)
+
+      # 发布到仓库: 重试-3
+      - name: publish (retry 3)
+        id: publish_4
+        if: steps.publish_3.outcome == 'failure'
+        env:
+          NEXUS_USERNAME: ${{ secrets.USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.PASSWORD }}
+        run: ./gradlew publish -Papi=true -Porder=$GITHUB_RUN_NUMBER -Pbuild=$GITHUB_RUN_NUMBER -Pusername=$NEXUS_USERNAME -Ppassword=$NEXUS_PASSWORD -Psigning.keyId=${{secrets.SIGNING_KEY_ID}} -Psigning.password=${{secrets.SIGNING_KEY_PASSWORD}} -Psigning.secretKeyRingFile=$(echo ~/secring.pgp)

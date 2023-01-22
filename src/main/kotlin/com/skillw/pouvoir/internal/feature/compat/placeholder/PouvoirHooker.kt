@@ -2,11 +2,11 @@ package com.skillw.pouvoir.internal.feature.compat.placeholder
 
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.Pouvoir.scriptManager
-import com.skillw.pouvoir.api.annotation.AutoRegister
-import com.skillw.pouvoir.api.placeholder.PouPlaceHolder
-import com.skillw.pouvoir.util.Pair
-import com.skillw.pouvoir.util.StringUtils.protectedSplit
-import com.skillw.pouvoir.util.StringUtils.toArgs
+import com.skillw.pouvoir.api.feature.placeholder.PouPlaceHolder
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
+import com.skillw.pouvoir.util.protectedSplit
+import com.skillw.pouvoir.util.toArgs
+import com.skillw.pouvoir.util.plugin.Pair
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import taboolib.platform.compat.replacePlaceholder
@@ -28,7 +28,7 @@ object PouvoirHooker : PouPlaceHolder("pou", Pouvoir) {
                 val scriptPath = args[0]
                 val spilt: Array<String> = if (args.size > 1) params.replace("run_", "").toArgs() else emptyArray()
                 val finalArgs = Array(spilt.size) {
-                    Pouvoir.pouPlaceHolderAPI.replace(entity, spilt[it])
+                    Pouvoir.placeholderManager.replace(entity, spilt[it])
                 }
                 return scriptManager.invoke<String>(
                     scriptPath,

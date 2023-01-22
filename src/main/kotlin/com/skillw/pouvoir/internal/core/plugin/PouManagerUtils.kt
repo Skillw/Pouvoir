@@ -1,9 +1,9 @@
 package com.skillw.pouvoir.internal.core.plugin
 
-import com.skillw.pouvoir.api.annotation.PouManager
 import com.skillw.pouvoir.api.manager.Manager
 import com.skillw.pouvoir.api.plugin.SubPouvoir
-import com.skillw.pouvoir.util.ClassUtils.findClass
+import com.skillw.pouvoir.api.plugin.annotation.PouManager
+import com.skillw.pouvoir.util.instance
 import taboolib.common.platform.function.warning
 import java.lang.reflect.Field
 import java.lang.reflect.Modifier
@@ -18,18 +18,19 @@ object PouManagerUtils {
 
     internal fun initPouManagers(clazz: Class<*>): SubPouvoir? {
         val fields = clazz.fields
-        val subPouvoir = clazz.getField("INSTANCE").get(null) as? SubPouvoir? ?: return null
+        val subPouvoir = clazz.instance as? SubPouvoir? ?: return null
         for (field in fields.filter { field -> isPouManagerField(field) }) {
             field.isAccessible = true
             val mainPackage = subPouvoir.javaClass.`package`?.name
             val managerName = field.type.simpleName
 
             val pouManagerClass = field.type
+
             val implClass: Class<*> =
                 if (!Modifier.isAbstract(pouManagerClass.modifiers)) pouManagerClass
-                else "$mainPackage.internal.manager.${managerName}Impl".findClass()
-                    ?: continue
-            val pouManager = implClass.getField("INSTANCE").get(null)
+                else kotlin.runCatching { Class.forName("$mainPackage.internal.manager.${managerName}Impl") }
+                    .getOrNull() ?: continue
+            val pouManager = implClass.instance
             if (pouManager == null) {
                 warning("Can't find the PouManager ImplClass ${implClass.name} !")
                 continue

@@ -1,18 +1,27 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     `java-library`
     `maven-publish`
-    `signing`
-    id("io.izzel.taboolib") version "1.51"
-    id("org.jetbrains.kotlin.jvm") version "1.6.10"
-    id("org.jetbrains.dokka") version "1.6.10"
+    signing
+    id("io.izzel.taboolib") version "1.55"
+    id("org.jetbrains.kotlin.jvm") version "1.7.20"
+    id("org.jetbrains.dokka") version "1.7.20"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
 tasks.dokkaJavadoc.configure {
     outputDirectory.set(File("C:\\Users\\Administrator\\Desktop\\Doc\\pouvoir"))
     suppressObviousFunctions.set(false)
     suppressInheritedMembers.set(true)
-
 }
+
+tasks.javadoc {
+    this.options {
+        encoding = "UTF-8"
+    }
+}
+
 val api: String? by project
 val order: String? by project
 
@@ -36,7 +45,7 @@ task("version") {
 }
 taboolib {
     if (project.version.toString().contains("-api")) {
-        options("skip-kotlin-relocate")
+        options("skip-kotlin-relocate", "keep-kotlin-module")
     }
     description {
         contributors {
@@ -45,9 +54,9 @@ taboolib {
         dependencies {
             name("PlaceholderAPI").optional(true).loadafter(true)
             name("RandomItem").optional(true).loadbefore(true)
+            name("DecentHolograms").optional(true)
             name("AttributeSystem").optional(true).loadbefore(true)
             name("MythicMobs").optional(true).loadafter(true)
-            name("DecentHolograms").optional(true)
             name("Adyeshach").optional(true)
         }
     }
@@ -59,16 +68,16 @@ taboolib {
         "module-chat",
         "module-configuration",
         "module-database",
-        "module-database-mongodb",
         "module-effect",
         "module-kether",
-        "module-metrics",
         "module-navigation",
+        "module-metrics",
+        "module-database-mongodb",
         "module-nms",
+        "module-nms-util",
         "module-lang",
         "module-porticus",
-        "module-nms-util",
-        "expansion-javascript"
+        "expansion-alkaid-redis"
     )
     install(
         "platform-bukkit"
@@ -76,10 +85,14 @@ taboolib {
 
 
     classifier = null
-    version = "6.0.10-31"
+    version = "6.0.10-71"
+
+    relocate("org.openjdk.nashorn", "com.skillw.nashorn")
+    relocate("jdk.nashorn", "com.skillw.nashorn.legacy")
+    relocate("com.esotericsoftware.reflectasm", "com.skillw.asahi.reflectasm")
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = "1.8"
         freeCompilerArgs = listOf("-Xjvm-default=all")
@@ -91,24 +104,28 @@ repositories {
 }
 
 dependencies {
-    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.6.10")
-    compileOnly("ink.ptms:nms-all:1.0.0")
-    compileOnly("ink.ptms.core:v11901:11901-minimize:mapped")
-    compileOnly("org.codehaus.groovy:groovy-jsr223:3.0.11")
+    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.20")
     compileOnly("ink.ptms.core:v11200:11200-minimize")
+    compileOnly("com.zaxxer:HikariCP:4.0.3")
+    compileOnly("org.codehaus.groovy:groovy-jsr223:3.0.11")
     compileOnly("com.google.code.gson:gson:2.9.0")
-
-    compileOnly("public:MythicMobs5:5.0.4")
-    compileOnly("public:MythicMobs:1.0.1")
-    compileOnly(kotlin("stdlib"))
+    compileOnly("ink.ptms.adyeshach:all:2.0.0-snapshot-1")
+    compileOnly("com.esotericsoftware:reflectasm:1.11.9")
+    taboo(fileTree("libs/PouNashorn.jar"))
+    taboo(fileTree("libs/Asahi-1.0.0-dev-sources.jar"))
     compileOnly(fileTree("libs"))
+    compileOnly(kotlin("stdlib-jdk8"))
 }
-
-
-
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
+
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
 
 
 configure<JavaPluginConvention> {
@@ -132,15 +149,51 @@ publishing {
                 create<BasicAuthentication>("basic")
             }
         }
+        mavenLocal()
     }
     publications {
         create<MavenPublication>("library") {
             from(components["java"])
+            version = project.version.toString()
             groupId = project.group.toString()
+            pom {
+                name.set(project.name)
+                description.set("Bukkit Script Engine Plugin.")
+                url.set("https://github.com/Glom-c/Pouvoir/")
+
+                licenses {
+                    license {
+                        name.set("MIT License")
+                        url.set("https://github.com/Glom-c/Asahi/blob/main/LICENSE")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("Skillw")
+                        name.set("Glom_")
+                        email.set("glom@skillw.com")
+                    }
+                }
+                scm {
+                    connection.set("...")
+                    developerConnection.set("...")
+                    url.set("...")
+                }
+            }
         }
     }
 }
 
+
+
 signing {
     sign(publishing.publications.getAt("library"))
+}
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions {
+    jvmTarget = "1.8"
+}
+val compileTestKotlin: KotlinCompile by tasks
+compileTestKotlin.kotlinOptions {
+    jvmTarget = "1.8"
 }

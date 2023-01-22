@@ -5,21 +5,19 @@ import com.skillw.pouvoir.api.manager.sub.ListenerManager
 import taboolib.common.platform.event.ProxyListener
 import taboolib.common.platform.function.unregisterListener
 
-object ListenerManagerImpl : ListenerManager() {
+internal object ListenerManagerImpl : ListenerManager() {
     override val key = "ListenerManager"
     override val priority = 3
     override val subPouvoir = Pouvoir
 
     override fun remove(key: String): ProxyListener? {
-        if (containsKey(key)) {
-            unregisterListener(get(key)!!)
-        }
+        get(key)?.let { unregisterListener(it) }
         return super.remove(key)
     }
 
     override fun onReload() {
-        this.forEach {
-            this.remove(it.key)
+        forEach {
+            remove(it.key)
         }
     }
 

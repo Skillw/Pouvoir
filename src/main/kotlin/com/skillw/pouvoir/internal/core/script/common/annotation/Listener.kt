@@ -1,17 +1,20 @@
 package com.skillw.pouvoir.internal.core.script.common.annotation
 
+import com.skillw.asahi.api.member.lexer.AsahiDemand
+import com.skillw.asahi.util.cast
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.api.annotation.AutoRegister
+import com.skillw.pouvoir.Pouvoir.scriptManager
+import com.skillw.pouvoir.api.plugin.ManagerTime
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
 import com.skillw.pouvoir.api.script.annotation.ScriptAnnotation
 import com.skillw.pouvoir.api.script.annotation.ScriptAnnotationData
-import com.skillw.pouvoir.api.script.listener.Priority
-import com.skillw.pouvoir.api.script.listener.ScriptListener
+import com.skillw.pouvoir.internal.feature.listener.CustomListener
 import com.skillw.pouvoir.internal.manager.PouConfig
-import com.skillw.pouvoir.util.ClassUtils.findClass
+import com.skillw.pouvoir.util.existClass
+import com.skillw.pouvoir.util.findClass
 import taboolib.common.platform.Platform
 import taboolib.common.platform.event.EventPriority
 import taboolib.common.platform.function.console
-import taboolib.common5.Demand
 import taboolib.module.lang.sendLang
 
 /**
@@ -27,26 +30,25 @@ internal object Listener : ScriptAnnotation("Listener", true) {
         val args = data.args
         val function = data.function
         if (args.isEmpty()) return
-        val demand = Demand("dem $args")
-        demand.get("bind")?.run {
-            kotlin.runCatching { Class.forName(this) }.getOrNull() ?: return
+        val demand = AsahiDemand.of(args)
+        demand.get("bind", "").run {
+            if (!isEmpty() && !existClass()) return
         }
-        val clazz = (demand.get("event") ?: return).findClass() ?: return
-        val level: Int = try {
-            EventPriority.valueOf(demand.get("priority", "NORMAL").toString().uppercase()).level
-        } catch (e: Exception) {
-            demand.get("priority", "0")?.toIntOrNull() ?: 0
-        }
-        val platform: Platform = try {
-            Platform.valueOf(demand.get("platform", "BUKKIT").toString().uppercase())
-        } catch (e: Exception) {
-            Platform.BUKKIT
-        }
-        val ignoreCancel = demand.tags.contains("--ignoreCancel") || demand.tags.contains("--ignoreCancelled")
+        val clazz = demand.getString("event").findClass() ?: return
+        val priority = demand.get("priority", "NORMAL").cast<EventPriority>()
+        val platform = Platform.BUKKIT
+        val ignoreCancel = demand.tagAnyOf("ignoreCancel", "ignoreCancelled")
+        val onActive = demand.tagAnyOf("onActive", "active")
         val key = "${script.key}::$function-${clazz.simpleName}"
-        ScriptListener.Builder(key, platform, clazz, Priority(level), ignoreCancel) { event ->
-            Pouvoir.scriptManager.invoke<Unit>(script, function, parameters = arrayOf(event))
-        }.build().register()
+        CustomListener.Builder(key, platform, clazz, priority, ignoreCancel) { event ->
+            scriptManager.invoke<Unit>(script, function, parameters = arrayOf(event))
+        }.build().apply {
+            if (onActive) {
+                scriptManager.addExec(ManagerTime.ACTIVE, "Script-Listener-$key") {
+                    register()
+                }
+            } else register()
+        }
         PouConfig.debug { console().sendLang("annotation-listener-register", key) }
         script.onDeleted("Script-Listener-$key") {
             PouConfig.debug { console().sendLang("annotation-listener-unregister", key) }

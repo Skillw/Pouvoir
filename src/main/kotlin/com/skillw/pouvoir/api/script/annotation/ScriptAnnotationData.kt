@@ -1,6 +1,7 @@
 package com.skillw.pouvoir.api.script.annotation
 
-import com.skillw.pouvoir.internal.core.script.common.PouCompiledScript
+import com.skillw.pouvoir.api.script.PouFileCompiledScript
+
 
 /**
  * Script annotation data
@@ -13,7 +14,7 @@ import com.skillw.pouvoir.internal.core.script.common.PouCompiledScript
  */
 data class ScriptAnnotationData(
     val annotation: String,
-    val script: PouCompiledScript,
+    val script: PouFileCompiledScript,
     val function: String,
     val args: String,
 )

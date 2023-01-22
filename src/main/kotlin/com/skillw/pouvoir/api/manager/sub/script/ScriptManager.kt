@@ -1,18 +1,24 @@
 package com.skillw.pouvoir.api.manager.sub.script
 
 import com.skillw.pouvoir.api.manager.Manager
-import com.skillw.pouvoir.api.map.KeyMap
-import com.skillw.pouvoir.internal.core.script.common.PouCompiledScript
+import com.skillw.pouvoir.api.plugin.ManagerTime
+import com.skillw.pouvoir.api.plugin.map.KeyMap
+import com.skillw.pouvoir.api.script.PouFileCompiledScript
 import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.function.console
 import java.io.File
 
 /**
- * Script manager
+ * 脚本管理器
+ *
+ * 主要负责：
+ * - 维护可编译的脚本文件
+ * - 维护已编译脚本
+ * - 执行脚本周期任务
  *
  * @constructor Create empty Script manager
  */
-abstract class ScriptManager : Manager, KeyMap<String, PouCompiledScript>() {
+abstract class ScriptManager : Manager, KeyMap<String, PouFileCompiledScript>() {
     /**
      * 添加脚本文件
      *
@@ -28,7 +34,7 @@ abstract class ScriptManager : Manager, KeyMap<String, PouCompiledScript>() {
     abstract fun addScriptDir(file: File)
 
     /**
-     * Invoke
+     * 调用脚本中的函数
      *
      * @param pathWithFunction 路径::函数名
      * @param arguments 参数
@@ -45,7 +51,7 @@ abstract class ScriptManager : Manager, KeyMap<String, PouCompiledScript>() {
     ): T?
 
     /**
-     * Invoke
+     * 调用脚本中的函数
      *
      * @param path 路径
      * @param function 函数名
@@ -64,7 +70,7 @@ abstract class ScriptManager : Manager, KeyMap<String, PouCompiledScript>() {
     ): T?
 
     /**
-     * Invoke
+     * 调用脚本中的函数
      *
      * @param script 预编译脚本
      * @param function 函数名
@@ -75,13 +81,22 @@ abstract class ScriptManager : Manager, KeyMap<String, PouCompiledScript>() {
      * @return 返回值
      */
     abstract fun <T> invoke(
-        script: PouCompiledScript,
+        script: PouFileCompiledScript,
         function: String = "main",
         arguments: Map<String, Any> = emptyMap(),
         sender: ProxyCommandSender = console(),
         vararg parameters: Any?,
     ): T?
 
+    /**
+     * 执行JS
+     *
+     * @param script js脚本内容
+     * @param arguments 参数
+     * @param sender
+     * @param T 返回类型
+     * @return 返回值
+     */
     abstract fun <T> evalJs(
         script: String,
         arguments: Map<String, Any> = emptyMap(),
@@ -101,5 +116,23 @@ abstract class ScriptManager : Manager, KeyMap<String, PouCompiledScript>() {
         path: String,
         sender: ProxyCommandSender = console(),
         silent: Boolean = true,
-    ): PouCompiledScript?
+    ): PouFileCompiledScript?
+
+    /**
+     * 添加管理器周期任务
+     *
+     * @param managerTime 周期
+     * @param key 任务id
+     * @param exec 任务内容
+     * @receiver
+     */
+    abstract fun addExec(managerTime: ManagerTime, key: String, exec: () -> Unit)
+
+    /**
+     * 删除管理器周期任务
+     *
+     * @param managerTime 周期
+     * @param key 任务id
+     */
+    abstract fun removeExec(managerTime: ManagerTime, key: String)
 }

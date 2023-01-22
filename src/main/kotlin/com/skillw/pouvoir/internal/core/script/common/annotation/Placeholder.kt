@@ -1,11 +1,11 @@
 package com.skillw.pouvoir.internal.core.script.common.annotation
 
 import com.skillw.pouvoir.Pouvoir.scriptManager
-import com.skillw.pouvoir.api.annotation.AutoRegister
+import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
 import com.skillw.pouvoir.api.script.annotation.ScriptAnnotation
 import com.skillw.pouvoir.api.script.annotation.ScriptAnnotationData
 import com.skillw.pouvoir.internal.manager.PouConfig
-import com.skillw.pouvoir.util.StringUtils.toArgs
+import com.skillw.pouvoir.util.toArgs
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.entity.Player
 import taboolib.common.platform.function.console

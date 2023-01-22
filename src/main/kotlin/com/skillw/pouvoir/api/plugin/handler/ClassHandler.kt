@@ -1,6 +1,6 @@
 package com.skillw.pouvoir.api.plugin.handler
 
-import org.bukkit.plugin.Plugin
+import taboolib.library.reflex.ClassStructure
 
 /**
  * @className ClassHandler
@@ -15,7 +15,7 @@ abstract class ClassHandler(val priority: Int) : Comparable<ClassHandler> {
      * @param clazz
      * @param plugin
      */
-    abstract fun inject(clazz: Class<*>, plugin: Plugin)
+    abstract fun inject(clazz: ClassStructure)
 
     override fun compareTo(other: ClassHandler): Int = if (this.priority == other.priority) 0
     else if (this.priority > other.priority) 1

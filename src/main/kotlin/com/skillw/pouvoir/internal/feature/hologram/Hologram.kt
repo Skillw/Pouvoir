@@ -1,16 +1,19 @@
 package com.skillw.pouvoir.internal.feature.hologram
 
+import com.skillw.pouvoir.api.feature.hologram.IHologram
 import org.bukkit.Location
 import org.bukkit.entity.Player
 import java.util.concurrent.ConcurrentHashMap
 
-class Hologram(var location: Location, val content: List<String>) {
-    val viewers = ConcurrentHashSet<Player>()
+class Hologram(override var location: Location, override val content: List<String>) : IHologram {
+
+    override val key = (location.toString().hashCode() + content.hashCode()).toString()
+    override val viewers = ConcurrentHashSet<Player>()
 
     constructor(location: Location, content: List<String>, vararg viewers: Player) : this(location, content) {
         this.viewers.addAll(viewers)
         content.forEachIndexed { index, line ->
-            map[index] =
+            lines[index] =
                 HologramLine(location.clone().add(0.0, (((content.size - 1) - index) * 0.3), 0.0), line, this.viewers)
         }
     }
@@ -18,25 +21,25 @@ class Hologram(var location: Location, val content: List<String>) {
     constructor(location: Location, content: List<String>, viewers: Set<Player>) : this(location, content) {
         this.viewers.addAll(viewers)
         content.forEachIndexed { index, line ->
-            map[index] =
+            lines[index] =
                 HologramLine(location.clone().add(0.0, (((content.size - 1) - index) * 0.3), 0.0), line, this.viewers)
         }
     }
 
-    private val map = ConcurrentHashMap<Int, HologramLine>()
+    private val lines = ConcurrentHashMap<Int, HologramLine>()
 
-    fun teleport(location: Location) {
+    override fun teleport(location: Location) {
         this.location = location
-        map.forEach { (index, singleLine) ->
-            singleLine.teleport(location.clone().add(0.0, (((map.size - 1) - index) * 0.3), 0.0))
+        lines.forEach { (index, singleLine) ->
+            singleLine.teleport(location.clone().add(0.0, (((lines.size - 1) - index) * 0.3), 0.0))
         }
     }
 
-    fun update(content: List<String>) {
+    override fun update(content: List<String>) {
         delete()
-        map.clear()
+        lines.clear()
         content.forEachIndexed { index, line ->
-            map[index] = HologramLine(
+            lines[index] = HologramLine(
                 location.clone().add(0.0, (((content.size - 1) - index) * 0.3), 0.0),
                 line,
                 viewers
@@ -44,12 +47,12 @@ class Hologram(var location: Location, val content: List<String>) {
         }
     }
 
-    fun delete() {
-        map.forEach { it.value.delete() }
+    override fun delete() {
+        lines.forEach { it.value.delete() }
     }
 
-    fun destroy() {
-        map.forEach { it.value.destroy() }
+    override fun destroy() {
+        lines.forEach { it.value.destroy() }
     }
 
 

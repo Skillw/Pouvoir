@@ -2,12 +2,17 @@ package com.skillw.pouvoir.api.manager.sub.script
 
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.Manager
-import com.skillw.pouvoir.api.map.KeyMap
+import com.skillw.pouvoir.api.plugin.map.KeyMap
 import com.skillw.pouvoir.api.script.engine.PouScriptEngine
 import java.io.File
 
 /**
- * Script engine manager
+ * 脚本引擎管理器
+ *
+ * 主要负责：
+ * - 维护脚本引擎
+ * - 维护脚本全局遍历
+ * - 维护类名重定向
  *
  * @constructor Create empty Script engine manager
  */
@@ -25,7 +30,7 @@ abstract class ScriptEngineManager : KeyMap<String, PouScriptEngine>(), Manager 
     abstract fun getEngine(suffix: String): PouScriptEngine?
 
     /**
-     * 导入重定向，仅支持js中find与static
+     * 导入重定向
      *
      * @param from
      * @param to
@@ -38,6 +43,14 @@ abstract class ScriptEngineManager : KeyMap<String, PouScriptEngine>(), Manager 
      * @param from
      */
     abstract fun deleteRelocate(from: String)
+
+    /**
+     * 重定向路径
+     *
+     * @param clazzPath String 原路径
+     * @return String 重定向后的路径
+     */
+    abstract fun relocatePath(clazzPath: String): String
 
     companion object {
         @JvmStatic

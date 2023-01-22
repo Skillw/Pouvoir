@@ -1,0 +1,11 @@
+custom-handler:
+  triggers: [ async player chat ]
+  when:
+    - if: "'check &player name == 'Glom_'"
+      goto: main1
+    - else: main
+  functions:
+    main: |-
+      &player message 你说话了!
+    main1: |-
+      &player message Glom说话了!

@@ -1,7 +1,7 @@
 package com.skillw.pouvoir.api.plugin
 
-import com.skillw.pouvoir.api.able.Registrable
 import com.skillw.pouvoir.api.manager.ManagerData
+import com.skillw.pouvoir.api.plugin.map.component.Registrable
 import org.bukkit.plugin.java.JavaPlugin
 import taboolib.common.platform.function.console
 import taboolib.module.lang.sendLang

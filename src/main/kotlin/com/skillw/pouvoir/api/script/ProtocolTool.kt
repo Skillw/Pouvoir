@@ -7,7 +7,7 @@ import com.comphenix.protocol.events.PacketAdapter
 import com.comphenix.protocol.events.PacketEvent
 import com.comphenix.protocol.events.PacketListener
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.api.map.BaseMap
+import com.skillw.pouvoir.api.plugin.map.BaseMap
 import taboolib.common5.Coerce
 import java.util.function.Consumer
 

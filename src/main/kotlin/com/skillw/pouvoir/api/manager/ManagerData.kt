@@ -1,14 +1,15 @@
 package com.skillw.pouvoir.api.manager
 
-import com.skillw.pouvoir.api.able.Registrable
-import com.skillw.pouvoir.api.event.ManagerTime
-import com.skillw.pouvoir.api.manager.Manager.Companion.call
-import com.skillw.pouvoir.api.map.KeyMap
 import com.skillw.pouvoir.api.plugin.SubPouvoir
 import com.skillw.pouvoir.api.plugin.TotalManager
+import com.skillw.pouvoir.api.plugin.map.KeyMap
+import com.skillw.pouvoir.api.plugin.map.SingleExecMap
+import com.skillw.pouvoir.api.plugin.map.component.Registrable
 import com.skillw.pouvoir.internal.core.plugin.PouManagerUtils.getPouManagers
+import com.skillw.pouvoir.util.safe
 import org.bukkit.plugin.java.JavaPlugin
 import taboolib.common.platform.function.submit
+import java.util.*
 
 class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Registrable<SubPouvoir> {
     private val managers = ArrayList<Manager>()
@@ -35,66 +36,39 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Regis
 
     fun load() {
         managers.forEach {
-            try {
-                it.call(ManagerTime.BEFORE_LOAD)
-                it.onLoad()
-                it.call(ManagerTime.LOAD)
-            } catch (throwable: Throwable) {
-                throwable.printStackTrace()
-
-            }
+            safe(it::onLoad)
         }
     }
 
     fun enable() {
         managers.forEach {
-            try {
-                it.call(ManagerTime.BEFORE_ENABLE)
-                it.onEnable()
-                it.call(ManagerTime.ENABLE)
-            } catch (throwable: Throwable) {
-                throwable.printStackTrace()
-
-            }
+            safe(it::onEnable)
         }
     }
 
     fun active() {
         managers.forEach {
-            try {
-                it.call(ManagerTime.BEFORE_ACTIVE)
-                it.onActive()
-                it.call(ManagerTime.ACTIVE)
-            } catch (throwable: Throwable) {
-                throwable.printStackTrace()
-            }
+            safe(it::onActive)
         }
     }
 
+    private var onReload = SingleExecMap()
     fun reload() {
         submit(async = true) {
             managers.forEach {
-                try {
-                    it.call(ManagerTime.BEFORE_RELOAD)
-                    it.onReload()
-                    it.call(ManagerTime.RELOAD)
-                } catch (throwable: Throwable) {
-                    throwable.printStackTrace()
-                }
+                safe(it::onReload)
             }
+            onReload.values.forEach { it() }
         }
+    }
+
+    fun onReload(key: String = UUID.randomUUID().toString(), exec: () -> Unit) {
+        onReload[key] = exec
     }
 
     fun disable() {
         managers.forEach {
-            try {
-                it.call(ManagerTime.BEFORE_DISABLE)
-                it.onDisable()
-                it.call(ManagerTime.DISABLE)
-            } catch (throwable: Throwable) {
-                throwable.printStackTrace()
-
-            }
+            safe(it::onDisable)
         }
     }
 

@@ -1,5 +1,6 @@
 #数据库配置
 database:
+  type: sqlite
   enable: false
   host: localhost
   port: 3306
@@ -7,13 +8,13 @@ database:
   password: root
   database: root
   table: my_database
+  #每10分钟同步一次
+  user-container-sync-time: 360000
 options:
   #调试模式
   debug: false
-  #内联函数-调试模式
+  #Asahi-调试模式
   debug-function: false
-  #(脚本任务)线程池容量
-  thread-pool-size: 4
   #默认的数字格式
   #会影响Pouvoir的所有附属
   number-format: "#.##"
@@ -23,3 +24,8 @@ options:
   message:
     default: 'CHAT'
     locked-to-default: false
+
+
+Skill-Test:
+  skill:
+    - ''

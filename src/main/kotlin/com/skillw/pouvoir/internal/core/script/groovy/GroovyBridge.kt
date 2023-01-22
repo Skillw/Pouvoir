@@ -1,6 +1,6 @@
 package com.skillw.pouvoir.internal.core.script.groovy
 
-import com.skillw.pouvoir.internal.core.script.common.hook.ScriptBridge
+import com.skillw.pouvoir.api.script.engine.hook.ScriptBridge
 import javax.script.CompiledScript
 import javax.script.Invocable
 import javax.script.ScriptContext

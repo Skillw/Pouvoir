@@ -1,10 +1,11 @@
 package com.skillw.pouvoir.internal.feature.hologram
 
+import com.skillw.pouvoir.internal.feature.hologram.impl.PouEmptyHoloLine
 import org.bukkit.Location
 import org.bukkit.entity.Player
 
-internal class HologramLine(location: Location, line: String, vararg viewers: Player) {
-    private val holoLine = PouHolo.create(location, line, *viewers)
+class HologramLine(location: Location, line: String, vararg viewers: Player) {
+    private val holoLine = PouHolo.create(location, line, *viewers) ?: PouEmptyHoloLine()
 
     init {
         for (viewer in viewers) {

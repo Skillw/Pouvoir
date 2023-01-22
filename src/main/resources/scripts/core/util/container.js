@@ -9,10 +9,10 @@ const container = Pouvoir.containerManager;
  * (用户名建议为uuid或玩家名)
  *
  *               用户名 键
- *  container.get(user,key)  - 从容器中获取值
+ *  database.get(user,key)  - 从容器中获取值
  *                   用户名 键
- *  container.delete(user,key) - 删除容器中的值
+ *  database.delete(user,key) - 删除容器中的值
  *               用户名 键 值
- *  container.set(user,key,value) - 设置容器中的值
+ *  database.set(user,key,value) - 设置容器中的值
  *
  */

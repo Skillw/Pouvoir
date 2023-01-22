@@ -2,17 +2,18 @@ package com.skillw.pouvoir.internal.manager
 
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.manager.ConfigManager
+import com.skillw.pouvoir.api.plugin.map.DataMap
+import com.skillw.pouvoir.util.toMap
 import org.spigotmc.AsyncCatcher
 import taboolib.common.platform.Platform
 import taboolib.module.metrics.Metrics
 import taboolib.module.metrics.charts.AdvancedPie
 import taboolib.module.metrics.charts.MultiLineChart
 import taboolib.module.metrics.charts.SingleLineChart
-import taboolib.platform.BukkitPlugin
+import taboolib.platform.util.bukkitPlugin
 
 object PouConfig : ConfigManager(Pouvoir) {
     override val priority = 0
-
 
     val numberFormat: String
         get() {
@@ -26,14 +27,21 @@ object PouConfig : ConfigManager(Pouvoir) {
     val scale: Int
         get() = this["config"].getInt("options.big-decimal-scale")
 
+    val defaultSyncTime: Long
+        get() = this["config"].getLong("database.user-container-sync-time", 360000L)
+
+
+    val databaseType: String
+        get() = this["config"].getString("database.type") ?: "sqlite"
+
+
+    val databaseConfig: DataMap
+        get() = DataMap().also { it.putAll(this["config"].getConfigurationSection("database")!!.toMap()) }
+
     override fun onActive() {
         AsyncCatcher.enabled = false
     }
 
-
-    val threadPoolSize by lazy {
-        this["config"].getInt("options.thread-pool-size", 4)
-    }
     val debug: Boolean
         get() = this["config"].getBoolean("options.debug")
 
@@ -43,8 +51,14 @@ object PouConfig : ConfigManager(Pouvoir) {
     override fun onLoad() {
         AsyncCatcher.enabled = false
         createIfNotExists(
-            "scripts", "example.js", "groovy.groovy",
-            "core/inline_func.js",
+            "dispatchers", "custom-trigger.yml"
+        )
+        createIfNotExists(
+            "handlers", "simple-handler.yml"
+        )
+        createIfNotExists(
+            "scripts", "example.js", "groovy.groovy", "test.asahi",
+            "core/asahi.js",
             "core/basic.js",
             "core/util/ray_trace.js",
             "core/util/color.js",
@@ -62,7 +76,7 @@ object PouConfig : ConfigManager(Pouvoir) {
     }
 
     private fun metrics() {
-        Metrics(14180, BukkitPlugin.getInstance().description.version, Platform.BUKKIT).run {
+        Metrics(14180, bukkitPlugin.description.version, Platform.BUKKIT).run {
             addCustomChart(SingleLineChart("script_listeners") {
                 Pouvoir.listenerManager.size
             })
@@ -85,7 +99,7 @@ object PouConfig : ConfigManager(Pouvoir) {
 
     @JvmStatic
     fun debug(debug: () -> Unit) {
-        if (this.debug) {
+        if (PouConfig.debug) {
             debug.invoke()
         }
     }
