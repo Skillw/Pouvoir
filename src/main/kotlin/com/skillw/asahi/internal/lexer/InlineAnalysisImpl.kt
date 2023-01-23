@@ -25,10 +25,7 @@ internal class InlineAnalysisImpl private constructor(val text: String) :
 
 
     init {
-        AsahiManager.namespaces
-            .values
-            .filter(Namespace::shared)
-            .forEach(namespaces::add)
+        AsahiManager.loadSharedNamespace(this)
     }
 
     companion object {

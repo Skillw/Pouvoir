@@ -6,7 +6,7 @@ import com.skillw.pouvoir.internal.manager.PouConfig
 import taboolib.common.LifeCycle
 import taboolib.common.platform.Awake
 
-object PouvoirContainer {
+object PouvoirContainer : UserBased {
     @JvmStatic
     val holder by lazy {
         databaseManager.containerHolder(PouConfig.databaseConfig)
@@ -23,5 +23,21 @@ object PouvoirContainer {
             if (it.isFailure)
                 taboolib.common.platform.function.warning("Pouvoir User Container Initialization Failed!")
         }
+    }
+
+    override fun get(user: String, key: String): String? {
+        return container[user, key]
+    }
+
+    override fun delete(user: String, key: String) {
+        return container.delete(user, key)
+    }
+
+    override fun set(user: String, key: String, value: String?) {
+        container[user, key] = value
+    }
+
+    override fun contains(user: String, key: String): Boolean {
+        return container.contains(user, key)
     }
 }

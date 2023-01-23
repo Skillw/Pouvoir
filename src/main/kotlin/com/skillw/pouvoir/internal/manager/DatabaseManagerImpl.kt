@@ -12,7 +12,7 @@ internal object DatabaseManagerImpl : DatabaseManager() {
     override val subPouvoir = Pouvoir
 
     override fun containerHolder(data: DataMap): ContainerHolder<*>? {
-        val type = data.get("type", "sql")
+        val type = data.get("type", "sqlite")
         return get(type)?.connectWith(data)
     }
 

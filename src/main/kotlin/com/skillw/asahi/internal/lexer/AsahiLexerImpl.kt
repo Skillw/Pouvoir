@@ -2,6 +2,7 @@ package com.skillw.asahi.internal.lexer
 
 import com.skillw.asahi.api.AsahiAPI.compile
 import com.skillw.asahi.api.AsahiManager
+import com.skillw.asahi.api.AsahiManager.loadSharedNamespace
 import com.skillw.asahi.api.member.lexer.AsahiLexer
 import com.skillw.asahi.api.member.lexer.tokenizer.ScriptTokenizer
 import com.skillw.asahi.api.member.namespace.Namespace
@@ -56,10 +57,7 @@ internal class AsahiLexerImpl : AsahiLexer {
     }
 
     init {
-        AsahiManager.namespaces
-            .values
-            .filter(Namespace::shared)
-            .forEach(namespaces::add)
+        loadSharedNamespace(this)
     }
 
     /**

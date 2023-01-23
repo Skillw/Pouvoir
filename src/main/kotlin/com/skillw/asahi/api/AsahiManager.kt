@@ -1,6 +1,7 @@
 package com.skillw.asahi.api
 
 import com.skillw.asahi.api.member.namespace.Namespace
+import com.skillw.asahi.api.member.namespace.NamespaceHolder
 import com.skillw.asahi.api.member.parser.prefix.PrefixParser
 import com.skillw.asahi.api.member.parser.prefix.TopPrefixParser
 import com.skillw.asahi.api.member.parser.prefix.type.TypeParser
@@ -60,4 +61,10 @@ object AsahiManager {
 
     internal fun replace(script: String): String = script.replace(*macros.map { it.key to it.value }.toTypedArray())
 
+    fun loadSharedNamespace(holder: NamespaceHolder<*>) {
+        namespaces
+            .values
+            .filter(Namespace::shared)
+            .forEach(holder.namespaces::add)
+    }
 }
