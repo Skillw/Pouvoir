@@ -23,7 +23,7 @@ import java.awt.Color
 @AsahiPrefix(["particleData"])
 fun particleData() = prefixParser {
     val token = next()
-    expect("[")
+    expect("[", "{")
     when (token) {
         "dust" -> questDustData()
         "dustTransition" -> questDustTransitionData()
@@ -32,7 +32,7 @@ fun particleData() = prefixParser {
         "vibration" -> questVibrationData()
         else -> error("Wrong Particle Data Type $token")
     }.also {
-        expect("]")
+        expect("]", "}")
     } as Quester<ProxyParticle.Data>
 }
 
@@ -62,7 +62,7 @@ private fun PrefixParser<*>.questBlockData(): Quester<ProxyParticle.BlockData> {
 
 private fun PrefixParser<*>.questItemData(): Quester<ProxyParticle.ItemData> {
     val material = quest<String>()
-    val map = if (peek() == "[" || peek() == "{") questMap() else quester { emptyMap<String, Any>() }
+    val map = if (peek() == "[" || peek() == "{") questTypeMap() else quester { emptyMap<String, Any>() }
     val data = map.quester { it.getOrDefault("data", 0).cint }
     val name = map.quester { it.getOrDefault("name", material.get()).toString() }
     val lore = map.quester { it.getOrDefault("lore", emptyList<String>()) as List<String> }

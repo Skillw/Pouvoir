@@ -10,6 +10,8 @@ import org.bukkit.Sound
 import org.bukkit.boss.BarColor
 import org.bukkit.boss.BarStyle
 import org.bukkit.boss.BossBar
+import org.bukkit.command.CommandSender
+import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.ProxyPlayer
 import taboolib.common.platform.function.adaptCommandSender
 import taboolib.common5.Coerce
@@ -38,15 +40,21 @@ private fun sound() = prefixParser<Sound> {
 
 @AsahiPrefix(["tell", "send", "message"])
 private fun tell() = prefixParser {
-    val target = questAny()
+    val targets = if (expect("all")) quester { Bukkit.getOnlinePlayers() } else questAny()
     val contentGetter = if (peek() == "[") questList() else questString()
     result {
         val content = when (val origin = contentGetter.get()) {
-            is List<*> -> origin.map { it.toString() }
+            is Collection<*> -> origin.map { it.toString() }
             is String -> listOf(origin)
             else -> listOf(origin.toString())
         }
-        adaptCommandSender(target.get()).let {
+        val senders = when (val origin = targets.get()) {
+            is Collection<*> -> origin.mapNotNull { it?.let { it1 -> adaptCommandSender(it1) } }
+            is CommandSender -> listOf(adaptCommandSender(origin))
+            is ProxyCommandSender -> listOf(origin)
+            else -> emptyList()
+        }
+        senders.forEach {
             content.forEach { line ->
                 it.sendMessage(line.colored())
             }
@@ -56,7 +64,7 @@ private fun tell() = prefixParser {
 
 @AsahiPrefix(["actionbar"])
 private fun actionbar() = prefixParser {
-    val target = questAny()
+    val targets = if (expect("all")) quester { Bukkit.getOnlinePlayers() } else questAny()
     val period = if (expect("every")) questTick() else quester { 20L }
     val contentGetter = if (peek() == "[") questList() else questString()
     result {
@@ -65,7 +73,14 @@ private fun actionbar() = prefixParser {
             is String -> listOf(origin)
             else -> listOf(origin.toString())
         }
-        (adaptCommandSender(target.get()) as? ProxyPlayer?)?.let {
+        val senders = when (val origin = targets.get()) {
+            is Collection<*> -> origin.mapNotNull { it?.let { it1 -> adaptCommandSender(it1) } }
+            is CommandSender -> listOf(adaptCommandSender(origin))
+            is ProxyCommandSender -> listOf(origin)
+            else -> emptyList()
+        }
+        senders.forEach {
+            if (it !is ProxyPlayer) return@forEach
             content.forEachIndexed { index, line ->
                 it.sendActionBar(line.colored())
                 if (index != content.lastIndex)
@@ -77,7 +92,7 @@ private fun actionbar() = prefixParser {
 
 @AsahiPrefix(["title"])
 private fun title() = prefixParser {
-    val target = questAny()
+    val targets = if (expect("all")) quester { Bukkit.getOnlinePlayers() } else questAny()
     //主标题
     val title = quest<String?>()
     //副标题
@@ -94,13 +109,22 @@ private fun title() = prefixParser {
         fadeOut = questTick().quester { it.toInt() }
     }
     result {
-        (adaptCommandSender(target.get()) as? ProxyPlayer?)?.sendTitle(
-            title.get(),
-            subTitle.get(),
-            fadeIn.get(),
-            stay.get(),
-            fadeOut.get()
-        )
+        val senders = when (val origin = targets.get()) {
+            is Collection<*> -> origin.mapNotNull { it?.let { it1 -> adaptCommandSender(it1) } }
+            is CommandSender -> listOf(adaptCommandSender(origin))
+            is ProxyCommandSender -> listOf(origin)
+            else -> emptyList()
+        }
+        senders.forEach {
+            if (it !is ProxyPlayer) return@forEach
+            it.sendTitle(
+                title.get(),
+                subTitle.get(),
+                fadeIn.get(),
+                stay.get(),
+                fadeOut.get()
+            )
+        }
     }
 }
 

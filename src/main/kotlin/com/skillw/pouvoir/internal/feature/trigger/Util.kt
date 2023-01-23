@@ -1,5 +1,6 @@
 package com.skillw.pouvoir.internal.feature.trigger
 
+import com.skillw.asahi.api.member.context.AsahiContext
 import com.skillw.pouvoir.api.feature.trigger.BaseTrigger
 import com.skillw.pouvoir.internal.feature.trigger.bukkit.BukkitEventTrigger
 import com.skillw.pouvoir.internal.feature.trigger.custom.CustomTrigger
@@ -17,6 +18,9 @@ fun MutableMap<*, *>.loadIn(trigger: BaseTrigger) {
     put("trigger", trigger)
     if (trigger is CustomTrigger) {
         putAll(trigger.data.map)
+        (trigger.data["context"] as? AsahiContext?)?.let {
+            putAll(it)
+        }
         (trigger.data["origin-trigger"] as? BaseTrigger?)?.let {
             loadIn(it)
         }

@@ -45,11 +45,21 @@ internal class AsahiContextImpl private constructor(
         get() = data.size
 
     override fun get(key: String): Any? {
-        return getters.firstOrNull { it.filterKey(this, key) }?.get(this, key)
+        return (getters.firstOrNull { it.filterKey(this, key) } ?: return getOrigin(key)).get(this, key)
     }
 
     override fun put(key: String, value: Any): Any? {
-        return setters.firstOrNull { it.filterKey(this, key) }?.set(this, key, value)
+        return (setters.firstOrNull { it.filterKey(this, key) } ?: return setOrigin(key, value)).set(this, key, value)
+    }
+
+    override fun getOrigin(key: String): Any? {
+        return (if (key.contains(".")) getDeep(key) else data[key]).run {
+            if (this is LazyQuester<*>) get() else this
+        }
+    }
+
+    override fun setOrigin(key: String, value: Any): Any? {
+        return if (key.contains(".")) data.putDeep(key, value) else data[key] = value
     }
 
     override fun putDeep(key: String, value: Any): Any? {
@@ -57,9 +67,7 @@ internal class AsahiContextImpl private constructor(
     }
 
     override fun getDeep(key: String): Any? {
-        return data.getDeep(key).run {
-            if (this is LazyQuester<*>) get() else this
-        }
+        return data.getDeep(key)
     }
 
 

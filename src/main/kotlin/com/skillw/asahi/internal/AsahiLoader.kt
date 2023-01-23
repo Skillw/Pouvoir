@@ -1,9 +1,6 @@
 package com.skillw.asahi.internal
 
-import com.skillw.asahi.api.annotation.AsahiInfix
-import com.skillw.asahi.api.annotation.AsahiPrefix
-import com.skillw.asahi.api.annotation.AsahiTopParser
-import com.skillw.asahi.api.annotation.AsahiTypeParser
+import com.skillw.asahi.api.annotation.*
 import com.skillw.asahi.api.member.AsahiRegistrable
 import com.skillw.asahi.api.member.context.AsahiContext
 import com.skillw.asahi.api.member.parser.infix.namespacing.BaseInfix
@@ -26,8 +23,8 @@ object AsahiLoader {
                 register<AsahiTopParser, TopPrefixParser<*>>()
                 register<AsahiTypeParser, TypeParser<*>>()
                 register<AsahiInfix, BaseInfix<*>>()
-                register<AsahiInfix, AsahiContext.Getter>()
-                register<AsahiInfix, AsahiContext.Setter>()
+                register<AsahiGetter, AsahiContext.Getter>()
+                register<AsahiSetter, AsahiContext.Setter>()
                 registerFunctions()
             }
         }

@@ -21,8 +21,7 @@ internal object VarParser : TopPrefixParser<Any?>("var", 1) {
     override fun AsahiLexer.parse(token: String): Quester<Any?> {
         val varKey = token.substring(1)
         return quester {
-            (if (varKey.contains("."))
-                getDeep(varKey) else get(varKey))?.let {
+            get(varKey)?.let {
                 when (it) {
                     is Supplier<*> -> it.get()
                     else -> it

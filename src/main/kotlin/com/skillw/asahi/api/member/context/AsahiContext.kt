@@ -58,6 +58,9 @@ interface AsahiContext : MutableMap<String, Any>, Bindings, InvokerHolder {
         else -1
     }
 
+    fun getOrigin(key: String): Any?
+    fun setOrigin(key: String, value: Any): Any?
+
     /**
      * Put deep
      *

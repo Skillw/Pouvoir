@@ -83,7 +83,7 @@ private fun map() = typeParser(Map::class.java, MutableMap::class.java) {
         val key = quest<String>()
         this.expect("to", "=", ":")
         val value = quest<Any?>()
-        list += key to value
+        list.add(key to value)
         this.expect(",")
     } while (!expect("]", "}"))
     quester {

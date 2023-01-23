@@ -5,6 +5,7 @@ import com.skillw.asahi.api.member.quest.LazyQuester
 import com.skillw.asahi.api.member.quest.Quester
 import com.skillw.asahi.api.quest
 import com.skillw.asahi.api.questSafely
+import com.skillw.asahi.api.questType
 import com.skillw.asahi.api.quester
 import com.skillw.asahi.api.script.AsahiCompiledScript
 import com.skillw.asahi.internal.lexer.AsahiLexerImpl
@@ -175,6 +176,15 @@ interface AsahiLexer : NamespaceHolder<AsahiLexer> {
 
     /** 寻求 Tick */
     fun questTick() = quest<Time>().quester { it.toTick() }
+
+    /** 通过Map类型解释器寻求Map */
+    fun questTypeMap() = questType<MutableMap<String, Any?>>()
+
+    /** 通过List类型解释器寻求List */
+    fun questTypeList() = questType<MutableList<Any?>>()
+
+    /** 寻通过Array类型解释器寻求Array */
+    fun questTypeArray() = questType<Array<Any?>>()
 
     /**
      * 将每个Token作为接收器

@@ -56,6 +56,47 @@ inline fun <reified R> AsahiLexer.questSafely(): Quester<R?> {
 }
 
 /**
+ * 直接通过指定类型解释器寻求值 (安全)
+ *
+ * @return Quester<R?>
+ * @receiver AsahiLexer
+ */
+@Suppress("IMPLICIT_CAST_TO_ANY", "UNCHECKED_CAST")
+inline fun <reified R> AsahiLexer.questTypeSafely(): Quester<R?> {
+    val token = next()
+    var getter: Quester<Any?>? = AsahiManager.getParser(R::class.java)?.parseWith(this) as Quester<Any?>
+    getter ?: error("Cannot quest $token")
+    getter = if (getter !is VarBeanQuester) InfixParser.get().parseInfix(this, getter) else getter
+    val index = currentIndex()
+    return object : Quester<R?> {
+        override fun AsahiContext.execute(): R? {
+            return runCatching { getter.get().castSafely<R>() }.run {
+                if (isSuccess) getOrThrow()
+                else exceptionOrNull().let {
+                    if (it is AsahiScriptException) throw it
+                    else throw AsahiScriptException(info("Error occurred", index), it)
+                }
+            }
+        }
+
+        override fun toString(): String {
+            return getter.toString()
+        }
+    }
+}
+
+/**
+ * 直接通过指定类型解释器寻求值 (强制)
+ *
+ * @param R 类型
+ * @return 结果
+ */
+@Suppress("IMPLICIT_CAST_TO_ANY", "UNCHECKED_CAST")
+inline fun <reified R> AsahiLexer.questType(): Quester<R> {
+    return questTypeSafely<R>() as Quester<R>
+}
+
+/**
  * 强制寻求下一个值
  *
  * @param R 类型

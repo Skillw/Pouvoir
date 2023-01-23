@@ -40,7 +40,7 @@ private fun potion() = prefixParser {
     expect("in")
     //持续时间
     val duration = questTick().quester { it.toInt() }
-    val map = if (peek() == "[" || peek() == "{") questMap() else quester { emptyMap<String, Any>() }
+    val map = if (peek() == "[" || peek() == "{") questTypeMap() else quester { emptyMap<String, Any>() }
     //等级
     val amplifier = map.quester { it.getOrDefault("level", 1).cint }
     //粒子可见性

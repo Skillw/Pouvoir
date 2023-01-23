@@ -27,9 +27,9 @@ private fun particle() = prefixParser {
     expect("at")
     //坐标
     val location = quest<Location>()
-    val map = if (peek() == "[" || peek() == "{") questMap() else quester { emptyMap<String, Any>() }
+    val map = if (peek() == "[" || peek() == "{") questTypeMap() else quester { emptyMap<String, Any>() }
     //可见范围
-    val range = map.quester { it.getOrDefault("range", 16.0).cdouble }
+    val range = map.quester { it.getOrDefault("range", 32.0).cdouble }
     //偏移
     val offset = map.quester { it.getOrDefault("offset", Vector(0, 0, 0)) as Vector }
     //数量

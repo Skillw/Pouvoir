@@ -22,7 +22,10 @@ internal object ActionParserImpl : InfixParser() {
         //是否是变量调用
         if (peek()?.let { VarParser.isCallVar(it) || StringParser.isWrapping(it) } == true) return getter
         //查看下一个token 是否在"忽略列表"中
-        if (peek() in ignores) return getter
+        if (peek() in ignores) {
+            expect(";", ".")
+            return getter
+        }
         //查看下一个token 是否在 allActions里(所有后缀动作的set)
         if (namespaces.all { !it.hasInfix(peek()) }) return getter
         //以上3个判断，都是为了过滤掉非后缀动作
@@ -35,6 +38,7 @@ internal object ActionParserImpl : InfixParser() {
                 break
             } else tokens += next
         }
+        expect(";", ".")
         //后缀动作 参数
         val actionReader = AsahiLexer.of(tokens)
         //后缀动作 上下文

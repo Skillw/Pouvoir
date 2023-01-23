@@ -34,7 +34,6 @@ internal object TriggerHandlerManagerImpl : TriggerHandlerManager() {
 
     override fun onEnable() {
         addSubPouvoir(Pouvoir)
-        onReload()
     }
 
     override fun reloadFolder(folder: File) {
@@ -112,10 +111,15 @@ internal object TriggerHandlerManagerImpl : TriggerHandlerManager() {
 
     override fun addDataFolders(folder: File) {
         dataFolders.add(folder)
+        onReload()
     }
 
     override fun addSubPouvoir(subPouvoir: SubPouvoir) {
-        dataFolders.add(subPouvoir.plugin.dataFolder)
+        val folder = subPouvoir.plugin.dataFolder
+        addDataFolders(folder)
+        subPouvoir.managerData.onReload {
+            reloadFolder(folder)
+        }
     }
 
     override fun register(key: String, value: BaseHandler<*>) {

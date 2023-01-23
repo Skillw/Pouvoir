@@ -31,6 +31,7 @@ internal object VarBeanParser : TopPrefixParser<Any?>("var-bean", 1) {
         while (hasNext() && peek() !in ActionParserImpl.ignores) {
             tokens += next()
         }
+        expect(";", ".")
         val actionReader = AsahiLexer.of(tokens)
         val context = quester { InfixContext(context(), actionReader) }
         return VarBeanQuester {

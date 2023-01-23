@@ -28,6 +28,6 @@ private fun math() = prefixParser {
     val operator = questString().quester { it.first() }
     val numB = questDouble()
     result {
-        operator.get().toCalcOperator().calc(numA.get(), numB.get())
+        operator.get().toCalcOperator().calc(numB.get(), numA.get())
     }
 }
