@@ -1,6 +1,10 @@
 package com.skillw.asahi.util
 
 import com.skillw.asahi.internal.util.AsahiClassBean
+import org.bukkit.entity.Entity
+import org.bukkit.entity.EntityType
+import org.bukkit.entity.LivingEntity
+import org.bukkit.entity.Player
 import taboolib.common5.Coerce
 
 @Suppress("IMPLICIT_CAST_TO_ANY")
@@ -77,6 +81,7 @@ fun check(a: Any?, symbol: String, b: Any?): Boolean {
         "is" -> when (b) {
             is Class<*> -> b.isInstance(a)
             is String -> a!!::class.java.simpleName.equals(b, true) || a::class.java.name.equals(b, true)
+
             else -> false
         }
 
@@ -84,6 +89,26 @@ fun check(a: Any?, symbol: String, b: Any?): Boolean {
             is Class<*> -> !b.isInstance(a)
             is String -> !a!!::class.java.simpleName.equals(b, true) && !a::class.java.name.equals(b, true)
             else -> false
+        }
+
+        "type" -> when (b.toString().lowercase()) {
+            "entity" -> a is Entity
+            "livingentity" -> a is LivingEntity
+            "player" -> a is Player
+            else -> {
+                val type = runCatching { EntityType.valueOf(b.toString().uppercase()) }.getOrNull() ?: return false
+                return a.castSafely<Entity>()?.type == type
+            }
+        }
+
+        "!type" -> when (b.toString().lowercase()) {
+            "entity" -> a !is Entity
+            "livingentity" -> a !is LivingEntity
+            "player" -> a !is Player
+            else -> {
+                val type = runCatching { EntityType.valueOf(b.toString().uppercase()) }.getOrNull() ?: return false
+                return a.castSafely<Entity>()?.type != type
+            }
         }
 
         "contains" -> a.toString().contains(b.toString())

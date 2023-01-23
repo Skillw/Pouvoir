@@ -16,32 +16,32 @@ import kotlin.math.absoluteValue
 
 
 @AsahiPrefix(["abs"], "lang")
-fun abs() = prefixParser {
+private fun abs() = prefixParser {
     val number = quest<Double>()
     result { number.get().absoluteValue }
 }
 
 @AsahiPrefix(["ceil"], "lang")
-fun ceil() = prefixParser {
+private fun ceil() = prefixParser {
     val number = quest<Double>()
     result { kotlin.math.ceil(number.get()) }
 }
 
 @AsahiPrefix(["floor"], "lang")
-fun floor() = prefixParser {
+private fun floor() = prefixParser {
     val number = quest<Double>()
     result { kotlin.math.floor(number.get()) }
 }
 
 @AsahiPrefix(["format"], "lang")
-fun format() = prefixParser {
+private fun format() = prefixParser {
     val number = quest<Double>()
     val format = quest<String>()
     result { number.get().format(format.get()) }
 }
 
 @AsahiPrefix(["max"], "lang")
-fun max() = prefixParser {
+private fun max() = prefixParser {
     val value = if (peek() == "[")
         quest<List<Any?>>()
     else {
@@ -69,7 +69,7 @@ fun max() = prefixParser {
 }
 
 @AsahiPrefix(["min"], "lang")
-fun min() = prefixParser {
+private fun min() = prefixParser {
     val value = if (peek() == "[")
         quest<List<Any?>>()
     else {
@@ -97,13 +97,13 @@ fun min() = prefixParser {
 }
 
 @AsahiPrefix(["round"], "lang")
-fun round() = prefixParser {
+private fun round() = prefixParser {
     val x = quest<Double>()
     result { kotlin.math.round(x.get()).toInt() }
 }
 
 @AsahiPrefix(["range"], "lang")
-fun range() = prefixParser {
+private fun range() = prefixParser {
     val from = quest<Double>()
     expect("to", "~", "..")
     val to = quest<Double>()
@@ -115,7 +115,7 @@ fun range() = prefixParser {
 }
 
 @AsahiPrefix(["number"], "lang")
-fun number() = prefixParser {
+private fun number() = prefixParser {
     val number = quest<Double>()
     result { number.get() }
 }

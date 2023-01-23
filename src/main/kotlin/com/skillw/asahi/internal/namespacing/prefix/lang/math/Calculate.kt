@@ -4,6 +4,8 @@ import com.skillw.asahi.api.AsahiAPI.analysis
 import com.skillw.asahi.api.annotation.AsahiPrefix
 import com.skillw.asahi.api.prefixParser
 import com.skillw.asahi.api.quest
+import com.skillw.asahi.api.quester
+import com.skillw.pouvoir.util.calculate.CalcOperator.Companion.toCalcOperator
 
 /**
  * @className Calculate
@@ -17,5 +19,15 @@ private fun calculate() = prefixParser {
     result {
         val formula = formulaGetter.get().analysis(this, *namespaceNames())
         com.skillw.pouvoir.util.calculate(formula)
+    }
+}
+
+@AsahiPrefix(["math"], "lang")
+private fun math() = prefixParser {
+    val numA = questDouble()
+    val operator = questString().quester { it.first() }
+    val numB = questDouble()
+    result {
+        operator.get().toCalcOperator().calc(numA.get(), numB.get())
     }
 }

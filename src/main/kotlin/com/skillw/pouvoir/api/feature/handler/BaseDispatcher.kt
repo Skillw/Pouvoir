@@ -57,6 +57,9 @@ abstract class BaseDispatcher(key: String, vararg triggers: String, priority: In
             trigger.data.getAs<AsahiContext>("context")!!
         } else AsahiContext.create()
         kotlin.runCatching {
+            context.onExit {
+                context["@exit"] = true
+            }
             context["@exit"] = false
             preHandle(trigger, context)
             if (context.isExit() || context["@exit"] == true) return

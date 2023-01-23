@@ -41,7 +41,7 @@ class NativeJSFunctionImpl constructor(
             put("args", params)
         }
         return invokeContext.run {
-            PouJavaScriptEngine.bridge.invoke(content, "main", mapOf("context" to this), *params)
+            PouJavaScriptEngine.bridge.invoke(content, "main", mapOf("context" to this, "data" to this), *params)
         }.also {
             invokeContext.forEach { key, value ->
                 if (key == "super.args" || key == "args") return@forEach

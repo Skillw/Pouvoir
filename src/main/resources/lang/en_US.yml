@@ -60,3 +60,5 @@ wrong-config-cause: '&d[&9Pouvoir&d] &cCause: &f{0}'
 plugin-load: '&d[&9{0}&d] &6{0} &ahas been loaded!'
 plugin-enable: '&d[&9{0}&d] &6{0} &ahas been enabled!'
 plugin-disable: '&d[&9{0}&d] &6{0} &chas been disabled!'
+
+asahi-potion-unsupportable: '&d[&9Asahi&d] Unsupportable Potion Type {0}'

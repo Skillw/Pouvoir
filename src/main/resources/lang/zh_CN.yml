@@ -62,3 +62,5 @@ wrong-config-cause: '&d[&9Pouvoir&d] &c原因: {0}'
 plugin-load: '&d[&9{0}&d] &6{0} &a加载成功!'
 plugin-enable: '&d[&9{0}&d] &6{0} &a启用成功!'
 plugin-disable: '&d[&9{0}&d] &6{0} &c关闭成功!'
+
+asahi-potion-unsupportable: '&d[&9Asahi&d] 您当前的服务器版本不兼容药水效果 {0}'

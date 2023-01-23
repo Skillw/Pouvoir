@@ -1,6 +1,8 @@
 package com.skillw.asahi.internal.context
 
 import com.skillw.asahi.api.member.context.AsahiContext
+import com.skillw.asahi.api.member.context.AsahiContext.Companion.getters
+import com.skillw.asahi.api.member.context.AsahiContext.Companion.setters
 import com.skillw.asahi.api.member.quest.LazyQuester
 import com.skillw.asahi.api.script.AsahiEngine
 import com.skillw.asahi.api.script.linking.Invoker
@@ -43,13 +45,11 @@ internal class AsahiContextImpl private constructor(
         get() = data.size
 
     override fun get(key: String): Any? {
-        return (if (key.contains(".")) getDeep(key) else data[key]).run {
-            if (this is LazyQuester<*>) get() else this
-        }
+        return getters.firstOrNull { it.filterKey(this, key) }?.get(this, key)
     }
 
     override fun put(key: String, value: Any): Any? {
-        return if (key.contains(".")) putDeep(key, value) else data[key] = value
+        return setters.firstOrNull { it.filterKey(this, key) }?.set(this, key, value)
     }
 
     override fun putDeep(key: String, value: Any): Any? {

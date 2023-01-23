@@ -9,6 +9,7 @@ import com.skillw.asahi.api.quester
 import org.bukkit.entity.Entity
 import taboolib.common.platform.ProxyParticle
 import taboolib.common.util.Location
+import taboolib.common5.cint
 import taboolib.platform.util.toProxyLocation
 import java.awt.Color
 
@@ -61,22 +62,11 @@ private fun PrefixParser<*>.questBlockData(): Quester<ProxyParticle.BlockData> {
 
 private fun PrefixParser<*>.questItemData(): Quester<ProxyParticle.ItemData> {
     val material = quest<String>()
-    var data = quester { 0 }
-    var name = quester { "" }
-    var lore = quester { emptyList<String>() }
-    var customModelData = quester { -1 }
-    if (expect("with")) {
-        data = quest()
-    }
-    if (expect("name")) {
-        name = quest()
-    }
-    if (expect("lore")) {
-        lore = quest()
-    }
-    if (expect("data")) {
-        customModelData = quest()
-    }
+    val map = if (peek() == "[" || peek() == "{") questMap() else quester { emptyMap<String, Any>() }
+    val data = map.quester { it.getOrDefault("data", 0).cint }
+    val name = map.quester { it.getOrDefault("name", material.get()).toString() }
+    val lore = map.quester { it.getOrDefault("lore", emptyList<String>()) as List<String> }
+    val customModelData = map.quester { it.getOrDefault("data", -1).cint }
     return result {
         ProxyParticle.ItemData(
             material.get(),

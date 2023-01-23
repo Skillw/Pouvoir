@@ -6,6 +6,9 @@ import com.skillw.asahi.api.quest
 import com.skillw.asahi.api.quester
 import com.skillw.asahi.internal.util.MapTemplate
 import taboolib.common5.Coerce
+import java.awt.Color
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * @className Util
@@ -117,8 +120,8 @@ fun type() = prefixParser {
     }
 }
 
-@AsahiPrefix(["select"], "lang")
-private fun select() = prefixParser {
+@AsahiPrefix(["select", "with"], "lang")
+private fun with() = prefixParser {
     val any = quest<Any>()
     val exec = parseScript()
     result {
@@ -139,4 +142,41 @@ private fun select() = prefixParser {
             this@result.putAllIfExists(this)
         }
     }
+}
+
+@AsahiPrefix(["date"], "lang")
+private fun date() = prefixParser {
+    val typeGetter = if (expect("in")) questString() else quester { null }
+    result {
+        val date = Date()
+        SimpleDateFormat(
+            when (typeGetter.get()?.lowercase()) {
+                "year" -> "yyyy"
+                "month" -> "MM"
+                "day" -> "dd"
+                "time" -> "HH:mm:ss"
+                "timeDetail" -> "HH:mm:ss.SSS"
+                else -> "yyyy年MM月dd日 HH:mm:ss"
+            }
+        ).format(date)
+    }
+}
+
+
+@AsahiPrefix(["time"], "lang")
+private fun time() = prefixParser {
+    val formatGetter = if (expect("as")) questString() else quester { "yyyy-MM-dd HH:mm:ss" }
+    result {
+        SimpleDateFormat(formatGetter.get()).format(Date())
+    }
+}
+
+@AsahiPrefix(["color"])
+private fun color() = prefixParser {
+    expect("[")
+    val r = quest<Int>()
+    val g = quest<Int>()
+    val b = quest<Int>()
+    expect("]")
+    result { Color(r.get(), g.get(), b.get()) }
 }

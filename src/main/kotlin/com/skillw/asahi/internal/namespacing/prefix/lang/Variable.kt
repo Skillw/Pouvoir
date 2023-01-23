@@ -48,3 +48,15 @@ private fun has() = prefixParser {
     val key = quest<String>()
     result { containsKey(key.get()) }
 }
+
+@AsahiPrefix(["get"], "lang")
+private fun get() = prefixParser {
+    val key = quest<String>()
+    result { get(key.get()) }
+}
+
+@AsahiPrefix(["delete"], "lang")
+private fun delete() = prefixParser {
+    val key = quest<String>()
+    result { remove(key.get()) }
+}

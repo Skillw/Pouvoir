@@ -43,6 +43,7 @@ object EventNameHandler : ClassHandler(0) {
         return replace("Event", "")
             .replace(Regex("([A-Z])"), " $1")
             .substring(1)
+            .replace("$", " ")
             .lowercase()
     }
 }

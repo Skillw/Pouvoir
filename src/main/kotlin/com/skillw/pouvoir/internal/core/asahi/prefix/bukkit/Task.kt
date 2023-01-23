@@ -4,7 +4,7 @@ import com.skillw.asahi.api.annotation.AsahiPrefix
 import com.skillw.asahi.api.prefixParser
 import com.skillw.asahi.api.quest
 import com.skillw.asahi.api.quester
-import taboolib.common.platform.function.isPrimaryThread
+import com.skillw.pouvoir.internal.core.asahi.util.delay
 import taboolib.common.platform.function.submit
 import taboolib.common.platform.function.submitAsync
 import java.util.*
@@ -106,14 +106,9 @@ private fun await() = prefixParser<Any?> {
 
 
 @AsahiPrefix(["wait", "delay", "sleep"], "lang")
-private fun wait() = prefixParser {
-    val time = questTick()
+private fun delay() = prefixParser {
+    val tick = questTick()
     result {
-        val future = CompletableFuture<Unit>()
-        val task = submit(delay = time.get(), async = !isPrimaryThread) {
-            future.complete(null)
-        }
-        onExit { task.cancel() }
-        future.join()
+        delay(tick.get())
     }
 }
