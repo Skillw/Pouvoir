@@ -1,6 +1,6 @@
 load("plugins/Pouvoir/scripts/core/basic.js");
 /** @type {Container} 持久化容器 */
-const container = Pouvoir.containerManager;
+const container = PouvoirContainer.container;
 
 /**
  * 用法:

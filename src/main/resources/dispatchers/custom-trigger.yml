@@ -7,7 +7,7 @@ my trigger:
     based-on: player
     time: 5s
   pre-handle: |-
-    &player message '你说话了! (此消息每5秒只能触发一次)'
+    tell &player '你说话了! (此消息每5秒只能触发一次)'
   post-handle:
     type: js
     content: |-

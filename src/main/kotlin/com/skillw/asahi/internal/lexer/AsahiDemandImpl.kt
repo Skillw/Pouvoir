@@ -22,7 +22,7 @@ internal class AsahiDemandImpl private constructor(entity: Entity? = null) : Asa
 
     private constructor(string: String) : this() {
         fun String.addTag() {
-            tags.add(substring(2))
+            tags.add(StringParser.content(substring(2)))
         }
 
         fun String.addParam(param: String) {
@@ -30,7 +30,7 @@ internal class AsahiDemandImpl private constructor(entity: Entity? = null) : Asa
         }
 
         fun String.addArgs() {
-            args.add(this)
+            args.add(StringParser.content(this))
         }
         AsahiLexer.of(string).run {
             withEach { _ ->

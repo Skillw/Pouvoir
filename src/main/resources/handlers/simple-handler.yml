@@ -6,6 +6,6 @@ custom-handler:
     - else: main
   functions:
     main: |-
-      &player message 你说话了!
+      tell &player 你说话了!
     main1: |-
-      &player message Glom说话了!
+      tell &player Glom说话了!

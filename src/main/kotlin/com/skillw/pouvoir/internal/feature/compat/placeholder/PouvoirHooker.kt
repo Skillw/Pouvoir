@@ -4,9 +4,9 @@ import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.Pouvoir.scriptManager
 import com.skillw.pouvoir.api.feature.placeholder.PouPlaceHolder
 import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
+import com.skillw.pouvoir.util.plugin.Pair
 import com.skillw.pouvoir.util.protectedSplit
 import com.skillw.pouvoir.util.toArgs
-import com.skillw.pouvoir.util.plugin.Pair
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import taboolib.platform.compat.replacePlaceholder
@@ -23,16 +23,19 @@ object PouvoirHooker : PouPlaceHolder("pou", Pouvoir) {
         if (args.isEmpty()) return def
         when (args[0].lowercase()) {
             "run" -> {
-                args.removeAt(0)
                 if (args.isEmpty()) return def
-                val scriptPath = args[0]
-                val spilt: Array<String> = if (args.size > 1) params.replace("run_", "").toArgs() else emptyArray()
+                val scriptPath = args[1]
+                val spilt =
+                    argsStr.replace("run_$scriptPath\\_", "").replace("-", "_").toArgs()
+                        .filter { it.isNotEmpty() && it.isNotBlank() }
                 val finalArgs = Array(spilt.size) {
                     Pouvoir.placeholderManager.replace(entity, spilt[it])
                 }
                 return scriptManager.invoke<String>(
                     scriptPath,
-                    arguments = hashMapOf("entity" to entity, "args" to finalArgs)
+                    arguments = hashMapOf("entity" to entity, "sender" to entity, "args" to finalArgs),
+                    null,
+                    parameters = finalArgs
                 ).toString()
             }
         }

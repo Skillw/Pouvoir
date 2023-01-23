@@ -7,9 +7,12 @@ import taboolib.common.LifeCycle
 import taboolib.common.platform.Awake
 
 object PouvoirContainer {
+    @JvmStatic
     val holder by lazy {
         databaseManager.containerHolder(PouConfig.databaseConfig)
     }
+
+    @JvmStatic
     lateinit var container: UserBased
 
     @Awake(LifeCycle.ENABLE)

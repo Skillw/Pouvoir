@@ -46,7 +46,7 @@ abstract class ScriptManager : Manager, KeyMap<String, PouFileCompiledScript>() 
     abstract fun <T> invoke(
         pathWithFunction: String,
         arguments: Map<String, Any> = emptyMap(),
-        sender: ProxyCommandSender = console(),
+        sender: ProxyCommandSender? = console(),
         vararg parameters: Any?,
     ): T?
 
@@ -65,7 +65,7 @@ abstract class ScriptManager : Manager, KeyMap<String, PouFileCompiledScript>() 
         path: String,
         function: String = "main",
         arguments: Map<String, Any> = emptyMap(),
-        sender: ProxyCommandSender = console(),
+        sender: ProxyCommandSender? = console(),
         vararg parameters: Any?,
     ): T?
 
@@ -84,7 +84,7 @@ abstract class ScriptManager : Manager, KeyMap<String, PouFileCompiledScript>() 
         script: PouFileCompiledScript,
         function: String = "main",
         arguments: Map<String, Any> = emptyMap(),
-        sender: ProxyCommandSender = console(),
+        sender: ProxyCommandSender? = console(),
         vararg parameters: Any?,
     ): T?
 
@@ -100,7 +100,7 @@ abstract class ScriptManager : Manager, KeyMap<String, PouFileCompiledScript>() 
     abstract fun <T> evalJs(
         script: String,
         arguments: Map<String, Any> = emptyMap(),
-        sender: ProxyCommandSender = console(),
+        sender: ProxyCommandSender? = console(),
     ): T?
 
 
@@ -109,13 +109,11 @@ abstract class ScriptManager : Manager, KeyMap<String, PouFileCompiledScript>() 
      *
      * @param path 路径
      * @param sender 接收报错的对象
-     * @param silent 如有错是否报
      * @return 查找到的预编译脚本
      */
     abstract fun search(
         path: String,
-        sender: ProxyCommandSender = console(),
-        silent: Boolean = true,
+        sender: ProxyCommandSender? = console(),
     ): PouFileCompiledScript?
 
     /**

@@ -100,7 +100,7 @@ internal object ScriptManagerImpl : ScriptManager() {
 
     override fun <T> invoke(
         pathWithFunction: String, arguments: Map<String, Any>,
-        sender: ProxyCommandSender, vararg parameters: Any?,
+        sender: ProxyCommandSender?, vararg parameters: Any?,
     ): T? {
         val splits = pathWithFunction.split("::")
         if (splits.size < 2) {
@@ -113,7 +113,7 @@ internal object ScriptManagerImpl : ScriptManager() {
 
     override fun search(
         path: String,
-        sender: ProxyCommandSender, silent: Boolean,
+        sender: ProxyCommandSender?,
     ): PouFileCompiledScript? {
         try {
             if (containsKey(path)) return this[path]
@@ -127,8 +127,7 @@ internal object ScriptManagerImpl : ScriptManager() {
             addScript(scriptFile)
             return this[path]
         } catch (e: FileNotFoundException) {
-            if (!silent)
-                sender.sendLang("script-file-not-found", path)
+            sender?.sendLang("script-file-not-found", path)
         }
         return null
     }
@@ -137,10 +136,10 @@ internal object ScriptManagerImpl : ScriptManager() {
         path: String,
         function: String,
         arguments: Map<String, Any>,
-        sender: ProxyCommandSender,
+        sender: ProxyCommandSender?,
         vararg parameters: Any?,
     ): T? {
-        val script = search(path, sender, true) ?: return null
+        val script = search(path, sender) ?: return null
         return invoke(script, function, arguments, sender, *parameters)
     }
 
@@ -148,11 +147,11 @@ internal object ScriptManagerImpl : ScriptManager() {
     override fun <T> evalJs(
         script: String,
         arguments: Map<String, Any>,
-        sender: ProxyCommandSender,
+        sender: ProxyCommandSender?,
     ): T? {
         val hash = script.hashCode()
         debug {
-            sender.apply {
+            sender?.apply {
                 sendLang("script-invoking-info", hash, "EvalScript")
                 sendLang("script-invoking-arguments")
                 sendMessage("&3$arguments".colored())
@@ -163,7 +162,7 @@ internal object ScriptManagerImpl : ScriptManager() {
         val result = PouJavaScriptEngine.bridge.invoke(compiledScript, "main", arguments = arguments)
         val end = System.currentTimeMillis()
         debug {
-            sender.sendLang(
+            sender?.sendLang(
                 "command-script-invoke-end",
                 hash,
                 result.run { if (this is Unit) console().asLangText("kotlin-unit") else toString() },
@@ -178,11 +177,11 @@ internal object ScriptManagerImpl : ScriptManager() {
         script: PouFileCompiledScript,
         function: String,
         arguments: Map<String, Any>,
-        sender: ProxyCommandSender,
+        sender: ProxyCommandSender?,
         vararg parameters: Any?,
     ): T? {
         debug {
-            sender.apply {
+            sender?.apply {
                 sendLang("script-invoking-info", script.key, function)
                 sendLang("script-invoking-arguments")
                 sendMessage("&3$arguments".colored())
@@ -209,7 +208,7 @@ internal object ScriptManagerImpl : ScriptManager() {
             }
         val duration = mark.elapsedNow()
         debug {
-            sender.sendLang(
+            sender?.sendLang(
                 "command-script-invoke-end",
                 script.key,
                 result.run { if (this is Unit) console().asLangText("kotlin-unit") else toString() },

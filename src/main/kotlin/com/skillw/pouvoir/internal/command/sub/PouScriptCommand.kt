@@ -34,7 +34,7 @@ internal object PouScriptCommand {
                     execute<ProxyCommandSender> { sender, context, argument ->
                         submitAsync {
                             val path = context["path"]
-                            val function = context["function"]
+                            val function = context["function"].split(" ")[0]
                             val after = argument.substring(function.length)
                             val demand =
                                 AsahiDemand.of((sender.origin as? Player)?.let { after.placeholder(it) } ?: after)
@@ -47,12 +47,17 @@ internal object PouScriptCommand {
                                     arguments[tag] = true
                                 }
                             }
-                            sender.soundSuccess()
-                            sender.sendLang("command-script-invoke", path, function)
+                            val parameters = demand.args.toTypedArray()
+                            val silent = demand.tags.contains("silent")
+                            if (!silent) {
+                                sender.soundSuccess()
+                                sender.sendLang("command-script-invoke", path, function)
+                            }
                             Pouvoir.scriptManager.invoke<Any?>(
                                 path, function,
                                 arguments = arguments,
-                                sender = sender
+                                sender = if (!silent) sender else null,
+                                parameters = parameters
                             )
                         }
                     }

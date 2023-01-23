@@ -4,9 +4,11 @@ import com.skillw.asahi.api.annotation.AsahiPrefix
 import com.skillw.asahi.api.prefixParser
 import com.skillw.asahi.api.quest
 import com.skillw.asahi.api.quester
+import com.skillw.pouvoir.api.PouvoirAPI.placeholder
 import com.skillw.pouvoir.internal.core.asahi.util.PlayerAsOp
 import com.skillw.pouvoir.util.script.ColorUtil.decolored
 import org.bukkit.command.CommandSender
+import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.function.adaptCommandSender
@@ -69,5 +71,14 @@ private fun uncolor() = prefixParser {
     val message = quest<String>()
     result {
         message.get().uncolored()
+    }
+}
+
+@AsahiPrefix(["papi", "placeholder"])
+private fun papi() = prefixParser {
+    val entity = if (expect("of")) quest<LivingEntity>() else quester { selector() }
+    val str = quest<String>()
+    result {
+        str.get().placeholder(entity.get())
     }
 }
