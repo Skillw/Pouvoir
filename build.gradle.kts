@@ -16,12 +16,6 @@ tasks.dokkaJavadoc.configure {
     suppressInheritedMembers.set(true)
 }
 
-tasks.javadoc {
-    this.options {
-        encoding = "UTF-8"
-    }
-}
-
 val api: String? by project
 val order: String? by project
 
@@ -121,6 +115,12 @@ tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
 
+
+tasks.javadoc {
+    this.options {
+        encoding = "UTF-8"
+    }
+}
 
 java {
     withJavadocJar()
