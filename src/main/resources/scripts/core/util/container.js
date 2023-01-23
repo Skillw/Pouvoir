@@ -1,4 +1,7 @@
 load("plugins/Pouvoir/scripts/core/basic.js");
+
+PouvoirContainer = static("PouvoirContainer");
+
 /** @type {Container} 持久化容器 */
 const container = PouvoirContainer.container;
 
