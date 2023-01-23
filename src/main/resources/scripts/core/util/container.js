@@ -3,7 +3,9 @@ load("plugins/Pouvoir/scripts/core/basic.js");
 PouvoirContainer = static("PouvoirContainer");
 
 /** @type {Container} 持久化容器 */
-const container = PouvoirContainer.container;
+function container() {
+    return PouvoirContainer.container
+}
 
 /**
  * 用法:
@@ -12,10 +14,10 @@ const container = PouvoirContainer.container;
  * (用户名建议为uuid或玩家名)
  *
  *               用户名 键
- *  database.get(user,key)  - 从容器中获取值
+ *  container().get(user,key)  - 从容器中获取值
  *                   用户名 键
- *  database.delete(user,key) - 删除容器中的值
+ *  container().delete(user,key) - 删除容器中的值
  *               用户名 键 值
- *  database.set(user,key,value) - 设置容器中的值
+ *  container().set(user,key,value) - 设置容器中的值
  *
  */
