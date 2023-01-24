@@ -3,6 +3,7 @@ package com.skillw.pouvoir.internal.core.asahi.prefix.bukkit
 import com.skillw.asahi.api.annotation.AsahiPrefix
 import com.skillw.asahi.api.prefixParser
 import com.skillw.asahi.api.quest
+import com.skillw.asahi.api.questType
 import com.skillw.asahi.api.quester
 import com.skillw.pouvoir.internal.core.asahi.util.delay
 import org.bukkit.Bukkit
@@ -11,12 +12,14 @@ import org.bukkit.boss.BarColor
 import org.bukkit.boss.BarStyle
 import org.bukkit.boss.BossBar
 import org.bukkit.command.CommandSender
+import org.bukkit.entity.Player
 import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.ProxyPlayer
 import taboolib.common.platform.function.adaptCommandSender
 import taboolib.common5.Coerce
 import taboolib.library.xseries.XSound
 import taboolib.module.chat.colored
+import taboolib.platform.compat.VaultService
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
@@ -151,5 +154,116 @@ private fun bossbar() = prefixParser {
     }
     result {
         bar.get()
+    }
+}
+
+
+@AsahiPrefix(["permission", "perm"])
+private fun permission() = prefixParser {
+    val playerGetter = if (expect("of")) quest<Player>() else quester { selector() }
+    when (next()) {
+        "add" -> {
+            val permissions =
+                if (peek() == "[")
+                    questType<List<Any>>().quester { it.map { each -> each.toString() } }
+                else questString().quester { listOf(it) }
+            result {
+                permissions.get().forEach {
+                    VaultService.permission?.playerAdd(playerGetter.get(), it)
+                }
+            }
+        }
+
+        "remove" -> {
+            val permissions =
+                if (peek() == "[")
+                    questType<List<Any>>().quester { it.map { each -> each.toString() } }
+                else questString().quester { listOf(it) }
+            result {
+                permissions.get().forEach {
+                    VaultService.permission?.playerRemove(playerGetter.get(), it)
+                }
+            }
+        }
+
+        "addGroup" -> {
+            val groups =
+                if (peek() == "[")
+                    questType<List<Any>>().quester { it.map { each -> each.toString() } }
+                else questString().quester { listOf(it) }
+            result {
+                groups.get().forEach {
+                    VaultService.permission?.playerAddGroup(playerGetter.get(), it)
+                }
+            }
+        }
+
+        "removeGroup" -> {
+            val groups =
+                if (peek() == "[")
+                    questType<List<Any>>().quester { it.map { each -> each.toString() } }
+                else questString().quester { listOf(it) }
+            result {
+                groups.get().forEach {
+                    VaultService.permission?.playerRemoveGroup(playerGetter.get(), it)
+                }
+            }
+        }
+
+        "inGroup" -> {
+            val group = questString()
+            result {
+                VaultService.permission?.playerInGroup(playerGetter.get(), group.get())
+            }
+        }
+
+        else -> {
+            val permissions =
+                if (peek() == "[")
+                    questType<List<Any>>().quester { it.map { each -> each.toString() } }
+                else questString().quester { listOf(it) }
+            result {
+                permissions.get().all {
+                    VaultService.permission?.playerHas(playerGetter.get(), it) == true
+                }
+            }
+        }
+    }
+}
+
+
+@AsahiPrefix(["money", "economy", "eco"])
+private fun money() = prefixParser {
+    val playerGetter = if (expect("of")) quest<Player>() else quester { selector() }
+    when (val type = next()) {
+        "add" -> {
+            val value = questDouble()
+            result {
+                VaultService.economy?.depositPlayer(playerGetter.get(), value.get())
+            }
+        }
+
+        "take" -> {
+            val value = questDouble()
+            result {
+                VaultService.economy?.withdrawPlayer(playerGetter.get(), value.get())
+            }
+        }
+
+        "set" -> {
+            val value = questDouble()
+            result {
+                playerGetter.get().let {
+                    VaultService.economy?.let { eco ->
+                        eco.withdrawPlayer(it, eco.getBalance(it))
+                        eco.depositPlayer(it, value.get())
+                    }
+                }
+            }
+        }
+
+        else -> {
+            error("Unknown Economy Operation $type")
+        }
     }
 }

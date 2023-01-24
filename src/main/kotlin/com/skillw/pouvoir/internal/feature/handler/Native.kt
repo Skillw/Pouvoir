@@ -10,8 +10,7 @@ import com.skillw.pouvoir.internal.core.asahi.linking.js.NativeJSFunction
  * @author Glom
  * @date 2023/1/22 22:00 Copyright 2023 user. All rights reserved.
  */
-
-internal fun Any.toInvoker(key: String, namespaces: Collection<String>): Invoker? {
+fun Any.toInvoker(key: String, namespaces: Collection<String>): Invoker? {
     return when (this) {
         is Map<*, *> -> {
             val func = this as Map<String, Any>

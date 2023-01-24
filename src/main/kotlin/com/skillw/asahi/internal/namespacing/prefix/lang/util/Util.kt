@@ -4,6 +4,7 @@ import com.skillw.asahi.api.annotation.AsahiPrefix
 import com.skillw.asahi.api.prefixParser
 import com.skillw.asahi.api.quest
 import com.skillw.asahi.api.quester
+import com.skillw.asahi.internal.util.Clock
 import com.skillw.asahi.internal.util.MapTemplate
 import taboolib.common5.Coerce
 import java.awt.Color
@@ -179,4 +180,12 @@ private fun color() = prefixParser {
     val b = quest<Int>()
     expect("]")
     result { Color(r.get(), g.get(), b.get()) }
+}
+
+
+@AsahiPrefix(["currentTick"], "lang")
+private fun currentTick() = prefixParser {
+    result {
+        Clock.currentTick
+    }
 }
