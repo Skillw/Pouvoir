@@ -4,6 +4,7 @@ import com.skillw.asahi.api.annotation.AsahiPrefix
 import com.skillw.asahi.api.prefixParser
 import com.skillw.asahi.api.quest
 import com.skillw.asahi.api.quester
+import com.skillw.asahi.internal.util.Time
 import org.bukkit.entity.LivingEntity
 import org.bukkit.potion.PotionEffect
 import taboolib.common.platform.function.console
@@ -35,29 +36,88 @@ private fun damage() = prefixParser {
 
 @AsahiPrefix(["potion"])
 private fun potion() = prefixParser {
-    //药水类型
-    val typeGetter = quest<XPotion>()
-    expect("in")
-    //持续时间
-    val duration = questTick().quester { it.toInt() }
-    val map = if (peek() == "[" || peek() == "{") questTypeMap() else quester { emptyMap<String, Any>() }
-    //等级
-    val amplifier = map.quester { it.getOrDefault("level", 1).cint }
-    //粒子可见性
-    val ambient = map.quester { it.getOrDefault("effect", true).cbool }
-    //图标
-    val icon = map.quester { it.getOrDefault("icon", true).cbool }
-    val entityGetter = if (expect("to")) quest<LivingEntity>() else quester { selector() }
-    result {
-        val xPotion = typeGetter.get()
-        val type = xPotion.potionEffectType
-        if (!xPotion.isSupported || type == null) {
-            error(console().asLangText("asahi-potion-unsupportable", xPotion.name))
+    when (val operType = next()) {
+        "add" -> {
+            //药水类型
+            val typeGetter = quest<XPotion>()
+            val map = if (peek() == "[" || peek() == "{") questTypeMap() else quester { emptyMap<String, Any>() }
+            //持续时间
+            val duration = map.quester {
+                it.getOrDefault("duration", 1).toString()
+                    .run { toLongOrNull()?.let { tick -> Time.tick(tick) } ?: Time(this) }.toTick().toInt()
+            }
+            //等级
+            val amplifier = map.quester { it.getOrDefault("level", 1).cint }
+            //粒子可见性
+            val ambient = map.quester { it.getOrDefault("effect", true).cbool }
+            //图标
+            val icon = map.quester { it.getOrDefault("icon", true).cbool }
+            val entityGetter = if (expect("to")) quest<LivingEntity>() else quester { selector() }
+            result {
+                val xPotion = typeGetter.get()
+                val type = xPotion.potionEffectType
+                if (!xPotion.isSupported || type == null) {
+                    error(console().asLangText("asahi-potion-unsupportable", xPotion.name))
+                }
+                if (MinecraftVersion.majorLegacy >= 11300) {
+                    PotionEffect(type, duration.get(), amplifier.get(), ambient.get(), icon.get())
+                } else {
+                    PotionEffect(type, duration.get(), amplifier.get(), ambient.get())
+                }.apply(entityGetter.get())
+            }
         }
-        if (MinecraftVersion.majorLegacy >= 11300) {
-            PotionEffect(type, duration.get(), amplifier.get(), ambient.get(), icon.get())
-        } else {
-            PotionEffect(type, duration.get(), amplifier.get(), ambient.get())
-        }.apply(entityGetter.get())
+
+        "has" -> {
+            //药水类型
+            val typeGetter = quest<XPotion>()
+            //等级
+            val amplifier = if (expect("level", "lv")) questInt() else quester { null }
+            val entityGetter = if (expect("to")) quest<LivingEntity>() else quester { selector() }
+            result {
+                val xPotion = typeGetter.get()
+                val type = xPotion.potionEffectType
+                if (!xPotion.isSupported || type == null) {
+                    error(console().asLangText("asahi-potion-unsupportable", xPotion.name))
+                }
+                val entity = entityGetter.get()
+                val level = amplifier.get()
+                level?.let {
+                    entity.activePotionEffects.any {
+                        (it.type == type) && (it.amplifier == level)
+                    }
+                } ?: entity.hasPotionEffect(type)
+            }
+        }
+
+        "take" -> {
+            //药水类型
+            val typeGetter = quest<XPotion>()
+            val map = if (peek() == "[" || peek() == "{") questTypeMap() else quester { emptyMap<String, Any>() }
+            //持续时间
+            val durationGetter = map.quester {
+                it.getOrDefault("duration", 1).toString()
+                    .run { toLongOrNull()?.let { tick -> Time.tick(tick) } ?: Time(this) }.toTick()
+            }
+            //等级
+            val amplifier = map.quester { it.getOrDefault("level", 0).cint }
+            val entityGetter = if (expect("to")) quest<LivingEntity>() else quester { selector() }
+            result {
+                val xPotion = typeGetter.get()
+                val type = xPotion.potionEffectType
+                if (!xPotion.isSupported || type == null) {
+                    error(console().asLangText("asahi-potion-unsupportable", xPotion.name))
+                }
+                val entity = entityGetter.get()
+                val effect = entity.getPotionEffect(type)
+                entity.removePotionEffect(type)
+                val duration = (effect?.duration ?: 0) - durationGetter.get()
+                val level = (effect?.amplifier ?: 0) - amplifier.get()
+                val ambient = effect?.isAmbient ?: true
+                if (level <= 0 || duration <= 0) return@result
+                PotionEffect(type, duration.toInt(), level, ambient).apply(entityGetter.get())
+            }
+        }
+
+        else -> error("Unknown potion operation type $operType")
     }
 }

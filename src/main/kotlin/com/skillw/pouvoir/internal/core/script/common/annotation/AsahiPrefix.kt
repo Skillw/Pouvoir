@@ -33,15 +33,15 @@ internal object AsahiPrefix : ScriptAnnotation("AsahiPrefix") {
         val namespace = demand.get("namespace", "common")
 
         com.skillw.asahi.api.prefixParser {
+            val result = Function<Function<AsahiContext, Any?>, Quester<Any?>> {
+                result { it.apply(this) }
+            }
             Pouvoir.scriptManager.invoke<Quester<Any?>>(
                 script,
                 function,
-                parameters = arrayOf(this),
-                arguments = mapOf("result" to Function<AsahiContext.() -> Any?, Quester<Any?>> {
-                    result { it() }
-                })
+                parameters = arrayOf(this, result)
             ) ?: Quester { null }
-        }.register(names.first(), *names, namespace)
+        }.register(names.first(), *names, namespace = namespace)
 
         PouConfig.debug { console().sendLang("annotation-asahi-prefix-register", key) }
         script.onDeleted("Asahi-Prefix-$key") {

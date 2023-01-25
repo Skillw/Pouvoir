@@ -40,6 +40,7 @@ internal object PouScriptCommand {
                                 AsahiDemand.of((sender.origin as? Player)?.let { after.placeholder(it) } ?: after)
                             val arguments = HashMap<String, Any>()
                             arguments["sender"] = sender.origin
+                            arguments["@selector"] = sender.origin
                             demand.run {
                                 arguments["args"] = args
                                 arguments.putAll(demand)
@@ -79,6 +80,7 @@ internal object PouScriptCommand {
                     val script = argument.substring(engine.length)
                     val arguments = SimpleBindings()
                     arguments["sender"] = sender.origin
+                    arguments["@selector"] = sender.origin
                     sender.soundSuccess()
                     val count = count.getAndIncrement()
                     sender.sendLang("command-script-eval", count)

@@ -61,3 +61,11 @@ function evalAsahi(str, namespacesJs, json) {
 function asahi(str) {
     return evalAsahi(str, ["lang", "common", "bukkit"], null);
 }
+
+AsahiManager = static("AsahiManager").INSTANCE
+
+function result(func) {
+    return AsahiManager.result(function (context) {
+        return func(context)
+    })
+}

@@ -17,6 +17,7 @@ import taboolib.common.LifeCycle
 import taboolib.common.platform.Awake
 import taboolib.library.reflex.ClassStructure
 import taboolib.library.reflex.ReflexClass
+import taboolib.platform.util.bukkitPlugin
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
@@ -28,7 +29,10 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
     @Awake(LifeCycle.LOAD)
     fun load() {
         Bukkit.getPluginManager().plugins
-            .filter { dependPouvoir(it) }
+            .filter { isDependPouvoir(it) }
+            .sortedWith { p1, p2 ->
+                if (p1.isDepend(p2)) 1 else -1
+            }
             .forEach {
                 safe { loadSubPou(it) }
             }
@@ -42,7 +46,7 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
     private val handlers = LinkedList<ClassHandler>()
 
     private fun loadSubPou(plugin: Plugin) {
-        if (!dependPouvoir(plugin)) return
+        if (!isDependPouvoir(plugin)) return
 
         val classes = PluginUtils.getClasses(plugin::class.java).map { ReflexClass.of(it).structure }
 
@@ -91,10 +95,10 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
             }
     }
 
-    private fun isDepend(plugin: Plugin) =
-        plugin.description.depend.contains("Pouvoir") || plugin.description.softDepend.contains("Pouvoir")
+    private fun Plugin.isDepend(other: Plugin) =
+        description.depend.contains(other.name) || description.softDepend.contains(other.name)
 
-    private fun dependPouvoir(plugin: Plugin): Boolean {
-        return isDepend(plugin) || plugin.name == "Pouvoir"
+    private fun isDependPouvoir(plugin: Plugin): Boolean {
+        return plugin.isDepend(bukkitPlugin) || plugin.name == "Pouvoir"
     }
 }

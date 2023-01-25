@@ -22,8 +22,8 @@ internal object TriggerHandlerManagerImpl : TriggerHandlerManager() {
     override val key = "TriggerHandlerManager"
     override val priority = 6
     override val subPouvoir = Pouvoir
-    private val dataFolders = HashSet<File>()
     private val fileWatcher = FileWatcher()
+    private val dataFolders = HashSet<File>()
     private val fileToKeys = BaseMap<File, HashSet<String>>()
     private val folderToKeys = BaseMap<File, HashSet<String>>()
     override fun unregister(key: String) {

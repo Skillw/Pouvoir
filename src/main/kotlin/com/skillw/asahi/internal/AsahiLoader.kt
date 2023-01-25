@@ -40,7 +40,7 @@ object AsahiLoader {
         val names = asahi.property<Array<String>>("names")!!
         val namespace = asahi.property<String>("namespace")!!
         val key = names.firstOrNull() ?: defaultName
-        register(key, *names, namespace)
+        register(key, *names, namespace = namespace)
     }
 
     private fun ClassStructure.registerFunctions() {
