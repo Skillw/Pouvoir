@@ -1,5 +1,6 @@
 package com.skillw.pouvoir.internal.feature.dispatcher
 
+import com.skillw.asahi.api.AsahiAPI.compile
 import com.skillw.asahi.api.member.context.AsahiContext
 import com.skillw.asahi.internal.util.Time
 import com.skillw.asahi.util.castSafely
@@ -13,6 +14,7 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable
 import org.bukkit.entity.Player
 import taboolib.common.platform.event.EventPriority
 import taboolib.common5.Baffle
+import taboolib.common5.cbool
 import taboolib.common5.cint
 import java.util.concurrent.TimeUnit
 
@@ -34,6 +36,8 @@ class SimpleDispatcherBuilder(
     val namespaces = HashSet<String>()
     var baffle: Baffle? = null
     var baffleBaseOnPlayer = false
+    private var condition: AsahiContext.() -> Boolean = { true }
+    private var deny: AsahiContext.() -> Unit = { }
     private var pre: ((BaseTrigger, AsahiContext) -> Unit)? = null
     private var post: ((BaseTrigger, AsahiContext) -> Unit)? = null
     private var exception: ((BaseTrigger, AsahiContext) -> Unit)? = null
@@ -50,7 +54,12 @@ class SimpleDispatcherBuilder(
         triggers.addAll(data.get("triggers", emptyList()))
         namespaces.addAll(data.get("namespaces", listOf("common", "lang")))
         import.addAll(data.get("import", emptyList()))
-        context().putAll(data.get("context", emptyMap<String, Any>()).toLazyMap())
+        context().putAll(data.get("context", emptyMap<String, Any>()).toLazyMap(*namespaces.toTypedArray()))
+
+        val conditionScript = data.get("condition", "true").compile(*namespaces.toTypedArray())
+        condition = { conditionScript.get().cbool }
+        val denyScript = data.get("deny")?.toString()?.compile(*namespaces.toTypedArray())
+        deny = { denyScript?.get() }
 
         if (data.containsKey("pre-handle")) {
             kotlin.run {
@@ -145,7 +154,10 @@ class SimpleDispatcherBuilder(
                         return@preHandle
                     }
                 }
-                builder.pre?.let { it(trigger, context) }
+                if (builder.condition.invoke(context))
+                    builder.pre?.let { it(trigger, context) }
+                else
+                    builder.deny.invoke(context)
             }
             postHandle(builder.post)
             exception(builder.exception)

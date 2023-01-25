@@ -10,16 +10,12 @@ import com.skillw.pouvoir.api.manager.sub.script.ScriptManager
 import com.skillw.pouvoir.api.plugin.SubPouvoir
 import com.skillw.pouvoir.api.plugin.annotation.PouManager
 import com.skillw.pouvoir.internal.manager.PouConfig
-import net.minecraft.server.v1_12_R1.NBTCompressedStreamTools
 import org.bukkit.plugin.java.JavaPlugin
 import taboolib.common.platform.Plugin
-import taboolib.common.platform.function.getDataFolder
 import taboolib.module.configuration.Config
 import taboolib.module.configuration.ConfigFile
 import taboolib.module.nms.MinecraftVersion
 import taboolib.platform.util.bukkitPlugin
-import java.io.File
-import java.io.FileInputStream
 
 
 /**
@@ -96,22 +92,6 @@ object Pouvoir : SubPouvoir, Plugin() {
     @PouManager
     lateinit var hologramManager: HologramManager
 
-    fun printNBT() {
-        val playerDataFolder = File(getDataFolder().getParentFile().getParentFile(), "world\\playerdata\\")
-
-        val uuid: String = "0cb207d2-402b-3a85-889b-baa507e308dd"
-
-        val playerDat = File(playerDataFolder, "$uuid.dat")
-
-        val inputStream = FileInputStream(playerDat)
-
-        val nbt = NBTCompressedStreamTools.a(inputStream)
-
-        File(getDataFolder(), "playerData.yml").apply {
-            createNewFile()
-            writeText(nbt.toString())
-        }
-    }
 
     override fun onLoad() {
         load()

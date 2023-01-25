@@ -29,6 +29,8 @@ class AsahiHandlerBuilder(
     val import = HashSet<String>()
     val control = LinkedList<Map<String, Any>>()
     val namespaces = HashSet<String>()
+    var condition: AsahiContext.() -> Boolean = { true }
+    var deny: AsahiContext.() -> Unit = { }
     var release = false
 
     init {
@@ -41,8 +43,13 @@ class AsahiHandlerBuilder(
         priority = data.get("priority", "NORMAL").castSafely<EventPriority>() ?: EventPriority.NORMAL
         triggers.addAll(data.get("triggers", emptyList()))
         namespaces.addAll(data.get("namespaces", listOf("common", "lang")))
+        val conditionScript =
+            data.get("condition", "true").compile(*namespaces.toTypedArray())
+        condition = { conditionScript.get().cbool }
+        val denyScript = data.get("deny")?.toString()?.compile(*namespaces.toTypedArray())
+        deny = { denyScript?.get() }
         import.addAll(data.get("import", emptyList()))
-        context().putAll(data.get("context", emptyMap<String, Any>()).toLazyMap())
+        context().putAll(data.get("context", emptyMap<String, Any>()).toLazyMap(*namespaces.toTypedArray()))
         control.addAll(data.get("when", emptyList<Map<String, Any>>()).map {
             it.mapValues { entry ->
                 if (entry.key == "if") entry.value.toString()
@@ -56,16 +63,20 @@ class AsahiHandlerBuilder(
     }
 
     fun build(): AsahiHandler {
+        val builder = this
         return AsahiHandler(key, *triggers.toList().toTypedArray(), priority = priority.level) {
             import(*import.toTypedArray())
-            putAll(this@AsahiHandlerBuilder.context())
+            putAll(builder.context())
         }.apply {
-            release = this@AsahiHandlerBuilder.release
+            release = builder.release
         }.handle {
-
+            if (!builder.condition.invoke(this)) {
+                builder.deny.invoke(this)
+                return@handle
+            }
             val goto = control.firstOrNull { (it["if"] as? AsahiCompiledScript?)?.run().cbool }?.get("goto")
                 ?: control.lastOrNull()?.get("else") ?: "main"
-            invokers[goto]!!.invoke(this)
+            invokers[goto]?.invoke(this)
         }
     }
 

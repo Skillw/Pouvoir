@@ -13,12 +13,12 @@ import java.math.BigDecimal
  */
 
 
-fun String.calculate(entity: LivingEntity? = null, replacements: Map<String, String>? = null): BigDecimal {
-    return calculate(Pouvoir.placeholderManager.replace(entity, replacement(replacements ?: HashMap())))
+fun String.calculate(entity: LivingEntity? = null): BigDecimal {
+    return calculate(Pouvoir.placeholderManager.replace(entity, this))
 }
 
-fun String.calculateDouble(entity: LivingEntity? = null, replacements: Map<String, String>? = null): Double {
-    return calculate(entity, replacements).setScale(PouConfig.scale, BigDecimal.ROUND_HALF_UP).toDouble()
+fun String.calculateDouble(entity: LivingEntity? = null): Double {
+    return calculate(entity).setScale(PouConfig.scale, BigDecimal.ROUND_HALF_UP).toDouble()
 }
 
 

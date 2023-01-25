@@ -89,7 +89,11 @@ private fun Queue<Any>.calc(): Double {
 
 internal fun String.calculate(): BigDecimal {
     return runCatching {
-        BigDecimal.valueOf(toCalcInfix().toCalcSuffix().calc())
+        var formula = this.filter { it != ' ' }
+        if (formula.startsWith("+") || formula.startsWith("-")) {
+            formula = "0" + formula
+        }
+        BigDecimal.valueOf(formula.toCalcInfix().toCalcSuffix().calc())
     }.getOrElse {
         warning("Wrong calculation formula! $this");
         BigDecimal(0)
