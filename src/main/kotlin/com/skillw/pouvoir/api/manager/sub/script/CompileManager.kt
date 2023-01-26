@@ -35,7 +35,7 @@ abstract class CompileManager : Manager, KeyMap<String, PouCompiler>() {
      * @param script 脚本字符串
      * @return 预编译脚本
      */
-    abstract fun compile(script: String): CompiledScript
+    abstract fun compile(script: String, vararg params: String): CompiledScript
 
     /**
      * 编译脚本字符串
@@ -44,7 +44,11 @@ abstract class CompileManager : Manager, KeyMap<String, PouCompiler>() {
      * @param engine 指定脚本引擎
      * @return 预编译脚本
      */
-    abstract fun compile(script: String, engine: PouCompiler = PouJavaScriptEngine): CompiledScript
+    abstract fun compile(
+        script: String,
+        vararg params: String,
+        engine: PouCompiler = PouJavaScriptEngine,
+    ): CompiledScript
 
     companion object {
         /**

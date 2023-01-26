@@ -76,7 +76,7 @@ abstract class PouScriptEngine : Registrable<String>, PouCompiler {
     }
 
     protected val evalCache = BaseMap<String, CompiledScript>()
-    override fun compile(script: String): CompiledScript {
+    override fun compile(script: String, vararg params: String): CompiledScript {
         val new = if (script.startsWith(prefix)) script.substring(prefix.length) else script
         return evalCache.map.computeIfAbsent(new) {
             (engine as Compilable).compile(new.trimIndent())

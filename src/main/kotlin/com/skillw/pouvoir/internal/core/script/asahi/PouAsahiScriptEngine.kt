@@ -11,6 +11,7 @@ import com.skillw.pouvoir.util.toStringWithNext
 import java.io.File
 import java.util.regex.Pattern
 import javax.script.Compilable
+import javax.script.CompiledScript
 import javax.script.ScriptEngine
 import javax.script.ScriptEngineFactory
 
@@ -25,6 +26,13 @@ object PouAsahiScriptEngine : PouScriptEngine() {
 
     override fun getAnnotationPattern(): Pattern {
         return Pattern.compile("#@(?<key>.*)\\((?<args>.*)\\)", 2)
+    }
+
+    override fun compile(script: String, vararg params: String): CompiledScript {
+        val new = if (script.startsWith(prefix)) script.substring(prefix.length) else script
+        return evalCache.map.computeIfAbsent(new) {
+            (engine as Compilable).compile("def main(${params.joinToString(",")}) { $new }")
+        }
     }
 
     private val factory: ScriptEngineFactory by lazy(LazyThreadSafetyMode.NONE) { AsahiEngineFactory() }

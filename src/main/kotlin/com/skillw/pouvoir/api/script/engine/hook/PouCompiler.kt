@@ -13,6 +13,6 @@ import javax.script.CompiledScript
  */
 interface PouCompiler : Registrable<String> {
     fun compile(file: File): PouFileCompiledScript?
-    fun compile(script: String): CompiledScript
+    fun compile(script: String, vararg params: String): CompiledScript
     fun canCompile(script: String): Boolean
 }

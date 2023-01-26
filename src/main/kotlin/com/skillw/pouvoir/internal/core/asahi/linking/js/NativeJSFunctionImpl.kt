@@ -64,7 +64,7 @@ class NativeJSFunctionImpl constructor(
 
         @JvmStatic
         fun deserialize(key: String, content: String): NativeJSFunction {
-            val script = compileManager.compile(content, PouJavaScriptEngine)
+            val script = compileManager.compile(content, engine = PouJavaScriptEngine)
             return NativeJSFunctionImpl(key, emptyArray(), script)
         }
 
@@ -74,7 +74,11 @@ class NativeJSFunctionImpl constructor(
             val params = data.get("params", emptyList<String>()).toTypedArray()
             val context = data.get("context", emptyMap<String, Any>()).toLazyMap()
             val script =
-                compileManager.compile(data.get("content", "print('Not yet implemented')"), PouJavaScriptEngine)
+                compileManager.compile(
+                    data.get("content", "print('Not yet implemented')"),
+                    *params,
+                    engine = PouJavaScriptEngine
+                )
             return NativeJSFunctionImpl(key, params, script) {
                 putAll(context)
             }

@@ -48,13 +48,13 @@ internal object CompileManagerImpl : CompileManager() {
         return script
     }
 
-    override fun compile(script: String): CompiledScript {
+    override fun compile(script: String, vararg params: String): CompiledScript {
         val compiler = values.firstOrNull { it.canCompile(script) } ?: PouJavaScriptEngine
-        return compile(script, compiler)
+        return compile(script, *params, engine = compiler)
     }
 
-    override fun compile(script: String, engine: PouCompiler): CompiledScript {
-        return engine.compile(script)
+    override fun compile(script: String, vararg params: String, engine: PouCompiler): CompiledScript {
+        return engine.compile(script, *params)
     }
 
 }
