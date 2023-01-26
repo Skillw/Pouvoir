@@ -3,8 +3,8 @@ package com.skillw.pouvoir.internal.feature.selector
 import com.skillw.asahi.util.castSafely
 import com.skillw.pouvoir.api.feature.selector.SimpleSelector
 import com.skillw.pouvoir.api.feature.selector.Target
-import com.skillw.pouvoir.api.feature.selector.toTarget
 import com.skillw.pouvoir.api.feature.selector.target.EntityTarget
+import com.skillw.pouvoir.api.feature.selector.toTarget
 import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
 import com.skillw.pouvoir.api.plugin.map.DataMap
 import com.skillw.pouvoir.util.getRayHits

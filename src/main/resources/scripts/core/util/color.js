@@ -1,4 +1,5 @@
 load("plugins/Pouvoir/scripts/core/basic.js");
+
 /**
  * @description 给文本上色 "&6test" -> "§6test"
  * @author Glom
@@ -7,7 +8,7 @@ load("plugins/Pouvoir/scripts/core/basic.js");
  * @returns {*} 上色后的文本
  */
 function color(str) {
-  return ColorUtils.color(str);
+    return ColorUtils.colored(str);
 }
 
 /**
@@ -18,7 +19,7 @@ function color(str) {
  * @returns {*} 去色后的文本
  */
 function uncolor(str) {
-  return ColorUtils.unColor(str);
+    return ColorUtils.uncolored(str);
 }
 
 /**
@@ -29,5 +30,5 @@ function uncolor(str) {
  * @returns {*} 未上色的文本
  */
 function decolor(str) {
-  return ColorUtils.decolored(str);
+    return ColorUtils.decolored(str);
 }

@@ -52,6 +52,10 @@ internal class AsahiContextImpl private constructor(
         return (setters.firstOrNull { it.filterKey(this, key) } ?: return setOrigin(key, value)).set(this, key, value)
     }
 
+    override fun remove(key: String): Any? {
+        return (setters.firstOrNull { it.filterKey(this, key) } ?: return remove(key)).set(this, key, null)
+    }
+
     override fun getOrigin(key: String): Any? {
         return (if (key.contains(".")) getDeep(key) else data[key]).run {
             if (this is LazyQuester<*>) get() else this

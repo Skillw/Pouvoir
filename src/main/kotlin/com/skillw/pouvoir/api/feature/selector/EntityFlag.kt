@@ -15,7 +15,7 @@ import taboolib.platform.util.setMeta
  */
 object EntityFlag {
     private val keyToEntity = BaseMap<String, LinkedHashSet<Entity>>()
-    
+
     fun addFlag(entity: Entity, key: String, durationTick: Long = -1) {
         entity.setMeta(key, "POU_FLAG")
         keyToEntity.map.computeIfAbsent(key) { LinkedHashSet() }.add(entity)

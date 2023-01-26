@@ -67,7 +67,7 @@ internal object PrefixDebug {
                     else -> error("Unknown parser type $parserType")
                 }
 
-            "functions" ->
+            "prefix" ->
                 when (peek()) {
                     "native" -> result {
                         debug("Asahi Native Functions: ")
@@ -75,7 +75,7 @@ internal object PrefixDebug {
                     }
 
                     else -> result {
-                        debug("Asahi Functions: ")
+                        debug("Asahi Prefixes: ")
                         AsahiManager.namespaces.values.forEach {
                             debug("Namespace ${it.key}")
                             it.prefixMap.values.debug()
@@ -101,9 +101,9 @@ internal object PrefixDebug {
                 }
             }
 
-            "actions" ->
+            "infix" ->
                 result {
-                    debug("Asahi Actions: ")
+                    debug("Asahi Infix: ")
                     AsahiManager.namespaces.values.forEach {
                         debug("Namespace ${it.key}")
                         it.infixMap.values.debug()

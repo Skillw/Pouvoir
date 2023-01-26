@@ -86,16 +86,22 @@ internal class InlineAnalysisImpl private constructor(val text: String) :
                 char == '}' -> {
                     finish(index)
                     inlineVar = false
+                    return
                 }
 
                 !charRegex.containsMatchIn(char.toString()) -> {
                     finish(index - 1)
                     inlineVar = false
+                    return
                 }
 
                 else -> {
                     push(char)
                 }
+            }
+            if (index == text.lastIndex) {
+                finish(index - 1)
+                inlineVar = false
             }
         }
 

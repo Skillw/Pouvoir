@@ -39,13 +39,13 @@ interface AsahiContext : MutableMap<String, Any>, Bindings, InvokerHolder {
 
     abstract class Setter(override val key: String, val priority: Int) : AsahiRegistrable<String>, Comparable<Setter> {
         protected abstract fun AsahiContext.filter(key: String): Boolean
-        protected abstract fun AsahiContext.setValue(key: String, value: Any): Any?
+        protected abstract fun AsahiContext.setValue(key: String, value: Any?): Any?
 
         fun filterKey(context: AsahiContext, key: String): Boolean {
             return context.filter(key)
         }
 
-        fun set(context: AsahiContext, key: String, value: Any): Any? {
+        fun set(context: AsahiContext, key: String, value: Any?): Any? {
             return context.setValue(key, value)
         }
 

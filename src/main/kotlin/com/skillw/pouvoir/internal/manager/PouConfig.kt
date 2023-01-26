@@ -69,6 +69,19 @@ object PouConfig : ConfigManager(Pouvoir) {
             "core/util/placeholder.js",
             "core/util/player.js"
         )
+        create(
+            "scripts",
+            "core/asahi.js",
+            "core/basic.js",
+            "core/util/ray_trace.js",
+            "core/util/color.js",
+            "core/util/container.js",
+            "core/util/menu.js",
+            "core/util/message.js",
+            "core/util/number.js",
+            "core/util/placeholder.js",
+            "core/util/player.js"
+        )
     }
 
     override fun onEnable() {

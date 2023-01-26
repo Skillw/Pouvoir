@@ -77,6 +77,22 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
         subReload()
     }
 
+
+    /**
+     * Create if not exists
+     *
+     * @param name
+     * @param fileNames
+     */
+    fun create(name: String, vararg fileNames: String) {
+        val path = subPouvoir.plugin.dataFolder.path
+        val dir = File("$path/$name")
+        dir.mkdir()
+        for (fileName in fileNames) {
+            safe { subPouvoir.plugin.saveResource("$name/$fileName", true) }
+        }
+    }
+
     /**
      * Create if not exists
      *

@@ -17,7 +17,14 @@ private fun set() = prefixParser {
     val key = next()
     when {
         expect("ifndef") -> {
-            result { if (containsKey(key)) return@result context()[key] else null }
+            expect("to", "=")
+            val value = quest<Any?>()
+            result {
+                if (get(key) != null) return@result get(key)
+                value.get()?.let {
+                    context()[key] = it;
+                } ?: context().remove(key)
+            }
         }
 
         expect("by") && expect("lazy") -> {
@@ -46,7 +53,7 @@ private fun set() = prefixParser {
 @AsahiPrefix(["has"], "lang")
 private fun has() = prefixParser {
     val key = quest<String>()
-    result { containsKey(key.get()) }
+    result { get(key.get()) == null }
 }
 
 @AsahiPrefix(["get"], "lang")

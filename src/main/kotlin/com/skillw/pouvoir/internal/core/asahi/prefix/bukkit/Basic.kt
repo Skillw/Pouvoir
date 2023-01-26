@@ -67,7 +67,7 @@ private fun decolored() = prefixParser {
 }
 
 @AsahiPrefix
-private fun uncolor() = prefixParser {
+private fun uncolored() = prefixParser {
     val message = quest<String>()
     result {
         message.get().uncolored()
