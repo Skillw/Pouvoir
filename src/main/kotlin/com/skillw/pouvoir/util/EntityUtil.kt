@@ -130,5 +130,5 @@ fun Location.getRayHits(distance: Double): Collection<Entity> {
 fun LivingEntity.getEntityRayHits(
     distance: Double,
 ): Collection<Entity> {
-    return eyeLocation.getRayHits(distance)
+    return eyeLocation.getRayHits(distance).filter { it != this }
 }

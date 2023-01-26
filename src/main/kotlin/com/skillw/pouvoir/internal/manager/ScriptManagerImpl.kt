@@ -45,8 +45,8 @@ internal object ScriptManagerImpl : ScriptManager() {
     }
 
     override fun onEnable() {
-        call(ManagerTime.BEFORE_ENABLE)
         reloadScripts()
+        call(ManagerTime.BEFORE_ENABLE)
         call(ManagerTime.ENABLE)
     }
 
@@ -222,14 +222,14 @@ internal object ScriptManagerImpl : ScriptManager() {
     private val execMap = MultiExecMap()
 
     override fun addExec(managerTime: ManagerTime, key: String, exec: () -> Unit) {
-        execMap.map.computeIfAbsent(managerTime.key) { SingleExecMap() }[key] = exec
+        execMap.map.computeIfAbsent(managerTime.key.lowercase()) { SingleExecMap() }[key.lowercase()] = exec
     }
 
     private fun call(managerTime: ManagerTime) {
-        execMap.run(managerTime.key)
+        execMap.run(managerTime.key.lowercase())
     }
 
     override fun removeExec(managerTime: ManagerTime, key: String) {
-        execMap[managerTime.key]?.remove(key)
+        execMap[managerTime.key.lowercase()]?.remove(key.lowercase())
     }
 }
