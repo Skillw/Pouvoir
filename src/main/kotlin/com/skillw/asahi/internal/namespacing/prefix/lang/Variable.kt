@@ -53,7 +53,7 @@ private fun set() = prefixParser {
 @AsahiPrefix(["has"], "lang")
 private fun has() = prefixParser {
     val key = quest<String>()
-    result { get(key.get()) == null }
+    result { get(key.get()) != null }
 }
 
 @AsahiPrefix(["get"], "lang")

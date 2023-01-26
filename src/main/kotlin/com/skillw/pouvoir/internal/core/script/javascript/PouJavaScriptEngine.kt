@@ -48,7 +48,7 @@ object PouJavaScriptEngine : PouScriptEngine() {
 
     override fun compile(script: String, vararg params: String): CompiledScript {
         return evalCache.map.computeIfAbsent(script) {
-            (engine as Compilable).compile(("function main(${params.joinToString(",")}){$script\n}").trimIndent())
+            (engine as Compilable).compile(("function main(${params.joinToString(",")}){$script\n}".also { println(it) }))
                 .apply { init() }
         }
     }

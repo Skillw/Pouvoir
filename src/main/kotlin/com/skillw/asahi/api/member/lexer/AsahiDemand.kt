@@ -1,7 +1,7 @@
 package com.skillw.asahi.api.member.lexer
 
 import com.skillw.asahi.internal.lexer.AsahiDemandImpl
-import com.skillw.pouvoir.util.AsahiDataMap
+import com.skillw.asahi.util.AsahiDataMap
 import org.bukkit.entity.Entity
 
 /**

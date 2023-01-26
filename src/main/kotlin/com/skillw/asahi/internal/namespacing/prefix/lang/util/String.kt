@@ -13,8 +13,15 @@ import com.skillw.asahi.api.quest
  */
 @AsahiPrefix(["analysis", "inline"], "lang")
 private fun inline() = prefixParser {
-    val text = quest<String>()
-    result { text.get().analysis(this, *namespaceNames()) }
+    val text = if (expect("[")) questList() else quest<String>()
+    result {
+        text.get().let { obj ->
+            when (obj) {
+                is Collection<*> -> obj.map { it.toString().analysis(this, *namespaceNames()) }
+                else -> obj.toString().analysis(this, *namespaceNames())
+            }
+        }
+    }
 }
 
 

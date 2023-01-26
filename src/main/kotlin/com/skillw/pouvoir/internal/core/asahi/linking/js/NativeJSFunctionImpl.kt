@@ -2,10 +2,10 @@ package com.skillw.pouvoir.internal.core.asahi.linking.js
 
 import com.skillw.asahi.api.member.context.AsahiContext
 import com.skillw.asahi.api.script.AsahiCompiledScript
+import com.skillw.asahi.util.AsahiDataMap
 import com.skillw.asahi.util.toLazyMap
 import com.skillw.pouvoir.Pouvoir.compileManager
 import com.skillw.pouvoir.internal.core.script.javascript.PouJavaScriptEngine
-import com.skillw.pouvoir.util.AsahiDataMap
 import javax.script.CompiledScript
 
 

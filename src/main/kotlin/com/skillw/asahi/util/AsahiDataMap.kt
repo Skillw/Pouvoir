@@ -1,8 +1,7 @@
-package com.skillw.pouvoir.util
+package com.skillw.asahi.util
 
 import com.skillw.asahi.api.AsahiAPI.analysis
 import com.skillw.asahi.api.member.context.AsahiContext
-import taboolib.common.util.unsafeLazy
 import taboolib.common5.Coerce
 import kotlin.reflect.KProperty
 
@@ -14,7 +13,7 @@ import kotlin.reflect.KProperty
  * @author Glom
  * @date 2022/8/14 7:45 Copyright 2022 user. All rights reserved.
  */
-open class AsahiDataMap : HashMap<String, Any>() {
+open class AsahiDataMap(val analysis: Boolean = false) : AsahiContext by AsahiContext.create() {
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): Any? {
         return (thisRef as AsahiDataMap)[property.name]
@@ -67,12 +66,8 @@ open class AsahiDataMap : HashMap<String, Any>() {
         )
     }
 
-    val context by unsafeLazy {
-        AsahiContext.create(this)
-    }
-
     private fun Any.analysisCast(): Any {
-        return if (this is String) analysis(context) else this
+        return if (this is String && analysis) analysis(this@AsahiDataMap) else this
     }
 
     /**

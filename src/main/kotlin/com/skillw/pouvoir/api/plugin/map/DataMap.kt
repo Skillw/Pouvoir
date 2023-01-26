@@ -14,8 +14,8 @@ import kotlin.reflect.KProperty
  * @author Glom
  * @date 2022/8/14 7:45 Copyright 2022 user. All rights reserved.
  */
-open class DataMap : BaseMap<String, Any>() {
-
+open class DataMap() : BaseMap<String, Any>() {
+    var analysis: Boolean = false
     operator fun getValue(thisRef: Any?, property: KProperty<*>): Any? {
         return (thisRef as DataMap)[property.name]
     }
@@ -70,7 +70,7 @@ open class DataMap : BaseMap<String, Any>() {
     val context = AsahiContext.create(map)
 
     private fun Any.analysisCast(): Any {
-        return if (this is String) analysis(this, context).cast() else this
+        return if (this is String && analysis) analysis(this, context).cast() else this
     }
 
     /**

@@ -83,6 +83,16 @@ private fun targets() = prefixParser {
             }
         }
 
+        expect("eachLiving", "everyLiving") -> {
+            val todo = quest<NativeFunction>()
+            result {
+                val func = todo.get()
+                result.get().forEachLivingEntity {
+                    func.invoke(this@result, this, it)
+                }
+            }
+        }
+
         expect("eachLoc", "everyLoc") -> {
             val todo = quest<NativeFunction>()
             result {

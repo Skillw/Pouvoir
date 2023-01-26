@@ -4,8 +4,8 @@ import com.skillw.asahi.api.AsahiAPI.compile
 import com.skillw.asahi.api.member.context.AsahiContext
 import com.skillw.asahi.api.script.AsahiCompiledScript
 import com.skillw.asahi.api.script.linking.NativeFunction
+import com.skillw.asahi.util.AsahiDataMap
 import com.skillw.asahi.util.toLazyMap
-import com.skillw.pouvoir.util.AsahiDataMap
 
 
 /**
