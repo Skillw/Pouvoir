@@ -13,7 +13,7 @@ internal object PrefixCallParser : TopPrefixParser<Any?>("call-function", 999) {
     }
 
     override fun AsahiLexer.parse(token: String): Quester<Any?>? {
-        return getPrefix(token).firstOrNull()?.parseWith(this@parse) as Quester<Any?>?
+        return getPrefix(token)?.parseWith(this@parse) as Quester<Any?>?
     }
 
     override fun <R> Quester<R>.topQuester(): Quester<R> {

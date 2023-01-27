@@ -13,7 +13,7 @@ script-invoke-exception: '&d[&9Pouvoir&d] &c在调用脚本 &6{1} &c的函数 &d
 script-invoke-task-cancelled: '&d[&9Pouvoir&d] &c调用 &6{1} &c的函数 &d{0} &c的任务 &6{2} &c取消!'
 script-invoke-wrong-format: '&d[&9Pouvoir&d] &c如果你想调用某个脚本文件的函数, 请以此格式输入: &6脚本文件名称.js::函数名 &c!'
 script-engine-not-found: '&d[&9Pouvoir&d] &c未发现PouScriptEngine &6{0} &c! 请检查.'
-script-engine-valid-suffix: '&d[&9Pouvoir&d] &c未发现含后缀 &6{0} &c的PouScriptEngine&c! 请检查.'
+script-engine-valid-suffix: '&d[&9Pouvoir&d] &c未发现含后缀 &6{0} &c的PouScriptEngine&c! 请检查. &7({1})'
 function-wrong-arguments: '&d[&9Pouvoir&d] &c调用函数 &6{0} &c时使用了错误的参数!'
 pou-placeholder-register: '&d[&9Pouvoir&d] &ePou占位符 &6{0} &e注册成功! 来自: &d{1} &9{2} &eBy: &a{3}'
 command-message:

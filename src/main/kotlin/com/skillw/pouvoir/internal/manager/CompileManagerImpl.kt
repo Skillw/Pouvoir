@@ -26,7 +26,7 @@ internal object CompileManagerImpl : CompileManager() {
         val suffix = file.extension
         val engine = Pouvoir.scriptEngineManager.getEngine(suffix)
         engine ?: kotlin.run {
-            console().sendLang("script-engine-valid-suffix", suffix)
+            console().sendLang("script-engine-valid-suffix", suffix, file.path)
             return null
         }
         val mark = TimeSource.Monotonic.markNow()

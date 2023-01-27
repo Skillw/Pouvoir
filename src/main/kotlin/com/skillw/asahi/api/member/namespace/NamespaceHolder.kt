@@ -1,6 +1,5 @@
 package com.skillw.asahi.api.member.namespace
 
-import com.skillw.asahi.api.AsahiManager
 import com.skillw.asahi.api.member.parser.prefix.namespacing.BasePrefix
 
 /**
@@ -11,14 +10,14 @@ import com.skillw.asahi.api.member.parser.prefix.namespacing.BasePrefix
  */
 interface NamespaceHolder<T : NamespaceHolder<T>> {
     /** 持有的命名空间 */
-    val namespaces: MutableSet<Namespace>
+    val namespaces: NamespaceContainer
 
     /**
      * 获取命名空间的名称数组
      *
      * @return
      */
-    fun namespaceNames(): Array<String> = namespaces.map { it.key }.toTypedArray()
+    fun namespaceNames(): Array<String> = namespaces.namespaceNames()
 
     /**
      * 添加命名空间
@@ -27,7 +26,7 @@ interface NamespaceHolder<T : NamespaceHolder<T>> {
      * @return 自身
      */
     fun addNamespaces(vararg names: String): T {
-        namespaces.addAll(AsahiManager.getNamespaces(*names))
+        namespaces.addNamespaces(*names)
         return this as T
     }
 
@@ -38,7 +37,7 @@ interface NamespaceHolder<T : NamespaceHolder<T>> {
      * @return 自身
      */
     fun removeSpaces(vararg names: String): T {
-        namespaces.removeAll(AsahiManager.getNamespaces(*names))
+        namespaces.removeSpaces(*names)
         return this as T
     }
 
@@ -58,7 +57,7 @@ interface NamespaceHolder<T : NamespaceHolder<T>> {
      * @param token token
      * @return 前缀解释器
      */
-    fun getPrefix(token: String): List<BasePrefix<*>> {
-        return namespaces.filter { it.hasPrefix(token) }.map { it.getPrefix(token)!! }
+    fun getPrefix(token: String): BasePrefix<*>? {
+        return namespaces.firstOrNull { it.hasPrefix(token) }?.getPrefix(token)
     }
 }

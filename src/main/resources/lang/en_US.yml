@@ -11,7 +11,7 @@ script-compile-fail: '&d[&9Pouvoir&d] &cThere was an error during compiling the 
 script-file-not-found: '&d[&9Pouvoir&d] &cCan t found the script file &6{0} &c! Please check.'
 script-invoke-wrong-format: '&d[&9Pouvoir&d] &cIf you wanna invoke script file`s function, you should write it in this format: &6{file`s path}.js::{function`s name} &c instead of &4{0}!'
 script-engine-not-found: '&d[&9Pouvoir&d] &cCan t found the PouScriptEngine &6{0} &c! Please check.'
-script-engine-valid-suffix: '&d[&9Pouvoir&d] &cCan t found the PouScriptEngine with suffix &6{0} &c! Please check.'
+script-engine-valid-suffix: '&d[&9Pouvoir&d] &cCan t found the PouScriptEngine with suffix &6{0} &c! Please check. &7({1})'
 function-wrong-arguments: '&d[&9Pouvoir&d] &cWrong arguments while calling the function &6{0} &c!'
 pou-placeholder-register: '&d[&9Pouvoir&d] &ePouPlaceholder &6{0} &ehas successfully registered! From: &d{1} &9{2} &eBy: &a{3}'
 command-message:

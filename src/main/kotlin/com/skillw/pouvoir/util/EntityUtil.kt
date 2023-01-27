@@ -15,7 +15,6 @@ import taboolib.module.navigation.BoundingBox
 import taboolib.module.navigation.NMSImpl
 import taboolib.module.nms.getI18nName
 import taboolib.platform.util.toBukkitLocation
-import taboolib.platform.util.toProxyLocation
 import java.util.*
 
 /**
@@ -73,13 +72,12 @@ fun isLiving(uuid: UUID?): Boolean {
 }
 
 fun Entity.isAlive(): Boolean {
-    location.toProxyLocation()
     return isLiving(this)
 }
 
 
 fun isLiving(entity: Entity?): Boolean {
-    return entity is LivingEntity && !entity.isDead()
+    return entity is LivingEntity && !entity.isDead() && entity.isValid
 }
 
 

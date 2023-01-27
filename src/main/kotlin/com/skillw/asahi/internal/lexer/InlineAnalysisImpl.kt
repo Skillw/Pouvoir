@@ -1,10 +1,9 @@
 package com.skillw.asahi.internal.lexer
 
 import com.skillw.asahi.api.AsahiAPI.compile
-import com.skillw.asahi.api.AsahiManager
 import com.skillw.asahi.api.InlineAnalysis
 import com.skillw.asahi.api.member.context.AsahiContext
-import com.skillw.asahi.api.member.namespace.Namespace
+import com.skillw.asahi.api.member.namespace.NamespaceContainer
 import com.skillw.asahi.api.member.quest.Quester
 import com.skillw.asahi.api.quester
 import java.util.*
@@ -21,12 +20,7 @@ internal class InlineAnalysisImpl private constructor(val text: String) :
     //          下标范围 -> Asahi段内容
     private val beingReplaced = LinkedList<Pair<IntRange, Quester<Any?>>>()
 
-    override val namespaces: MutableSet<Namespace> = HashSet()
-
-
-    init {
-        AsahiManager.loadSharedNamespace(this)
-    }
+    override val namespaces = NamespaceContainer()
 
     companion object {
         private val cache = ConcurrentHashMap<Int, InlineAnalysis>()

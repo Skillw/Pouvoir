@@ -12,7 +12,8 @@ import com.skillw.asahi.api.member.parser.prefix.namespacing.BasePrefix
  * @property key
  * @property shared
  */
-open class Namespace(override val key: String, val shared: Boolean = false) : AsahiRegistrable<String> {
+open class Namespace(override val key: String, val shared: Boolean = false, val priority: Int = 999) :
+    AsahiRegistrable<String>, Comparable<Namespace> {
     /** Prefix 前缀解释器容器， Token -> 前缀解释器 */
     internal val prefixMap = HashMap<String, BasePrefix<*>>()
 
@@ -123,5 +124,9 @@ open class Namespace(override val key: String, val shared: Boolean = false) : As
     override fun register() {
         AsahiManager.namespaces[key] = this
     }
+
+    override fun compareTo(other: Namespace): Int = if (this.priority == other.priority) 0
+    else if (this.priority > other.priority) 1
+    else -1
 
 }
