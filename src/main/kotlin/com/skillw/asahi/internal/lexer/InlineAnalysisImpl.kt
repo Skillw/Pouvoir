@@ -100,7 +100,7 @@ internal class InlineAnalysisImpl private constructor(val text: String) :
                 }
             }
             if (index == text.lastIndex) {
-                finish(index - 1)
+                finish(index)
                 inlineVar = false
             }
         }

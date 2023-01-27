@@ -38,14 +38,14 @@ private fun `if`() = prefixParser {
 //多路
 @AsahiPrefix(["when", "switch"], "lang")
 private fun `when`() = prefixParser {
-    val value = if (expect("of")) quest<Any>() else null
-    val pairs = LinkedList<Pair<Quester<Boolean>, Quester<Any>>>()
+    val value = if (expect("of")) quest<Any?>() else null
+    val pairs = LinkedList<Pair<Quester<Boolean>, Quester<Any?>>>()
     expect("{")
     while (expect("case", "when")) {
         value?.let {
             val condition = questCondition("->") {
                 val symbol = next()
-                val other = quest<Any>()
+                val other = quest<Any?>()
                 quester { com.skillw.asahi.util.check(value, symbol, other) }
             }
             expect("->")
@@ -53,15 +53,14 @@ private fun `when`() = prefixParser {
         } ?: kotlin.run {
             val condition = questCondition("->")
             expect("->")
-            val ifTrue = quest<Any>()
-            pairs.add(condition to ifTrue)
+            pairs.add(condition to quest())
         }
     }
     if (expect("else", "default")) {
         expect("->")
-        val final = quest<Any>()
-        pairs.add(quester { true } to final)
+        pairs.add(quester { true } to quest())
     }
+    expect("}")
     result {
         pairs.forEach {
             if (it.first.get()) {
