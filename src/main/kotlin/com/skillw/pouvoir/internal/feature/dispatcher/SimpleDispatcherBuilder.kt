@@ -95,7 +95,7 @@ class SimpleDispatcherBuilder(
             baffleBaseOnPlayer = baffleData["based-on"] == "player"
             baffle = when {
                 baffleData.containsKey("counter") -> {
-                    val count = baffleData["count"].cint
+                    val count = baffleData["counter"].cint
                     Baffle.of(count)
                 }
 
