@@ -7,4 +7,4 @@ package com.skillw.pouvoir.api.plugin.annotation
  */
 @Target(AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class PouManager
+annotation class PouManager(val path: String = "")

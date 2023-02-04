@@ -25,10 +25,10 @@ object PouManagerUtils {
             val managerName = field.type.simpleName
 
             val pouManagerClass = field.type
-
+            val pManager = field.getAnnotation(PouManager::class.java)
             val implClass: Class<*> =
                 if (!Modifier.isAbstract(pouManagerClass.modifiers)) pouManagerClass
-                else kotlin.runCatching { Class.forName("$mainPackage.internal.manager.${managerName}Impl") }
+                else kotlin.runCatching { Class.forName(pManager.path.ifEmpty { "$mainPackage.internal.manager.${managerName}Impl" }) }
                     .getOrNull() ?: continue
             val pouManager = implClass.instance
             if (pouManager == null) {

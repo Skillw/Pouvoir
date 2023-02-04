@@ -79,20 +79,6 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
                     (clazz.owner.instance as? Registrable<*>?)?.register()
             }.exceptionOrNull()?.printStackTrace()
         }
-        classes
-            .forEach { clazz ->
-                clazz.fields.forEach { field ->
-                    if (field.isAnnotationPresent(AutoRegister::class.java)) {
-                        safe {
-                            val autoRegister = field.getAnnotation(AutoRegister::class.java)
-                            val test = autoRegister.property<String>("test") ?: ""
-                            val obj = field.get()
-                            if (obj is Registrable<*> && (test.isEmpty() || test.run { if (startsWith("!")) substring(1) else this }
-                                    .existClass())) obj.register()
-                        }
-                    }
-                }
-            }
     }
 
     private fun Plugin.isDepend(other: Plugin) =
