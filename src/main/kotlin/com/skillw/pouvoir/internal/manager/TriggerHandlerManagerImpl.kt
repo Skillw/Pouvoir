@@ -76,14 +76,14 @@ internal object TriggerHandlerManagerImpl : TriggerHandlerManager() {
             if (dispatcher) {
                 yaml.apply {
                     getKeys(false).forEach { key ->
-                        SimpleDispatcherBuilder.deserialize(getConfigurationSection(key)).build().register()
+                        SimpleDispatcherBuilder.deserialize(getConfigurationSection(key)!!).build().register()
                         fileToKeys.put(file, key)
                     }
                 }
             } else {
                 yaml.apply {
                     getKeys(false).forEach { key ->
-                        AsahiHandlerBuilder.deserialize(getConfigurationSection(key)).build().register()
+                        AsahiHandlerBuilder.deserialize(getConfigurationSection(key)!!).build().register()
                         fileToKeys.put(file, key)
                     }
                 }

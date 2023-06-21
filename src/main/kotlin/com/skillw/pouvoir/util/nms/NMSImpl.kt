@@ -2,7 +2,7 @@ package com.skillw.pouvoir.util.nms
 
 import com.skillw.pouvoir.util.BukkitAttribute
 import org.bukkit.attribute.AttributeInstance
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftLivingEntity
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftLivingEntity
 import org.bukkit.entity.LivingEntity
 import taboolib.module.nms.MinecraftVersion
 

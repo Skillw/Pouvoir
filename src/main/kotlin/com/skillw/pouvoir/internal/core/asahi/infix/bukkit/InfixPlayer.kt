@@ -43,7 +43,7 @@ object InfixPlayer : BaseInfix<Player>(Player::class.java, "bukkit") {
         }
 
         infix("messages") { player ->
-            player.sendMessage(parse<List<Any>>().map { it.toString().colored() }.toTypedArray())
+            player.sendMessage(parse<List<Any>>().joinToString("\n") { it.toString().colored() })
         }
 
         infix("command") { player ->
