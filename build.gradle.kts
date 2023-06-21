@@ -79,7 +79,7 @@ taboolib {
 
 
     classifier = null
-    version = "6.0.10-71"
+    version = "6.0.11-13"
 
     relocate("org.openjdk.nashorn", "com.skillw.nashorn")
     relocate("jdk.nashorn", "com.skillw.nashorn.legacy")
