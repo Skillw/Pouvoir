@@ -100,7 +100,7 @@ repositories {
 dependencies {
     dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.20")
     compileOnly("com.zaxxer:HikariCP:4.0.3")
-    compileOnly("ink.ptms.core:v11200:11200-minimize")
+    compileOnly("ink.ptms.core:v11901:11901-minimize:mapped")
     compileOnly("org.openjdk.nashorn:nashorn-core:15.4")
     compileOnly("org.codehaus.groovy:groovy-jsr223:3.0.11")
     compileOnly("com.google.code.gson:gson:2.9.0")

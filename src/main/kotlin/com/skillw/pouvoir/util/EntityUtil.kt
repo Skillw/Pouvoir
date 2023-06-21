@@ -30,7 +30,7 @@ fun LivingEntity.getDisplayName(): String {
 
 
 fun getName(entity: LivingEntity): String? {
-    return if (entity is Player) entity.displayName else entity.getI18nName()
+    return if (entity is Player) entity.displayName else entity.customName ?: entity.getI18nName()
 }
 
 fun UUID.livingEntity(): LivingEntity? {
