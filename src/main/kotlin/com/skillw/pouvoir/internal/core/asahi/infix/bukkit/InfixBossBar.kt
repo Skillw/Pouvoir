@@ -15,7 +15,7 @@ object InfixBossBar : BaseInfix<BossBar>(BossBar::class.java, "bukkit") {
     init {
         "title" to { bar ->
             if (expect("to")) {
-                bar.title = parse()
+                bar.setTitle(parse())
             }
             bar.title
         }
