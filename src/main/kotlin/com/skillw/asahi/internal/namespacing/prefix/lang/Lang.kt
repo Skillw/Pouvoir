@@ -20,6 +20,11 @@ private fun `null`() = prefixParser {
     result { null }
 }
 
+@AsahiPrefix(["null-str"], "lang")
+private fun nullStr() = prefixParser {
+    result { "null" }
+}
+
 @AsahiPrefix(["pass"], "lang")
 private fun pass() = prefixParser {
     result { "" }

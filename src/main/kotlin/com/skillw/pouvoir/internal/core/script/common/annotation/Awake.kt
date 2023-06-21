@@ -1,5 +1,6 @@
 package com.skillw.pouvoir.internal.core.script.common.annotation
 
+import com.skillw.pouvoir.Pouvoir.plugin
 import com.skillw.pouvoir.Pouvoir.scriptManager
 import com.skillw.pouvoir.api.plugin.ManagerTime
 import com.skillw.pouvoir.api.plugin.annotation.AutoRegister
@@ -37,9 +38,15 @@ internal object Awake : ScriptAnnotation("Awake") {
                 return@addExec
             }
             debug { console().sendLang("annotation-awake-running", key) }
-            submitAsync {
+            val todo = fun(){
                 scriptManager.invoke<Any?>(scriptToRun, function, parameters = arrayOf(time.key.uppercase()))
             }
+            if (plugin.isEnabled)submitAsync {
+                todo()
+            }else
+                todo()
+
+
         }
     }
 

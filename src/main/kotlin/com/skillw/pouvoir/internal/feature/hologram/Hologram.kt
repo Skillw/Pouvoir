@@ -5,28 +5,28 @@ import org.bukkit.Location
 import org.bukkit.entity.Player
 import java.util.concurrent.ConcurrentHashMap
 
-class Hologram(override var location: Location, override val content: List<String>) : IHologram {
+class Hologram private constructor(var location: Location, val content: List<String>) : IHologram {
 
     override val key = (location.toString().hashCode() + content.hashCode()).toString()
-    override val viewers = ConcurrentHashSet<Player>()
+    val viewers = ConcurrentHashSet<Player>()
 
-    constructor(location: Location, content: List<String>, vararg viewers: Player) : this(location, content) {
-        this.viewers.addAll(viewers)
+
+    private val lines = ConcurrentHashMap<Int, HologramLine>()
+
+    init {
         content.forEachIndexed { index, line ->
             lines[index] =
                 HologramLine(location.clone().add(0.0, (((content.size - 1) - index) * 0.3), 0.0), line, this.viewers)
         }
+    }
+
+    constructor(location: Location, content: List<String>, vararg viewers: Player) : this(location, content) {
+        this.viewers.addAll(viewers)
     }
 
     constructor(location: Location, content: List<String>, viewers: Set<Player>) : this(location, content) {
         this.viewers.addAll(viewers)
-        content.forEachIndexed { index, line ->
-            lines[index] =
-                HologramLine(location.clone().add(0.0, (((content.size - 1) - index) * 0.3), 0.0), line, this.viewers)
-        }
     }
-
-    private val lines = ConcurrentHashMap<Int, HologramLine>()
 
     override fun teleport(location: Location) {
         this.location = location

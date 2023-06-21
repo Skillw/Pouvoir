@@ -12,13 +12,13 @@ interface SubPouvoir : Registrable<String> {
 
 
     fun load() {
-        console().sendLang("plugin-load", key)
         managerData.load()
+        console().sendLang("plugin-load", key)
     }
 
     fun enable() {
-        console().sendLang("plugin-enable", key)
         managerData.enable()
+        console().sendLang("plugin-enable", key)
     }
 
     fun active() {
@@ -26,8 +26,8 @@ interface SubPouvoir : Registrable<String> {
     }
 
     fun disable() {
-        console().sendLang("plugin-disable", key)
         managerData.disable()
+        console().sendLang("plugin-disable", key)
     }
 
     override fun register() {

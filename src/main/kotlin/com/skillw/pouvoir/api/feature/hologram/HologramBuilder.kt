@@ -107,7 +107,7 @@ class HologramBuilder(private val location: Location) {
      * @return 构建好的Hologram
      */
     fun build(): IHologram {
-        val hologram = hologramManager.createHologram(location.clone(), content)
+        val hologram = hologramManager.createHologram(location.clone(), content, viewers)
         if (stay != -1L) {
             each?.also { vector ->
                 var count = 0
