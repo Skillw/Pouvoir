@@ -2,13 +2,13 @@ plugins {
     `java-library`
     `maven-publish`
     `signing`
-    id("io.izzel.taboolib") version "1.51"
+    id("io.izzel.taboolib") version "1.56"
     id("org.jetbrains.kotlin.jvm") version "1.6.10"
     id("org.jetbrains.dokka") version "1.6.10"
 }
 
 tasks.dokkaJavadoc.configure {
-    outputDirectory.set(File("C:\\Users\\Administrator\\Desktop\\Doc\\pouvoir"))
+    outputDirectory.set(File("E:\\code\\git\\Javadoc\\pouvoir\\legacy"))
     suppressObviousFunctions.set(false)
     suppressInheritedMembers.set(true)
 
@@ -76,7 +76,7 @@ taboolib {
 
 
     classifier = null
-    version = "6.0.10-31"
+    version = "6.0.11-31"
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

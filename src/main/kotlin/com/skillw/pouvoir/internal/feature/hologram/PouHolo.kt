@@ -26,11 +26,11 @@ interface PouHolo {
     companion object {
         @JvmStatic
         fun create(location: Location, line: String, vararg viewers: Player): PouHolo {
-            if (PouDecentHologramsLine.enable) {
-                return PouDecentHologramsLine(location, line, *viewers)
+            return if (PouDecentHologramsLine.enable) {
+                PouDecentHologramsLine(location, line, *viewers)
             } else if (PouAdyHologramsLine.enable) {
-                return PouAdyHologramsLine(location, line, *viewers)
-            } else return PouHologramLine(location) {
+                PouAdyHologramsLine(location, line, *viewers)
+            } else PouHologramLine(location) {
                 it.setSmall(true)
                 it.setMarker(true)
                 it.setBasePlate(false)
