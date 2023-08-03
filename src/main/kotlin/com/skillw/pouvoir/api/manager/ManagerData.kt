@@ -25,7 +25,6 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Regis
         for (manager in subPouvoir.getPouManagers()) {
             this.register(manager)
         }
-        println(map { it.key }.toString())
         val dataField = subPouvoir.javaClass.getField("managerData")
         dataField.set(subPouvoir, this)
     }

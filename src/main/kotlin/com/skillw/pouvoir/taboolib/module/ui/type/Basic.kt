@@ -156,9 +156,6 @@ open class Basic(title: String = "chest") : Menu(title) {
 
     /** 使用抽象字符页面布局 */
     open fun map(vararg slots: String) {
-        slots.forEach {
-            println(it)
-        }
         this.slots.clear()
         this.slots.addAll(slots.map { it.toCharArray().toList() })
         // 自动修改行数
