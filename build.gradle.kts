@@ -76,7 +76,8 @@ taboolib {
     install(
         "platform-bukkit"
     )
-
+    relocate("org.openjdk.nashorn", "com.skillw.nashorn")
+    relocate("jdk.nashorn", "com.skillw.nashorn.legacy")
 
     classifier = null
     version = "6.0.11-31"
@@ -100,11 +101,13 @@ dependencies {
     compileOnly("org.codehaus.groovy:groovy-jsr223:3.0.11")
     compileOnly("ink.ptms.core:v11200:11200-minimize")
     compileOnly("com.google.code.gson:gson:2.9.0")
+    compileOnly("org.openjdk.nashorn:nashorn-core:15.4")
 
     compileOnly("public:MythicMobs5:5.0.4")
     compileOnly("public:MythicMobs:1.0.1")
     compileOnly(kotlin("stdlib"))
     compileOnly(fileTree("libs"))
+    taboo(fileTree("libs/PouNashorn.jar"))
 }
 
 
