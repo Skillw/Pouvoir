@@ -15,16 +15,17 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Regis
     val plugin: JavaPlugin = subPouvoir.plugin
     override val key: SubPouvoir = subPouvoir
 
-    override fun register(key: String, value: Manager) {
-        super.register(key, value)
+    override fun put(key: String, value: Manager): Manager? {
         managers.add(value)
         managers.sort()
+        return super.put(key, value)
     }
 
     init {
         for (manager in subPouvoir.getPouManagers()) {
             this.register(manager)
         }
+        println(map { it.key }.toString())
         val dataField = subPouvoir.javaClass.getField("managerData")
         dataField.set(subPouvoir, this)
     }

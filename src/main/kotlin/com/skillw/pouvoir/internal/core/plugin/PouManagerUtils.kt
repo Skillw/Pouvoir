@@ -11,10 +11,10 @@ import java.lang.reflect.Modifier
 object PouManagerUtils {
     private fun isPouManagerField(field: Field) = field.isAnnotationPresent(PouManager::class.java)
 
-    fun SubPouvoir.getPouManagers(): Set<Manager> = this.javaClass.fields
+    fun SubPouvoir.getPouManagers(): Collection<Manager> = this.javaClass.fields
         .filter { field -> isPouManagerField(field) && field.get(this) != null }
         .map { field -> field.get(this) as Manager }
-        .toSet()
+
 
     internal fun initPouManagers(clazz: Class<*>): SubPouvoir? {
         val fields = clazz.fields

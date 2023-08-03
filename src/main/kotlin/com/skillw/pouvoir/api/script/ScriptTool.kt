@@ -41,9 +41,11 @@ import taboolib.platform.BukkitCommand
 import taboolib.platform.util.hasName
 import taboolib.platform.util.hoverItem
 import taboolib.platform.util.isNotAir
+import java.util.concurrent.ConcurrentHashMap
 import java.util.function.Consumer
 import java.util.function.Function
 import java.util.function.Supplier
+import java.util.regex.Pattern
 
 
 object ScriptTool : BaseMap<String, Any>() {
@@ -515,4 +517,24 @@ object ScriptTool : BaseMap<String, Any>() {
         }
     }
 
+    private val lazyMap = ConcurrentHashMap<String, Any>()
+
+    @JvmStatic
+    fun lazy(key: String, supplier: Supplier<Any>): Any {
+        return lazyMap.computeIfAbsent(key) {
+            supplier.get()
+        }
+    }
+
+    @JvmStatic
+    fun pattern(str: String): Pattern {
+        return Pattern.compile(str)
+    }
+
+    @JvmStatic
+    fun <T> forEach(iter: Iterable<T>, consumer: Consumer<T>) {
+        iter.forEach(consumer)
+    }
+
+    
 }

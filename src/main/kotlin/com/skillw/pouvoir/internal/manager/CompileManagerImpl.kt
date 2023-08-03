@@ -77,7 +77,9 @@ object CompileManagerImpl : CompileManager() {
         }
         val imports = builder.toString()
         val engine = PouJavaScriptEngine.engine
-        engine.eval(imports)
+        runCatching {
+            engine.eval(imports)
+        }.exceptionOrNull()?.printStackTrace()
         globalMembers.clear()
         globalMembers.putAll(engine.context.getBindings(ENGINE_SCOPE))
     }
@@ -138,7 +140,7 @@ object CompileManagerImpl : CompileManager() {
 
     private val evalCache = BaseMap<Int, CompiledScript>()
     override fun compile(script: String): CompiledScript {
-        return evalCache.map.getOrPut(script.hashCode()) {
+        return evalCache.computeIfAbsent(script.hashCode()) {
             (PouJavaScriptEngine.engine as Compilable).compile(("function main(){$script\n}").trimIndent())
                 .apply { init() }
         }

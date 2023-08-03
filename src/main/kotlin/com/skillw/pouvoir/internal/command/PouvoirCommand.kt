@@ -15,9 +15,14 @@ import taboolib.common.platform.command.mainCommand
 import taboolib.common.platform.command.subCommand
 import taboolib.common.platform.function.pluginVersion
 import taboolib.common.platform.function.submit
+import taboolib.common.platform.function.submitAsync
+import taboolib.common5.Coerce
 import taboolib.common5.Mirror
+import taboolib.common5.mirrorNow
 import taboolib.module.chat.colored
 import taboolib.module.lang.sendLang
+import taboolib.module.nms.getItemTag
+import taboolib.platform.util.isAir
 import taboolib.platform.util.sendLang
 
 @CommandHeader(name = "pouvoir", aliases = ["pou"], permission = "pouvoir.command")
@@ -51,7 +56,7 @@ object PouvoirCommand {
         dynamic {
             suggestion<ProxyCommandSender> { sender, _ ->
                 sender.soundClick()
-                Pouvoir.scriptManager.map.map { it.key }
+                Pouvoir.scriptManager.map { it.key }
             }
             dynamic {
                 suggestion<ProxyCommandSender> { sender, context ->
@@ -125,6 +130,31 @@ object PouvoirCommand {
         execute<ProxyCommandSender> { sender, _, _ ->
             sender.soundSuccess()
             sender.sendMessage("&aPouvoir &9v$pluginVersion &6By Glom_".colored())
+        }
+    }
+
+    @CommandBody(permission = "pouvoir.command.test")
+    val test = subCommand {
+        dynamic {
+            restrict<Player> { _, _, argument ->
+                Coerce.asInteger(argument).isPresent
+            }
+            execute<Player> { sender, context, argument ->
+                sender.soundSuccess()
+                val item = sender.inventory.itemInMainHand
+                if (item.isAir) return@execute
+                val times = Coerce.toInteger(argument)
+                sender.sendMessage("$times")
+                submitAsync {
+                    repeat(times) {
+                        mirrorNow("item-tag-benchmark") {
+                            item.getItemTag()
+                        }
+                    }
+                    sender.sendMessage("Benchmark finished!")
+                }
+                sender.sendMessage("&aPouvoir &9v$pluginVersion &6By Glom_".colored())
+            }
         }
     }
 

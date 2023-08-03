@@ -20,6 +20,9 @@ task("versionModify") {
     project.version = project.version.toString() + (order?.let { "-$it" } ?: "")
 }
 
+tasks.withType<Jar> {
+    destinationDir = file("E:/Minecraft/Server/1.12.2 paper/plugins")
+}
 task("versionAddAPI") {
     if (api == null) return@task
     val origin = project.version.toString()

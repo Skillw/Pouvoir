@@ -11,8 +11,7 @@ object PouPlaceHolderManagerImpl : PouPlaceHolderManager() {
     override val priority = 2
     override val subPouvoir = Pouvoir
 
-    override fun register(key: String, value: PouPlaceHolder) {
-        super.register(key, value)
+    override fun put(key: String, value: PouPlaceHolder): PouPlaceHolder? {
         console().sendLang(
             "pou-placeholder-register",
             key,
@@ -20,5 +19,6 @@ object PouPlaceHolderManagerImpl : PouPlaceHolderManager() {
             value.version,
             value.author
         )
+        return super.put(key, value)
     }
 }

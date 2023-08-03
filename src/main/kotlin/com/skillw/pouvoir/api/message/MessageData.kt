@@ -21,7 +21,7 @@ class MessageData(val player: Player? = null, map: HashMap<String, Any> = HashMa
     }
 
     override fun get(key: String): Any? {
-        return map[key]?.run { if (this is String) analysis(context) else this }
+        return this[key]?.run { if (this is String) analysis(context) else this }
     }
 
     init {

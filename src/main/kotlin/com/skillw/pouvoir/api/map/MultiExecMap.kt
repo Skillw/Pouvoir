@@ -19,6 +19,6 @@ open class MultiExecMap : LowerMap<LinkedList<() -> Unit>>() {
      * @param thing
      */
     fun run(thing: String) {
-        map.filter { it.key.startsWith(thing.lowercase()) }.forEach { it.value.forEach { exec -> exec.invoke() } }
+        filter { it.key.startsWith(thing.lowercase()) }.forEach { it.value.forEach { exec -> exec.invoke() } }
     }
 }

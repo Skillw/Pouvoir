@@ -42,10 +42,14 @@ object PouConfig : ConfigManager(Pouvoir) {
 
     override fun onLoad() {
         AsyncCatcher.enabled = false
+//        runCatching {
+//            File(getDataFolder(), "scripts/core").delete()
+//        }
         createIfNotExists(
             "scripts", "example.js", "groovy.groovy",
             "core/inline_func.js",
             "core/basic.js",
+            "core/tool.js",
             "core/util/ray_trace.js",
             "core/util/color.js",
             "core/util/container.js",

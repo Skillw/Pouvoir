@@ -6,7 +6,7 @@
  * @returns {*} 静态类
  */
 function find(className) {
-  return ClassUtils.find(className);
+    return ClassUtils.find(className);
 }
 
 /**
@@ -17,8 +17,9 @@ function find(className) {
  * @returns {*} 静态类
  */
 function static(className) {
-  return ClassUtils.staticClass(className);
+    return ClassUtils.staticClass(className);
 }
+
 /**
  * @description 快速跳回同步执行，并返回结果
  * @author Glom
@@ -27,7 +28,7 @@ function static(className) {
  * @return {*} any 执行结果
  */
 function sync(func) {
-  return Tool.sync(func);
+    return Tool.sync(func);
 }
 
 /**
@@ -37,7 +38,7 @@ function sync(func) {
  * @param {*} func 执行内容 含一个参数task 可调用task.cancel()
  */
 function task(func) {
-  Tool.task(func);
+    Tool.task(func);
 }
 
 /**
@@ -47,7 +48,7 @@ function task(func) {
  * @param {*} func 执行内容 含一个参数task 可调用task.cancel()
  */
 function taskAsync(func) {
-  Tool.taskAsync(func);
+    Tool.taskAsync(func);
 }
 
 /**
@@ -58,7 +59,7 @@ function taskAsync(func) {
  * @param {*} func 执行内容 含一个参数task 可调用task.cancel()
  */
 function taskLater(delay, func) {
-  Tool.taskLater(delay, func);
+    Tool.taskLater(delay, func);
 }
 
 /**
@@ -69,7 +70,7 @@ function taskLater(delay, func) {
  * @param {*} func 执行内容 含一个参数task 可调用task.cancel()
  */
 function taskAsyncLater(delay, func) {
-  Tool.taskAsyncLater(delay, func);
+    Tool.taskAsyncLater(delay, func);
 }
 
 /**
@@ -81,7 +82,7 @@ function taskAsyncLater(delay, func) {
  * @param {*} func 执行内容 含一个参数task 可调用task.cancel()
  */
 function taskTimer(delay, period, func) {
-  Tool.taskTimer(delay, period, func);
+    Tool.taskTimer(delay, period, func);
 }
 
 /**
@@ -93,7 +94,7 @@ function taskTimer(delay, period, func) {
  * @param {*} func 执行内容 含一个参数task 可调用task.cancel()
  */
 function taskAsyncTimer(delay, period, func) {
-  Tool.taskAsyncTimer(delay, period, func);
+    Tool.taskAsyncTimer(delay, period, func);
 }
 
 /**
@@ -104,11 +105,11 @@ function taskAsyncTimer(delay, period, func) {
  * @returns {*}  Java的List
  */
 function listOf(array) {
-  const list = new java.util.ArrayList();
-  for (let i in array) {
-    list.add(array[i]);
-  }
-  return list;
+    const list = new java.util.ArrayList();
+    for (let i in array) {
+        list.add(array[i]);
+    }
+    return list;
 }
 
 /**
@@ -118,9 +119,9 @@ function listOf(array) {
  * @param {*} json JSON
  */
 function mapOf(json) {
-  const map = new java.util.HashMap();
-  const obj = JSON.parse(json);
-  for (var key in obj) {
-    map.put(key, obj[key]);
-  }
+    const map = new java.util.HashMap();
+    const obj = JSON.parse(json);
+    for (var key in obj) {
+        map.put(key, obj[key]);
+    }
 }

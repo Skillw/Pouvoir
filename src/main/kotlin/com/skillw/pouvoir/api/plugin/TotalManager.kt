@@ -24,12 +24,7 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
     @Awake(LifeCycle.LOAD)
     fun load() {
         Bukkit.getPluginManager().plugins.filter { dependPouvoir(it) }.forEach {
-            try {
-                loadSubPou(it)
-
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+            runCatching { loadSubPou(it) }.exceptionOrNull()?.printStackTrace()
         }
     }
 
@@ -41,7 +36,8 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
         val classes = PluginUtils.getClasses(plugin).map { ReflexClass.of(it).structure }
 
         classes.forEach {
-            kotlin.runCatching { allStaticClasses[it.simpleName.toString()] = it.owner.static() }
+            kotlin.runCatching { allStaticClasses[it.simpleName.toString()] = it.owner.static() }.exceptionOrNull()
+                ?.printStackTrace()
         }
 
         handlers.addAll(classes
@@ -53,11 +49,7 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
         classes.forEach classFor@{ clazz ->
             handlers
                 .forEach { handler ->
-                    try {
-                        handler.inject(clazz.owner, plugin)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
+                    runCatching { handler.inject(clazz.owner, plugin) }.exceptionOrNull()?.printStackTrace()
                 }
         }
         pluginData[plugin]?.let {

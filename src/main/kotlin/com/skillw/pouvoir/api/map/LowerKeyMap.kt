@@ -23,8 +23,8 @@ open class LowerKeyMap<V : Keyable<String>> : KeyMap<String, V>() {
         return super.containsKey(key.lowercase())
     }
 
-    override operator fun set(key: String, value: V): V? {
-        return super.set(key.lowercase(), value)
+    operator fun set(key: String, value: V): V? {
+        return super.put(key.lowercase(), value)
     }
 
     override fun put(key: String, value: V): V? {
