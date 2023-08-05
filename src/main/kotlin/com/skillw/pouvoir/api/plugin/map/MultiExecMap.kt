@@ -12,6 +12,6 @@ open class MultiExecMap : LowerMap<SingleExecMap>() {
      * @param thing
      */
     fun run(key: String) {
-        map.filter { it.key == key.lowercase() }.forEach { it.value.invoke() }
+        filter { it.key == key.lowercase() }.forEach { it.value.invoke() }
     }
 }

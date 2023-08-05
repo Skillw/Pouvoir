@@ -34,11 +34,11 @@ internal object ScriptEngineManagerImpl : ScriptEngineManager() {
         values.forEach(PouScriptEngine::onDisable)
     }
 
-    override fun register(key: String, value: PouScriptEngine) {
-        super.register(key, value)
+    override fun put(key: String, value: PouScriptEngine): PouScriptEngine? {
         for (suffix in value.suffixes) {
             suffixMap[suffix] = value
         }
+        return super.put(key, value)
     }
 
     override fun getEngine(suffix: String): PouScriptEngine? {

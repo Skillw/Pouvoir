@@ -122,14 +122,14 @@ internal object TriggerHandlerManagerImpl : TriggerHandlerManager() {
         }
     }
 
-    override fun register(key: String, value: BaseHandler<*>) {
+    override fun put(key: String, value: BaseHandler<*>): BaseHandler<*>? {
         value.triggers.forEach { triggerKey ->
             value as BaseHandler<BaseTrigger>
             triggerManager.addTask<BaseTrigger>(triggerKey, key, value.priority) {
                 value.handle(it)
             }
         }
-        super.register(key, value)
+        return super.put(key, value)
     }
 
 }

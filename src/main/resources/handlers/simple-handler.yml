@@ -6,6 +6,6 @@ custom-handler:
     - else: main
   functions:
     main: |-
-      tell &player 你说话了!
+      tell &player 你说话了!-simple-handler.yml
     main1: |-
       tell &player Glom说话了!

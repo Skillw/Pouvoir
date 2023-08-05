@@ -1,5 +1,8 @@
 package com.skillw.pouvoir.api.plugin.map
 
+import java.util.function.BiFunction
+import java.util.function.Function
+
 /**
  * Lower map
  *
@@ -7,7 +10,7 @@ package com.skillw.pouvoir.api.plugin.map
  * @constructor Create empty Lower map
  */
 open class LowerMap<V : Any> : BaseMap<String, V>() {
-    override fun get(key: String): V? {
+    override operator fun get(key: String): V? {
         return super.get(key.lowercase())
     }
 
@@ -21,5 +24,25 @@ open class LowerMap<V : Any> : BaseMap<String, V>() {
 
     override fun remove(key: String): V? {
         return super.remove(key.lowercase())
+    }
+
+    override fun putAll(from: Map<out String, V>) {
+        super.putAll(from.mapKeys { it.key.lowercase() })
+    }
+
+    override fun computeIfAbsent(key: String, mappingFunction: Function<in String, out V>): V {
+        return super.computeIfAbsent(key.lowercase(), mappingFunction)
+    }
+
+    override fun compute(key: String, remappingFunction: BiFunction<in String, in V?, out V?>): V? {
+        return super.compute(key.lowercase(), remappingFunction)
+    }
+
+    override fun merge(key: String, value: V, remappingFunction: BiFunction<in V, in V, out V?>): V? {
+        return super.merge(key.lowercase(), value, remappingFunction)
+    }
+
+    override fun putIfAbsent(key: String, value: V): V? {
+        return super.putIfAbsent(key.lowercase(), value)
     }
 }

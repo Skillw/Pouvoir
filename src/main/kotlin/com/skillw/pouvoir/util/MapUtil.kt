@@ -86,10 +86,6 @@ fun MutableMap<String, Any>.putEntity(entity: Entity?) {
     }
 }
 
-fun BaseMap<String, Any>.putEntity(entity: Entity?) {
-    map.putEntity(entity)
-}
-
 
 fun MutableMap<String, Any>.putDeep(key: String, value: Any): Any? {
     var map: MutableMap<String, Any>? = this

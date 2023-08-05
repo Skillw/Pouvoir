@@ -16,10 +16,10 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Regis
     val plugin: JavaPlugin = subPouvoir.plugin
     override val key: SubPouvoir = subPouvoir
 
-    override fun register(key: String, value: Manager) {
-        super.register(key, value)
+    override fun put(key: String, value: Manager): Manager? {
         managers.add(value)
         managers.sort()
+        return super.put(key, value)
     }
 
     init {

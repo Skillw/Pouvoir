@@ -3,6 +3,7 @@ package com.skillw.pouvoir.api.plugin.map
 import com.skillw.asahi.api.member.context.AsahiContext
 import com.skillw.asahi.util.cast
 import com.skillw.pouvoir.internal.core.script.asahi.PouAsahiScriptEngine.analysis
+import taboolib.common.util.unsafeLazy
 import taboolib.common5.Coerce
 import kotlin.reflect.KProperty
 
@@ -67,7 +68,9 @@ open class DataMap() : BaseMap<String, Any>() {
         )
     }
 
-    val context = AsahiContext.create(map)
+    val context by unsafeLazy {
+        AsahiContext.create(this)
+    }
 
     private fun Any.analysisCast(): Any {
         return if (this is String && analysis) analysis(this, context).cast() else this

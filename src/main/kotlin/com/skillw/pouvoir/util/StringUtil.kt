@@ -97,6 +97,14 @@ fun String.replacement(replaces: Map<String, Any>): String {
     return formulaCopy
 }
 
+fun String.replacementIntRange(replaces: Map<IntRange, Any>): String {
+    var formulaCopy = this
+    replaces.forEach {
+        formulaCopy = formulaCopy.replaceRange(it.key, it.value.toString())
+    }
+    return formulaCopy
+}
+
 
 fun <T> Collection<T>.replacement(replaces: Map<String, Any>): List<String> {
     val list = LinkedList<String>()

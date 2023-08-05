@@ -222,7 +222,7 @@ internal object ScriptManagerImpl : ScriptManager() {
     private val execMap = MultiExecMap()
 
     override fun addExec(managerTime: ManagerTime, key: String, exec: () -> Unit) {
-        execMap.map.computeIfAbsent(managerTime.key.lowercase()) { SingleExecMap() }[key.lowercase()] = exec
+        execMap.computeIfAbsent(managerTime.key.lowercase()) { SingleExecMap() }[key.lowercase()] = exec
     }
 
     private fun call(managerTime: ManagerTime) {

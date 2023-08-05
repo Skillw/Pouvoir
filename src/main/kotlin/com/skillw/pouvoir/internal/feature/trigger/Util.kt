@@ -17,7 +17,7 @@ fun MutableMap<*, *>.loadIn(trigger: BaseTrigger) {
     this as MutableMap<String, Any>
     put("trigger", trigger)
     if (trigger is CustomTrigger) {
-        putAll(trigger.data.map)
+        putAll(trigger.data)
         (trigger.data["context"] as? AsahiContext?)?.let {
             putAll(it)
         }

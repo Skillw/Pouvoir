@@ -30,7 +30,7 @@ object PouAsahiScriptEngine : PouScriptEngine() {
 
     override fun compile(script: String, vararg params: String): CompiledScript {
         val new = if (script.startsWith(prefix)) script.substring(prefix.length) else script
-        return evalCache.map.computeIfAbsent(new) {
+        return evalCache.computeIfAbsent(new) {
             (engine as Compilable).compile("def main(${params.joinToString(",")}) { $new }")
         }
     }

@@ -64,9 +64,9 @@ abstract class BaseDispatcher(key: String, vararg triggers: String, priority: In
             preHandle(trigger, context)
             if (context.isExit() || context["@exit"] == true) return
             CustomTrigger(key) {
-                map.loadIn(trigger)
-                map["origin-trigger"] = trigger
-                map["context"] = context
+                this.loadIn(trigger)
+                this["origin-trigger"] = trigger
+                this["context"] = context
             }.call()
             if (context.isExit() || context["@exit"] == true) return
             postHandle(trigger, context)

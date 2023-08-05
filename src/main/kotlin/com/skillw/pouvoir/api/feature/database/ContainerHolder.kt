@@ -23,7 +23,7 @@ abstract class ContainerHolder<C : BaseContainer> : LowerKeyMap<C>() {
      */
     protected abstract fun createContainer(tableName: String, userKey: Boolean = false): C
     fun container(tableName: String, userKey: Boolean = false): C {
-        return map.computeIfAbsent(tableName) { this.createContainer(tableName, userKey).apply { onEnable() } }
+        return computeIfAbsent(tableName) { this.createContainer(tableName, userKey).apply { onEnable() } }
     }
 
     protected abstract fun disconnect()

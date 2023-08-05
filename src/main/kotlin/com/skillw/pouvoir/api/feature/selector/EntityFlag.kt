@@ -18,7 +18,7 @@ object EntityFlag {
 
     fun addFlag(entity: Entity, key: String, durationTick: Long = -1) {
         entity.setMeta(key, "POU_FLAG")
-        keyToEntity.map.computeIfAbsent(key) { LinkedHashSet() }.add(entity)
+        keyToEntity.computeIfAbsent(key) { LinkedHashSet() }.add(entity)
         if (durationTick > 0)
             submit(delay = durationTick) {
                 entity.removeFlag(key)

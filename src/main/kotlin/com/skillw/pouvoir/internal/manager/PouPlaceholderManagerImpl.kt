@@ -61,8 +61,7 @@ internal object PouPlaceholderManagerImpl : PouPlaceholderManager() {
         return replace(uuid.livingEntity(), text)
     }
 
-    override fun register(key: String, value: PouPlaceHolder) {
-        super.register(key, value)
+    override fun put(key: String, value: PouPlaceHolder): PouPlaceHolder? {
         console().sendLang(
             "pou-placeholder-register",
             key,
@@ -70,6 +69,7 @@ internal object PouPlaceholderManagerImpl : PouPlaceholderManager() {
             value.version,
             value.author
         )
+        return super.put(key, value)
     }
 
 

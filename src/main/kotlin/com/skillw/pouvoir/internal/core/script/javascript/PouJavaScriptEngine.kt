@@ -47,7 +47,7 @@ object PouJavaScriptEngine : PouScriptEngine() {
         }
 
     override fun compile(script: String, vararg params: String): CompiledScript {
-        return evalCache.map.computeIfAbsent(script) {
+        return evalCache.computeIfAbsent(script) {
             (engine as Compilable).compile(("function main(${params.joinToString(",")}){$script\n}"))
                 .apply { init() }
         }
