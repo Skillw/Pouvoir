@@ -21,9 +21,10 @@ jobs:
         run: |-
           chmod +x gradlew
           ./gradlew dokkaJavadoc
-      - name: Commit & Push changes
-        uses: actions-js/push@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: javadoc
-          directory: build/dokka/javadoc
+      - name: Deploy
+        uses: moodiest/push-to-branch-action@develop
+        env:
+          REPO: self
+          BRANCH: javadoc
+          FOLDER: build/dokka/javadoc
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

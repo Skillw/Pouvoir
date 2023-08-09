@@ -65,21 +65,21 @@ jobs:
       - name: build
         continue-on-error: true
         id: build_api_1
-        run: ./gradlew build -Papi=true -Porder=$GITHUB_RUN_NUMBER
+        run: ./gradlew buildAPIJar -Porder=$GITHUB_RUN_NUMBER
       - name: build (retry 1)
         continue-on-error: true
         id: build_api_2
         if: steps.build_api_1.outcome == 'failure'
-        run: ./gradlew build -Papi=true -Porder=$GITHUB_RUN_NUMBER
+        run: ./gradlew buildAPIJar -Porder=$GITHUB_RUN_NUMBER
       - name: build (retry 2)
         continue-on-error: true
         id: build_api_3
         if: steps.build_api_2.outcome == 'failure'
-        run: ./gradlew build -Papi=true -Porder=$GITHUB_RUN_NUMBER
+        run: ./gradlew buildAPIJar -Porder=$GITHUB_RUN_NUMBER
       - name: build (retry 3)
         id: build_api_4
         if: steps.build_api_3.outcome == 'failure'
-        run: ./gradlew build -Papi=true -Porder=$GITHUB_RUN_NUMBER
+        run: ./gradlew buildAPIJar -Porder=$GITHUB_RUN_NUMBER
       # 上传构建文件
       - name: capture build api artifacts
         uses: actions/upload-artifact@v2
