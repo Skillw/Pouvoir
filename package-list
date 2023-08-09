@@ -1,0 +1,137 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:com.skillw.asahi.api.member.context/AsahiContext.Companion///PointingToDeclaration/com/skillw/asahi/api/member/context/AsahiContext.Companion.html
+$dokka.location:com.skillw.asahi.api.member.context/AsahiContext.Getter///PointingToDeclaration/com/skillw/asahi/api/member/context/AsahiContext.Getter.html
+$dokka.location:com.skillw.asahi.api.member.context/AsahiContext.Setter///PointingToDeclaration/com/skillw/asahi/api/member/context/AsahiContext.Setter.html
+$dokka.location:com.skillw.asahi.api.member.context/LoopContext.Result///PointingToDeclaration/com/skillw/asahi/api/member/context/LoopContext.Result.html
+$dokka.location:com.skillw.asahi.api.member.lexer.tokenizer/ScriptTokenizer.Companion///PointingToDeclaration/com/skillw/asahi/api/member/lexer/tokenizer/ScriptTokenizer.Companion.html
+$dokka.location:com.skillw.asahi.api.member.lexer/AsahiDemand.Companion///PointingToDeclaration/com/skillw/asahi/api/member/lexer/AsahiDemand.Companion.html
+$dokka.location:com.skillw.asahi.api.member.lexer/AsahiLexer.Companion///PointingToDeclaration/com/skillw/asahi/api/member/lexer/AsahiLexer.Companion.html
+$dokka.location:com.skillw.asahi.api.member.parser.infix.namespacing/BaseInfix.Companion///PointingToDeclaration/com/skillw/asahi/api/member/parser/infix/namespacing/BaseInfix.Companion.html
+$dokka.location:com.skillw.asahi.api.member.parser.infix/InfixParser.Companion///PointingToDeclaration/com/skillw/asahi/api/member/parser/infix/InfixParser.Companion.html
+$dokka.location:com.skillw.asahi.api.member.parser.prefix.namespacing/PrefixParser.Companion///PointingToDeclaration/com/skillw/asahi/api/member/parser/prefix/namespacing/PrefixParser.Companion.html
+$dokka.location:com.skillw.asahi.api.member.parser.prefix/TopPrefixParser.Companion///PointingToDeclaration/com/skillw/asahi/api/member/parser/prefix/TopPrefixParser.Companion.html
+$dokka.location:com.skillw.asahi.api.script.linking/NativeFunction.Companion///PointingToDeclaration/com/skillw/asahi/api/script/linking/NativeFunction.Companion.html
+$dokka.location:com.skillw.asahi.api.script/AsahiEngine.Companion///PointingToDeclaration/com/skillw/asahi/api/script/AsahiEngine.Companion.html
+$dokka.location:com.skillw.asahi.api.script/AsahiEngineFactory.Companion///PointingToDeclaration/com/skillw/asahi/api/script/AsahiEngineFactory.Companion.html
+$dokka.location:com.skillw.asahi.api/InlineAnalysis.Companion///PointingToDeclaration/com/skillw/asahi/api/InlineAnalysis.Companion.html
+$dokka.location:com.skillw.asahi.internal.context/AsahiLoopContext.Companion///PointingToDeclaration/com/skillw/asahi/internal/context/AsahiLoopContext.Companion.html
+$dokka.location:com.skillw.asahi.internal.script/AsahiEngineImpl.Companion///PointingToDeclaration/com/skillw/asahi/internal/script/AsahiEngineImpl.Companion.html
+$dokka.location:com.skillw.asahi.internal.script/NativeFunctionImpl.Companion///PointingToDeclaration/com/skillw/asahi/internal/script/NativeFunctionImpl.Companion.html
+$dokka.location:com.skillw.asahi.internal.util/Time.Companion///PointingToDeclaration/com/skillw/asahi/internal/util/Time.Companion.html
+$dokka.location:com.skillw.asahi.util/AsahiDataMap.Companion///PointingToDeclaration/com/skillw/asahi/util/AsahiDataMap.Companion.html
+$dokka.location:com.skillw.particlelib.pobject.bezier/NRankBezierCurve.Companion///PointingToDeclaration/com/skillw/particlelib/pobject/bezier/NRankBezierCurve.Companion.html
+$dokka.location:com.skillw.particlelib.pobject/Cube.Companion///PointingToDeclaration/com/skillw/particlelib/pobject/Cube.Companion.html
+$dokka.location:com.skillw.particlelib.pobject/Line.Companion///PointingToDeclaration/com/skillw/particlelib/pobject/Line.Companion.html
+$dokka.location:com.skillw.particlelib.pobject/Ray.RayStopType///PointingToDeclaration/com/skillw/particlelib/pobject/Ray.RayStopType.html
+$dokka.location:com.skillw.particlelib.utils.projector/TwoDProjector.Companion///PointingToDeclaration/com/skillw/particlelib/utils/projector/TwoDProjector.Companion.html
+$dokka.location:com.skillw.particlelib.utils/Icosahedron.Companion///PointingToDeclaration/com/skillw/particlelib/utils/Icosahedron.Companion.html
+$dokka.location:com.skillw.particlelib.utils/Icosahedron.Triangle///PointingToDeclaration/com/skillw/particlelib/utils/Icosahedron.Triangle.html
+$dokka.location:com.skillw.pouvoir.api.feature.selector.target/LocTarget.Companion///PointingToDeclaration/com/skillw/pouvoir/api/feature/selector/target/LocTarget.Companion.html
+$dokka.location:com.skillw.pouvoir.api.feature.selector/BaseSelector.SelectorContext///PointingToDeclaration/com/skillw/pouvoir/api/feature/selector/BaseSelector.SelectorContext.html
+$dokka.location:com.skillw.pouvoir.api.manager.sub.script/CompileManager.Companion///PointingToDeclaration/com/skillw/pouvoir/api/manager/sub/script/CompileManager.Companion.html
+$dokka.location:com.skillw.pouvoir.api.manager.sub.script/ScriptEngineManager.Companion///PointingToDeclaration/com/skillw/pouvoir/api/manager/sub/script/ScriptEngineManager.Companion.html
+$dokka.location:com.skillw.pouvoir.api.plugin.map/DataMap.Companion///PointingToDeclaration/com/skillw/pouvoir/api/plugin/map/DataMap.Companion.html
+$dokka.location:com.skillw.pouvoir.api.plugin/ManagerTime.Companion///PointingToDeclaration/com/skillw/pouvoir/api/plugin/ManagerTime.Companion.html
+$dokka.location:com.skillw.pouvoir.internal.core.asahi.linking.js/NativeJSFunction.Companion///PointingToDeclaration/com/skillw/pouvoir/internal/core/asahi/linking/js/NativeJSFunction.Companion.html
+$dokka.location:com.skillw.pouvoir.internal.core.asahi.linking.js/NativeJSFunctionImpl.Companion///PointingToDeclaration/com/skillw/pouvoir/internal/core/asahi/linking/js/NativeJSFunctionImpl.Companion.html
+$dokka.location:com.skillw.pouvoir.internal.feature.dispatcher/SimpleDispatcherBuilder.Companion///PointingToDeclaration/com/skillw/pouvoir/internal/feature/dispatcher/SimpleDispatcherBuilder.Companion.html
+$dokka.location:com.skillw.pouvoir.internal.feature.handler/AsahiHandlerBuilder.Companion///PointingToDeclaration/com/skillw/pouvoir/internal/feature/handler/AsahiHandlerBuilder.Companion.html
+$dokka.location:com.skillw.pouvoir.internal.feature.hologram/ConcurrentHashSet.Companion///PointingToDeclaration/com/skillw/pouvoir/internal/feature/hologram/ConcurrentHashSet.Companion.html
+$dokka.location:com.skillw.pouvoir.internal.feature.hologram/PouHolo.Companion///PointingToDeclaration/com/skillw/pouvoir/internal/feature/hologram/PouHolo.Companion.html
+$dokka.location:com.skillw.pouvoir.internal.feature.listener/CustomListener.Builder///PointingToDeclaration/com/skillw/pouvoir/internal/feature/listener/CustomListener.Builder.html
+$dokka.location:com.skillw.pouvoir.internal.feature.selector/Side.Type///PointingToDeclaration/com/skillw/pouvoir/internal/feature/selector/Side.Type.html
+$dokka.location:com.skillw.pouvoir.util.nms/NMS.Companion///PointingToDeclaration/com/skillw/pouvoir/util/nms/NMS.Companion.html
+com.skillw.asahi.api
+com.skillw.asahi.api.annotation
+com.skillw.asahi.api.member
+com.skillw.asahi.api.member.context
+com.skillw.asahi.api.member.lexer
+com.skillw.asahi.api.member.lexer.tokenizer
+com.skillw.asahi.api.member.namespace
+com.skillw.asahi.api.member.parser.infix
+com.skillw.asahi.api.member.parser.infix.namespacing
+com.skillw.asahi.api.member.parser.prefix
+com.skillw.asahi.api.member.parser.prefix.namespacing
+com.skillw.asahi.api.member.parser.prefix.type
+com.skillw.asahi.api.member.quest
+com.skillw.asahi.api.script
+com.skillw.asahi.api.script.linking
+com.skillw.asahi.internal
+com.skillw.asahi.internal.context
+com.skillw.asahi.internal.function.lang.java
+com.skillw.asahi.internal.lexer
+com.skillw.asahi.internal.namespace
+com.skillw.asahi.internal.namespacing.prefix.lang.util
+com.skillw.asahi.internal.parser.prefix.type
+com.skillw.asahi.internal.script
+com.skillw.asahi.internal.util
+com.skillw.asahi.util
+com.skillw.particlelib
+com.skillw.particlelib.pobject
+com.skillw.particlelib.pobject.bezier
+com.skillw.particlelib.pobject.equation
+com.skillw.particlelib.utils
+com.skillw.particlelib.utils.coordinate
+com.skillw.particlelib.utils.matrix
+com.skillw.particlelib.utils.projector
+com.skillw.pouvoir
+com.skillw.pouvoir.api
+com.skillw.pouvoir.api.feature.anticheat
+com.skillw.pouvoir.api.feature.database
+com.skillw.pouvoir.api.feature.database.sql
+com.skillw.pouvoir.api.feature.handler
+com.skillw.pouvoir.api.feature.hologram
+com.skillw.pouvoir.api.feature.placeholder
+com.skillw.pouvoir.api.feature.selector
+com.skillw.pouvoir.api.feature.selector.target
+com.skillw.pouvoir.api.feature.trigger
+com.skillw.pouvoir.api.manager
+com.skillw.pouvoir.api.manager.sub
+com.skillw.pouvoir.api.manager.sub.script
+com.skillw.pouvoir.api.plugin
+com.skillw.pouvoir.api.plugin.annotation
+com.skillw.pouvoir.api.plugin.handler
+com.skillw.pouvoir.api.plugin.map
+com.skillw.pouvoir.api.plugin.map.component
+com.skillw.pouvoir.api.plugin.object
+com.skillw.pouvoir.api.script
+com.skillw.pouvoir.api.script.annotation
+com.skillw.pouvoir.api.script.engine
+com.skillw.pouvoir.api.script.engine.hook
+com.skillw.pouvoir.internal.core.asahi
+com.skillw.pouvoir.internal.core.asahi.infix.bukkit
+com.skillw.pouvoir.internal.core.asahi.infix.database
+com.skillw.pouvoir.internal.core.asahi.linking.js
+com.skillw.pouvoir.internal.core.asahi.prefix.bukkit
+com.skillw.pouvoir.internal.core.asahi.prefix.bukkit.particle
+com.skillw.pouvoir.internal.core.asahi.util
+com.skillw.pouvoir.internal.core.plugin
+com.skillw.pouvoir.internal.core.script.asahi
+com.skillw.pouvoir.internal.core.script.groovy
+com.skillw.pouvoir.internal.core.script.javascript
+com.skillw.pouvoir.internal.core.script.javascript.impl
+com.skillw.pouvoir.internal.feature.compat.placeholder
+com.skillw.pouvoir.internal.feature.database
+com.skillw.pouvoir.internal.feature.database.redis
+com.skillw.pouvoir.internal.feature.database.sql
+com.skillw.pouvoir.internal.feature.database.sql.sql
+com.skillw.pouvoir.internal.feature.database.sql.sqlite
+com.skillw.pouvoir.internal.feature.dispatcher
+com.skillw.pouvoir.internal.feature.handler
+com.skillw.pouvoir.internal.feature.hologram
+com.skillw.pouvoir.internal.feature.hologram.impl
+com.skillw.pouvoir.internal.feature.listener
+com.skillw.pouvoir.internal.feature.raytrace
+com.skillw.pouvoir.internal.feature.selector
+com.skillw.pouvoir.internal.feature.trigger
+com.skillw.pouvoir.internal.feature.trigger.bukkit
+com.skillw.pouvoir.internal.feature.trigger.custom
+com.skillw.pouvoir.internal.manager
+com.skillw.pouvoir.util
+com.skillw.pouvoir.util.attribute
+com.skillw.pouvoir.util.nms
+com.skillw.pouvoir.util.plugin
+com.skillw.pouvoir.util.read
+com.skillw.pouvoir.util.script
+
