@@ -8,11 +8,10 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "1.7.20"
     id("org.jetbrains.dokka") version "1.7.20"
     id("com.github.johnrengelman.shadow") version "7.0.0"
+    id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
 }
 
-
 tasks.dokkaJavadoc.configure {
-
     suppressObviousFunctions.set(false)
     suppressInheritedMembers.set(true)
 }
@@ -103,6 +102,7 @@ repositories {
 
 dependencies {
     dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.20")
+
     compileOnly("com.zaxxer:HikariCP:4.0.3")
     compileOnly("ink.ptms.core:v11901:11901-minimize:mapped")
     compileOnly("org.openjdk.nashorn:nashorn-core:15.4")

@@ -65,8 +65,6 @@ jobs:
           NEXUS_USERNAME: ${{ secrets.USERNAME }}
           NEXUS_PASSWORD: ${{ secrets.PASSWORD }}
         run: ./gradlew publish -Porder=$GITHUB_RUN_NUMBER -Pbuild=$GITHUB_RUN_NUMBER -Pusername=$NEXUS_USERNAME -Ppassword=$NEXUS_PASSWORD -Psigning.keyId=${{secrets.SIGNING_KEY_ID}} -Psigning.password=${{secrets.SIGNING_KEY_PASSWORD}} -Psigning.secretKeyRingFile=$(echo ~/.gradle/secring.pgp)
-      - name: Release on nexus
-        uses: monkeyWie/maven-nexus-release@v1.0.0
-        with:
-          maven-repo-server-username: ${{ secrets.USERNAME }}
-          maven-repo-server-password: ${{ secrets.PASSWORD }}
+      - name: Auto Close And Release
+        id: close_and_release
+        run: ./gradlew closeAndReleaseStagingRepository -Pusername=$NEXUS_USERNAME -Ppassword=$NEXUS_PASSWORD
