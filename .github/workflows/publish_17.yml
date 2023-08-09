@@ -70,5 +70,5 @@ jobs:
         with:
           server: "s01.oss.sonatype.org"
           groupId: "com.skillw.pouvoir"
-          nexusUsername: ${{ secrets.NEXUS_USERNAME }}
-          nexusPassword: ${{ secrets.NEXUS_PASSWORD }}
+          nexusUsername: ${{ secrets.USERNAME }}
+          nexusPassword: ${{ secrets.PASSWORD }}
