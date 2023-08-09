@@ -20,9 +20,10 @@ import java.util.*
 /**
  * 实体工具类
  *
- * ClassName : com.skillw.pouvoir.feature.EntityUtil Created by Glom_ on
+ * ClassName : com.skillw.pouvoir.feature.EntityUtils Created by Glom_ on
  * 2021-03-28 17:49:01 Copyright 2021 user. All rights reserved.
  */
+
 
 fun LivingEntity.getDisplayName(): String {
     return getName(this).toString()
@@ -32,6 +33,7 @@ fun LivingEntity.getDisplayName(): String {
 fun getName(entity: LivingEntity): String? {
     return if (entity is Player) entity.displayName else entity.customName ?: entity.getI18nName()
 }
+
 
 fun UUID.livingEntity(): LivingEntity? {
     return getLivingEntityByUUID(this)
@@ -47,6 +49,7 @@ fun getLivingEntityByUUID(uuid: UUID?): LivingEntity? {
     }
 }
 
+
 fun UUID.player(): Player? {
     return getPlayerByUUID(this)
 }
@@ -55,6 +58,7 @@ fun UUID.player(): Player? {
 fun getPlayerByUUID(uuid: UUID?): Player? {
     return if (sync && !isPrimaryThread) sync { Bukkit.getPlayer(uuid!!) } else Bukkit.getPlayer(uuid!!)
 }
+
 
 fun UUID.isAlive(): Boolean {
     return isLiving(this)
@@ -70,6 +74,7 @@ fun isLiving(uuid: UUID?): Boolean {
     val entity = getEntity(uuid)
     return isLiving(entity)
 }
+
 
 fun Entity.isAlive(): Boolean {
     return isLiving(this)

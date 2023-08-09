@@ -7,12 +7,12 @@ import kotlin.math.sin
 
 
 /**
- * @className VectorUtil
+ * @className VectorUtils
  *
  * @author Glom
  * @date 2023/1/17 22:01 Copyright 2023 user. All rights reserved.
  */
-fun Vector.rotateAroundX(angle: Double): Vector {
+fun Vector.rotateAroundXp(angle: Double): Vector {
     val angleCos = cos(angle)
     val angleSin = sin(angle)
     val y: Double = angleCos * this.y - angleSin * this.z
@@ -20,7 +20,8 @@ fun Vector.rotateAroundX(angle: Double): Vector {
     return this.setY(y).setZ(z)
 }
 
-fun Vector.rotateAroundY(angle: Double): Vector {
+
+fun Vector.rotateAroundYp(angle: Double): Vector {
     val angleCos = cos(angle)
     val angleSin = sin(angle)
     val x: Double = angleCos * this.x + angleSin * this.z
@@ -28,7 +29,8 @@ fun Vector.rotateAroundY(angle: Double): Vector {
     return this.setX(x).setZ(z)
 }
 
-fun Vector.rotateAroundZ(angle: Double): Vector {
+
+fun Vector.rotateAroundZp(angle: Double): Vector {
     val angleCos = cos(angle)
     val angleSin = sin(angle)
     val x: Double = angleCos * this.x - angleSin * this.y
@@ -36,10 +38,12 @@ fun Vector.rotateAroundZ(angle: Double): Vector {
     return this.setX(x).setY(y)
 }
 
+
 fun Vector.angleFixed(other: Vector): Float {
     val dot = dot(other) / length() * other.length()
     return acos(dot).toFloat()
 }
+
 
 fun org.bukkit.util.Vector.toProxyVector(): taboolib.common.util.Vector {
     return taboolib.common.util.Vector(x, y, z)

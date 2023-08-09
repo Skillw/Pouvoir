@@ -4,6 +4,7 @@ import com.skillw.pouvoir.util.plugin.Pair
 import taboolib.common.util.asList
 import java.util.*
 
+
 private fun String.subStringWithEscape(from: Int, to: Int, escapes: List<Int>): String {
     val builder = StringBuilder()
     if (escapes.isEmpty())
@@ -69,7 +70,7 @@ fun Any.toStringWithNext(): String {
 }
 
 
-fun String.toList(): List<String> {
+fun String.toObjList(): List<String> {
     return if (this.contains("\n")) {
         this.split("\n").asList()
     } else listOf(this)
@@ -96,6 +97,7 @@ fun String.replacement(replaces: Map<String, Any>): String {
     }
     return formulaCopy
 }
+
 
 fun String.replacementIntRange(replaces: Map<IntRange, Any>): String {
     var formulaCopy = this

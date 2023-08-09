@@ -15,6 +15,7 @@ import taboolib.platform.BukkitAdapter
 
 // For script coders
 
+
 fun Player.playSound(sound: XSound) {
     sound.play(this)
 }

@@ -12,6 +12,7 @@ import java.lang.reflect.Method
  *
  * @constructor Create empty Class utils
  */
+
 private fun String.relocate() = Pouvoir.scriptEngineManager.relocatePath(this)
 
 

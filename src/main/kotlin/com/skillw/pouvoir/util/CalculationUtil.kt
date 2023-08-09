@@ -1,7 +1,6 @@
 package com.skillw.pouvoir.util
 
 import com.skillw.pouvoir.Pouvoir
-import com.skillw.pouvoir.util.calculate.calculate
 import org.bukkit.entity.LivingEntity
 
 /**
@@ -15,9 +14,11 @@ fun String.calculate(entity: LivingEntity? = null): Double {
     return calculate(Pouvoir.placeholderManager.replace(entity, this))
 }
 
+
 fun String.calculateDouble(entity: LivingEntity? = null): Double {
     return calculate(entity)
 }
+
 
 fun String.calculateInline(entity: LivingEntity? = null): String {
     var previousChar = 'a'

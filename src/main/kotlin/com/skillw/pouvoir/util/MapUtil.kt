@@ -6,10 +6,12 @@ import org.bukkit.entity.Player
 import java.util.*
 
 /**
- * ClassName : com.skillw.pouvoir.feature.MapUtil Created by Glom_ on
+ * ClassName : com.skillw.pouvoir.feature.MapUtils Created by Glom_ on
  * 2021-03-28 21:59:37 Copyright 2021 user. All rights reserved.
  */
+
 @JvmName("addSingleKListV")
+
 fun <K : Any, V> BaseMap<K, LinkedList<V>>.put(key: K, value: V): BaseMap<K, LinkedList<V>> {
     if (!containsKey(key)) {
         this[key] = LinkedList(listOf(value))
@@ -58,6 +60,7 @@ fun <K : Any, V : Any, Z : Any> BaseMap<K, BaseMap<Z, V>>.put(
 }
 
 @JvmName("putKZListV")
+
 fun <K : Any, V, Z : Any> BaseMap<K, BaseMap<Z, LinkedList<V>>>.put(
     key1: K,
     key2: Z,
@@ -76,6 +79,7 @@ fun <K : Any, Z, V> BaseMap<K, Map<Z, V>>.getAllValues(): List<V> {
     }
     return list
 }
+
 
 fun MutableMap<String, Any>.putEntity(entity: Entity?) {
     entity?.let {
@@ -135,6 +139,7 @@ fun MutableMap<String, Any>.putDeep(key: String, value: Any): Any? {
     return null
 }
 
+
 fun MutableMap<String, Any>.getDeep(key: String): Any? {
     var map: MutableMap<String, Any>? = this
     var list: MutableList<Any>? = null
@@ -162,3 +167,4 @@ fun MutableMap<String, Any>.getDeep(key: String): Any? {
     }
     return null
 }
+
