@@ -1,10 +1,20 @@
 package com.skillw.pouvoir.util.read;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Result<T> {
-    private final Parser<T> root;
-    private final String all;
     public T result = null;
-    int start;
+    public int start;
+    public int end;
+    public String all = null;
+    private Parser<T> root = null;
+
+    public Result() {
+    }
+
+    public Result(Parser<T> root) {
+        this.root = root;
+    }
 
     public Result(Parser<T> root, String all) {
         this.root = root;
@@ -21,13 +31,18 @@ public class Result<T> {
         return this;
     }
 
-    public Result<T> setStart(int start) {
+    public Result<T> setRange(int start, int end) {
         this.start = start;
+        this.end = end;
         return this;
     }
 
+    @NotNull
     public Result<T> parse() {
-        return this.root.parse(this.all.substring(this.start));
+        if (this.root == null || this.all == null) {
+            return new Result<>();
+        }
+        return this.root.parse(this.all.substring(this.end));
     }
 
 

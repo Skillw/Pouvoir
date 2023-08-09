@@ -73,7 +73,7 @@ fun <K : Any, V, Z : Any> BaseMap<K, BaseMap<Z, LinkedList<V>>>.put(
 
 
 fun <K : Any, Z, V> BaseMap<K, Map<Z, V>>.getAllValues(): List<V> {
-    val list = LinkedList<V>()
+    val list = ArrayList<V>()
     forEach {
         list.addAll(it.value.values)
     }

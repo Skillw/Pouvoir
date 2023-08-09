@@ -3,6 +3,7 @@ package com.skillw.asahi.internal.namespacing.prefix.lang.util
 import com.skillw.asahi.api.annotation.AsahiPrefix
 import com.skillw.asahi.api.prefixParser
 import com.skillw.asahi.api.quest
+import taboolib.module.chat.colored
 
 /**
  * @className Logger
@@ -18,7 +19,7 @@ fun info() = prefixParser {
     result {
         content.get().also {
             //打印它
-            println(it)
+            println(it.toString().colored())
         }
     }
 }
@@ -28,7 +29,7 @@ fun warning() = prefixParser {
     val content = quest<Any>()
     result {
         content.get().also {
-            taboolib.common.platform.function.warning(it)
+            taboolib.common.platform.function.warning(it.toString().colored())
         }
     }
 }
@@ -39,7 +40,7 @@ fun error() = prefixParser {
     result {
         content.get().also {
             exit()
-            error(content.get().toString())
+            error(content.get().toString().colored())
         }
     }
 }

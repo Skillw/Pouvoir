@@ -152,7 +152,7 @@ fun String.parse(leftChar: Char = '(', rightChar: Char = ')'): List<String> {
     val text = this
     val stack = Stack<Int>()
     var left = false
-    val list = LinkedList<String>()
+    val list = ArrayList<String>()
     for (index in text.indices) {
         val char = text[index]
         if (char == leftChar) {

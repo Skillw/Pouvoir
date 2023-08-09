@@ -9,7 +9,6 @@ import com.skillw.asahi.api.member.quest.Quester
 import com.skillw.asahi.api.quester
 import com.skillw.asahi.internal.parser.prefix.top.StringParser
 import com.skillw.asahi.internal.parser.prefix.top.VarParser
-import java.util.*
 
 internal object ActionParserImpl : InfixParser() {
     override val ignores = HashSet<String>().apply {
@@ -30,7 +29,7 @@ internal object ActionParserImpl : InfixParser() {
         if (namespaces.all { !it.hasInfix(peek()) }) return getter
         //以上3个判断，都是为了过滤掉非后缀动作
 
-        val tokens = LinkedList<String>()
+        val tokens = ArrayList<String>()
         while (hasNext() && peek() !in ignores) {
             val next = next()
             if (ignores.any { next.endsWith(it) }) {

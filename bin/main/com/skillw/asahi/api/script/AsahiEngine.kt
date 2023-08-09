@@ -16,7 +16,7 @@ import javax.script.Invocable
  */
 abstract class AsahiEngine(context: AsahiContext) : AbstractScriptEngine(context), Compilable, Invocable {
     companion object {
-        @JvmStatic
+        
         fun create(
             factory: AsahiEngineFactory,
             context: AsahiContext = AsahiContextImpl.create(),

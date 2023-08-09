@@ -16,7 +16,7 @@ import java.util.regex.Pattern
  */
 object ItemUtil {
     @Suppress("IMPLICIT_CAST_TO_ANY")
-    @JvmStatic
+
     fun ItemTagData.obj(): Any {
         val value = when (this.type) {
             ItemTagType.BYTE -> this.asByte()
@@ -52,7 +52,6 @@ object ItemUtil {
     }
 
 
-    @JvmStatic
     fun ItemTag.toMutableMap(strList: List<String> = emptyList()): MutableMap<String, Any> {
         val map = HashMap<String, Any>()
         for (it in this) {
@@ -67,7 +66,6 @@ object ItemUtil {
     private val pattern = Pattern.compile("\\((?<type>byte|short|int|long|float|double|char|boolean|string)\\) ")
 
 
-    @JvmStatic
     fun Any.toNBT(): ItemTagData? {
         return if (this is ItemTagData) {
             this

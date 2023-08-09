@@ -16,7 +16,7 @@ import java.util.*
  * @property location
  */
 class HologramBuilder(private val location: Location) {
-    private var content: MutableList<String> = LinkedList()
+    private var content: MutableList<String> = ArrayList()
     private val viewers: MutableSet<Player> = Collections.synchronizedSet(HashSet())
     private var stay: Long = -1
     private var time: Int = -1

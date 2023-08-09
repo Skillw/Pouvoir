@@ -10,12 +10,11 @@ import com.skillw.asahi.api.member.quest.Quester
 import com.skillw.asahi.internal.namespace.Common
 import com.skillw.asahi.internal.namespace.Lang
 import taboolib.common5.util.replace
-import java.util.*
 
 object AsahiManager {
 
     /** (顶级)语言解释器 Lang Parsers 解释器容器， id -> 解释器 */
-    internal val topPrefixParsers = LinkedList<TopPrefixParser<*>>()
+    internal val topPrefixParsers = ArrayList<TopPrefixParser<*>>()
 
     /** (低级)类型解释器 Type Parsers 类型 解释器容器， 类型 -> 解释器 */
     internal val typeParsers = HashMap<Class<*>, TypeParser<*>>()

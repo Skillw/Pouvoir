@@ -48,42 +48,35 @@ import java.util.function.Supplier
 object ScriptTool : BaseMap<String, Any>() {
 
 
-    @JvmStatic
     fun sync(task: () -> Any?) = taboolib.common.util.sync {
         task.invoke()
     }
 
 
-    @JvmStatic
     fun task(task: PlatformExecutor.PlatformTask.() -> Unit) =
         submit { task(this) }
 
 
-    @JvmStatic
     fun taskAsync(task: PlatformExecutor.PlatformTask.() -> Unit) =
         submit(async = true) { task(this) }
 
 
-    @JvmStatic
     fun taskLater(delay: Long, task: PlatformExecutor.PlatformTask.() -> Unit) =
         submit(delay = delay) { task(this) }
 
 
-    @JvmStatic
     fun taskAsyncLater(delay: Long, task: PlatformExecutor.PlatformTask.() -> Unit) =
         submit(delay = delay, async = true) { task(this) }
 
 
-    @JvmStatic
     fun taskTimer(delay: Long, period: Long, task: PlatformExecutor.PlatformTask.() -> Unit) =
         submit(delay = delay, period = period) { task(this) }
 
 
-    @JvmStatic
     fun taskAsyncTimer(delay: Long, period: Long, task: PlatformExecutor.PlatformTask.() -> Unit) =
         submit(async = true, delay = delay, period = period) { task(this) }
 
-    @JvmStatic
+
     @Deprecated(
         "To-update demand; Please use 'task'",
         ReplaceWith("task(runnable)")
@@ -91,7 +84,7 @@ object ScriptTool : BaseMap<String, Any>() {
     fun runTask(runnable: Runnable) =
         submit { runnable.run() }
 
-    @JvmStatic
+
     @Deprecated(
         "To-update demand; Please ues 'taskAsync'",
         ReplaceWith("taskAsync(runnable)")
@@ -99,7 +92,7 @@ object ScriptTool : BaseMap<String, Any>() {
     fun runTaskAsync(runnable: Runnable) =
         submit(async = true) { runnable.run() }
 
-    @JvmStatic
+
     @Deprecated(
         "To-update demand; Please ues 'taskLater'",
         ReplaceWith("taskLater(runnable)")
@@ -107,7 +100,7 @@ object ScriptTool : BaseMap<String, Any>() {
     fun runTaskLater(runnable: Runnable, delay: Long) =
         submit(delay = delay) { runnable.run() }
 
-    @JvmStatic
+
     @Deprecated(
         "To-update demand; Please ues 'taskAsyncLater'",
         ReplaceWith("taskAsyncLater(runnable)")
@@ -115,7 +108,7 @@ object ScriptTool : BaseMap<String, Any>() {
     fun runTaskAsyncLater(runnable: Runnable, delay: Long) =
         submit(delay = delay, async = true) { runnable.run() }
 
-    @JvmStatic
+
     @Deprecated(
         "To-update demand; Please ues 'taskTimer'",
         ReplaceWith("taskTimer(runnable)")
@@ -123,7 +116,7 @@ object ScriptTool : BaseMap<String, Any>() {
     fun runTaskTimer(runnable: Runnable, delay: Long, period: Long) =
         submit(delay = delay, period = period) { runnable.run() }
 
-    @JvmStatic
+
     @Deprecated(
         "To-update demand; Please ues 'taskAsyncTimer'",
         ReplaceWith("taskAsyncTimer(runnable)")
@@ -138,7 +131,7 @@ object ScriptTool : BaseMap<String, Any>() {
      * @param version String 版本
      * @param path String 脚本路径::函数名
      */
-    @JvmStatic
+
     fun placeHolder(identifier: String, author: String, version: String, path: String) {
         object : PlaceholderExpansion() {
             override fun getIdentifier(): String {
@@ -167,7 +160,7 @@ object ScriptTool : BaseMap<String, Any>() {
      * @param version String 版本
      * @param path String 脚本路径::函数名
      */
-    @JvmStatic
+
     fun pouPlaceHolder(identifier: String, name: String, author: String, version: String, path: String) {
         object : PouPlaceHolder(identifier, name, author, version) {
             override fun onPlaceHolderRequest(params: String, entity: LivingEntity, def: String): String {
@@ -185,7 +178,7 @@ object ScriptTool : BaseMap<String, Any>() {
      * @param ignoreCancel Boolean 忽略取消事件
      * @param exec Consumer<Any> 事件执行方法
      */
-    @JvmStatic
+
     fun addListener(
         key: String,
         path: String,
@@ -209,7 +202,7 @@ object ScriptTool : BaseMap<String, Any>() {
      * @param exec Consumer<Any> 事件执行方法
      * @param platform Platform 监听器平台
      */
-    @JvmStatic
+
     fun addListener(
         key: String,
         platformStr: String,
@@ -224,7 +217,7 @@ object ScriptTool : BaseMap<String, Any>() {
         addListener(key, platform, clazz, priority, ignoreCancel, exec)
     }
 
-    @JvmStatic
+
     fun addListener(
         key: String,
         platform: Platform,
@@ -243,32 +236,32 @@ object ScriptTool : BaseMap<String, Any>() {
      *
      * @param key String 键
      */
-    @JvmStatic
+
     fun removeListener(key: String) {
         listenerManager.remove(key)
     }
 
-    @JvmStatic
+
     fun isPluginEnabled(pluginName: String): Boolean {
         return Bukkit.getPluginManager().isPluginEnabled(pluginName)
     }
 
-    @JvmStatic
+
     fun getPlugin(pluginName: String): Plugin? {
         return Bukkit.getPluginManager().getPlugin(pluginName)
     }
 
-    @JvmStatic
+
     fun static(className: String): Any? {
         return staticClass(className)
     }
 
-    @JvmStatic
+
     fun staticClass(className: String): Any? {
         return staticClass(className)
     }
 
-    @JvmStatic
+
     fun command(
         name: String,
     ): PluginCommand {
@@ -277,7 +270,7 @@ object ScriptTool : BaseMap<String, Any>() {
         return bc.constructor.newInstance(name, Pouvoir.plugin)
     }
 
-    @JvmStatic
+
     fun regCommand(command: PluginCommand) {
         task {
             val bc = BukkitCommand()
@@ -286,7 +279,7 @@ object ScriptTool : BaseMap<String, Any>() {
         }
     }
 
-    @JvmStatic
+
     fun unRegCommand(name: String) {
         task {
             val bc = BukkitCommand()
@@ -296,7 +289,6 @@ object ScriptTool : BaseMap<String, Any>() {
     }
 
 
-    @JvmStatic
     fun getItemName(itemStack: ItemStack, player: Player? = null): String? {
         return if (itemStack.isNotAir() && itemStack.hasName())
             itemStack.itemMeta?.displayName
@@ -304,43 +296,43 @@ object ScriptTool : BaseMap<String, Any>() {
             itemStack.getI18nName(player)
     }
 
-    @JvmStatic
+
     fun getItemName(itemStack: ItemStack): String? {
         return getItemName(itemStack, null)
     }
 
-    @JvmStatic
+
     fun getEnchantName(enchantment: Enchantment, player: Player? = null): String {
         return enchantment.getI18nName(player)
     }
 
-    @JvmStatic
+
     fun getEnchantName(enchantment: Enchantment): String {
         return getEnchantName(enchantment, null)
     }
 
-    @JvmStatic
+
     fun getPotionEffectName(potionEffectType: PotionEffectType, player: Player? = null): String {
         return potionEffectType.getI18nName(player)
     }
 
-    @JvmStatic
+
     fun getPotionEffectName(potionEffectType: PotionEffectType): String {
         return getPotionEffectName(potionEffectType, null)
     }
 
-    @JvmStatic
+
     fun buildInventoryHolder(func: Function<Unit, Inventory>): InventoryHolder {
         return InventoryHolder { func.apply(Unit) }
     }
 
-    @JvmStatic
+
     fun itemNBTMap(itemStack: ItemStack, strList: List<String> = emptyList()): MutableMap<String, Any> {
         val itemTag = itemStack.getItemTag()
         return itemTag.toMutableMap(strList)
     }
 
-    @JvmStatic
+
     fun itemNBTMap(itemStack: ItemStack): MutableMap<String, Any> {
         return itemNBTMap(itemStack, emptyList())
     }
@@ -356,7 +348,7 @@ object ScriptTool : BaseMap<String, Any>() {
      * @param key String 键
      * @return String? 获取到的数据
      */
-    @JvmStatic
+
     fun get(user: String, key: String): String? {
         return container[user, key]
     }
@@ -367,7 +359,7 @@ object ScriptTool : BaseMap<String, Any>() {
      * @param user String 用户名
      * @param key String 键
      */
-    @JvmStatic
+
     fun delete(user: String, key: String) {
         container.delete(user, key)
     }
@@ -379,7 +371,7 @@ object ScriptTool : BaseMap<String, Any>() {
      * @param key String 键
      * @param value String 数据
      */
-    @JvmStatic
+
     fun set(user: String, key: String, value: String) {
         container[user, key] = value
     }
@@ -391,7 +383,7 @@ object ScriptTool : BaseMap<String, Any>() {
      * @param key String 键
      * @return String? 获取到的数据
      */
-    @JvmStatic
+
     fun get(player: Player, key: String): String? {
         return get(player.name, key)
     }
@@ -402,7 +394,7 @@ object ScriptTool : BaseMap<String, Any>() {
      * @param player Player 玩家
      * @param key String 键
      */
-    @JvmStatic
+
     fun delete(player: Player, key: String) {
         delete(player.name, key)
     }
@@ -414,13 +406,12 @@ object ScriptTool : BaseMap<String, Any>() {
      * @param key String 键
      * @param value String 数据
      */
-    @JvmStatic
+
     fun set(player: Player, key: String, value: String) {
         set(player.name, key, value)
     }
 
 
-    @JvmStatic
     fun sendParticle(
         particle: ProxyParticle,
         location: org.bukkit.Location,
@@ -433,7 +424,7 @@ object ScriptTool : BaseMap<String, Any>() {
         particle.sendTo(adaptLocation(location), range, offset, count, speed, data)
     }
 
-    @JvmStatic
+
     fun sendParticle(
         particle: ProxyParticle,
         location: org.bukkit.Location,
@@ -444,29 +435,26 @@ object ScriptTool : BaseMap<String, Any>() {
         sendParticle(particle, location, range, Vector(0, 0, 0), count, speed)
     }
 
-    @JvmStatic
+
     fun hoverItem(tellrawJson: TellrawJson, itemStack: ItemStack): TellrawJson {
         return tellrawJson.hoverItem(itemStack)
     }
 
-    @JvmStatic
+
     fun sendTellraw(tellrawJson: TellrawJson, player: Player) {
         tellrawJson.sendTo(adaptPlayer(player))
     }
 
 
-    @JvmStatic
     fun monitorNow(key: String, func: Supplier<Any?>): Any? {
         return mirrorNow(key) { func.get() }
     }
 
 
-    @JvmStatic
     fun monitorFuture(key: String, func: Consumer<Mirror.MirrorFuture<Any?>>): Any {
         return taboolib.common5.mirrorFuture<Any?>(key) { func.accept(this) }
     }
 
-    @JvmStatic
 
     fun checkMonitor(key: String, commandSender: CommandSender) {
         checkMonitor(key, adaptCommandSender(commandSender))
@@ -486,13 +474,11 @@ object ScriptTool : BaseMap<String, Any>() {
         collect.print(commandSender, collect.getTotal(), 0)
     }
 
-    @JvmStatic
 
     fun checkMonitorConsole(key: String) {
         checkMonitor(key, console())
     }
 
-    @JvmStatic
 
     fun clearMonitor(key: String?) {
         key ?: kotlin.run {

@@ -49,7 +49,7 @@ class NativeFunctionImpl constructor(
     }
 
     companion object {
-        @JvmStatic
+        
         fun create(
             key: String,
             paramNames: Array<String>,
@@ -59,13 +59,13 @@ class NativeFunctionImpl constructor(
             return NativeFunctionImpl(key, paramNames, content, initial)
         }
 
-        @JvmStatic
+        
         fun deserialize(key: String, content: String, vararg namespaces: String): NativeFunction {
             val script = content.compile(*namespaces)
             return NativeFunctionImpl(key, emptyArray(), script)
         }
 
-        @JvmStatic
+        
         fun deserialize(key: String, map: Map<String, Any>, vararg namespaces1: String): NativeFunction {
             val data = AsahiDataMap().apply { putAll(map) }
             val params = data.get("params", emptyList<String>()).toTypedArray()

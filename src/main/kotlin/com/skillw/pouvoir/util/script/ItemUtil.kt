@@ -16,6 +16,7 @@ import java.util.regex.Pattern
  */
 object ItemUtil {
     @Suppress("IMPLICIT_CAST_TO_ANY")
+
     @JvmStatic
     fun ItemTagData.obj(): Any {
         val value = when (this.type) {

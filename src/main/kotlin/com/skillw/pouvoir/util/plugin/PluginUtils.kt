@@ -12,6 +12,7 @@ import java.util.jar.JarEntry
 import java.util.jar.JarFile
 
 object PluginUtils {
+    @JvmStatic
     fun getClasses(clazz: Class<*>): List<Class<*>> {
         val classes: MutableList<Class<*>> = ArrayList()
         val url = clazz.protectionDomain.codeSource.location
@@ -39,6 +40,7 @@ object PluginUtils {
      * @return
      */
 
+    @JvmStatic
     fun getClasses(pack: String): Set<Class<*>> {
 
         // 第一个class类的集合
@@ -130,6 +132,7 @@ object PluginUtils {
      * @param classes
      */
 
+    @JvmStatic
     fun findAndAddClassesInPackageByFile(
         packageName: String, packagePath: String?, recursive: Boolean,
         classes: MutableSet<Class<*>>,
@@ -177,6 +180,7 @@ object PluginUtils {
     // --------------------------------------------------------------------------------------------------------
 
 
+    @JvmStatic
     fun getByInterface(clazz: Class<*>, classesAll: Set<Class<*>>): Set<Class<*>> {
         val classes: MutableSet<Class<*>> = LinkedHashSet()
         // 获取指定接口的实现类

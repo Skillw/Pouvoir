@@ -4,7 +4,6 @@ import com.skillw.asahi.api.member.AsahiRegistrable
 import com.skillw.asahi.api.member.quest.Quester
 import com.skillw.asahi.api.script.linking.InvokerHolder
 import com.skillw.asahi.internal.context.AsahiContextImpl
-import java.util.*
 import java.util.concurrent.CompletableFuture
 import javax.script.Bindings
 
@@ -257,8 +256,8 @@ interface AsahiContext : MutableMap<String, Any>, Bindings, InvokerHolder {
             return AsahiContextImpl.create(data)
         }
 
-        internal val getters = LinkedList<Getter>()
-        internal val setters = LinkedList<Setter>()
+        internal val getters = ArrayList<Getter>()
+        internal val setters = ArrayList<Setter>()
 
         @JvmStatic
         fun registerGetter(getter: Getter) {

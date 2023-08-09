@@ -31,7 +31,7 @@ abstract class NativeJSFunction(val key: String, val paramNames: Array<String>, 
     }
 
     companion object {
-        @JvmStatic
+        
         fun create(
             key: String,
             paramNames: Array<String>,
@@ -41,12 +41,12 @@ abstract class NativeJSFunction(val key: String, val paramNames: Array<String>, 
             return NativeJSFunctionImpl.create(key, paramNames, content, initial)
         }
 
-        @JvmStatic
+        
         fun deserialize(key: String, content: String): NativeJSFunction {
             return NativeJSFunctionImpl.deserialize(key, content)
         }
 
-        @JvmStatic
+        
         fun deserialize(key: String, map: Map<String, Any>): NativeJSFunction {
             return NativeJSFunctionImpl.deserialize(key, map)
         }

@@ -26,7 +26,7 @@ interface InlineAnalysis : NamespaceHolder<InlineAnalysis> {
          * @param string String 文本
          * @return InlineAnalysis
          */
-        @JvmStatic
+        
         fun of(string: String): InlineAnalysis {
             return InlineAnalysisImpl.of(string)
         }

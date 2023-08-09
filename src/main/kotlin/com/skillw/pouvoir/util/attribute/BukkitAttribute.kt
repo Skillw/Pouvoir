@@ -30,8 +30,10 @@ enum class BukkitAttribute(val key: String, vararg val alias: String) {
 
     open fun parse(source: String): BukkitAttribute? = values().firstOrNull { it.match(source) }
 
+
     fun toBukkit(): Attribute? =
         Coerce.toEnum("GENERIC_$name", Attribute::class.java) ?: Coerce.toEnum(name, Attribute::class.java)
+
 
     fun match(source: String): Boolean {
         val lower = source.lowercase()

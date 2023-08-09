@@ -2,7 +2,6 @@ package com.skillw.asahi.internal.lexer
 
 import com.skillw.asahi.api.member.lexer.tokenizer.Line
 import com.skillw.asahi.api.member.lexer.tokenizer.ScriptTokenizer
-import java.util.*
 
 object Tokenizer {
     internal enum class StringType {
@@ -196,7 +195,7 @@ object Tokenizer {
         // 下标范围 to 行数
         val (line, range) = entry
         //处理原文本， 以换行符分割
-        val list = LinkedList(tokenizer.script().split("\n"))
+        val list = ArrayList(tokenizer.script().split("\n"))
         val indexInLine = index - range.first
         val lastIndex = range.last - range.first
         val lineStr = list[line - 1]

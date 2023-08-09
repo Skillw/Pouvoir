@@ -1,6 +1,7 @@
 package com.skillw.pouvoir.util
 
 import com.skillw.pouvoir.Pouvoir
+import com.skillw.pouvoir.util.calculate.calculateInfix
 import org.bukkit.entity.LivingEntity
 
 /**
@@ -40,7 +41,7 @@ fun String.calculateInline(entity: LivingEntity? = null): String {
 
 
 fun calculate(input: String): Double {
-    return input.calculate()
+    return input.calculateInfix()
 }
 
 

@@ -22,7 +22,7 @@ interface PouHolo {
     fun update(line: String)
 
     companion object {
-        @JvmStatic
+        
         fun create(location: Location, line: String, vararg viewers: Player): PouHolo? {
             return when {
                 PouDecentHologramsLine.enable -> {

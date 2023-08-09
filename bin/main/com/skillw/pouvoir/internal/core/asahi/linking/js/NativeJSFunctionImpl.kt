@@ -52,7 +52,7 @@ class NativeJSFunctionImpl constructor(
     }
 
     companion object {
-        @JvmStatic
+        
         fun create(
             key: String,
             paramNames: Array<String>,
@@ -62,13 +62,13 @@ class NativeJSFunctionImpl constructor(
             return NativeJSFunctionImpl(key, paramNames, content, initial)
         }
 
-        @JvmStatic
+        
         fun deserialize(key: String, content: String): NativeJSFunction {
             val script = compileManager.compile(content, engine = PouJavaScriptEngine)
             return NativeJSFunctionImpl(key, emptyArray(), script)
         }
 
-        @JvmStatic
+        
         fun deserialize(key: String, map: Map<String, Any>): NativeJSFunction {
             val data = AsahiDataMap().apply { putAll(map) }
             val params = data.get("params", emptyList<String>()).toTypedArray()

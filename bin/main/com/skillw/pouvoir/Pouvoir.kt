@@ -44,51 +44,51 @@ object Pouvoir : SubPouvoir, Plugin() {
     /** Managers */
     override lateinit var managerData: ManagerData
 
-    @JvmStatic
+    
     @PouManager
     lateinit var configManager: PouConfig
 
-    @JvmStatic
+    
     @PouManager
     lateinit var compileManager: CompileManager
 
-    @JvmStatic
+    
     @PouManager
     lateinit var placeholderManager: PouPlaceholderManager
 
-    @JvmStatic
+    
     @PouManager
     lateinit var listenerManager: ListenerManager
 
-    @JvmStatic
+    
     @PouManager
     lateinit var scriptEngineManager: ScriptEngineManager
 
-    @JvmStatic
+    
     @PouManager
     lateinit var scriptAnnotationManager: ScriptAnnotationManager
 
-    @JvmStatic
+    
     @PouManager
     lateinit var scriptManager: ScriptManager
 
-    @JvmStatic
+    
     @PouManager
     lateinit var databaseManager: DatabaseManager
 
-    @JvmStatic
+    
     @PouManager
     lateinit var triggerManager: TriggerManager
 
-    @JvmStatic
+    
     @PouManager
     lateinit var triggerHandlerManager: TriggerHandlerManager
 
-    @JvmStatic
+    
     @PouManager
     lateinit var selectorManager: SelectorManager
 
-    @JvmStatic
+    
     @PouManager
     lateinit var hologramManager: HologramManager
 

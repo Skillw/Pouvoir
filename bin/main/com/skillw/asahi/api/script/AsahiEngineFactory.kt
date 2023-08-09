@@ -76,22 +76,22 @@ class AsahiEngineFactory : ScriptEngineFactory {
     companion object {
         private val fileToScript = ConcurrentHashMap<File, AsahiCompiledScript>()
 
-        @JvmStatic
+        
         infix fun add(pair: Pair<File, AsahiCompiledScript>) {
             fileToScript += pair
         }
 
-        @JvmStatic
+        
         fun addScript(file: File, script: AsahiCompiledScript) {
             fileToScript += file to script
         }
 
-        @JvmStatic
+        
         fun getScript(file: File): AsahiCompiledScript? {
             return fileToScript[file]
         }
 
-        @JvmStatic
+        
         fun search(path: String): AsahiCompiledScript? {
             val file = File(path)
             if (fileToScript.containsKey(file)) return fileToScript[file]

@@ -19,7 +19,7 @@ import com.skillw.asahi.internal.parser.infix.ActionParserImpl
 abstract class InfixParser {
 
     companion object {
-        @JvmStatic
+        
         fun get(): InfixParser {
             return ActionParserImpl
         }

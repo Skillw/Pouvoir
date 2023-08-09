@@ -44,12 +44,12 @@ internal class AsahiLexerImpl : AsahiLexer {
     }
 
     companion object {
-        @JvmStatic
+        
         fun of(script: String): AsahiLexerImpl {
             return AsahiLexerImpl(script)
         }
 
-        @JvmStatic
+        
         fun of(tokens: Collection<String>): AsahiLexerImpl {
             return AsahiLexerImpl(tokens)
         }

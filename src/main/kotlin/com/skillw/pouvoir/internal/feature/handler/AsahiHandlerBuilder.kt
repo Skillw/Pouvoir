@@ -10,7 +10,6 @@ import com.skillw.pouvoir.util.toMap
 import org.bukkit.configuration.serialization.ConfigurationSerializable
 import taboolib.common.platform.event.EventPriority
 import taboolib.common5.cbool
-import java.util.*
 
 /**
  * @className AsahiHandler
@@ -27,7 +26,7 @@ class AsahiHandlerBuilder(
     val triggers = HashSet<String>()
     var priority = EventPriority.NORMAL
     val import = HashSet<String>()
-    val control = LinkedList<Map<String, Any>>()
+    val control = ArrayList<Map<String, Any>>()
     val namespaces = HashSet<String>()
     var condition: AsahiContext.() -> Boolean = { true }
     var deny: AsahiContext.() -> Unit = { }

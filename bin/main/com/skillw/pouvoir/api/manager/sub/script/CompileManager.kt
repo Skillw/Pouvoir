@@ -57,7 +57,7 @@ abstract class CompileManager : Manager, KeyMap<String, PouCompiler>() {
          * @return PouFileCompiledScript? 预编译脚本
          * @receiver File 文件
          */
-        @JvmStatic
+        
         fun File.compileScript(): PouFileCompiledScript? {
             return Pouvoir.compileManager.compile(this)
         }

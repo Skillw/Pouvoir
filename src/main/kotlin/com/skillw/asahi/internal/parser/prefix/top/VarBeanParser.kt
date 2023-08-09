@@ -11,7 +11,6 @@ import com.skillw.asahi.internal.parser.infix.ActionParserImpl
 import com.skillw.asahi.util.fastGet
 import com.skillw.asahi.util.fastInvoke
 import com.skillw.asahi.util.fastSet
-import java.util.*
 
 @AsahiTopParser
 internal object VarBeanParser : TopPrefixParser<Any?>("var-bean", 1) {
@@ -27,7 +26,7 @@ internal object VarBeanParser : TopPrefixParser<Any?>("var-bean", 1) {
     override fun AsahiLexer.parse(token: String): Quester<Any?>? {
         val variable = VarParser.parseWith(this, token)
         if (peek() == "\n" || peek() == ";" || variable == null) return variable
-        val tokens = LinkedList<String>()
+        val tokens = ArrayList<String>()
         while (hasNext() && peek() !in ActionParserImpl.ignores) {
             tokens += next()
         }

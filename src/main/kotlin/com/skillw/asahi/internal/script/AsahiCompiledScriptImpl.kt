@@ -18,7 +18,7 @@ import javax.script.ScriptEngine
  * @date 2022/12/28 21:26 Copyright 2022 user. All rights reserved.
  */
 class AsahiCompiledScriptImpl internal constructor(engine: AsahiEngine, val raw: String) : AsahiCompiledScript(engine) {
-    private val questers = LinkedList<Quester<*>>()
+    private val questers = ArrayList<Quester<*>>()
     private var isExitFunc: AsahiContext.() -> Boolean = { isExit() }
     override fun isExit(isExit: AsahiContext.() -> Boolean): AsahiCompiledScript {
         this.isExitFunc = isExit

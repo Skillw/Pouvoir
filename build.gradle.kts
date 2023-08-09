@@ -10,37 +10,21 @@ plugins {
     id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
+
 tasks.dokkaJavadoc.configure {
-    outputDirectory.set(File("C:\\Users\\Administrator\\Desktop\\Doc\\pouvoir"))
+
     suppressObviousFunctions.set(false)
     suppressInheritedMembers.set(true)
 }
 
-val api: String? by project
 val order: String? by project
 
-task("versionModify") {
-    project.version = project.version.toString() + (order?.let { "-$it" } ?: "")
-}
-
-task("versionAddAPI") {
-    if (api == null) return@task
-    val origin = project.version.toString()
-    project.version = "$origin-api"
-}
-
-
-task("releaseName") {
+task("info") {
     println(project.name + "-" + project.version)
-}
-
-task("version") {
     println(project.version.toString())
 }
 taboolib {
-    if (project.version.toString().contains("-api")) {
-        options("skip-kotlin-relocate", "keep-kotlin-module")
-    }
+    project.version = project.version.toString() + (order?.let { "-$it" } ?: "")
     description {
         contributors {
             name("Glom_")
@@ -93,6 +77,26 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+tasks.register<Jar>("buildAPIJar") {
+    dependsOn(tasks.compileJava, tasks.compileKotlin)
+    from(tasks.compileJava, tasks.compileKotlin)
+    includeEmptyDirs = false
+    include { it.isDirectory or it.name.endsWith(".class") or it.name.endsWith(".kotlin_module") }
+    archiveClassifier.set("api")
+}
+
+tasks.register<Jar>("buildJavadocJar") {
+    dependsOn(tasks.dokkaJavadoc)
+    from(tasks.dokkaJavadoc.flatMap { it.outputDirectory })
+    archiveClassifier.set("javadoc")
+}
+
+tasks.register<Jar>("buildSourcesJar") {
+    dependsOn(JavaPlugin.CLASSES_TASK_NAME)
+    archiveClassifier.set("sources")
+    from(sourceSets["main"].allSource)
+}
+
 repositories {
     mavenCentral()
 }
@@ -107,7 +111,6 @@ dependencies {
     compileOnly("ink.ptms.adyeshach:all:2.0.0-snapshot-1")
     compileOnly("com.esotericsoftware:reflectasm:1.11.9")
     taboo(fileTree("libs/PouNashorn.jar"))
-    taboo(fileTree("libs/Asahi-1.0.0-dev-sources.jar"))
     compileOnly(fileTree("libs"))
     compileOnly(kotlin("stdlib-jdk8"))
 }
@@ -121,12 +124,6 @@ tasks.javadoc {
         encoding = "UTF-8"
     }
 }
-
-java {
-    withJavadocJar()
-    withSourcesJar()
-}
-
 
 
 configure<JavaPluginConvention> {
@@ -146,15 +143,14 @@ publishing {
                 username = project.findProperty("username").toString()
                 password = project.findProperty("password").toString()
             }
-            authentication {
-                create<BasicAuthentication>("basic")
-            }
         }
         mavenLocal()
     }
     publications {
         create<MavenPublication>("library") {
-            from(components["java"])
+            artifact(tasks["buildAPIJar"]) { classifier = classifier?.replace("-api", "") }
+            artifact(tasks["buildJavadocJar"])
+            artifact(tasks["buildSourcesJar"])
             version = project.version.toString()
             groupId = project.group.toString()
             pom {
@@ -165,7 +161,7 @@ publishing {
                 licenses {
                     license {
                         name.set("MIT License")
-                        url.set("https://github.com/Glom-c/Asahi/blob/main/LICENSE")
+                        url.set("https://github.com/Glom-c/Pouvoir/blob/main/LICENSE")
                     }
                 }
                 developers {
@@ -176,25 +172,16 @@ publishing {
                     }
                 }
                 scm {
-                    connection.set("...")
-                    developerConnection.set("...")
-                    url.set("...")
+                    connection.set("scm:git:git:https://github.com/Glom-c/Pouvoir.git")
+                    developerConnection.set("scm:git:ssh:https://github.com/Glom-c/Pouvoir.git")
+                    url.set("https://github.com/Glom-c/Pouvoir.git")
                 }
             }
         }
     }
 }
 
-
-
-signing {
-    sign(publishing.publications.getAt("library"))
-}
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions {
-    jvmTarget = "1.8"
-}
-val compileTestKotlin: KotlinCompile by tasks
-compileTestKotlin.kotlinOptions {
     jvmTarget = "1.8"
 }

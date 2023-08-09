@@ -14,6 +14,7 @@ import taboolib.module.chat.colored
  */
 object MessageUtil {
 
+
     @JvmStatic
     fun message(sender: CommandSender, msg: String) {
         sender.sendMessage(msg.colored())

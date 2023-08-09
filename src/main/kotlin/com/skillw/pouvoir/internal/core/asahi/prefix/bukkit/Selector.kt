@@ -14,7 +14,6 @@ import com.skillw.pouvoir.api.feature.selector.Target
 import org.bukkit.Location
 import org.bukkit.entity.Entity
 import taboolib.common5.cbool
-import java.util.*
 
 /**
  * @className Select
@@ -125,7 +124,7 @@ private fun AsahiLexer.params(): Any {
         } while (!expect("]", "}"))
         map
     } else {
-        val params = LinkedList<Quester<Any>>()
+        val params = ArrayList<Quester<Any>>()
         while (hasNext()
             && peek()?.startsWith("@") != true
             && peek() != "]"

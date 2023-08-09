@@ -21,7 +21,7 @@ object Tokenizer {
         MULTIPLE
     }
 
-    @JvmStatic
+
     fun String.toTokens(modifier: (ArrayList<String>) -> Unit = {}): ArrayList<String> {
         return prepareTokens(this).first.also(modifier)
     }

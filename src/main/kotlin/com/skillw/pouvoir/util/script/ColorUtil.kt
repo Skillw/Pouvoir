@@ -16,6 +16,7 @@ object ColorUtil {
         return msg.colored()
     }
 
+
     @JvmStatic
     fun colored(messages: List<String>): List<String> {
         return messages.colored()

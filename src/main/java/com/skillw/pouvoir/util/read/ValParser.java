@@ -1,11 +1,15 @@
 package com.skillw.pouvoir.util.read;
 
+import org.jetbrains.annotations.NotNull;
+
 public class ValParser implements Parser<Value> {
+    @NotNull
     @Override
     public Result<Value> parse(String text) {
         if (text.isEmpty()) {
-            return null;
+            return new Result<>();
         }
+        Result<Value> result = new Result<>(this);
         StringBuilder builder = new StringBuilder();
         int index = 0;
         boolean number = false;
@@ -55,10 +59,10 @@ public class ValParser implements Parser<Value> {
             }
         }
         if (builder.length() == 0) {
-            return null;
+            return new Result<>();
         }
         Value value = new Value(Double.parseDouble(builder.toString()), operator);
-        return new Result<>(this, text.substring(index)).setResult(value);
+        return new Result<>(this).setResult(value).setRange(0, index);
     }
 }
 

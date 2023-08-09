@@ -14,7 +14,7 @@ object PouvoirAPI {
      * @return String 解析后的文本
      * @receiver String 待解析的文本
      */
-    @JvmStatic
+
     fun String.placeholder(entity: LivingEntity, analysis: Boolean = true): String {
         return Pouvoir.placeholderManager.replace(entity, this, analysis)
     }

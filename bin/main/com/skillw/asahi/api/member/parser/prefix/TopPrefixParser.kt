@@ -94,7 +94,7 @@ abstract class TopPrefixParser<R>(override val key: String, val priority: Int) :
     }
 
     companion object {
-        @JvmStatic
+        
         fun AsahiLexer.tryLangParse(token: String): Quester<out Any?>? {
             return topPrefixParsers.firstOrNull { it.canParseWith(this, token) }?.parseWith(this, token)
         }

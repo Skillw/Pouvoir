@@ -14,31 +14,27 @@ import taboolib.module.chat.colored
  */
 object MessageUtil {
 
-    @JvmStatic
+
     fun message(sender: CommandSender, msg: String) {
         sender.sendMessage(msg.colored())
     }
 
 
-    @JvmStatic
     fun warning(msg: Any?) {
         Bukkit.getLogger().warning(msg.toString().colored())
     }
 
 
-    @JvmStatic
     fun info(msg: Any?) {
         Bukkit.getLogger().info(msg.toString().colored())
     }
 
 
-    @JvmStatic
     fun debug(msg: Any?) {
         info("&9[&eDebug&9] &7${msg}")
     }
 
 
-    @JvmStatic
     fun Any.information(key: String): String {
         return "&f$key  ${
             if (isStaticClass()) "&7= &6${

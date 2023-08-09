@@ -22,7 +22,7 @@ internal class PouDecentHologramsLine(location: Location, line: String, vararg v
     }
 
     companion object {
-        @JvmStatic
+        
         val enable by lazy {
             Bukkit.getPluginManager().isPluginEnabled("DecentHolograms")
         }

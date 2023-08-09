@@ -7,7 +7,6 @@ import taboolib.module.nms.ItemTag
 import taboolib.module.nms.ItemTagData
 import taboolib.module.nms.ItemTagList
 import taboolib.module.nms.ItemTagType
-import java.util.*
 
 
 fun String.cast(): Any {
@@ -140,7 +139,7 @@ fun <T : Any> T.replaceThenCalc(replacement: Map<String, String>, entity: Living
         }
 
         is List<*> -> {
-            val list = LinkedList<Any>()
+            val list = ArrayList<Any>()
             mapNotNull { it }.forEach {
                 list.add(it.replaceThenCalc(replacement, entity))
             }
@@ -167,7 +166,7 @@ fun <T : Any> T.deepClone(): Any {
         }
 
         is List<*> -> {
-            val list = LinkedList<Any>()
+            val list = ArrayList<Any>()
             mapNotNull { it }.forEach {
                 list.add(it.deepClone())
             }

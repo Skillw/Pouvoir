@@ -16,7 +16,7 @@ abstract class NMS {
     abstract fun getAttribute(entity: LivingEntity, attribute: BukkitAttribute): AttributeInstance?
 
     companion object {
-        @JvmStatic
+        
         val INSTANCE by lazy {
             nmsProxy<NMS>()
         }

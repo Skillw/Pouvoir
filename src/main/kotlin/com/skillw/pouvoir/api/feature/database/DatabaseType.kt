@@ -31,7 +31,7 @@ abstract class DatabaseType<H : ContainerHolder<C>, C : BaseContainer>(override 
     }
 
     fun containers(): List<BaseContainer> {
-        val containers = LinkedList<BaseContainer>()
+        val containers = ArrayList<BaseContainer>()
         holders.forEach { containers += it.values }
         return containers
     }

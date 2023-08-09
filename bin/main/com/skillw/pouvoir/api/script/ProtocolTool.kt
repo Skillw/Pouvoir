@@ -16,7 +16,7 @@ object ProtocolTool {
         BaseMap<String, PacketListener>()
     }
 
-    @JvmStatic
+
     fun addPacketListener(
         key: String,
         priority: ListenerPriority,
@@ -37,7 +37,7 @@ object ProtocolTool {
         ProtocolLibrary.getProtocolManager().addPacketListener(listener)
     }
 
-    @JvmStatic
+
     fun addPacketListener(
         key: String,
         priority: String,
@@ -49,7 +49,7 @@ object ProtocolTool {
         addPacketListener(key, listenerPriority, types, sending, receiving)
     }
 
-    @JvmStatic
+
     fun removePacketListener(
         key: String,
     ) {

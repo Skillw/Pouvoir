@@ -7,12 +7,11 @@ import com.skillw.asahi.api.annotation.AsahiPrefix
 import com.skillw.asahi.api.prefixParser
 import com.skillw.asahi.internal.util.AsahiClassBean
 import com.skillw.pouvoir.util.script.MessageUtil.debug
-import java.util.*
 
 internal object PrefixDebug {
 
     private fun Collection<*>.debug() {
-        val messages = LinkedList<String>()
+        val messages = ArrayList<String>()
         forEach {
             messages.add(it.toString())
         }

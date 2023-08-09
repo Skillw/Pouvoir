@@ -116,7 +116,8 @@ fun check(a: Any?, symbol: String, b: Any?): Boolean {
         "equalsIgnore" -> a.toString().equals(b.toString(), true)
         "!equalsIgnore" -> !a.toString().equals(b.toString(), true)
         else -> {
-            println("Unknown symbol $symbol!")
+            taboolib.common.platform.function.warning("Unknown symbol $symbol!")
+            Throwable().printStackTrace()
             false
         }
     }

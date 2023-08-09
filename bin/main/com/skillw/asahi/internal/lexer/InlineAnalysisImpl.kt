@@ -28,7 +28,7 @@ internal class InlineAnalysisImpl private constructor(val text: String) :
         //字符是否符合命名规范
         private val charRegex = Regex("([^\\x00-\\xff]|[a-zA-Z0-9_$.])")
 
-        @JvmStatic
+        
         fun of(str: String): InlineAnalysis {
             return cache.computeIfAbsent(str.hashCode()) { InlineAnalysisImpl(str) }
         }

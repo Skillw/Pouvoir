@@ -110,7 +110,7 @@ object PouConfig : ConfigManager(Pouvoir) {
         }
     }
 
-    @JvmStatic
+
     fun debug(debug: () -> Unit) {
         if (PouConfig.debug) {
             debug.invoke()

@@ -3,9 +3,6 @@ package com.skillw.pouvoir.internal.core.asahi.infix.bukkit
 import com.skillw.asahi.api.annotation.AsahiInfix
 import com.skillw.asahi.api.member.parser.infix.namespacing.BaseInfix
 import com.skillw.pouvoir.util.angleFixed
-import com.skillw.pouvoir.util.rotateAroundX
-import com.skillw.pouvoir.util.rotateAroundY
-import com.skillw.pouvoir.util.rotateAroundZ
 import org.bukkit.Location
 import org.bukkit.World
 import org.bukkit.util.Vector

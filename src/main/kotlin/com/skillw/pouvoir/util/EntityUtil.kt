@@ -2,20 +2,17 @@ package com.skillw.pouvoir.util
 
 import com.skillw.pouvoir.Pouvoir.sync
 import com.skillw.pouvoir.internal.feature.raytrace.RayTrace
-import com.skillw.pouvoir.util.plugin.Pair
-import com.skillw.pouvoir.util.plugin.to
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.entity.Entity
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import taboolib.common.platform.function.isPrimaryThread
-import taboolib.common.util.sync
-import taboolib.module.navigation.BoundingBox
-import taboolib.module.navigation.NMSImpl
+import taboolib.module.navigation.NMS
 import taboolib.module.nms.getI18nName
 import taboolib.platform.util.toBukkitLocation
 import java.util.*
+import java.util.function.Predicate
 
 /**
  * 实体工具类
@@ -55,18 +52,21 @@ fun UUID.player(): Player? {
 }
 
 
-fun getPlayerByUUID(uuid: UUID?): Player? {
-    return if (sync && !isPrimaryThread) sync { Bukkit.getPlayer(uuid!!) } else Bukkit.getPlayer(uuid!!)
-}
-
-
 fun UUID.isAlive(): Boolean {
     return isLiving(this)
 }
 
+// 就下面这俩b函数 1.19以上不同步会直接刷爆后台
+fun getPlayerByUUID(uuid: UUID?): Player? {
+    return Bukkit.getPlayer(uuid!!)
+}
 
 fun getEntity(uuid: UUID?): Entity? {
-    return uuid?.let { if (sync && !isPrimaryThread) sync { Bukkit.getEntity(it) } else Bukkit.getEntity(it) }
+    return uuid?.let {
+        if (sync && !isPrimaryThread) com.skillw.pouvoir.util.nms.NMS.INSTANCE.getEntity(uuid) else Bukkit.getEntity(
+            it
+        )
+    }
 }
 
 
@@ -93,20 +93,30 @@ fun LivingEntity.getEntityRayHit(
 }
 
 
-fun Location.getNearByEntities(x: Double, y: Double, z: Double): Collection<Entity> {
-    return if (sync && !isPrimaryThread)
-        sync { world?.getNearbyEntities(this, x, y, z) ?: emptyList() }
-    else world?.getNearbyEntities(this, x, y, z) ?: emptyList()
+fun Location.getNearByEntities(
+    x: Double, y: Double, z: Double,
+    filter: Predicate<Entity> = Predicate { true },
+): Collection<Entity> {
+    return if (sync) com.skillw.pouvoir.util.nms.NMS.INSTANCE.getNearbyEntities(
+        this,
+        x,
+        y,
+        z,
+        filter
+    ) else world?.getNearbyEntities(this, x, y, z)?.filter { filter.test(it) } ?: emptyList()
 }
 
 
-fun taboolib.common.util.Location.getNearByEntities(x: Double, y: Double, z: Double): Collection<Entity> {
-    return toBukkitLocation().getNearByEntities(x, y, z)
+fun taboolib.common.util.Location.getNearByEntities(
+    x: Double, y: Double, z: Double,
+    filter: Predicate<Entity> = Predicate { true },
+): Collection<Entity> {
+    return toBukkitLocation().getNearByEntities(x, y, z, filter)
 }
 
 
-fun taboolib.common.util.Location.getEntities(): Collection<Entity> {
-    return toBukkitLocation().getNearByEntities(0.5, 0.5, 0.5)
+fun taboolib.common.util.Location.getEntities(filter: Predicate<Entity> = Predicate { true }): Collection<Entity> {
+    return toBukkitLocation().getNearByEntities(0.5, 0.5, 0.5, filter)
 }
 
 
@@ -116,17 +126,10 @@ fun Location.getRayHit(distance: Double): Entity? {
 
 
 fun Location.getRayHits(distance: Double): Collection<Entity> {
-    val entities = ArrayList<Pair<Entity, BoundingBox>>()
-    getNearByEntities(distance, distance, distance)
-        .forEach {
-            entities += it to NMSImpl().getBoundingBox(it);
-        }
     val traces = RayTrace(this.toVector(), this.direction).traces(distance, 0.2)
-    val result = LinkedList<Entity>()
-    for (vector in traces) {
-        result.addAll(entities.filter { it.value.contains(vector) }.map { it.key })
+    return getNearByEntities(distance, distance, distance) { entity ->
+        traces.any { NMS.instance.getBoundingBox(entity)?.contains(it) == true }
     }
-    return result
 }
 
 

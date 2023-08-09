@@ -7,7 +7,6 @@ import com.skillw.asahi.api.quest
 import com.skillw.asahi.api.questSafely
 import com.skillw.asahi.api.quester
 import com.skillw.asahi.api.typeParser
-import java.util.*
 
 /**
  * @className Collection
@@ -48,7 +47,7 @@ private fun list() = typeParser(List::class.java, MutableList::class.java) {
 
 private fun AsahiLexer.parseList(): Quester<MutableList<Any?>> {
     this.expect("[", "(")
-    val list = LinkedList<Any?>()
+    val list = ArrayList<Any?>()
     do {
         list += if (this.expect("*")) questSafely<Any?>().quester {
             when (it) {
@@ -78,7 +77,7 @@ private fun AsahiLexer.parseList(): Quester<MutableList<Any?>> {
 @AsahiTypeParser
 private fun map() = typeParser(Map::class.java, MutableMap::class.java) {
     expect("[", "{")
-    val list = LinkedList<Pair<Quester<String>, Quester<Any?>>>()
+    val list = ArrayList<Pair<Quester<String>, Quester<Any?>>>()
     do {
         val key = quest<String>()
         this.expect("to", "=", ":")

@@ -14,7 +14,6 @@ import taboolib.common.util.Location
 import taboolib.common.util.Vector
 import taboolib.platform.util.toProxyLocation
 import java.awt.Color
-import java.util.*
 
 /**
  * 表示一个特效对象
@@ -59,7 +58,7 @@ abstract class ParticleObject() {
 
     /** 粒子命中目标容器 */
     private var calcHit = false
-    private var hitTargets = LinkedList<Target>()
+    private var hitTargets = ArrayList<Target>()
     private var onHit: ((Target) -> Unit)? = null
 
     fun calcHitTargets() {

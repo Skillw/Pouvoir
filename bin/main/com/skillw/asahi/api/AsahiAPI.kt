@@ -16,7 +16,7 @@ object AsahiAPI {
      * @return String 解析后的文本
      * @receiver String 含Asahi的文本
      */
-    @JvmStatic
+
     fun String.analysis(context: AsahiContext = AsahiContext.create(), vararg namespaces: String): String {
         return InlineAnalysis.of(this).addNamespaces(*namespaces).analysis(context)
     }
@@ -29,7 +29,7 @@ object AsahiAPI {
      * @return Any 结果
      * @receiver String Asahi
      */
-    @JvmStatic
+
     fun String.asahi(
         context: AsahiContext = AsahiContext.create(),
         vararg namespaces: String,
@@ -49,12 +49,12 @@ object AsahiAPI {
      * @return AsahiCompiledScript 预编译脚本
      * @receiver String
      */
-    @JvmStatic
+
     fun String.compile(vararg namespaces: String, engine: AsahiEngine = default): AsahiCompiledScript {
         return engine.compile(this, *namespaces)
     }
 
-    @JvmStatic
+
     fun Collection<String>.compile(vararg namespaces: String, engine: AsahiEngine = default): AsahiCompiledScript {
         return engine.compile(this, *namespaces)
     }

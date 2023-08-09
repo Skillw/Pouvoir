@@ -170,7 +170,7 @@ class SimpleDispatcherBuilder(
     }
 
     companion object {
-        @JvmStatic
+        
         fun deserialize(section: org.bukkit.configuration.ConfigurationSection): SimpleDispatcherBuilder {
             val key = section.name
             return SimpleDispatcherBuilder(key, section.toMap())

@@ -44,12 +44,12 @@ class ScriptTokenizer {
     }
 
     companion object {
-        @JvmStatic
+        
         fun of(origin: String): ScriptTokenizer {
             return ScriptTokenizer(origin)
         }
 
-        @JvmStatic
+        
         fun of(tokens: Collection<String>): ScriptTokenizer {
             return ScriptTokenizer(tokens)
         }

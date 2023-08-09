@@ -56,7 +56,7 @@ object AsahiManager {
         return typeParsers[type] as? PrefixParser<R>?
     }
 
-    @JvmStatic
+
     fun define(from: String, to: String) {
         macros[from] = to
     }

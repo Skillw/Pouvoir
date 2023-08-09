@@ -239,7 +239,7 @@ interface AsahiContext : MutableMap<String, Any>, Bindings, InvokerHolder {
 
     companion object {
         //给脚本用的 不用填参数 方便一些
-        @JvmStatic
+        
         fun create(): AsahiContext {
             return AsahiContextImpl.create()
         }
@@ -250,7 +250,7 @@ interface AsahiContext : MutableMap<String, Any>, Bindings, InvokerHolder {
          * @param data MutableMap<String, Any> 基础Map，上下文会基于这个map创建
          * @return AsahiContext 创建好的上下文
          */
-        @JvmStatic
+        
         fun create(
             data: MutableMap<String, Any> = HashMap(),
         ): AsahiContext {
@@ -260,13 +260,13 @@ interface AsahiContext : MutableMap<String, Any>, Bindings, InvokerHolder {
         internal val getters = LinkedList<Getter>()
         internal val setters = LinkedList<Setter>()
 
-        @JvmStatic
+        
         fun registerGetter(getter: Getter) {
             getters += getter
             getters.sorted()
         }
 
-        @JvmStatic
+        
         fun registerSetter(setter: Setter) {
             setters += setter
             getters.sorted()

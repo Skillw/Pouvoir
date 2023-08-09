@@ -92,6 +92,10 @@ object Pouvoir : SubPouvoir, Plugin() {
     @PouManager
     lateinit var hologramManager: HologramManager
 
+    @JvmStatic
+    @PouManager
+    lateinit var antiCheatManager: AntiCheatManager
+
 
     override fun onLoad() {
         load()

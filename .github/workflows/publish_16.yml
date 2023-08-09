@@ -24,10 +24,6 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
-      - name: Create Sign File
-        run: |
-          echo "${{secrets.SIGNING_SECRET_KEY_RING_FILE}}" > ~/secring.pgp.b64
-          base64 -d ~/secring.pgp.b64 > ~/secring.pgp
       # 发布到仓库
       - name: publish
         id: publish_1
@@ -35,7 +31,7 @@ jobs:
         env:
           NEXUS_USERNAME: ${{ secrets.USERNAME }}
           NEXUS_PASSWORD: ${{ secrets.PASSWORD }}
-        run: ./gradlew publish -Papi=true -Porder=$GITHUB_RUN_NUMBER -Pbuild=$GITHUB_RUN_NUMBER -Pusername=$NEXUS_USERNAME -Ppassword=$NEXUS_PASSWORD -Psigning.keyId=${{secrets.SIGNING_KEY_ID}} -Psigning.password=${{secrets.SIGNING_KEY_PASSWORD}} -Psigning.secretKeyRingFile=$(echo ~/secring.pgp)
+        run: ./gradlew publish -Papi=true -Porder=$GITHUB_RUN_NUMBER -Pbuild=$GITHUB_RUN_NUMBER -Pusername=$NEXUS_USERNAME -Ppassword=$NEXUS_PASSWORD
 
       # 发布到仓库: 重试-1
       - name: publish (retry 1)
@@ -45,7 +41,7 @@ jobs:
         env:
           NEXUS_USERNAME: ${{ secrets.USERNAME }}
           NEXUS_PASSWORD: ${{ secrets.PASSWORD }}
-        run: ./gradlew publish -Papi=true -Porder=$GITHUB_RUN_NUMBER -Pbuild=$GITHUB_RUN_NUMBER -Pusername=$NEXUS_USERNAME -Ppassword=$NEXUS_PASSWORD -Psigning.keyId=${{secrets.SIGNING_KEY_ID}} -Psigning.password=${{secrets.SIGNING_KEY_PASSWORD}} -Psigning.secretKeyRingFile=$(echo ~/secring.pgp)
+        run: ./gradlew publish -Papi=true -Porder=$GITHUB_RUN_NUMBER -Pbuild=$GITHUB_RUN_NUMBER -Pusername=$NEXUS_USERNAME -Ppassword=$NEXUS_PASSWORD
 
       # 发布到仓库: 重试-2
       - name: publish (retry 2)
@@ -55,7 +51,7 @@ jobs:
         env:
           NEXUS_USERNAME: ${{ secrets.USERNAME }}
           NEXUS_PASSWORD: ${{ secrets.PASSWORD }}
-        run: ./gradlew publish -Papi=true -Porder=$GITHUB_RUN_NUMBER -Pbuild=$GITHUB_RUN_NUMBER -Pusername=$NEXUS_USERNAME -Ppassword=$NEXUS_PASSWORD -Psigning.keyId=${{secrets.SIGNING_KEY_ID}} -Psigning.password=${{secrets.SIGNING_KEY_PASSWORD}} -Psigning.secretKeyRingFile=$(echo ~/secring.pgp)
+        run: ./gradlew publish -Papi=true -Porder=$GITHUB_RUN_NUMBER -Pbuild=$GITHUB_RUN_NUMBER -Pusername=$NEXUS_USERNAME -Ppassword=$NEXUS_PASSWORD
 
       # 发布到仓库: 重试-3
       - name: publish (retry 3)
@@ -64,4 +60,4 @@ jobs:
         env:
           NEXUS_USERNAME: ${{ secrets.USERNAME }}
           NEXUS_PASSWORD: ${{ secrets.PASSWORD }}
-        run: ./gradlew publish -Papi=true -Porder=$GITHUB_RUN_NUMBER -Pbuild=$GITHUB_RUN_NUMBER -Pusername=$NEXUS_USERNAME -Ppassword=$NEXUS_PASSWORD -Psigning.keyId=${{secrets.SIGNING_KEY_ID}} -Psigning.password=${{secrets.SIGNING_KEY_PASSWORD}} -Psigning.secretKeyRingFile=$(echo ~/secring.pgp)
+        run: ./gradlew publish -Papi=true -Porder=$GITHUB_RUN_NUMBER -Pbuild=$GITHUB_RUN_NUMBER -Pusername=$NEXUS_USERNAME -Ppassword=$NEXUS_PASSWORD

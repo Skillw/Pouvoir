@@ -85,7 +85,7 @@ class AsahiHandlerBuilder(
     }
 
     companion object {
-        @JvmStatic
+        
         fun deserialize(section: org.bukkit.configuration.ConfigurationSection): AsahiHandlerBuilder {
             val key = section.name
             return AsahiHandlerBuilder(key, section.toMap())

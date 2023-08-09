@@ -8,11 +8,11 @@ import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.configuration.serialization.ConfigurationSerializable
 import taboolib.common.platform.function.console
 import taboolib.common.platform.function.getDataFolder
+import taboolib.common.platform.function.warning
 import taboolib.module.lang.sendLang
 import java.io.File
 import java.math.BigInteger
 import java.security.MessageDigest
-import java.util.*
 
 /**
  * IO相关工具类
@@ -29,9 +29,9 @@ fun File.pathNormalize(): String {
 
 fun <T : ConfigurationSerializable> loadMultiply(mainFile: File, clazz: Class<T>): List<Pair<T, File>> {
     return mainFile.run {
-        val list = LinkedList<Pair<T, File>>()
+        val list = ArrayList<Pair<T, File>>()
         for (file in listSubFiles().filter { it.extension == "yml" }) {
-            val config = file.loadYaml() ?: continue
+            val config = file.loadYaml(true) ?: continue
             for (key in config.getKeys(false)) {
                 try {
                     list.add(
@@ -43,6 +43,7 @@ fun <T : ConfigurationSerializable> loadMultiply(mainFile: File, clazz: Class<T>
                         )
                     )
                 } catch (t: Throwable) {
+                    warning("在读取配置文件 ${mainFile.name} (${clazz.name}) 时出错, 报错如下")
                     t.printStackTrace()
                 }
             }
@@ -66,15 +67,15 @@ fun ConfigurationSection.toMap(): Map<String, Any> {
 }
 
 
-fun File.loadYaml(): YamlConfiguration? {
+fun File.loadYaml(notice: Boolean = false): YamlConfiguration? {
     val config = YamlConfiguration()
-    try {
+    runCatching {
         config.load(this)
-    } catch (e: Throwable) {
+    }.exceptionOrNull()?.let {
+        if (!notice) return null
         console().sendLang("wrong-config", name)
-        console().sendLang("wrong-config-cause", uncolored(e.message ?: "null"))
-        e.printStackTrace()
-        return null
+        console().sendLang("wrong-config-cause", uncolored(it.message ?: "null"))
+        it.printStackTrace()
     }
     return config
 }
@@ -95,7 +96,7 @@ fun File.listSubFiles(): List<File> {
 
 
 fun File.loadYamls(): List<YamlConfiguration> {
-    val yamls = LinkedList<YamlConfiguration>()
+    val yamls = ArrayList<YamlConfiguration>()
     for (subFile in listSubFiles()) {
         if (subFile.isFile && subFile.name.endsWith(".yml")) {
             yamls.add(subFile.loadYaml() ?: continue)

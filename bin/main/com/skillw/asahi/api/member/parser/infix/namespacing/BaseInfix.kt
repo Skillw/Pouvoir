@@ -121,7 +121,7 @@ abstract class BaseInfix<T : Any>(override val key: Class<out T>, override val n
 
     companion object {
         //给Java用的
-        @JvmStatic
+        
         fun <T : Any> createInfix(type: Class<T>, namespace: String = "common"): BaseInfix<T> {
             return object : BaseInfix<T>(type, namespace) {}
         }
@@ -134,7 +134,7 @@ abstract class BaseInfix<T : Any>(override val key: Class<out T>, override val n
          * @param receiver 处理中缀解释器
          * @return BaseInfix<T> 中缀解释器
          */
-        @JvmStatic
+        
         fun <T : Any> createInfix(
             type: Class<T>,
             namespace: String = "common",
@@ -151,7 +151,7 @@ abstract class BaseInfix<T : Any>(override val key: Class<out T>, override val n
          * @param namespace String 命名空间
          * @param executor 执行内容
          */
-        @JvmStatic
+        
         fun <T : Any> infix(
             type: Class<T>,
             vararg keys: String,

@@ -5,7 +5,7 @@ import com.skillw.asahi.api.prefixParser
 import com.skillw.asahi.api.quest
 import com.skillw.asahi.api.quester
 import com.skillw.asahi.internal.util.Time
-import com.skillw.pouvoir.util.BukkitAttribute
+import com.skillw.pouvoir.util.attribute.BukkitAttribute
 import com.skillw.pouvoir.util.nms.NMS
 import org.bukkit.attribute.AttributeModifier
 import org.bukkit.entity.LivingEntity

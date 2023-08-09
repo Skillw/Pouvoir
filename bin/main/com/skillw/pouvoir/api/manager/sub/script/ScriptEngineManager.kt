@@ -53,7 +53,7 @@ abstract class ScriptEngineManager : KeyMap<String, PouScriptEngine>(), Manager 
     abstract fun relocatePath(clazzPath: String): String
 
     companion object {
-        @JvmStatic
+        
         fun File.searchEngine(): PouScriptEngine? {
             return Pouvoir.scriptEngineManager.getEngine(this.extension)
         }

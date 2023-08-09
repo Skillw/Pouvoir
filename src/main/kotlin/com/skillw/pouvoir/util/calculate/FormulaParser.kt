@@ -86,7 +86,7 @@ private fun Queue<Any>.calc(): Double {
     return calcStack.pop()
 }
 
-internal fun String.calculate(): Double {
+internal fun String.calculateInfix(): Double {
     return runCatching {
         filter { it != ' ' }.toCalcInfix().toCalcSuffix().calc()
     }.getOrElse {

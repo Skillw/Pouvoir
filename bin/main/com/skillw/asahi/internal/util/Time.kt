@@ -14,10 +14,10 @@ class Time(var millis: Long) {
     fun toTick(): Long = millis / 50
 
     companion object {
-        @JvmStatic
+        
         val noTime = Time(-1)
 
-        @JvmStatic
+        
         fun tick(tick: Long): Time {
             return Time(tick * 50)
         }

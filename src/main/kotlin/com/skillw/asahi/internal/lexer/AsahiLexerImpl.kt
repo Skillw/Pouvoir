@@ -14,7 +14,6 @@ import com.skillw.asahi.util.condition.calcCondition
 import com.skillw.pouvoir.util.condition.ConditionOperator.Companion.isConditionOperator
 import com.skillw.pouvoir.util.condition.ConditionOperator.Companion.toConditionOperator
 import com.skillw.pouvoir.util.script.MessageUtil
-import java.util.*
 
 
 /**
@@ -192,7 +191,7 @@ internal class AsahiLexerImpl : AsahiLexer {
         vararg till: String,
         boolParser: AsahiLexer.() -> Quester<Boolean>,
     ): Quester<Boolean> {
-        val conditions = LinkedList<Quester<*>>()
+        val conditions = ArrayList<Quester<*>>()
         while (hasNext()) {
             if (peek() in till) break
             if (peek()?.isConditionOperator() == true) {

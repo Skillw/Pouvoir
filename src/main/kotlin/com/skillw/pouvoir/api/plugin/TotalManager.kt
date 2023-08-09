@@ -18,7 +18,6 @@ import taboolib.common.platform.Awake
 import taboolib.library.reflex.ClassStructure
 import taboolib.library.reflex.ReflexClass
 import taboolib.platform.util.bukkitPlugin
-import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
 object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
@@ -43,7 +42,7 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
         }
     }
 
-    private val handlers = LinkedList<ClassHandler>()
+    private val handlers = ArrayList<ClassHandler>()
 
     private fun loadSubPou(plugin: Plugin) {
         if (!isDependPouvoir(plugin)) return

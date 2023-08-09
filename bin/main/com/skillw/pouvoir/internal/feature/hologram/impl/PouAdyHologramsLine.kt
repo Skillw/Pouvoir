@@ -17,7 +17,7 @@ import taboolib.module.chat.colored
  */
 internal class PouAdyHologramsLine(val location: Location, line: String, vararg viewers: Player) : PouHolo {
     companion object {
-        @JvmStatic
+        
         val enable by lazy {
             Bukkit.getPluginManager().isPluginEnabled("Adyeshach")
         }

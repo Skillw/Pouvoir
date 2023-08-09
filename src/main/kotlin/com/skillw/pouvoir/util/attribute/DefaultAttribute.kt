@@ -15,18 +15,24 @@ object DefaultAttribute {
     private val ARMOR = HashMap<String, Double>()
     private val ARMOR_TOUGHNESS = HashMap<String, Double>()
     private val KNOCKBACK_RESISTANCE = HashMap<String, Double>()
+
+    @JvmStatic
     fun getAttackDamage(type: Material?): Double {
         return getAttackDamage(
             XMaterial.matchXMaterial(type!!.name).orElse(XMaterial.STONE)
         )
     }
 
+
+    @JvmStatic
     fun getAttackSpeed(type: Material?): Double {
         return getAttackSpeed(
             XMaterial.matchXMaterial(type!!.name).orElse(XMaterial.STONE)
         )
     }
 
+
+    @JvmStatic
     fun getArmor(type: Material?): Double {
         return getArmor(
             XMaterial.matchXMaterial(
@@ -35,38 +41,53 @@ object DefaultAttribute {
         )
     }
 
+
+    @JvmStatic
     fun getArmorToughness(type: Material?): Double {
         return getArmorToughness(
             XMaterial.matchXMaterial(type!!.name).orElse(XMaterial.STONE)
         )
     }
 
+
+    @JvmStatic
     fun getKnockbackResistance(type: Material?): Double {
         return getKnockbackResistance(
             XMaterial.matchXMaterial(type!!.name).orElse(XMaterial.STONE)
         )
     }
 
+
+    @JvmStatic
     fun getAttackDamage(type: XMaterial): Double {
         return getAttackDamage(type.name)
     }
 
+
+    @JvmStatic
     fun getAttackSpeed(type: XMaterial): Double {
         return getAttackSpeed(type.name)
     }
 
+
+    @JvmStatic
     fun getArmor(type: XMaterial): Double {
         return getArmor(type.name)
     }
 
+
+    @JvmStatic
     fun getArmorToughness(type: XMaterial): Double {
         return getArmorToughness(type.name)
     }
+
 
     fun getKnockbackResistance(type: XMaterial): Double {
         return getKnockbackResistance(type.name)
     }
 
+
+    @JvmStatic
     fun getAttackDamage(name: String): Double {
         return if (name.endsWith("_HOE")) {
             ATTACK_DAMAGE["HOE"]!!
@@ -75,6 +96,8 @@ object DefaultAttribute {
         }
     }
 
+
+    @JvmStatic
     fun getAttackSpeed(name: String): Double {
         return if (name.endsWith("_SWORD")) {
             ATTACK_SPEED["SWORD"]!!
@@ -87,18 +110,26 @@ object DefaultAttribute {
         }
     }
 
+
+    @JvmStatic
     fun getArmor(name: String): Double {
         return ARMOR.getOrDefault(name, 0.0)
     }
 
+
+    @JvmStatic
     fun getArmorToughness(name: String): Double {
         return ARMOR_TOUGHNESS.getOrDefault(name, 0.0)
     }
 
+
+    @JvmStatic
     fun getKnockbackResistance(name: String): Double {
         return KNOCKBACK_RESISTANCE.getOrDefault(name, 0.0)
     }
 
+
+    @JvmStatic
     fun getDefault(type: Material?): Map<String, Double> {
         return getDefault(
             XMaterial.matchXMaterial(
@@ -107,10 +138,14 @@ object DefaultAttribute {
         )
     }
 
+
+    @JvmStatic
     fun getDefault(type: XMaterial): Map<String, Double> {
         return getDefault(type.name)
     }
 
+
+    @JvmStatic
     fun getDefault(name: String): Map<String, Double> {
         val map: MutableMap<String, Double> = HashMap()
         val attackDamage = getAttackDamage(name)

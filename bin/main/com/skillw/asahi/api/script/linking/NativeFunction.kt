@@ -30,7 +30,7 @@ abstract class NativeFunction(val key: String, val paramNames: Array<String>, va
     }
 
     companion object {
-        @JvmStatic
+        
         fun create(
             key: String,
             paramNames: Array<String>,
@@ -40,12 +40,12 @@ abstract class NativeFunction(val key: String, val paramNames: Array<String>, va
             return NativeFunctionImpl.create(key, paramNames, content, initial)
         }
 
-        @JvmStatic
+        
         fun deserialize(key: String, content: String, vararg namespaces: String): NativeFunction {
             return NativeFunctionImpl.deserialize(key, content, *namespaces)
         }
 
-        @JvmStatic
+        
         fun deserialize(key: String, map: Map<String, Any>, vararg namespaces: String): NativeFunction {
             return NativeFunctionImpl.deserialize(key, map, *namespaces)
         }

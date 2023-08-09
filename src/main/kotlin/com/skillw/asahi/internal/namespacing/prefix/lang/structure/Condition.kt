@@ -5,7 +5,6 @@ import com.skillw.asahi.api.member.quest.Quester
 import com.skillw.asahi.api.prefixParser
 import com.skillw.asahi.api.quest
 import com.skillw.asahi.api.quester
-import java.util.*
 
 /**
  * @className Condition
@@ -39,7 +38,7 @@ private fun `if`() = prefixParser {
 @AsahiPrefix(["when", "switch"], "lang")
 private fun `when`() = prefixParser {
     val value = if (expect("of")) quest<Any?>() else null
-    val pairs = LinkedList<Pair<Quester<Boolean>, Quester<Any?>>>()
+    val pairs = ArrayList<Pair<Quester<Boolean>, Quester<Any?>>>()
     expect("{")
     while (expect("case", "when")) {
         value?.let {

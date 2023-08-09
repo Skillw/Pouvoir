@@ -1,5 +1,7 @@
 package com.skillw.pouvoir.util.read;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -46,21 +48,28 @@ public class StrTrie<T> implements Parser<T> {
         node.target = target;
     }
 
+    @NotNull
     @Override
     public Result<T> parse(String text) {
         StrTrie<T> node = this;
         int index = 0;
+        int start = -1;
         while (index < text.length()) {
             Char c = new Char(text.charAt(index++));
             StrTrie<T> next = node.children.get(c);
             if (next != null) {
+                if (start == -1) {
+                    start = index - 1;
+                }
                 node = next;
                 if (node.target != null && (index == text.length() || !node.children.containsKey(new Char(text.charAt(index))))) {
-                    return new Result<>(this, text).setResult(node.target).setStart(index);
+                    return new Result<>(this, text).setResult(node.target).setRange(start, index);
                 }
+            } else {
+                start = -1;
             }
         }
-        return new Result<>(this, text);
+        return new Result<>();
     }
 
     public Map<String, Object> serialize() {

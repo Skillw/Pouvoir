@@ -243,7 +243,7 @@ interface AsahiLexer : NamespaceHolder<AsahiLexer> {
          * @param script String 脚本字符串
          * @return AsahiLexer 词法器
          */
-        @JvmStatic
+        
         fun of(script: String): AsahiLexer {
             return AsahiLexerImpl.of(script)
         }
@@ -254,7 +254,7 @@ interface AsahiLexer : NamespaceHolder<AsahiLexer> {
          * @param tokens Collection<String> 已分割好的Tokens
          * @return AsahiLexer 词法器
          */
-        @JvmStatic
+        
         fun of(tokens: Collection<String>): AsahiLexer {
             return AsahiLexerImpl.of(tokens)
         }

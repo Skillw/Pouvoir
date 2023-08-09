@@ -5,7 +5,6 @@ import com.skillw.asahi.api.member.quest.Quester
 import com.skillw.asahi.api.prefixParser
 import com.skillw.asahi.api.quest
 import taboolib.common5.RandomList
-import java.util.*
 
 /**
  * @className Random
@@ -39,7 +38,7 @@ private fun randomObj() = prefixParser {
 @AsahiPrefix(["weight"], "lang")
 private fun weight() = prefixParser {
     expect("[")
-    val list = LinkedList<Pair<Quester<Int>, Quester<Any>>>()
+    val list = ArrayList<Pair<Quester<Int>, Quester<Any>>>()
     do {
         val weight = quest<Int>()
         expect("to", "=", ":")
