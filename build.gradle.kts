@@ -8,7 +8,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "1.7.20"
     id("org.jetbrains.dokka") version "1.7.20"
     id("com.github.johnrengelman.shadow") version "7.0.0"
-    id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
+    id("io.codearte.nexus-staging") version "0.30.0"
 }
 
 tasks.dokkaJavadoc.configure {
@@ -183,6 +183,13 @@ publishing {
             }
         }
     }
+}
+
+nexusStaging {
+    serverUrl = "https://s01.oss.sonatype.org/service/local/"
+    username = project.findProperty("username").toString()
+    password = project.findProperty("password").toString()
+    packageGroup = "com.skillw"
 }
 
 signing {
