@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.net.URL
 
 plugins {
     `java-library`
@@ -14,6 +15,16 @@ plugins {
 tasks.dokkaJavadoc.configure {
     suppressObviousFunctions.set(false)
     suppressInheritedMembers.set(true)
+    dokkaSourceSets {
+        configureEach {
+            externalDocumentationLink {
+                url.set(URL("https://docs.oracle.com/javase/8/docs/api/"))
+            }
+            externalDocumentationLink {
+                url.set(URL("https://doc.skillw.com/bukkit/"))
+            }
+        }
+    }
 }
 
 val order: String? by project

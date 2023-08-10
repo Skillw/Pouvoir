@@ -67,4 +67,7 @@ jobs:
         run: ./gradlew publish -Porder=$GITHUB_RUN_NUMBER -Pbuild=$GITHUB_RUN_NUMBER -Pusername=$NEXUS_USERNAME -Ppassword=$NEXUS_PASSWORD -Psigning.keyId=${{secrets.SIGNING_KEY_ID}} -Psigning.password=${{secrets.SIGNING_KEY_PASSWORD}} -Psigning.secretKeyRingFile=$(echo ~/.gradle/secring.pgp)
       - name: Auto Close And Release
         id: close_and_release
+        env:
+          NEXUS_USERNAME: ${{ secrets.USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.PASSWORD }}
         run: ./gradlew closeAndReleaseRepository -Pusername=$NEXUS_USERNAME -Ppassword=$NEXUS_PASSWORD
