@@ -16,11 +16,11 @@ import org.bukkit.entity.Player
 import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.ProxyPlayer
 import taboolib.common.platform.function.adaptCommandSender
+import taboolib.common.util.unsafeLazy
 import taboolib.common5.Coerce
 import taboolib.library.xseries.XSound
 import taboolib.module.chat.colored
 import taboolib.platform.compat.VaultService
-import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
 /**
@@ -231,34 +231,42 @@ private fun permission() = prefixParser {
     }
 }
 
+private val economy by unsafeLazy {
+    VaultService.economy!!
+}
 
 @AsahiPrefix(["money", "economy", "eco"])
 private fun money() = prefixParser {
-    val playerGetter = if (expect("of")) quest<Player>() else quester { selector() }
+    val player = if (expect("of")) quest<Player>() else quester { selector() }
     when (val type = next()) {
-        "add" -> {
+        in arrayOf("add", "deposit") -> {
             val value = questDouble()
             result {
-                VaultService.economy?.depositPlayer(playerGetter.get(), value.get())
+                economy.depositPlayer(player.get(), value.get())
             }
         }
 
-        "take" -> {
+        in arrayOf("take", "withdraw") -> {
             val value = questDouble()
             result {
-                VaultService.economy?.withdrawPlayer(playerGetter.get(), value.get())
+                economy.withdrawPlayer(player.get(), value.get())
             }
         }
 
         "set" -> {
             val value = questDouble()
             result {
-                playerGetter.get().let {
-                    VaultService.economy?.let { eco ->
-                        eco.withdrawPlayer(it, eco.getBalance(it))
-                        eco.depositPlayer(it, value.get())
-                    }
+                player.get().let {
+                    economy.withdrawPlayer(it, economy.getBalance(it))
+                    economy.depositPlayer(it, value.get())
                 }
+            }
+        }
+
+        "has" -> {
+            val value = questDouble()
+            result {
+                economy.has(player.get(), value.get())
             }
         }
 

@@ -27,24 +27,26 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
 
     @Awake(LifeCycle.LOAD)
     fun load() {
+        val postLoads = ArrayList<() -> Unit>()
         Bukkit.getPluginManager().plugins
             .filter { isDependPouvoir(it) }
             .sortedWith { p1, p2 ->
                 if (p1.isDepend(p2)) 1 else -1
             }
             .forEach {
-                safe { loadSubPou(it) }
+                safe { loadSubPou(it, postLoads) }
             }
         allClasses.forEach { clazz ->
             handlers.forEach {
                 it.inject(clazz)
             }
         }
+        postLoads.forEach { safe(it) }
+        postLoads.clear()
     }
 
     private val handlers = ArrayList<ClassHandler>()
-
-    private fun loadSubPou(plugin: Plugin) {
+    private fun loadSubPou(plugin: Plugin, postLoads: ArrayList<() -> Unit>) {
         if (!isDependPouvoir(plugin)) return
 
         val classes = PluginUtils.getClasses(plugin::class.java).map { ReflexClass.of(it).structure }
@@ -74,8 +76,13 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
             kotlin.runCatching {
                 val auto = clazz.getAnnotation(AutoRegister::class.java)
                 val test = auto.property<String>("test") ?: ""
+                val postLoad = auto.property<Boolean>("postLoad") ?: false
                 if ((test.isEmpty() || test.existClass()))
-                    (clazz.owner.instance as? Registrable<*>?)?.register()
+                    if (postLoad) {
+                        postLoads.add {
+                            (clazz.owner.instance as? Registrable<*>?)?.register()
+                        }
+                    } else (clazz.owner.instance as? Registrable<*>?)?.register()
             }.exceptionOrNull()?.printStackTrace()
         }
     }

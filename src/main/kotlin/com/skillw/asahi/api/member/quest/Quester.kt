@@ -3,6 +3,7 @@ package com.skillw.asahi.api.member.quest
 import com.skillw.asahi.api.member.context.AsahiContext
 
 fun interface Quester<R> {
+
     /**
      * 在上下文中执行/获取
      *

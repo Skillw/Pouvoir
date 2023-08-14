@@ -189,7 +189,7 @@ internal class AsahiLexerImpl : AsahiLexer {
 
     override fun questCondition(
         vararg till: String,
-        boolParser: AsahiLexer.() -> Quester<Boolean>,
+        boolQuester: AsahiLexer.() -> Quester<Boolean>,
     ): Quester<Boolean> {
         val conditions = ArrayList<Quester<*>>()
         while (hasNext()) {
@@ -198,7 +198,7 @@ internal class AsahiLexerImpl : AsahiLexer {
                 conditions.add(next().toConditionOperator().let { quester { it } })
                 continue
             }
-            conditions.add(boolParser())
+            conditions.add(boolQuester())
         }
         return quester { conditions.map { it.get() }.calcCondition() }
     }

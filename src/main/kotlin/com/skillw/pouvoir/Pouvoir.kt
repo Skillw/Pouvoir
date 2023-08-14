@@ -96,6 +96,14 @@ object Pouvoir : SubPouvoir, Plugin() {
     @PouManager
     lateinit var antiCheatManager: AntiCheatManager
 
+    @JvmStatic
+    @PouManager
+    lateinit var conditionManager: ConditionManager
+
+    @JvmStatic
+    @PouManager
+    lateinit var operationManager: OperationManager
+
 
     override fun onLoad() {
         load()

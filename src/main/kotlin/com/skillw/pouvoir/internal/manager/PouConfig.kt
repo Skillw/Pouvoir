@@ -19,22 +19,6 @@ object PouConfig : ConfigManager(Pouvoir) {
         get() {
             return this["config"].getString("options.number-format")!!
         }
-    val defaultMessage: String
-        get() = this["config"].getString("options.message.default", "chat")!!
-    val lockedDefaultMessage: Boolean
-        get() = this["config"].getBoolean("options.message.locked-to-default")
-
-    val scale: Int
-        get() = this["config"].getInt("options.big-decimal-scale")
-
-    val defaultSyncTime: Long
-        get() = this["config"].getLong("database.user-container-sync-time", 360000L)
-
-
-    val databaseType: String
-        get() = this["config"].getString("database.type") ?: "sqlite"
-
-
     val databaseConfig: DataMap
         get() = DataMap().also { it.putAll(this["config"].getConfigurationSection("database")!!.toMap()) }
 
@@ -42,11 +26,14 @@ object PouConfig : ConfigManager(Pouvoir) {
         AsyncCatcher.enabled = false
     }
 
-    val debug: Boolean
-        get() = this["config"].getBoolean("options.debug")
+    var debugMode = false
 
-    val debugFunc: Boolean
-        get() = this["config"].getBoolean("options.debug-function")
+    val debug: Boolean
+        get() = debugMode || this["config"].getBoolean("options.debug")
+
+    val strAppendSeparator: String
+        get() = this["config"].getString("options.operation.string-append-separator") ?: ", "
+
 
     override fun onLoad() {
         AsyncCatcher.enabled = false
@@ -66,7 +53,18 @@ object PouConfig : ConfigManager(Pouvoir) {
             "core/util/message.js",
             "core/util/number.js",
             "core/util/placeholder.js",
-            "core/util/player.js"
+            "core/util/player.js",
+            "conditions/level.js",
+            "conditions/permission.js",
+            "conditions/altitude.js",
+            "conditions/food.js",
+            "conditions/water.js",
+            "conditions/health.js",
+            "conditions/world.js",
+            "conditions/fire.js",
+            "conditions/weather.js",
+            "conditions/ground.js",
+            "conditions/player.js",
         )
         create(
             "scripts",
@@ -106,6 +104,10 @@ object PouConfig : ConfigManager(Pouvoir) {
                 map
             })
         }
+    }
+
+    override fun subReload() {
+        completeYaml("config.yml")
     }
 
     @JvmStatic

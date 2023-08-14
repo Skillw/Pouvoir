@@ -9,4 +9,4 @@ package com.skillw.pouvoir.api.plugin.annotation
  */
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class AutoRegister(val test: String = "")
+annotation class AutoRegister(val test: String = "", val postLoad: Boolean = false)

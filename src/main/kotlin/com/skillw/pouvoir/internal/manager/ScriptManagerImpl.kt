@@ -184,9 +184,9 @@ internal object ScriptManagerImpl : ScriptManager() {
             sender?.apply {
                 sendLang("script-invoking-info", script.key, function)
                 sendLang("script-invoking-arguments")
-                sendMessage("&3$arguments".colored())
+                sendMessage("&3${arguments}".colored())
                 sendLang("script-invoking-parameters")
-                sendMessage("&3$parameters".colored())
+                sendMessage("&3${parameters.map { it.toString() }}".colored())
             }
         }
         val mark = TimeSource.Monotonic.markNow()

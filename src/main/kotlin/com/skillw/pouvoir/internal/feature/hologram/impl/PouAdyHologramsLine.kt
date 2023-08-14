@@ -15,7 +15,7 @@ import taboolib.module.chat.colored
  * @author Glom
  * @date 2022/7/31 19:02 Copyright 2022 user. All rights reserved.
  */
-internal class PouAdyHologramsLine(val location: Location, line: String, vararg viewers: Player) : PouHolo {
+internal class PouAdyHologramsLine(location: Location, line: String, vararg viewers: Player) : PouHolo {
     companion object {
         @JvmStatic
         val enable by lazy {
@@ -28,7 +28,6 @@ internal class PouAdyHologramsLine(val location: Location, line: String, vararg 
             visible(it, true)
         }
     }
-
 
     private val stand =
         AdyeshachAPI.getEntityManagerPublicTemporary().create(EntityTypes.ARMOR_STAND, location) {
@@ -44,6 +43,7 @@ internal class PouAdyHologramsLine(val location: Location, line: String, vararg 
             }
         } as AdyArmorStand
 
+
     override val isDeleted: Boolean
         get() = stand.isDeleted
 
@@ -55,7 +55,7 @@ internal class PouAdyHologramsLine(val location: Location, line: String, vararg 
         stand.respawn()
     }
 
-    override fun spawn(location: Location) {
+    override fun spawn() {
         stand.respawn()
     }
 

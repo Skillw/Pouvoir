@@ -22,8 +22,8 @@ class PouEmptyHoloLine : PouHolo {
 
     }
 
-    override fun spawn(location: Location) {
-
+    override fun spawn() {
+        
     }
 
     override fun teleport(location: Location) {

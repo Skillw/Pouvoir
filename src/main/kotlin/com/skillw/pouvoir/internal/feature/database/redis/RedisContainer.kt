@@ -4,7 +4,7 @@ import com.skillw.pouvoir.api.feature.database.BaseContainer
 import taboolib.expansion.SingleRedisConnection
 
 /**
- * @className RedisContainer
+ * @className MongoContainer
  *
  * @author Glom
  * @date 2023/1/12 23:00 Copyright 2023 user. All rights reserved.

@@ -30,6 +30,8 @@ command-clear: '&d[&9Pouvoir&d] &aMirrorData has been cleared!'
 command-switch-message: '&d[&9Pouvoir&d] &aYou selected the message type &6{0} &a!'
 command-script-eval: '&d[&9Pouvoir&d] &aEvaluating Script &6Eval-{0} &a!'
 command-script-eval-done: '&d[&9Pouvoir&d] &aThe Script &6Eval-{0} &ahas been evaluated! return: &b{1}&a, in &9{2} &a!'
+command-debug-on: '&d[&9Pouvoir&d] &aTurn on &bDebug Mode&a.'
+command-debug-off: '&d[&9Pouvoir&d] &cTurn off &bDebug Mode&c.'
 
 script-invoking-info: "&eInvoking script &6{0} &e's function &d{1}"
 script-invoking-arguments: "&eArguments: "
@@ -51,6 +53,14 @@ annotation-annotation-register: '&d[&9Pouvoir&d] &aScript Annotation &6{0} &ahas
 annotation-annotation-unregister: '&d[&9Pouvoir&d] &cScript Annotation &6{0} &chas been unregistered!'
 annotation-placeholder-register: '&d[&9Pouvoir&d] &aScript Placeholder &6{0} &ahas been registered!'
 annotation-placeholder-unregister: '&d[&9Pouvoir&d] &cScript Placeholder &6{0} &chas been unregistered!'
+annotation-mechanic-register: '&d[&9AttributeSystem&d] &aMechanic &6{0} &ahas been registered!'
+annotation-mechanic-unregister: '&d[&9AttributeSystem&d] &cMechanic &6{0} &chas been unregistered!'
+annotation-condition-register: '&d[&9AttributeSystem&d] &aCondition &6{0} &ahas been registered!'
+annotation-condition-unregister: '&d[&9AttributeSystem&d] &cCondition &6{0} &chas been unregistered!'
+annotation-string-operation-register: '&d[&9AttributeSystem&d] &aString Operation &6{0} &ahas been registered!'
+annotation-string-operation-unregister: '&d[&9AttributeSystem&d] &cString Operation &6{0} &chas been unregistered!'
+annotation-number-operation-register: '&d[&9AttributeSystem&d] &aNumber Operation &6{0} &ahas been registered!'
+annotation-number-operation-unregister: '&d[&9AttributeSystem&d] &cNumber Operation &6{0} &chas been unregistered!'
 
 kotlin-unit: '&7null'
 class-not-found: '&d[&9Pouvoir&d] &cClass &6{0} &cdosen`t exist!'

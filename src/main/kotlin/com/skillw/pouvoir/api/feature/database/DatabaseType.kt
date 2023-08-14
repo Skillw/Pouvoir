@@ -27,7 +27,9 @@ abstract class DatabaseType<H : ContainerHolder<C>, C : BaseContainer>(override 
     protected val holders = HashSet<H>()
 
     fun connectWith(params: DataMap): H {
-        return connect(params)
+        return connect(params).also {
+            it.userContainerSyncTime = params.get("user-container-sync-time", 12000L)
+        }
     }
 
     fun containers(): List<BaseContainer> {

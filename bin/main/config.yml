@@ -24,8 +24,3 @@ options:
   message:
     default: 'CHAT'
     locked-to-default: false
-
-
-Skill-Test:
-  skill:
-    - ''

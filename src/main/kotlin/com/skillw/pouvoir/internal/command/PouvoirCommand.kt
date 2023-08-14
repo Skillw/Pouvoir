@@ -3,6 +3,7 @@ package com.skillw.pouvoir.internal.command
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.internal.command.sub.PouMirrorCommand
 import com.skillw.pouvoir.internal.command.sub.PouScriptCommand
+import com.skillw.pouvoir.internal.manager.PouConfig
 import com.skillw.pouvoir.util.soundClick
 import com.skillw.pouvoir.util.soundFail
 import com.skillw.pouvoir.util.soundSuccess
@@ -42,6 +43,18 @@ internal object PouvoirCommand {
         incorrectCommand { sender, _, _, _ ->
             sender.sendLang("wrong-command-message")
             sender.soundFail()
+        }
+    }
+
+    @CommandBody(permission = "pouvoir.command.debug")
+    val debug = subCommand {
+        execute<ProxyCommandSender> { sender, _, _ ->
+            sender.soundSuccess()
+            PouConfig.debugMode = !PouConfig.debugMode
+            if (PouConfig.debugMode)
+                sender.sendLang("command-debug-on")
+            else
+                sender.sendLang("command-debug-off")
         }
     }
 

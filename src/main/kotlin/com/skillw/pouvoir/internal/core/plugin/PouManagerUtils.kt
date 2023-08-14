@@ -4,6 +4,7 @@ import com.skillw.pouvoir.api.manager.Manager
 import com.skillw.pouvoir.api.plugin.SubPouvoir
 import com.skillw.pouvoir.api.plugin.annotation.PouManager
 import com.skillw.pouvoir.util.instance
+import com.skillw.pouvoir.util.safe
 import taboolib.common.platform.function.warning
 import java.lang.reflect.Field
 import java.lang.reflect.Modifier
@@ -23,13 +24,13 @@ object PouManagerUtils {
             field.isAccessible = true
             val mainPackage = subPouvoir.javaClass.`package`?.name
             val managerName = field.type.simpleName
-
             val pouManagerClass = field.type
             val pManager = field.getAnnotation(PouManager::class.java)
             val implClass: Class<*> =
                 if (!Modifier.isAbstract(pouManagerClass.modifiers)) pouManagerClass
-                else kotlin.runCatching { Class.forName(pManager.path.ifEmpty { "$mainPackage.internal.manager.${managerName}Impl" }) }
-                    .getOrNull() ?: continue
+                else safe {
+                    Class.forName(pManager.path.ifEmpty { "$mainPackage.internal.manager.${managerName}Impl" })
+                } ?: continue
             val pouManager = implClass.instance
             if (pouManager == null) {
                 warning("Can't find the PouManager ImplClass ${implClass.name} !")

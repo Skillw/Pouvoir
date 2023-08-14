@@ -2,12 +2,13 @@ package com.skillw.pouvoir.api.manager
 
 import com.skillw.pouvoir.api.plugin.SubPouvoir
 import com.skillw.pouvoir.api.plugin.map.BaseMap
+import com.skillw.pouvoir.util.completeYaml
+import com.skillw.pouvoir.util.listSubFiles
 import com.skillw.pouvoir.util.loadYaml
 import com.skillw.pouvoir.util.plugin.Pair
 import com.skillw.pouvoir.util.safe
 import org.bukkit.configuration.file.YamlConfiguration
 import taboolib.common.platform.function.getDataFolder
-import taboolib.common.platform.function.warning
 import taboolib.common5.FileWatcher
 import taboolib.library.reflex.Reflex.Companion.getProperty
 import taboolib.module.lang.Language
@@ -26,7 +27,7 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
     private val watcher = FileWatcher()
 
     /** Server file */
-    val serverFile: File by lazy {
+    val serverDirectory: File by lazy {
         File(
             getDataFolder().parentFile.absolutePath.toString().replace("\\plugins", "")
         )
@@ -36,43 +37,37 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
         val map = HashMap<String, Pair<File, YamlConfiguration>>()
         //Init Map
         for (field in subPouvoir::class.java.fields) {
-            if (!field.annotations.any { it.annotationClass.simpleName == "Config" }) continue
+            if (field.annotations.all { it.annotationClass.simpleName != "Config" }) continue
             val file = field.get(subPouvoir).getProperty<File>("file") ?: continue
             map[field.name] = Pair(file, file.loadYaml()!!)
         }
         //Register Config
-        map.forEach {
-            val key = it.key
-            val pair = it.value
-            val file = pair.key
-            val yaml = pair.value
+        map.forEach { (key, pair) ->
+            val (file, yaml) = pair
             fileMap.register(file, yaml)
             this.register(key, yaml)
         }
-        for (it in fileMap.keys) {
-            if (watcher.hasListener(it)) {
-                watcher.removeListener(it)
+        for (file in fileMap.keys) {
+            if (watcher.hasListener(file)) {
+                watcher.removeListener(file)
             }
-            watcher.addSimpleListener(it) {
-                val yaml = fileMap[it]!!
-                yaml.load(it)
-                this[it.nameWithoutExtension] = yaml
+            watcher.addSimpleListener(file) {
+                val yaml = fileMap[file]!!
+                safe { yaml.load(file) }
+                this[file.nameWithoutExtension] = yaml
             }
         }
     }
 
-    override operator fun get(key: String): YamlConfiguration {
-        val result = super.get(key) ?: kotlin.run {
-            warning("The config $key dose not exist in the SubPouvoir ${subPouvoir.key}!")
-            return YamlConfiguration.loadConfiguration(getDataFolder())
-        }
-        return result
-    }
+    override operator fun get(key: String): YamlConfiguration =
+        super.get(key) ?: error("The config $key dose not exist in the SubPouvoir ${subPouvoir.key}!")
 
     /** Sub reload */
     protected open fun subReload() {}
 
     final override fun onReload() {
+        val dir = File(Language.path)
+        dir.listSubFiles().filter { it.extension == "yml" }.forEach(this::completeYaml)
         Language.reload()
         subReload()
     }
@@ -109,4 +104,10 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
             }
         }
     }
+
+    fun completeYaml(file: File, ignores: Set<String> = emptySet()): Map<String, Any?> =
+        subPouvoir.plugin.completeYaml(file, ignores)
+
+    fun completeYaml(filePath: String, ignores: Set<String> = emptySet()): Map<String, Any?> =
+        subPouvoir.plugin.completeYaml(filePath, ignores)
 }

@@ -8,7 +8,7 @@ import com.skillw.pouvoir.api.plugin.map.component.Registrable
 import com.skillw.pouvoir.internal.core.plugin.PouManagerUtils.getPouManagers
 import com.skillw.pouvoir.util.safe
 import org.bukkit.plugin.java.JavaPlugin
-import taboolib.common.platform.function.submit
+import taboolib.common.platform.function.submitAsync
 import java.util.*
 
 class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Registrable<SubPouvoir> {
@@ -54,7 +54,7 @@ class ManagerData(val subPouvoir: SubPouvoir) : KeyMap<String, Manager>(), Regis
 
     private var onReload = SingleExecMap()
     fun reload() {
-        submit(async = true) {
+        submitAsync {
             managers.forEach {
                 safe(it::onReload)
             }

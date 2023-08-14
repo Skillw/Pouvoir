@@ -1,6 +1,8 @@
 #数据库配置
 database:
   type: sqlite
+  # sqlite的path
+  path: plugins/Pouvoir/database.db
   enable: false
   host: localhost
   port: 3306
@@ -8,24 +10,14 @@ database:
   password: root
   database: root
   table: my_database
-  #每10分钟同步一次
-  user-container-sync-time: 360000
+  #每10分钟同步一次 （tick）
+  user-container-sync-time: 12000
 options:
   #调试模式
   debug: false
-  #Asahi-调试模式
-  debug-function: false
-  #默认的数字格式
-  #会影响Pouvoir的所有附属
+  #  Asahi-调试模式
+  #  debug-asahi: false
+  # 会影响所有附属
   number-format: "#.##"
-  #默认的小数精确位数
-  #会影响Pouvoir的所有附属
-  big-decimal-scale: 4
-  message:
-    default: 'CHAT'
-    locked-to-default: false
-
-
-Skill-Test:
-  skill:
-    - ''
+  operation:
+    string-append-separator: ", "

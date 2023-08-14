@@ -15,7 +15,7 @@ interface PouHolo {
     val isDeleted: Boolean
     fun destroy()
     fun respawn()
-    fun spawn(location: Location)
+    fun spawn()
     fun teleport(location: Location)
     fun delete()
     fun visible(viewer: Player, visible: Boolean)

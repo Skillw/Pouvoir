@@ -43,9 +43,9 @@ internal object AsahiPrefix : ScriptAnnotation("AsahiPrefix") {
             ) ?: Quester { null }
         }.register(names.first(), *names, namespace = namespace)
 
-        PouConfig.debug { console().sendLang("annotation-asahi-prefix-register", key) }
+        PouConfig.debug { console().sendLang("annotation-asahi-prefix-register", names.first()) }
         script.onDeleted("Asahi-Prefix-$key") {
-            PouConfig.debug { console().sendLang("annotation-asahi-prefix-unregister", key) }
+            PouConfig.debug { console().sendLang("annotation-asahi-prefix-unregister", names.first()) }
             AsahiManager.getNamespace(namespace).prefixMap.remove(key)
         }
     }

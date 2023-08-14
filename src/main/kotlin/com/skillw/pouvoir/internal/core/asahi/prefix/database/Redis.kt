@@ -7,7 +7,7 @@ import com.skillw.asahi.api.quester
 import com.skillw.pouvoir.internal.feature.database.redis.RedisContainer
 
 /**
- * @className Redis
+ * @className MongoDB
  *
  * @author Glom
  * @date 2023/1/19 15:06 Copyright 2023 user. All rights reserved.
@@ -48,6 +48,6 @@ private fun redis() = prefixParser {
             }
         }
 
-        else -> error("Unknown User Data operate type $top")
+        else -> error("Unknown Redis operate type $top")
     }
 }

@@ -40,8 +40,8 @@ internal class PouDecentHologramsLine(location: Location, line: String, vararg v
         hologram.updateAll()
     }
 
-    override fun spawn(location: Location) {
-        DHAPI.moveHologram(hologram, location)
+    override fun spawn() {
+        hologram.enable()
     }
 
     override fun teleport(location: Location) {

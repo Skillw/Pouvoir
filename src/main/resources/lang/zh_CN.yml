@@ -31,6 +31,8 @@ command-switch-message: '&d[&9Pouvoir&d] &a你将消息类型更为了 &6{0} &a!
 
 command-script-eval: '&d[&9Pouvoir&d] &a正在执行脚本 &6Eval-{0} &a!'
 command-script-eval-done: '&d[&9Pouvoir&d] &a脚本 &6Eval-{0} &a执行完毕! 返回值: &b{1}&a, 耗时 &9{2} &a!'
+command-debug-on: '&d[&9Pouvoir&d] &a你开启了 &b调试模式&a.'
+command-debug-off: '&d[&9Pouvoir&d] &c你关闭了 &b调试模式&c.'
 
 script-invoking-info: "&e正在调用脚本 &6{0} &e的函数 &d{1}"
 script-invoking-arguments: "&e全局参数: "
@@ -54,6 +56,12 @@ annotation-placeholder-register: '&d[&9Pouvoir&d] &a脚本PAPI占位符 &6{0} &a
 annotation-placeholder-unregister: '&d[&9Pouvoir&d] &c脚本PAPI占位符 &6{0} &c已注销!'
 annotation-pou-placeholder-register: '&d[&9Pouvoir&d] &a脚本PouPAPI占位符 &6{0} &a注册成功!'
 annotation-pou-placeholder-unregister: '&d[&9Pouvoir&d] &c脚本PouPAPI占位符 &6{0} &c已注销!'
+annotation-condition-register: '&d[&9属性系统&d] &a条件 &6{0} &a注册成功!'
+annotation-condition-unregister: '&d[&9属性系统&d] &c条件 &6{0} &c注销成功!'
+annotation-string-operation-register: '&d[&9属性系统&d] &a字符串运算操作 &6{0} &a注册成功!'
+annotation-string-operation-unregister: '&d[&9属性系统&d] &c字符串运算操作 &6{0} &c注销成功!'
+annotation-number-operation-register: '&d[&9属性系统&d] &a字符串运算操作 &6{0} &a注册成功!'
+annotation-number-operation-unregister: '&d[&9属性系统&d] &c字符串运算操作 &6{0} &c注销成功!'
 kotlin-unit: '&7无'
 class-not-found: '&d[&9Pouvoir&d] &c未发现类 &6{0} &c! 请检查.'
 wrong-config: '&d[&9Pouvoir&d] &c配置文件 &6{0} &c错误! 请检查.'

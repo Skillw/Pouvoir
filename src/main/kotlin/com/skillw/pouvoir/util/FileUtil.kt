@@ -6,9 +6,14 @@ import com.skillw.pouvoir.util.script.ColorUtil.uncolored
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.configuration.serialization.ConfigurationSerializable
+import org.bukkit.plugin.java.JavaPlugin
 import taboolib.common.platform.function.console
 import taboolib.common.platform.function.getDataFolder
 import taboolib.common.platform.function.warning
+import taboolib.module.configuration.Configuration
+import taboolib.module.configuration.Type
+import taboolib.module.configuration.flatten
+import taboolib.module.configuration.util.asMap
 import taboolib.module.lang.sendLang
 import java.io.File
 import java.math.BigInteger
@@ -22,7 +27,7 @@ import java.security.MessageDigest
 
 
 fun File.pathNormalize(): String {
-    return absolutePath.replace(Pouvoir.configManager.serverFile.absolutePath, "").replace("\\", "/")
+    return absolutePath.replace(Pouvoir.configManager.serverDirectory.absolutePath, "").replace("\\", "/")
 }
 
 @Suppress("UNCHECKED_CAST")
@@ -129,3 +134,27 @@ fun File.md5(): String? {
     }
     return bi.toString(16)
 }
+
+fun JavaPlugin.completeYaml(file: File, ignores: Set<String> = emptySet()): Map<String, Any?> {
+    val path = file.path.substringAfter("\\").substringAfter("\\")
+    return completeYaml(path, ignores)
+}
+
+fun JavaPlugin.completeYaml(filePath: String, ignores: Set<String> = emptySet()): Map<String, Any?> {
+    val resource = getResource(filePath) ?: error("No such file called $filePath in the Jar!")
+    val default = Configuration.loadFromInputStream(resource)
+    val target = Configuration.loadFromFile(File(dataFolder, filePath), Type.YAML)
+    default.toMap().flatten()
+        .filterKeys { ignores.all { ignore -> ignore !in it } }
+        .forEach { (path, value) ->
+            // Value
+            if (!target.contains(path)) {
+                target[path] = value
+            }
+            // Comment
+            target.setComment(path, default.getComment(path) ?: return@forEach)
+        }
+    target.saveToFile()
+    return target.asMap()
+}
+

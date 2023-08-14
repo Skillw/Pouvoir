@@ -28,13 +28,21 @@ tasks.dokkaJavadoc.configure {
 }
 
 val order: String? by project
-
+val api: String? by project
+task("api-add") {
+    if (api != null && api == "common")
+        project.version = project.version.toString() + "-api"
+}
 task("info") {
     println(project.name + "-" + project.version)
     println(project.version.toString())
 }
 taboolib {
     project.version = project.version.toString() + (order?.let { "-$it" } ?: "")
+    if (api != null) {
+        println("api!")
+        taboolib.options("skip-kotlin-relocate", "keep-kotlin-module")
+    }
     description {
         contributors {
             name("Glom_")
@@ -87,14 +95,6 @@ tasks.withType<KotlinCompile> {
     }
 }
 
-tasks.register<Jar>("buildAPIJar") {
-    dependsOn(tasks.compileJava, tasks.compileKotlin)
-    from(tasks.compileJava, tasks.compileKotlin)
-    includeEmptyDirs = false
-    include { it.isDirectory or it.name.endsWith(".class") or it.name.endsWith(".kotlin_module") }
-    archiveClassifier.set("api")
-}
-
 tasks.register<Jar>("buildJavadocJar") {
     dependsOn(tasks.dokkaJavadoc)
     from(tasks.dokkaJavadoc.flatMap { it.outputDirectory })
@@ -113,7 +113,7 @@ repositories {
 
 dependencies {
     dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.20")
-
+    compileOnly("com.mongodb:MongoDB:3.12.2")
     compileOnly("com.zaxxer:HikariCP:4.0.3")
     compileOnly("ink.ptms.core:v11901:11901-minimize:mapped")
     compileOnly("org.openjdk.nashorn:nashorn-core:15.4")
@@ -163,7 +163,7 @@ publishing {
     }
     publications {
         create<MavenPublication>("library") {
-            artifact(tasks["buildAPIJar"]) { classifier = classifier?.replace("-api", "") }
+            from(components["java"])
             artifact(tasks["buildJavadocJar"])
             artifact(tasks["buildSourcesJar"])
             version = project.version.toString()

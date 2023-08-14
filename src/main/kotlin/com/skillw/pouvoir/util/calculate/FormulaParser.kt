@@ -36,7 +36,6 @@ private fun Stack<CalcOperator>.nextNotLessThan(calcOperator: CalcOperator): Boo
  * @return
  */
 private fun List<Any>.toCalcSuffix(): Queue<Any> {
-
     val suffix = ArrayDeque<Any>()
     val operators = Stack<CalcOperator>()
     forEach {
