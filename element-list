@@ -27,6 +27,8 @@ $dokka.location:com.skillw.particlelib.pobject/Ray.RayStopType///PointingToDecla
 $dokka.location:com.skillw.particlelib.utils.projector/TwoDProjector.Companion///PointingToDeclaration/com/skillw/particlelib/utils/projector/TwoDProjector.Companion.html
 $dokka.location:com.skillw.particlelib.utils/Icosahedron.Companion///PointingToDeclaration/com/skillw/particlelib/utils/Icosahedron.Companion.html
 $dokka.location:com.skillw.particlelib.utils/Icosahedron.Triangle///PointingToDeclaration/com/skillw/particlelib/utils/Icosahedron.Triangle.html
+$dokka.location:com.skillw.pouvoir.api.feature.condition/BaseCondition.Builder///PointingToDeclaration/com/skillw/pouvoir/api/feature/condition/BaseCondition.Builder.html
+$dokka.location:com.skillw.pouvoir.api.feature.condition/BaseCondition.Companion///PointingToDeclaration/com/skillw/pouvoir/api/feature/condition/BaseCondition.Companion.html
 $dokka.location:com.skillw.pouvoir.api.feature.selector.target/LocTarget.Companion///PointingToDeclaration/com/skillw/pouvoir/api/feature/selector/target/LocTarget.Companion.html
 $dokka.location:com.skillw.pouvoir.api.feature.selector/BaseSelector.SelectorContext///PointingToDeclaration/com/skillw/pouvoir/api/feature/selector/BaseSelector.SelectorContext.html
 $dokka.location:com.skillw.pouvoir.api.manager.sub.script/CompileManager.Companion///PointingToDeclaration/com/skillw/pouvoir/api/manager/sub/script/CompileManager.Companion.html
@@ -78,11 +80,15 @@ com.skillw.particlelib.utils.projector
 com.skillw.pouvoir
 com.skillw.pouvoir.api
 com.skillw.pouvoir.api.feature.anticheat
+com.skillw.pouvoir.api.feature.condition
 com.skillw.pouvoir.api.feature.database
 com.skillw.pouvoir.api.feature.database.sql
 com.skillw.pouvoir.api.feature.handler
 com.skillw.pouvoir.api.feature.hologram
+com.skillw.pouvoir.api.feature.operation
 com.skillw.pouvoir.api.feature.placeholder
+com.skillw.pouvoir.api.feature.realizer
+com.skillw.pouvoir.api.feature.realizer.component
 com.skillw.pouvoir.api.feature.selector
 com.skillw.pouvoir.api.feature.selector.target
 com.skillw.pouvoir.api.feature.trigger
@@ -108,11 +114,13 @@ com.skillw.pouvoir.internal.core.asahi.prefix.bukkit.particle
 com.skillw.pouvoir.internal.core.asahi.util
 com.skillw.pouvoir.internal.core.plugin
 com.skillw.pouvoir.internal.core.script.asahi
+com.skillw.pouvoir.internal.core.script.common.annotation
 com.skillw.pouvoir.internal.core.script.groovy
 com.skillw.pouvoir.internal.core.script.javascript
 com.skillw.pouvoir.internal.core.script.javascript.impl
 com.skillw.pouvoir.internal.feature.compat.placeholder
 com.skillw.pouvoir.internal.feature.database
+com.skillw.pouvoir.internal.feature.database.mongodb
 com.skillw.pouvoir.internal.feature.database.redis
 com.skillw.pouvoir.internal.feature.database.sql
 com.skillw.pouvoir.internal.feature.database.sql.sql
@@ -122,6 +130,8 @@ com.skillw.pouvoir.internal.feature.handler
 com.skillw.pouvoir.internal.feature.hologram
 com.skillw.pouvoir.internal.feature.hologram.impl
 com.skillw.pouvoir.internal.feature.listener
+com.skillw.pouvoir.internal.feature.operation.num
+com.skillw.pouvoir.internal.feature.operation.str
 com.skillw.pouvoir.internal.feature.raytrace
 com.skillw.pouvoir.internal.feature.selector
 com.skillw.pouvoir.internal.feature.trigger
