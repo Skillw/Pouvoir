@@ -30,15 +30,16 @@ tasks.dokkaJavadoc.configure {
 val order: String? by project
 val api: String? by project
 task("api-add") {
+    var version = project.version.toString() + (order?.let { "-$it" } ?: "")
     if (api != null && api == "common")
-        project.version = project.version.toString() + "-api"
+        version = "$version-api"
+    project.version = version
 }
 task("info") {
     println(project.name + "-" + project.version)
     println(project.version.toString())
 }
 taboolib {
-    project.version = project.version.toString() + (order?.let { "-$it" } ?: "")
     if (api != null) {
         println("api!")
         taboolib.options("skip-kotlin-relocate", "keep-kotlin-module")

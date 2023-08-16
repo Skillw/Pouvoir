@@ -25,9 +25,9 @@ internal object ActionParserImpl : InfixParser() {
             expect(";", ".")
             return getter
         }
-        //查看下一个token 是否在 allActions里(所有后缀动作的set)
+        //查看下一个token 是否在 allActions里(所有中缀动作的set)
         if (namespaces.all { !it.hasInfix(peek()) }) return getter
-        //以上3个判断，都是为了过滤掉非后缀动作
+        //以上3个判断，都是为了过滤掉非中缀动作
 
         val tokens = ArrayList<String>()
         while (hasNext() && peek() !in ignores) {
@@ -38,9 +38,9 @@ internal object ActionParserImpl : InfixParser() {
             } else tokens += next
         }
         expect(";", ".")
-        //后缀动作 参数
+        //中缀动作 参数
         val actionReader = AsahiLexer.of(tokens)
-        //后缀动作 上下文
+        //中缀动作 上下文
         val context = quester { InfixContext(context(), actionReader) }
         //执行内容 （Supplier）
         return infixQuester(getter, tokens) {
