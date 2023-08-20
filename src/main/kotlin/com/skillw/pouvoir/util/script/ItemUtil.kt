@@ -1,12 +1,9 @@
 package com.skillw.pouvoir.util.script
 
-import org.bukkit.configuration.ConfigurationSection
-import taboolib.common5.Coerce
 import taboolib.module.nms.ItemTag
 import taboolib.module.nms.ItemTagData
 import taboolib.module.nms.ItemTagList
 import taboolib.module.nms.ItemTagType
-import java.util.regex.Pattern
 
 /**
  * 不方便变成顶级函数
@@ -65,67 +62,67 @@ object ItemUtil {
         return map
     }
 
-    private val pattern = Pattern.compile("\\((?<type>byte|short|int|long|float|double|char|boolean|string)\\) ")
-
-
-    @JvmStatic
-    fun Any.toNBT(): ItemTagData? {
-        return if (this is ItemTagData) {
-            this
-        } else if (this is String) {
-            val matcher = pattern.matcher(this)
-            return if (matcher.find()) {
-                val type = matcher.group("type")
-                val new = this.replace(matcher.group(0), "")
-                when (type) {
-                    "byte" -> Coerce.toByte(new).toNBT()
-                    "short" -> Coerce.toShort(new).toNBT()
-                    "int" -> Coerce.toInteger(new).toNBT()
-                    "long" -> Coerce.toLong(new).toNBT()
-                    "float" -> Coerce.toFloat(new).toNBT()
-                    "double" -> Coerce.toDouble(new).toNBT()
-                    "char" -> Coerce.toChar(new).toNBT()
-                    "boolean" -> Coerce.toBoolean(new).toNBT()
-                    else -> ItemTagData(new)
-                }
-            } else {
-                ItemTagData(this)
-            }
-        } else if (this is Int) {
-            ItemTagData(this)
-        } else if (this is Double) {
-            ItemTagData(this)
-        } else if (this is Float) {
-            ItemTagData(this)
-        } else if (this is Short) {
-            ItemTagData(this)
-        } else if (this is Long) {
-            ItemTagData(this)
-        } else if (this is Byte) {
-            ItemTagData(this)
-        } else if (this is ByteArray) {
-            ItemTagData(this)
-        } else if (this is IntArray) {
-            ItemTagData(this)
-        } else if (this is List<*>) {
-            ItemTagData.translateList(ItemTagList(), this)
-        } else {
-            val itemTag: ItemTag
-            if (this is Map<*, *>) {
-                itemTag = ItemTag()
-                for (it in this) {
-                    itemTag[it.key.toString()] = (it.value ?: continue).toNBT()
-                }
-                itemTag
-            } else if (this is ConfigurationSection) {
-                itemTag = ItemTag()
-                this.getValues(false).forEach { (key: String?, value: Any) ->
-                    itemTag[key] = value.toNBT()
-                }
-                itemTag
-            } else {
-                ItemTagData("Not supported: $this")
-            }
-        }
-    }
+//    private val pattern = Pattern.compile("\\((?<type>byte|short|int|long|float|double|char|boolean|string)\\) ")
+//
+//
+//    @JvmStatic
+//    fun Any.toNBT(): ItemTagData? {
+//        return if (this is ItemTagData) {
+//            this
+//        } else if (this is String) {
+//            val matcher = pattern.matcher(this)
+//            return if (matcher.find()) {
+//                val type = matcher.group("type")
+//                val new = this.replace(matcher.group(0), "")
+//                when (type) {
+//                    "byte" -> Coerce.toByte(new).toNBT()
+//                    "short" -> Coerce.toShort(new).toNBT()
+//                    "int" -> Coerce.toInteger(new).toNBT()
+//                    "long" -> Coerce.toLong(new).toNBT()
+//                    "float" -> Coerce.toFloat(new).toNBT()
+//                    "double" -> Coerce.toDouble(new).toNBT()
+//                    "char" -> Coerce.toChar(new).toNBT()
+//                    "boolean" -> Coerce.toBoolean(new).toNBT()
+//                    else -> ItemTagData(new)
+//                }
+//            } else {
+//                ItemTagData(this)
+//            }
+//        } else if (this is Int) {
+//            ItemTagData(this)
+//        } else if (this is Double) {
+//            ItemTagData(this)
+//        } else if (this is Float) {
+//            ItemTagData(this)
+//        } else if (this is Short) {
+//            ItemTagData(this)
+//        } else if (this is Long) {
+//            ItemTagData(this)
+//        } else if (this is Byte) {
+//            ItemTagData(this)
+//        } else if (this is ByteArray) {
+//            ItemTagData(this)
+//        } else if (this is IntArray) {
+//            ItemTagData(this)
+//        } else if (this is List<*>) {
+//            ItemTagData.translateList(ItemTagList(), this)
+//        } else {
+//            val itemTag: ItemTag
+//            if (this is Map<*, *>) {
+//                itemTag = ItemTag()
+//                for (it in this) {
+//                    itemTag[it.key.toString()] = (it.value ?: continue).toNBT()
+//                }
+//                itemTag
+//            } else if (this is ConfigurationSection) {
+//                itemTag = ItemTag()
+//                this.getValues(false).forEach { (key: String?, value: Any) ->
+//                    itemTag[key] = value.toNBT()
+//                }
+//                itemTag
+//            } else {
+//                ItemTagData("Not supported: $this")
+//            }
+//        }
+//    }
 }

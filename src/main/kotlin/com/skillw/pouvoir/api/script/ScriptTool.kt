@@ -16,6 +16,7 @@ import org.bukkit.OfflinePlayer
 import org.bukkit.command.CommandSender
 import org.bukkit.command.PluginCommand
 import org.bukkit.enchantments.Enchantment
+import org.bukkit.entity.Entity
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
@@ -37,9 +38,7 @@ import taboolib.module.chat.TellrawJson
 import taboolib.module.nms.getI18nName
 import taboolib.module.nms.getItemTag
 import taboolib.platform.BukkitCommand
-import taboolib.platform.util.hasName
-import taboolib.platform.util.hoverItem
-import taboolib.platform.util.isNotAir
+import taboolib.platform.util.*
 import java.util.function.Consumer
 import java.util.function.Function
 import java.util.function.Supplier
@@ -487,13 +486,11 @@ object ScriptTool : BaseMap<String, Any>() {
     }
 
     @JvmStatic
-
     fun checkMonitorConsole(key: String) {
         checkMonitor(key, console())
     }
 
     @JvmStatic
-
     fun clearMonitor(key: String?) {
         key ?: kotlin.run {
             Mirror.mirrorData.clear()
@@ -506,4 +503,18 @@ object ScriptTool : BaseMap<String, Any>() {
         }
     }
 
+    @JvmStatic
+    fun setMeta(entity: Entity, key: String, value: Any) {
+        entity.setMeta(key, value)
+    }
+
+    @JvmStatic
+    fun getMeta(entity: Entity, key: String): List<Any?> {
+        return entity.getMeta(key).map { it.value() }
+    }
+
+    @JvmStatic
+    fun hasMeta(entity: Entity, key: String): Boolean {
+        return entity.hasMeta(key)
+    }
 }
