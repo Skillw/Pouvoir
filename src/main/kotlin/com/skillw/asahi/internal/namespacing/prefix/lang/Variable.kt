@@ -13,7 +13,7 @@ import com.skillw.asahi.api.quest
  * @date 2023/1/13 19:09 Copyright 2023 user. All rights reserved.
  */
 @AsahiPrefix(["set"], "lang")
-private fun set() = prefixParser {
+private fun set() = prefixParser<Any?> {
     val key = next()
     when {
         expect("ifndef") -> {
@@ -51,19 +51,19 @@ private fun set() = prefixParser {
 }
 
 @AsahiPrefix(["has"], "lang")
-private fun has() = prefixParser {
+private fun has() = prefixParser<Boolean> {
     val key = quest<String>()
     result { get(key.get()) != null }
 }
 
 @AsahiPrefix(["get"], "lang")
-private fun get() = prefixParser {
+private fun get() = prefixParser<Any?> {
     val key = quest<String>()
     result { get(key.get()) }
 }
 
 @AsahiPrefix(["delete"], "lang")
-private fun delete() = prefixParser {
+private fun delete() = prefixParser<Any?> {
     val key = quest<String>()
     result { remove(key.get()) }
 }

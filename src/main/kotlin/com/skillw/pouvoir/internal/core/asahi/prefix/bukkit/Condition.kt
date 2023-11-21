@@ -15,7 +15,7 @@ import org.bukkit.entity.LivingEntity
  */
 
 @AsahiPrefix(["cond"])
-private fun cond() = prefixParser {
+private fun cond() = prefixParser<Boolean> {
     val entity = if (expect("of")) quest<LivingEntity>() else quester { selector() }
     when (val type = next()) {
         in arrayOf("test") -> {

@@ -32,7 +32,7 @@ internal object AsahiPrefix : ScriptAnnotation("AsahiPrefix") {
         val names = demand.get("name", "").toArgs()
         val namespace = demand.get("namespace", "common")
 
-        com.skillw.asahi.api.prefixParser {
+        com.skillw.asahi.api.prefixParser<Any?> {
             val result = Function<Function<AsahiContext, Any?>, Quester<Any?>> {
                 result { it.apply(this) }
             }

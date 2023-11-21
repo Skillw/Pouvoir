@@ -17,7 +17,7 @@ import org.bukkit.util.Vector
  */
 
 @AsahiPrefix(["world"])
-private fun world() = prefixParser {
+private fun world() = prefixParser<World> {
     val getter = quest<String>()
     result {
         val name = getter.get()
@@ -26,7 +26,7 @@ private fun world() = prefixParser {
 }
 
 @AsahiPrefix(["location"])
-private fun location() = prefixParser {
+private fun location() = prefixParser<Location> {
     expect("[")
     val world = quest<World>()
     val x = quest<Double>()
@@ -43,7 +43,7 @@ private fun location() = prefixParser {
 }
 
 @AsahiPrefix(["vector"])
-private fun vector() = prefixParser {
+private fun vector() = prefixParser<Vector> {
     expect("[")
     val x = quest<Double>()
     val y = quest<Double>()

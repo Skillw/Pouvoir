@@ -12,13 +12,13 @@ import com.skillw.asahi.util.cast
  * @date 2023/1/14 0:15 Copyright 2023 user. All rights reserved.
  */
 @AsahiPrefix(["not"], "lang")
-private fun not() = prefixParser {
+private fun not() = prefixParser<Boolean> {
     val bool = quest<Boolean>()
     result { !bool.get() }
 }
 
 @AsahiPrefix(["all"], "lang")
-private fun all() = prefixParser {
+private fun all() = prefixParser<Boolean> {
     val array = quest<Array<Any?>>()
     result {
         array.get().all { it.cast() }
@@ -27,7 +27,7 @@ private fun all() = prefixParser {
 }
 
 @AsahiPrefix(["any"], "lang")
-private fun any() = prefixParser {
+private fun any() = prefixParser<Boolean> {
     val array = quest<Array<Any?>>()
     result {
         array.get().any { it.cast() }
@@ -35,7 +35,7 @@ private fun any() = prefixParser {
 }
 
 @AsahiPrefix(["check", "?"], "lang")
-private fun check() = prefixParser {
+private fun check() = prefixParser<Boolean> {
     val a = quest<Any>()
     val symbol = next()
     val b = quest<Any>()

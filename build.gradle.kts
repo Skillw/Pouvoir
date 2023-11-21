@@ -6,8 +6,8 @@ plugins {
     `maven-publish`
     signing
     id("io.izzel.taboolib") version "1.56"
-    id("org.jetbrains.kotlin.jvm") version "1.7.20"
-    id("org.jetbrains.dokka") version "1.7.20"
+    id("org.jetbrains.kotlin.jvm") version "1.5.31"
+    id("org.jetbrains.dokka") version "1.5.31"
     id("com.github.johnrengelman.shadow") version "7.0.0"
     id("io.codearte.nexus-staging") version "0.30.0"
 }
@@ -74,7 +74,8 @@ taboolib {
         "module-nms-util",
         "module-lang",
         "module-porticus",
-        "expansion-alkaid-redis"
+        "expansion-alkaid-redis",
+        "expansion-javascript"
     )
     install(
         "platform-bukkit"
@@ -82,7 +83,7 @@ taboolib {
 
 
     classifier = null
-    version = "6.0.12-14"
+    version = "6.0.12-35"
 
     relocate("org.openjdk.nashorn", "com.skillw.nashorn")
     relocate("jdk.nashorn", "com.skillw.nashorn.legacy")

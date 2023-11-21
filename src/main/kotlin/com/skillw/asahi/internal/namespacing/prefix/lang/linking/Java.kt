@@ -15,7 +15,7 @@ import taboolib.library.reflex.Reflex.Companion.invokeConstructor
  * @date 2023/1/18 18:19 Copyright 2023 user. All rights reserved.
  */
 @AsahiPrefix(["java"], "lang")
-private fun java() = prefixParser {
+private fun java() = prefixParser<Any?> {
     val isPackage = expect("in")
     expect("of")
     val path = questString()
@@ -31,7 +31,7 @@ private fun java() = prefixParser {
 }
 
 @AsahiPrefix(["new"], "lang")
-private fun new() = prefixParser {
+private fun new() = prefixParser<Any> {
     val clazz = next().let { quester { context()[it] as Class<*> } }
     val paramsGetter = if (peek() == "[" || peek() == "(") quest() else quester { emptyList<Any?>() }
     expect("[]", "()")

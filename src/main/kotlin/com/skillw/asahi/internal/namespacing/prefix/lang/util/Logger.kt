@@ -12,7 +12,7 @@ import taboolib.module.chat.colored
  * @date 2023/1/14 0:22 Copyright 2023 user. All rights reserved.
  */
 @AsahiPrefix(["print", "info"], "lang")
-fun info() = prefixParser {
+fun info() = prefixParser<Any> {
     //开始此函数的"编译"(parse)
     val content = quest<Any>()  //寻求一个任意类型对象
     // result里是执行函数时，要干的事情
@@ -25,7 +25,7 @@ fun info() = prefixParser {
 }
 
 @AsahiPrefix(["warning", "warn"], "lang")
-fun warning() = prefixParser {
+fun warning() = prefixParser<Any> {
     val content = quest<Any>()
     result {
         content.get().also {
@@ -35,7 +35,7 @@ fun warning() = prefixParser {
 }
 
 @AsahiPrefix(["error"], "lang")
-fun error() = prefixParser {
+fun error() = prefixParser<Any> {
     val content = quest<Any>()
     result {
         content.get().also {

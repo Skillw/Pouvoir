@@ -14,7 +14,7 @@ import taboolib.common5.RandomList
  */
 
 @AsahiPrefix(["random"], "lang")
-private fun random() = prefixParser {
+private fun random() = prefixParser<String> {
     val x = quest<Double>()
     expect("to")
     val y = quest<Double>()
@@ -22,7 +22,7 @@ private fun random() = prefixParser {
 }
 
 @AsahiPrefix(["randomInt"], "lang")
-private fun randomInt() = prefixParser {
+private fun randomInt() = prefixParser<Int> {
     val x = quest<Int>()
     expect("to")
     val y = quest<Int>()
@@ -30,13 +30,13 @@ private fun randomInt() = prefixParser {
 }
 
 @AsahiPrefix(["randomObj"], "lang")
-private fun randomObj() = prefixParser {
+private fun randomObj() = prefixParser<Any> {
     val list = quest<List<Any>>()
     result { list.get().random() }
 }
 
 @AsahiPrefix(["weight"], "lang")
-private fun weight() = prefixParser {
+private fun weight() = prefixParser<Any> {
     expect("[")
     val list = ArrayList<Pair<Quester<Int>, Quester<Any>>>()
     do {

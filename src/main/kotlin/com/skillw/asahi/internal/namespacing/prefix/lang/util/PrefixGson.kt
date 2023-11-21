@@ -8,7 +8,7 @@ import com.skillw.pouvoir.util.findClass
 
 internal object PrefixGson {
     @AsahiPrefix(["gson"], "lang")
-    private fun gson() = prefixParser {
+    private fun gson() = prefixParser<Any?> {
         when (val type = next()) {
             "encode" -> {
                 val any = questAny()

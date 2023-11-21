@@ -11,7 +11,7 @@ import com.skillw.pouvoir.util.toArgs
 private val funcRegex = Regex(".*?([a-zA-Z_$]+).*?\\((.*?)\\).*?")
 
 @AsahiPrefix(["fun", "def"], "lang")
-private fun `fun`() = prefixParser {
+private fun `fun`() = prefixParser<NativeFunction> {
     val result = funcRegex.find(splitBeforeString("{"))!!
     val name = result.groups[1]?.value!!
     val params = result.groups[2]?.value!!.toArgs().filter { it.isNotEmpty() && it.isNotBlank() }.toTypedArray()
@@ -22,7 +22,7 @@ private fun `fun`() = prefixParser {
 }
 
 @AsahiPrefix(["invoke", "call"], "lang")
-private fun invoke() = prefixParser {
+private fun invoke() = prefixParser<Any?> {
     val func = quest<String>()
     val paramsGetter = if (peek() == "[") quest<Array<Any>>() else quester { emptyArray() }
     result {
@@ -32,7 +32,7 @@ private fun invoke() = prefixParser {
 }
 
 @AsahiPrefix(["import"], "lang")
-private fun import() = prefixParser {
+private fun import() = prefixParser<Unit> {
     val paths = if (peek() == "[") quest() else quest<String>().quester { arrayOf(it) }
     result {
         import(*paths.get())

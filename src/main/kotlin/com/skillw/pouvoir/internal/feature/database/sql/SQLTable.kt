@@ -24,7 +24,7 @@ class SQLTable<T : Host<E>, E : ColumnBuilder>(private val table: Table<T, E>) :
         return table.add(name, func)
     }
 
-    override fun select(func: ActionSelect.() -> Unit): QueryTask {
+    override fun select(func: ActionSelect.() -> Unit): ResultProcessorList {
         return table.workspace(dataSource) { select(func) }
     }
 
@@ -44,7 +44,7 @@ class SQLTable<T : Host<E>, E : ColumnBuilder>(private val table: Table<T, E>) :
         return table.workspace(dataSource) { insert(*keys) { func(this) } }.run()
     }
 
-    override fun workspace(func: Query.() -> Unit): QueryTask {
+    override fun workspace(func: ExecutableSource.() -> Unit): ResultProcessorList {
         return table.workspace(dataSource, func)
     }
 

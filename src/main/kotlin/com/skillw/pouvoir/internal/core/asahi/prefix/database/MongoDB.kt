@@ -13,7 +13,7 @@ import com.skillw.pouvoir.internal.feature.database.mongodb.MongoContainer
  * @date 2023/1/19 15:06 Copyright 2023 user. All rights reserved.
  */
 @AsahiPrefix(["mongo"])
-private fun mongo() = prefixParser {
+private fun mongo() = prefixParser<Any> {
     val container =
         if (expect("of")) quest<MongoContainer>()
         else quester { selector() }

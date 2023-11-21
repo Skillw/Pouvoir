@@ -20,7 +20,7 @@ internal object PrefixDebug {
     }
 
     @AsahiPrefix(["debug"], "lang")
-    private fun debugFunc() = prefixParser {
+    private fun debugFunc() = prefixParser<Any?> {
         when (next()) {
             "context" -> result {
                 debug(context())

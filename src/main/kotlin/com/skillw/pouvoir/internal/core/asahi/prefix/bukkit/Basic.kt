@@ -24,7 +24,7 @@ import taboolib.module.chat.uncolored
  */
 
 @AsahiPrefix(["command"])
-private fun command() = prefixParser {
+private fun command() = prefixParser<Unit> {
     val contentGetter = if (peek() == "[") questList() else questString()
     val whoGetter = if (expect("as")) {
         if (expect("op")) {
@@ -51,7 +51,7 @@ private fun command() = prefixParser {
 }
 
 @AsahiPrefix
-private fun colored() = prefixParser {
+private fun colored() = prefixParser<String> {
     val message = quest<String>()
     result {
         message.get().colored()
@@ -59,7 +59,7 @@ private fun colored() = prefixParser {
 }
 
 @AsahiPrefix
-private fun decolored() = prefixParser {
+private fun decolored() = prefixParser<String> {
     val message = quest<String>()
     result {
         message.get().decolored()
@@ -67,7 +67,7 @@ private fun decolored() = prefixParser {
 }
 
 @AsahiPrefix
-private fun uncolored() = prefixParser {
+private fun uncolored() = prefixParser<String> {
     val message = quest<String>()
     result {
         message.get().uncolored()
@@ -75,7 +75,7 @@ private fun uncolored() = prefixParser {
 }
 
 @AsahiPrefix(["papi", "placeholder"])
-private fun papi() = prefixParser {
+private fun papi() = prefixParser<String> {
     val entity = if (expect("of")) quest<LivingEntity>() else quester { selector() }
     val str = quest<String>()
     result {

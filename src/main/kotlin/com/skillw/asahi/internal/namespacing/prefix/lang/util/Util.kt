@@ -18,25 +18,25 @@ import java.util.*
  * @date 2023/1/14 0:45 Copyright 2023 user. All rights reserved.
  */
 @AsahiPrefix(["arrayOf"], "lang")
-private fun arrayOf() = prefixParser {
+private fun arrayOf() = prefixParser<Any?> {
     val array = quest<Array<Any?>>()
     result { array.get() }
 }
 
 @AsahiPrefix(["listOf"], "lang")
-private fun listOf() = prefixParser {
+private fun listOf() = prefixParser<Any?> {
     val list = quest<List<Any?>>()
     result { list.get() }
 }
 
 @AsahiPrefix(["setOf"], "lang")
-private fun setOf() = prefixParser {
+private fun setOf() = prefixParser<Any?> {
     val set = quest<Set<Any?>>()
     result { set.get() }
 }
 
 @AsahiPrefix(["mapOf"], "lang")
-private fun mapOf() = prefixParser {
+private fun mapOf() = prefixParser<Any?> {
     if (expect("with")) {
         val template = quest<MapTemplate>()
         val list = quest<List<Any>>()
@@ -48,7 +48,7 @@ private fun mapOf() = prefixParser {
 }
 
 @AsahiPrefix(["mapListOf"], "lang")
-private fun mapListOf() = prefixParser {
+private fun mapListOf() = prefixParser<MutableList<MutableMap<String,Any>>> {
     expect("with")
     val templateGetter = quest<MapTemplate>()
     val list = quest<List<Any>>()
@@ -60,13 +60,13 @@ private fun mapListOf() = prefixParser {
 }
 
 @AsahiPrefix(["pair"], "lang")
-private fun pair() = prefixParser {
+private fun pair() = prefixParser<Pair<Any,Any>> {
     val pair = quest<Pair<Any, Any>>()
     result { pair.get() }
 }
 
 @AsahiPrefix(["mapTemplate"], "lang")
-private fun mapTemplate() = prefixParser {
+private fun mapTemplate() = prefixParser<MapTemplate> {
     val list = quest<List<Any>>()
     result { MapTemplate(list.get().map { it.toString() }) }
 }
@@ -78,7 +78,7 @@ private fun mapTemplate() = prefixParser {
  * @date 2023/1/14 0:42 Copyright 2023 user. All rights reserved.
  */
 @AsahiPrefix(["join"], "lang")
-private fun join() = prefixParser {
+private fun join() = prefixParser<String> {
     val list = quest<List<Any>>()
     val by = if (expect("by")) quest() else quester { "" }
     result {
@@ -87,7 +87,7 @@ private fun join() = prefixParser {
 }
 
 @AsahiPrefix(["replace"], "lang")
-private fun replace() = prefixParser {
+private fun replace() = prefixParser<String> {
     val str = quest<String>()
     expect("with")
     val replacement = quest<Map<String, Any>>()
@@ -101,7 +101,7 @@ private fun replace() = prefixParser {
 }
 
 @AsahiPrefix(["type"], "lang")
-fun type() = prefixParser {
+fun type() = prefixParser<Any?> {
     val type = quest<String>()
     val getter = quest<Any?>()
     result {
@@ -122,7 +122,7 @@ fun type() = prefixParser {
 }
 
 @AsahiPrefix(["select", "with"], "lang")
-private fun with() = prefixParser {
+private fun with() = prefixParser<Any> {
     val any = quest<Any>()
     val exec = parseScript()
     result {
@@ -146,7 +146,7 @@ private fun with() = prefixParser {
 }
 
 @AsahiPrefix(["date"], "lang")
-private fun date() = prefixParser {
+private fun date() = prefixParser<String> {
     val typeGetter = if (expect("in")) questString() else quester { null }
     result {
         val date = Date()
@@ -165,7 +165,7 @@ private fun date() = prefixParser {
 
 
 @AsahiPrefix(["time"], "lang")
-private fun time() = prefixParser {
+private fun time() = prefixParser<String> {
     val formatGetter = if (expect("as")) questString() else quester { "yyyy-MM-dd HH:mm:ss" }
     result {
         SimpleDateFormat(formatGetter.get()).format(Date())
@@ -173,7 +173,7 @@ private fun time() = prefixParser {
 }
 
 @AsahiPrefix(["color"])
-private fun color() = prefixParser {
+private fun color() = prefixParser<Color> {
     expect("[")
     val r = quest<Int>()
     val g = quest<Int>()
@@ -184,7 +184,7 @@ private fun color() = prefixParser {
 
 
 @AsahiPrefix(["currentTick"], "lang")
-private fun currentTick() = prefixParser {
+private fun currentTick() = prefixParser<Long> {
     result {
         Clock.currentTick
     }

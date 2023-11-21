@@ -35,7 +35,7 @@ fun AsahiLexer.questTarget(): Quester<Target> {
 
 
 @AsahiPrefix(["targets"])
-private fun targets() = prefixParser {
+private fun targets() = prefixParser<Any?> {
     val result = quester { selectorSafely<SelectResult>() ?: select(SelectResult()) }
     when {
         expect("add") -> {
@@ -135,7 +135,7 @@ private fun AsahiLexer.params(): Any {
 }
 
 @AsahiPrefix(["selector"])
-private fun selector() = prefixParser {
+private fun selector() = prefixParser<SelectResult> {
     val casterQuester = questTarget()
     expect("[")
     var token = next()
@@ -169,7 +169,7 @@ private fun selector() = prefixParser {
 }
 
 @AsahiPrefix(["filter"])
-private fun filter() = prefixParser {
+private fun filter() = prefixParser<SelectResult> {
     val casterQuester = questTarget()
     expect("[")
     var token = next()
@@ -221,7 +221,7 @@ private enum class OperateType {
 }
 
 @AsahiPrefix(["flag"])
-private fun flag() = prefixParser {
+private fun flag() = prefixParser<Any> {
     val operateType = quest<OperateType>()
     val key = quest<String>()
     val time = if (expect("time", "duration")) quest() else quester { Time.noTime }

@@ -21,7 +21,7 @@ import java.awt.Color
  */
 
 @AsahiPrefix(["particleData"])
-fun particleData() = prefixParser {
+fun particleData() = prefixParser<ProxyParticle.Data> {
     val token = next()
     expect("[", "{")
     when (token) {
@@ -79,7 +79,7 @@ private fun PrefixParser<*>.questItemData(): Quester<ProxyParticle.ItemData> {
 }
 
 @AsahiPrefix
-fun destination() = prefixParser {
+fun destination() = prefixParser<ProxyParticle.VibrationData.Destination> {
     when (val token = next()) {
         "location" -> {
             val loc = quest<org.bukkit.Location>()

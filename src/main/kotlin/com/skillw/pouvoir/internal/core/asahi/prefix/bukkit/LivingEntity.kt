@@ -31,7 +31,7 @@ import java.util.concurrent.ConcurrentHashMap
  * @date 2023/1/14 0:32 Copyright 2023 user. All rights reserved.
  */
 @AsahiPrefix(["damage"])
-private fun damage() = prefixParser {
+private fun damage() = prefixParser<Unit> {
     val defenderGetter = quest<LivingEntity>()
     val amount = quest<Double>()
     val attackerGetter = if (expect("by")) quest<LivingEntity>() else quester { null }
@@ -45,7 +45,7 @@ private fun damage() = prefixParser {
 }
 
 @AsahiPrefix(["potion"])
-private fun potion() = prefixParser {
+private fun potion() = prefixParser<Any> {
     when (val operType = next()) {
         "add" -> {
             //药水类型
@@ -135,7 +135,7 @@ private fun potion() = prefixParser {
 private val cache = ConcurrentHashMap<String, AttributeModifier>()
 
 @AsahiPrefix(["attribute"])
-private fun attribute() = prefixParser {
+private fun attribute() = prefixParser<Any?> {
     val attributeGetter = quest<BukkitAttribute>()
     val instanceGetter = (if (expect("of")) quest<LivingEntity>() else quester { selector() }).quester {
         NMS.INSTANCE.getAttribute(

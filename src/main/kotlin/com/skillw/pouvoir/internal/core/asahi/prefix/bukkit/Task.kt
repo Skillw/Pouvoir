@@ -17,7 +17,7 @@ import java.util.concurrent.CompletableFuture
  * @date 2023/1/14 0:56 Copyright 2023 user. All rights reserved.
  */
 @AsahiPrefix(["async", "taskAsync"])
-private fun async() = prefixParser {
+private fun async() = prefixParser<Unit> {
     var delayGetter = quester { 0L }
     var periodGetter = quester { 0L }
     if (expect("in")) {
@@ -44,7 +44,7 @@ private fun async() = prefixParser {
 }
 
 @AsahiPrefix(["sync", "taskSync", "task"])
-private fun sync() = prefixParser {
+private fun sync() = prefixParser<Unit> {
     var delayGetter = quester { 0L }
     var periodGetter = quester { 0L }
     if (expect("in")) {
@@ -71,7 +71,7 @@ private fun sync() = prefixParser {
 }
 
 @AsahiPrefix(["inSync"])
-private fun inSync() = prefixParser {
+private fun inSync() = prefixParser<Any?> {
     val content = parseScript()
     result {
         taboolib.common.util.sync {
@@ -106,7 +106,7 @@ private fun await() = prefixParser<Any?> {
 
 
 @AsahiPrefix(["wait", "delay", "sleep"], "lang")
-private fun delay() = prefixParser {
+private fun delay() = prefixParser<Unit> {
     val tick = questTick()
     result {
         delay(tick.get())
