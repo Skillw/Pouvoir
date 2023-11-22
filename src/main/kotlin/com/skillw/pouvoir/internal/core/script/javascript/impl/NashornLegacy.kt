@@ -3,8 +3,8 @@ package com.skillw.pouvoir.internal.core.script.javascript.impl
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.script.engine.hook.ScriptBridge
 import com.skillw.pouvoir.internal.core.script.javascript.PouJavaScriptEngine.SCRIPT_OBJ
-import org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory
-import org.openjdk.nashorn.api.scripting.ScriptObjectMirror
+import jdk.nashorn.api.scripting.NashornScriptEngineFactory
+import jdk.nashorn.api.scripting.ScriptObjectMirror
 import javax.script.CompiledScript
 import javax.script.Invocable
 import javax.script.ScriptEngine

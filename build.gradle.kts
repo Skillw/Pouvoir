@@ -74,8 +74,7 @@ taboolib {
         "module-nms-util",
         "module-lang",
         "module-porticus",
-        "expansion-alkaid-redis",
-        "expansion-javascript"
+        "expansion-alkaid-redis"
     )
     install(
         "platform-bukkit"
