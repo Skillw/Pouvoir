@@ -13,6 +13,7 @@ import com.skillw.asahi.api.member.parser.prefix.type.TypeParser
 import com.skillw.pouvoir.util.instance
 import com.skillw.pouvoir.util.plugin.PluginUtils.getClasses
 import com.skillw.pouvoir.util.safe
+import taboolib.common.platform.function.console
 import taboolib.library.reflex.ClassAnnotation
 import taboolib.library.reflex.ClassStructure
 import taboolib.library.reflex.ReflexClass
@@ -38,9 +39,29 @@ object AsahiLoader {
         }
     }
 
+    /**
+     * FIXME:
+     *  Author: Zhaoch23
+     *  There has been some problem with the ClassAnnotation properties method that this function can parse
+     *  some AsahiPrefix literals (i.e. money, sin, cos) but for some others (i.e. tell, actionbar) it throws the following.
+     *  exception:
+     *  java.lang.ClassCastException: class java.util.ArrayList cannot be cast to class
+     *      [Ljava.lang.String; (java.util.ArrayList and [Ljava.lang.String; are in module java.base of loader 'bootstrap')
+     *  I don't quite understand why this happened just for partial literals but I was managed to figure out a workaround.
+     *  This may not solve the issue from the root but it works for my case.
+     *  ( This may due to the type interpretations of the 'names' literal )
+     */
+    @Suppress("UNCHECKED_CAST")
     private fun <R> PrefixCreator<R>.register(asahi: ClassAnnotation, defaultName: String = "") {
-        val names = asahi.property<Array<String>>("names")!!
-        val namespace = asahi.property<String>("namespace")!!
+        val properties: Map<String, Any> = asahi.properties()
+
+        val namesUnchecked = properties["names"]
+        val names: Array<String> = when (namesUnchecked) {
+            is Array<*> -> namesUnchecked as? Array<String>
+            is ArrayList<*> -> namesUnchecked.filterIsInstance<String>().toTypedArray()
+            else -> null
+        } ?: arrayOf(defaultName) // TODO: Some names weren't set ??
+        val namespace: String = (properties["namespace"] as? String) ?: "null" // TODO: Some namespaces weren't set??
         val key = names.firstOrNull() ?: defaultName
         register(key, *names, namespace = namespace)
     }
