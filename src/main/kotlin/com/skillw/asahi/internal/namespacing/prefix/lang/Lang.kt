@@ -16,49 +16,49 @@ import com.skillw.asahi.api.quester
  * @date 2023/1/9 22:55 Copyright 2023 user. All rights reserved.
  */
 @AsahiPrefix(["null"], "lang")
-private fun `null`() = prefixParser {
+private fun `null`() = prefixParser<Any?> {
     result { null }
 }
 
 @AsahiPrefix(["null-str"], "lang")
-private fun nullStr() = prefixParser {
+private fun nullStr() = prefixParser<String> {
     result { "null" }
 }
 
 @AsahiPrefix(["pass"], "lang")
-private fun pass() = prefixParser {
+private fun pass() = prefixParser<String> {
     result { "" }
 }
 
 @AsahiPrefix(["true"], "lang")
-private fun `true`() = prefixParser {
+private fun `true`() = prefixParser<Boolean> {
     result { true }
 }
 
 @AsahiPrefix(["false"], "lang")
-private fun `false`() = prefixParser {
+private fun `false`() = prefixParser<Boolean> {
     result { false }
 }
 
 @AsahiPrefix(["return"], "lang")
-private fun `return`() = prefixParser {
+private fun `return`() = prefixParser<Any?> {
     val value = if (expect(";")) quester { Unit } else quest<Any?>()
     result { exit(); value.get() }
 }
 
 @AsahiPrefix(["exit", "stop"], "lang")
-private fun exit() = prefixParser {
+private fun exit() = prefixParser<Unit> {
     result { exit() }
 }
 
 @AsahiPrefix(["{"], "lang")
-private fun block() = prefixParser {
+private fun block() = prefixParser<Any?> {
     val script = splitTill("{", "}").compile(*namespaceNames())
     result { script.run() }
 }
 
 @AsahiPrefix(["using"], "lang")
-private fun using() = prefixParser {
+private fun using() = prefixParser<Any?> {
     val names = ArrayList<String>()
     if (peek() == "[") {
         while (!expect("]")) {
@@ -78,7 +78,7 @@ private fun using() = prefixParser {
 }
 
 @AsahiPrefix(["unusing"], "lang")
-private fun unusing() = prefixParser {
+private fun unusing() = prefixParser<String> {
     val name = next()
     removeSpaces(name)
     result { name }

@@ -45,7 +45,7 @@ private fun Any.formatColumn(): String {
 }
 
 @AsahiPrefix(["where"], "sql-where-action")
-private fun where() = prefixParser {
+private fun where() = prefixParser<WhereData> {
     val keyGetter = quest<String>()
     val symbolGetter = quest<String>()
     val valueGetter = quest<String>()
@@ -62,7 +62,7 @@ private fun where() = prefixParser {
 }
 
 @AsahiPrefix(["and"], "sql-where-action")
-private fun and() = prefixParser {
+private fun and() = prefixParser<WhereData> {
     val dataGetter = quest<WhereData>()
     result {
         val data = dataGetter.get()
@@ -73,7 +73,7 @@ private fun and() = prefixParser {
 }
 
 @AsahiPrefix(["or"], "sql-where-action")
-private fun or() = prefixParser {
+private fun or() = prefixParser<WhereData> {
     val dataGetter = quest<WhereData>()
     result {
         val data = dataGetter.get()
@@ -84,7 +84,7 @@ private fun or() = prefixParser {
 }
 
 @AsahiPrefix(["not"], "sql-where-action")
-private fun not() = prefixParser {
+private fun not() = prefixParser<WhereData> {
     val dataGetter = quest<WhereData>()
     result {
         val data = dataGetter.get()

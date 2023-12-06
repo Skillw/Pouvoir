@@ -8,14 +8,15 @@ import com.skillw.asahi.api.script.linking.NativeFunction
 
 internal object PrefixRegex {
     @AsahiPrefix(["regexOf"], "regex")
-    private fun regexOf() = prefixParser {
+    private fun regexOf() = prefixParser<Regex> {
         val regex = quest<String>()
         val options = if (expect("with")) quest() else quester { emptySet<RegexOption>() }
         result { regex.get().toRegex(options.get()) }
     }
 
+    @OptIn(ExperimentalStdlibApi::class)
     @AsahiPrefix(["regex"], "regex")
-    private fun regex() = prefixParser {
+    private fun regex() = prefixParser<Any?> {
         val regex = if (expect("of")) quest<String>().quester { it.toRegex() } else quester { selector() }
         when (val type = next()) {
             "find" -> {

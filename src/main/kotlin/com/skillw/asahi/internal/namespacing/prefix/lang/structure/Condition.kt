@@ -14,7 +14,7 @@ import com.skillw.asahi.api.quester
  */
 
 @AsahiPrefix(["condition"], "lang")
-private fun condition() = prefixParser {
+private fun condition() = prefixParser<Boolean> {
     val condition = questCondition(";")
     result {
         condition.get()
@@ -23,7 +23,7 @@ private fun condition() = prefixParser {
 
 //单路
 @AsahiPrefix(["if"], "lang")
-private fun `if`() = prefixParser {
+private fun `if`() = prefixParser<Any?> {
     val condition = questCondition("then")
     expect("then")
     val ifTrue = quest<Any?>()
@@ -36,7 +36,7 @@ private fun `if`() = prefixParser {
 
 //多路
 @AsahiPrefix(["when", "switch"], "lang")
-private fun `when`() = prefixParser {
+private fun `when`() = prefixParser<Any?> {
     val value = if (expect("of")) quest<Any?>() else null
     val pairs = ArrayList<Pair<Quester<Boolean>, Quester<Any?>>>()
     expect("{")

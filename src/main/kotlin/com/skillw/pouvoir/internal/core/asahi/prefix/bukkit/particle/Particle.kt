@@ -21,7 +21,7 @@ import taboolib.platform.util.toProxyLocation
  */
 
 @AsahiPrefix(["particle"])
-private fun particle() = prefixParser {
+private fun particle() = prefixParser<Unit> {
     //粒子类型
     val particle = quest<ProxyParticle>()
     expect("at")
@@ -53,6 +53,6 @@ private fun particle() = prefixParser {
 
 //FIXME 这里要写粒子库对接
 @AsahiPrefix(["effect"])
-private fun effect() = prefixParser {
+private fun effect() = prefixParser<Unit> {
     result { }
 }

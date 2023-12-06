@@ -13,7 +13,7 @@ import com.skillw.pouvoir.internal.feature.database.redis.RedisContainer
  * @date 2023/1/19 15:06 Copyright 2023 user. All rights reserved.
  */
 @AsahiPrefix(["redis"], "lang")
-private fun redis() = prefixParser {
+private fun redis() = prefixParser<Any?> {
     val connectionGetter =
         if (expect("of")) quest<RedisContainer>().quester { it.connection }
         else quester { selector<RedisContainer>().connection }

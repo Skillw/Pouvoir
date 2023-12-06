@@ -44,7 +44,7 @@ interface IPouTable<T : Host<E>, E : ColumnBuilder> {
      * @return 结果
      * @receiver
      */
-    fun select(func: ActionSelect.() -> Unit): QueryTask
+    fun select(func: ActionSelect.() -> Unit): ResultProcessorList
 
     /**
      * 寻找数据
@@ -90,7 +90,7 @@ interface IPouTable<T : Host<E>, E : ColumnBuilder> {
      * @return 结果
      * @receiver
      */
-    fun workspace(func: Query.() -> Unit): QueryTask
+    fun workspace(func: ExecutableSource.() -> Unit): ResultProcessorList
 
     /** 关闭数据源 */
     fun close()

@@ -14,7 +14,7 @@ import com.skillw.pouvoir.util.calculate.CalcOperator.Companion.toCalcOperator
  * @date 2023/1/14 0:31 Copyright 2023 user. All rights reserved.
  */
 @AsahiPrefix(["calculate", "calc"], "lang")
-private fun calculate() = prefixParser {
+private fun calculate() = prefixParser<Double> {
     val formulaGetter = quest<String>()
     result {
         val formula = formulaGetter.get().analysis(this, *namespaceNames())
@@ -23,7 +23,7 @@ private fun calculate() = prefixParser {
 }
 
 @AsahiPrefix(["math"], "lang")
-private fun math() = prefixParser {
+private fun math() = prefixParser<Double> {
     val numA = questDouble()
     val operator = questString().quester { it.first() }
     val numB = questDouble()

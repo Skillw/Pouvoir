@@ -18,7 +18,7 @@ import java.util.*
  * @date 2023/1/14 0:25 Copyright 2023 user. All rights reserved.
  */
 @AsahiPrefix(["while"], "lang")
-private fun `while`() = prefixParser {
+private fun `while`() = prefixParser<Unit> {
     val condition = questCondition("label", "then")
     runLoop { loopOnce ->
         while (condition.get()) {
@@ -31,7 +31,7 @@ private fun `while`() = prefixParser {
 }
 
 @AsahiPrefix(["repeat"], "lang")
-private fun repeat() = prefixParser {
+private fun repeat() = prefixParser<Unit> {
     val time = quest<Int>()
     val indexName = if (expect("with")) quest() else quester { "index" }
     runLoop { loopOnce ->
@@ -47,7 +47,7 @@ private fun repeat() = prefixParser {
 }
 
 @AsahiPrefix(["foreach", "for"], "lang")
-private fun foreach() = prefixParser {
+private fun foreach() = prefixParser<Unit> {
     val paramName = next()
     expect("in")
     val getter = quest<Any>()
@@ -114,7 +114,7 @@ private fun PrefixParser<*>.runLoop(
 }
 
 @AsahiPrefix(["break"], "lang")
-private fun `break`() = prefixParser {
+private fun `break`() = prefixParser<Unit> {
     val labelGetter = if (expect("the")) quest() else quester { (context() as LoopContext).label }
     result {
         if (this !is LoopContext) return@result
@@ -129,7 +129,7 @@ private fun `break`() = prefixParser {
 }
 
 @AsahiPrefix(["continue"], "lang")
-private fun `continue`() = prefixParser {
+private fun `continue`() = prefixParser<Unit> {
     val labelGetter = if (expect("the")) quest() else quester { (context() as LoopContext).label }
     result {
         if (this !is LoopContext) return@result

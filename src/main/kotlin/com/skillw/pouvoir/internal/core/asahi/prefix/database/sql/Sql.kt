@@ -16,7 +16,7 @@ import taboolib.module.database.QueryTask
  */
 
 @AsahiPrefix(["sql"], "sql")
-private fun sql() = prefixParser {
+private fun sql() = prefixParser<Any> {
     val containerGetter = if (expect("of")) quest<IPouTable<*, *>>() else quester { selector() }
     when (val top = next()) {
 
@@ -95,7 +95,7 @@ private fun sql() = prefixParser {
 }
 
 @AsahiPrefix(["query"], "sql")
-private fun query() = prefixParser {
+private fun query() = prefixParser<Any?> {
     val queryGetter = if (expect("of")) quest<QueryTask>() else quester { selector() }
     when (val top = next()) {
         "find" -> result { queryGetter.get().find() }

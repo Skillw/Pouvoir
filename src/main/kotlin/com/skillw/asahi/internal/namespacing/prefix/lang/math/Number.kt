@@ -16,32 +16,32 @@ import kotlin.math.absoluteValue
 
 
 @AsahiPrefix(["abs"], "lang")
-private fun abs() = prefixParser {
+private fun abs() = prefixParser<Double> {
     val number = quest<Double>()
     result { number.get().absoluteValue }
 }
 
 @AsahiPrefix(["ceil"], "lang")
-private fun ceil() = prefixParser {
+private fun ceil() = prefixParser<Double> {
     val number = quest<Double>()
     result { kotlin.math.ceil(number.get()) }
 }
 
 @AsahiPrefix(["floor"], "lang")
-private fun floor() = prefixParser {
+private fun floor() = prefixParser<Double> {
     val number = quest<Double>()
     result { kotlin.math.floor(number.get()) }
 }
 
 @AsahiPrefix(["format"], "lang")
-private fun format() = prefixParser {
+private fun format() = prefixParser<String> {
     val number = quest<Double>()
     val format = quest<String>()
     result { number.get().format(format.get()) }
 }
 
 @AsahiPrefix(["max"], "lang")
-private fun max() = prefixParser {
+private fun max() = prefixParser<Double> {
     val value = if (peek() == "[")
         quest<List<Any?>>()
     else {
@@ -69,7 +69,7 @@ private fun max() = prefixParser {
 }
 
 @AsahiPrefix(["min"], "lang")
-private fun min() = prefixParser {
+private fun min() = prefixParser<Double> {
     val value = if (peek() == "[")
         quest<List<Any?>>()
     else {
@@ -97,13 +97,13 @@ private fun min() = prefixParser {
 }
 
 @AsahiPrefix(["round"], "lang")
-private fun round() = prefixParser {
+private fun round() = prefixParser<Int> {
     val x = quest<Double>()
     result { kotlin.math.round(x.get()).toInt() }
 }
 
 @AsahiPrefix(["range"], "lang")
-private fun range() = prefixParser {
+private fun range() = prefixParser<ClosedFloatingPointRange<Double>> {
     val from = quest<Double>()
     expect("to", "~", "..")
     val to = quest<Double>()
@@ -115,7 +115,7 @@ private fun range() = prefixParser {
 }
 
 @AsahiPrefix(["number"], "lang")
-private fun number() = prefixParser {
+private fun number() = prefixParser<Double> {
     val number = quest<Double>()
     result { number.get() }
 }

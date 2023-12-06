@@ -42,7 +42,7 @@ private fun sound() = prefixParser<Sound> {
 }
 
 @AsahiPrefix(["tell", "send", "message"])
-private fun tell() = prefixParser {
+private fun tell() = prefixParser<Unit> {
     val targets = if (expect("all")) quester { Bukkit.getOnlinePlayers() } else questAny()
     val contentGetter = if (peek() == "[") questList() else questString()
     result {
@@ -66,7 +66,7 @@ private fun tell() = prefixParser {
 }
 
 @AsahiPrefix(["actionbar"])
-private fun actionbar() = prefixParser {
+private fun actionbar() = prefixParser<Unit> {
     val targets = if (expect("all")) quester { Bukkit.getOnlinePlayers() } else questAny()
     val period = if (expect("every")) questTick() else quester { 20L }
     val contentGetter = if (peek() == "[") questList() else questString()
@@ -94,7 +94,7 @@ private fun actionbar() = prefixParser {
 }
 
 @AsahiPrefix(["title"])
-private fun title() = prefixParser {
+private fun title() = prefixParser<Unit> {
     val targets = if (expect("all")) quester { Bukkit.getOnlinePlayers() } else questAny()
     //主标题
     val title = quest<String?>()
@@ -134,7 +134,7 @@ private fun title() = prefixParser {
 private val bossBars = ConcurrentHashMap<String, BossBar>()
 
 @AsahiPrefix(["bossbar"])
-private fun bossbar() = prefixParser {
+private fun bossbar() = prefixParser<BossBar?> {
     if (expect("release")) {
         val barKeyGetter = questString()
         return@prefixParser result {
@@ -159,7 +159,7 @@ private fun bossbar() = prefixParser {
 
 
 @AsahiPrefix(["permission", "perm"])
-private fun permission() = prefixParser {
+private fun permission() = prefixParser<Any?> {
     val playerGetter = if (expect("of")) quest<Player>() else quester { selector() }
     when (next()) {
         "add" -> {
@@ -236,7 +236,7 @@ private val economy by unsafeLazy {
 }
 
 @AsahiPrefix(["money", "economy", "eco"])
-private fun money() = prefixParser {
+private fun money() = prefixParser<Any> {
     val player = if (expect("of")) quest<Player>() else quester { selector() }
     when (val type = next()) {
         in arrayOf("add", "deposit") -> {

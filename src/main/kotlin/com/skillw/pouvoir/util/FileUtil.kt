@@ -136,7 +136,7 @@ fun File.md5(): String? {
 }
 
 fun JavaPlugin.completeYaml(file: File, ignores: Set<String> = emptySet()): Map<String, Any?> {
-    val path = file.path.substringAfter("\\").substringAfter("\\")
+    val path = file.path.substringAfter(File.separator).substringAfter(File.separator)
     return completeYaml(path, ignores)
 }
 

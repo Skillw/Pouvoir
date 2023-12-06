@@ -12,7 +12,7 @@ import com.skillw.pouvoir.internal.feature.database.PouvoirContainer
 
 
 @AsahiPrefix(["container"], "lang")
-private fun container() = prefixParser {
+private fun container() = prefixParser<Any?> {
     when (val top = next()) {
         "pouvoir" -> result {
             PouvoirContainer.container
@@ -49,7 +49,7 @@ private fun container() = prefixParser {
 
 
 @AsahiPrefix(["userdata"], "lang")
-private fun userdata() = prefixParser {
+private fun userdata() = prefixParser<Any?> {
     val container = if (expect("of")) quest<UserBased>() else quester { selector() }
     val user = questString()
     when (val top = next()) {

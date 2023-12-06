@@ -38,7 +38,7 @@ object Pouvoir : SubPouvoir, Plugin() {
     @Config(migrate = true, autoReload = true)
     lateinit var config: ConfigFile
 
-    @Config("script.yml", true, autoReload = true)
+    @Config("script.yml", migrate = true, autoReload = true)
     lateinit var script: ConfigFile
 
     /** Managers */
