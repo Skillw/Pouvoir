@@ -105,9 +105,10 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
         }
     }
 
-    fun completeYaml(file: File, ignores: Set<String> = emptySet()): Map<String, Any?> =
-        subPouvoir.plugin.completeYaml(file, ignores)
-
-    fun completeYaml(filePath: String, ignores: Set<String> = emptySet()): Map<String, Any?> =
-        subPouvoir.plugin.completeYaml(filePath, ignores)
+    @Deprecated("Deprecated", ReplaceWith(""))
+    fun completeYaml(file: File, ignores: Set<String> = emptySet()): Map<String, Any?> = emptyMap()
+//        subPouvoir.plugin.completeYaml(file, ignores)
+    @Deprecated("Deprecated", ReplaceWith(""))
+    fun completeYaml(filePath: String, ignores: Set<String> = emptySet()): Map<String, Any?> =emptyMap()
+//        subPouvoir.plugin.completeYaml(filePath, ignores)
 }
