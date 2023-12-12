@@ -6,11 +6,13 @@ import com.skillw.pouvoir.api.plugin.map.DataMap
 import com.skillw.pouvoir.util.toMap
 import org.spigotmc.AsyncCatcher
 import taboolib.common.platform.Platform
+import taboolib.common.platform.function.getDataFolder
 import taboolib.module.metrics.Metrics
 import taboolib.module.metrics.charts.AdvancedPie
 import taboolib.module.metrics.charts.MultiLineChart
 import taboolib.module.metrics.charts.SingleLineChart
 import taboolib.platform.util.bukkitPlugin
+import java.io.File
 
 object PouConfig : ConfigManager(Pouvoir) {
     override val priority = 0
@@ -66,18 +68,19 @@ object PouConfig : ConfigManager(Pouvoir) {
             "conditions/ground.js",
             "conditions/player.js",
         )
-        create(
-            "scripts",
-            "core/asahi.js",
-            "core/basic.js",
-            "core/util/ray_trace.js",
-            "core/util/color.js",
-            "core/util/container.js",
-            "core/util/message.js",
-            "core/util/number.js",
-            "core/util/placeholder.js",
-            "core/util/player.js"
-        )
+        if (!File(getDataFolder(),"core").exists())
+            create(
+                "scripts",
+                "core/asahi.js",
+                "core/basic.js",
+                "core/util/ray_trace.js",
+                "core/util/color.js",
+                "core/util/container.js",
+                "core/util/message.js",
+                "core/util/number.js",
+                "core/util/placeholder.js",
+                "core/util/player.js"
+            )
     }
 
     override fun onEnable() {
