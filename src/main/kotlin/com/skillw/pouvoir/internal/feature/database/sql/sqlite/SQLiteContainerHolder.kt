@@ -25,16 +25,18 @@ class SQLiteContainerHolder(val host: Host<SQLite>) : ContainerHolder<NormalCont
             table.apply {
                 column("username") {
                     type(ColumnTypeSQLite.TEXT) {
-                        options(ColumnOptionSQLite.UNIQUE)
+                        options(ColumnOptionSQLite.UNIQUE,ColumnOptionSQLite.PRIMARY_KEY)
                     }
                 }
                 column("key") {
                     type(ColumnTypeSQLite.TEXT) {
-                        options(ColumnOptionSQLite.UNIQUE)
+                        options(ColumnOptionSQLite.UNIQUE,ColumnOptionSQLite.NOTNULL)
                     }
                 }
                 column("value") {
-                    type(ColumnTypeSQLite.TEXT)
+                    type(ColumnTypeSQLite.TEXT){
+                        options(ColumnOptionSQLite.NOTNULL)
+                    }
                 }
             }
             return UserContainer(this, table).apply { createTable() }

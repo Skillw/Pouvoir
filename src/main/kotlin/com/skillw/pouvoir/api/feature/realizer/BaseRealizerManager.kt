@@ -142,9 +142,9 @@ open class BaseRealizerManager(final override val key: String, final override va
 
     override fun put(key: String, value: BaseRealizer): BaseRealizer? {
         val file = value.file
-        if (!watcher.hasListener(file)) {
-            watcher.addSimpleListener(file) { reloadFile(file) }
-        }
+//        if (!watcher.hasListener(file)) {
+//            watcher.addSimpleListener(file) { reloadFile(file) }
+//        }
         return super.put(key, value).also { fileMap += file to value }
     }
 

@@ -9,5 +9,5 @@ PouvoirAPI = static("PouvoirAPI");
  * @returns {String} 解析后的文本
  */
 function placeholder(string, entity) {
-  PouvoirAPI.placeholder(string, entity);
+  PouvoirAPI.placeholder(string, entity,true);
 }
