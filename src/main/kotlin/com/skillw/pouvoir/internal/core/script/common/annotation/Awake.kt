@@ -9,6 +9,7 @@ import com.skillw.pouvoir.api.script.annotation.ScriptAnnotationData
 import com.skillw.pouvoir.internal.manager.PouConfig.debug
 import com.skillw.pouvoir.util.toArgs
 import taboolib.common.platform.function.console
+import taboolib.common.platform.function.isPrimaryThread
 import taboolib.common.platform.function.submitAsync
 import taboolib.module.lang.sendLang
 
@@ -29,7 +30,7 @@ internal object Awake : ScriptAnnotation("Awake") {
         if (args.isEmpty() || args[0] == "") return
         val key = "$path::$function@Awake(${args[0]})"
         val time = ManagerTime(args[0])
-        debug { console().sendLang("annotation-awake-register", key) }
+        debug { console().sendLang("annotation-awake-register", key, time) }
         scriptManager.addExec(time, key) {
             val scriptToRun = scriptManager.search(path)
             if (scriptToRun == null || !scriptToRun.annotationData.containsKey(function)) {
@@ -41,7 +42,7 @@ internal object Awake : ScriptAnnotation("Awake") {
             val todo = fun(){
                 scriptManager.invoke<Any?>(scriptToRun, function, parameters = arrayOf(time.key.uppercase()))
             }
-            if (plugin.isEnabled)submitAsync {
+            if (isPrimaryThread && plugin.isEnabled)submitAsync {
                 todo()
             }else
                 todo()

@@ -46,7 +46,7 @@ annotation-asahi-prefix-register: '&d[&9Pouvoir&d] &aScript Asahi Prefix Parser 
 annotation-asahi-prefix-unregister: '&d[&9Pouvoir&d] &cScript Asahi Prefix Parser &6{0} &chas been unregistered!'
 annotation-asahi-infix-register: '&d[&9Pouvoir&d] &aScript Asahi Infix Parser &6{0} &ahas been registered!'
 annotation-asahi-infix-unregister: '&d[&9Pouvoir&d] &cScript Asahi Infix Parser &6{0} &chas been unregistered!'
-annotation-awake-register: '&d[&9Pouvoir&d] &aScript Awake &6{0} &ahas been registered!'
+annotation-awake-register: '&d[&9Pouvoir&d] &aScript Awake &6{0} &d{1} &ahas been registered!'
 annotation-awake-unregister: '&d[&9Pouvoir&d] &cScript Awake &6{0} &chas been unregistered!'
 annotation-awake-running: '&d[&9Pouvoir&d] &aScript Awake &6{0} &ais running!'
 annotation-annotation-register: '&d[&9Pouvoir&d] &aScript Annotation &6{0} &ahas been registered!'

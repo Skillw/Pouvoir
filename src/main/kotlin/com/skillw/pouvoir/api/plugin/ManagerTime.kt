@@ -27,7 +27,7 @@ class ManagerTime(val key: String) {
     }
 
     override fun hashCode(): Int {
-        return javaClass.hashCode()
+        return key.hashCode()
     }
 
 

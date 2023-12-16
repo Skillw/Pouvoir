@@ -47,7 +47,7 @@ annotation-asahi-prefix-register: '&d[&9Pouvoir&d] &a脚本Asahi前缀解释器 
 annotation-asahi-prefix-unregister: '&d[&9Pouvoir&d] &c脚本Asahi前缀解释器 &6{0} &c已注销!'
 annotation-action-register: '&d[&9Pouvoir&d] &a脚本Asahi中缀解释器 &6{0} &a注册成功!'
 annotation-action-unregister: '&d[&9Pouvoir&d] &c脚本Asahi中缀解释器 &6{0} &c已注销!'
-annotation-awake-register: '&d[&9Pouvoir&d] &a脚本启动器 &6{0} &a注册成功!'
+annotation-awake-register: '&d[&9Pouvoir&d] &a脚本启动器 &6{0} &d{1} &a注册成功!'
 annotation-awake-unregister: '&d[&9Pouvoir&d] &c脚本启动器 &6{0} &c已注销!'
 annotation-awake-running: '&d[&9Pouvoir&d] &c脚本启动器 &6{0} &c正在运行!'
 annotation-annotation-register: '&d[&9Pouvoir&d] &a脚本注解 &6{0} &a注册成功!'
