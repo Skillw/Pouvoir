@@ -26,7 +26,8 @@ jobs:
         run: chmod +x ./gradlew
       - name: Decode
         run: |
-          mkdir ~/.gradle
+          if [ ! -d "~/.gradle/" ];then
+            mkdir ~/.gradle
           touch ~/.gradle/secring.pgp.base64
           echo "${{ secrets.SIGNING_SECRET_KEY_RING_FILE }}" > ~/.gradle/secring.pgp.base64
           base64 -d ~/.gradle/secring.pgp.base64 > ~/.gradle/secring.pgp
