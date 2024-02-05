@@ -24,14 +24,10 @@ class SQLContainerHolder(val host: Host<SQL>) : ContainerHolder<NormalContainer<
         if (userKey) {
             table.apply {
                 column("username") {
-                    type(ColumnTypeSQL.VARCHAR) {
-                        options(ColumnOptionSQL.UNIQUE_KEY)
-                    }
+                    type(ColumnTypeSQL.VARCHAR)
                 }
                 column("key") {
-                    type(ColumnTypeSQL.VARCHAR) {
-                        options(ColumnOptionSQL.UNIQUE_KEY)
-                    }
+                    type(ColumnTypeSQL.VARCHAR)
                 }
                 column("value") {
                     type(ColumnTypeSQL.VARCHAR)

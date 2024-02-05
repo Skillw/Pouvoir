@@ -25,12 +25,12 @@ class SQLiteContainerHolder(val host: Host<SQLite>) : ContainerHolder<NormalCont
             table.apply {
                 column("username") {
                     type(ColumnTypeSQLite.TEXT) {
-                        options(ColumnOptionSQLite.UNIQUE,ColumnOptionSQLite.PRIMARY_KEY)
+                        options(ColumnOptionSQLite.PRIMARY_KEY)
                     }
                 }
                 column("key") {
                     type(ColumnTypeSQLite.TEXT) {
-                        options(ColumnOptionSQLite.UNIQUE,ColumnOptionSQLite.NOTNULL)
+                        options(ColumnOptionSQLite.NOTNULL)
                     }
                 }
                 column("value") {

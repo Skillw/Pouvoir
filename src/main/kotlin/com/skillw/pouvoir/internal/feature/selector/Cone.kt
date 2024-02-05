@@ -18,7 +18,7 @@ object Cone : SimpleSelector("cone") {
 
     override fun SelectorContext.getTargets(caster: Target): Collection<Target> {
         val radius = get("radius", 10.0)
-        val angle = get("range", 10.0)
+        val angle = get("angle", 45.0)
         val start = caster.location
         return start.getNearByEntities(radius, radius, radius)
             .filter { isPointInEntitySector(start, it.location, radius, angle) }
