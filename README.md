@@ -11,6 +11,9 @@
 | 兼容版本 | 1.9+                      |
 | 软依赖  | PlaceholderAPI Mythicmobs |
 
+![GitHub Release](https://img.shields.io/github/v/release/Skillw/Pouvoir)
+
+
 ## 介绍
 
 **Pouvoir** 是基于 **TabooLib VI** 编写的一款类库插件
