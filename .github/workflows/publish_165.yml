@@ -27,7 +27,7 @@ jobs:
       - name: Decode
         run: |
           if [ ! -d "~/.gradle/" ]; then
-            mkdir ~/.gradle
+            mkdir ~/.gradle/
           else
             echo "~/.gradle/ exists"
           fi
