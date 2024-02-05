@@ -28,6 +28,9 @@ jobs:
         run: |
           if [ ! -d "~/.gradle/" ];then
             mkdir ~/.gradle
+          else
+            echo "~/.gradle/ exists"
+          fi
           touch ~/.gradle/secring.pgp.base64
           echo "${{ secrets.SIGNING_SECRET_KEY_RING_FILE }}" > ~/.gradle/secring.pgp.base64
           base64 -d ~/.gradle/secring.pgp.base64 > ~/.gradle/secring.pgp
