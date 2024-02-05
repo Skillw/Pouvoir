@@ -26,7 +26,7 @@ jobs:
         run: chmod +x ./gradlew
       - name: Decode
         run: |
-          if [ ! -d "~/.gradle/" ];then
+          if [ ! -d "~/.gradle/" ]; then
             mkdir ~/.gradle
           else
             echo "~/.gradle/ exists"
