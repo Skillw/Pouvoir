@@ -203,7 +203,7 @@ internal object ScriptManagerImpl : ScriptManager() {
                 if (isSuccess) getOrNull()
                 else {
                     console().sendLang("script-invoking-error", script.key, function)
-                    throw exceptionOrNull()!!
+                    exceptionOrNull()?.printStackTrace()
                 }
             }
         val duration = mark.elapsedNow()
