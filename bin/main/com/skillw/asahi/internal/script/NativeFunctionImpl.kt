@@ -12,7 +12,7 @@ import com.skillw.asahi.util.toLazyMap
  * @className ScriptFunctionImpl
  *
  * @author Glom
- * @date 2022/12/28 21:24 Copyright 2022 user. All rights reserved.
+ * @date 2022/12/28 21:24 Copyright 2022 user.
  */
 class NativeFunctionImpl constructor(
     key: String,

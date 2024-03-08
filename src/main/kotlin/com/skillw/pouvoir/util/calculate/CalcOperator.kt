@@ -6,7 +6,7 @@ import kotlin.math.pow
  * @className A
  *
  * @author Glom
- * @date 2023/1/16 3:33 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/16 3:33 Copyright 2024 Glom.
  */
 internal enum class CalcOperator(
     private val symbol: Char,

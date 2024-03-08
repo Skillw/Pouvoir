@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit
  * @className AsahiHandler
  *
  * @author Glom
- * @date 2023/1/15 23:12 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/15 23:12 Copyright 2024 Glom.
  */
 class SimpleDispatcherBuilder(
     initial: AsahiContext = AsahiContext.create(),

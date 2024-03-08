@@ -6,7 +6,7 @@ import com.skillw.asahi.internal.lexer.Tokenizer
  * @className MultiLine
  *
  * @author Glom
- * @date 2023/1/19 16:28 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/19 16:28 Copyright 2024 Glom.
  */
 class ScriptTokenizer {
     private val tokens = ArrayList<String>()

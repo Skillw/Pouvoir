@@ -12,7 +12,7 @@ import taboolib.library.reflex.Reflex.Companion.invokeConstructor
  * @className Java
  *
  * @author Glom
- * @date 2023/1/18 18:19 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/18 18:19 Copyright 2024 Glom.
  */
 @AsahiPrefix(["java"], "lang")
 private fun java() = prefixParser<Any?> {

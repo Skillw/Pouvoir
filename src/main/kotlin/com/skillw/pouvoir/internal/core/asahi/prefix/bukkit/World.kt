@@ -13,7 +13,7 @@ import org.bukkit.util.Vector
  * @className World
  *
  * @author Glom
- * @date 2023/1/14 0:33 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/14 0:33 Copyright 2024 Glom. 
  */
 
 @AsahiPrefix(["world"])

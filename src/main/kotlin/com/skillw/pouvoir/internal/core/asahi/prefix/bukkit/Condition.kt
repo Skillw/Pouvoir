@@ -11,7 +11,7 @@ import org.bukkit.entity.LivingEntity
  * @className Condition
  *
  * @author Glom
- * @date 2023/8/12 19:17 Copyright 2023 user. All rights reserved.
+ * @date 2023/8/12 19:17 Copyright 2024 Glom.
  */
 
 @AsahiPrefix(["cond"])

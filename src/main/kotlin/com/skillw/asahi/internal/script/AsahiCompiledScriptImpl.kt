@@ -15,7 +15,7 @@ import javax.script.ScriptEngine
  * @className AsahiCompiledScriptImpl
  *
  * @author Glom
- * @date 2022/12/28 21:26 Copyright 2022 user. All rights reserved.
+ * @date 2022/12/28 21:26 Copyright 2022 user.
  */
 class AsahiCompiledScriptImpl internal constructor(engine: AsahiEngine, val raw: String) : AsahiCompiledScript(engine) {
     private val questers = ArrayList<Quester<*>>()

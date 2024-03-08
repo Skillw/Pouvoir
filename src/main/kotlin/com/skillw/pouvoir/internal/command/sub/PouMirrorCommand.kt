@@ -1,9 +1,9 @@
 package com.skillw.pouvoir.internal.command.sub
 
 import com.skillw.pouvoir.internal.command.PouvoirCommand.soundSuccess
+import com.skillw.pouvoir.util.legacy.Mirror
 import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.command.subCommand
-import taboolib.common5.Mirror
 import taboolib.module.lang.sendLang
 
 internal object PouMirrorCommand {

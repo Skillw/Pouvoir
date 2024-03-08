@@ -7,7 +7,7 @@ import com.skillw.asahi.api.member.parser.infix.namespacing.BaseInfix
  * @className ActionArray
  *
  * @author Glom
- * @date 2022/8/9 16:26 Copyright 2022 user. All rights reserved.
+ * @date 2022/8/9 16:26 Copyright 2022 user.
  */
 @AsahiInfix
 internal object InfixArray : BaseInfix<Array<*>>(Array::class.java) {

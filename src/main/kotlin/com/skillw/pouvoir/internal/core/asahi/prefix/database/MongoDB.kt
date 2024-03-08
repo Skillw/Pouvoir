@@ -10,7 +10,7 @@ import com.skillw.pouvoir.internal.feature.database.mongodb.MongoContainer
  * @className MongoDB
  *
  * @author Glom
- * @date 2023/1/19 15:06 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/19 15:06 Copyright 2024 Glom.
  */
 @AsahiPrefix(["mongo"])
 private fun mongo() = prefixParser<Any> {

@@ -10,7 +10,7 @@ import com.skillw.asahi.api.member.quest.Quester
  * 前缀解释器的编译上下文
  *
  * @author Glom
- * @date 2022/12/27 19:31 Copyright 2022 user. All rights reserved.
+ * @date 2022/12/27 19:31 Copyright 2022 user.
  */
 class PrefixParser<R> private constructor(
     reader: AsahiLexer,

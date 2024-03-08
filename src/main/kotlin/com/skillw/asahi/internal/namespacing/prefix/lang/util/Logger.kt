@@ -9,7 +9,7 @@ import taboolib.module.chat.colored
  * @className Logger
  *
  * @author Glom
- * @date 2023/1/14 0:22 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/14 0:22 Copyright 2024 Glom.
  */
 @AsahiPrefix(["print", "info"], "lang")
 fun info() = prefixParser<Any> {

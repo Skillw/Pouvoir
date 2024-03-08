@@ -6,7 +6,7 @@ import taboolib.library.reflex.ClassStructure
  * @className ClassHandler
  *
  * @author Glom
- * @date 2022/7/18 12:20 Copyright 2022 user. All rights reserved.
+ * @date 2022/7/18 12:20 Copyright 2022 user. 
  */
 abstract class ClassHandler(val priority: Int) : Comparable<ClassHandler> {
     /**

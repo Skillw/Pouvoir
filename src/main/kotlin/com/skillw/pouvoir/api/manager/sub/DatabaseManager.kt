@@ -12,7 +12,7 @@ import com.skillw.pouvoir.api.plugin.map.LowerKeyMap
  * 数据库管理器 主要负责维护数据库类型
  *
  * @author Glom
- * @date 2023/1/12 18:57 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/12 18:57 Copyright 2024 Glom.
  */
 abstract class DatabaseManager : Manager, LowerKeyMap<DatabaseType<*, *>>() {
     /**

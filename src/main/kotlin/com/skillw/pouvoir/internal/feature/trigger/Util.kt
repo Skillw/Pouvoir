@@ -9,7 +9,7 @@ import com.skillw.pouvoir.internal.feature.trigger.custom.CustomTrigger
  * @className Util
  *
  * @author Glom
- * @date 2023/1/22 20:21 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/22 20:21 Copyright 2024 Glom.
  */
 
 

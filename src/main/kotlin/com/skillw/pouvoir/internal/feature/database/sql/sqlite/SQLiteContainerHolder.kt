@@ -13,7 +13,7 @@ import taboolib.module.database.SQLite
  * @className SQLContainerHolder
  *
  * @author Glom
- * @date 2023/1/20 17:42 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/20 17:42 Copyright 2024 Glom.
  */
 class SQLiteContainerHolder(val host: Host<SQLite>) : ContainerHolder<NormalContainer<Host<SQLite>, SQLite>>() {
     override fun createContainer(

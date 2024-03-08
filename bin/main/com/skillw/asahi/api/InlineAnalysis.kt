@@ -8,7 +8,7 @@ import com.skillw.asahi.internal.lexer.InlineAnalysisImpl
  * @className InlineReaderImpl
  *
  * @author Glom
- * @date 2023/1/14 10:04 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/14 10:04 Copyright 2024 Glom.
  */
 interface InlineAnalysis : NamespaceHolder<InlineAnalysis> {
     /**

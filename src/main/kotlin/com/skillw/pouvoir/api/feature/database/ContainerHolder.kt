@@ -10,7 +10,7 @@ import com.skillw.pouvoir.api.plugin.map.LowerKeyMap
  * 包括此类型容器的创建 销毁
  *
  * @author Glom
- * @date 2023/1/20 17:26 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/20 17:26 Copyright 2024 Glom.
  */
 abstract class ContainerHolder<C : BaseContainer> : LowerKeyMap<C>() {
     var userContainerSyncTime: Long = 360000

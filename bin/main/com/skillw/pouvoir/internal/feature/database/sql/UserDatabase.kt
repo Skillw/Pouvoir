@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap
  * @className UserDatabase
  *
  * @author Glom
- * @date 2023/1/20 16:58 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/20 16:58 Copyright 2024 Glom.
  */
 class UserDatabase<T : Host<E>, E : ColumnBuilder>(table: IPouTable<T, E>) : IPouTable<T, E> by table, UserBased {
     fun saveAll(cache: Map<String, Map<String, String>>) {

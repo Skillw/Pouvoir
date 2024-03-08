@@ -8,7 +8,7 @@ import taboolib.common.platform.service.PlatformExecutor
  * @className Realizable
  *
  * @author Glom
- * @date 2023/1/5 16:25 Copyright 2022 user. All rights reserved.
+ * @date 2023/1/5 16:25 Copyright 2022 user.
  */
 abstract class ScheduledRealizer(key: String, val async: Boolean = false) : BaseRealizer(key), Awakeable {
     private var task:

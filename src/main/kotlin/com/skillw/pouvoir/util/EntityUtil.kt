@@ -18,7 +18,7 @@ import java.util.function.Predicate
  * 实体工具类
  *
  * ClassName : com.skillw.pouvoir.feature.EntityUtils Created by Glom_ on
- * 2021-03-28 17:49:01 Copyright 2021 user. All rights reserved.
+ * 2021-03-28 17:49:01 Copyright 2021 user. 
  */
 
 

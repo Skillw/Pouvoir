@@ -12,7 +12,7 @@ import taboolib.module.database.QueryTask
  * @className Sql
  *
  * @author Glom
- * @date 2023/1/19 15:05 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/19 15:05 Copyright 2024 Glom.
  */
 
 @AsahiPrefix(["sql"], "sql")

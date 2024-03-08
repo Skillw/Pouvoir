@@ -9,7 +9,7 @@ import com.skillw.asahi.api.quest
  * @className String
  *
  * @author Glom
- * @date 2023/1/17 15:37 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/17 15:37 Copyright 2024 Glom.
  */
 @AsahiPrefix(["analysis", "inline"], "lang")
 private fun inline() = prefixParser {

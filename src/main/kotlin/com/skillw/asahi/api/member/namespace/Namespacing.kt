@@ -8,7 +8,7 @@ import com.skillw.asahi.api.AsahiManager
  * 在命名空间中储藏的类
  *
  * @author Glom
- * @date 2023/1/20 10:12 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/20 10:12 Copyright 2024 Glom.
  */
 interface Namespacing {
     /** 命名空间 */

@@ -6,7 +6,7 @@ import com.skillw.asahi.api.member.parser.prefix.namespacing.BasePrefix
  * @className NamespaceHolder
  *
  * @author Glom
- * @date 2023/1/19 16:48 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/19 16:48 Copyright 2024 Glom. 
  */
 interface NamespaceHolder<T : NamespaceHolder<T>> {
     /** 持有的命名空间 */

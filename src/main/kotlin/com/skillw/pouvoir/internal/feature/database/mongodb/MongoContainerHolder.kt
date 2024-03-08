@@ -8,7 +8,7 @@ import com.skillw.pouvoir.api.feature.database.ContainerHolder
  * @className MongoContainerHolder
  *
  * @author Glom
- * @date 2023/8/11 22:49 Copyright 2023 user. All rights reserved.
+ * @date 2023/8/11 22:49 Copyright 2024 Glom.
  */
 class MongoContainerHolder(private val mongoClient: MongoClient, database: String) : ContainerHolder<MongoContainer>() {
     private val mongoDatabase: MongoDatabase = mongoClient.getDatabase(database)

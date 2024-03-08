@@ -6,7 +6,7 @@ import org.bukkit.entity.Entity
  * @className EntityTarget
  *
  * @author Glom
- * @date 2023/1/9 7:36 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/9 7:36 Copyright 2024 Glom.
  */
 @Suppress("UNCHECKED_CAST")
 class EntityTarget(val entity: Entity) : LocTarget(entity.targetLoc()) {

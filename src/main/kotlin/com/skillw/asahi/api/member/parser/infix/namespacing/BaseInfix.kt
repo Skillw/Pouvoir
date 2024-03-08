@@ -10,7 +10,7 @@ import com.skillw.asahi.api.member.namespace.Namespacing
  * @className BaseInfix
  *
  * @author Glom
- * @date 2022年12月27日 Copyright 2022 user. All rights reserved.
+ * @date 2022年12月27日 Copyright 2022 user.
  */
 abstract class BaseInfix<T : Any>(override val key: Class<out T>, override val namespace: String = "common") :
     AsahiRegistrable<Class<out T>>, Namespacing {

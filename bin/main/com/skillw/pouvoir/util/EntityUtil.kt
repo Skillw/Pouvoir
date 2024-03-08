@@ -21,7 +21,7 @@ import java.util.*
  * 实体工具类
  *
  * ClassName : com.skillw.pouvoir.feature.EntityUtil Created by Glom_ on
- * 2021-03-28 17:49:01 Copyright 2021 user. All rights reserved.
+ * 2021-03-28 17:49:01 Copyright 2021 user.
  */
 
 fun LivingEntity.getDisplayName(): String {

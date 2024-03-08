@@ -20,7 +20,7 @@ import taboolib.module.chat.uncolored
  * @className Basic
  *
  * @author Glom
- * @date 2023/1/23 17:54 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/23 17:54 Copyright 2024 Glom.
  */
 
 @AsahiPrefix(["command"])

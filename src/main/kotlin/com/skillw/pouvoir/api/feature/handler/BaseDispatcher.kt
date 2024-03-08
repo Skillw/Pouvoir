@@ -20,7 +20,7 @@ import com.skillw.pouvoir.internal.feature.trigger.loadIn
  * - 预处理 被其它处理器处理 尾处理 异常处理
  *
  * @author Glom
- * @date 2023/1/15 23:02 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/15 23:02 Copyright 2024 Glom.
  */
 abstract class BaseDispatcher(key: String, vararg triggers: String, priority: Int) :
     BaseHandler<BaseTrigger>(key, *triggers, priority = priority) {

@@ -10,7 +10,7 @@ import org.bukkit.entity.Entity
  * @className PouDemand
  *
  * @author Glom
- * @date 2023/1/14 12:38 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/14 12:38 Copyright 2024 Glom.
  */
 internal class AsahiDemandImpl private constructor(entity: Entity? = null) : AsahiDemand(entity) {
     override val args = ArrayList<String>()

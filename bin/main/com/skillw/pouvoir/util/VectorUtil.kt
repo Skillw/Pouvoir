@@ -10,7 +10,7 @@ import kotlin.math.sin
  * @className VectorUtil
  *
  * @author Glom
- * @date 2023/1/17 22:01 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/17 22:01 Copyright 2024 Glom. 
  */
 fun Vector.rotateAroundX(angle: Double): Vector {
     val angleCos = cos(angle)

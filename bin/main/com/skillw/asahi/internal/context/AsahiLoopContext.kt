@@ -8,7 +8,7 @@ import com.skillw.asahi.api.member.context.LoopContext
  * @className AsahiContextImpl
  *
  * @author Glom
- * @date 2022/12/24 15:05 Copyright 2022 user. All rights reserved.
+ * @date 2022/12/24 15:05 Copyright 2022 user. 
  */
 class AsahiLoopContext(
     override val label: String,

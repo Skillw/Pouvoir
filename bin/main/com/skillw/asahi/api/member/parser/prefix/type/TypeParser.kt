@@ -15,7 +15,7 @@ import com.skillw.asahi.api.member.quest.Quester
  * 根据上一个Quester获取的对象类型来选取解释器
  *
  * @author Glom
- * @date 2022/12/27 10:12 Copyright 2022 user. All rights reserved.
+ * @date 2022/12/27 10:12 Copyright 2022 user.
  */
 abstract class TypeParser<R>(vararg types: Class<*>) : AsahiRegistrable<Set<Class<*>>>, PrefixParser<R> {
     override val key: Set<Class<*>> = setOf(*types)

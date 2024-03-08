@@ -13,13 +13,13 @@ import java.util.*
  * @className Collection
  *
  * @author Glom
- * @date 2023/1/16 19:43 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/16 19:43 Copyright 2024 Glom.
  */
 /**
  * @className Basic
  *
  * @author Glom
- * @date 2023/1/13 20:22 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/13 20:22 Copyright 2024 Glom.
  */
 
 @AsahiTypeParser

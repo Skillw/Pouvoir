@@ -9,7 +9,7 @@ import com.skillw.pouvoir.api.plugin.`object`.Releasable
  * @className SimpleDispatcher
  *
  * @author Glom
- * @date 2023/1/22 20:15 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/22 20:15 Copyright 2024 Glom.
  */
 class SimpleDispatcher(
     key: String,

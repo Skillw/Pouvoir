@@ -8,7 +8,7 @@ import com.skillw.pouvoir.api.feature.database.ContainerHolder
  * @className ActionCancellable
  *
  * @author Glom
- * @date 2022/8/9 16:26 Copyright 2022 user. All rights reserved.
+ * @date 2022/8/9 16:26 Copyright 2022 user. 
  */
 @AsahiInfix
 object InfixContainerHolder : BaseInfix<ContainerHolder<*>>(ContainerHolder::class.java) {

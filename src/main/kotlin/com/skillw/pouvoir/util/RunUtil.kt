@@ -10,7 +10,7 @@ import kotlin.time.TimeSource
  * @className Runnable
  *
  * @author Glom
- * @date 2023/1/7 22:18 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/7 22:18 Copyright 2024 Glom.
  */
 
 

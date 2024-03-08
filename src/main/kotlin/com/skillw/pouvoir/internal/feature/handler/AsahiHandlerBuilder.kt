@@ -15,7 +15,7 @@ import taboolib.common5.cbool
  * @className AsahiHandler
  *
  * @author Glom
- * @date 2023/1/15 23:12 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/15 23:12 Copyright 2024 Glom.
  */
 class AsahiHandlerBuilder(
     initial: AsahiContext = AsahiContext.create(),

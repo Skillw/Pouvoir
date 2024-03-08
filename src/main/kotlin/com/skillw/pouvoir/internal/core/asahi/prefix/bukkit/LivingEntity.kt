@@ -22,13 +22,13 @@ import java.util.concurrent.ConcurrentHashMap
  * @className LivingEntity
  *
  * @author Glom
- * @date 2023/1/14 0:37 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/14 0:37 Copyright 2024 Glom.
  */
 /**
  * @className Entity
  *
  * @author Glom
- * @date 2023/1/14 0:32 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/14 0:32 Copyright 2024 Glom.
  */
 @AsahiPrefix(["damage"])
 private fun damage() = prefixParser<Unit> {

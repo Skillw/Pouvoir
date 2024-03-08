@@ -1,6 +1,7 @@
 package com.skillw.pouvoir.util
 
 import com.skillw.pouvoir.util.plugin.Pair
+import ink.ptms.adyeshach.taboolib.platform.BukkitAdapter
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.boss.BarColor
@@ -11,7 +12,6 @@ import org.bukkit.plugin.java.JavaPlugin
 import taboolib.library.reflex.Reflex.Companion.setProperty
 import taboolib.library.xseries.XSound
 import taboolib.module.nms.sendPacket
-import taboolib.platform.BukkitAdapter
 
 // For script coders
 

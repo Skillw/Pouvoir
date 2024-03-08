@@ -9,7 +9,7 @@ import java.util.concurrent.CompletableFuture
  * @className Task
  *
  * @author Glom
- * @date 2023/1/23 18:45 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/23 18:45 Copyright 2024 Glom. 
  */
 fun AsahiContext.delay(tick: Long) {
     val future = CompletableFuture<Unit>()

@@ -10,7 +10,7 @@ import com.skillw.pouvoir.internal.feature.database.redis.RedisContainer
  * @className Redis
  *
  * @author Glom
- * @date 2023/1/19 15:06 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/19 15:06 Copyright 2024 Glom.
  */
 @AsahiPrefix(["redis"], "lang")
 private fun redis() = prefixParser {

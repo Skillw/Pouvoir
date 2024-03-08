@@ -6,7 +6,7 @@ import com.skillw.asahi.api.AsahiManager
  * @className NamespaceContainer
  *
  * @author Glom
- * @date 2023/1/27 16:11 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/27 16:11 Copyright 2024 Glom.
  */
 class NamespaceContainer(private val namespaces: LinkedHashSet<Namespace> = LinkedHashSet()) :
     Set<Namespace> by namespaces {

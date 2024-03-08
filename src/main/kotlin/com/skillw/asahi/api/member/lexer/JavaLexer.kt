@@ -7,7 +7,7 @@ import com.skillw.asahi.api.member.quest.Quester
  * @className JavaFuncReader
  *
  * @author Glom
- * @date 2023/1/15 13:18 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/15 13:18 Copyright 2024 Glom.
  */
 class JavaLexer(reader: AsahiLexer) : AsahiLexer by reader {
     /**

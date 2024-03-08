@@ -4,7 +4,7 @@ package com.skillw.pouvoir.api.plugin.map
  * @className RegContainer
  *
  * @author Glom
- * @date 2022/7/30 20:35 Copyright 2022 user. All rights reserved.
+ * @date 2022/7/30 20:35 Copyright 2022 user.
  *
  * 为了与java交互而写
  */

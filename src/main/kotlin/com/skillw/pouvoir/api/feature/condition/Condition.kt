@@ -6,7 +6,7 @@ import org.bukkit.entity.LivingEntity
  * @className Condition
  *
  * @author Glom
- * @date 2022/7/18 23:55 Copyright 2022 user. All rights reserved.
+ * @date 2022/7/18 23:55 Copyright 2022 user. 
  */
 fun interface Condition {
     /**

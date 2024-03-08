@@ -7,7 +7,7 @@ import java.io.File
  * @className BaseRealizer
  *
  * @author Glom
- * @date 2023/1/5 10:46 Copyright 2022 user. All rights reserved.
+ * @date 2023/1/5 10:46 Copyright 2022 user.
  */
 abstract class BaseRealizer(final override val key: String) : Registrable<String> {
 

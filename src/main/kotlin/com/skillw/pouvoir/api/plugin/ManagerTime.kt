@@ -4,7 +4,7 @@ package com.skillw.pouvoir.api.plugin
  * @className ManagerTime
  *
  * @author Glom
- * @date 2022/7/22 16:11 Copyright 2022 user. All rights reserved.
+ * @date 2022/7/22 16:11 Copyright 2022 user. 
  */
 class ManagerTime(val key: String) {
     companion object {

@@ -1,3 +1,5 @@
+import io.izzel.taboolib.gradle.*
+import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.archivesName
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.net.URL
 
@@ -5,9 +7,9 @@ plugins {
     `java-library`
     `maven-publish`
     signing
-    id("io.izzel.taboolib") version "1.56"
-    id("org.jetbrains.kotlin.jvm") version "1.5.31"
-    id("org.jetbrains.dokka") version "1.5.31"
+    id("io.izzel.taboolib") version "2.0.7"
+    id("org.jetbrains.kotlin.jvm") version "1.9.22"
+    id("org.jetbrains.dokka") version "1.9.20"
     id("com.github.johnrengelman.shadow") version "7.0.0"
     id("io.codearte.nexus-staging") version "0.30.0"
 }
@@ -40,10 +42,7 @@ task("info") {
     println(project.version.toString())
 }
 taboolib {
-    if (api != null) {
-        println("api!")
-        taboolib.options("skip-kotlin-relocate", "keep-kotlin-module")
-    }
+
     description {
         contributors {
             name("Glom_")
@@ -58,31 +57,29 @@ taboolib {
         }
     }
 
-    install(
-        "common",
-        "common-5",
-        "module-ai",
-        "module-chat",
-        "module-configuration",
-        "module-database",
-        "module-effect",
-        "module-kether",
-        "module-navigation",
-        "module-metrics",
-        "module-database-mongodb",
-        "module-nms",
-        "module-nms-util",
-        "module-lang",
-        "module-porticus",
-        "expansion-alkaid-redis"
-    )
-    install(
-        "platform-bukkit"
-    )
+    env {
+        // basic
+        install(UNIVERSAL,BUKKIT, BUKKIT_ALL)
+        // database
+        install(DATABASE,EXPANSION_REDIS,EXPANSION_PTC,EXPANSION_PTC_OBJECT,EXPANSION_PLAYER_DATABASE)
+        // util
+        install( NMS_UTIL, NMS,
+            METRICS,
+            CONFIGURATION,
+            EXPANSION_COMMAND_HELPER,
+            EXPANSION_PLAYER_FAKE_OP,
+            NAVIGATION)
+    }
 
 
-    classifier = null
-    version = "6.0.12-69"
+    version {
+        if(project.gradle.startParameter.taskNames.getOrNull(0) == "taboolibBuildApi" || api != null){
+            println("api!")
+            isSkipKotlinRelocate =true
+            isSkipKotlin = true
+        }
+        taboolib = "6.1.0"
+    }
 
     relocate("org.openjdk.nashorn", "com.skillw.nashorn")
     relocate("jdk.nashorn", "com.skillw.nashorn.legacy")

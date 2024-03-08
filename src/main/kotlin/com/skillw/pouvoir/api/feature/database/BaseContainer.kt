@@ -10,7 +10,7 @@ import com.skillw.pouvoir.api.plugin.map.component.Keyable
  * 等同于SQL数据库中的一个Table 或者 Redis中的SingleRedisConnection
  *
  * @author Glom
- * @date 2023/1/12 18:35 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/12 18:35 Copyright 2024 Glom. 
  */
 abstract class BaseContainer(
     override val key: String,

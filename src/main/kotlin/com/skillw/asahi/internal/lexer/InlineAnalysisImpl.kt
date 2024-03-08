@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap
  * @className InlineReaderImpl
  *
  * @author Glom
- * @date 2022/12/27 9:12 Copyright 2022 user. All rights reserved.
+ * @date 2022/12/27 9:12 Copyright 2022 user.
  */
 internal class InlineAnalysisImpl private constructor(val text: String) :
     InlineAnalysis {

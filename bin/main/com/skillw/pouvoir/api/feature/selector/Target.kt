@@ -8,7 +8,7 @@ import org.bukkit.Location
  * 目标抽象类
  *
  * @author Glom
- * @date 2023/1/9 7:32 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/9 7:32 Copyright 2024 Glom.
  */
 abstract class Target(open val unique: String, val location: Location) {
     /** 是否有效 */

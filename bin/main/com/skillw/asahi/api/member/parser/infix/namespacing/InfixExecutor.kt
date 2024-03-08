@@ -7,7 +7,7 @@ import com.skillw.asahi.api.member.context.InfixContext
  * @className InfixExecutor
  *
  * @author Glom
- * @date 2022年12月27日 8:36 Copyright 2022 user. All rights reserved.
+ * @date 2022年12月27日 8:36 Copyright 2022 user. 
  */
 fun interface InfixExecutor<T : Any> {
     /**

@@ -19,7 +19,7 @@ import taboolib.common5.cbool
  * @className Select
  *
  * @author Glom
- * @date 2023/1/14 0:57 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/14 0:57 Copyright 2024 Glom.
  */
 
 fun AsahiLexer.questTarget(): Quester<Target> {

@@ -6,7 +6,7 @@ import taboolib.common.platform.event.EventPriority
  * @className Priority
  *
  * @author Glom
- * @date 2022/7/9 7:45 Copyright 2022 user. All rights reserved.
+ * @date 2022/7/9 7:45 Copyright 2022 user.
  */
 class Priority(val level: Int = 0) {
 

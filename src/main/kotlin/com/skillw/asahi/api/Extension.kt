@@ -18,7 +18,7 @@ import com.skillw.asahi.util.castSafely
  * @className ReaderExt
  *
  * @author Glom
- * @date 2023/1/13 20:40 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/13 20:40 Copyright 2024 Glom.
  */
 
 /**

@@ -7,7 +7,7 @@ import taboolib.expansion.SingleRedisConnection
  * @className MongoContainerHolder
  *
  * @author Glom
- * @date 2023/1/20 17:29 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/20 17:29 Copyright 2024 Glom.
  */
 class RedisContainerHolder(val connection: SingleRedisConnection) : ContainerHolder<RedisContainer>() {
     override fun createContainer(tableName: String, userKey: Boolean): RedisContainer =

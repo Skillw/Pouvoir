@@ -8,7 +8,7 @@ import org.bukkit.entity.Player
  * @className PouEmptyHoloLine
  *
  * @author Glom
- * @date 2023/1/17 13:10 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/17 13:10 Copyright 2024 Glom.
  */
 class PouEmptyHoloLine : PouHolo {
     override val isDeleted: Boolean

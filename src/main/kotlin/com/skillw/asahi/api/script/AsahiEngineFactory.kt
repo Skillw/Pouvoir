@@ -8,7 +8,7 @@ import javax.script.ScriptEngineFactory
  * @className AsahiEngineFactory
  *
  * @author Glom
- * @date 2022/12/24 13:04 Copyright 2022 user. All rights reserved.
+ * @date 2022/12/24 13:04 Copyright 2022 user.
  */
 class AsahiEngineFactory : ScriptEngineFactory {
     private val names = mutableListOf("com/skillw/asahi")

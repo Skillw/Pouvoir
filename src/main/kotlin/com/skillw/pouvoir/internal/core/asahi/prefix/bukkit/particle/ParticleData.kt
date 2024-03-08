@@ -17,7 +17,7 @@ import java.awt.Color
  * @className FunctionBlock
  *
  * @author Glom
- * @date 2022/8/9 16:26 Copyright 2022 user. All rights reserved.
+ * @date 2022/8/9 16:26 Copyright 2022 user. 
  */
 
 @AsahiPrefix(["particleData"])

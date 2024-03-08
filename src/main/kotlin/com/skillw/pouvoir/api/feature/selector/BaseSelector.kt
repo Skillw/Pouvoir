@@ -13,7 +13,7 @@ import com.skillw.pouvoir.api.plugin.map.component.Registrable
  * - 从可变数组装填参数
  *
  * @author Glom
- * @date 2023/1/6 23:02 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/6 23:02 Copyright 2024 Glom.
  */
 abstract class BaseSelector(override val key: String) : Registrable<String> {
     /**

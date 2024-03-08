@@ -10,7 +10,7 @@ import javax.sql.DataSource
  * @className PouTable
  *
  * @author Glom
- * @date 2023/1/12 20:12 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/12 20:12 Copyright 2024 Glom.
  */
 class SQLTable<T : Host<E>, E : ColumnBuilder>(private val table: Table<T, E>) : IPouTable<T, E> {
     override val name: String = table.name

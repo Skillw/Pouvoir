@@ -9,7 +9,7 @@ import org.bukkit.entity.LivingEntity
  * @className EntityTarget
  *
  * @author Glom
- * @date 2023/1/9 7:36 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/9 7:36 Copyright 2024 Glom.
  */
 open class LocTarget(location: Location) : Target("LocTarget$$location", location) {
 

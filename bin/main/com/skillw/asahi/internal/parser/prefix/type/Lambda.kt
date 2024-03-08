@@ -10,7 +10,7 @@ import com.skillw.pouvoir.util.toArgs
  * @className Lambda
  *
  * @author Glom
- * @date 2023/1/20 23:54 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/20 23:54 Copyright 2024 Glom. 
  */
 /**
  * TODO

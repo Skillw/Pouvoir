@@ -11,7 +11,7 @@ import kotlin.reflect.KProperty
  * 专用于存储数据的Map
  *
  * @author Glom
- * @date 2022/8/14 7:45 Copyright 2022 user. All rights reserved.
+ * @date 2022/8/14 7:45 Copyright 2022 user. 
  */
 open class AsahiDataMap(val analysis: Boolean = false) : AsahiContext by AsahiContext.create() {
 

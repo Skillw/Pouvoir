@@ -7,7 +7,7 @@ import com.skillw.asahi.api.member.quest.Quester
  * @className Parser
  *
  * @author Glom
- * @date 2023/1/15 13:14 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/15 13:14 Copyright 2024 Glom.
  */
 interface PrefixParser<R> {
     /**

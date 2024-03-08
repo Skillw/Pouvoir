@@ -4,7 +4,7 @@ package com.skillw.asahi.api.script.linking
  * @className InvokerHolder
  *
  * @author Glom
- * @date 2023/1/22 19:06 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/22 19:06 Copyright 2024 Glom.
  */
 interface InvokerHolder {
     /** 可调用对象 当前上下文中的可调用对象 */

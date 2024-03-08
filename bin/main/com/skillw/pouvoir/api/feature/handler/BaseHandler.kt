@@ -12,7 +12,7 @@ import com.skillw.pouvoir.api.plugin.map.component.Registrable
  * 负责处理与触发器相关的事务
  *
  * @author Glom
- * @date 2023/1/15 23:02 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/15 23:02 Copyright 2024 Glom. 
  */
 abstract class BaseHandler<T : BaseTrigger>(
     override val key: String,

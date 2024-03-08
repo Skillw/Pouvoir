@@ -15,7 +15,7 @@ import java.util.*
  * @className Util
  *
  * @author Glom
- * @date 2023/1/14 0:45 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/14 0:45 Copyright 2024 Glom.
  */
 @AsahiPrefix(["arrayOf"], "lang")
 private fun arrayOf() = prefixParser {
@@ -75,7 +75,7 @@ private fun mapTemplate() = prefixParser {
  * @className Operator
  *
  * @author Glom
- * @date 2023/1/14 0:42 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/14 0:42 Copyright 2024 Glom.
  */
 @AsahiPrefix(["join"], "lang")
 private fun join() = prefixParser {

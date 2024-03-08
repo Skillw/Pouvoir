@@ -17,7 +17,7 @@ import taboolib.platform.util.setMeta
  * @className ActionPlayer
  *
  * @author Glom
- * @date 2022/8/9 16:26 Copyright 2022 user. All rights reserved.
+ * @date 2022/8/9 16:26 Copyright 2022 user.
  */
 @AsahiInfix
 object InfixPlayer : BaseInfix<Player>(Player::class.java, "bukkit") {

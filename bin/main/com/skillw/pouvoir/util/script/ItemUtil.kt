@@ -12,7 +12,7 @@ import java.util.regex.Pattern
  * 不方便变成顶级函数
  *
  * ClassName : com.skillw.classsystem.feature.ItemUtil Created by Glom_ on
- * 2021-03-12 23:40:01 Copyright 2021 user. All rights reserved.
+ * 2021-03-12 23:40:01 Copyright 2021 user.
  */
 object ItemUtil {
     @Suppress("IMPLICIT_CAST_TO_ANY")

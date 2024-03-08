@@ -7,7 +7,7 @@ import java.util.*
 
 /**
  * ClassName : com.skillw.pouvoir.feature.MapUtil Created by Glom_ on
- * 2021-03-28 21:59:37 Copyright 2021 user. All rights reserved.
+ * 2021-03-28 21:59:37 Copyright 2021 user.
  */
 @JvmName("addSingleKListV")
 fun <K : Any, V> BaseMap<K, LinkedList<V>>.put(key: K, value: V): BaseMap<K, LinkedList<V>> {

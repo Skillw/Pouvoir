@@ -8,7 +8,7 @@ import taboolib.module.chat.uncolored
  *
  * Created by Glom_ on 2021-03-25 20:26:01
  *
- * Copyright 2021 user. All rights reserved.
+ * Copyright 2021 user.
  */
 object ColorUtil {
     @JvmStatic

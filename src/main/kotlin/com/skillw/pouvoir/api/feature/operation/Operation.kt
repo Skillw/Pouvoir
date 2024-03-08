@@ -7,7 +7,7 @@ import com.skillw.pouvoir.api.plugin.map.component.Registrable
  * @className NumberOperation
  *
  * @author Glom
- * @date 2022/7/19 12:38 Copyright 2022 user. All rights reserved.
+ * @date 2022/7/19 12:38 Copyright 2022 user.
  */
 interface Operation<T> : Registrable<String> {
     /** 是否在重载时删除 */

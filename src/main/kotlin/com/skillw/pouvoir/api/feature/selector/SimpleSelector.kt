@@ -11,7 +11,7 @@ package com.skillw.pouvoir.api.feature.selector
  * - 目标反筛选 -> 删除在列表中的目标
  *
  * @author Glom
- * @date 2023/1/6 23:02 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/6 23:02 Copyright 2024 Glom. 
  */
 abstract class SimpleSelector(key: String) : BaseSelector(key) {
     /**

@@ -17,8 +17,8 @@ private fun String.relocate() = Pouvoir.scriptEngineManager.relocatePath(this)
 
 
 val Class<*>.instance: Any?
-    get() = kotlin.runCatching {
-        getDeclaredField("INSTANCE").get(null) ?: getField("instance").get(null) ?: getConstructor().newInstance()
+    get() = runCatching {
+        getDeclaredField("INSTANCE").get(null)
     }.getOrNull()
 
 

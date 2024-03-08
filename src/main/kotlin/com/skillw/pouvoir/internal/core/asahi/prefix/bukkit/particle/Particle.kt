@@ -17,7 +17,7 @@ import taboolib.platform.util.toProxyLocation
  * @className Effect
  *
  * @author Glom
- * @date 2023/1/14 0:13 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/14 0:13 Copyright 2024 Glom. 
  */
 
 @AsahiPrefix(["particle"])

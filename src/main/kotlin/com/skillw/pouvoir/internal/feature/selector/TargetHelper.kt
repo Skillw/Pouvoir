@@ -9,7 +9,7 @@ import kotlin.math.acos
  * @className Util
  *
  * @author Glom
- * @date 2023/1/10 16:36 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/10 16:36 Copyright 2024 Glom.
  */
 
 fun BoundingBox(start: Location, end: Location): BoundingBox {

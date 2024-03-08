@@ -10,7 +10,7 @@ import taboolib.platform.util.toBukkitLocation
  * @className Util
  *
  * @author Glom
- * @date 2023/1/22 15:51 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/22 15:51 Copyright 2024 Glom.
  */
 
 /**

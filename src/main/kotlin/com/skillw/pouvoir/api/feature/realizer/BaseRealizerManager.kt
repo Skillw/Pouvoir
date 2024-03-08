@@ -23,7 +23,7 @@ import java.util.*
  * @className BaseRealizerManager
  *
  * @author Glom
- * @date 2023/8/11 20:17 Copyright 2023 user. All rights reserved.
+ * @date 2023/8/11 20:17 Copyright 2024 Glom.
  */
 open class BaseRealizerManager(final override val key: String, final override val subPouvoir: SubPouvoir) : Manager,
     KeyMap<String, BaseRealizer>(), Realizable {

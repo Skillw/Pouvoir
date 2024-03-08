@@ -6,7 +6,7 @@ package com.skillw.pouvoir.api.feature.condition
  * 从字符串中读取条件的参数
  *
  * @author Glom
- * @date 2023/8/1 23:55 Copyright 2022 user. All rights reserved.
+ * @date 2023/8/1 23:55 Copyright 2022 user.
  */
 fun interface ConditionReader {
 

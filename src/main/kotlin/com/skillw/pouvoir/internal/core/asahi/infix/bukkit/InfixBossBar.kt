@@ -8,7 +8,7 @@ import org.bukkit.boss.BossBar
  * @className ActionCancellable
  *
  * @author Glom
- * @date 2022/8/9 16:26 Copyright 2022 user. All rights reserved.
+ * @date 2022/8/9 16:26 Copyright 2022 user.
  */
 @AsahiInfix
 object InfixBossBar : BaseInfix<BossBar>(BossBar::class.java, "bukkit") {

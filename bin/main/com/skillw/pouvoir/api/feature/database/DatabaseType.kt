@@ -13,7 +13,7 @@ import java.util.*
  * 负责数据库的创建，链接，销毁
  *
  * @author Glom
- * @date 2023/1/12 18:53 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/12 18:53 Copyright 2024 Glom. 
  */
 abstract class DatabaseType<H : ContainerHolder<C>, C : BaseContainer>(override val key: String) : Registrable<String> {
     /**

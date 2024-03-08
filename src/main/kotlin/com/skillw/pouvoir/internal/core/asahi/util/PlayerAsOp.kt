@@ -8,7 +8,7 @@ import taboolib.common.platform.function.adaptCommandSender
  * @className PlayerAsOp
  *
  * @author Glom
- * @date 2023/1/23 17:58 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/23 17:58 Copyright 2024 Glom. 
  */
 class PlayerAsOp(val player: Player) : ProxyCommandSender by adaptCommandSender(player) {
     override var isOp: Boolean

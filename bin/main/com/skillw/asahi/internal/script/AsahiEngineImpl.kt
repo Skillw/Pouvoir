@@ -17,7 +17,7 @@ import javax.script.ScriptEngineFactory
  * @className AsahiEngine
  *
  * @author Glom
- * @date 2022/12/24 14:02 Copyright 2022 user. All rights reserved.
+ * @date 2022/12/24 14:02 Copyright 2022 user.
  */
 class AsahiEngineImpl private constructor(
     private val factory: AsahiEngineFactory,

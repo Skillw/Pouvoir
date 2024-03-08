@@ -7,7 +7,7 @@ import com.skillw.pouvoir.api.plugin.map.DataMap
  * @className CustomTrigger
  *
  * @author Glom
- * @date 2023/1/8 19:36 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/8 19:36 Copyright 2024 Glom.
  */
 class CustomTrigger(key: String) : BaseTrigger(key) {
     val data = DataMap()

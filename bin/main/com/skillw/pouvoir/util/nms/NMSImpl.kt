@@ -11,7 +11,7 @@ import taboolib.module.nms.MinecraftVersion
  * @className NMS
  *
  * @author Glom
- * @date 2022/8/9 22:24 Copyright 2022 user. All rights reserved.
+ * @date 2022/8/9 22:24 Copyright 2022 user.
  */
 class NMSImpl : NMS() {
     override fun getAttribute(entity: LivingEntity, attribute: BukkitAttribute): AttributeInstance? {

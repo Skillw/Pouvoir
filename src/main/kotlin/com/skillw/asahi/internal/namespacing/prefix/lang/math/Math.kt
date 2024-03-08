@@ -8,7 +8,7 @@ import com.skillw.asahi.api.quest
  * @className Math
  *
  * @author Glom
- * @date 2023/1/23 19:19 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/23 19:19 Copyright 2024 Glom.
  */
 
 

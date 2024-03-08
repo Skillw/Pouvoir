@@ -14,7 +14,7 @@ import taboolib.module.configuration.util.asMap
  * @className MongoContainer
  *
  * @author Glom
- * @date 2023/8/11 23:00 Copyright 2023 user. All rights reserved.
+ * @date 2023/8/11 23:00 Copyright 2024 Glom.
  */
 /**
  * MongoContainer -> Collection

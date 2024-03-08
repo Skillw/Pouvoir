@@ -8,7 +8,7 @@ import java.util.concurrent.CompletableFuture
  * @className ActionCompletableFuture
  *
  * @author Glom
- * @date 2023年1月16日23点47分 Copyright 2023 user. All rights reserved.
+ * @date 2023年1月16日23点47分 Copyright 2024 Glom.
  */
 @AsahiInfix
 internal object InfixCompletableFuture : BaseInfix<CompletableFuture<*>>(CompletableFuture::class.java) {

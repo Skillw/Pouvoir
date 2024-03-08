@@ -12,7 +12,7 @@ import taboolib.platform.util.setMeta
  * @className ActionEntity
  *
  * @author Glom
- * @date 2022/8/9 16:26 Copyright 2022 user. All rights reserved.
+ * @date 2022/8/9 16:26 Copyright 2022 user.
  */
 @AsahiInfix
 object InfixEntity : BaseInfix<Entity>(Entity::class.java, "bukkit") {

@@ -9,7 +9,7 @@ import javax.script.CompiledScript
  * @className PouCompiler
  *
  * @author Glom
- * @date 2023/1/20 9:33 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/20 9:33 Copyright 2024 Glom.
  */
 interface PouCompiler : Registrable<String> {
     fun compile(file: File): PouFileCompiledScript?

@@ -20,7 +20,7 @@ import java.util.concurrent.LinkedBlockingDeque
  * @className AsahiContextImpl
  *
  * @author Glom
- * @date 2022/12/24 15:05 Copyright 2022 user. All rights reserved.
+ * @date 2022/12/24 15:05 Copyright 2022 user. 
  */
 internal class AsahiContextImpl private constructor(
     private val data: MutableMap<String, Any> = HashMap(),

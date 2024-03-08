@@ -10,7 +10,7 @@ import taboolib.module.chat.colored
  * 给脚本用的
  *
  * ClassName : com.skillw.pouvoir.util Created by Glom_ on 2021-03-25
- * 20:25:13 Copyright 2021 user. All rights reserved.
+ * 20:25:13 Copyright 2021 user. 
  */
 object MessageUtil {
 

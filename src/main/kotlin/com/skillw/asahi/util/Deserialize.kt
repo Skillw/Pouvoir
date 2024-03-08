@@ -8,7 +8,7 @@ import com.skillw.asahi.api.member.context.AsahiContext
  * @className Deserialize
  *
  * @author Glom
- * @date 2023/1/15 23:55 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/15 23:55 Copyright 2024 Glom.
  */
 
 private fun Any?.mapValue(vararg namespaces: String): Any {

@@ -11,7 +11,7 @@ import java.util.*
  * @className PouHolographicDisplaysLine
  *
  * @author Glom
- * @date 2022/7/31 19:02 Copyright 2022 user. All rights reserved.
+ * @date 2022/7/31 19:02 Copyright 2022 user.
  */
 internal class PouDecentHologramsLine(location: Location, line: String, vararg viewers: Player) : PouHolo {
 

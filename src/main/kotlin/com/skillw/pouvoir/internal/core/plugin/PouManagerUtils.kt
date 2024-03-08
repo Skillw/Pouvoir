@@ -6,6 +6,7 @@ import com.skillw.pouvoir.api.plugin.annotation.PouManager
 import com.skillw.pouvoir.util.instance
 import com.skillw.pouvoir.util.safe
 import taboolib.common.platform.function.warning
+import taboolib.library.reflex.Reflex.Companion.getProperty
 import java.lang.reflect.Field
 import java.lang.reflect.Modifier
 

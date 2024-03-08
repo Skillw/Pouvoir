@@ -7,7 +7,7 @@ import taboolib.expansion.SingleRedisConnection
  * @className RedisContainer
  *
  * @author Glom
- * @date 2023/1/12 23:00 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/12 23:00 Copyright 2024 Glom.
  */
 open class RedisContainer(
     override val key: String,

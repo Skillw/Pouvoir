@@ -10,7 +10,10 @@ import com.skillw.pouvoir.util.safe
 import org.bukkit.configuration.file.YamlConfiguration
 import taboolib.common.platform.function.getDataFolder
 import taboolib.common5.FileWatcher
+import taboolib.library.reflex.ClassStructure
+import taboolib.library.reflex.Reflex
 import taboolib.library.reflex.Reflex.Companion.getProperty
+import taboolib.library.reflex.ReflexClass
 import taboolib.module.lang.Language
 import java.io.File
 
@@ -38,7 +41,7 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
         //Init Map
         for (field in subPouvoir::class.java.fields) {
             if (field.annotations.all { it.annotationClass.simpleName != "Config" }) continue
-            val file = field.get(subPouvoir).getProperty<File>("file") ?: continue
+            val file = field.get(subPouvoir)?.getProperty<File>("file") ?: continue
             map[field.name] = Pair(file, file.loadYaml()!!)
         }
         //Register Config

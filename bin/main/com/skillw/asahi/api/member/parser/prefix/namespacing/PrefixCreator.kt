@@ -10,7 +10,7 @@ import com.skillw.asahi.api.member.quest.Quester
  * 用来快速创建前缀解释器的接口
  *
  * @author Glom
- * @date 2023/1/14 11:07 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/14 11:07 Copyright 2024 Glom.
  */
 interface PrefixCreator<R> {
     /**

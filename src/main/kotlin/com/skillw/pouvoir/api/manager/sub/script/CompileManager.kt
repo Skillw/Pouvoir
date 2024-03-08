@@ -17,7 +17,7 @@ import javax.script.CompiledScript
  * 主要负责编译脚本文件 脚本字符串
  *
  * @author Glom
- * @date 2022/7/28 2:08 Copyright 2022 user. All rights reserved.
+ * @date 2022/7/28 2:08 Copyright 2022 user. 
  */
 abstract class CompileManager : Manager, KeyMap<String, PouCompiler>() {
 

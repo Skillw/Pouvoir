@@ -8,7 +8,7 @@ import com.skillw.asahi.api.member.quest.Quester
  * @className BaseJavaPrefix
  *
  * @author Glom
- * @date 2022/12/25 13:39 Copyright 2022 user. All rights reserved.
+ * @date 2022/12/25 13:39 Copyright 2022 user.
  */
 abstract class BaseJavaPrefix<R> : PrefixCreator<R> {
     /**

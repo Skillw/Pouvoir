@@ -14,7 +14,7 @@ import com.skillw.pouvoir.api.plugin.map.component.Keyable
  * - 调用TriggerManager相关API，完成 触发->处理 流程
  *
  * @author Glom
- * @date 2023/1/6 22:59 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/6 22:59 Copyright 2024 Glom.
  */
 abstract class BaseTrigger(override val key: String) : Keyable<String> {
     /** 触发 */

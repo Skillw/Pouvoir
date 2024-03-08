@@ -17,7 +17,7 @@ import com.skillw.asahi.api.member.quest.Quester
  * 当词法器读到的token在names中时，则选择此前缀解释器进行解释
  *
  * @author Glom
- * @date 2022/12/25 13:39 Copyright 2022 user. All rights reserved.
+ * @date 2022/12/25 13:39 Copyright 2022 user.
  */
 abstract class BasePrefix<R>(
     override val key: String,

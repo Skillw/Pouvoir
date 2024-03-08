@@ -10,7 +10,7 @@ import com.skillw.asahi.api.quest
  * @className Variable
  *
  * @author Glom
- * @date 2023/1/13 19:09 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/13 19:09 Copyright 2024 Glom.
  */
 @AsahiPrefix(["set"], "lang")
 private fun set() = prefixParser {

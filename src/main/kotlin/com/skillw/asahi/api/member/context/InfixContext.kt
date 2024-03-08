@@ -10,7 +10,7 @@ import com.skillw.asahi.internal.util.Time
  * @className InfixContext
  *
  * @author Glom
- * @date 2022/12/24 15:05 Copyright 2022 user. All rights reserved.
+ * @date 2022/12/24 15:05 Copyright 2022 user.
  */
 open class InfixContext(
     val context: AsahiContext, val reader: AsahiLexer, var token: String = "@NONE",

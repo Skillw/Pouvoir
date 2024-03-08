@@ -14,7 +14,7 @@ import com.skillw.asahi.api.member.quest.Quester
  * 主要负责: 解释变量 解释字符串 选取前缀解释器 选取中缀解释器 解释变量Bean动作
  *
  * @author Glom
- * @date 2023/1/12 23:50 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/12 23:50 Copyright 2024 Glom. 
  */
 abstract class TopPrefixParser<R>(override val key: String, val priority: Int) : AsahiRegistrable<String>,
     PrefixParser<R>,

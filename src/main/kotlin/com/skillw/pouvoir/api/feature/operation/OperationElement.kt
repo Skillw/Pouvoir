@@ -4,7 +4,7 @@ package com.skillw.pouvoir.api.feature.operation
  * @className OperationElement
  *
  * @author Glom
- * @date 2022/7/19 12:37 Copyright 2022 user. All rights reserved.
+ * @date 2022/7/19 12:37 Copyright 2022 user.
  */
 data class OperationElement(val numberOperation: NumberOperation, val number: Number) {
     /**

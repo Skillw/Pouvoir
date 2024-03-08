@@ -9,7 +9,7 @@ import org.bukkit.entity.Player
  * @className PouHolo
  *
  * @author Glom
- * @date 2022/7/31 18:59 Copyright 2022 user. All rights reserved.
+ * @date 2022/7/31 18:59 Copyright 2022 user.
  */
 interface PouHolo {
     val isDeleted: Boolean

@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap
  * @className NormalContainer
  *
  * @author Glom
- * @date 2023/1/12 20:51 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/12 20:51 Copyright 2024 Glom.
  */
 class UserContainer<T : Host<E>, E : ColumnBuilder>(
     holder: ContainerHolder<NormalContainer<T, E>>,

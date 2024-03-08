@@ -11,7 +11,7 @@ import org.bukkit.util.Vector
  * @className ActionVector
  *
  * @author Glom
- * @date 2022/8/9 16:26 Copyright 2022 user. All rights reserved.
+ * @date 2022/8/9 16:26 Copyright 2022 user.
  */
 @AsahiInfix
 object InfixVector : BaseInfix<Vector>(Vector::class.java, "bukkit") {

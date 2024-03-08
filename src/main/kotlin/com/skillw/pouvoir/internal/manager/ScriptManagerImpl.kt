@@ -10,13 +10,13 @@ import com.skillw.pouvoir.api.plugin.map.SingleExecMap
 import com.skillw.pouvoir.api.script.PouFileCompiledScript
 import com.skillw.pouvoir.internal.core.script.javascript.PouJavaScriptEngine
 import com.skillw.pouvoir.internal.manager.PouConfig.debug
+import com.skillw.pouvoir.util.legacy.mirrorNow
 import com.skillw.pouvoir.util.listSubFiles
 import com.skillw.pouvoir.util.safe
 import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.function.console
 import taboolib.common.platform.function.getDataFolder
 import taboolib.common5.FileWatcher
-import taboolib.common5.mirrorNow
 import taboolib.module.chat.colored
 import taboolib.module.lang.asLangText
 import taboolib.module.lang.sendLang

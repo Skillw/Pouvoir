@@ -10,7 +10,7 @@ package com.skillw.pouvoir.api.feature.database
  * - 一一对应，username key不可重复
  *
  * @author Glom
- * @date 2023/1/12 21:54 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/12 21:54 Copyright 2024 Glom. 
  */
 interface UserBased {
     /**

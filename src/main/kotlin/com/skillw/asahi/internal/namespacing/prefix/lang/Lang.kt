@@ -13,7 +13,7 @@ import com.skillw.asahi.api.quester
  * $list
  *
  * @author Glom
- * @date 2023/1/9 22:55 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/9 22:55 Copyright 2024 Glom.
  */
 @AsahiPrefix(["null"], "lang")
 private fun `null`() = prefixParser<Any?> {

@@ -7,7 +7,7 @@ import taboolib.common5.Coerce
  * @className BukkitAttribute
  *
  * @author sky, Glom
- * @date 2023/8/4 22:37 Copyright 2023 user. All rights reserved.
+ * @date 2023/8/4 22:37 Copyright 2024 Glom.
  */
 
 enum class BukkitAttribute(val key: String, vararg val alias: String) {

@@ -8,7 +8,7 @@ import org.bukkit.event.Event
  * @className CustomTrigger
  *
  * @author Glom
- * @date 2023/1/8 19:36 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/8 19:36 Copyright 2024 Glom.
  */
 class BukkitEventTrigger(key: String, val event: Event) : BaseTrigger(key) {
     var isCancelled: Boolean = false

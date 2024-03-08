@@ -12,7 +12,7 @@ import org.bukkit.entity.LivingEntity
  * 选取结果
  *
  * @author Glom
- * @date 2023/1/9 7:20 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/9 7:20 Copyright 2024 Glom.
  */
 class SelectResult(targets: Collection<Target> = LinkedHashSet()) : LinkedHashSet<Target>(targets) {
     /**

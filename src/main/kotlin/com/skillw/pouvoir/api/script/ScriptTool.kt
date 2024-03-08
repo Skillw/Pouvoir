@@ -8,13 +8,18 @@ import com.skillw.pouvoir.api.plugin.map.BaseMap
 import com.skillw.pouvoir.internal.feature.database.PouvoirContainer
 import com.skillw.pouvoir.internal.feature.listener.CustomListener
 import com.skillw.pouvoir.util.findClass
+import com.skillw.pouvoir.util.legacy.Mirror
+import com.skillw.pouvoir.util.legacy.mirrorFuture
+import com.skillw.pouvoir.util.legacy.mirrorNow
 import com.skillw.pouvoir.util.safe
 import com.skillw.pouvoir.util.script.ItemUtil.toMutableMap
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
+import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.command.PluginCommand
+import org.bukkit.command.SimpleCommandMap
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Entity
 import org.bukkit.entity.LivingEntity
@@ -24,21 +29,21 @@ import org.bukkit.inventory.InventoryHolder
 import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.Plugin
 import org.bukkit.potion.PotionEffectType
-import taboolib.common.platform.Platform
-import taboolib.common.platform.ProxyCommandSender
-import taboolib.common.platform.ProxyParticle
+import taboolib.common.platform.*
 import taboolib.common.platform.event.EventPriority
 import taboolib.common.platform.function.*
-import taboolib.common.platform.sendTo
+import taboolib.common.platform.service.PlatformCommand
 import taboolib.common.platform.service.PlatformExecutor
+import taboolib.common.platform.service.PlatformOpenContainer
 import taboolib.common.util.Vector
-import taboolib.common5.Mirror
-import taboolib.common5.mirrorNow
+import taboolib.common.util.unsafeLazy
+import taboolib.library.reflex.Reflex.Companion.getProperty
 import taboolib.module.chat.TellrawJson
 import taboolib.module.nms.getI18nName
 import taboolib.module.nms.getItemTag
-import taboolib.platform.BukkitCommand
+import taboolib.platform.BukkitPlugin
 import taboolib.platform.util.*
+import java.lang.reflect.Constructor
 import java.util.function.Consumer
 import java.util.function.Function
 import java.util.function.Supplier
@@ -46,6 +51,9 @@ import java.util.function.Supplier
 
 object ScriptTool : BaseMap<String, Any>() {
 
+    val bukkitCommand by lazy {
+        PlatformFactory.getService<PlatformCommand>()
+    }
 
     @JvmStatic
     fun sync(task: () -> Any?) = taboolib.common.util.sync {
@@ -266,31 +274,40 @@ object ScriptTool : BaseMap<String, Any>() {
     fun staticClass(className: String): Any? {
         return staticClass(className)
     }
+    private  val plugin: BukkitPlugin
+        get() = BukkitPlugin.getInstance()
 
+   private val commandMap by unsafeLazy {
+        Bukkit.getPluginManager().getProperty<SimpleCommandMap>("commandMap")!!
+    }
+
+    private val knownCommands by unsafeLazy {
+        commandMap.getProperty<MutableMap<String, Command>>("knownCommands")!!
+    }
+
+    private val constructor: Constructor<PluginCommand> by unsafeLazy {
+        PluginCommand::class.java.getDeclaredConstructor(String::class.java, Plugin::class.java).also {
+            it.isAccessible = true
+        }
+    }
     @JvmStatic
     fun command(
         name: String,
     ): PluginCommand {
-        val bc = BukkitCommand()
-        bc.sync()
-        return bc.constructor.newInstance(name, Pouvoir.plugin)
+        return constructor.newInstance(name, Pouvoir.plugin)
     }
 
     @JvmStatic
     fun regCommand(command: PluginCommand) {
         task {
-            val bc = BukkitCommand()
-            bc.sync()
-            bc.commandMap.register(command.name, command)
+           commandMap.register(command.name, command)
         }
     }
 
     @JvmStatic
     fun unRegCommand(name: String) {
         task {
-            val bc = BukkitCommand()
-            bc.sync()
-            bc.unregisterCommand(name)
+            unregisterCommand(name)
         }
     }
 
@@ -462,7 +479,7 @@ object ScriptTool : BaseMap<String, Any>() {
 
     @JvmStatic
     fun monitorFuture(key: String, func: Consumer<Mirror.MirrorFuture<Any?>>): Any {
-        return taboolib.common5.mirrorFuture<Any?>(key) { func.accept(this) }
+        return mirrorFuture(key) { func.accept(this) }
     }
 
     @JvmStatic

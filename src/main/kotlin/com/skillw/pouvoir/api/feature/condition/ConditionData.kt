@@ -8,7 +8,7 @@ import org.bukkit.entity.LivingEntity
  * @className ConditionData
  *
  * @author Glom
- * @date 2023/8/2 16:47 Copyright 2023 user. All rights reserved.
+ * @date 2023/8/2 16:47 Copyright 2024 Glom.
  */
 class ConditionData(override val key: Condition) : Keyable<Condition>, ConfigurationSerializable {
     private val parameters = ArrayList<Map<String, Any>>()

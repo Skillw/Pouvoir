@@ -18,7 +18,7 @@ import com.skillw.pouvoir.api.plugin.map.component.Registrable
  * - 筛选触发器
  *
  * @author Glom
- * @date 2023/1/21 17:14 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/21 17:14 Copyright 2024 Glom.
  */
 abstract class TriggerController<T : BaseTrigger>(override val key: String, val triggerClass: Class<T>) :
     Registrable<String> {

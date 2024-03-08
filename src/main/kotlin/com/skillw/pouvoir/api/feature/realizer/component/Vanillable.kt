@@ -8,7 +8,7 @@ import taboolib.common5.cbool
  * @className Vanillable
  *
  * @author Glom
- * @date 2023/1/5 16:51 Copyright 2022 user. All rights reserved.
+ * @date 2023/1/5 16:51 Copyright 2022 user.
  */
 interface Vanillable {
 

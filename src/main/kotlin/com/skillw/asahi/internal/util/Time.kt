@@ -6,7 +6,7 @@ import taboolib.common5.util.parseMillis
  * @className Time
  *
  * @author Glom
- * @date 2023/1/11 23:25 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/11 23:25 Copyright 2024 Glom.
  */
 class Time(var millis: Long) {
     constructor(string: String) : this(string.parseMillis())

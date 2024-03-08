@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap
  * @className Player
  *
  * @author Glom
- * @date 2023/1/14 0:32 Copyright 2023 user. All rights reserved.
+ * @date 2023/1/14 0:32 Copyright 2024 Glom.
  */
 
 @AsahiPrefix
