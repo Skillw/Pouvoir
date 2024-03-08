@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <!-- NewPage -->
 <html lang="en"><head>
-    <title>AsahiHandler 1.6.6-gamma API </title>
+    <title>AsahiHandler 1.6.7-beta API </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="dc.created" content="2020-03-25">
     <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../../../dokka-javadoc-stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../../../jquery/jquery-ui.css" title="Style">
-    <script type="text/javascript" src="../../../../../../jquery/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../../../../../../jquery/jquery-migrate-3.0.1.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
     <script type="text/javascript" src="../../../../../../jquery/jquery-ui.js"></script>
 
     <script type="text/javascript" src="../../../../../../search.js"></script>
@@ -88,7 +88,7 @@ var pathtoroot = "../../../../../../";
 
 <main role="main">
     <div class="header">
-        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html"></a></div>
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.skillw.pouvoir.internal.feature.handler</a></div>
         <h2 title="Class AsahiHandler" class="title">Class AsahiHandler</h2>
     </div>
     <div class="contentContainer">
@@ -161,6 +161,19 @@ public final class <span class="typeNameLabel"><a href=AsahiHandler.html>AsahiHa
 extends <a href=../../../api/feature/handler/BaseHandler.html>BaseHandler</a>&lt;<a href=../../../api/feature/trigger/BaseTrigger.html>BaseTrigger</a>&gt; implements <a href=../../../../asahi/api/member/context/AsahiContext.html>AsahiContext</a>, <a href=../../../api/plugin/object/Releasable.html>Releasable</a>
                     </pre>
                     <div class="block"></div>
+
+                    <dl>
+
+                    
+
+                    
+                        <dt><span class="authorLabel">Author:</span></dt>
+                        
+                            <dd><p>Glom</p></dd>
+                        
+                    
+
+                    </dl>
                 </li>
             </ul>
         </div>
@@ -297,7 +310,7 @@ extends <a href=../../../api/feature/handler/BaseHandler.html>BaseHandler</a>&lt
                                         <tr id="i1" class="rowColor">
                                             <td class="colFirst"><code><a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiHandler.html#setRelease(Boolean)>setRelease</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> release) </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiHandler.html#setRelease(java.lang.Boolean)>setRelease</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> release) </code>
                                             </th>
                                             <td class="colLast">是否在重载时注销</td>
                                         </tr>
@@ -305,7 +318,7 @@ extends <a href=../../../api/feature/handler/BaseHandler.html>BaseHandler</a>&lt
                                         <tr id="i2" class="altColor">
                                             <td class="colFirst"><code>final <a href=AsahiHandler.html>AsahiHandler</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiHandler.html#handle(Function1)>handle</a>(Function1&lt;<a href=../../../../asahi/api/member/context/AsahiContext.html>AsahiContext</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; handle) </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiHandler.html#handle(kotlin.jvm.functions.Function1)>handle</a>(Function1&lt;<a href=../../../../asahi/api/member/context/AsahiContext.html>AsahiContext</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; handle) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -313,7 +326,7 @@ extends <a href=../../../api/feature/handler/BaseHandler.html>BaseHandler</a>&lt
                                         <tr id="i3" class="rowColor">
                                             <td class="colFirst"><code><a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiHandler.html#handle(BaseTrigger)>handle</a>(<a href=../../../api/feature/trigger/BaseTrigger.html>BaseTrigger</a> trigger) </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiHandler.html#handle(com.skillw.pouvoir.api.feature.trigger.BaseTrigger)>handle</a>(<a href=../../../api/feature/trigger/BaseTrigger.html>BaseTrigger</a> trigger) </code>
                                             </th>
                                             <td class="colLast">处理触发器</td>
                                         </tr>
@@ -372,12 +385,20 @@ extends <a href=../../../api/feature/handler/BaseHandler.html>BaseHandler</a>&lt
                                         <h4>getRelease</h4>
                                         <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=AsahiHandler.html#getRelease()>getRelease</a>()</pre>
                                         <div class="block"><p>是否在重载时注销</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="setRelease(Boolean)">
+                                <a id="setRelease(java.lang.Boolean)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -385,14 +406,22 @@ extends <a href=../../../api/feature/handler/BaseHandler.html>BaseHandler</a>&lt
                                           >
                                     <li class="blockList">
                                         <h4>setRelease</h4>
-                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=AsahiHandler.html#setRelease(Boolean)>setRelease</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> release)</pre>
+                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=AsahiHandler.html#setRelease(java.lang.Boolean)>setRelease</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> release)</pre>
                                         <div class="block"><p>是否在重载时注销</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="handle(Function1)">
+                                <a id="handle(kotlin.jvm.functions.Function1)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -400,14 +429,22 @@ extends <a href=../../../api/feature/handler/BaseHandler.html>BaseHandler</a>&lt
                                           >
                                     <li class="blockList">
                                         <h4>handle</h4>
-                                        <pre class="methodSignature"> final <a href=AsahiHandler.html>AsahiHandler</a> <a href=AsahiHandler.html#handle(Function1)>handle</a>(Function1&lt;<a href=../../../../asahi/api/member/context/AsahiContext.html>AsahiContext</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; handle)</pre>
+                                        <pre class="methodSignature"> final <a href=AsahiHandler.html>AsahiHandler</a> <a href=AsahiHandler.html#handle(kotlin.jvm.functions.Function1)>handle</a>(Function1&lt;<a href=../../../../asahi/api/member/context/AsahiContext.html>AsahiContext</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; handle)</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="handle(BaseTrigger)">
+                                <a id="handle(com.skillw.pouvoir.api.feature.trigger.BaseTrigger)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -415,19 +452,25 @@ extends <a href=../../../api/feature/handler/BaseHandler.html>BaseHandler</a>&lt
                                           >
                                     <li class="blockList">
                                         <h4>handle</h4>
-                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=AsahiHandler.html#handle(BaseTrigger)>handle</a>(<a href=../../../api/feature/trigger/BaseTrigger.html>BaseTrigger</a> trigger)</pre>
+                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=AsahiHandler.html#handle(com.skillw.pouvoir.api.feature.trigger.BaseTrigger)>handle</a>(<a href=../../../api/feature/trigger/BaseTrigger.html>BaseTrigger</a> trigger)</pre>
                                         <div class="block"><p>处理触发器</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>trigger</code> - 触发器</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 

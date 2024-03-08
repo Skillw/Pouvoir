@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <!-- NewPage -->
 <html lang="en"><head>
-    <title>Ray 1.6.6-gamma API </title>
+    <title>Ray 1.6.7-beta API </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="dc.created" content="2020-03-25">
     <link rel="stylesheet" type="text/css" href="../../../../stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../dokka-javadoc-stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../jquery/jquery-ui.css" title="Style">
-    <script type="text/javascript" src="../../../../jquery/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../../../../jquery/jquery-migrate-3.0.1.js"></script>
+    <script type="text/javascript" src="../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
     <script type="text/javascript" src="../../../../jquery/jquery-ui.js"></script>
 
     <script type="text/javascript" src="../../../../search.js"></script>
@@ -88,7 +88,7 @@ var pathtoroot = "../../../../";
 
 <main role="main">
     <div class="header">
-        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html"></a></div>
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.skillw.particlelib.pobject</a></div>
         <h2 title="Class Ray" class="title">Class Ray</h2>
     </div>
     <div class="contentContainer">
@@ -118,6 +118,19 @@ public final class <span class="typeNameLabel"><a href=Ray.html>Ray</a></span>
 extends <a href=ParticleObject.html>ParticleObject</a>
                     </pre>
                     <div class="block"><p>代表一个射线</p></div>
+
+                    <dl>
+
+                    
+
+                    
+                        <dt><span class="authorLabel">Author:</span></dt>
+                        
+                            <dd><p>Zoyn IceCold</p></dd>
+                        
+                    
+
+                    </dl>
                 </li>
             </ul>
         </div>
@@ -251,7 +264,7 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                         
                                             <tr class="altColor">
                                                 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
-                                                        href="#Ray(Location,Vector,Double,Double,Double,Ray.RayStopType,Boolean,Function1,Function1,Function1)">Ray</a></span>(Location origin, Vector direction, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> maxLength, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> step, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> range, <a href=Ray.RayStopType.html>Ray.RayStopType</a> stopType, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> hitEntities, Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; onHit, Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a>&gt; entityFilter, Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; onEnd)</code></th>
+                                                        href="#Ray(taboolib.common.util.Location,taboolib.common.util.Vector,java.lang.Double,java.lang.Double,java.lang.Double,com.skillw.particlelib.pobject.Ray.RayStopType,java.lang.Boolean,kotlin.jvm.functions.Function1,kotlin.jvm.functions.Function1,kotlin.jvm.functions.Function1)">Ray</a></span>(Location origin, Vector direction, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> maxLength, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> step, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> range, <a href=Ray.RayStopType.html>Ray.RayStopType</a> stopType, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> hitEntities, Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; onHit, Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a>&gt; entityFilter, Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; onEnd)</code></th>
                                                 <td class="colLast"></td>
                                             </tr>
                                         
@@ -309,15 +322,15 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=Ray.html#getDirection()>getDirection</a>() </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">方向</td>
                                         </tr>
                                         
                                         <tr id="i1" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setDirection(Vector)>setDirection</a>(Vector direction) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setDirection(taboolib.common.util.Vector)>setDirection</a>(Vector direction) </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">方向</td>
                                         </tr>
                                         
                                         <tr id="i2" class="altColor">
@@ -325,15 +338,15 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=Ray.html#getMaxLength()>getMaxLength</a>() </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">长度</td>
                                         </tr>
                                         
                                         <tr id="i3" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setMaxLength(Double)>setMaxLength</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> maxLength) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setMaxLength(java.lang.Double)>setMaxLength</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> maxLength) </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">长度</td>
                                         </tr>
                                         
                                         <tr id="i4" class="altColor">
@@ -341,15 +354,15 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=Ray.html#getStep()>getStep</a>() </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">步长</td>
                                         </tr>
                                         
                                         <tr id="i5" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setStep(Double)>setStep</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> step) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setStep(java.lang.Double)>setStep</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> step) </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">步长</td>
                                         </tr>
                                         
                                         <tr id="i6" class="altColor">
@@ -357,15 +370,15 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=Ray.html#getRange()>getRange</a>() </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">每个点判断怪物在其上的半径</td>
                                         </tr>
                                         
                                         <tr id="i7" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setRange(Double)>setRange</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> range) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setRange(java.lang.Double)>setRange</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> range) </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">每个点判断怪物在其上的半径</td>
                                         </tr>
                                         
                                         <tr id="i8" class="altColor">
@@ -373,15 +386,15 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=Ray.html#getStopType()>getStopType</a>() </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">结束类型</td>
                                         </tr>
                                         
                                         <tr id="i9" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setStopType(Ray.RayStopType)>setStopType</a>(<a href=Ray.RayStopType.html>Ray.RayStopType</a> stopType) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setStopType(com.skillw.particlelib.pobject.Ray.RayStopType)>setStopType</a>(<a href=Ray.RayStopType.html>Ray.RayStopType</a> stopType) </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">结束类型</td>
                                         </tr>
                                         
                                         <tr id="i10" class="altColor">
@@ -395,7 +408,7 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                         <tr id="i11" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setHitEntities(Boolean)>setHitEntities</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> hitEntities) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setHitEntities(java.lang.Boolean)>setHitEntities</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> hitEntities) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -405,15 +418,15 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=Ray.html#getOnHit()>getOnHit</a>() </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">处理命中实体</td>
                                         </tr>
                                         
                                         <tr id="i13" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setOnHit(Function1)>setOnHit</a>(Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; onHit) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setOnHit(kotlin.jvm.functions.Function1)>setOnHit</a>(Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; onHit) </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">处理命中实体</td>
                                         </tr>
                                         
                                         <tr id="i14" class="altColor">
@@ -421,15 +434,15 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=Ray.html#getEntityFilter()>getEntityFilter</a>() </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">命中实体过滤器</td>
                                         </tr>
                                         
                                         <tr id="i15" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setEntityFilter(Function1)>setEntityFilter</a>(Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a>&gt; entityFilter) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setEntityFilter(kotlin.jvm.functions.Function1)>setEntityFilter</a>(Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a>&gt; entityFilter) </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">命中实体过滤器</td>
                                         </tr>
                                         
                                         <tr id="i16" class="altColor">
@@ -443,7 +456,7 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                         <tr id="i17" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setOnEnd(Function1)>setOnEnd</a>(Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; onEnd) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Ray.html#setOnEnd(kotlin.jvm.functions.Function1)>setOnEnd</a>(Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; onEnd) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -487,7 +500,7 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                             </a>
                                 <h3>Constructor Detail</h3>
                                 
-                                <a name="Ray(Location,Vector,Double,Double,Double,Ray.RayStopType,Boolean,Function1,Function1,Function1)"></a>
+                                <a name="Ray(taboolib.common.util.Location,taboolib.common.util.Vector,java.lang.Double,java.lang.Double,java.lang.Double,com.skillw.particlelib.pobject.Ray.RayStopType,java.lang.Boolean,kotlin.jvm.functions.Function1,kotlin.jvm.functions.Function1,kotlin.jvm.functions.Function1)"></a>
                                 <ul class="blockList">
                                     <li class="blockList">
                                         <h4>Ray</h4>
@@ -519,13 +532,21 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                     <li class="blockList">
                                         <h4>getDirection</h4>
                                         <pre class="methodSignature"> final Vector <a href=Ray.html#getDirection()>getDirection</a>()</pre>
-                                        <div class="block"></div>
+                                        <div class="block"><p>方向</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="setDirection(Vector)">
+                                <a id="setDirection(taboolib.common.util.Vector)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -533,10 +554,18 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                           >
                                     <li class="blockList">
                                         <h4>setDirection</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setDirection(Vector)>setDirection</a>(Vector direction)</pre>
-                                        <div class="block"></div>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setDirection(taboolib.common.util.Vector)>setDirection</a>(Vector direction)</pre>
+                                        <div class="block"><p>方向</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -549,13 +578,21 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                     <li class="blockList">
                                         <h4>getMaxLength</h4>
                                         <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> <a href=Ray.html#getMaxLength()>getMaxLength</a>()</pre>
-                                        <div class="block"></div>
+                                        <div class="block"><p>长度</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="setMaxLength(Double)">
+                                <a id="setMaxLength(java.lang.Double)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -563,10 +600,18 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                           >
                                     <li class="blockList">
                                         <h4>setMaxLength</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setMaxLength(Double)>setMaxLength</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> maxLength)</pre>
-                                        <div class="block"></div>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setMaxLength(java.lang.Double)>setMaxLength</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> maxLength)</pre>
+                                        <div class="block"><p>长度</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -579,13 +624,21 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                     <li class="blockList">
                                         <h4>getStep</h4>
                                         <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> <a href=Ray.html#getStep()>getStep</a>()</pre>
-                                        <div class="block"></div>
+                                        <div class="block"><p>步长</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="setStep(Double)">
+                                <a id="setStep(java.lang.Double)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -593,10 +646,18 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                           >
                                     <li class="blockList">
                                         <h4>setStep</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setStep(Double)>setStep</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> step)</pre>
-                                        <div class="block"></div>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setStep(java.lang.Double)>setStep</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> step)</pre>
+                                        <div class="block"><p>步长</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -609,13 +670,21 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                     <li class="blockList">
                                         <h4>getRange</h4>
                                         <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> <a href=Ray.html#getRange()>getRange</a>()</pre>
-                                        <div class="block"></div>
+                                        <div class="block"><p>每个点判断怪物在其上的半径</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="setRange(Double)">
+                                <a id="setRange(java.lang.Double)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -623,10 +692,18 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                           >
                                     <li class="blockList">
                                         <h4>setRange</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setRange(Double)>setRange</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> range)</pre>
-                                        <div class="block"></div>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setRange(java.lang.Double)>setRange</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a> range)</pre>
+                                        <div class="block"><p>每个点判断怪物在其上的半径</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -639,13 +716,21 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                     <li class="blockList">
                                         <h4>getStopType</h4>
                                         <pre class="methodSignature"> final <a href=Ray.RayStopType.html>Ray.RayStopType</a> <a href=Ray.html#getStopType()>getStopType</a>()</pre>
-                                        <div class="block"></div>
+                                        <div class="block"><p>结束类型</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="setStopType(Ray.RayStopType)">
+                                <a id="setStopType(com.skillw.particlelib.pobject.Ray.RayStopType)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -653,10 +738,18 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                           >
                                     <li class="blockList">
                                         <h4>setStopType</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setStopType(Ray.RayStopType)>setStopType</a>(<a href=Ray.RayStopType.html>Ray.RayStopType</a> stopType)</pre>
-                                        <div class="block"></div>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setStopType(com.skillw.particlelib.pobject.Ray.RayStopType)>setStopType</a>(<a href=Ray.RayStopType.html>Ray.RayStopType</a> stopType)</pre>
+                                        <div class="block"><p>结束类型</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -670,12 +763,20 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                         <h4>getHitEntities</h4>
                                         <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=Ray.html#getHitEntities()>getHitEntities</a>()</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="setHitEntities(Boolean)">
+                                <a id="setHitEntities(java.lang.Boolean)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -683,10 +784,18 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                           >
                                     <li class="blockList">
                                         <h4>setHitEntities</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setHitEntities(Boolean)>setHitEntities</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> hitEntities)</pre>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setHitEntities(java.lang.Boolean)>setHitEntities</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> hitEntities)</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -699,13 +808,21 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                     <li class="blockList">
                                         <h4>getOnHit</h4>
                                         <pre class="methodSignature"> final Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; <a href=Ray.html#getOnHit()>getOnHit</a>()</pre>
-                                        <div class="block"></div>
+                                        <div class="block"><p>处理命中实体</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="setOnHit(Function1)">
+                                <a id="setOnHit(kotlin.jvm.functions.Function1)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -713,10 +830,18 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                           >
                                     <li class="blockList">
                                         <h4>setOnHit</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setOnHit(Function1)>setOnHit</a>(Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; onHit)</pre>
-                                        <div class="block"></div>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setOnHit(kotlin.jvm.functions.Function1)>setOnHit</a>(Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; onHit)</pre>
+                                        <div class="block"><p>处理命中实体</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -729,13 +854,21 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                     <li class="blockList">
                                         <h4>getEntityFilter</h4>
                                         <pre class="methodSignature"> final Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a>&gt; <a href=Ray.html#getEntityFilter()>getEntityFilter</a>()</pre>
-                                        <div class="block"></div>
+                                        <div class="block"><p>命中实体过滤器</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="setEntityFilter(Function1)">
+                                <a id="setEntityFilter(kotlin.jvm.functions.Function1)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -743,10 +876,18 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                           >
                                     <li class="blockList">
                                         <h4>setEntityFilter</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setEntityFilter(Function1)>setEntityFilter</a>(Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a>&gt; entityFilter)</pre>
-                                        <div class="block"></div>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setEntityFilter(kotlin.jvm.functions.Function1)>setEntityFilter</a>(Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a>&gt; entityFilter)</pre>
+                                        <div class="block"><p>命中实体过滤器</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -760,12 +901,20 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                         <h4>getOnEnd</h4>
                                         <pre class="methodSignature"> final Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; <a href=Ray.html#getOnEnd()>getOnEnd</a>()</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="setOnEnd(Function1)">
+                                <a id="setOnEnd(kotlin.jvm.functions.Function1)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -773,10 +922,18 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                           >
                                     <li class="blockList">
                                         <h4>setOnEnd</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setOnEnd(Function1)>setOnEnd</a>(Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; onEnd)</pre>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#setOnEnd(kotlin.jvm.functions.Function1)>setOnEnd</a>(Function1&lt;<a href=https://doc.skillw.com/bukkit/org/bukkit/entity/Entity.html>Entity</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; onEnd)</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -790,8 +947,16 @@ extends <a href=ParticleObject.html>ParticleObject</a>
                                         <h4>show</h4>
                                         <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=Ray.html#show()>show</a>()</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 

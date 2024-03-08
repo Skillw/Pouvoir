@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <!-- NewPage -->
 <html lang="en"><head>
-    <title>AsahiLoopContext 1.6.6-gamma API </title>
+    <title>AsahiLoopContext 1.6.7-beta API </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="dc.created" content="2020-03-25">
     <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../../dokka-javadoc-stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../../jquery/jquery-ui.css" title="Style">
-    <script type="text/javascript" src="../../../../../jquery/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../../../../../jquery/jquery-migrate-3.0.1.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
     <script type="text/javascript" src="../../../../../jquery/jquery-ui.js"></script>
 
     <script type="text/javascript" src="../../../../../search.js"></script>
@@ -88,7 +88,7 @@ var pathtoroot = "../../../../../";
 
 <main role="main">
     <div class="header">
-        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html"></a></div>
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.skillw.asahi.internal.context</a></div>
         <h2 title="Class AsahiLoopContext" class="title">Class AsahiLoopContext</h2>
     </div>
     <div class="contentContainer">
@@ -146,6 +146,19 @@ public final class <span class="typeNameLabel"><a href=AsahiLoopContext.html>Asa
  implements <a href=../../api/member/context/AsahiContext.html>AsahiContext</a>, <a href=../../api/member/context/LoopContext.html>LoopContext</a>
                     </pre>
                     <div class="block"></div>
+
+                    <dl>
+
+                    
+
+                    
+                        <dt><span class="authorLabel">Author:</span></dt>
+                        
+                            <dd><p>Glom</p></dd>
+                        
+                    
+
+                    </dl>
                 </li>
             </ul>
         </div>
@@ -201,13 +214,13 @@ public final class <span class="typeNameLabel"><a href=AsahiLoopContext.html>Asa
                                         
                                         <tr class="altColor">
                                             <td class="colFirst"><code>private  <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code></td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLoopContext.html#isBreak>isBreak</a></code></th>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLoopContext.html#isBreak()>isBreak</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr class="rowColor">
                                             <td class="colFirst"><code>private  <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code></td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLoopContext.html#isContinue>isContinue</a></code></th>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLoopContext.html#isContinue()>isContinue</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
@@ -226,6 +239,12 @@ public final class <span class="typeNameLabel"><a href=AsahiLoopContext.html>Asa
                                         <tr class="altColor">
                                             <td class="colFirst"><code>private final <a href=../../api/member/context/LoopContext.html>LoopContext</a></code></td>
                                             <th class="colSecond" scope="row"><code><a href=AsahiLoopContext.html#parent>parent</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>public final static <a href=AsahiLoopContext.Companion.html>AsahiLoopContext.Companion</a></code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLoopContext.html#Companion>Companion</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
@@ -255,7 +274,7 @@ public final class <span class="typeNameLabel"><a href=AsahiLoopContext.html>Asa
                                         
                                             <tr class="altColor">
                                                 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
-                                                        href="#AsahiLoopContext(String,LoopContext,AsahiContext)">AsahiLoopContext</a></span>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> label, <a href=../../api/member/context/LoopContext.html>LoopContext</a> parent, <a href=../../api/member/context/AsahiContext.html>AsahiContext</a> basic)</code></th>
+                                                        href="#AsahiLoopContext(java.lang.String,com.skillw.asahi.api.member.context.LoopContext,com.skillw.asahi.api.member.context.AsahiContext)">AsahiLoopContext</a></span>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> label, <a href=../../api/member/context/LoopContext.html>LoopContext</a> parent, <a href=../../api/member/context/AsahiContext.html>AsahiContext</a> basic)</code></th>
                                                 <td class="colLast"></td>
                                             </tr>
                                         
@@ -311,7 +330,7 @@ public final class <span class="typeNameLabel"><a href=AsahiLoopContext.html>Asa
                                         <tr id="i0" class="altColor">
                                             <td class="colFirst"><code><a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLoopContext.html#getIsBreak()>getIsBreak</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLoopContext.html#isBreak()>isBreak</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -319,7 +338,7 @@ public final class <span class="typeNameLabel"><a href=AsahiLoopContext.html>Asa
                                         <tr id="i1" class="rowColor">
                                             <td class="colFirst"><code><a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLoopContext.html#setIsBreak(Boolean)>setIsBreak</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> isBreak) </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLoopContext.html#setBreak(java.lang.Boolean)>setBreak</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> isBreak) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -327,7 +346,7 @@ public final class <span class="typeNameLabel"><a href=AsahiLoopContext.html>Asa
                                         <tr id="i2" class="altColor">
                                             <td class="colFirst"><code><a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLoopContext.html#getIsContinue()>getIsContinue</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLoopContext.html#isContinue()>isContinue</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -335,7 +354,7 @@ public final class <span class="typeNameLabel"><a href=AsahiLoopContext.html>Asa
                                         <tr id="i3" class="rowColor">
                                             <td class="colFirst"><code><a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLoopContext.html#setIsContinue(Boolean)>setIsContinue</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> isContinue) </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLoopContext.html#setContinue(java.lang.Boolean)>setContinue</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> isContinue) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -367,7 +386,7 @@ public final class <span class="typeNameLabel"><a href=AsahiLoopContext.html>Asa
                                         <tr id="i7" class="rowColor">
                                             <td class="colFirst"><code><a href=../../api/member/context/LoopContext.html>LoopContext</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLoopContext.html#searchLabel(String)>searchLabel</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> label) </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLoopContext.html#searchLabel(java.lang.String)>searchLabel</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> label) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -411,7 +430,7 @@ public final class <span class="typeNameLabel"><a href=AsahiLoopContext.html>Asa
                             </a>
                                 <h3>Constructor Detail</h3>
                                 
-                                <a name="AsahiLoopContext(String,LoopContext,AsahiContext)"></a>
+                                <a name="AsahiLoopContext(java.lang.String,com.skillw.asahi.api.member.context.LoopContext,com.skillw.asahi.api.member.context.AsahiContext)"></a>
                                 <ul class="blockList">
                                     <li class="blockList">
                                         <h4>AsahiLoopContext</h4>
@@ -434,63 +453,95 @@ public final class <span class="typeNameLabel"><a href=AsahiLoopContext.html>Asa
                             </a>
                                 <h3>Method Detail</h3>
                                 
-                                <a id="getIsBreak()">
+                                <a id="isBreak()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>getIsBreak</h4>
-                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=AsahiLoopContext.html#getIsBreak()>getIsBreak</a>()</pre>
+                                        <h4>isBreak</h4>
+                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=AsahiLoopContext.html#isBreak()>isBreak</a>()</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="setIsBreak(Boolean)">
+                                <a id="setBreak(java.lang.Boolean)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>setIsBreak</h4>
-                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=AsahiLoopContext.html#setIsBreak(Boolean)>setIsBreak</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> isBreak)</pre>
+                                        <h4>setBreak</h4>
+                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=AsahiLoopContext.html#setBreak(java.lang.Boolean)>setBreak</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> isBreak)</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="getIsContinue()">
+                                <a id="isContinue()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>getIsContinue</h4>
-                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=AsahiLoopContext.html#getIsContinue()>getIsContinue</a>()</pre>
+                                        <h4>isContinue</h4>
+                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=AsahiLoopContext.html#isContinue()>isContinue</a>()</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="setIsContinue(Boolean)">
+                                <a id="setContinue(java.lang.Boolean)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>setIsContinue</h4>
-                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=AsahiLoopContext.html#setIsContinue(Boolean)>setIsContinue</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> isContinue)</pre>
+                                        <h4>setContinue</h4>
+                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=AsahiLoopContext.html#setContinue(java.lang.Boolean)>setContinue</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> isContinue)</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -504,8 +555,16 @@ public final class <span class="typeNameLabel"><a href=AsahiLoopContext.html>Asa
                                         <h4>getSubLoops</h4>
                                         <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/util/HashSet.html>HashSet</a>&lt;<a href=../../api/member/context/LoopContext.html>LoopContext</a>&gt; <a href=AsahiLoopContext.html#getSubLoops()>getSubLoops</a>()</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -519,8 +578,16 @@ public final class <span class="typeNameLabel"><a href=AsahiLoopContext.html>Asa
                                         <h4>getLabel</h4>
                                         <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=AsahiLoopContext.html#getLabel()>getLabel</a>()</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -534,12 +601,20 @@ public final class <span class="typeNameLabel"><a href=AsahiLoopContext.html>Asa
                                         <h4>getParent</h4>
                                         <pre class="methodSignature"> <a href=../../api/member/context/LoopContext.html>LoopContext</a> <a href=AsahiLoopContext.html#getParent()>getParent</a>()</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="searchLabel(String)">
+                                <a id="searchLabel(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -547,10 +622,18 @@ public final class <span class="typeNameLabel"><a href=AsahiLoopContext.html>Asa
                                           >
                                     <li class="blockList">
                                         <h4>searchLabel</h4>
-                                        <pre class="methodSignature"> <a href=../../api/member/context/LoopContext.html>LoopContext</a> <a href=AsahiLoopContext.html#searchLabel(String)>searchLabel</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> label)</pre>
+                                        <pre class="methodSignature"> <a href=../../api/member/context/LoopContext.html>LoopContext</a> <a href=AsahiLoopContext.html#searchLabel(java.lang.String)>searchLabel</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> label)</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -564,8 +647,16 @@ public final class <span class="typeNameLabel"><a href=AsahiLoopContext.html>Asa
                                         <h4>clone</h4>
                                         <pre class="methodSignature"> <a href=../../api/member/context/AsahiContext.html>AsahiContext</a> <a href=AsahiLoopContext.html#clone()>clone</a>()</pre>
                                         <div class="block"><p>Clone</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 

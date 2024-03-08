@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <!-- NewPage -->
 <html lang="en"><head>
-    <title>AsahiLexer 1.6.6-gamma API </title>
+    <title>AsahiLexer 1.6.7-beta API </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="dc.created" content="2020-03-25">
     <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../../../dokka-javadoc-stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../../../jquery/jquery-ui.css" title="Style">
-    <script type="text/javascript" src="../../../../../../jquery/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../../../../../../jquery/jquery-migrate-3.0.1.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
     <script type="text/javascript" src="../../../../../../jquery/jquery-ui.js"></script>
 
     <script type="text/javascript" src="../../../../../../search.js"></script>
@@ -88,7 +88,7 @@ var pathtoroot = "../../../../../../";
 
 <main role="main">
     <div class="header">
-        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html"></a></div>
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.skillw.asahi.api.member.lexer</a></div>
         <h2 title="Interface AsahiLexer" class="title">Interface AsahiLexer</h2>
     </div>
     <div class="contentContainer">
@@ -121,6 +121,14 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
  implements <a href=../namespace/NamespaceHolder.html>NamespaceHolder</a>&lt;<a href=AsahiLexer.html>AsahiLexer</a>&gt;
                     </pre>
                     <div class="block"><p>AsahiLexer</p></div>
+
+                    <dl>
+
+                    
+
+                    
+
+                    </dl>
                 </li>
             </ul>
         </div>
@@ -250,7 +258,7 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <tr id="i0" class="altColor">
                                             <td class="colFirst"><code>abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#expect(String)>expect</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> expects) </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#expect(java.lang.String)>expect</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> expects) </code>
                                             </th>
                                             <td class="colLast">预期下一个token若 下一个token 预期正确 则 跳过下一个token 并返回true否则 不跳过下一个token 并返回false</td>
                                         </tr>
@@ -322,7 +330,7 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <tr id="i9" class="rowColor">
                                             <td class="colFirst"><code>abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#skipTill(String,String)>skipTill</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> from, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> till) </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#skipTill(java.lang.String,java.lang.String)>skipTill</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> from, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> till) </code>
                                             </th>
                                             <td class="colLast">跳过一些Token</td>
                                         </tr>
@@ -330,7 +338,7 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <tr id="i10" class="altColor">
                                             <td class="colFirst"><code>abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#splitTill(String,String)>splitTill</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> from, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> to) </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#splitTill(java.lang.String,java.lang.String)>splitTill</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> from, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> to) </code>
                                             </th>
                                             <td class="colLast">将一些Token 分割出来</td>
                                         </tr>
@@ -338,7 +346,7 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <tr id="i11" class="rowColor">
                                             <td class="colFirst"><code>abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#splitBefore(String)>splitBefore</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> to) </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#splitBefore(java.lang.String)>splitBefore</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> to) </code>
                                             </th>
                                             <td class="colLast">将一些Token 分割出来</td>
                                         </tr>
@@ -346,7 +354,7 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <tr id="i12" class="altColor">
                                             <td class="colFirst"><code>abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#splitBeforeString(String)>splitBeforeString</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> to) </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#splitBeforeString(java.lang.String)>splitBeforeString</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> to) </code>
                                             </th>
                                             <td class="colLast">将一些Token 分割出来 并以' '做分隔符结合为字符串</td>
                                         </tr>
@@ -362,7 +370,7 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <tr id="i14" class="altColor">
                                             <td class="colFirst"><code>abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#info(String,Integer)>info</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> message, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> index) </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#info(java.lang.String,java.lang.Integer)>info</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> message, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> index) </code>
                                             </th>
                                             <td class="colLast">当前信息（包括脚本，下标）</td>
                                         </tr>
@@ -530,7 +538,7 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <tr id="i35" class="rowColor">
                                             <td class="colFirst"><code>abstract <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#withEach(Function2)>withEach</a>(Function2&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; receiver) </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#withEach(kotlin.jvm.functions.Function2)>withEach</a>(Function2&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; receiver) </code>
                                             </th>
                                             <td class="colLast">将每个Token作为接收器</td>
                                         </tr>
@@ -538,7 +546,7 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <tr id="i36" class="altColor">
                                             <td class="colFirst"><code>abstract <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a>&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#questCondition(String,Function1)>questCondition</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> till, Function1&lt;<a href=AsahiLexer.html>AsahiLexer</a>, <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a>&gt;&gt; boolQuester) </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#questCondition(java.lang.String,kotlin.jvm.functions.Function1)>questCondition</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> till, Function1&lt;<a href=AsahiLexer.html>AsahiLexer</a>, <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a>&gt;&gt; boolQuester) </code>
                                             </th>
                                             <td class="colLast">寻求条件表达式</td>
                                         </tr>
@@ -546,7 +554,7 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <tr id="i37" class="rowColor">
                                             <td class="colFirst"><code>abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html>Void</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#error(String)>error</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> message) </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#error(java.lang.String)>error</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> message) </code>
                                             </th>
                                             <td class="colLast">报错，会打印当前读取位置与堆栈</td>
                                         </tr>
@@ -570,7 +578,7 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <tr id="i40" class="altColor">
                                             <td class="colFirst"><code>abstract <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#questAllTo(AsahiCompiledScript)>questAllTo</a>(<a href=../../script/AsahiCompiledScript.html>AsahiCompiledScript</a> script) </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#questAllTo(com.skillw.asahi.api.script.AsahiCompiledScript)>questAllTo</a>(<a href=../../script/AsahiCompiledScript.html>AsahiCompiledScript</a> script) </code>
                                             </th>
                                             <td class="colLast">将词法器中所有Quester都塞到脚本里</td>
                                         </tr>
@@ -578,7 +586,7 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <tr id="i41" class="rowColor">
                                             <td class="colFirst"><code>abstract <a href=../../script/AsahiCompiledScript.html>AsahiCompiledScript</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#parseScript(String)>parseScript</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> namespaces) </code>
+                                            <th class="colSecond" scope="row"><code><a href=AsahiLexer.html#parseScript(java.lang.String)>parseScript</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> namespaces) </code>
                                             </th>
                                             <td class="colLast">解析一段无参函数</td>
                                         </tr>
@@ -627,7 +635,7 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                             </a>
                                 <h3>Method Detail</h3>
                                 
-                                <a id="expect(String)">
+                                <a id="expect(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -635,10 +643,21 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                           >
                                     <li class="blockList">
                                         <h4>expect</h4>
-                                        <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=AsahiLexer.html#expect(String)>expect</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> expects)</pre>
+                                        <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=AsahiLexer.html#expect(java.lang.String)>expect</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> expects)</pre>
                                         <div class="block"><p>预期下一个token</p><p>若 下一个token 预期正确 则 跳过下一个token 并返回true</p><p>否则 不跳过下一个token 并返回false</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>下一个token是否符合预期</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -652,8 +671,19 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>hasNext</h4>
                                         <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=AsahiLexer.html#hasNext()>hasNext</a>()</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>是否有下一个Token</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -667,8 +697,19 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>isEnd</h4>
                                         <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=AsahiLexer.html#isEnd()>isEnd</a>()</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>是否读取结束</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -682,8 +723,19 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>current</h4>
                                         <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=AsahiLexer.html#current()>current</a>()</pre>
                                         <div class="block"><p>当前Token</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>当前Token</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -697,8 +749,19 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>next</h4>
                                         <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=AsahiLexer.html#next()>next</a>()</pre>
                                         <div class="block"><p>下一个Token</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>下一个Token</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -712,8 +775,19 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>previous</h4>
                                         <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=AsahiLexer.html#previous()>previous</a>()</pre>
                                         <div class="block"><p>上一个Token 无上一个Token时为null</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>上一个Token</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -727,8 +801,19 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>currentIndex</h4>
                                         <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> <a href=AsahiLexer.html#currentIndex()>currentIndex</a>()</pre>
                                         <div class="block"><p>当前Token下标</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>当前Token下标</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -742,8 +827,19 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>peekNextIgnoreBlank</h4>
                                         <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=AsahiLexer.html#peekNextIgnoreBlank()>peekNextIgnoreBlank</a>()</pre>
                                         <div class="block"><p>查看下一个Token(忽略空字符)</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>下一个Token(忽略空字符)</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -757,12 +853,23 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>peek</h4>
                                         <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=AsahiLexer.html#peek()>peek</a>()</pre>
                                         <div class="block"><p>查看下一个Token(不忽略空字符)</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>下一个Token(不忽略空字符)</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="skipTill(String,String)">
+                                <a id="skipTill(java.lang.String,java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -770,10 +877,12 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                           >
                                     <li class="blockList">
                                         <h4>skipTill</h4>
-                                        <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=AsahiLexer.html#skipTill(String,String)>skipTill</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> from, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> till)</pre>
+                                        <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=AsahiLexer.html#skipTill(java.lang.String,java.lang.String)>skipTill</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> from, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> till)</pre>
                                         <div class="block"><p>跳过一些Token</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
@@ -784,13 +893,20 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                             <dd><code>till</code> - 结尾Token</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>是否跳过成功</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="splitTill(String,String)">
+                                <a id="splitTill(java.lang.String,java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -798,10 +914,12 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                           >
                                     <li class="blockList">
                                         <h4>splitTill</h4>
-                                        <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>&gt; <a href=AsahiLexer.html#splitTill(String,String)>splitTill</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> from, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> to)</pre>
+                                        <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>&gt; <a href=AsahiLexer.html#splitTill(java.lang.String,java.lang.String)>splitTill</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> from, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> to)</pre>
                                         <div class="block"><p>将一些Token 分割出来</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
@@ -812,13 +930,20 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                             <dd><code>to</code> - 结尾Token</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>中间的Tokens</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="splitBefore(String)">
+                                <a id="splitBefore(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -826,23 +951,32 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                           >
                                     <li class="blockList">
                                         <h4>splitBefore</h4>
-                                        <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>&gt; <a href=AsahiLexer.html#splitBefore(String)>splitBefore</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> to)</pre>
+                                        <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>&gt; <a href=AsahiLexer.html#splitBefore(java.lang.String)>splitBefore</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> to)</pre>
                                         <div class="block"><p>将一些Token 分割出来</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>to</code> - 结尾Token</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>to前的Tokens</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="splitBeforeString(String)">
+                                <a id="splitBeforeString(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -850,19 +984,28 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                           >
                                     <li class="blockList">
                                         <h4>splitBeforeString</h4>
-                                        <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=AsahiLexer.html#splitBeforeString(String)>splitBeforeString</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> to)</pre>
+                                        <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=AsahiLexer.html#splitBeforeString(java.lang.String)>splitBeforeString</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> to)</pre>
                                         <div class="block"><p>将一些Token 分割出来 并以' '做分隔符结合为字符串</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>to</code> - 结尾Token</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>to前的Tokens以' '做分隔符结合为的字符串</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -876,12 +1019,20 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>reset</h4>
                                         <pre class="methodSignature"> abstract <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=AsahiLexer.html#reset()>reset</a>()</pre>
                                         <div class="block"><p>重置Reader，下标归0</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="info(String,Integer)">
+                                <a id="info(java.lang.String,java.lang.Integer)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -889,10 +1040,21 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                           >
                                     <li class="blockList">
                                         <h4>info</h4>
-                                        <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=AsahiLexer.html#info(String,Integer)>info</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> message, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> index)</pre>
+                                        <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=AsahiLexer.html#info(java.lang.String,java.lang.Integer)>info</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> message, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> index)</pre>
                                         <div class="block"><p>当前信息（包括脚本，下标）</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>当前信息（包括脚本，下标）</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -906,8 +1068,19 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questString</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>&gt; <a href=AsahiLexer.html#questString()>questString</a>()</pre>
                                         <div class="block"><p>寻求字符串</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>Quester&lt;String&gt;</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -921,8 +1094,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questInt</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a>&gt; <a href=AsahiLexer.html#questInt()>questInt</a>()</pre>
                                         <div class="block"><p>寻求 int</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -936,8 +1117,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questDouble</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html>Double</a>&gt; <a href=AsahiLexer.html#questDouble()>questDouble</a>()</pre>
                                         <div class="block"><p>寻求 double</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -951,8 +1140,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questFloat</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Float.html>Float</a>&gt; <a href=AsahiLexer.html#questFloat()>questFloat</a>()</pre>
                                         <div class="block"><p>寻求 float</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -966,8 +1163,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questByte</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Byte.html>Byte</a>&gt; <a href=AsahiLexer.html#questByte()>questByte</a>()</pre>
                                         <div class="block"><p>寻求 byte</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -981,8 +1186,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questShort</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Short.html>Short</a>&gt; <a href=AsahiLexer.html#questShort()>questShort</a>()</pre>
                                         <div class="block"><p>寻求 short</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -996,8 +1209,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questBoolean</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a>&gt; <a href=AsahiLexer.html#questBoolean()>questBoolean</a>()</pre>
                                         <div class="block"><p>寻求 boolean</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -1011,8 +1232,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questLong</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a>&gt; <a href=AsahiLexer.html#questLong()>questLong</a>()</pre>
                                         <div class="block"><p>寻求 long</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -1026,8 +1255,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questList</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt;&gt; <a href=AsahiLexer.html#questList()>questList</a>()</pre>
                                         <div class="block"><p>寻求 list</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -1041,8 +1278,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questArray</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html>Array</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt;&gt; <a href=AsahiLexer.html#questArray()>questArray</a>()</pre>
                                         <div class="block"><p>寻求 array</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -1056,8 +1301,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questMap</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/util/Map.html>Map</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt;&gt; <a href=AsahiLexer.html#questMap()>questMap</a>()</pre>
                                         <div class="block"><p>寻求 map</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -1071,8 +1324,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questObj</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt; <a href=AsahiLexer.html#questObj()>questObj</a>()</pre>
                                         <div class="block"><p>寻求 tokenizer</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -1086,8 +1347,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questAny</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt; <a href=AsahiLexer.html#questAny()>questAny</a>()</pre>
                                         <div class="block"><p>寻求 tokenizer</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -1101,8 +1370,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questLazy</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=../quest/LazyQuester.html>LazyQuester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt;&gt; <a href=AsahiLexer.html#questLazy()>questLazy</a>()</pre>
                                         <div class="block"><p>寻求 代码块</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -1116,8 +1393,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questTime</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=../../../internal/util/Time.html>Time</a>&gt; <a href=AsahiLexer.html#questTime()>questTime</a>()</pre>
                                         <div class="block"><p>寻求 Time</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -1131,8 +1416,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>skip</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt; <a href=AsahiLexer.html#skip()>skip</a>()</pre>
                                         <div class="block"><p>跳过下一个语句</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -1146,8 +1439,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questTick</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html>Long</a>&gt; <a href=AsahiLexer.html#questTick()>questTick</a>()</pre>
                                         <div class="block"><p>寻求 Tick</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -1161,8 +1462,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questTypeMap</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/util/Map.html>Map</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt;&gt; <a href=AsahiLexer.html#questTypeMap()>questTypeMap</a>()</pre>
                                         <div class="block"><p>通过Map类型解释器寻求Map</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -1176,8 +1485,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questTypeList</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt;&gt; <a href=AsahiLexer.html#questTypeList()>questTypeList</a>()</pre>
                                         <div class="block"><p>通过List类型解释器寻求List</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -1191,12 +1508,20 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>questTypeArray</h4>
                                         <pre class="methodSignature"> <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html>Array</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a>&gt;&gt; <a href=AsahiLexer.html#questTypeArray()>questTypeArray</a>()</pre>
                                         <div class="block"><p>寻通过Array类型解释器寻求Array</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="withEach(Function2)">
+                                <a id="withEach(kotlin.jvm.functions.Function2)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -1204,14 +1529,22 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                           >
                                     <li class="blockList">
                                         <h4>withEach</h4>
-                                        <pre class="methodSignature"> abstract <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=AsahiLexer.html#withEach(Function2)>withEach</a>(Function2&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; receiver)</pre>
+                                        <pre class="methodSignature"> abstract <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=AsahiLexer.html#withEach(kotlin.jvm.functions.Function2)>withEach</a>(Function2&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; receiver)</pre>
                                         <div class="block"><p>将每个Token作为接收器</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="questCondition(String,Function1)">
+                                <a id="questCondition(java.lang.String,kotlin.jvm.functions.Function1)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -1219,10 +1552,12 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                           >
                                     <li class="blockList">
                                         <h4>questCondition</h4>
-                                        <pre class="methodSignature"> abstract <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a>&gt; <a href=AsahiLexer.html#questCondition(String,Function1)>questCondition</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> till, Function1&lt;<a href=AsahiLexer.html>AsahiLexer</a>, <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a>&gt;&gt; boolQuester)</pre>
+                                        <pre class="methodSignature"> abstract <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a>&gt; <a href=AsahiLexer.html#questCondition(java.lang.String,kotlin.jvm.functions.Function1)>questCondition</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> till, Function1&lt;<a href=AsahiLexer.html>AsahiLexer</a>, <a href=../quest/Quester.html>Quester</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a>&gt;&gt; boolQuester)</pre>
                                         <div class="block"><p>寻求条件表达式</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
@@ -1233,13 +1568,20 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                             <dd><code>boolQuester</code> - 自定义bool寻求函数</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>条件表达式Quester</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="error(String)">
+                                <a id="error(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -1247,19 +1589,25 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                           >
                                     <li class="blockList">
                                         <h4>error</h4>
-                                        <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html>Void</a> <a href=AsahiLexer.html#error(String)>error</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> message)</pre>
+                                        <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html>Void</a> <a href=AsahiLexer.html#error(java.lang.String)>error</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> message)</pre>
                                         <div class="block"><p>报错，会打印当前读取位置与堆栈</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>message</code> - 报错信息</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -1273,8 +1621,16 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>debugOn</h4>
                                         <pre class="methodSignature"> abstract <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=AsahiLexer.html#debugOn()>debugOn</a>()</pre>
                                         <div class="block"><p>开启编译时调试</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -1288,12 +1644,20 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                         <h4>debugOff</h4>
                                         <pre class="methodSignature"> abstract <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=AsahiLexer.html#debugOff()>debugOff</a>()</pre>
                                         <div class="block"><p>关闭编译时调试</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="questAllTo(AsahiCompiledScript)">
+                                <a id="questAllTo(com.skillw.asahi.api.script.AsahiCompiledScript)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -1301,23 +1665,29 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                           >
                                     <li class="blockList">
                                         <h4>questAllTo</h4>
-                                        <pre class="methodSignature"> abstract <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=AsahiLexer.html#questAllTo(AsahiCompiledScript)>questAllTo</a>(<a href=../../script/AsahiCompiledScript.html>AsahiCompiledScript</a> script)</pre>
+                                        <pre class="methodSignature"> abstract <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=AsahiLexer.html#questAllTo(com.skillw.asahi.api.script.AsahiCompiledScript)>questAllTo</a>(<a href=../../script/AsahiCompiledScript.html>AsahiCompiledScript</a> script)</pre>
                                         <div class="block"><p>将词法器中所有Quester都塞到脚本里</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>script</code> - 脚本</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="parseScript(String)">
+                                <a id="parseScript(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -1325,19 +1695,25 @@ public interface <span class="typeNameLabel"><a href=AsahiLexer.html>AsahiLexer<
                                           >
                                     <li class="blockList">
                                         <h4>parseScript</h4>
-                                        <pre class="methodSignature"> abstract <a href=../../script/AsahiCompiledScript.html>AsahiCompiledScript</a> <a href=AsahiLexer.html#parseScript(String)>parseScript</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> namespaces)</pre>
+                                        <pre class="methodSignature"> abstract <a href=../../script/AsahiCompiledScript.html>AsahiCompiledScript</a> <a href=AsahiLexer.html#parseScript(java.lang.String)>parseScript</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> namespaces)</pre>
                                         <div class="block"><p>解析一段无参函数</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>namespaces</code> - 命名空间</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 

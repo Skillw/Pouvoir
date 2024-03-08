@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <!-- NewPage -->
 <html lang="en"><head>
-    <title>Builder 1.6.6-gamma API </title>
+    <title>Builder 1.6.7-beta API </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="dc.created" content="2020-03-25">
     <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../../../dokka-javadoc-stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../../../jquery/jquery-ui.css" title="Style">
-    <script type="text/javascript" src="../../../../../../jquery/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../../../../../../jquery/jquery-migrate-3.0.1.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
     <script type="text/javascript" src="../../../../../../jquery/jquery-ui.js"></script>
 
     <script type="text/javascript" src="../../../../../../search.js"></script>
@@ -88,7 +88,7 @@ var pathtoroot = "../../../../../../";
 
 <main role="main">
     <div class="header">
-        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html"></a></div>
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.skillw.pouvoir.api.feature.condition</a></div>
         <h2 title="Class BaseCondition.Builder" class="title">Class BaseCondition.Builder</h2>
     </div>
     <div class="contentContainer">
@@ -118,6 +118,14 @@ public final class <span class="typeNameLabel"><a href=BaseCondition.Builder.htm
 
                     </pre>
                     <div class="block"><p>Builder</p></div>
+
+                    <dl>
+
+                    
+
+                    
+
+                    </dl>
                 </li>
             </ul>
         </div>
@@ -202,7 +210,7 @@ public final class <span class="typeNameLabel"><a href=BaseCondition.Builder.htm
                                         
                                             <tr class="altColor">
                                                 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
-                                                        href="#BaseCondition.Builder(String)">BaseCondition.Builder</a></span>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</code></th>
+                                                        href="#BaseCondition.Builder(java.lang.String)">BaseCondition.Builder</a></span>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> key)</code></th>
                                                 <td class="colLast">Create empty Builder</td>
                                             </tr>
                                         
@@ -266,7 +274,7 @@ public final class <span class="typeNameLabel"><a href=BaseCondition.Builder.htm
                                         <tr id="i1" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=BaseCondition.Builder.html#setRelease(Boolean)>setRelease</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> release) </code>
+                                            <th class="colSecond" scope="row"><code><a href=BaseCondition.Builder.html#setRelease(java.lang.Boolean)>setRelease</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> release) </code>
                                             </th>
                                             <td class="colLast">是否在下次重载时自动注销</td>
                                         </tr>
@@ -276,13 +284,13 @@ public final class <span class="typeNameLabel"><a href=BaseCondition.Builder.htm
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=BaseCondition.Builder.html#getKey()>getKey</a>() </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">键</td>
                                         </tr>
                                         
                                         <tr id="i3" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=BaseCondition.Builder.html#condition(Condition)>condition</a>(<a href=Condition.html>Condition</a> condition) </code>
+                                            <th class="colSecond" scope="row"><code><a href=BaseCondition.Builder.html#condition(com.skillw.pouvoir.api.feature.condition.Condition)>condition</a>(<a href=Condition.html>Condition</a> condition) </code>
                                             </th>
                                             <td class="colLast">Condition</td>
                                         </tr>
@@ -290,7 +298,7 @@ public final class <span class="typeNameLabel"><a href=BaseCondition.Builder.htm
                                         <tr id="i4" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=BaseCondition.Builder.html#parameters(ConditionReader)>parameters</a>(<a href=ConditionReader.html>ConditionReader</a> reader) </code>
+                                            <th class="colSecond" scope="row"><code><a href=BaseCondition.Builder.html#parameters(com.skillw.pouvoir.api.feature.condition.ConditionReader)>parameters</a>(<a href=ConditionReader.html>ConditionReader</a> reader) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -334,7 +342,7 @@ public final class <span class="typeNameLabel"><a href=BaseCondition.Builder.htm
                             </a>
                                 <h3>Constructor Detail</h3>
                                 
-                                <a name="BaseCondition.Builder(String)"></a>
+                                <a name="BaseCondition.Builder(java.lang.String)"></a>
                                 <ul class="blockList">
                                     <li class="blockList">
                                         <h4>BaseCondition.Builder</h4>
@@ -367,12 +375,20 @@ public final class <span class="typeNameLabel"><a href=BaseCondition.Builder.htm
                                         <h4>getRelease</h4>
                                         <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=BaseCondition.Builder.html#getRelease()>getRelease</a>()</pre>
                                         <div class="block"><p>是否在下次重载时自动注销</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="setRelease(Boolean)">
+                                <a id="setRelease(java.lang.Boolean)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -380,10 +396,18 @@ public final class <span class="typeNameLabel"><a href=BaseCondition.Builder.htm
                                           >
                                     <li class="blockList">
                                         <h4>setRelease</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=BaseCondition.Builder.html#setRelease(Boolean)>setRelease</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> release)</pre>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=BaseCondition.Builder.html#setRelease(java.lang.Boolean)>setRelease</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> release)</pre>
                                         <div class="block"><p>是否在下次重载时自动注销</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -396,13 +420,21 @@ public final class <span class="typeNameLabel"><a href=BaseCondition.Builder.htm
                                     <li class="blockList">
                                         <h4>getKey</h4>
                                         <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=BaseCondition.Builder.html#getKey()>getKey</a>()</pre>
-                                        <div class="block"></div>
+                                        <div class="block"><p>键</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="condition(Condition)">
+                                <a id="condition(com.skillw.pouvoir.api.feature.condition.Condition)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -410,14 +442,22 @@ public final class <span class="typeNameLabel"><a href=BaseCondition.Builder.htm
                                           >
                                     <li class="blockList">
                                         <h4>condition</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=BaseCondition.Builder.html#condition(Condition)>condition</a>(<a href=Condition.html>Condition</a> condition)</pre>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=BaseCondition.Builder.html#condition(com.skillw.pouvoir.api.feature.condition.Condition)>condition</a>(<a href=Condition.html>Condition</a> condition)</pre>
                                         <div class="block"><p>Condition</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="parameters(ConditionReader)">
+                                <a id="parameters(com.skillw.pouvoir.api.feature.condition.ConditionReader)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -425,10 +465,18 @@ public final class <span class="typeNameLabel"><a href=BaseCondition.Builder.htm
                                           >
                                     <li class="blockList">
                                         <h4>parameters</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=BaseCondition.Builder.html#parameters(ConditionReader)>parameters</a>(<a href=ConditionReader.html>ConditionReader</a> reader)</pre>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=BaseCondition.Builder.html#parameters(com.skillw.pouvoir.api.feature.condition.ConditionReader)>parameters</a>(<a href=ConditionReader.html>ConditionReader</a> reader)</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -442,8 +490,16 @@ public final class <span class="typeNameLabel"><a href=BaseCondition.Builder.htm
                                         <h4>build</h4>
                                         <pre class="methodSignature"> final <a href=BaseCondition.html>BaseCondition</a> <a href=BaseCondition.Builder.html#build()>build</a>()</pre>
                                         <div class="block"><p>Build</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 

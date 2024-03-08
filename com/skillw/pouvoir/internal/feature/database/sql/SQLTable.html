@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <!-- NewPage -->
 <html lang="en"><head>
-    <title>SQLTable 1.6.6-gamma API </title>
+    <title>SQLTable 1.6.7-beta API </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="dc.created" content="2020-03-25">
     <link rel="stylesheet" type="text/css" href="../../../../../../../stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../../../../dokka-javadoc-stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../../../../jquery/jquery-ui.css" title="Style">
-    <script type="text/javascript" src="../../../../../../../jquery/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../../../../../../../jquery/jquery-migrate-3.0.1.js"></script>
+    <script type="text/javascript" src="../../../../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
     <script type="text/javascript" src="../../../../../../../jquery/jquery-ui.js"></script>
 
     <script type="text/javascript" src="../../../../../../../search.js"></script>
@@ -88,7 +88,7 @@ var pathtoroot = "../../../../../../../";
 
 <main role="main">
     <div class="header">
-        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html"></a></div>
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.skillw.pouvoir.internal.feature.database.sql</a></div>
         <h2 title="Class SQLTable" class="title">Class SQLTable</h2>
     </div>
     <div class="contentContainer">
@@ -121,6 +121,19 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
  implements <a href=../../../../api/feature/database/sql/IPouTable.html>IPouTable</a>&lt;<a href=SQLTable.html>T</a>, <a href=SQLTable.html>E</a>&gt;
                     </pre>
                     <div class="block"></div>
+
+                    <dl>
+
+                    
+
+                    
+                        <dt><span class="authorLabel">Author:</span></dt>
+                        
+                            <dd><p>Glom</p></dd>
+                        
+                    
+
+                    </dl>
                 </li>
             </ul>
         </div>
@@ -217,13 +230,13 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                         
                                             <tr class="altColor">
                                                 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
-                                                        href="#SQLTable(String,Host)">SQLTable</a></span>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name, Host&lt;<a href=SQLTable.html>E</a>&gt; host)</code></th>
+                                                        href="#SQLTable(java.lang.String,taboolib.module.database.Host)">SQLTable</a></span>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name, Host&lt;<a href=SQLTable.html>E</a>&gt; host)</code></th>
                                                 <td class="colLast"></td>
                                             </tr>
                                         
                                             <tr class="rowColor">
                                                 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
-                                                        href="#SQLTable(Table)">SQLTable</a></span>(Table&lt;<a href=SQLTable.html>T</a>, <a href=SQLTable.html>E</a>&gt; table)</code></th>
+                                                        href="#SQLTable(taboolib.module.database.Table)">SQLTable</a></span>(Table&lt;<a href=SQLTable.html>T</a>, <a href=SQLTable.html>E</a>&gt; table)</code></th>
                                                 <td class="colLast"></td>
                                             </tr>
                                         
@@ -311,7 +324,7 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                         <tr id="i4" class="altColor">
                                             <td class="colFirst"><code>Table&lt;<a href=SQLTable.html>T</a>, <a href=SQLTable.html>E</a>&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=SQLTable.html#column(String,Function1)>column</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name, Function1&lt;<a href=SQLTable.html>E</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func) </code>
+                                            <th class="colSecond" scope="row"><code><a href=SQLTable.html#column(java.lang.String,kotlin.jvm.functions.Function1)>column</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name, Function1&lt;<a href=SQLTable.html>E</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func) </code>
                                             </th>
                                             <td class="colLast">添加列</td>
                                         </tr>
@@ -319,7 +332,7 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                         <tr id="i5" class="rowColor">
                                             <td class="colFirst"><code>ResultProcessorList</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=SQLTable.html#select(Function1)>select</a>(Function1&lt;ActionSelect, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func) </code>
+                                            <th class="colSecond" scope="row"><code><a href=SQLTable.html#select(kotlin.jvm.functions.Function1)>select</a>(Function1&lt;ActionSelect, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func) </code>
                                             </th>
                                             <td class="colLast">选取数据</td>
                                         </tr>
@@ -327,7 +340,7 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                         <tr id="i6" class="altColor">
                                             <td class="colFirst"><code><a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=SQLTable.html#find(Function1)>find</a>(Function1&lt;ActionSelect, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func) </code>
+                                            <th class="colSecond" scope="row"><code><a href=SQLTable.html#find(kotlin.jvm.functions.Function1)>find</a>(Function1&lt;ActionSelect, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func) </code>
                                             </th>
                                             <td class="colLast">寻找数据</td>
                                         </tr>
@@ -335,7 +348,7 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                         <tr id="i7" class="rowColor">
                                             <td class="colFirst"><code><a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=SQLTable.html#update(Function1)>update</a>(Function1&lt;ActionUpdate, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func) </code>
+                                            <th class="colSecond" scope="row"><code><a href=SQLTable.html#update(kotlin.jvm.functions.Function1)>update</a>(Function1&lt;ActionUpdate, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func) </code>
                                             </th>
                                             <td class="colLast">更新数据</td>
                                         </tr>
@@ -343,7 +356,7 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                         <tr id="i8" class="altColor">
                                             <td class="colFirst"><code><a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=SQLTable.html#delete(Function1)>delete</a>(Function1&lt;ActionDelete, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func) </code>
+                                            <th class="colSecond" scope="row"><code><a href=SQLTable.html#delete(kotlin.jvm.functions.Function1)>delete</a>(Function1&lt;ActionDelete, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func) </code>
                                             </th>
                                             <td class="colLast">删除数据</td>
                                         </tr>
@@ -351,7 +364,7 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                         <tr id="i9" class="rowColor">
                                             <td class="colFirst"><code><a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=SQLTable.html#insert(String,Function1)>insert</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> keys, Function1&lt;ActionInsert, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func) </code>
+                                            <th class="colSecond" scope="row"><code><a href=SQLTable.html#insert(java.lang.String,kotlin.jvm.functions.Function1)>insert</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> keys, Function1&lt;ActionInsert, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func) </code>
                                             </th>
                                             <td class="colLast">插入操作</td>
                                         </tr>
@@ -359,7 +372,7 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                         <tr id="i10" class="altColor">
                                             <td class="colFirst"><code>ResultProcessorList</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=SQLTable.html#workspace(Function1)>workspace</a>(Function1&lt;ExecutableSource, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func) </code>
+                                            <th class="colSecond" scope="row"><code><a href=SQLTable.html#workspace(kotlin.jvm.functions.Function1)>workspace</a>(Function1&lt;ExecutableSource, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func) </code>
                                             </th>
                                             <td class="colLast">工作空间</td>
                                         </tr>
@@ -411,7 +424,7 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                             </a>
                                 <h3>Constructor Detail</h3>
                                 
-                                <a name="SQLTable(String,Host)"></a>
+                                <a name="SQLTable(java.lang.String,taboolib.module.database.Host)"></a>
                                 <ul class="blockList">
                                     <li class="blockList">
                                         <h4>SQLTable</h4>
@@ -421,7 +434,7 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                     </li>
                                 </ul>
                                 
-                                <a name="SQLTable(Table)"></a>
+                                <a name="SQLTable(taboolib.module.database.Table)"></a>
                                 <ul class="blockList">
                                     <li class="blockList">
                                         <h4>SQLTable</h4>
@@ -454,8 +467,16 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                         <h4>getName</h4>
                                         <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=SQLTable.html#getName()>getName</a>()</pre>
                                         <div class="block"><p>表名</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -469,8 +490,16 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                         <h4>getColumns</h4>
                                         <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html>ArrayList</a>&lt;Column&gt; <a href=SQLTable.html#getColumns()>getColumns</a>()</pre>
                                         <div class="block"><p>列名</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -484,8 +513,16 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                         <h4>getPrimaryKeyForLegacy</h4>
                                         <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html>ArrayList</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>&gt; <a href=SQLTable.html#getPrimaryKeyForLegacy()>getPrimaryKeyForLegacy</a>()</pre>
                                         <div class="block"><p>Primary key for legacy</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -499,12 +536,20 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                         <h4>getDataSource</h4>
                                         <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/javax/sql/DataSource.html>DataSource</a> <a href=SQLTable.html#getDataSource()>getDataSource</a>()</pre>
                                         <div class="block"><p>数据源</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="column(String,Function1)">
+                                <a id="column(java.lang.String,kotlin.jvm.functions.Function1)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -512,10 +557,12 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                           >
                                     <li class="blockList">
                                         <h4>column</h4>
-                                        <pre class="methodSignature"> Table&lt;<a href=SQLTable.html>T</a>, <a href=SQLTable.html>E</a>&gt; <a href=SQLTable.html#column(String,Function1)>column</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name, Function1&lt;<a href=SQLTable.html>E</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func)</pre>
+                                        <pre class="methodSignature"> Table&lt;<a href=SQLTable.html>T</a>, <a href=SQLTable.html>E</a>&gt; <a href=SQLTable.html#column(java.lang.String,kotlin.jvm.functions.Function1)>column</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name, Function1&lt;<a href=SQLTable.html>E</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func)</pre>
                                         <div class="block"><p>添加列</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
@@ -526,13 +573,17 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                             <dd><code>func</code> - 处理</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="select(Function1)">
+                                <a id="select(kotlin.jvm.functions.Function1)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -540,23 +591,32 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                           >
                                     <li class="blockList">
                                         <h4>select</h4>
-                                        <pre class="methodSignature"> ResultProcessorList <a href=SQLTable.html#select(Function1)>select</a>(Function1&lt;ActionSelect, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func)</pre>
+                                        <pre class="methodSignature"> ResultProcessorList <a href=SQLTable.html#select(kotlin.jvm.functions.Function1)>select</a>(Function1&lt;ActionSelect, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func)</pre>
                                         <div class="block"><p>选取数据</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>func</code> - 选取操作</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>结果</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="find(Function1)">
+                                <a id="find(kotlin.jvm.functions.Function1)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -564,23 +624,32 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                           >
                                     <li class="blockList">
                                         <h4>find</h4>
-                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=SQLTable.html#find(Function1)>find</a>(Function1&lt;ActionSelect, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func)</pre>
+                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=SQLTable.html#find(kotlin.jvm.functions.Function1)>find</a>(Function1&lt;ActionSelect, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func)</pre>
                                         <div class="block"><p>寻找数据</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>func</code> - 寻找操作</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>结果</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="update(Function1)">
+                                <a id="update(kotlin.jvm.functions.Function1)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -588,23 +657,29 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                           >
                                     <li class="blockList">
                                         <h4>update</h4>
-                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> <a href=SQLTable.html#update(Function1)>update</a>(Function1&lt;ActionUpdate, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func)</pre>
+                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> <a href=SQLTable.html#update(kotlin.jvm.functions.Function1)>update</a>(Function1&lt;ActionUpdate, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func)</pre>
                                         <div class="block"><p>更新数据</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>func</code> - 更新操作</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="delete(Function1)">
+                                <a id="delete(kotlin.jvm.functions.Function1)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -612,23 +687,29 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                           >
                                     <li class="blockList">
                                         <h4>delete</h4>
-                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> <a href=SQLTable.html#delete(Function1)>delete</a>(Function1&lt;ActionDelete, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func)</pre>
+                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> <a href=SQLTable.html#delete(kotlin.jvm.functions.Function1)>delete</a>(Function1&lt;ActionDelete, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func)</pre>
                                         <div class="block"><p>删除数据</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>func</code> - 删除操作</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="insert(String,Function1)">
+                                <a id="insert(java.lang.String,kotlin.jvm.functions.Function1)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -636,10 +717,12 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                           >
                                     <li class="blockList">
                                         <h4>insert</h4>
-                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> <a href=SQLTable.html#insert(String,Function1)>insert</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> keys, Function1&lt;ActionInsert, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func)</pre>
+                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> <a href=SQLTable.html#insert(java.lang.String,kotlin.jvm.functions.Function1)>insert</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> keys, Function1&lt;ActionInsert, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func)</pre>
                                         <div class="block"><p>插入操作</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
@@ -650,13 +733,17 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                             <dd><code>func</code> - 插入操作</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="workspace(Function1)">
+                                <a id="workspace(kotlin.jvm.functions.Function1)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -664,19 +751,28 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                           >
                                     <li class="blockList">
                                         <h4>workspace</h4>
-                                        <pre class="methodSignature"> ResultProcessorList <a href=SQLTable.html#workspace(Function1)>workspace</a>(Function1&lt;ExecutableSource, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func)</pre>
+                                        <pre class="methodSignature"> ResultProcessorList <a href=SQLTable.html#workspace(kotlin.jvm.functions.Function1)>workspace</a>(Function1&lt;ExecutableSource, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; func)</pre>
                                         <div class="block"><p>工作空间</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
                                             <dd><code>func</code> - 处理</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>结果</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -690,8 +786,16 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                         <h4>createTable</h4>
                                         <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=SQLTable.html#createTable()>createTable</a>()</pre>
                                         <div class="block"><p>创建当前PouTable对应的表</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -705,8 +809,16 @@ public final class <span class="typeNameLabel"><a href=SQLTable.html>SQLTable</a
                                         <h4>close</h4>
                                         <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=SQLTable.html#close()>close</a>()</pre>
                                         <div class="block"><p>关闭数据源</p></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 

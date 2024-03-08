@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <!-- NewPage -->
 <html lang="en"><head>
-    <title>Target 1.6.6-gamma API </title>
+    <title>Target 1.6.7-beta API </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="dc.created" content="2020-03-25">
     <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../../../dokka-javadoc-stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../../../jquery/jquery-ui.css" title="Style">
-    <script type="text/javascript" src="../../../../../../jquery/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../../../../../../jquery/jquery-migrate-3.0.1.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
     <script type="text/javascript" src="../../../../../../jquery/jquery-ui.js"></script>
 
     <script type="text/javascript" src="../../../../../../search.js"></script>
@@ -88,7 +88,7 @@ var pathtoroot = "../../../../../../";
 
 <main role="main">
     <div class="header">
-        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html"></a></div>
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.skillw.pouvoir.api.feature.selector</a></div>
         <h2 title="Class Target" class="title">Class Target</h2>
     </div>
     <div class="contentContainer">
@@ -118,6 +118,19 @@ public abstract class <span class="typeNameLabel"><a href=Target.html>Target</a>
 
                     </pre>
                     <div class="block"></div>
+
+                    <dl>
+
+                    
+
+                    
+                        <dt><span class="authorLabel">Author:</span></dt>
+                        
+                            <dd><p>Glom</p></dd>
+                        
+                    
+
+                    </dl>
                 </li>
             </ul>
         </div>
@@ -166,7 +179,7 @@ public abstract class <span class="typeNameLabel"><a href=Target.html>Target</a>
                                         
                                         <tr class="altColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code></td>
-                                            <th class="colSecond" scope="row"><code><a href=Target.html#isPresent>isPresent</a></code></th>
+                                            <th class="colSecond" scope="row"><code><a href=Target.html#isPresent()>isPresent</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
@@ -208,7 +221,7 @@ public abstract class <span class="typeNameLabel"><a href=Target.html>Target</a>
                                         
                                             <tr class="altColor">
                                                 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
-                                                        href="#Target(String,Location)">Target</a></span>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> unique, <a href=https://doc.skillw.com/bukkit/org/bukkit/Location.html>Location</a> location)</code></th>
+                                                        href="#Target(java.lang.String,org.bukkit.Location)">Target</a></span>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> unique, <a href=https://doc.skillw.com/bukkit/org/bukkit/Location.html>Location</a> location)</code></th>
                                                 <td class="colLast"></td>
                                             </tr>
                                         
@@ -264,7 +277,7 @@ public abstract class <span class="typeNameLabel"><a href=Target.html>Target</a>
                                         <tr id="i0" class="altColor">
                                             <td class="colFirst"><code><a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Target.html#getIsPresent()>getIsPresent</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=Target.html#isPresent()>isPresent</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -288,7 +301,7 @@ public abstract class <span class="typeNameLabel"><a href=Target.html>Target</a>
                                         <tr id="i3" class="rowColor">
                                             <td class="colFirst"><code><a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=Target.html#equals(Object)>equals</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> other) </code>
+                                            <th class="colSecond" scope="row"><code><a href=Target.html#equals(java.lang.Object)>equals</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> other) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -332,7 +345,7 @@ public abstract class <span class="typeNameLabel"><a href=Target.html>Target</a>
                             </a>
                                 <h3>Constructor Detail</h3>
                                 
-                                <a name="Target(String,Location)"></a>
+                                <a name="Target(java.lang.String,org.bukkit.Location)"></a>
                                 <ul class="blockList">
                                     <li class="blockList">
                                         <h4>Target</h4>
@@ -355,18 +368,26 @@ public abstract class <span class="typeNameLabel"><a href=Target.html>Target</a>
                             </a>
                                 <h3>Method Detail</h3>
                                 
-                                <a id="getIsPresent()">
+                                <a id="isPresent()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>getIsPresent</h4>
-                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=Target.html#getIsPresent()>getIsPresent</a>()</pre>
+                                        <h4>isPresent</h4>
+                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=Target.html#isPresent()>isPresent</a>()</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -380,8 +401,16 @@ public abstract class <span class="typeNameLabel"><a href=Target.html>Target</a>
                                         <h4>getUnique</h4>
                                         <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> <a href=Target.html#getUnique()>getUnique</a>()</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -395,12 +424,20 @@ public abstract class <span class="typeNameLabel"><a href=Target.html>Target</a>
                                         <h4>getLocation</h4>
                                         <pre class="methodSignature"> final <a href=https://doc.skillw.com/bukkit/org/bukkit/Location.html>Location</a> <a href=Target.html#getLocation()>getLocation</a>()</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="equals(Object)">
+                                <a id="equals(java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -408,10 +445,18 @@ public abstract class <span class="typeNameLabel"><a href=Target.html>Target</a>
                                           >
                                     <li class="blockList">
                                         <h4>equals</h4>
-                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=Target.html#equals(Object)>equals</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> other)</pre>
+                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> <a href=Target.html#equals(java.lang.Object)>equals</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> other)</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
@@ -425,8 +470,16 @@ public abstract class <span class="typeNameLabel"><a href=Target.html>Target</a>
                                         <h4>hashCode</h4>
                                         <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> <a href=Target.html#hashCode()>hashCode</a>()</pre>
                                         <div class="block"></div>
+
+                                        <dl>
+
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 

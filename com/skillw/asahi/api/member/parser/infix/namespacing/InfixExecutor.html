@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <!-- NewPage -->
 <html lang="en"><head>
-    <title>InfixExecutor 1.6.6-gamma API </title>
+    <title>InfixExecutor 1.6.7-beta API </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="dc.created" content="2020-03-25">
     <link rel="stylesheet" type="text/css" href="../../../../../../../../stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../../../../../dokka-javadoc-stylesheet.css" title="Style">
     <link rel="stylesheet" type="text/css" href="../../../../../../../../jquery/jquery-ui.css" title="Style">
-    <script type="text/javascript" src="../../../../../../../../jquery/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../../../../../../../../jquery/jquery-migrate-3.0.1.js"></script>
+    <script type="text/javascript" src="../../../../../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
     <script type="text/javascript" src="../../../../../../../../jquery/jquery-ui.js"></script>
 
     <script type="text/javascript" src="../../../../../../../../search.js"></script>
@@ -88,7 +88,7 @@ var pathtoroot = "../../../../../../../../";
 
 <main role="main">
     <div class="header">
-        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html"></a></div>
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.skillw.asahi.api.member.parser.infix.namespacing</a></div>
         <h2 title="Interface InfixExecutor" class="title">Interface InfixExecutor</h2>
     </div>
     <div class="contentContainer">
@@ -118,6 +118,19 @@ public interface <span class="typeNameLabel"><a href=InfixExecutor.html>InfixExe
 
                     </pre>
                     <div class="block"></div>
+
+                    <dl>
+
+                    
+
+                    
+                        <dt><span class="authorLabel">Author:</span></dt>
+                        
+                            <dd><p>Glom</p></dd>
+                        
+                    
+
+                    </dl>
                 </li>
             </ul>
         </div>
@@ -240,7 +253,7 @@ public interface <span class="typeNameLabel"><a href=InfixExecutor.html>InfixExe
                                         <tr id="i0" class="altColor">
                                             <td class="colFirst"><code>abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=InfixExecutor.html#execute(InfixContext,T)>execute</a>(<a href=../../../context/InfixContext.html>InfixContext</a> $self, <a href=InfixExecutor.html>T</a> obj) </code>
+                                            <th class="colSecond" scope="row"><code><a href=InfixExecutor.html#execute(com.skillw.asahi.api.member.context.InfixContext,T)>execute</a>(<a href=../../../context/InfixContext.html>InfixContext</a> $self, <a href=InfixExecutor.html>T</a> obj) </code>
                                             </th>
                                             <td class="colLast">执行中缀解释器执行内容</td>
                                         </tr>
@@ -248,7 +261,7 @@ public interface <span class="typeNameLabel"><a href=InfixExecutor.html>InfixExe
                                         <tr id="i1" class="rowColor">
                                             <td class="colFirst"><code><a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=InfixExecutor.html#run(InfixContext,Object)>run</a>(<a href=../../../context/InfixContext.html>InfixContext</a> context, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> obj) </code>
+                                            <th class="colSecond" scope="row"><code><a href=InfixExecutor.html#run(com.skillw.asahi.api.member.context.InfixContext,java.lang.Object)>run</a>(<a href=../../../context/InfixContext.html>InfixContext</a> context, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> obj) </code>
                                             </th>
                                             <td class="colLast">执行中缀解释器执行内容</td>
                                         </tr>
@@ -297,7 +310,7 @@ public interface <span class="typeNameLabel"><a href=InfixExecutor.html>InfixExe
                             </a>
                                 <h3>Method Detail</h3>
                                 
-                                <a id="execute(InfixContext,T)">
+                                <a id="execute(com.skillw.asahi.api.member.context.InfixContext,T)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -305,10 +318,12 @@ public interface <span class="typeNameLabel"><a href=InfixExecutor.html>InfixExe
                                           >
                                     <li class="blockList">
                                         <h4>execute</h4>
-                                        <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> <a href=InfixExecutor.html#execute(InfixContext,T)>execute</a>(<a href=../../../context/InfixContext.html>InfixContext</a> $self, <a href=InfixExecutor.html>T</a> obj)</pre>
+                                        <pre class="methodSignature"> abstract <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> <a href=InfixExecutor.html#execute(com.skillw.asahi.api.member.context.InfixContext,T)>execute</a>(<a href=../../../context/InfixContext.html>InfixContext</a> $self, <a href=InfixExecutor.html>T</a> obj)</pre>
                                         <div class="block"><p>执行中缀解释器执行内容</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
@@ -317,13 +332,20 @@ public interface <span class="typeNameLabel"><a href=InfixExecutor.html>InfixExe
                                             <dd><code>obj</code> - 对象</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>结果</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
-                                <a id="run(InfixContext,Object)">
+                                <a id="run(com.skillw.asahi.api.member.context.InfixContext,java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
@@ -331,10 +353,12 @@ public interface <span class="typeNameLabel"><a href=InfixExecutor.html>InfixExe
                                           >
                                     <li class="blockList">
                                         <h4>run</h4>
-                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> <a href=InfixExecutor.html#run(InfixContext,Object)>run</a>(<a href=../../../context/InfixContext.html>InfixContext</a> context, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> obj)</pre>
+                                        <pre class="methodSignature"> <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> <a href=InfixExecutor.html#run(com.skillw.asahi.api.member.context.InfixContext,java.lang.Object)>run</a>(<a href=../../../context/InfixContext.html>InfixContext</a> context, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> obj)</pre>
                                         <div class="block"><p>执行中缀解释器执行内容</p></div>
-                                        
+
                                         <dl>
+
+                                        
                                             <dt><span class="paramLabel">Parameters:</span></dt>
                                             
                                             
@@ -345,9 +369,16 @@ public interface <span class="typeNameLabel"><a href=InfixExecutor.html>InfixExe
                                             <dd><code>obj</code> - 对象</dd>
                                             
                                             
-                                        </dl>
                                         
-                                        <!-- TODO missing return annotation -->
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>结果</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
                                     </li>
                                 </ul>
                                 
