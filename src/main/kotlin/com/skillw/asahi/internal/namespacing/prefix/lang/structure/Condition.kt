@@ -45,7 +45,7 @@ private fun `when`() = prefixParser<Any?> {
             val condition = questCondition("->") {
                 val symbol = next()
                 val other = quest<Any?>()
-                quester { com.skillw.asahi.util.check(value.get(), symbol, other) }
+                quester { com.skillw.asahi.util.check(value.get(), symbol, other.get()) }
             }
             expect("->")
             pairs.add(condition to quest())
