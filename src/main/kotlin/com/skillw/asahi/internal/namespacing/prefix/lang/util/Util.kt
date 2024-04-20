@@ -4,8 +4,8 @@ import com.skillw.asahi.api.annotation.AsahiPrefix
 import com.skillw.asahi.api.prefixParser
 import com.skillw.asahi.api.quest
 import com.skillw.asahi.api.quester
-import com.skillw.asahi.internal.util.Clock
 import com.skillw.asahi.internal.util.MapTemplate
+import com.skillw.pouvoir.util.Tick
 import taboolib.common5.Coerce
 import java.awt.Color
 import java.text.SimpleDateFormat
@@ -186,6 +186,6 @@ private fun color() = prefixParser<Color> {
 @AsahiPrefix(["currentTick"], "lang")
 private fun currentTick() = prefixParser<Long> {
     result {
-        Clock.currentTick
+        Tick.currentTick
     }
 }

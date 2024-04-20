@@ -103,7 +103,9 @@ fun Location.getNearByEntities(
         y,
         z,
         filter
-    ) else world?.getNearbyEntities(this, x, y, z)?.filter { filter.test(it) } ?: emptyList()
+    ) else world?.getNearbyEntities(this, x, y, z)?.filter {
+        filter.test(it)
+    } ?: emptyList()
 }
 
 

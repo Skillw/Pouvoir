@@ -5,7 +5,9 @@ import com.skillw.asahi.api.prefixParser
 import com.skillw.asahi.api.quest
 import com.skillw.asahi.api.quester
 import com.skillw.asahi.api.script.linking.NativeFunction
+import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.util.toArgs
+import taboolib.common.platform.ProxyCommandSender
 
 
 private val funcRegex = Regex(".*?([a-zA-Z_$]+).*?\\((.*?)\\).*?")
@@ -30,6 +32,29 @@ private fun invoke() = prefixParser<Any?> {
         invoke(func.get(), *params)
     }
 }
+
+/**
+ *
+ * invokeScript {
+ *  path = "xxx.js"
+ *  function = main
+ * } [ args1 args2 ]
+ *
+ *
+ *
+ */
+@AsahiPrefix(["invokeScript"], "lang")
+private fun invokeJs() = prefixParser<Any?> {
+    val map = if (peek() == "[" || peek() == "{") questTypeMap() else quester { emptyMap<String, Any>() }
+    val path = map.quester { it["path"] as String }
+    val function = map.quester { it["function"] as String }
+    val parameters = questList()
+    result {
+        println(parameters.get())
+        Pouvoir.scriptManager.invoke(path.get(), function.get() , emptyMap(), null, *parameters.get().toTypedArray())
+    }
+}
+
 
 @AsahiPrefix(["import"], "lang")
 private fun import() = prefixParser<Unit> {

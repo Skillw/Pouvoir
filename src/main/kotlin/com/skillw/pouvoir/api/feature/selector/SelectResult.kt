@@ -32,7 +32,8 @@ class SelectResult(targets: Collection<Target> = LinkedHashSet()) : LinkedHashSe
      * @receiver
      */
     fun forEachEntity(consumer: Entity.(Int) -> Unit) =
-        forEach<EntityTarget> { index -> if (isPresent) consumer(entity, index) }
+        forEach<EntityTarget> { index -> if (isPresent) consumer(entity, index)
+        }
 
     /**
      * 遍历 living entity

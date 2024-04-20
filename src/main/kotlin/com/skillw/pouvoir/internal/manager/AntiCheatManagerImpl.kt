@@ -10,7 +10,6 @@ internal object AntiCheatManagerImpl : AntiCheatManager() {
     override val subPouvoir = Pouvoir
     override fun bypass(player: Player) {
         values.forEach { it.bypass(player) }
-
     }
 
     override fun recover(player: Player) {

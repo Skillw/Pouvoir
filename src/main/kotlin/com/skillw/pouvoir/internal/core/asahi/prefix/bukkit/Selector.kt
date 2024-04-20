@@ -216,7 +216,7 @@ private fun filter() = prefixParser<SelectResult> {
     }
 }
 
-private enum class OperateType {
+enum class OperateType {
     ADD, REMOVE, GET
 }
 

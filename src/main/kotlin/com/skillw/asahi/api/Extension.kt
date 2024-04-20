@@ -129,7 +129,9 @@ fun <R> quester(quest: AsahiContext.() -> R): Quester<R> {
  * @receiver
  */
 fun <T, R> Quester<T>.quester(quest: AsahiContext.(T) -> R): Quester<R> {
-    return Quester { quest(get()) }
+    return Quester {
+        quest(get())
+    }
 }
 
 

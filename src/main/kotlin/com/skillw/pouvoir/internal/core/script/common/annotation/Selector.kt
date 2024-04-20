@@ -40,7 +40,7 @@ internal object Selector : ScriptAnnotation("Selector", fileAnnotation = true) {
             }
 
             override fun addParameter(dataMap: DataMap, vararg args: Any?) {
-                Pouvoir.scriptManager.invoke<Any?>(script, "filter", parameters = arrayOf(dataMap, arrayOf(*args)))
+                Pouvoir.scriptManager.invoke<Any?>(script, "parameter", parameters = arrayOf(dataMap, arrayOf(*args)))
             }
 
         }.register()

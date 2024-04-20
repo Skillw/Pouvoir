@@ -1,4 +1,4 @@
-package com.skillw.asahi.internal.util
+package com.skillw.pouvoir.util
 
 import com.skillw.pouvoir.internal.feature.database.PouvoirContainer
 import taboolib.common.LifeCycle
@@ -6,7 +6,7 @@ import taboolib.common.platform.Awake
 import taboolib.common.platform.function.submit
 import taboolib.common5.Coerce
 
-object Clock {
+object Tick {
     var currentTick: Long = 0
         @Synchronized
         get
@@ -15,7 +15,7 @@ object Clock {
     @Awake(LifeCycle.ACTIVE)
     fun start() {
         currentTick = Coerce.toLong(PouvoirContainer["COMMON", "CLOCK_TICKS"])
-        submit(async = true, period = 1) {
+        submit(async = true, period = 1, delay = 0) {
             currentTick++
         }
     }

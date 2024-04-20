@@ -21,7 +21,7 @@ import java.awt.Color
  */
 
 @AsahiPrefix(["particleData"])
-fun particleData() = prefixParser<ProxyParticle.Data> {
+fun particleData() = prefixParser {
     val token = next()
     expect("[", "{")
     when (token) {
