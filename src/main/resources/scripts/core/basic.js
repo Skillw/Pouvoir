@@ -110,6 +110,44 @@ function taskAsyncTimer(delay, period, func) {
         func(task)
     });
 }
+/**
+ * @description 同步定期执行,指定次数
+ * @author Clok
+ * @date 2024/5/4
+ * @param {*} delay 延迟(tick)
+ * @param {*} period 周期(tick)
+ * @param {*} time 次数(int)
+ * @param {*} func 执行内容 含一个参数task, time 可调用task.cancel(),times表示当前次数
+ */
+function taskSyncTimerTime(delay, period, time, func) {
+    let times = 0
+    taskTimer(delay, period, function (task) {
+        times++
+        func(task, times)
+        if (times >= time) {
+            task.cancel()
+        }
+    })
+}
+/**
+ * @description 异步定期执行,指定次数
+ * @author Clok
+ * @date 2024/5/4
+ * @param {*} delay 延迟(tick)
+ * @param {*} period 周期(tick)
+ * @param {*} time 次数(int)
+ * @param {*} func 执行内容 含一个参数task, time 可调用task.cancel(),times表示当前次数
+ */
+function taskAsyncTimerTime(delay, period, time, func) {
+    let times = 0
+    taskAsyncTimer(delay, period, function (task) {
+        times++
+        func(task, times)
+        if (times >= time) {
+            task.cancel()
+        }
+    })
+}
 
 JavaArray = Java.type("java.lang.Object[]");
 

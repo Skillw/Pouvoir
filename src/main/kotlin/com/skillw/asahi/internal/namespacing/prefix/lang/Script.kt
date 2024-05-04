@@ -50,7 +50,6 @@ private fun invokeJs() = prefixParser<Any?> {
     val function = map.quester { it["function"] as String }
     val parameters = questList()
     result {
-        println(parameters.get())
         Pouvoir.scriptManager.invoke(path.get(), function.get() , emptyMap(), null, *parameters.get().toTypedArray())
     }
 }

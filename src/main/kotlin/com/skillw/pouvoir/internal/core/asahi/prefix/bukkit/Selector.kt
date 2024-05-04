@@ -105,7 +105,9 @@ private fun targets() = prefixParser<Any?> {
         else -> {
             val list = questList()
             result {
-                return@result list.get().map { it as? SelectResult? }.lastOrNull()
+                return@result list.get().map {
+                    it as? SelectResult?
+                }.lastOrNull()
             }
         }
     }

@@ -25,7 +25,7 @@ object PouAsahiScriptEngine : PouScriptEngine() {
     override val bridge: ScriptBridge = AsahiBridge
 
     override fun getAnnotationPattern(): Pattern {
-        return Pattern.compile("#@(?<key>.*)\\((?<args>.*)\\)", 2)
+        return Pattern.compile("@(?<key>.*)\\((?<args>.*)\\)", 2)
     }
 
     override fun compile(script: String, vararg params: String): CompiledScript {

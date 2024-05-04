@@ -41,9 +41,10 @@ open class BaseRealizerManager(final override val key: String, final override va
         values.filterIsInstance<Sync>().forEach(syncs::add)
         values.filterIsInstance<Awakeable>().forEach(awakeables::add)
         values.filterIsInstance<Switchable>().forEach(switchable::add)
-        println(values.map { it.toString() })
         onReload()
-        awakeables.filter { it !is Switchable || it.isEnable() }.forEach(Awakeable::onLoad)
+        awakeables.filter {
+            it !is Switchable || it.isEnable()
+        }.forEach(Awakeable::onLoad)
     }
 
     override fun onEnable() {

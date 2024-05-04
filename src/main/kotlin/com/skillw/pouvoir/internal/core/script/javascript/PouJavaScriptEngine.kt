@@ -38,7 +38,7 @@ object PouJavaScriptEngine : PouScriptEngine() {
     }
 
     override val engine: ScriptEngine
-        get() = bridge.getEngine("-doe", "--global-per-engine", "--language=es6").apply {
+        get() = bridge.getEngine("-doe", "--global-per-engine", "--language=es6", "-scripting").apply {
             context.apply {
                 getBindings(ScriptContext.ENGINE_SCOPE).apply {
                     putAll(scriptEngineManager.globalVariables)

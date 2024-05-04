@@ -82,6 +82,9 @@ object JSGlobal {
 
 
     internal fun ScriptEngine.importGlobalScripts() {
-        this.context.setBindings(SimpleBindings().apply { putAll(globalMembers) }, ScriptContext.GLOBAL_SCOPE)
+        this.context.setBindings(SimpleBindings().apply {
+            putAll(globalMembers) },
+            ScriptContext.GLOBAL_SCOPE
+        )
     }
 }
