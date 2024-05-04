@@ -38,7 +38,9 @@ object PouConfig : ConfigManager(Pouvoir) {
 
 
     override fun onLoad() {
-        AsyncCatcher.enabled = false
+        runCatching {
+            AsyncCatcher.enabled = false
+        }
         createIfNotExists(
             "dispatchers", "custom-trigger.yml"
         )
