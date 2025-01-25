@@ -55,7 +55,7 @@ open class BaseRealizerManager(final override val key: String, final override va
         awakeables.filter { it !is Switchable || it.isEnable() }.forEach(Awakeable::onActive)
     }
 
-    private val watcher = FileWatcher()
+    private val watcher = FileWatcher(20)
 
 
     override fun onReload() {

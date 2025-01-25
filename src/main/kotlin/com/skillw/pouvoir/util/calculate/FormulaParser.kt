@@ -17,7 +17,11 @@ private fun String.toCalcInfix(): ArrayList<Any> {
             if (num.isNotEmpty()) {
                 infix += num.toDouble()
             }
-            infix += char.toCalcOperator()
+            val operator = char.toCalcOperator()
+            if (infix.lastOrNull() !is Double && operator == CalcOperator.MINUS){
+                infix += 0.0
+            }
+            infix += operator
         }
         substring(begin).toDoubleOrNull()?.let {
             infix += it

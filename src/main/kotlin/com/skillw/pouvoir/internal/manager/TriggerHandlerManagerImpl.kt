@@ -22,7 +22,7 @@ internal object TriggerHandlerManagerImpl : TriggerHandlerManager() {
     override val key = "TriggerHandlerManager"
     override val priority = 6
     override val subPouvoir = Pouvoir
-    private val fileWatcher = FileWatcher()
+    private val fileWatcher = FileWatcher(20)
     private val dataFolders = HashSet<File>()
     private val fileToKeys = BaseMap<File, HashSet<String>>()
     private val folderToKeys = BaseMap<File, HashSet<String>>()
@@ -46,10 +46,9 @@ internal object TriggerHandlerManagerImpl : TriggerHandlerManager() {
             safe { builder.build().register() }
             fileToKeys.put(file, builder.key)
             folderToKeys.put(folder, builder.key)
-            if (!fileWatcher.hasListener(file)) {
-                fileWatcher.addSimpleListener(file) {
-                    reloadFile(file)
-                }
+            fileWatcher.removeListener(file)
+            fileWatcher.addSimpleListener(file) {
+                reloadFile(file)
             }
         }
         loadMultiply(
@@ -59,10 +58,9 @@ internal object TriggerHandlerManagerImpl : TriggerHandlerManager() {
             safe { builder.build().register() }
             fileToKeys.put(file, builder.key)
             folderToKeys.put(folder, builder.key)
-            if (!fileWatcher.hasListener(file)) {
-                fileWatcher.addSimpleListener(file) {
-                    reloadFile(file)
-                }
+            fileWatcher.removeListener(file)
+            fileWatcher.addSimpleListener(file) {
+                reloadFile(file)
             }
         }
     }

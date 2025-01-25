@@ -27,7 +27,7 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
     BaseMap<String, YamlConfiguration>() {
     override val key = "ConfigManager"
     private val fileMap = BaseMap<File, YamlConfiguration>()
-    private val watcher = FileWatcher()
+    private val watcher = FileWatcher(20)
 
     /** Server file */
     val serverDirectory: File by lazy {
@@ -51,9 +51,7 @@ abstract class ConfigManager(final override val subPouvoir: SubPouvoir) : Manage
             this.register(key, yaml)
         }
         for (file in fileMap.keys) {
-            if (watcher.hasListener(file)) {
-                watcher.removeListener(file)
-            }
+            watcher.removeListener(file)
             watcher.addSimpleListener(file) {
                 val yaml = fileMap[file]!!
                 safe { yaml.load(file) }

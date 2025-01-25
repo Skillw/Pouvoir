@@ -3,6 +3,8 @@ package com.skillw.pouvoir.util
 import com.skillw.pouvoir.Pouvoir
 import com.skillw.pouvoir.api.plugin.TotalManager
 import taboolib.common.platform.function.console
+import taboolib.library.reflex.LazyClass
+import taboolib.library.reflex.Reflex
 import taboolib.library.reflex.Reflex.Companion.getProperty
 import taboolib.module.lang.sendLang
 import java.lang.reflect.Method
@@ -63,6 +65,10 @@ fun staticClass(className: String): Any? {
 
 fun Class<*>.static(): Any {
     return getStaticClass.invoke(null, this)!!
+}
+
+fun LazyClass.static(): Any {
+    return instance!!.static()
 }
 
 

@@ -126,7 +126,7 @@ class Line constructor(
             vectorAB.normalize()
             var i = 0.0
             while (i < vectorLength) {
-                ProxyParticle.REDSTONE.sendTo(
+                ProxyParticle.HAPPY_VILLAGER.sendTo(
                     locA.clone().add(vectorAB.clone().multiply(i)),
                     data = ProxyParticle.DustData(color, 1f)
                 )

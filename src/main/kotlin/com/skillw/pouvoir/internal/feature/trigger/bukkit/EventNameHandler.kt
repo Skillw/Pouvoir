@@ -31,8 +31,8 @@ object EventNameHandler : ClassHandler(0) {
     }
 
     override fun inject(clazz: ClassStructure) {
-        if (!clazz.owner.isBukkitEvent()) return
-        addEventNameFormat(clazz.owner)
+        if (!clazz.owner.instance!!.isBukkitEvent()) return
+        addEventNameFormat(clazz.owner.instance!!)
     }
 
     internal fun Class<*>.isBukkitEvent(): Boolean {
