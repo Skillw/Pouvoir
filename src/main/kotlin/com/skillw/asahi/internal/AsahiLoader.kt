@@ -67,7 +67,7 @@ object AsahiLoader {
     }
 
     private fun ClassStructure.registerFunctions() {
-        val obj = owner.instance
+        val obj = owner.instance?.instance
         if (obj is BasePrefix<*> && isAnnotationPresent(AsahiPrefix::class.java))
             obj.register()
         else if (obj is BaseJavaPrefix<*> && isAnnotationPresent(AsahiPrefix::class.java))
@@ -85,7 +85,7 @@ object AsahiLoader {
     }
 
     private inline fun <reified A : Annotation, reified R : AsahiRegistrable<*>> ClassStructure.register() {
-        val obj = owner.instance
+        val obj = owner.instance?.instance
         if (obj is R && isAnnotationPresent(A::class.java)) {
             obj.register()
         } else

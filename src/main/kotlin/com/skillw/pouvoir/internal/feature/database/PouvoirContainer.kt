@@ -5,6 +5,7 @@ import com.skillw.pouvoir.api.feature.database.UserBased
 import com.skillw.pouvoir.internal.manager.PouConfig
 import taboolib.common.LifeCycle
 import taboolib.common.platform.Awake
+import taboolib.common.platform.function.warning
 
 object PouvoirContainer : UserBased {
     @JvmStatic
@@ -18,10 +19,16 @@ object PouvoirContainer : UserBased {
     @Awake(LifeCycle.ENABLE)
     fun loadContainer() {
         kotlin.runCatching {
-            container = (holder?.container("pouvoir_data", true) as? UserBased?)!!
+            if (holder == null) warning("Pouvoir User Container holder is null!")
+            val container = holder?.container("pouvoir_data", true)
+            if (container == null) warning("Pouvoir User Container container is null!")
+            this.container = (container as? UserBased?)!!
         }.let {
-            if (it.isFailure)
-                taboolib.common.platform.function.warning("Pouvoir User Container Initialization Failed!")
+            if (it.isFailure){
+                warning("Pouvoir User Container Initialization Failed!")
+                it.exceptionOrNull()?.printStackTrace()
+            }
+
         }
     }
 

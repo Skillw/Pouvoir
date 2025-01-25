@@ -39,7 +39,7 @@ abstract class ParticleObject() {
     var period: Long = 0
     var showType = ShowType.NONE
     private var running = false
-    var particle = ProxyParticle.VILLAGER_HAPPY
+    var particle = ProxyParticle.HAPPY_VILLAGER
     var count = 1
     var offset = Vector(0, 0, 0)
     var extra = 0.0

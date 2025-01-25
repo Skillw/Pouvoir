@@ -13,6 +13,7 @@ import org.bukkit.entity.Entity
 import org.bukkit.entity.LivingEntity
 import org.bukkit.util.BoundingBox
 import taboolib.library.reflex.Reflex.Companion.getProperty
+import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import taboolib.module.nms.MinecraftVersion
 import java.util.*
 import java.util.function.Predicate
@@ -37,8 +38,8 @@ class NMSImpl : NMS() {
         Bukkit.getWorlds().forEach {
             it as CraftWorld
             val server = it.handle
-            val lookup = server.getProperty<io.papermc.paper.chunk.system.entity.EntityLookup>("entityLookup")!!
-            return lookup[uuid]?.bukkitEntity ?: return@forEach
+            var lookup = server.getProperty<Any>("entityLookup")!!
+            return lookup.invokeMethod<net.minecraft.world.entity.Entity>("get",uuid)?.bukkitEntity ?: return@forEach
         }
         return null
     }

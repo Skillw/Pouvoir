@@ -7,7 +7,7 @@ plugins {
     `java-library`
     `maven-publish`
     signing
-    id("io.izzel.taboolib") version "2.0.11"
+    id("io.izzel.taboolib") version "2.0.22"
     id("org.jetbrains.kotlin.jvm") version "1.9.22"
     id("org.jetbrains.dokka") version "1.9.20"
     id("com.github.johnrengelman.shadow") version "7.0.0"
@@ -58,17 +58,14 @@ taboolib {
     }
 
     env {
-        // basic
-        install(UNIVERSAL,BUKKIT, BUKKIT_ALL)
+        install(Bukkit, BukkitHook, XSeries)
+
         // database
-        install(DATABASE,EXPANSION_REDIS,EXPANSION_PTC,EXPANSION_PTC_OBJECT,EXPANSION_PLAYER_DATABASE)
+        install(Database,DatabasePlayer,DatabasePlayerRedis)
+        // NMS
+        install( BukkitNMS, BukkitNMSDataSerializer,BukkitNMSItemTag,BukkitNMSUtil)
         // util
-        install( NMS_UTIL, NMS,
-            METRICS,
-            CONFIGURATION,
-            EXPANSION_COMMAND_HELPER,
-            EXPANSION_PLAYER_FAKE_OP,
-            NAVIGATION)
+        install(BukkitUI,CommandHelper,BukkitFakeOp,Metrics, BukkitUtil,BukkitNavigation)
     }
 
 
@@ -78,12 +75,11 @@ taboolib {
             isSkipKotlinRelocate =true
             isSkipKotlin = true
         }
-        taboolib = "6.1.1-beta17"
+        taboolib = "6.2.2"
     }
 
     relocate("org.openjdk.nashorn", "com.skillw.nashorn")
     relocate("jdk.nashorn", "com.skillw.nashorn.legacy")
-    relocate("com.esotericsoftware.reflectasm", "com.skillw.asahi.reflectasm")
 }
 
 tasks.withType<KotlinCompile> {
@@ -118,8 +114,8 @@ dependencies {
     compileOnly("org.codehaus.groovy:groovy-jsr223:3.0.11")
     compileOnly("com.google.code.gson:gson:2.9.0")
     compileOnly("ink.ptms.adyeshach:all:2.0.0-snapshot-1")
-    compileOnly("com.esotericsoftware:reflectasm:1.11.9")
     taboo(fileTree("libs/PouNashorn.jar"))
+    taboo(fileTree("libs/reflectasm-g-1.0-SNAPSHOT-all.jar"))
     compileOnly(fileTree("libs"))
     compileOnly(kotlin("stdlib-jdk8"))
 }

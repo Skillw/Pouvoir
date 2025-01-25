@@ -13,6 +13,8 @@ internal object DatabaseManagerImpl : DatabaseManager() {
 
     override fun containerHolder(data: DataMap): ContainerHolder<*>? {
         val type = data.get("type", "sqlite")
+        println("Type: $type")
+        println("GetType: ${get(type)}")
         return get(type)?.connectWith(data)
     }
 

@@ -1,8 +1,7 @@
 package com.skillw.asahi.internal.util;
 
-import com.esotericsoftware.reflectasm.FieldAccess;
-import com.esotericsoftware.reflectasm.MethodAccess;
-import taboolib.common.env.RuntimeDependency;
+import com.skillw.asahi.reflectasm.FieldAccess;
+import com.skillw.asahi.reflectasm.MethodAccess;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +9,6 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
-@RuntimeDependency(value = "com.esotericsoftware:reflectasm:1.11.9", relocate = {"!com.esotericsoftware.reflectasm", "com.skillw.asahi.reflectasm"})
 public class AsahiClassBean {
     private static final String IS_PREFIX = "is";
     private static final String GET_PREFIX = "get";

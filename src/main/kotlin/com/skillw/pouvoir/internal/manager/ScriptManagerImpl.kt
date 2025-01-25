@@ -35,7 +35,7 @@ internal object ScriptManagerImpl : ScriptManager() {
 
     private val watcher by lazy {
         dirs.runCatching { }
-        FileWatcher()
+        FileWatcher(20)
     }
 
     override fun onLoad() {
@@ -76,7 +76,7 @@ internal object ScriptManagerImpl : ScriptManager() {
             return
         }
         safe { file.compileScript()?.apply { register() } }
-        if (watcher.hasListener(file)) return
+        watcher.removeListener(file)
         watcher.addSimpleListener(file) {
             addScript(file)
         }

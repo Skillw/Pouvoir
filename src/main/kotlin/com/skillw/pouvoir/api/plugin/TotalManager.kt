@@ -57,9 +57,9 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
         allClasses.addAll(classes)
 
         handlers.addAll(classes
-            .filter { ClassHandler::class.java.isAssignableFrom(it.owner) && it.simpleName != "ClassHandler" }
+            .filter { ClassHandler::class.java.isAssignableFrom(it.owner.instance) && it.simpleName != "ClassHandler" }
             .mapNotNull {
-                it.owner.instance as? ClassHandler?
+                it.owner.instance?.instance as? ClassHandler
             })
 
         classes.forEach classFor@{ clazz ->
@@ -80,9 +80,9 @@ object TotalManager : KeyMap<SubPouvoir, ManagerData>() {
                 if ((test.isEmpty() || test.existClass()))
                     if (postLoad) {
                         postLoads.add {
-                            (clazz.owner.instance as? Registrable<*>?)?.register()
+                            (clazz.owner.instance?.instance as? Registrable<*>?)?.register()
                         }
-                    } else (clazz.owner.instance as? Registrable<*>?)?.register()
+                    } else (clazz.owner.instance?.instance as? Registrable<*>?)?.register()
             }.exceptionOrNull()?.printStackTrace()
         }
     }
